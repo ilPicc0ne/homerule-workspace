@@ -38,8 +38,8 @@ def compare(lo, hi, op, v, values=None):
 
 
 class Ctx:
-    def __init__(self, facts, as_of):
-        self.facts, self.as_of = facts, as_of
+    def __init__(self, facts, as_of, refs=None):
+        self.facts, self.as_of, self.refs = facts, as_of, refs or {}
         self.used_assumptions, self.missing, self.invalid = set(), set(), []
 
 
@@ -62,10 +62,18 @@ def ev(node, ctx):
     if k == "not":
         v = ev(ch[0], ctx)
         return None if v is None else not v
+    if k == "ref":
+        name = node.get("ref")
+        if name not in ctx.refs:
+            ctx.invalid.append(f"unknown ref {name}")
+            return U
+        return ctx.refs[name]
     if k == "unparsed":
         ctx.missing.add("unparsed: " + (node.get("quote") or "")[:60])
         return U
     key, op = node.get("fact"), node.get("op")
+    if k == "age_years":
+        key = key or "built"
     if not key or not op or (k == "age_years" and node.get("years") is None):
         ctx.invalid.append(f"{k} without fact/op")
         return U
@@ -153,6 +161,9 @@ def coverage(rule, ctx):
     return U
 
 
+REF_CATEGORY = {"local_rent_control": "rent_increase_limits", "local_just_cause": "just_cause_eviction"}
+
+
 def evaluate(rules, facts, as_of):
     """Results for every rule whose jurisdiction is in the address's stack."""
     city = facts["address.city"].values[0]
@@ -160,8 +171,16 @@ def evaluate(rules, facts, as_of):
     stack = [r for r in rules if r["jurisdiction"] in (state, city)]
     out = {}
     cov = {}
+    refs = {}
+    for name, cat in REF_CATEGORY.items():      # local rules first: refs are their coverage
+        truths = []
+        for r in stack:
+            if r["jurisdiction"] == city and r["category"] == cat and r.get("effect") != "bars_or_limits_local_rules":
+                if status(r, as_of)[0] == "in_force":
+                    truths.append(coverage(r, Ctx(facts, as_of)))
+        refs[name] = T if T in truths else U if U in truths else F
     for r in stack:
-        ctx = Ctx(facts, as_of)
+        ctx = Ctx(facts, as_of, refs)
         st, how = status(r, as_of)
         c = coverage(r, ctx)
         cov[r["id"]] = (st, c, ctx)
@@ -181,16 +200,15 @@ def evaluate(rules, facts, as_of):
         locals_ = [o for o in stack if o["jurisdiction"] == city and o["id"] != r["id"]
                    and o["category"] == r["category"] and o.get("effect") != "bars_or_limits_local_rules"]
         for inter in r.get("interactions", []):
-            if inter["kind"] in ("exempt_where_local_rule_stricter", "yields_to_local") and res["result"] in ("applies", "unknown"):
+            kind = inter.get("type") or inter.get("kind")
+            if kind in ("exempt_where_local_rule_stricter", "yields_to_local") and res["result"] in ("applies", "unknown"):
                 truths = []
                 for o in locals_:
                     ost, oc, octx = cov[o["id"]]
                     if ost != "in_force":
                         continue
-                    stricter = U
-                    if inter["kind"] == "yields_to_local":
-                        stricter = T
-                    elif o.get("cap_high") is not None and r.get("cap_low") is not None:
+                    stricter = T      # yields_to_local: the local rule governs where it covers the unit
+                    if o.get("cap_high") is not None and r.get("cap_low") is not None:
                         stricter = T if o["cap_high"] < r["cap_low"] else F
                     t = F if F in (oc, stricter) else U if U in (oc, stricter) else T
                     truths.append((t, o, octx))
@@ -203,12 +221,14 @@ def evaluate(rules, facts, as_of):
                     for t, o, octx in truths:
                         if t is U:
                             res["missing"] |= octx.missing
-            if inter["kind"] in ("possible_conflict_with_local", "preempts_local") and locals_:
+            if kind in ("possible_conflict_with_local", "preempts_local", "may_preempt_local") and locals_:
                 res["conflict_with"] = [o["id"] for o in locals_]
         # value: default or a branch
         if res["result"] in ("applies", "unknown", "superseded"):
-            vctx = Ctx(facts, as_of)
-            branch_truths = [(ev(b["when"], vctx), b["value"]) for b in r.get("value_branches", [])]
+            vctx = Ctx(facts, as_of, refs)
+            alts = r.get("key_value_conditions", [])
+            branch_truths = [(ev(b["when"], vctx), b["value"] + (f" ({b['tenant_note']})" if b.get("tenant_note") else ""))
+                             for b in alts]
             if any(t is T for t, _ in branch_truths):
                 res["value"] = next(v for t, v in branch_truths if t is T)
             elif any(t is U for t, _ in branch_truths):

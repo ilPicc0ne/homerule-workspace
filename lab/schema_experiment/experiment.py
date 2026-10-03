@@ -34,10 +34,10 @@ def node(n):
         return {**EMPTY, "kind": "not", "children": [node(n["not"])]}
     if "unparsed" in n:
         return {**EMPTY, "kind": "unparsed", "quote": n["unparsed"]}
-    if "date_fact" in n:
-        return {**EMPTY, "kind": "date_fact", "fact": n["date_fact"], "op": n["op"], "date": n["date"]}
-    if "age" in n:
-        return {**EMPTY, "kind": "age_years", "fact": n["age"], "op": n["op"], "years": n["years"]}
+    if "age_years" in n:
+        return {**EMPTY, "kind": "age_years", "fact": "built", "op": n["age_years"]["op"], "years": n["age_years"]["n"]}
+    if "ref" in n:
+        return {**EMPTY, "kind": "ref", "ref": n["ref"]}
     return {**EMPTY, "kind": "fact", "fact": n["fact"], "op": n["op"], "value": n.get("value"), "values": n.get("values")}
 
 
@@ -51,7 +51,8 @@ def load_gold():
         rules.append({**g, "state": state_of(g["jurisdiction"]),
                       "events": [{"date": None, "relative_rule": "none", "n": None, **e} for e in g["events"]],
                       "applies_if": node(g["applies_if"]), "exempt_if": node(g["exempt_if"]),
-                      "value_branches": [{"value": b["value"], "when": node(b["when"])} for b in g.get("value_branches", [])],
+                      "key_value_conditions": [{"value": b["value"], "when": node(b["when"]), "tenant_note": b.get("tenant_note")}
+                                               for b in g.get("key_value_conditions", [])],
                       "interactions": g.get("interactions", []), "cap_low": g.get("cap_low"), "cap_high": g.get("cap_high")})
     return rules
 
@@ -68,13 +69,14 @@ def load_extracted():
                     "state": state_of(r["jurisdiction"]), "category": o["category"], "citation": o["citation"],
                     "effect": o["effect"], "document_status": lu["document_status"], "events": lu["events"],
                     "key_value": o["key_value"], "cap_low": o["cap_pct_low"], "cap_high": o["cap_pct_high"],
-                    "applies_if": o["applies_if"], "exempt_if": o["exempt_if"], "value_branches": o["value_branches"],
+                    "applies_if": o["applies_if"], "exempt_if": o["exempt_if"],
+                    "key_value_conditions": o["key_value_conditions"], "parse_status": o.get("parse_status", "ok"),
                     "interactions": o["interactions"]}
             st, _ = E.status(rule, config.DEFAULT_AS_OF)
             start, _ = E.start_date(rule)
             rule["base"] = {"title": o["title"], "requirement": o["requirement"], "key_value": o["key_value"],
                             "coverage_conditions": o["coverage_conditions"], "exemptions": o["exemptions"],
-                            "interaction": "; ".join(f"{i['kind']}: {i['quote']}" for i in o["interactions"]) or None,
+                            "interaction": "; ".join(f"{i['type']}: {i['quote']}" for i in o["interactions"]) or None,
                             "effective_date": start,
                             "status": {"in_force": "in_force", "not_yet_effective": "not_yet_effective",
                                        "pending": "pending"}.get(st, "failed")}
@@ -228,8 +230,15 @@ def run(parts=("gold", "extracted"), runs=3):
         rules = load_gold() if part == "gold" else load_extracted()
         b = arm_b(rules, questions, addresses)
         a_runs = [arm_a(rules, questions, addresses, run=k) for k in range(runs)]
+        failed = {r["id"] for r in rules if r.get("parse_status") == "failed"}
+        fb = {}
+        for q in questions:
+            ids = pick(rules, q["rule"])
+            use_a = any(i in failed for i in ids) or (q["rule"] == "MA-RENT-CAP" and failed & set(ids))
+            fb[q["id"]] = a_runs[0][q["id"]] if use_a else b[q["id"]]
         stable = sum(len({ar[q["id"]]["answer"] for ar in a_runs}) == 1 for q in questions)
         report[part] = {"rules": [r["id"] for r in rules], "B": score(questions, b),
+                        "B_fallback": score(questions, fb), "failed_rules": sorted(failed),
                         "A": [score(questions, ar) for ar in a_runs], "A_stable_items": stable,
                         "B_detail": b, "A_detail": a_runs}
     out = LAB / "results"
@@ -242,8 +251,10 @@ if __name__ == "__main__":
     rep = run()
     for part, r in rep.items():
         print(f"\n=== part {part}: {len(r['rules'])} rules")
-        print(f"B (code):  {r['B']['correct']}/{r['B']['n']} correct, weighted errors {r['B']['weighted_errors']}, "
-              f"values {r['B']['values_correct']}/{r['B']['values_n']}")
+        for name in ("B", "B_fallback"):
+            print(f"{name:10} {r[name]['correct']}/{r[name]['n']} correct, weighted errors {r[name]['weighted_errors']}, "
+                  f"values {r[name]['values_correct']}/{r[name]['values_n']}")
+        print("failed rules:", r["failed_rules"])
         for k, a in enumerate(r["A"]):
             print(f"A run {k}:  {a['correct']}/{a['n']} correct, weighted errors {a['weighted_errors']}, "
                   f"values {a['values_correct']}/{a['values_n']}")

@@ -1,8 +1,8 @@
-"""Per document: one Jev call (bounded labels), then one Luna call (free extraction).
+"""Per document: one Jev call (bounded labels), one Luna call (free extraction), code checks,
+and at most one targeted Luna repair call for the obligations that fail the checks.
 
-Luna returns obligations in the extended record: starter-schema fields plus checkable
-conditions, value branches, tenancy conditions, interactions and dated events, each with
-quotes. Code then locates every quote in the pinned document version.
+Conditions use only the building facts in contracts/facts.json (interface I7). Anything about the
+tenant or the lease stays plain text (tenant_conditions, or tenant_note on an alternative amount).
 """
 import json
 import re
@@ -11,42 +11,26 @@ from concurrent.futures import ThreadPoolExecutor
 from . import config, llm, jev_pass
 from .corpus import load_text
 
-FACTS = {
-    "building.year_built": "Year the building was built (integer).",
-    "building.certificate_date": "Date the building's certificate of occupancy was issued (date). Use this when the text says certificate of occupancy.",
-    "building.built_date": "Date the building was first built or completed (date). Use this when the text says built or constructed.",
-    "building.units": "Number of dwelling units in the building (integer).",
-    "building.use_class": "Kind of building: apartment, single_family, condo, tic, mixed_use, dormitory, mobilehome, elderly, other.",
-    "building.affordable_restricted": "Unit is deed- or agreement-restricted affordable housing (boolean).",
-    "building.separately_alienable": "Unit can be sold separately from the other units, like a single-family home or condo (boolean).",
-    "building.government_regulated_rent": "Rent is regulated by another government agency (boolean).",
-    "landlord.owner_type": "natural_person, llc_natural_persons, corporation, reit, llc_with_corporate_member, public_entity, other.",
-    "landlord.portfolio_units": "Total dwelling units the landlord owns across properties (integer).",
-    "landlord.portfolio_properties": "Number of residential rental properties the landlord owns (integer).",
-    "landlord.owner_occupied": "The owner lives in the building (boolean).",
-    "tenant.service_member": "The tenant or prospective tenant is a service member (boolean).",
-    "tenancy.months": "How long the tenant has occupied the unit, in months (integer).",
-    "tenancy.deposit_collected": "Date the security deposit was collected or demanded (date).",
-    "tenancy.start": "Date the tenancy began (date).",
-}
+I7 = json.load(open(config.ROOT / "contracts" / "facts.json"))
+FACT_NAMES = [f["name"] for f in I7["facts"]]
 CATEGORIES = list(jev_pass.CATEGORIES)[:-1]
 EVENT_KINDS = ["enacted", "effective", "operative", "repealed", "introduced", "failed", "struck"]
 RELATIVE = ["none", "first_day_of_nth_month_after_enactment", "n_days_after_enactment", "no_date_in_text"]
-INTERACTIONS = ["exempt_where_local_rule_stricter", "yields_to_local", "preempts_local",
-                "possible_conflict_with_local", "coexists_with_local"]
+INTERACTIONS = ["yields_to_local", "coexists", "may_preempt_local"]
+REFS = ["local_rent_control", "local_just_cause"]
 
 NODE = {
     "type": "object", "additionalProperties": False,
-    "required": ["kind", "children", "fact", "op", "value", "values", "date", "years", "quote"],
+    "required": ["kind", "children", "fact", "op", "value", "values", "years", "ref", "quote"],
     "properties": {
-        "kind": {"type": "string", "enum": ["all", "any", "not", "fact", "date_fact", "age_years", "always", "never", "unparsed"]},
+        "kind": {"type": "string", "enum": ["all", "any", "not", "fact", "age_years", "ref", "always", "never", "unparsed"]},
         "children": {"type": "array", "items": {"$ref": "#/$defs/node"}},
-        "fact": {"type": ["string", "null"], "enum": list(FACTS) + [None]},
+        "fact": {"type": ["string", "null"], "enum": FACT_NAMES + [None]},
         "op": {"type": ["string", "null"], "enum": ["eq", "ne", "lt", "le", "gt", "ge", "in", None]},
         "value": {"type": ["number", "boolean", "string", "null"]},
         "values": {"type": ["array", "null"], "items": {"type": "string"}},
-        "date": {"type": ["string", "null"]},
         "years": {"type": ["number", "null"]},
+        "ref": {"type": ["string", "null"], "enum": REFS + [None]},
         "quote": {"type": ["string", "null"]},
     },
 }
@@ -55,6 +39,38 @@ NODE = {
 def nullable(t):
     return {"type": [t, "null"]}
 
+
+OBLIGATION = {
+    "type": "object", "additionalProperties": False,
+    "required": ["provision", "slug", "title", "category", "effect", "is_headline", "citation", "requirement",
+                 "requirement_quote", "key_value", "key_value_quote", "cap_pct_low", "cap_pct_high",
+                 "coverage_conditions", "exemptions", "applies_if", "exempt_if", "key_value_conditions",
+                 "tenant_conditions", "interactions", "penalty"],
+    "properties": {
+        "provision": {"type": "string"}, "slug": {"type": "string"}, "title": {"type": "string"},
+        "category": {"type": "string", "enum": CATEGORIES},
+        "effect": {"type": "string", "enum": ["protection_or_duty", "bars_or_limits_local_rules", "procedure_or_admin"]},
+        "is_headline": {"type": "boolean"},
+        "citation": {"type": "string"},
+        "requirement": {"type": "string"}, "requirement_quote": {"type": "string"},
+        "key_value": nullable("string"), "key_value_quote": nullable("string"),
+        "cap_pct_low": nullable("number"), "cap_pct_high": nullable("number"),
+        "coverage_conditions": nullable("string"), "exemptions": nullable("string"),
+        "applies_if": {"$ref": "#/$defs/node"}, "exempt_if": {"$ref": "#/$defs/node"},
+        "key_value_conditions": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False, "required": ["value", "when", "tenant_note", "quote"],
+            "properties": {"value": {"type": "string"}, "when": {"$ref": "#/$defs/node"},
+                           "tenant_note": nullable("string"), "quote": {"type": "string"}}}},
+        "tenant_conditions": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False, "required": ["text", "quote"],
+            "properties": {"text": {"type": "string"}, "quote": {"type": "string"}}}},
+        "interactions": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False, "required": ["type", "target_category", "quote"],
+            "properties": {"type": {"type": "string", "enum": INTERACTIONS},
+                           "target_category": {"type": "string", "enum": CATEGORIES},
+                           "quote": {"type": "string"}}}},
+        "penalty": nullable("string")},
+}
 
 SCHEMA = {
     "type": "object", "additionalProperties": False, "$defs": {"node": NODE},
@@ -73,77 +89,67 @@ SCHEMA = {
                 "n": nullable("number"),
                 "applies_to": {"type": "string"},
                 "quote": {"type": "string"}}}},
-        "obligations": {"type": "array", "items": {
-            "type": "object", "additionalProperties": False,
-            "required": ["provision", "slug", "title", "category", "effect", "is_headline", "citation", "requirement", "requirement_quote",
-                         "key_value", "key_value_quote", "cap_pct_low", "cap_pct_high", "coverage_conditions",
-                         "exemptions", "applies_if", "exempt_if", "value_branches", "tenancy_conditions",
-                         "interactions", "penalty"],
-            "properties": {
-                "provision": {"type": "string"}, "slug": {"type": "string"}, "title": {"type": "string"},
-                "category": {"type": "string", "enum": CATEGORIES},
-                "effect": {"type": "string", "enum": ["protection_or_duty", "bars_or_limits_local_rules", "procedure_or_admin"]},
-                "is_headline": {"type": "boolean"},
-                "citation": {"type": "string"},
-                "requirement": {"type": "string"}, "requirement_quote": {"type": "string"},
-                "key_value": nullable("string"), "key_value_quote": nullable("string"),
-                "cap_pct_low": nullable("number"), "cap_pct_high": nullable("number"),
-                "coverage_conditions": nullable("string"), "exemptions": nullable("string"),
-                "applies_if": {"$ref": "#/$defs/node"}, "exempt_if": {"$ref": "#/$defs/node"},
-                "value_branches": {"type": "array", "items": {
-                    "type": "object", "additionalProperties": False, "required": ["value", "when", "quote"],
-                    "properties": {"value": {"type": "string"}, "when": {"$ref": "#/$defs/node"}, "quote": {"type": "string"}}}},
-                "tenancy_conditions": {"type": "array", "items": {"$ref": "#/$defs/node"}},
-                "interactions": {"type": "array", "items": {
-                    "type": "object", "additionalProperties": False, "required": ["kind", "target_category", "quote"],
-                    "properties": {"kind": {"type": "string", "enum": INTERACTIONS},
-                                   "target_category": {"type": "string", "enum": CATEGORIES},
-                                   "quote": {"type": "string"}}}},
-                "penalty": nullable("string")}}},
+        "obligations": {"type": "array", "items": OBLIGATION},
     },
 }
+REPAIR_SCHEMA = {"type": "object", "additionalProperties": False, "$defs": {"node": NODE},
+                 "required": ["obligations"], "properties": {"obligations": {"type": "array", "items": OBLIGATION}}}
+
+
+def fact_doc():
+    lines = []
+    for f in I7["facts"]:
+        vals = f" values: {f['values']}." if f.get("values") else ""
+        lines.append(f"- {f['name']} ({f['type']}, ops {f['ops']}, compare with {f['value_type']}).{vals} {f['source']}")
+    return "\n".join(lines)
+
 
 SYSTEM = f"""You turn housing-law documents into obligation records. Read the whole document.
 
 Output one obligation per distinct duty, limit, prohibition or right that a landlord, tenant or other party has
 (e.g. a deposit cap, a deduction rule and a return deadline in the same section are three obligations).
-For a document that only announces or summarises a law, extract the obligations it states.
+For a document that only announces or summarises a law, extract the obligations it states. For a bill that is
+not enacted, extract the obligations it would create (document_status records that it is pending).
 
 Quotes: every *_quote and every condition's "quote" must be copied character for character from the document,
 one contiguous passage, at most 300 characters. Never paraphrase or join passages in a quote.
 
-Conditions (applies_if, exempt_if, value_branches[].when, tenancy_conditions) use this language:
-- all / any / not with at least one child; always / never for trivial conditions. Every fact, date_fact and
-  age_years node needs fact and op (age_years also years).
-- fact: compare a fact with op and value (number, boolean or enum string); op "in" uses values.
-- date_fact: compare a date fact with date (YYYY-MM-DD). "on or before <date>" is op le, "after <date>" is gt.
-- age_years: the fact's date is less/more than N years before the query date ("within the previous 15 years" = lt 15).
-- unparsed: a condition the facts can't express; put its text in quote.
+Conditions (applies_if, exempt_if, key_value_conditions[].when) may use ONLY these building facts:
+{fact_doc()}
+Condition nodes:
+- all / any / not with at least one child; always / never for trivial conditions.
+- fact: compare one of the facts above with op and value (op "in" uses values). Dates as YYYY-MM-DD.
+  "on or before <date>" is le, "after <date>" is gt, "no more than N" is le, "more than N" is gt.
+- age_years: the building's age (from built) compared with years; "within the previous 15 years" is lt 15.
+- ref: whether local rent control (local_rent_control) or local just-cause rules (local_just_cause) cover the
+  building. Only state rules may use ref; a city's own ordinance never refers to itself (write its coverage).
+- unparsed: a building or owner property the facts cannot express; put its text in quote.
+Housing restricted or subsidised as affordable housing is subsidised = true. Single-family homes and condos (units
+sold separately) are use_class single_family / condo. A condition on how many units or properties the OWNER owns
+uses units: a building's own unit count is a lower bound on what its owner owns (e.g. "owner has no more than four
+units" becomes units le 4).
 Every address we evaluate is a residential rental building, so never encode the law's general scope
 ("residential property", "a rental agreement", "a landlord") as a condition: use always.
-applies_if/exempt_if may use only building.*, landlord.* facts (properties of the building and its owner).
-Exceptions that depend on the lease, an agreement, the tenant or how the tenancy ends are not exemptions of the
-building: put them in tenancy_conditions or value_branches. Use unparsed in applies_if/exempt_if only for a
-building or landlord property the facts cannot express.
+Conditions about the tenant, the lease, an agreement or how the tenancy ends are not building facts: write them
+as tenant_conditions (plain text), or as tenant_note on an alternative amount.
 The coverage of a local ordinance (which buildings it covers, e.g. by construction or certificate date, unit
 count or building type) goes into applies_if/exempt_if of every obligation that ordinance imposes, even when the
-coverage is stated in another sentence or in another document of the same bundle.
-Conditions about the tenant or the tenancy go into tenancy_conditions, or into value_branches when they change the
-amount. value_branches give alternative values of key_value and when each applies: a provision that sets a
-different amount "notwithstanding" the main one (e.g. a higher cap for small landlords) is a value branch of the
-main obligation, not a separate obligation.
-Facts: {json.dumps(FACTS, indent=0)}
+coverage is stated in another sentence or another document of the same bundle.
+exempt_if: the cases where the obligation does not apply; never if there are none. Do not write always.
 
-interactions: relations between this obligation and local (city) rules in the same topic. If a provision exempts
-housing covered by a stricter local rule (e.g. local rent control), do not put that in exempt_if: add an
-interaction exempt_where_local_rule_stricter to the main obligation. If the act forbids or limits local
-ordinances on its topic, add possible_conflict_with_local (or preempts_local if it expressly voids them) to the
-act's main obligations. Use coexists_with_local only when the text says local rules continue to apply alongside.
+key_value_conditions: alternative amounts of key_value and the building/owner condition for each. A provision
+that sets a different amount "notwithstanding" the main one (e.g. a higher cap for small landlords) is an
+alternative amount of the main obligation, not a separate obligation.
+
+interactions: relations between this obligation and local (city) rules on the same topic. If a provision
+exempts housing covered by a stricter local rule, do not put that in exempt_if: add yields_to_local. If the act
+forbids or limits local ordinances on its topic, add may_preempt_local to the act's main obligations. Use
+coexists only when the text says local rules continue to apply alongside.
 effect: protection_or_duty for duties, limits and rights; bars_or_limits_local_rules for a provision that forbids
 or restricts cities from adopting rules (it protects no tenant by itself); procedure_or_admin for reporting,
 enforcement mechanics and administration.
 is_headline: true for the main obligation of each law in each topic (the cap, the ban, the core duty), false for
-the supporting provisions.
+supporting provisions.
 cap_pct_low / cap_pct_high: for rent-increase caps only, the lowest and highest annual increase in percent the
 cap can allow (e.g. "3% plus CPI, max 8%" gives 3 and 8; "2.5%" gives 2.5 and 2.5). Otherwise null.
 
@@ -151,19 +157,16 @@ events: dates the law was enacted, takes effect, becomes operative, is repealed,
 If the effective date is defined relative to enactment ("the first day of the twelfth month next following
 enactment"), set relative_rule and n and leave date null. If the text gives no effective date, add an
 "effective" event with relative_rule "no_date_in_text". applies_to is "act" or a provision path.
-document_status: the legal status of the main law or measure in the document.
 provision: the section path from the section map, e.g. "1234.5/c/1". citation: the official citation style,
-e.g. "Cal. Health & Safety Code § 17920.3", "Phila. Code § 9-804", "N.Y. Real Prop. Law § 235-b", "Or. Rev. Stat. § 90.323"."""
+e.g. "Cal. Health & Safety Code § 17920.3", "Phila. Code § 9-804", "N.Y. Real Prop. Law § 235-b"."""
 
 
 def hints(entry, text, labels):
     lines = []
     for i, path, body in jev_pass.section_targets(entry, text):
         t, c = labels.get(f"s{i}_type"), labels.get(f"s{i}_cat")
-        if not t:
-            continue
-        snippet = " ".join(body.split())[:90]
-        lines.append(f"{path} | {t['choice']} | {c['choice']} | {snippet}")
+        if t:
+            lines.append(f"{path} | {t['choice']} | {c['choice']} | {' '.join(body.split())[:90]}")
     return "\n".join(lines)
 
 
@@ -172,8 +175,7 @@ TRANS = str.maketrans({" ": " ", "“": '"', "”": '"', "‘": "'", "’": "'"
 
 
 def _normalise(s):
-    out, idx = [], []
-    prev_space = False
+    out, idx, prev_space = [], [], False
     for i, ch in enumerate(s):
         ch = ch.translate(TRANS)
         if ch.isspace():
@@ -188,7 +190,7 @@ def _normalise(s):
 
 
 def locate(text, quote):
-    """Return (start, end, method) of quote in text, or None. Exact first, then normalised."""
+    """(start, end, method) of quote in text, or None. Exact first, then normalised."""
     if not quote:
         return None
     i = text.find(quote)
@@ -196,7 +198,7 @@ def locate(text, quote):
         return i, i + len(quote), "exact"
     nt, idx = _normalise(text)
     nq, _ = _normalise(quote.strip())
-    j = nt.find(nq)
+    j = nt.find(nq) if nq else -1
     if j >= 0:
         return idx[j], idx[j + len(nq) - 1] + 1, "normalised"
     return None
@@ -214,44 +216,176 @@ def walk_quotes(obj, path=""):
             yield from walk_quotes(v, f"{path}[{n}]")
 
 
-TENANCY = ("tenant.", "tenancy.")
+# ---------- checks ----------
+MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+          "November", "December"]
+PHRASE_OPS = [("on or before", "le"), ("on or after", "ge"), ("no more than", "le"), ("not more than", "le"),
+              ("not exceed", "le"), ("in excess of", "gt"), ("more than", "gt"), ("less than", "lt"),
+              ("at least", "ge"), ("prior to", "lt"), ("before", "lt"), ("after", "gt")]
+NUMBER_WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8,
+                "nine": 9, "ten": 10, "twelve": 12, "fifteen": 15, "twenty": 20}
 
 
-def _tenancy_only(n):
-    if n["kind"] in ("all", "any", "not"):
-        return bool(n["children"]) and all(_tenancy_only(c) for c in n["children"])
-    return n["kind"] in ("fact", "date_fact", "age_years") and (n["fact"] or "").startswith(TENANCY)
+def _value_forms(v):
+    if isinstance(v, bool):
+        return []
+    if isinstance(v, (int, float)):
+        n = int(v) if float(v).is_integer() else v
+        return [str(n)] + [w for w, k in NUMBER_WORDS.items() if k == n]
+    m = re.fullmatch(r"(\d{4})-(\d{2})-(\d{2})", str(v))
+    if m:
+        y, mo, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        return [f"{MONTHS[mo - 1]} {d}, {y}", f"{mo}/{d}/{y}", f"{mo:02d}/{d:02d}/{y}", str(v)]
+    return []
 
 
-def move_tenancy_conditions(ob):
-    """Coverage decides the address result, so tenant/tenancy conditions move to tenancy_conditions."""
-    moved = []
-    ex = ob["exempt_if"]
-    parts = ex["children"] if ex["kind"] == "any" else [ex]
-    keep = [c for c in parts if not _tenancy_only(c)]
-    for c in parts:
-        if _tenancy_only(c):
-            ob["tenancy_conditions"].append({**c, "kind": "not", "children": [c], "fact": None, "op": None,
-                                             "value": None, "values": None, "date": None, "years": None,
-                                             "quote": c.get("quote")})
-            moved.append("exempt_if")
-    if len(keep) != len(parts):
-        ob["exempt_if"] = ({**ex, "children": keep} if ex["kind"] == "any" and len(keep) > 1 else
-                           keep[0] if keep else {**ex, "kind": "never", "children": []})
-    ap = ob["applies_if"]
-    parts = ap["children"] if ap["kind"] == "all" else [ap]
-    keep = [c for c in parts if not _tenancy_only(c)]
-    for c in parts:
-        if _tenancy_only(c):
-            ob["tenancy_conditions"].append(c)
-            moved.append("applies_if")
-    if len(keep) != len(parts):
-        ob["applies_if"] = ({**ap, "children": keep} if ap["kind"] == "all" and len(keep) > 1 else
-                            keep[0] if keep else {**ap, "kind": "always", "children": []})
-    return moved
+def node_problems(n, where):
+    k, ch = n["kind"], n.get("children") or []
+    out = []
+    if k in ("all", "any", "not") and not ch:
+        out.append(f"{where}: '{k}' has no children")
+    if k == "fact" and (not n.get("fact") or not n.get("op") or (n.get("value") is None and not n.get("values"))):
+        out.append(f"{where}: fact node needs fact, op and value")
+    if k == "age_years" and (not n.get("op") or n.get("years") is None):
+        out.append(f"{where}: age_years needs op and years")
+    if k == "ref" and not n.get("ref"):
+        out.append(f"{where}: ref node needs ref")
+    if k == "unparsed" and not n.get("triaged"):
+        out.append(f"{where}: unparsed condition '{(n.get('quote') or '')[:80]}'")
+    if k == "fact" and n.get("quote") and n.get("value") is not None:
+        forms = _value_forms(n["value"])
+        if forms and not any(f.lower() in n["quote"].lower() for f in forms):
+            out.append(f"{where}: value {n['value']!r} not found in its quote")
+    if k in ("fact", "age_years") and n.get("quote") and n.get("op"):
+        q = n["quote"].lower()
+        for phrase, op in PHRASE_OPS:
+            if phrase in q:
+                flipped = {"le": "ge", "lt": "gt", "ge": "le", "gt": "lt"}
+                if n["op"] != op and not (k == "age_years" or n["op"] == flipped.get(op)):
+                    out.append(f"{where}: op {n['op']} contradicts '{phrase}' in its quote")
+                break
+    for i, c in enumerate(ch):
+        out += node_problems(c, f"{where}.{i}")
+    return out
 
 
-def extract(doc_id, bundle=None):
+def _has_ref(n):
+    return n["kind"] == "ref" or any(_has_ref(c) for c in n.get("children") or [])
+
+
+def check(doc_out, level="state"):
+    """Problems per obligation index, plus document-level problems."""
+    per, doc = {}, []
+    obs = doc_out["obligations"]
+    if doc_out["document_status"] in ("pending", "enacted") and not obs:
+        doc.append(f"document_status is {doc_out['document_status']} but no obligations were extracted")
+    for i, o in enumerate(obs):
+        p = []
+        if o["effect"] == "protection_or_duty":
+            if o["exempt_if"]["kind"] == "always":
+                p.append("exempt_if is 'always', so the obligation would never apply")
+            if o["applies_if"]["kind"] == "never":
+                p.append("applies_if is 'never', so the obligation would never apply")
+            p += node_problems(o["applies_if"], "applies_if") + node_problems(o["exempt_if"], "exempt_if")
+            if level == "city" and (_has_ref(o["applies_if"]) or _has_ref(o["exempt_if"])):
+                p.append("a city ordinance's coverage uses ref (circular): write which buildings it covers")
+            for j, b in enumerate(o["key_value_conditions"]):
+                p += node_problems(b["when"], f"key_value_conditions[{j}].when")
+            if o["is_headline"] and o["category"] in ("rent_increase_limits", "security_deposits",
+                                                      "application_screening_fees") and not o["key_value"]:
+                p.append("headline cap or limit without key_value")
+        if p:
+            per[i] = p
+    return per, doc
+
+
+REPAIR = """Some obligations you extracted from these documents fail automatic checks. For each obligation below,
+re-read the documents and return a corrected version of it (same rules as before; same provision and slug).
+- An unparsed coverage condition: find the sentence that says which buildings are covered (possibly elsewhere
+  in the documents) and express it with the facts. Keep it unparsed only if the documents truly don't say.
+- exempt_if 'always' or applies_if 'never': write the real exemptions, or never/always if there are none.
+- A value not found in its quote, or an operator that contradicts the quote: fix the value, operator or quote.
+If no obligations were extracted from a bill or law, return the obligations it creates or would create.
+Return only the corrected obligations, plus any newly found ones."""
+
+
+def repair(user, out, per, doc_problems, ref):
+    items = [{"index": i, "problems": p, "obligation": out["obligations"][i]} for i, p in per.items()]
+    msg = f"{REPAIR}\n\nProblems:\n{json.dumps({'document': doc_problems, 'obligations': items}, indent=1)}"
+    fixed, usage = llm.luna([{"role": "system", "content": SYSTEM}, {"role": "user", "content": user},
+                             {"role": "assistant", "content": json.dumps(out)}, {"role": "user", "content": msg}],
+                            REPAIR_SCHEMA, "repair", stage="luna_repair", ref=ref)
+    by_key = {(o["provision"], o["slug"]): o for o in fixed["obligations"]}
+    for i in per:
+        o = out["obligations"][i]
+        if (o["provision"], o["slug"]) in by_key:
+            out["obligations"][i] = by_key.pop((o["provision"], o["slug"]))
+    out["obligations"] += list(by_key.values())
+    return usage
+
+
+TRIAGE = {
+    "no": "This condition cannot be true for an ordinary multifamily apartment building of five or more units that "
+          "is not subsidised or affordable housing.",
+    "yes": "This condition is always true for such a building.",
+    "depends": "It may or may not be true for such a building; it depends on facts about the specific building, "
+                "owner or tenancy.",
+}
+APT5 = {"kind": "all", "children": [
+    {"kind": "fact", "children": [], "fact": "use_class", "op": "in", "value": None, "values": ["apartment", "mixed_use"],
+     "years": None, "ref": None, "quote": None},
+    {"kind": "fact", "children": [], "fact": "units", "op": "ge", "value": 5, "values": None, "years": None,
+     "ref": None, "quote": None},
+    {"kind": "fact", "children": [], "fact": "subsidised", "op": "eq", "value": False, "values": None, "years": None,
+     "ref": None, "quote": None}], "fact": None, "op": None, "value": None, "values": None, "years": None,
+    "ref": None, "quote": None}
+
+
+def _wrap(node, answer, conf):
+    """Guard an unparsed node with Jev's judgement: decided for 5+ unit non-subsidised apartments, unknown otherwise."""
+    node["triaged"] = {"jev": answer, "confidence": conf}
+    base = {k: None for k in ("fact", "op", "value", "values", "years", "ref", "quote")}
+    if answer == "no":    # false for APT5: all(not APT5, node)
+        return {**base, "kind": "all", "children": [{**base, "kind": "not", "children": [APT5]}, node],
+                "triaged_guard": "false for 5+ unit apartments (Jev)"}
+    return {**base, "kind": "any", "children": [APT5, node], "triaged_guard": "true for 5+ unit apartments (Jev)"}
+
+
+def triage_unparsed(state_text, out, ref, min_conf=0.8):
+    """One Jev call per unit for conditions still unparsed after repair."""
+    targets = []
+
+    def walk(n, setter):
+        if n["kind"] == "unparsed" and not n.get("triaged"):
+            targets.append((n, setter))
+        for i, c in enumerate(n.get("children") or []):
+            walk(c, lambda new, n=n, i=i: n["children"].__setitem__(i, new))
+
+    for o in out["obligations"]:
+        if o["effect"] != "protection_or_duty":
+            continue
+        for key in ("applies_if", "exempt_if"):
+            walk(o[key], lambda new, o=o, key=key: o.__setitem__(key, new))
+        for b in o["key_value_conditions"]:
+            walk(b["when"], lambda new, b=b: b.__setitem__("when", new))
+    if not targets:
+        return None
+    questions = {f"u{i}": {"type": "choice", "criteria": TRIAGE,
+                           "instructions": f'Consider this condition from the law: "{(n.get("quote") or "")[:300]}". '
+                                           "Could it be true for an ordinary multifamily apartment building of five or "
+                                           "more units that is not subsidised or affordable housing?"}
+                 for i, (n, _) in enumerate(targets)}
+    answers, usage = llm.jev(state_text[:60000], questions, stage="jev_triage", ref=ref)
+    for i, (n, setter) in enumerate(targets):
+        a = answers[f"u{i}"]
+        if a["choice"] in ("no", "yes") and a["confidence"] >= min_conf:
+            setter(_wrap(n, a["choice"], a["confidence"]))
+        else:
+            n["triaged"] = {"jev": a["choice"], "confidence": a["confidence"], "kept_unparsed": True}
+    return usage
+
+
+def extract(doc_id, bundle=None, repair_on=True):
     """Extract one document, or a bundle of same-city summary documents in one Luna call (one Jev call each)."""
     ids = bundle or [doc_id]
     entries = [json.load(open(config.INDEX / f"{d}.json")) for d in ids]
@@ -264,33 +398,47 @@ def extract(doc_id, bundle=None):
                      f"Section map (path | content type | topic | start), labels from a classifier, may be wrong:\n"
                      f"{hints(e, t, lab)}\n\n{t}")
     user = "\n\n".join(parts)
+    ref = "+".join(ids)
     out, usage = llm.luna([{"role": "system", "content": SYSTEM}, {"role": "user", "content": user}],
-                          SCHEMA, "obligations", stage="luna_extract", ref="+".join(ids))
-    entry, text = entries[0], "\n\n".join(texts)
-    for ob in out["obligations"]:
-        ob["moved_tenancy_conditions"] = move_tenancy_conditions(ob)
+                          SCHEMA, "obligations", stage="luna_extract", ref=ref)
+    level = "city" if "," in entries[0]["jurisdiction"] else "state"
+    per, doc_problems = check(out, level)
+    first_problems = {"obligations": {str(k): v for k, v in per.items()}, "document": doc_problems}
+    repair_usage = None
+    if repair_on and (per or doc_problems):
+        repair_usage = repair(user, out, per, doc_problems, ref)
+    triage_usage = triage_unparsed("\n\n".join(texts), out, ref)
+    per, doc_problems = check(out, level)
+    text = "\n\n".join(texts)
     spans, failed = {}, []
     for path, q in walk_quotes(out):
         hit = locate(text, q)
-        if hit:
-            spans[path] = {"start": hit[0], "end": hit[1], "method": hit[2]}
-        else:
+        if not hit:
             failed.append({"path": path, "quote": q[:200]})
-    for path, sp in spans.items():   # attribute each located quote to its document in the bundle
+            continue
         offset = 0
         for d, e, t in zip(ids, entries, texts):
-            if offset <= sp["start"] < offset + len(t):
-                sp.update(doc_id=d, version_id=e["version_id"], start=sp["start"] - offset, end=sp["end"] - offset)
+            if offset <= hit[0] < offset + len(t):
+                spans[path] = {"doc_id": d, "version_id": e["version_id"], "start": hit[0] - offset,
+                               "end": hit[1] - offset, "method": hit[2]}
                 break
             offset += len(t) + 2
-    record = {"doc_id": "+".join(ids), "doc_ids": ids, "version_ids": [e["version_id"] for e in entries],
-              "jurisdiction": entry["jurisdiction"], "evidence_tiers": [e["evidence_tier"] for e in entries],
+    for i, o in enumerate(out["obligations"]):
+        quote_ok = f".obligations[{i}].requirement_quote" in spans
+        problems = per.get(i, []) + ([] if quote_ok else ["requirement_quote not found in the source"])
+        o["checks"] = problems
+        o["parse_status"] = ("ok" if not problems else
+                             "failed" if o["is_headline"] and o["effect"] == "protection_or_duty" else "partial")
+    record = {"doc_id": ref, "doc_ids": ids, "version_ids": [e["version_id"] for e in entries],
+              "jurisdiction": entries[0]["jurisdiction"], "evidence_tiers": [e["evidence_tier"] for e in entries],
               "source_urls": [e["url"] for e in entries], "retrieved": [e["retrieved"] for e in entries],
               "jev": {d: {"doc_type": labels[d]["doc_type"], "doc_status": labels[d]["doc_status"],
                           "dates": {k: v for k, v in labels[d].items() if k.startswith("d")}} for d in ids},
-              "luna": out, "spans": spans, "quote_failures": failed, "luna_usage": usage}
+              "luna": out, "checks_before_repair": first_problems, "document_problems": doc_problems,
+              "spans": spans, "quote_failures": failed, "luna_usage": usage, "repair_usage": repair_usage,
+              "triage_usage": triage_usage}
     (config.OUT / "extracted").mkdir(parents=True, exist_ok=True)
-    (config.OUT / "extracted" / f"{record['doc_id']}.json").write_text(json.dumps(record, indent=1, ensure_ascii=False))
+    (config.OUT / "extracted" / f"{ref}.json").write_text(json.dumps(record, indent=1, ensure_ascii=False))
     return record
 
 
@@ -306,7 +454,17 @@ def units_for(doc_ids):
     return singles + list(bundles.values())
 
 
-def extract_many(doc_ids, workers=6):
+def extract_many(doc_ids, workers=6, repair_on=True):
     units = units_for(doc_ids)
     with ThreadPoolExecutor(workers) as ex:
-        return list(ex.map(lambda u: extract(u[0], u if len(u) > 1 else None), units))
+        return list(ex.map(lambda u: extract(u[0], u if len(u) > 1 else None, repair_on), units))
+
+
+if __name__ == "__main__":
+    import sys
+    for r in extract_many(sys.argv[1:]):
+        obs = r["luna"]["obligations"]
+        print(r["doc_id"], len(obs), "obligations;", "before repair:",
+              len(r["checks_before_repair"]["obligations"]), "flagged; after:",
+              sum(o["parse_status"] == "failed" for o in obs), "failed,",
+              sum(o["parse_status"] == "partial" for o in obs), "partial; quote failures", len(r["quote_failures"]))

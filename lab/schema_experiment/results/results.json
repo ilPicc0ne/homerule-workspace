@@ -188,6 +188,184 @@
     }
    ]
   },
+  "B_fallback": {
+   "correct": 24,
+   "n": 24,
+   "weighted_errors": 0.0,
+   "values_correct": 3,
+   "values_n": 3,
+   "rows": [
+    {
+     "id": "Q1-rent-state",
+     "expect": "superseded",
+     "got": "superseded",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q1-rent-local",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q1-deposit",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": true
+    },
+    {
+     "id": "Q2-rent-state",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q2-rent-local",
+     "expect": "none",
+     "got": "none",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q3-rent-state",
+     "expect": "none",
+     "got": "none",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q3-rent-local",
+     "expect": "none",
+     "got": "none",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q4-rent-local",
+     "expect": "unknown",
+     "got": "unknown",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q4-rent-state",
+     "expect": "unknown",
+     "got": "unknown",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q5-rent-local",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q5-rent-state",
+     "expect": "superseded",
+     "got": "superseded",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q6-boston-cap",
+     "expect": "none",
+     "got": "none",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q7-camb-cap",
+     "expect": "none",
+     "got": "none",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q7-camb-s2983",
+     "expect": "pending",
+     "got": "pending",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q7-camb-h5222",
+     "expect": "pending",
+     "got": "pending",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q8-T1-before",
+     "expect": "not_yet_effective",
+     "got": "not_yet_effective",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q8-T1-after",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q9-T3-today",
+     "expect": "not_yet_effective",
+     "got": "not_yet_effective",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q9-T3-later",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q10-newark",
+     "expect": "not_yet_effective",
+     "got": "not_yet_effective",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q11-tic-deposit",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": true
+    },
+    {
+     "id": "Q12-berk-deposit",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": true
+    },
+    {
+     "id": "Q13-repealed",
+     "expect": "none",
+     "got": "none",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q14-tic-rent",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": null
+    }
+   ]
+  },
+  "failed_rules": [],
   "A": [
    {
     "correct": 23,
@@ -729,12 +907,11 @@
     "detail": {
      "CA-RENT": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type"
+       "owner_occupied",
+       "owner_type"
       ],
       "invalid": [],
       "governed_by": "SF-RENT",
@@ -749,9 +926,7 @@
     "value": "1.6% annual allowable increase (Mar 1, 2026 - Feb 28, 2027)",
     "detail": {
      "SF-RENT": {
-      "assumptions": [
-       "co_from_year_built"
-      ],
+      "assumptions": [],
       "missing": [],
       "invalid": [],
       "governed_by": null,
@@ -766,9 +941,7 @@
     "value": "one month's rent",
     "detail": {
      "CA-DEP": {
-      "assumptions": [
-       "portfolio_lower_bound"
-      ],
+      "assumptions": [],
       "missing": [],
       "invalid": [],
       "governed_by": null,
@@ -784,12 +957,11 @@
     "detail": {
      "CA-RENT": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type"
+       "owner_occupied",
+       "owner_type"
       ],
       "invalid": [],
       "governed_by": null,
@@ -804,9 +976,7 @@
     "value": null,
     "detail": {
      "SF-RENT": {
-      "assumptions": [
-       "co_from_year_built"
-      ],
+      "assumptions": [],
       "missing": [],
       "invalid": [],
       "governed_by": null,
@@ -822,12 +992,11 @@
     "detail": {
      "CA-RENT": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type"
+       "owner_occupied",
+       "owner_type"
       ],
       "invalid": [],
       "governed_by": null,
@@ -842,9 +1011,7 @@
     "value": null,
     "detail": {
      "SF-RENT": {
-      "assumptions": [
-       "co_from_year_built"
-      ],
+      "assumptions": [],
       "missing": [],
       "invalid": [],
       "governed_by": null,
@@ -875,12 +1042,11 @@
     "detail": {
      "CA-RENT": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type"
+       "owner_occupied",
+       "owner_type"
       ],
       "invalid": [],
       "governed_by": null,
@@ -911,12 +1077,11 @@
     "detail": {
      "CA-RENT": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type"
+       "owner_occupied",
+       "owner_type"
       ],
       "invalid": [],
       "governed_by": "LA-RENT",
@@ -1046,13 +1211,11 @@
     "value": {
      "conditional": [
       "one month's rent",
-      "two months' rent"
+      "two months' rent (not if the prospective tenant is a service member)"
      ],
      "depends_on": [
-      "landlord.owner_type",
-      "landlord.portfolio_properties",
-      "landlord.portfolio_units",
-      "tenant.service_member"
+      "owner_type",
+      "units"
      ]
     },
     "detail": {
@@ -1065,13 +1228,11 @@
       "value": {
        "conditional": [
         "one month's rent",
-        "two months' rent"
+        "two months' rent (not if the prospective tenant is a service member)"
        ],
        "depends_on": [
-        "landlord.owner_type",
-        "landlord.portfolio_properties",
-        "landlord.portfolio_units",
-        "tenant.service_member"
+        "owner_type",
+        "units"
        ]
       },
       "result": "applies"
@@ -1083,9 +1244,7 @@
     "value": "one month's rent",
     "detail": {
      "CA-DEP": {
-      "assumptions": [
-       "portfolio_lower_bound"
-      ],
+      "assumptions": [],
       "missing": [],
       "invalid": [],
       "governed_by": null,
@@ -1101,12 +1260,11 @@
     "detail": {
      "CA-RENT": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type"
+       "owner_occupied",
+       "owner_type"
       ],
       "invalid": [],
       "governed_by": null,
@@ -1121,9 +1279,7 @@
     "value": "1.6% annual allowable increase (Mar 1, 2026 - Feb 28, 2027)",
     "detail": {
      "SF-RENT": {
-      "assumptions": [
-       "co_from_year_built"
-      ],
+      "assumptions": [],
       "missing": [],
       "invalid": [],
       "governed_by": null,
@@ -2033,28 +2189,33 @@
  },
  "extracted": {
   "rules": [
-   "D022:0:common-pricing-algorithm-cartwright-act-conduct",
-   "D022:1:coercion-to-adopt-algorithm-recommendation",
-   "D024:0:annual-rent-increase-cap",
+   "D022:0:common-pricing-algorithm-in-restraint-of-trade",
+   "D022:1:coercive-common-pricing-algorithm",
+   "D024:0:rent-increase-cap",
    "D025:0:security-deposit-cap",
-   "D025:4:permitted-security-deductions",
-   "D025:16:final-accounting-and-return-deadline",
-   "D041+D042:0:rso-annual-rent-increase-limit",
-   "D041+D042:21:rso-just-cause-eviction",
-   "D048:0:prohibition-on-rent-control",
-   "D069:4:prohibit-performing-coordinating-function",
-   "D079+D080+D083:0:just-cause-required-for-eviction",
-   "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
-   "D079+D080+D083:4:annual-allowable-rent-increase-2026-2027",
-   "D079+D080+D083:5:security-deposit-interest-rate-2026-2027",
-   "D079+D080+D083:6:relocation-payments-covered-evictions-2026-2027",
-   "D079+D080+D083:7:ellis-act-relocation-payments-2026-2027"
+   "D025:7:authorized-security-deductions",
+   "D025:20:deposit-accounting-and-return-deadline",
+   "D041+D042:0:rso-annual-rent-increase",
+   "D041+D042:2:rso-rent-increase-moratorium",
+   "D041+D042:17:rso-just-cause-eviction",
+   "D046:0:prohibit-algorithmic-rent-setting",
+   "D047:0:prohibit-algorithmic-rent-setting",
+   "D048:0:prohibition-on-local-rent-control",
+   "D048:4:compensate-owners-of-rent-controlled-units",
+   "D069:0:ban-owner-use-of-coordinator-services",
+   "D069:1:ban-coordinator-facilitation-of-restrictive-agreements",
+   "D069:2:ban-parallel-pricing-coordination",
+   "D069:3:ban-coordinator-agent-parallel-pricing-coordination",
+   "D069:4:ban-performing-coordinating-function",
+   "D079+D080+D083:0:sf-rent-ordinance-just-cause-eviction",
+   "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
+   "D079+D080+D083:3:sf-security-deposit-interest-2026-2027"
   ],
   "B": {
-   "correct": 11,
+   "correct": 21,
    "n": 24,
-   "weighted_errors": 12.5,
-   "values_correct": 3,
+   "weighted_errors": 3.0,
+   "values_correct": 2,
    "values_n": 3,
    "rows": [
     {
@@ -2067,8 +2228,8 @@
     {
      "id": "Q1-rent-local",
      "expect": "applies",
-     "got": "unknown",
-     "ok": false,
+     "got": "applies",
+     "ok": true,
      "value_ok": null
     },
     {
@@ -2081,29 +2242,29 @@
     {
      "id": "Q2-rent-state",
      "expect": "applies",
-     "got": "superseded",
-     "ok": false,
+     "got": "applies",
+     "ok": true,
      "value_ok": null
     },
     {
      "id": "Q2-rent-local",
      "expect": "none",
-     "got": "unknown",
-     "ok": false,
+     "got": "none",
+     "ok": true,
      "value_ok": null
     },
     {
      "id": "Q3-rent-state",
      "expect": "none",
-     "got": "superseded",
-     "ok": false,
+     "got": "none",
+     "ok": true,
      "value_ok": null
     },
     {
      "id": "Q3-rent-local",
      "expect": "none",
-     "got": "unknown",
-     "ok": false,
+     "got": "none",
+     "ok": true,
      "value_ok": null
     },
     {
@@ -2123,36 +2284,36 @@
     {
      "id": "Q5-rent-local",
      "expect": "applies",
-     "got": "unknown",
-     "ok": false,
+     "got": "applies",
+     "ok": true,
      "value_ok": null
     },
     {
      "id": "Q5-rent-state",
      "expect": "superseded",
-     "got": "unknown",
-     "ok": false,
+     "got": "superseded",
+     "ok": true,
      "value_ok": null
     },
     {
      "id": "Q6-boston-cap",
      "expect": "none",
-     "got": "none",
-     "ok": true,
+     "got": "applies",
+     "ok": false,
      "value_ok": null
     },
     {
      "id": "Q7-camb-cap",
      "expect": "none",
-     "got": "none",
-     "ok": true,
+     "got": "applies",
+     "ok": false,
      "value_ok": null
     },
     {
      "id": "Q7-camb-s2983",
      "expect": "pending",
-     "got": "missing_rule",
-     "ok": false,
+     "got": "pending",
+     "ok": true,
      "value_ok": null
     },
     {
@@ -2179,22 +2340,22 @@
     {
      "id": "Q9-T3-today",
      "expect": "not_yet_effective",
-     "got": "none",
-     "ok": false,
+     "got": "not_yet_effective",
+     "ok": true,
      "value_ok": null
     },
     {
      "id": "Q9-T3-later",
      "expect": "applies",
-     "got": "none",
-     "ok": false,
+     "got": "applies",
+     "ok": true,
      "value_ok": null
     },
     {
      "id": "Q10-newark",
      "expect": "not_yet_effective",
-     "got": "none",
-     "ok": false,
+     "got": "not_yet_effective",
+     "ok": true,
      "value_ok": null
     },
     {
@@ -2202,7 +2363,7 @@
      "expect": "applies",
      "got": "applies",
      "ok": true,
-     "value_ok": true
+     "value_ok": false
     },
     {
      "id": "Q12-berk-deposit",
@@ -2221,18 +2382,199 @@
     {
      "id": "Q14-tic-rent",
      "expect": "applies",
-     "got": "unknown",
-     "ok": false,
+     "got": "applies",
+     "ok": true,
      "value_ok": null
     }
    ]
   },
+  "B_fallback": {
+   "correct": 20,
+   "n": 24,
+   "weighted_errors": 3.5,
+   "values_correct": 2,
+   "values_n": 3,
+   "rows": [
+    {
+     "id": "Q1-rent-state",
+     "expect": "superseded",
+     "got": "superseded",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q1-rent-local",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q1-deposit",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": true
+    },
+    {
+     "id": "Q2-rent-state",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q2-rent-local",
+     "expect": "none",
+     "got": "none",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q3-rent-state",
+     "expect": "none",
+     "got": "none",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q3-rent-local",
+     "expect": "none",
+     "got": "none",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q4-rent-local",
+     "expect": "unknown",
+     "got": "unknown",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q4-rent-state",
+     "expect": "unknown",
+     "got": "unknown",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q5-rent-local",
+     "expect": "applies",
+     "got": "unknown",
+     "ok": false,
+     "value_ok": null
+    },
+    {
+     "id": "Q5-rent-state",
+     "expect": "superseded",
+     "got": "superseded",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q6-boston-cap",
+     "expect": "none",
+     "got": "applies",
+     "ok": false,
+     "value_ok": null
+    },
+    {
+     "id": "Q7-camb-cap",
+     "expect": "none",
+     "got": "applies",
+     "ok": false,
+     "value_ok": null
+    },
+    {
+     "id": "Q7-camb-s2983",
+     "expect": "pending",
+     "got": "pending",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q7-camb-h5222",
+     "expect": "pending",
+     "got": "missing_rule",
+     "ok": false,
+     "value_ok": null
+    },
+    {
+     "id": "Q8-T1-before",
+     "expect": "not_yet_effective",
+     "got": "not_yet_effective",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q8-T1-after",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q9-T3-today",
+     "expect": "not_yet_effective",
+     "got": "not_yet_effective",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q9-T3-later",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q10-newark",
+     "expect": "not_yet_effective",
+     "got": "not_yet_effective",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q11-tic-deposit",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": false
+    },
+    {
+     "id": "Q12-berk-deposit",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": true
+    },
+    {
+     "id": "Q13-repealed",
+     "expect": "none",
+     "got": "none",
+     "ok": true,
+     "value_ok": null
+    },
+    {
+     "id": "Q14-tic-rent",
+     "expect": "applies",
+     "got": "applies",
+     "ok": true,
+     "value_ok": null
+    }
+   ]
+  },
+  "failed_rules": [
+   "D041+D042:0:rso-annual-rent-increase",
+   "D041+D042:2:rso-rent-increase-moratorium"
+  ],
   "A": [
    {
-    "correct": 19,
+    "correct": 13,
     "n": 24,
-    "weighted_errors": 4.0,
-    "values_correct": 2,
+    "weighted_errors": 8.0,
+    "values_correct": 1,
     "values_n": 3,
     "rows": [
      {
@@ -2259,15 +2601,15 @@
      {
       "id": "Q2-rent-state",
       "expect": "applies",
-      "got": "applies",
-      "ok": true,
+      "got": "unknown",
+      "ok": false,
       "value_ok": null
      },
      {
       "id": "Q2-rent-local",
       "expect": "none",
-      "got": "none",
-      "ok": true,
+      "got": "unknown",
+      "ok": false,
       "value_ok": null
      },
      {
@@ -2301,8 +2643,8 @@
      {
       "id": "Q5-rent-local",
       "expect": "applies",
-      "got": "applies",
-      "ok": true,
+      "got": "unknown",
+      "ok": false,
       "value_ok": null
      },
      {
@@ -2315,22 +2657,22 @@
      {
       "id": "Q6-boston-cap",
       "expect": "none",
-      "got": "none",
-      "ok": true,
+      "got": "applies",
+      "ok": false,
       "value_ok": null
      },
      {
       "id": "Q7-camb-cap",
       "expect": "none",
-      "got": "none",
-      "ok": true,
+      "got": "applies",
+      "ok": false,
       "value_ok": null
      },
      {
       "id": "Q7-camb-s2983",
       "expect": "pending",
-      "got": "missing_rule",
-      "ok": false,
+      "got": "pending",
+      "ok": true,
       "value_ok": null
      },
      {
@@ -2350,8 +2692,8 @@
      {
       "id": "Q8-T1-after",
       "expect": "applies",
-      "got": "applies",
-      "ok": true,
+      "got": "unknown",
+      "ok": false,
       "value_ok": null
      },
      {
@@ -2385,9 +2727,9 @@
      {
       "id": "Q12-berk-deposit",
       "expect": "applies",
-      "got": "applies",
-      "ok": true,
-      "value_ok": true
+      "got": "unknown",
+      "ok": false,
+      "value_ok": false
      },
      {
       "id": "Q13-repealed",
@@ -2406,10 +2748,10 @@
     ]
    },
    {
-    "correct": 18,
+    "correct": 16,
     "n": 24,
-    "weighted_errors": 4.5,
-    "values_correct": 2,
+    "weighted_errors": 7.5,
+    "values_correct": 1,
     "values_n": 3,
     "rows": [
      {
@@ -2422,8 +2764,8 @@
      {
       "id": "Q1-rent-local",
       "expect": "applies",
-      "got": "applies",
-      "ok": true,
+      "got": "unknown",
+      "ok": false,
       "value_ok": null
      },
      {
@@ -2478,8 +2820,8 @@
      {
       "id": "Q5-rent-local",
       "expect": "applies",
-      "got": "applies",
-      "ok": true,
+      "got": "none",
+      "ok": false,
       "value_ok": null
      },
      {
@@ -2492,22 +2834,22 @@
      {
       "id": "Q6-boston-cap",
       "expect": "none",
-      "got": "none",
-      "ok": true,
+      "got": "applies",
+      "ok": false,
       "value_ok": null
      },
      {
       "id": "Q7-camb-cap",
       "expect": "none",
-      "got": "none",
-      "ok": true,
+      "got": "applies",
+      "ok": false,
       "value_ok": null
      },
      {
       "id": "Q7-camb-s2983",
       "expect": "pending",
-      "got": "missing_rule",
-      "ok": false,
+      "got": "pending",
+      "ok": true,
       "value_ok": null
      },
      {
@@ -2527,8 +2869,8 @@
      {
       "id": "Q8-T1-after",
       "expect": "applies",
-      "got": "unknown",
-      "ok": false,
+      "got": "applies",
+      "ok": true,
       "value_ok": null
      },
      {
@@ -2555,21 +2897,21 @@
      {
       "id": "Q11-tic-deposit",
       "expect": "applies",
-      "got": "unknown",
-      "ok": false,
+      "got": "applies",
+      "ok": true,
       "value_ok": false
      },
      {
       "id": "Q12-berk-deposit",
       "expect": "applies",
-      "got": "applies",
-      "ok": true,
-      "value_ok": true
+      "got": "unknown",
+      "ok": false,
+      "value_ok": false
      },
      {
       "id": "Q13-repealed",
       "expect": "none",
-      "got": "unknown",
+      "got": "applies",
       "ok": false,
       "value_ok": null
      },
@@ -2583,9 +2925,9 @@
     ]
    },
    {
-    "correct": 20,
+    "correct": 17,
     "n": 24,
-    "weighted_errors": 3.5,
+    "weighted_errors": 7.5,
     "values_correct": 2,
     "values_n": 3,
     "rows": [
@@ -2641,8 +2983,8 @@
      {
       "id": "Q4-rent-local",
       "expect": "unknown",
-      "got": "unknown",
-      "ok": true,
+      "got": "none",
+      "ok": false,
       "value_ok": null
      },
      {
@@ -2655,8 +2997,8 @@
      {
       "id": "Q5-rent-local",
       "expect": "applies",
-      "got": "applies",
-      "ok": true,
+      "got": "none",
+      "ok": false,
       "value_ok": null
      },
      {
@@ -2669,22 +3011,22 @@
      {
       "id": "Q6-boston-cap",
       "expect": "none",
-      "got": "none",
-      "ok": true,
+      "got": "applies",
+      "ok": false,
       "value_ok": null
      },
      {
       "id": "Q7-camb-cap",
       "expect": "none",
-      "got": "none",
-      "ok": true,
+      "got": "applies",
+      "ok": false,
       "value_ok": null
      },
      {
       "id": "Q7-camb-s2983",
       "expect": "pending",
-      "got": "missing_rule",
-      "ok": false,
+      "got": "pending",
+      "ok": true,
       "value_ok": null
      },
      {
@@ -2746,7 +3088,7 @@
      {
       "id": "Q13-repealed",
       "expect": "none",
-      "got": "unknown",
+      "got": "applies",
       "ok": false,
       "value_ok": null
      },
@@ -2760,256 +3102,242 @@
     ]
    }
   ],
-  "A_stable_items": 21,
+  "A_stable_items": 16,
   "B_detail": {
    "Q1-rent-state": {
     "answer": "superseded",
-    "value": "5% plus CPI, capped at 10%",
+    "value": "5% plus CPI, capped at 10%, whichever is lower",
     "detail": {
-     "D024:0:annual-rent-increase-cap": {
+     "D024:0:rent-increase-cap": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type",
-       "unparsed: Dormitories owned and operated by an institution of higher e",
-       "unparsed: Management of a mobilehome park",
-       "unparsed: This section shall not apply to a homeowner of a mobilehome"
+       "owner_occupied",
+       "owner_type"
       ],
-      "invalid": [
-       "building.certificate_date ne None: no comparison value"
-      ],
-      "governed_by": "D079+D080+D083:4:annual-allowable-rent-increase-2026-2027",
+      "invalid": [],
+      "governed_by": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
       "conflict_with": [],
-      "value": "5% plus CPI, capped at 10%",
+      "value": "5% plus CPI, capped at 10%, whichever is lower",
       "result": "superseded"
      }
     }
    },
    "Q1-rent-local": {
-    "answer": "unknown",
+    "answer": "applies",
     "value": "1.6%",
     "detail": {
-     "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
+     "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
       "assumptions": [],
-      "missing": [
-       "unparsed: For rent-controlled units"
-      ],
+      "missing": [],
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
       "value": "1.6%",
-      "result": "unknown"
+      "result": "applies"
      }
     }
    },
    "Q1-deposit": {
     "answer": "applies",
-    "value": "one month’s rent",
+    "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
     "detail": {
      "D025:0:security-deposit-cap": {
-      "assumptions": [
-       "portfolio_lower_bound"
-      ],
+      "assumptions": [],
       "missing": [],
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
-      "value": "one month’s rent",
+      "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
       "result": "applies"
      }
     }
    },
    "Q2-rent-state": {
-    "answer": "superseded",
-    "value": "5% plus CPI, capped at 10%",
+    "answer": "applies",
+    "value": "5% plus CPI, capped at 10%, whichever is lower",
     "detail": {
-     "D024:0:annual-rent-increase-cap": {
+     "D024:0:rent-increase-cap": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type",
-       "unparsed: Dormitories owned and operated by an institution of higher e",
-       "unparsed: Management of a mobilehome park",
-       "unparsed: This section shall not apply to a homeowner of a mobilehome"
+       "owner_occupied",
+       "owner_type"
       ],
-      "invalid": [
-       "building.certificate_date ne None: no comparison value"
-      ],
-      "governed_by": "D079+D080+D083:4:annual-allowable-rent-increase-2026-2027",
+      "invalid": [],
+      "governed_by": null,
       "conflict_with": [],
-      "value": "5% plus CPI, capped at 10%",
-      "result": "superseded"
+      "value": "5% plus CPI, capped at 10%, whichever is lower",
+      "result": "applies"
      }
     }
    },
    "Q2-rent-local": {
-    "answer": "unknown",
-    "value": "1.6%",
+    "answer": "none",
+    "value": null,
     "detail": {
-     "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
+     "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
       "assumptions": [],
-      "missing": [
-       "unparsed: For rent-controlled units"
-      ],
+      "missing": [],
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
-      "value": "1.6%",
-      "result": "unknown"
+      "value": null,
+      "result": null
      }
     }
    },
    "Q3-rent-state": {
-    "answer": "superseded",
-    "value": "5% plus CPI, capped at 10%",
+    "answer": "none",
+    "value": null,
     "detail": {
-     "D024:0:annual-rent-increase-cap": {
+     "D024:0:rent-increase-cap": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type",
-       "unparsed: Dormitories owned and operated by an institution of higher e",
-       "unparsed: Management of a mobilehome park",
-       "unparsed: This section shall not apply to a homeowner of a mobilehome"
-      ],
-      "invalid": [
-       "building.certificate_date ne None: no comparison value"
-      ],
-      "governed_by": "D079+D080+D083:4:annual-allowable-rent-increase-2026-2027",
-      "conflict_with": [],
-      "value": "5% plus CPI, capped at 10%",
-      "result": "superseded"
-     }
-    }
-   },
-   "Q3-rent-local": {
-    "answer": "unknown",
-    "value": "1.6%",
-    "detail": {
-     "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-      "assumptions": [],
-      "missing": [
-       "unparsed: For rent-controlled units"
+       "owner_occupied",
+       "owner_type"
       ],
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
-      "value": "1.6%",
-      "result": "unknown"
+      "value": null,
+      "result": null
+     }
+    }
+   },
+   "Q3-rent-local": {
+    "answer": "none",
+    "value": null,
+    "detail": {
+     "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+      "assumptions": [],
+      "missing": [],
+      "invalid": [],
+      "governed_by": null,
+      "conflict_with": [],
+      "value": null,
+      "result": null
      }
     }
    },
    "Q4-rent-local": {
     "answer": "unknown",
-    "value": "3% annually",
+    "value": "3%",
     "detail": {
-     "D041+D042:0:rso-annual-rent-increase-limit": {
+     "D041+D042:0:rso-annual-rent-increase": {
       "assumptions": [],
-      "missing": [
-       "unparsed: Generally, the RSO applies to rental properties that were fi"
-      ],
+      "missing": [],
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
-      "value": "3% annually",
+      "value": "3%",
       "result": "unknown"
      }
     }
    },
    "Q4-rent-state": {
     "answer": "unknown",
-    "value": "5% plus CPI, capped at 10%",
+    "value": "5% plus CPI, capped at 10%, whichever is lower",
     "detail": {
-     "D024:0:annual-rent-increase-cap": {
+     "D024:0:rent-increase-cap": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type",
-       "unparsed: Dormitories owned and operated by an institution of higher e",
-       "unparsed: Generally, the RSO applies to rental properties that were fi",
-       "unparsed: Management of a mobilehome park",
-       "unparsed: This section shall not apply to a homeowner of a mobilehome"
+       "owner_occupied",
+       "owner_type"
       ],
-      "invalid": [
-       "building.certificate_date ne None: no comparison value"
-      ],
+      "invalid": [],
       "governed_by": null,
       "conflict_with": [],
-      "value": "5% plus CPI, capped at 10%",
+      "value": "5% plus CPI, capped at 10%, whichever is lower",
       "result": "unknown"
      }
     }
    },
    "Q5-rent-local": {
-    "answer": "unknown",
-    "value": "3% annually",
+    "answer": "applies",
+    "value": "3%",
     "detail": {
-     "D041+D042:0:rso-annual-rent-increase-limit": {
+     "D041+D042:0:rso-annual-rent-increase": {
       "assumptions": [],
-      "missing": [
-       "unparsed: Generally, the RSO applies to rental properties that were fi"
-      ],
+      "missing": [],
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
-      "value": "3% annually",
-      "result": "unknown"
+      "value": "3%",
+      "result": "applies"
      }
     }
    },
    "Q5-rent-state": {
-    "answer": "unknown",
-    "value": "5% plus CPI, capped at 10%",
+    "answer": "superseded",
+    "value": "5% plus CPI, capped at 10%, whichever is lower",
     "detail": {
-     "D024:0:annual-rent-increase-cap": {
+     "D024:0:rent-increase-cap": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type",
-       "unparsed: Dormitories owned and operated by an institution of higher e",
-       "unparsed: Generally, the RSO applies to rental properties that were fi",
-       "unparsed: Management of a mobilehome park",
-       "unparsed: This section shall not apply to a homeowner of a mobilehome"
+       "owner_occupied",
+       "owner_type"
       ],
-      "invalid": [
-       "building.certificate_date ne None: no comparison value"
-      ],
-      "governed_by": null,
+      "invalid": [],
+      "governed_by": "D041+D042:0:rso-annual-rent-increase",
       "conflict_with": [],
-      "value": "5% plus CPI, capped at 10%",
-      "result": "unknown"
+      "value": "5% plus CPI, capped at 10%, whichever is lower",
+      "result": "superseded"
      }
     }
    },
    "Q6-boston-cap": {
-    "answer": "none",
-    "value": null,
-    "detail": {}
+    "answer": "applies",
+    "value": "Difference between the unit’s fair market rent and its below-market rent-controlled rent",
+    "detail": {
+     "D048:4:compensate-owners-of-rent-controlled-units": {
+      "assumptions": [],
+      "missing": [],
+      "invalid": [],
+      "governed_by": null,
+      "conflict_with": [],
+      "value": "Difference between the unit’s fair market rent and its below-market rent-controlled rent",
+      "result": "applies"
+     }
+    }
    },
    "Q7-camb-cap": {
-    "answer": "none",
-    "value": null,
-    "detail": {}
+    "answer": "applies",
+    "value": "Difference between the unit’s fair market rent and its below-market rent-controlled rent",
+    "detail": {
+     "D048:4:compensate-owners-of-rent-controlled-units": {
+      "assumptions": [],
+      "missing": [],
+      "invalid": [],
+      "governed_by": null,
+      "conflict_with": [],
+      "value": "Difference between the unit’s fair market rent and its below-market rent-controlled rent",
+      "result": "applies"
+     }
+    }
    },
    "Q7-camb-s2983": {
-    "answer": "missing_rule",
+    "answer": "pending",
     "value": null,
-    "detail": {}
+    "detail": {
+     "D046:0:prohibit-algorithmic-rent-setting": {
+      "assumptions": [],
+      "missing": [],
+      "invalid": [],
+      "governed_by": null,
+      "conflict_with": [],
+      "value": null,
+      "result": "pending"
+     }
+    }
    },
    "Q7-camb-h5222": {
     "answer": "missing_rule",
@@ -3020,7 +3348,7 @@
     "answer": "not_yet_effective",
     "value": null,
     "detail": {
-     "D022:0:common-pricing-algorithm-cartwright-act-conduct": {
+     "D022:0:common-pricing-algorithm-in-restraint-of-trade": {
       "assumptions": [],
       "missing": [],
       "invalid": [],
@@ -3035,7 +3363,7 @@
     "answer": "applies",
     "value": null,
     "detail": {
-     "D022:0:common-pricing-algorithm-cartwright-act-conduct": {
+     "D022:0:common-pricing-algorithm-in-restraint-of-trade": {
       "assumptions": [],
       "missing": [],
       "invalid": [],
@@ -3047,64 +3375,53 @@
     }
    },
    "Q9-T3-today": {
-    "answer": "none",
+    "answer": "not_yet_effective",
     "value": null,
     "detail": {
-     "D069:4:prohibit-performing-coordinating-function": {
+     "D069:0:ban-owner-use-of-coordinator-services": {
       "assumptions": [],
       "missing": [],
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
       "value": null,
-      "result": null
+      "result": "not_yet_effective"
      }
     }
    },
    "Q9-T3-later": {
-    "answer": "none",
+    "answer": "applies",
     "value": null,
     "detail": {
-     "D069:4:prohibit-performing-coordinating-function": {
+     "D069:0:ban-owner-use-of-coordinator-services": {
       "assumptions": [],
       "missing": [],
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
       "value": null,
-      "result": null
+      "result": "applies"
      }
     }
    },
    "Q10-newark": {
-    "answer": "none",
+    "answer": "not_yet_effective",
     "value": null,
     "detail": {
-     "D069:4:prohibit-performing-coordinating-function": {
+     "D069:0:ban-owner-use-of-coordinator-services": {
       "assumptions": [],
       "missing": [],
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
       "value": null,
-      "result": null
+      "result": "not_yet_effective"
      }
     }
    },
    "Q11-tic-deposit": {
     "answer": "applies",
-    "value": {
-     "conditional": [
-      "one month’s rent",
-      "two months’ rent"
-     ],
-     "depends_on": [
-      "landlord.owner_type",
-      "landlord.portfolio_properties",
-      "landlord.portfolio_units",
-      "tenant.service_member"
-     ]
-    },
+    "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
     "detail": {
      "D025:0:security-deposit-cap": {
       "assumptions": [],
@@ -3112,35 +3429,22 @@
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
-      "value": {
-       "conditional": [
-        "one month’s rent",
-        "two months’ rent"
-       ],
-       "depends_on": [
-        "landlord.owner_type",
-        "landlord.portfolio_properties",
-        "landlord.portfolio_units",
-        "tenant.service_member"
-       ]
-      },
+      "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
       "result": "applies"
      }
     }
    },
    "Q12-berk-deposit": {
     "answer": "applies",
-    "value": "one month’s rent",
+    "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
     "detail": {
      "D025:0:security-deposit-cap": {
-      "assumptions": [
-       "portfolio_lower_bound"
-      ],
+      "assumptions": [],
       "missing": [],
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
-      "value": "one month’s rent",
+      "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
       "result": "applies"
      }
     }
@@ -3149,21 +3453,15 @@
     "answer": "none",
     "value": null,
     "detail": {
-     "D024:0:annual-rent-increase-cap": {
+     "D024:0:rent-increase-cap": {
       "assumptions": [
-       "co_from_year_built",
        "no_recorded_affordability_restriction"
       ],
       "missing": [
-       "landlord.owner_occupied",
-       "landlord.owner_type",
-       "unparsed: Dormitories owned and operated by an institution of higher e",
-       "unparsed: Management of a mobilehome park",
-       "unparsed: This section shall not apply to a homeowner of a mobilehome"
+       "owner_occupied",
+       "owner_type"
       ],
-      "invalid": [
-       "building.certificate_date ne None: no comparison value"
-      ],
+      "invalid": [],
       "governed_by": null,
       "conflict_with": [],
       "value": null,
@@ -3172,19 +3470,17 @@
     }
    },
    "Q14-tic-rent": {
-    "answer": "unknown",
+    "answer": "applies",
     "value": "1.6%",
     "detail": {
-     "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
+     "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
       "assumptions": [],
-      "missing": [
-       "unparsed: For rent-controlled units"
-      ],
+      "missing": [],
       "invalid": [],
       "governed_by": null,
       "conflict_with": [],
       "value": "1.6%",
-      "result": "unknown"
+      "result": "applies"
      }
     }
    }
@@ -3195,12 +3491,12 @@
      "answer": "superseded",
      "value": "1.6%",
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "superseded",
-       "governed_by": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+       "governed_by": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "applicable_value": "1.6%",
-       "explanation": "The California cap is in force, but this 1926 San Francisco building is subject to the stricter local rent-increase limit for rent-controlled units during the stated period."
+       "explanation": "The building predates 1979 and is in San Francisco, where the stricter local rent-increase limit governs rent-controlled units during this period."
       }
      }
     },
@@ -3208,51 +3504,51 @@
      "answer": "applies",
      "value": "1.6%",
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "result": "applies",
        "governed_by": null,
        "applicable_value": "1.6%",
-       "explanation": "The building is in San Francisco and predates the local rent-control cutoff; the listed annual limit is in force on the date."
+       "explanation": "The building was constructed in 1926, so it is not within the stated post-June 13, 1979 new-construction exemption. The date falls within the specified March 2026–February 2027 period."
       }
      }
     },
     "Q1-deposit": {
      "answer": "applies",
-     "value": "one month’s rent",
+     "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
      "detail": {
       "D025:0:security-deposit-cap": {
        "rule_id": "D025:0:security-deposit-cap",
        "result": "applies",
        "governed_by": null,
-       "applicable_value": "one month’s rent",
-       "explanation": "The state deposit cap is in force. The 21-unit building is not consistent with the qualifying small-landlord exception described in the record."
+       "applicable_value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
+       "explanation": "The California cap is in force. The building has 21 units, so the stated small-landlord exception does not apply; no other exception is indicated."
       }
      }
     },
     "Q2-rent-state": {
-     "answer": "applies",
-     "value": "5% plus CPI, capped at 10%",
+     "answer": "unknown",
+     "value": null,
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
-       "result": "applies",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
+       "result": "unknown",
        "governed_by": null,
-       "applicable_value": "5% plus CPI, capped at 10%",
-       "explanation": "The building was constructed in 2005, so it is no longer within the exemption for housing issued a certificate of occupancy within the previous 15 years. No other stated exemption applies. The stricter San Francisco annual increase rule provided here is limited to rent-controlled units, which this post-1979 building is not."
+       "applicable_value": null,
+       "explanation": "The state cap is in force, but whether it covers this building depends on facts not given, including the certificate-of-occupancy date and whether the units are subject to stricter local rent control or another exemption."
       }
      }
     },
     "Q2-rent-local": {
-     "answer": "none",
+     "answer": "unknown",
      "value": null,
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
-       "result": "not_applicable",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
+       "result": "unknown",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The stated 1.6% increase applies to rent-controlled units. This building was constructed in 2005, after the San Francisco rent-control cutoff for residential buildings."
+       "explanation": "The 1.6% limit is in force for rent-controlled units, but the record does not establish whether these units are rent-controlled or exempt. Year built alone does not establish the certificate-of-occupancy date or other exemption facts."
       }
      }
     },
@@ -3260,12 +3556,12 @@
      "answer": "none",
      "value": null,
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "not_applicable",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The building was built in 2019, within 15 years of the date, so it falls within the stated certificate-of-occupancy exemption."
+       "explanation": "The building is listed as built in 2019, within the 15-year certificate-of-occupancy exemption period on 2026-10-01."
       }
      }
     },
@@ -3273,12 +3569,12 @@
      "answer": "none",
      "value": null,
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "result": "not_applicable",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The 1.6% rate applies to rent-controlled units. The 2019 building is not covered by the stated rent-control increase rate."
+       "explanation": "The building is listed as built in 2019, so it falls within the summary's exemption for newly constructed units that first obtained a certificate of occupancy after June 13, 1979."
       }
      }
     },
@@ -3286,12 +3582,12 @@
      "answer": "unknown",
      "value": null,
      "detail": {
-      "D041+D042:0:rso-annual-rent-increase-limit": {
-       "rule_id": "D041+D042:0:rso-annual-rent-increase-limit",
+      "D041+D042:0:rso-annual-rent-increase": {
+       "rule_id": "D041+D042:0:rso-annual-rent-increase",
        "result": "unknown",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "RSO coverage depends on whether the building meets the applicable construction-date cutoff, which cannot be determined from the year 1978 alone. The supplied 3% rate is stated only for July 1, 2025 through June 30, 2026, not the date queried."
+       "explanation": "RSO coverage depends on whether the building was first built on or before October 1, 1978; the provided year alone does not resolve that cutoff. Also, the record's 3% limit is stated only through June 30, 2026, so it provides no applicable rate for this date."
       }
      }
     },
@@ -3299,55 +3595,79 @@
      "answer": "unknown",
      "value": null,
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "unknown",
-       "governed_by": null,
+       "governed_by": "D041+D042:0:rso-annual-rent-increase",
        "applicable_value": null,
-       "explanation": "The California cap is in force, but whether a stricter Los Angeles rent-control limit governs depends on RSO coverage. The 1978 build year does not establish whether the building meets the relevant cutoff."
+       "explanation": "The state cap yields to stricter local rent control. The building may be subject to the Los Angeles RSO, but the year-built fact does not establish whether it was first built on or before the October 1, 1978 cutoff."
       }
      }
     },
     "Q5-rent-local": {
-     "answer": "applies",
+     "answer": "unknown",
      "value": null,
      "detail": {
-      "D041+D042:0:rso-annual-rent-increase-limit": {
-       "rule_id": "D041+D042:0:rso-annual-rent-increase-limit",
-       "result": "applies",
+      "D041+D042:0:rso-annual-rent-increase": {
+       "rule_id": "D041+D042:0:rso-annual-rent-increase",
+       "result": "unknown",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The pre-1978, multifamily Los Angeles building is covered by the RSO. The record’s 3% limit applies only through June 30, 2026, and provides no limit for 2026-10-01."
+       "explanation": "The building's location and 1927 construction date indicate general RSO coverage, but the supplied record gives the 3% limit only through June 30, 2026 and does not provide the applicable RSO annual limit for October 1, 2026."
       }
      }
     },
     "Q5-rent-state": {
      "answer": "superseded",
-     "value": null,
+     "value": "3%",
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "superseded",
-       "governed_by": "D041+D042:0:rso-annual-rent-increase-limit",
-       "applicable_value": null,
-       "explanation": "The building is in Los Angeles and was built before 2010, so the post-2009 construction exemption does not apply. The rule record provides no facts establishing another statutory exemption. For housing subject to stricter local rent control, the local limit governs instead."
+       "governed_by": "D041+D042:0:rso-annual-rent-increase",
+       "applicable_value": "3%",
+       "explanation": "The 1927 building is in Los Angeles and is generally within RSO age and location coverage. The stricter local rent-control rule governs instead of the state cap. The supplied local rule states a 3% limit only through June 30, 2026, so it does not establish the applicable local percentage on October 1, 2026."
       }
      }
     },
     "Q6-boston-cap": {
-     "answer": "none",
+     "answer": "applies",
      "value": null,
-     "detail": {}
+     "detail": {
+      "D048:4:compensate-owners-of-rent-controlled-units": {
+       "rule_id": "D048:4:compensate-owners-of-rent-controlled-units",
+       "result": "unknown",
+       "governed_by": null,
+       "applicable_value": null,
+       "explanation": "This requirement depends on a municipality adopting rent control and the unit being rent-controlled. Neither fact is established; the building's subsidized-housing description alone does not resolve them."
+      }
+     }
     },
     "Q7-camb-cap": {
-     "answer": "none",
+     "answer": "applies",
      "value": null,
-     "detail": {}
+     "detail": {
+      "D048:4:compensate-owners-of-rent-controlled-units": {
+       "rule_id": "D048:4:compensate-owners-of-rent-controlled-units",
+       "result": "unknown",
+       "governed_by": null,
+       "applicable_value": null,
+       "explanation": "This obligation applies when a municipality adopts rent control. The records do not say whether Cambridge has adopted rent control."
+      }
+     }
     },
     "Q7-camb-s2983": {
-     "answer": "missing_rule",
+     "answer": "pending",
      "value": null,
-     "detail": {}
+     "detail": {
+      "D046:0:prohibit-algorithmic-rent-setting": {
+       "rule_id": "D046:0:prohibit-algorithmic-rent-setting",
+       "result": "pending",
+       "governed_by": null,
+       "applicable_value": null,
+       "explanation": "Mass. S.2983 is listed as pending, so it is not law on 2026-10-01."
+      }
+     }
     },
     "Q7-camb-h5222": {
      "answer": "missing_rule",
@@ -3358,25 +3678,25 @@
      "answer": "not_yet_effective",
      "value": null,
      "detail": {
-      "D022:0:common-pricing-algorithm-cartwright-act-conduct": {
-       "rule_id": "D022:0:common-pricing-algorithm-cartwright-act-conduct",
+      "D022:0:common-pricing-algorithm-in-restraint-of-trade": {
+       "rule_id": "D022:0:common-pricing-algorithm-in-restraint-of-trade",
        "result": "not_yet_effective",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The rule takes effect on 2026-01-01, after the date being evaluated."
+       "explanation": "This California rule takes effect on 2026-01-01, after the date given."
       }
      }
     },
     "Q8-T1-after": {
-     "answer": "applies",
+     "answer": "unknown",
      "value": null,
      "detail": {
-      "D022:0:common-pricing-algorithm-cartwright-act-conduct": {
-       "rule_id": "D022:0:common-pricing-algorithm-cartwright-act-conduct",
-       "result": "applies",
+      "D022:0:common-pricing-algorithm-in-restraint-of-trade": {
+       "rule_id": "D022:0:common-pricing-algorithm-in-restraint-of-trade",
+       "result": "unknown",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "In force in California on 2026-01-02; it applies to covered persons, although the building facts do not establish any particular algorithm-related conduct."
+       "explanation": "The prohibition is in force in California, but whether it applies depends on whether a common pricing algorithm is used as part of a contract, combination, or conspiracy that restrains trade; no such conduct is stated."
       }
      }
     },
@@ -3384,12 +3704,12 @@
      "answer": "not_yet_effective",
      "value": null,
      "detail": {
-      "D069:4:prohibit-performing-coordinating-function": {
-       "rule_id": "D069:4:prohibit-performing-coordinating-function",
+      "D069:0:ban-owner-use-of-coordinator-services": {
+       "rule_id": "D069:0:ban-owner-use-of-coordinator-services",
        "result": "not_yet_effective",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The rule takes effect on 2027-07-01, after the stated date of 2026-10-01."
+       "explanation": "The rule takes effect on 2027-07-01, after the date 2026-10-01."
       }
      }
     },
@@ -3397,12 +3717,12 @@
      "answer": "applies",
      "value": null,
      "detail": {
-      "D069:4:prohibit-performing-coordinating-function": {
-       "rule_id": "D069:4:prohibit-performing-coordinating-function",
+      "D069:0:ban-owner-use-of-coordinator-services": {
+       "rule_id": "D069:0:ban-owner-use-of-coordinator-services",
        "result": "applies",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The effective date is 2027-07-01, before the query date. The rule prohibits performing a coordinating function and gives no building-specific coverage condition or numeric limit."
+       "explanation": "The rule’s effective date is 2027-07-01, before the date given. The building is in New Jersey and is identified as residential."
       }
      }
     },
@@ -3410,12 +3730,12 @@
      "answer": "not_yet_effective",
      "value": null,
      "detail": {
-      "D069:4:prohibit-performing-coordinating-function": {
-       "rule_id": "D069:4:prohibit-performing-coordinating-function",
+      "D069:0:ban-owner-use-of-coordinator-services": {
+       "rule_id": "D069:0:ban-owner-use-of-coordinator-services",
        "result": "not_yet_effective",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The rule takes effect on 2027-07-01, after the date in question (2026-10-01)."
+       "explanation": "The rule takes effect on 2027-07-01, after the specified date."
       }
      }
     },
@@ -3428,33 +3748,33 @@
        "result": "unknown",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The general cap is one month’s rent, but qualifying small landlords may use a two-month cap. The facts do not establish whether the landlord qualifies."
+       "explanation": "The one-month cap is in force, but the record identifies statutory exceptions and the facts do not establish whether one applies to the landlord or tenancy."
       }
      }
     },
     "Q12-berk-deposit": {
-     "answer": "applies",
-     "value": "one month’s rent",
+     "answer": "unknown",
+     "value": null,
      "detail": {
       "D025:0:security-deposit-cap": {
        "rule_id": "D025:0:security-deposit-cap",
-       "result": "applies",
+       "result": "unknown",
        "governed_by": null,
-       "applicable_value": "one month’s rent",
-       "explanation": "In force on the date. The stated 5+ unit use is inconsistent with the specified small-landlord exception, so the general one-month cap applies, subject to the listed statutory exceptions."
+       "applicable_value": null,
+       "explanation": "The California cap is in force, but the supplied facts do not establish whether a statutory exception applies to this landlord or tenant."
       }
      }
     },
     "Q13-repealed": {
      "answer": "applies",
-     "value": "5% plus CPI, capped at 10%",
+     "value": "5% plus CPI, capped at 10%, whichever is lower",
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "applies",
        "governed_by": null,
-       "applicable_value": "5% plus CPI, capped at 10%",
-       "explanation": "The building is in California and was built more than 15 years before the date. No supplied fact indicates another statutory exemption or a stricter local rent-control limit applicable to it."
+       "applicable_value": "5% plus CPI, capped at 10%, whichever is lower",
+       "explanation": "The California cap is in force. A 2005 building is not within the exemption for housing issued a certificate of occupancy within the previous 15 years, and the facts do not indicate another listed exemption. The supplied record gives no stricter local rent-increase limit covering this building."
       }
      }
     },
@@ -3462,12 +3782,12 @@
      "answer": "unknown",
      "value": null,
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "result": "unknown",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The 1.6% limit applies to rent-controlled units, but the supplied facts do not establish whether this TIC building is rent-controlled."
+       "explanation": "The 1.6% limit is in force for rent-controlled units during this period. The building predates the stated new-construction exemption, but the facts do not establish whether this TIC tenancy is exempt under Costa-Hawkins or another listed exemption."
       }
      }
     }
@@ -3477,51 +3797,51 @@
      "answer": "superseded",
      "value": "1.6%",
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "superseded",
-       "governed_by": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+       "governed_by": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "applicable_value": "1.6%",
-       "explanation": "The building is in San Francisco and was built in 1926, so the more restrictive local allowable increase governs rent-controlled units during this period."
+       "explanation": "The building is in San Francisco and was built in 1926, so it is not within the stated post-June 13, 1979 construction exemption. The San Francisco annual limit is stricter than the state cap and governs rent-controlled units during this period."
       }
      }
     },
     "Q1-rent-local": {
-     "answer": "applies",
-     "value": "1.6%",
+     "answer": "unknown",
+     "value": null,
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
-       "result": "applies",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
+       "result": "unknown",
        "governed_by": null,
-       "applicable_value": "1.6%",
-       "explanation": "The building is in San Francisco and predates the stated period’s rent-control cutoff; the local allowable increase applies to its rent-controlled units."
+       "applicable_value": null,
+       "explanation": "The date is within the stated rate period and the building predates the construction exemption, but the facts do not establish whether the particular units are rent-controlled or qualify for a stated exemption, such as under Costa-Hawkins."
       }
      }
     },
     "Q1-deposit": {
      "answer": "applies",
-     "value": "one month’s rent",
+     "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
      "detail": {
       "D025:0:security-deposit-cap": {
        "rule_id": "D025:0:security-deposit-cap",
        "result": "applies",
        "governed_by": null,
-       "applicable_value": "one month’s rent",
-       "explanation": "The California cap is in force. The building has 21 units, so it does not meet the stated qualifying small-landlord exception."
+       "applicable_value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
+       "explanation": "The California cap is in force. No facts indicate a statutory exception or that the security was collected or demanded before July 1, 2024."
       }
      }
     },
     "Q2-rent-state": {
      "answer": "applies",
-     "value": "5% plus CPI, capped at 10%",
+     "value": "5% plus CPI, capped at 10%, whichever is lower",
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "applies",
        "governed_by": null,
-       "applicable_value": "5% plus CPI, capped at 10%",
-       "explanation": "The building is in California and its 2005 construction date is outside the 15-year new-construction exemption on the stated date. The supplied facts do not indicate another statutory exemption. The listed San Francisco annual increase applies to rent-controlled units, and this 2005 building is not rent-controlled under the supplied facts."
+       "applicable_value": "5% plus CPI, capped at 10%, whichever is lower",
+       "explanation": "The building is in California and was built in 2005, so it is not within the 15-year new-construction exemption on the stated date. The San Francisco annual rent-increase limit does not cover post-1979 construction, so the state cap is not displaced by that local limit."
       }
      }
     },
@@ -3529,12 +3849,12 @@
      "answer": "none",
      "value": null,
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "result": "not_applicable",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The 1.6% allowable increase is for rent-controlled units. The building was built in 2005 and is not rent-controlled under the supplied facts."
+       "explanation": "The 1.6% rate is for rent-controlled units. The building was constructed in 2005, after the stated June 13, 1979 cutoff for newly constructed units exempt from rent-increase limitations."
       }
      }
     },
@@ -3542,12 +3862,12 @@
      "answer": "none",
      "value": null,
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "not_applicable",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The building was built in 2019, within 15 years of the date, and the rule exempts housing issued a certificate of occupancy within the previous 15 years. The record gives year built rather than certificate-of-occupancy date; on the supplied facts, the building falls within the stated exemption."
+       "explanation": "The building year indicates construction within the 15-year exemption period, so the state rent-increase cap does not apply."
       }
      }
     },
@@ -3555,12 +3875,12 @@
      "answer": "none",
      "value": null,
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "result": "not_applicable",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The 1.6% rate is limited to rent-controlled units. The building was built in 2019, so it is not rent-controlled under the stated construction-age distinction."
+       "explanation": "The building was constructed after June 13, 1979, and the record identifies such newly constructed units as exempt from rent-increase limitations."
       }
      }
     },
@@ -3568,12 +3888,12 @@
      "answer": "unknown",
      "value": null,
      "detail": {
-      "D041+D042:0:rso-annual-rent-increase-limit": {
-       "rule_id": "D041+D042:0:rso-annual-rent-increase-limit",
+      "D041+D042:0:rso-annual-rent-increase": {
+       "rule_id": "D041+D042:0:rso-annual-rent-increase",
        "result": "unknown",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "RSO coverage is not established by the supplied facts: the record gives a construction year of 1978, but not whether the building meets the applicable cutoff. The stated 3% limit is only for July 1, 2025 through June 30, 2026, so it does not establish the applicable limit on 2026-10-01."
+       "explanation": "RSO coverage depends in part on whether the building was first built on or before October 1, 1978, which cannot be determined from the year alone. The supplied 3% rate is stated only through June 30, 2026, so it does not establish the rate on the date in question."
       }
      }
     },
@@ -3581,55 +3901,79 @@
      "answer": "unknown",
      "value": null,
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "unknown",
-       "governed_by": null,
+       "governed_by": "D041+D042:0:rso-annual-rent-increase",
        "applicable_value": null,
-       "explanation": "The state cap is in force, but the record describes possible statutory exemptions and says a stricter local rent-control limit can govern instead. The supplied year built (1978) does not establish whether the building qualifies for Los Angeles RSO coverage, and other exemption facts are not provided."
+       "explanation": "The state cap is in force, but whether stricter local rent control governs depends on RSO coverage. The building's 1978 year alone does not establish whether it was first built on or before October 1, 1978."
       }
      }
     },
     "Q5-rent-local": {
-     "answer": "applies",
+     "answer": "none",
      "value": null,
      "detail": {
-      "D041+D042:0:rso-annual-rent-increase-limit": {
-       "rule_id": "D041+D042:0:rso-annual-rent-increase-limit",
-       "result": "applies",
+      "D041+D042:0:rso-annual-rent-increase": {
+       "rule_id": "D041+D042:0:rso-annual-rent-increase",
+       "result": "not_applicable",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The 1927 multifamily building in Los Angeles is covered by the RSO. The supplied 3% allowable increase is specifically for July 1, 2025 through June 30, 2026; the record gives no allowable percentage for October 1, 2026."
+       "explanation": "The building meets the stated RSO coverage criteria, but the provided 3% annual limit applies only from July 1, 2025 through June 30, 2026; that stated rate is not applicable on 2026-10-01."
       }
      }
     },
     "Q5-rent-state": {
      "answer": "superseded",
-     "value": "Los Angeles RSO annual increase limit; the current percentage for 2026-10-01 is not provided",
+     "value": null,
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "superseded",
-       "governed_by": "D041+D042:0:rso-annual-rent-increase-limit",
-       "applicable_value": "Los Angeles RSO annual increase limit; the current percentage for 2026-10-01 is not provided",
-       "explanation": "The 1927 multifamily building in Los Angeles is covered by the local RSO rule. The local rent-control limit is stricter where applicable, so it governs instead of the state cap. The provided 3% local rate applies only through June 30, 2026, and no rate for October 1, 2026 is given."
+       "governed_by": "D041+D042:0:rso-annual-rent-increase",
+       "applicable_value": null,
+       "explanation": "The 1927 Los Angeles apartment building is covered by the stricter local RSO rent-control regime, so the state cap yields to local rent control. The provided 3% local rate is stated only through June 30, 2026 and does not establish the rate applicable on this date."
       }
      }
     },
     "Q6-boston-cap": {
-     "answer": "none",
+     "answer": "applies",
      "value": null,
-     "detail": {}
+     "detail": {
+      "D048:4:compensate-owners-of-rent-controlled-units": {
+       "rule_id": "D048:4:compensate-owners-of-rent-controlled-units",
+       "result": "unknown",
+       "governed_by": null,
+       "applicable_value": null,
+       "explanation": "The compensation rule applies to rent-controlled units, but the facts do not establish whether this building contains any such units or whether Boston adopted rent control under the chapter."
+      }
+     }
     },
     "Q7-camb-cap": {
-     "answer": "none",
+     "answer": "applies",
      "value": null,
-     "detail": {}
+     "detail": {
+      "D048:4:compensate-owners-of-rent-controlled-units": {
+       "rule_id": "D048:4:compensate-owners-of-rent-controlled-units",
+       "result": "unknown",
+       "governed_by": null,
+       "applicable_value": null,
+       "explanation": "This compensation requirement applies when a municipality adopts rent control. The records do not say whether Cambridge accepted the chapter or adopted rent control."
+      }
+     }
     },
     "Q7-camb-s2983": {
-     "answer": "missing_rule",
+     "answer": "pending",
      "value": null,
-     "detail": {}
+     "detail": {
+      "D046:0:prohibit-algorithmic-rent-setting": {
+       "rule_id": "D046:0:prohibit-algorithmic-rent-setting",
+       "result": "pending",
+       "governed_by": null,
+       "applicable_value": null,
+       "explanation": "Mass. S.2983 is listed as pending, so it is not law on 2026-10-01."
+      }
+     }
     },
     "Q7-camb-h5222": {
      "answer": "missing_rule",
@@ -3640,25 +3984,25 @@
      "answer": "not_yet_effective",
      "value": null,
      "detail": {
-      "D022:0:common-pricing-algorithm-cartwright-act-conduct": {
-       "rule_id": "D022:0:common-pricing-algorithm-cartwright-act-conduct",
+      "D022:0:common-pricing-algorithm-in-restraint-of-trade": {
+       "rule_id": "D022:0:common-pricing-algorithm-in-restraint-of-trade",
        "result": "not_yet_effective",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The rule takes effect on 2026-01-01, after the date being evaluated."
+       "explanation": "The rule takes effect on 2026-01-01, after the specified date."
       }
      }
     },
     "Q8-T1-after": {
-     "answer": "unknown",
+     "answer": "applies",
      "value": null,
      "detail": {
-      "D022:0:common-pricing-algorithm-cartwright-act-conduct": {
-       "rule_id": "D022:0:common-pricing-algorithm-cartwright-act-conduct",
-       "result": "unknown",
+      "D022:0:common-pricing-algorithm-in-restraint-of-trade": {
+       "rule_id": "D022:0:common-pricing-algorithm-in-restraint-of-trade",
+       "result": "applies",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The rule is in force, but whether it applies depends on whether a person uses or distributes a common pricing algorithm as part of conduct violating the Cartwright Act. No such conduct is specified."
+       "explanation": "This California rule is in force and applies to covered conduct in the state. Whether a person violates it depends on the person’s conduct."
       }
      }
     },
@@ -3666,12 +4010,12 @@
      "answer": "not_yet_effective",
      "value": null,
      "detail": {
-      "D069:4:prohibit-performing-coordinating-function": {
-       "rule_id": "D069:4:prohibit-performing-coordinating-function",
+      "D069:0:ban-owner-use-of-coordinator-services": {
+       "rule_id": "D069:0:ban-owner-use-of-coordinator-services",
        "result": "not_yet_effective",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "This New Jersey rule takes effect on 2027-07-01, after the date in question (2026-10-01)."
+       "explanation": "This New Jersey rule takes effect on 2027-07-01, after the date queried (2026-10-01)."
       }
      }
     },
@@ -3679,12 +4023,12 @@
      "answer": "applies",
      "value": null,
      "detail": {
-      "D069:4:prohibit-performing-coordinating-function": {
-       "rule_id": "D069:4:prohibit-performing-coordinating-function",
+      "D069:0:ban-owner-use-of-coordinator-services": {
+       "rule_id": "D069:0:ban-owner-use-of-coordinator-services",
        "result": "applies",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The rule’s effective date is 2027-07-01, before the date given. It has no building-specific coverage conditions or numeric limit."
+       "explanation": "The rule is effective in New Jersey from 2027-07-01 and applies to rental property owners. The building is in Hoboken, New Jersey."
       }
      }
     },
@@ -3692,51 +4036,51 @@
      "answer": "not_yet_effective",
      "value": null,
      "detail": {
-      "D069:4:prohibit-performing-coordinating-function": {
-       "rule_id": "D069:4:prohibit-performing-coordinating-function",
+      "D069:0:ban-owner-use-of-coordinator-services": {
+       "rule_id": "D069:0:ban-owner-use-of-coordinator-services",
        "result": "not_yet_effective",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The rule takes effect on 2027-07-01, after the date provided (2026-10-01)."
+       "explanation": "This New Jersey rule takes effect on 2027-07-01, after the specified date."
       }
      }
     },
     "Q11-tic-deposit": {
-     "answer": "unknown",
-     "value": null,
-     "detail": {
-      "D025:0:security-deposit-cap": {
-       "rule_id": "D025:0:security-deposit-cap",
-       "result": "unknown",
-       "governed_by": null,
-       "applicable_value": null,
-       "explanation": "The cap is in force, but whether the landlord qualifies for the small-landlord exception—and thus whether the cap is one or two months' rent—is not given."
-      }
-     }
-    },
-    "Q12-berk-deposit": {
      "answer": "applies",
-     "value": "one month’s rent",
+     "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy, subject to statutory exceptions.",
      "detail": {
       "D025:0:security-deposit-cap": {
        "rule_id": "D025:0:security-deposit-cap",
        "result": "applies",
        "governed_by": null,
-       "applicable_value": "one month’s rent",
-       "explanation": "The state cap is in force. The stated 5+ unit use code is inconsistent with the small-landlord exception, which is limited to landlords with no more than four units in total."
+       "applicable_value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy, subject to statutory exceptions.",
+       "explanation": "The California cap is in force on the date. No fact indicates that a statutory exception applies."
+      }
+     }
+    },
+    "Q12-berk-deposit": {
+     "answer": "unknown",
+     "value": null,
+     "detail": {
+      "D025:0:security-deposit-cap": {
+       "rule_id": "D025:0:security-deposit-cap",
+       "result": "unknown",
+       "governed_by": null,
+       "applicable_value": null,
+       "explanation": "The one-month cap is in force, but the facts do not establish whether a statutory exception applies to this landlord or tenancy."
       }
      }
     },
     "Q13-repealed": {
-     "answer": "unknown",
-     "value": null,
+     "answer": "applies",
+     "value": "5% plus CPI, capped at 10%, whichever is lower",
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
-       "result": "unknown",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
+       "result": "applies",
        "governed_by": null,
-       "applicable_value": null,
-       "explanation": "The building was built more than 15 years before the date, but the record lists other statutory exemptions and does not establish whether any apply."
+       "applicable_value": "5% plus CPI, capped at 10%, whichever is lower",
+       "explanation": "The building is in California and was built in 2005, so it is not within the 15-year new-construction exemption on 2030-01-02. The supplied facts do not indicate another exemption; the listed San Francisco annual rate applies only from March 2026 through February 2027."
       }
      }
     },
@@ -3744,12 +4088,12 @@
      "answer": "unknown",
      "value": null,
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "result": "unknown",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The 1.6% limit is in force for rent-controlled units, but the facts do not establish whether the unit is rent-controlled."
+       "explanation": "The 1.6% limit applies to rent-controlled units during this period. The building’s age suggests possible coverage, but the TIC description and conflicting unit count do not establish whether the particular unit is rent-controlled or exempt."
       }
      }
     }
@@ -3759,12 +4103,12 @@
      "answer": "superseded",
      "value": "1.6%",
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "superseded",
-       "governed_by": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+       "governed_by": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "applicable_value": "1.6%",
-       "explanation": "The building is in San Francisco and was built in 1926, so its units are covered by local rent control. The stricter local allowable increase governs instead of the state cap."
+       "explanation": "The building is in San Francisco and was built in 1926, so the supplied facts indicate it is subject to the local rent-increase limit, which is stricter than the state cap for the stated period."
       }
      }
     },
@@ -3772,38 +4116,38 @@
      "answer": "applies",
      "value": "1.6%",
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "result": "applies",
        "governed_by": null,
        "applicable_value": "1.6%",
-       "explanation": "The date falls within the stated March 2026–February 2027 period, and the building’s units are rent-controlled."
+       "explanation": "The building is in San Francisco and was built in 1926, so it is not within the stated exemption for units first receiving a Certificate of Occupancy after June 13, 1979."
       }
      }
     },
     "Q1-deposit": {
      "answer": "applies",
-     "value": "one month’s rent",
+     "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
      "detail": {
       "D025:0:security-deposit-cap": {
        "rule_id": "D025:0:security-deposit-cap",
        "result": "applies",
        "governed_by": null,
-       "applicable_value": "one month’s rent",
-       "explanation": "The California deposit cap is in force. The building has 21 units, so the stated small-landlord exception does not apply."
+       "applicable_value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
+       "explanation": "The California cap is in force. The 21-unit building does not meet the stated small-landlord characteristics associated with an exception; no other exception is established by the supplied facts."
       }
      }
     },
     "Q2-rent-state": {
      "answer": "applies",
-     "value": "5% plus CPI, capped at 10%",
+     "value": "5% plus CPI, capped at 10%, whichever is lower",
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "applies",
        "governed_by": null,
-       "applicable_value": "5% plus CPI, capped at 10%",
-       "explanation": "The building is residential and was built more than 15 years before the relevant date, so the stated new-construction exemption does not apply. No other listed exemption is established by the facts."
+       "applicable_value": "5% plus CPI, capped at 10%, whichever is lower",
+       "explanation": "The building was built in 2005, so it is not within the state rule’s 15-year new-construction exemption on this date. The supplied facts identify it as exempt from San Francisco rent-increase limitations, so the local stricter-control exclusion does not apply."
       }
      }
     },
@@ -3811,12 +4155,12 @@
      "answer": "none",
      "value": null,
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "result": "not_applicable",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "This rate is stated to apply to rent-controlled units. The 2005 building is not shown to be rent-controlled, and the supplied records do not establish that it is."
+       "explanation": "The 1.6% rate applies to rent-controlled units. The building was built in 2005, after the stated June 13, 1979 cutoff for newly constructed units exempt from rent-increase limitations."
       }
      }
     },
@@ -3824,12 +4168,12 @@
      "answer": "none",
      "value": null,
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "not_applicable",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The building was built in 2019, within the statutory exemption for housing issued a certificate of occupancy within the previous 15 years."
+       "explanation": "The building was built in 2019, within 15 years of the date, so it falls under the stated new-construction exemption from the state rent cap."
       }
      }
     },
@@ -3837,25 +4181,25 @@
      "answer": "none",
      "value": null,
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "result": "not_applicable",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The 1.6% increase applies to rent-controlled units. The building was built in 2019, so the supplied facts do not establish that its units are rent-controlled."
+       "explanation": "The 1.6% rate applies to rent-controlled units, while the record identifies units first obtaining a certificate of occupancy after June 13, 1979 as exempt from rent-increase limitations. The building was built in 2019."
       }
      }
     },
     "Q4-rent-local": {
-     "answer": "unknown",
+     "answer": "none",
      "value": null,
      "detail": {
-      "D041+D042:0:rso-annual-rent-increase-limit": {
-       "rule_id": "D041+D042:0:rso-annual-rent-increase-limit",
-       "result": "unknown",
+      "D041+D042:0:rso-annual-rent-increase": {
+       "rule_id": "D041+D042:0:rso-annual-rent-increase",
+       "result": "not_applicable",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "RSO coverage is uncertain because the supplied 1978 year-built fact does not establish the relevant certificate-of-occupancy date. The record’s 3% limit is specifically for July 1, 2025 through June 30, 2026 and does not state the applicable limit for October 1, 2026."
+       "explanation": "The stated 3% limit applies only from July 1, 2025 through June 30, 2026, so it does not supply an applicable annual increase limit on 2026-10-01. The building’s exact construction date is also not given."
       }
      }
     },
@@ -3863,25 +4207,25 @@
      "answer": "unknown",
      "value": null,
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "unknown",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The California cap is in force, but whether a stricter local rent-control rule supersedes it depends on whether this 1978 building is covered by the Los Angeles RSO. The year alone does not establish the relevant certificate-of-occupancy date; statutory exemptions are also not fully established."
+       "explanation": "The building’s 1978 construction year does not establish whether it was built on or before October 1, 1978 and is subject to the stricter local RSO rent control. If it is, the state cap yields to local control; otherwise, the state cap may apply, subject to the listed exemptions."
       }
      }
     },
     "Q5-rent-local": {
-     "answer": "applies",
+     "answer": "none",
      "value": null,
      "detail": {
-      "D041+D042:0:rso-annual-rent-increase-limit": {
-       "rule_id": "D041+D042:0:rso-annual-rent-increase-limit",
-       "result": "applies",
+      "D041+D042:0:rso-annual-rent-increase": {
+       "rule_id": "D041+D042:0:rso-annual-rent-increase",
+       "result": "not_applicable",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The building’s age, apartment use, and Los Angeles location place it within the RSO coverage described in the record. The supplied 3% rate ended June 30, 2026; the record gives no rate for 2026-10-01."
+       "explanation": "The building meets the stated RSO age and property-type coverage conditions, but the supplied 3% annual limit is specified only for July 1, 2025 through June 30, 2026, before the date in question."
       }
      }
     },
@@ -3889,29 +4233,53 @@
      "answer": "superseded",
      "value": null,
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
        "result": "superseded",
-       "governed_by": "D041+D042:0:rso-annual-rent-increase-limit",
+       "governed_by": "D041+D042:0:rso-annual-rent-increase",
        "applicable_value": null,
-       "explanation": "The 1927, five-or-more-apartment building in Los Angeles is covered by the local RSO rule, which governs instead of the state cap where it is stricter. The provided local 3% rate is only for July 1, 2025 through June 30, 2026, so no applicable rate for 2026-10-01 is given."
+       "explanation": "The 1927 Los Angeles apartment building is subject to the stricter local RSO rent control, which displaces the state cap. The supplied local 3% figure applied only through June 30, 2026, so no current local percentage is established by these records."
       }
      }
     },
     "Q6-boston-cap": {
-     "answer": "none",
+     "answer": "applies",
      "value": null,
-     "detail": {}
+     "detail": {
+      "D048:4:compensate-owners-of-rent-controlled-units": {
+       "rule_id": "D048:4:compensate-owners-of-rent-controlled-units",
+       "result": "unknown",
+       "governed_by": null,
+       "applicable_value": null,
+       "explanation": "The compensation requirement depends on a municipality adopting rent control and having rent-controlled units. The building facts do not establish whether that applies here."
+      }
+     }
     },
     "Q7-camb-cap": {
-     "answer": "none",
+     "answer": "applies",
      "value": null,
-     "detail": {}
+     "detail": {
+      "D048:4:compensate-owners-of-rent-controlled-units": {
+       "rule_id": "D048:4:compensate-owners-of-rent-controlled-units",
+       "result": "unknown",
+       "governed_by": "D048:0:prohibition-on-local-rent-control",
+       "applicable_value": null,
+       "explanation": "Compensation is required for rent-controlled units in a municipality adopting rent control, but the records do not say whether Cambridge accepted the chapter or whether this building has rent-controlled units."
+      }
+     }
     },
     "Q7-camb-s2983": {
-     "answer": "missing_rule",
+     "answer": "pending",
      "value": null,
-     "detail": {}
+     "detail": {
+      "D046:0:prohibit-algorithmic-rent-setting": {
+       "rule_id": "D046:0:prohibit-algorithmic-rent-setting",
+       "result": "pending",
+       "governed_by": null,
+       "applicable_value": null,
+       "explanation": "Mass. S.2983 is listed as pending, so it is not law on 2026-10-01."
+      }
+     }
     },
     "Q7-camb-h5222": {
      "answer": "missing_rule",
@@ -3922,12 +4290,12 @@
      "answer": "not_yet_effective",
      "value": null,
      "detail": {
-      "D022:0:common-pricing-algorithm-cartwright-act-conduct": {
-       "rule_id": "D022:0:common-pricing-algorithm-cartwright-act-conduct",
+      "D022:0:common-pricing-algorithm-in-restraint-of-trade": {
+       "rule_id": "D022:0:common-pricing-algorithm-in-restraint-of-trade",
        "result": "not_yet_effective",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The rule takes effect on 2026-01-01, after the date being evaluated."
+       "explanation": "The rule takes effect on 2026-01-01, after the date being assessed."
       }
      }
     },
@@ -3935,12 +4303,12 @@
      "answer": "applies",
      "value": null,
      "detail": {
-      "D022:0:common-pricing-algorithm-cartwright-act-conduct": {
-       "rule_id": "D022:0:common-pricing-algorithm-cartwright-act-conduct",
+      "D022:0:common-pricing-algorithm-in-restraint-of-trade": {
+       "rule_id": "D022:0:common-pricing-algorithm-in-restraint-of-trade",
        "result": "applies",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "In force in California on this date. It applies to covered persons engaging in the specified anticompetitive conduct; the building facts do not establish whether that conduct occurs."
+       "explanation": "In force in California on the stated date. It prohibits covered common-pricing-algorithm conduct that is part of a restraint of trade; the facts do not establish whether such conduct occurs."
       }
      }
     },
@@ -3948,12 +4316,12 @@
      "answer": "not_yet_effective",
      "value": null,
      "detail": {
-      "D069:4:prohibit-performing-coordinating-function": {
-       "rule_id": "D069:4:prohibit-performing-coordinating-function",
+      "D069:0:ban-owner-use-of-coordinator-services": {
+       "rule_id": "D069:0:ban-owner-use-of-coordinator-services",
        "result": "not_yet_effective",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The rule takes effect on 2027-07-01, after the date of 2026-10-01."
+       "explanation": "This New Jersey rule takes effect on 2027-07-01, after the date being evaluated."
       }
      }
     },
@@ -3961,12 +4329,12 @@
      "answer": "applies",
      "value": null,
      "detail": {
-      "D069:4:prohibit-performing-coordinating-function": {
-       "rule_id": "D069:4:prohibit-performing-coordinating-function",
+      "D069:0:ban-owner-use-of-coordinator-services": {
+       "rule_id": "D069:0:ban-owner-use-of-coordinator-services",
        "result": "applies",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The building is in New Jersey, and the rule’s effective date of 2027-07-01 is before the lookup date. The rule prohibits performing a coordinating function; it specifies no building-level amount or limit."
+       "explanation": "The building is in New Jersey and the rule's effective date, 2027-07-01, is before the assessment date."
       }
      }
     },
@@ -3974,51 +4342,51 @@
      "answer": "not_yet_effective",
      "value": null,
      "detail": {
-      "D069:4:prohibit-performing-coordinating-function": {
-       "rule_id": "D069:4:prohibit-performing-coordinating-function",
+      "D069:0:ban-owner-use-of-coordinator-services": {
+       "rule_id": "D069:0:ban-owner-use-of-coordinator-services",
        "result": "not_yet_effective",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The rule takes effect on 2027-07-01, after the given date of 2026-10-01."
+       "explanation": "This New Jersey rule takes effect on 2027-07-01, after the specified date."
       }
      }
     },
     "Q11-tic-deposit": {
      "answer": "applies",
-     "value": null,
+     "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
      "detail": {
       "D025:0:security-deposit-cap": {
        "rule_id": "D025:0:security-deposit-cap",
        "result": "applies",
        "governed_by": null,
-       "applicable_value": null,
-       "explanation": "The state cap is in force. The ordinary limit is one month’s rent, but a qualifying small landlord may generally use a two-month cap; landlord status is not given, so the applicable amount cannot be determined."
+       "applicable_value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
+       "explanation": "The California cap is in force on the date. No stated building fact establishes an exception; the building's age and unit count do not by themselves remove it."
       }
      }
     },
     "Q12-berk-deposit": {
      "answer": "applies",
-     "value": "one month’s rent",
+     "value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
      "detail": {
       "D025:0:security-deposit-cap": {
        "rule_id": "D025:0:security-deposit-cap",
        "result": "applies",
        "governed_by": null,
-       "applicable_value": "one month’s rent",
-       "explanation": "The California cap is in force. The stated 5+ unit use code indicates this is not a qualifying small-landlord property, so the general one-month cap applies, subject to the listed statutory exceptions."
+       "applicable_value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
+       "explanation": "The California cap is in force on this date. The record identifies statutory exceptions, but the facts do not establish that an exception applies."
       }
      }
     },
     "Q13-repealed": {
-     "answer": "unknown",
-     "value": null,
+     "answer": "applies",
+     "value": "5% plus CPI, capped at 10%, whichever is lower",
      "detail": {
-      "D024:0:annual-rent-increase-cap": {
-       "rule_id": "D024:0:annual-rent-increase-cap",
-       "result": "unknown",
+      "D024:0:rent-increase-cap": {
+       "rule_id": "D024:0:rent-increase-cap",
+       "result": "applies",
        "governed_by": null,
-       "applicable_value": null,
-       "explanation": "The state cap is in force, and the building’s 2005 construction date is more than 15 years before the date. But the records do not establish whether another statutory exemption applies or whether a stricter local rent-control limit governs."
+       "applicable_value": "5% plus CPI, capped at 10%, whichever is lower",
+       "explanation": "The state cap is in force. The building was built in 2005, so it is not within the 15-year construction exemption on the stated date; the supplied San Francisco rent-increase rate covers only March 2026 through February 2027."
       }
      }
     },
@@ -4026,12 +4394,12 @@
      "answer": "unknown",
      "value": null,
      "detail": {
-      "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027": {
-       "rule_id": "D079+D080+D083:3:annual-allowable-rent-increase-2026-2027",
+      "D079+D080+D083:2:sf-annual-rent-increase-2026-2027": {
+       "rule_id": "D079+D080+D083:2:sf-annual-rent-increase-2026-2027",
        "result": "unknown",
        "governed_by": null,
        "applicable_value": null,
-       "explanation": "The 1.6% rate is in force for rent-controlled units. The building facts do not establish whether its units are rent-controlled; the unit count and TIC use description are inconsistent."
+       "explanation": "The stated 1.6% limit is in force for the date, but the record applies it only to rent-controlled units. The facts do not establish whether these units are rent-controlled or qualify for an exemption."
       }
      }
     }

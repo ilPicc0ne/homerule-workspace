@@ -80,23 +80,17 @@ def address_facts(row):
     f["building.use_class"] = Fact(values=[use_class]) if use_class else UNKNOWN
     if row["year_built"]:
         y = int(row["year_built"])
-        f["building.year_built"] = Fact(y, y, source="CSV year_built")
-        f["building.built_date"] = Fact(f"{y}-01-01", f"{y}-12-31", source="CSV year_built")
-        f["building.certificate_date"] = Fact(f"{y}-01-01", f"{y}-12-31", source="CSV year_built",
-                                              assumption="co_from_year_built")
-    # the parcel is one whole rental building and its owner is the landlord
-    units = f.get("building.units")
-    if use_class in ("apartment", "mixed_use", "elderly") and units and units.known:
-        f["landlord.portfolio_units"] = Fact(units.lo, None, source="building units",
-                                             assumption="portfolio_lower_bound")
-    if use_class in ("apartment", "mixed_use", "elderly"):
-        f["building.separately_alienable"] = Fact(values=[False], source="whole-building rental parcel")
-    subsidised = "SUBSD" in desc
-    if subsidised:
-        f["building.affordable_restricted"] = Fact(values=[True], source=f"use description '{desc}'")
-    elif use_class:
-        f["building.affordable_restricted"] = Fact(values=[False], source="no affordability code in the parcel record",
-                                                   assumption="no_recorded_affordability_restriction")
+        f["built"] = Fact(f"{y}-01-01", f"{y}-12-31", source="CSV year_built (stands in for certificate date)")
+    i7_class = {"apartment": "apartment", "mixed_use": "mixed_use", "elderly": "apartment"}.get(use_class)
+    f["use_class"] = Fact(values=[i7_class]) if i7_class else UNKNOWN
+    if "SUBSD" in desc:
+        f["subsidised"] = Fact(values=[True], source=f"use description '{desc}'")
+    elif i7_class:
+        f["subsidised"] = Fact(values=[False], source="no affordability code in the parcel record",
+                               assumption="no_recorded_affordability_restriction")
+    if "building.units" in f:
+        f["units"] = f.pop("building.units")
+    f.pop("building.use_class", None)
     return f
 
 

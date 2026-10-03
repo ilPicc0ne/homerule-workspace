@@ -2,6 +2,8 @@
 # extended schema can carry the answers (experiment part a). Never exported, never shown to a prompt.
 # Each record has the extended fields (evaluated by code) and `base`: the same law in the starter
 # schema's fields only (read by a model in arm A). Sources: the cited corpus documents.
+# Conditions use only the I7 facts (contracts/facts.json). Exemptions I7 cannot express and that cannot
+# matter for the sample's apartment buildings (school dormitories, mobilehomes) are left out.
 
 - id: CA-RENT
   doc: D024
@@ -20,15 +22,14 @@
   applies_if: always
   exempt_if:
     any:
-      - {fact: building.affordable_restricted, op: eq, value: true}
-      - {fact: building.use_class, op: eq, value: dormitory}
-      - all: [{age: building.certificate_date, op: lt, years: 15}, {fact: building.use_class, op: ne, value: mobilehome}]
+      - {fact: subsidised, op: eq, value: true}
+      - {age_years: {op: lt, n: 15}}
       - all:
-          - {fact: building.separately_alienable, op: eq, value: true}
-          - not: {fact: landlord.owner_type, op: in, values: [reit, corporation, llc_with_corporate_member]}
-      - all: [{fact: building.units, op: le, value: 2}, {fact: landlord.owner_occupied, op: eq, value: true}]
+          - {fact: use_class, op: in, values: [single_family, condo]}
+          - not: {fact: owner_type, op: in, values: [corporation, reit]}
+      - all: [{fact: use_class, op: eq, value: two_family}, {fact: owner_occupied, op: eq, value: true}]
   interactions:
-    - {kind: exempt_where_local_rule_stricter, target_category: rent_increase_limits}
+    - {type: yields_to_local, target_category: rent_increase_limits}
   base:
     title: Tenant Protection Act rent cap
     requirement: >-
@@ -57,14 +58,13 @@
   key_value: one month's rent
   applies_if: always
   exempt_if: never
-  value_branches:
+  key_value_conditions:
     - value: two months' rent
       when:
         all:
-          - {fact: landlord.owner_type, op: in, values: [natural_person, llc_natural_persons]}
-          - {fact: landlord.portfolio_properties, op: le, value: 2}
-          - {fact: landlord.portfolio_units, op: le, value: 4}
-          - not: {fact: tenant.service_member, op: eq, value: true}
+          - {fact: owner_type, op: eq, value: individual}
+          - {fact: units, op: le, value: 4}
+      tenant_note: not if the prospective tenant is a service member
   base:
     title: Security deposit limit
     requirement: A landlord may not demand or receive security above one month's rent.
@@ -90,7 +90,7 @@
   cap_low: 1.6
   cap_high: 1.6
   applies_if: always
-  exempt_if: {date_fact: building.certificate_date, op: gt, date: "1979-06-13"}
+  exempt_if: {fact: built, op: gt, value: "1979-06-13"}
   base:
     title: San Francisco Rent Ordinance annual allowable increase
     requirement: For rent-controlled units the annual allowable increase from March 1, 2026 to February 28, 2027 is 1.6%.
@@ -112,7 +112,7 @@
   key_value: 3% annual allowable increase
   cap_low: 3
   cap_high: 3
-  applies_if: {date_fact: building.built_date, op: le, date: "1978-10-01"}
+  applies_if: {fact: built, op: le, value: "1978-10-01"}
   exempt_if: never
   base:
     title: Los Angeles Rent Stabilization Ordinance annual allowable increase
@@ -159,7 +159,7 @@
   applies_if: always
   exempt_if: never
   interactions:
-    - {kind: possible_conflict_with_local, target_category: algorithmic_rent_setting}
+    - {type: may_preempt_local, target_category: algorithmic_rent_setting}
   base:
     title: NJ FAIR Act ban on algorithmic rent coordination
     requirement: Rental property owners may not use coordinator services that set or recommend rents.
