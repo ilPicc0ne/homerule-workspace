@@ -1,29 +1,47 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Figtree } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// One friendly, rounded sans for everything.
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const description =
+  "Your rights as a renter, for your exact address. See which housing rules apply to your home, today and next. Coming soon. Not legal advice.";
+
+const shareText = "See which housing rules apply to your home, quoted from the law and dated. Coming soon.";
 
 export const metadata: Metadata = {
   title: "HomeRule",
-  description: "Your rights as a renter, for your exact address. Not legal advice.",
+  description,
+  applicationName: "HomeRule",
+  openGraph: {
+    title: "HomeRule",
+    description: shareText,
+    siteName: "HomeRule",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary",
+    title: "HomeRule",
+    description: shareText,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fdfcfa" },
+    { media: "(prefers-color-scheme: dark)", color: "#10181a" },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${figtree.variable} antialiased`}>
+      <body>{children}</body>
     </html>
   );
 }
