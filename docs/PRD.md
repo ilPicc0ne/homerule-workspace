@@ -84,7 +84,8 @@ This is the project's feature list; each build updates its status in the same co
 | P1 | Chatbot scoreboard: ~20 dated city-level questions, plain chatbot vs HomeRule, date-stamped | D | planned |
 | P1 | Impact map on the rule page with date slider | S | planned |
 | P0 | Hour-16 ingest in one command | D | planned |
-| P1 | Real email sending (double opt-in) | S | planned |
+| P1 | Real email sending (double opt-in) via Resend from `alerts@yourhomerule.com`; deliverability: HTML + text, unsubscribe link and header, warm-up | S | partial (domain verified, test mail sent) |
+| P0 | Coming-soon landing page on yourhomerule.com | S | WIP (`s/landing`, preview) |
 | P1 | Renter-protection score + compare picked addresses (no ranking, no rent levels, unknown counted apart) | S | planned |
 | P1 | Renter answers one missing building fact ("you told us", never in the scored files) | S | planned |
 | P1 | Map pin | S | planned |
