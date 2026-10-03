@@ -9,7 +9,7 @@
 
 1. Dimitar accepts the invite (github.com/ilPicc0ne/homerule-workspace), clones, copies the starter pack into `data/realpage-starter/` (git-ignored).
 2. M0: calibrate output formats against `schema/` and `submission_templates/` (the participant pack has no score.py, no dev key).
-3. 22:00 spike: extraction baseline, geocoding, freeze the predicate AST schema (see `notes/plan/spec.md` §3, §5, §7).
+3. 22:00 spike: extraction baseline, geocoding, freeze the predicate AST schema (see `notes/plan/prd.md` Technical requirements and `docs/ARCHITECTURE.md`).
 4. Ask in the Discord challenge channel: score.py release, hour-16 time and format, how "unknown" counts, starter-pack licensing for a public repo.
 5. Share the review page https://claude.ai/artifact/ARbRPgGyA4ndhd7LvbztSu with Dimitar as Editor; settle D1–D7 (D7 = renter, tentative).
 6. Sun ~14:00: `scripts/publish.sh`, read the leak check, `--push`, flip `ilPicc0ne/homerule` to public.

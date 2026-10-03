@@ -4,8 +4,8 @@ Everything we produce while thinking: plans, meeting summaries, idea iterations,
 
 | Folder | What |
 |---|---|
-| `plan/` | The live plan. `spec.md` (build spec: scoring model, base M0–M10, extensions, contracts, tests, gates), `concept.md` (winning concept, users and jobs to be done, options), `decision.md` (decision record, build plan with owners), `review-page.html` (source of https://claude.ai/artifact/ARbRPgGyA4ndhd7LvbztSu) |
+| `plan/` | The live plan: `prd.md` is the master (scope, requirements, owners, journeys, demo). Superseded plans (`spec.md`, `concept.md`, `decision.md`, `review-page.html`) are in `plan/archive/`. |
 | `meetings/` | Meeting summaries, one file per recording: `YYYY-MM-DD-HHMM-topic.md` |
 | `ideas/` | Idea iterations and deep dives, including ones we did not pick |
 
-Where documents disagree: the brief wins on rules, `plan/concept.md` on product, `plan/spec.md` on implementation. Paths like `funnel/...` refer to the earlier planning repo `snp`.
+Where documents disagree: the brief wins on rules, `plan/prd.md` on scope and priorities, `docs/ARCHITECTURE.md` on implementation. Paths like `funnel/...` refer to the earlier planning repo `snp`.

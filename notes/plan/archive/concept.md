@@ -1,3 +1,5 @@
+> **Superseded on 04.10.2026** by `notes/plan/prd.md` (scope, owners) and `docs/ARCHITECTURE.md` (how). Kept for history.
+
 # c2 winning concept: HomeRule (RealPage, Rental Housing Law Navigator)
 
 Sat 03.10.2026, ~20:30 CEST.

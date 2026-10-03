@@ -1,3 +1,5 @@
+> **Superseded on 04.10.2026** by `notes/plan/prd.md` (scope, owners) and `docs/ARCHITECTURE.md` (how). Kept for history.
+
 # HomeRule build spec (c2 RealPage, Rental Housing Law Navigator)
 
 Written Sat 03.10.2026, 21:15 CEST. Freeze Sun 12:00, submission Sun 15:00.

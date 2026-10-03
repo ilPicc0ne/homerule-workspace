@@ -1,3 +1,5 @@
+> **Superseded on 04.10.2026** by `notes/plan/prd.md` (scope, owners) and `docs/ARCHITECTURE.md` (how). Kept for history.
+
 # Decision: Rights Engine (c2 RealPage, Rental Housing Law Navigator)
 
 Written Sat 03.10.2026, 20:30 CEST. Feature freeze Sun 12:00, submission Sun 15:00. Combines Rights Engine Repair (merge rank 2), Missing Fact Finder (rank 4) and Ask Your Address (rank 6), with the quarantine gate from `funnel/deepdives/memory-quarantine-lab.md`.
