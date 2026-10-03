@@ -6,7 +6,7 @@ A · Extraction: corpus → `out/rules.json` + `out/rules.compiled.json` + `out/
 
 | Command | Does |
 |---|---|
-| `make extract` | Index the corpus and the cleared supplemental sources, extract every document, gate, link findings, compile |
+| `make extract` | Index the corpus and the cleared supplemental sources, extract every document, gate, link findings, open questions, compile |
 | `make eval` | Assertions, coverage matrix, T1-T6, `out/changes.json`, address questions → `out/eval/report_supplemental.md` |
 | `make ingest DOC=<path> JUR="Cambridge, MA" [ID=X002]` | Hour 16: one new text file → rules, findings, the affected addresses (no code or prompt change) |
 | `make rehearse` | The hour-16 run on the fictional `tests/fixtures/synthetic/X001.txt`; removes it afterwards so it never reaches the outputs |
@@ -37,6 +37,7 @@ Model calls are cached by request hash (`build/cache/`), so a rerun of `make ext
 | `luna_pass.py` | Extraction, quote location, checks, repair, triage, pending-bill record |
 | `status.py` | Corroborates a "draft" reading against the manifest's code-publisher links |
 | `gate.py` | Verification gate G1-G4 |
+| `open_questions.py` | The guide's known open questions (starter README) → `open_question` findings: our rule and source next to each competing claim, the claim's source matched to a manifest row by Jev. A law that two sources give effective dates for counts as adopted (the later date applies) |
 | `links.py` | One Jev call over link-only manifest rows → `out/link_findings.json` (failed measures, bans with no corpus text) |
 | `compile.py` | `out/rules.compiled.json` (all rules), `out/rules.json` (starter corpus only, the scored file), `out/findings.json` |
 | `changes.py` | `changes.json` in the guide's shape from the same evaluation as the lookups |
@@ -46,8 +47,8 @@ Model calls are cached by request hash (`build/cache/`), so a rerun of `make ext
 ## State (04.10.2026, eval with supplemental sources)
 
 - Quotes: 1731/1745 verbatim in the pinned source (99.2%).
-- Assertions over the brief's named rules: 24/27. Misses: Berkeley ch. 13.63 (the corpus has a first-reading draft, read as pending), Santa Ana (manifest link only), Jersey City (text only in a held supplemental source).
-- Address questions: 24/24 tuning, 15/16 held out.
-- T1 250/250, T3 140/140 flips, T4 110/110, T5 0 with IP 25-21 recorded as failed, T6 rehearsal 45/45 in about 24 s. T2 40/90 and T3 flags 40/90: Jersey City missing.
+- Assertions over the brief's named rules: 26/27. Miss: Santa Ana (manifest link only). Jersey City Ord. 25-057 and amendments 25-076/25-098 come from supplemental sources S001/S016/S017 (cleared after a targeted browser download); their effective dates are not yet resolved. Berkeley ch. 13.63: the corpus text is the first-reading version with no date; adopted per the two published effective dates, from 2026-03-01 (the later one), flagged as an open question.
+- Address questions: 24/24 tuning, 16/16 held out.
+- T1 250/250, T2 90/90, T3 140/140 flips and 90/90 conflict flags, T4 110/110, T5 0 with IP 25-21 recorded as failed, T6 rehearsal 45/45 in about 24 s.
 - State rent cap at 2026-10-01 over the 245 CA addresses: 118 superseded by local rent control, 27 applies, 100 unknown (98 have no year built, so the 15-year exemption is undecided; 2 were built in 1978, across LA's October 1978 cutoff).
 - Known gaps: D058 is refused by the content filter on both models (logged in `out/extracted_failures.json`).

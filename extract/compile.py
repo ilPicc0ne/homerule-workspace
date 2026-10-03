@@ -114,9 +114,20 @@ def source_span(span):
     return _TEXT[vid][span["start"]:span["end"]]
 
 
+def open_questions():
+    """(schema jurisdiction, category) -> open-question findings from extract/open_questions.py."""
+    path = config.OUT / "open_questions.json"
+    out = {}
+    for f in json.load(open(path)) if path.exists() else []:
+        name = next((k for k, j in BY_SCHEMA.items() if j["id"] == f["jurisdiction"]), f["jurisdiction"])
+        out.setdefault((name, f["category"]), []).append(f)
+    return out
+
+
 def internal_rules(extracted_dir=None, as_of=AS_OF):
     """Headline rules in the internal format the reference evaluator and the tests use."""
     rules, seen = [], set()
+    oq = open_questions()
     for f in sorted((extracted_dir or config.OUT / "extracted").glob("*.json")):
         r = json.load(open(f))
         jur = r["jurisdiction"]
@@ -130,12 +141,27 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                 continue
             seen.add(key)
             span = r["spans"].get(f".obligations[{n}].requirement_quote")
-            doc_status, status_evidence = lu["document_status"], None
+            doc_status, status_evidence, events = lu["document_status"], None, lu["events"]
+            questions = oq.get((jur, o["category"]), [])
             if doc_status == "pending" and ", " in jur and not o.get("stub"):     # a city ordinance read as a draft
-                verdict, evidence, _ = S.corroborate(r["doc_ids"][0], jur, o["citation"], o["title"], r["source_urls"][0])
+                said = [f"{q['note']} " + "; ".join(f"{c['value']} ({c['source']})" for c in q["claims"]) for q in questions]
+                verdict, evidence, _ = S.corroborate(r["doc_ids"][0], jur, o["citation"], o["title"], r["source_urls"][0],
+                                                     said)
                 status_evidence = {"verdict": verdict, **evidence}
                 if verdict == "adopted":
                     doc_status = "enacted"
+            dated = sorted(c["iso_date"] for q in questions if q["question_kind"] == "dates_disagree"
+                           for c in q["claims"] if c["iso_date"])
+            if doc_status == "pending" and len(dated) >= 2 and status_evidence:
+                # two sources each publish an effective date: the law was adopted, whichever date is right
+                doc_status = "enacted"
+                status_evidence["verdict"] = "adopted"
+                status_evidence["basis"] = "published effective dates (open question): " + ", ".join(dated)
+            if dated and doc_status == "enacted" and not effective(events, state, o["provision"])["from"]:
+                # the text gives no date; published dates disagree: the later one, flagged as an open question
+                events = events + [{"kind": "effective", "date": dated[-1], "precision": "day", "relative_rule": "none",
+                                    "n": None, "applies_to": "act", "quote": "open question: published dates disagree",
+                                    "open_question": True}]
             rules.append({
                 "id": f"{r['doc_id']}:{n}:{o['slug']}", "unit": r["doc_id"], "jurisdiction": jur, "state": state,
                 "category": o["category"], "citation": o["citation"], "effect": o["effect"], "title": o["title"],
@@ -145,7 +171,7 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                 "source_doc_id": span["doc_id"] if span else r["doc_ids"][0],
                 "source_url": r["source_urls"][r["doc_ids"].index(span["doc_id"])] if span else r["source_urls"][0],
                 "retrieved": r["retrieved"][0], "document_status": doc_status, "status_evidence": status_evidence,
-                "events": lu["events"],
+                "events": events,
                 "key_value": o["key_value"], "cap_low": o["cap_pct_low"], "cap_high": o["cap_pct_high"],
                 "coverage_conditions": o["coverage_conditions"], "exemptions": o["exemptions"],
                 "applies_if": o["applies_if"], "exempt_if": o["exempt_if"],
@@ -214,6 +240,8 @@ def findings(rules):
     if links.exists():
         for f in json.load(open(links)):
             out.append({**f, "citation": f"manifest link: {f['url']}"})
+    for qs in open_questions().values():            # the guide's open questions, with both sources
+        out += qs
     inv = json.load(open(config.OUT / "inventory.json"))
     for name, info in inv.items():
         if not info["has_text"]:

@@ -11,10 +11,11 @@ import re
 from . import config, llm
 
 QUESTION = {
-    "adopted": "The links show the ordinance was finally adopted or codified (e.g. it appears in the published "
-               "municipal code, or a final-passage / second-reading agenda item).",
-    "not_adopted": "The links show it was rejected, withdrawn or never adopted.",
-    "unclear": "The links do not show whether it was adopted.",
+    "adopted": "The sources show the ordinance was finally adopted or codified (e.g. it appears in the published "
+               "municipal code, a final-passage / second-reading agenda item, or other sources state the date it "
+               "took effect).",
+    "not_adopted": "The sources show it was rejected, withdrawn or never adopted.",
+    "unclear": "The sources do not show whether it was adopted.",
 }
 
 
@@ -22,7 +23,7 @@ def manifest_rows(jurisdiction):
     return [r for r in csv.DictReader(open(config.MANIFEST, encoding="utf-8")) if r["jurisdictions"] == jurisdiction]
 
 
-def corroborate(doc_id, jurisdiction, citation, title, own_url):
+def corroborate(doc_id, jurisdiction, citation, title, own_url, statements=()):
     """('adopted', evidence, adoption_date or None) | ('pending'|'unclear', evidence, None)."""
     rows = manifest_rows(jurisdiction)
     sec = re.search(r"\d+\.\d+(?:\.\d+)?", citation or "")
@@ -30,6 +31,8 @@ def corroborate(doc_id, jurisdiction, citation, title, own_url):
     lines = [f"- [{r['doc_id']}] {r['source_type']}: {r['url']}" for r in rows]
     state = (f"Ordinance: {title} ({citation}). Its supplied text is document {doc_id}, from {own_url}.\n"
              f"Other sources listed for {jurisdiction}:\n" + "\n".join(lines))
+    if statements:                                      # the guide's open questions about this law, if any
+        state += "\nOther statements about this law:\n" + "\n".join(f"- {x}" for x in statements)
     a, _ = llm.jev(state, {"adopted": {"type": "choice", "criteria": QUESTION,
                                       "instructions": "Do these sources show that this ordinance was adopted?"}},
                    stage="jev_status_corroboration", ref=doc_id)
@@ -39,7 +42,7 @@ def corroborate(doc_id, jurisdiction, citation, title, own_url):
     if m:
         date = m.group(0)
     evidence = {"jev": choice, "confidence": conf, "codified_links": [r["url"] for r in codified],
-                "adoption_date_from_url": date}
+                "adoption_date_from_url": date, "statements": list(statements)}
     if codified or (choice == "adopted" and conf >= 0.8):
         return "adopted", evidence, date
-    return choice, evidence, None
+    return (choice if conf >= 0.8 else "unclear"), evidence, None

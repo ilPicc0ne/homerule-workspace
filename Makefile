@@ -10,6 +10,7 @@ extract:                                 ## A · corpus -> out/rules.json, out/r
 	python3 -m extract.luna_pass $$(ls out/index | grep "^[DS]" | sed "s/.json//")
 	python3 -m extract.gate
 	python3 -m extract.links
+	python3 -m extract.open_questions
 	python3 -m extract.compile
 
 resolve:                                 ## B · sample addresses -> out/addresses.resolved.json (Silvan)

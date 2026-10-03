@@ -73,7 +73,7 @@ This is the project's feature list; each build updates its status in the same co
 
 | Prio | Feature | Owner | Status |
 |---|---|---|---|
-| P0 | Extraction → `rules.json` | D | partial (`d/extract-slice`: full corpus + cleared supplemental sources, 24/27 assertions, quotes 99.2% verbatim, eval suite; open: Jersey City text, Santa Ana, Berkeley status) |
+| P0 | Extraction → `rules.json` | D | partial (`d/extract-slice`: full corpus + cleared supplemental sources, 26/27 assertions, T1-T5 all pass, quotes 99.2% verbatim, eval suite; open: Santa Ana text, Jersey City effective dates) |
 | P0 | Jurisdiction list + address lookup (Census geocoder) | S | planned |
 | P0 | Engine → `lookups.json`, `changes.json`, per-address diff | S | planned |
 | P0 | Address page (sections 1–3, 5–10), JSON endpoint per address | S | planned |
@@ -89,7 +89,7 @@ This is the project's feature list; each build updates its status in the same co
 | P1 | Renter-protection score + compare picked addresses (no ranking, no rent levels, unknown counted apart) | S | planned |
 | P1 | Renter answers one missing building fact ("you told us", never in the scored files) | S | planned |
 | P1 | Map pin | S | planned |
-| P1 | Show the guide's four open legal questions as flags with both sources (e.g. Berkeley's two effective dates) | D | planned |
+| P1 | Show the guide's four open legal questions as flags with both sources (e.g. Berkeley's two effective dates) | D | built (`out/findings.json` kind `open_question`, `extract/open_questions.py`; card display: S) |
 | P1 | Spanish card summaries (brief stretch goal; quotes stay English) | S | planned |
 | P1 | "I rent / I own" wording toggle (sponsor's users) | S | planned |
 | P2 | Typed address outside the sample, e.g. Santa Ana (brief stretch goal "new jurisdiction live") | S | planned |
