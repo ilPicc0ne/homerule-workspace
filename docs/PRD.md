@@ -81,7 +81,7 @@ This is the project's feature list; each build updates its status in the same co
 | P0 | Address page (sections 1–3, 5–10), JSON endpoint per address | S | planned |
 | P0 | Change log + email preview, triggered by a demo-only ingest | S | planned |
 | P0 | Rule page: quote in source, link to the law, audit trail with reasoning boundary | S (audit data from D) | planned |
-| P0 | Search resolves address / city / neighbourhood / county / state via the jurisdiction list; "not covered" for anything outside | S | built (`/api/resolve`, tree view on `/where`; address page links pending) |
+| P0 | Search resolves address / city / neighbourhood / county / state via the jurisdiction list; "not covered" for anything outside | S | built (`/api/resolve`, tree view on `/where` with autocomplete over the sample addresses and places; address page links pending) |
 | P1 | Jurisdiction pages for all levels (state › county › city), rules with their conditions | S | planned |
 | P1 | Chatbot scoreboard: ~20 dated city-level questions, plain chatbot vs HomeRule, date-stamped | D | planned |
 | P1 | Impact map on the rule page with date slider | S | planned |
@@ -100,6 +100,7 @@ This is the project's feature list; each build updates its status in the same co
 | P2 | Compare view · city outline on the map | S | planned |
 | P3 | ChatGPT custom GPT on the JSON endpoint | D | planned |
 | Idea | Search typo tolerance: near-miss names ("Hobokn") → suggestion via edit distance over the list and aliases, never applied silently | S | idea |
+| Idea | Google Places autocomplete for any US address (Places API (New), ~10k free requests/month then $2.83/1k; needs Google Maps attribution, key behind our server, and likely a Google map for the pin per Maps Platform terms) | S | idea |
 | Idea | Own chatbot · addresses outside the 500 · neighbourhood comparison · repairs card | — | idea |
 
 ## User journeys

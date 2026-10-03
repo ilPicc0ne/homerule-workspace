@@ -3,7 +3,9 @@ import Link from "next/link";
 import { icons } from "../icons";
 import { resolveQuery } from "@/lib/resolve/resolve.ts";
 import { sampleIndex } from "@/lib/resolve/samples.ts";
+import { SUGGESTIONS } from "@/lib/resolve/suggest.ts";
 import type { AddressResult, Coverage, ResolveResult, TreeLevel } from "@/lib/resolve/types.ts";
+import SearchBox from "./search-box";
 import s from "./where.module.css";
 
 /*
@@ -165,21 +167,10 @@ export default async function WherePage({ searchParams }: PageProps<"/where">) {
         <h1 className={s.title}>Who makes the rules at your address?</h1>
         <p className={s.sub}>Federal, state, county and city: see which levels govern a place, and which of them HomeRule covers.</p>
 
-        <form action="/where" method="get" className={`search ${s.form}`} role="search">
-          {icons.search}
-          <input
-            name="q"
-            type="search"
-            defaultValue={q}
-            placeholder="Street address, city, neighbourhood or state"
-            aria-label="Address or place"
-            autoComplete="street-address"
-            maxLength={200}
-          />
-          <button type="submit" className="search-go" aria-label="Look up">
-            {icons.search}
-          </button>
-        </form>
+        <div className={s.form}>
+          <SearchBox key={q} defaultValue={q} suggestions={SUGGESTIONS} />
+          <p className={s.hint}>Suggestions from HomeRule&apos;s sample addresses and places; any other US address works too, press Enter.</p>
+        </div>
 
         {result ? (
           <Result r={result} />

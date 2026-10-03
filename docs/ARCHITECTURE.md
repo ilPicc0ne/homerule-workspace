@@ -171,7 +171,7 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
     - six question cards;
     - coming up and the change log.
   - `/j/[id]`: jurisdiction page for any level, rules with their conditions; `/api/jurisdiction/[id]?as_of=` read-only JSON.
-  - `/where?q=`: the jurisdiction tree for any US address or place (server-rendered, plain GET form).
+  - `/where?q=`: the jurisdiction tree for any US address or place (server-rendered, plain GET form; client-side autocomplete over the sample addresses and places from `lib/resolve/suggest.ts`, nothing fetched while typing).
   - `/api/resolve?q=`: free text (address, city, neighbourhood, county, state, ZIP) → `{kind: address | place | ambiguous | not_found | unavailable, tree, coverage, notes, …}`; sample addresses carry `sample.address_id` and facts. 404 for not found, 503 when Census is down.
   - `/api/address/[id]?as_of=`: read-only JSON with `as_of`, retrieval dates and `not_legal_advice: true`.
   - Later `/api/mcp`, the same functions behind `mcp-handler`.

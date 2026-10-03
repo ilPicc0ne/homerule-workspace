@@ -22,6 +22,12 @@
   margin-top: 1.5rem;
 }
 
+.hint {
+  margin: 0.6rem 0.25rem 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 .examples {
   margin-top: 1.5rem;
   color: var(--muted);
