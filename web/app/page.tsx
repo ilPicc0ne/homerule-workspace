@@ -33,7 +33,7 @@ export default function Home() {
         </div>
 
         <section className="wrap section" aria-labelledby="questions-title">
-          <h2 id="questions-title">Questions we answer</h2>
+          <h2 id="questions-title">Six questions, answered for your address</h2>
           <ul className="chips">
             {questions.map(({ label, icon }) => (
               <li key={label} className="chip">
