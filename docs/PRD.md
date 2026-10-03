@@ -87,7 +87,7 @@ This is the project's feature list; each build updates its status in the same co
 | P1 | Real email sending (double opt-in) via Resend from `alerts@yourhomerule.com`; deliverability: HTML + text, unsubscribe link and header, warm-up | S | partial (domain verified, test mail sent) |
 | P0 | Coming-soon landing page on yourhomerule.com | S | WIP (`s/landing`, preview) |
 | P1 | Renter-protection score + compare picked addresses (no ranking, no rent levels, unknown counted apart) | S | planned |
-| P0 | Contacts per card: hand-checked table per city × topic (rent board, housing department, tenant hotline, legal aid; link + phone) in `contracts/contacts.json`; every card ends in one "who to ask" | S | planned |
+| P0 | Contacts per card: hand-checked table per city × topic (rent board, housing department, tenant hotline, legal aid; link + phone, source + retrieval date) in `contracts/contacts.json`; every card ends in one "who to ask" | D (data), S (display) | planned |
 | P1 | Action helpers: neutral one-tap actions, e.g. a ready email asking the landlord for the certificate-of-occupancy date, or "call the SF Rent Board" with what to have ready. They request information or point to an office, never argue the renter's case | S | planned |
 | P2 | Legal-aid finder: nearest free legal help for the exact address from public directories | S | planned |
 | P1 | Renter answers one missing building fact ("you told us", never in the scored files) | S | planned |
