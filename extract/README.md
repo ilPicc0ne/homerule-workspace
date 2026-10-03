@@ -22,7 +22,7 @@ Model calls are cached by request hash (`build/cache/`), so a rerun of `make ext
 4. **Code checks:** quotes found in the source, conditions only over I7 facts, no circular references, every labelled category covered.
 5. **Jev J5-J8:** cross-check Luna's closed fields (effect, headline, interaction type, fact/operator); a confident disagreement overrides.
 6. **Luna L2:** one targeted repair call for whatever the checks flagged.
-7. **Jev J9:** triage of conditions left `unparsed`.
+7. **Jev J9:** triage of conditions left `unparsed`, asked in two wordings; a guard for 5+ unit apartments is added only when one answer is confident and the other doesn't disagree.
 8. **Gate G1-G4 (`gate.py`):** is each claim and key value supported by its quote, which date the rule starts, does the provision also regulate another topic (then one targeted Luna call), what status the text shows.
 9. **Compile (`compile.py`):** effective dates (provision-scoped events, relative rules such as "first day of the sixth month after adoption"), status, I2 records with `source_span` materialised from the pinned text, I8 findings.
 
@@ -47,6 +47,7 @@ Model calls are cached by request hash (`build/cache/`), so a rerun of `make ext
 
 - Quotes: 1731/1745 verbatim in the pinned source (99.2%).
 - Assertions over the brief's named rules: 24/27. Misses: Berkeley ch. 13.63 (the corpus has a first-reading draft, read as pending), Santa Ana (manifest link only), Jersey City (text only in a held supplemental source).
-- Address questions: 23/24 tuning, 15/16 held out.
+- Address questions: 24/24 tuning, 15/16 held out.
 - T1 250/250, T3 140/140 flips, T4 110/110, T5 0 with IP 25-21 recorded as failed, T6 rehearsal 45/45 in about 24 s. T2 40/90 and T3 flags 40/90: Jersey City missing.
-- Known gaps: the state rent cap's nested exemptions return `unknown` for some exempt-looking buildings; D058 is refused by the content filter on both models (logged in `out/extracted_failures.json`).
+- State rent cap at 2026-10-01 over the 245 CA addresses: 118 superseded by local rent control, 27 applies, 100 unknown (98 have no year built, so the 15-year exemption is undecided; 2 were built in 1978, across LA's October 1978 cutoff).
+- Known gaps: D058 is refused by the content filter on both models (logged in `out/extracted_failures.json`).

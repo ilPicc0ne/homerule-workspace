@@ -372,37 +372,55 @@ def _wrap(node, answer, conf):
     return {**base, "kind": "any", "children": [APT5, node], "triaged_guard": "true for 5+ unit apartments (Jev)"}
 
 
-def triage_unparsed(state_text, out, ref, min_conf=0.8):
-    """One Jev call per unit for conditions still unparsed after repair."""
+TRIAGE_ROLE = {"applies_if": "It is part of the law's coverage: the law covers a building or tenancy when this is true.",
+               "exempt_if": "It is part of an exemption: the law does not apply when this is true.",
+               "when": "It selects which amount applies."}
+
+
+def triage_unparsed(state_text, out, ref, min_conf=0.8, veto=0.5):
+    """One Jev call per unit for conditions still unparsed after repair. Each condition is asked in two wordings
+    (plain, and with its role in the rule); a guard is added only when one answer is confident and the other
+    does not confidently disagree."""
     targets = []
 
-    def walk(n, setter):
+    def walk(n, setter, role):
         if n["kind"] == "unparsed" and not n.get("triaged"):
-            targets.append((n, setter))
+            targets.append((n, setter, role))
         for i, c in enumerate(n.get("children") or []):
-            walk(c, lambda new, n=n, i=i: n["children"].__setitem__(i, new))
+            walk(c, lambda new, n=n, i=i: n["children"].__setitem__(i, new), role)
 
     for o in out["obligations"]:
         if o["effect"] != "protection_or_duty":
             continue
         for key in ("applies_if", "exempt_if"):
-            walk(o[key], lambda new, o=o, key=key: o.__setitem__(key, new))
+            walk(o[key], lambda new, o=o, key=key: o.__setitem__(key, new), key)
         for b in o["key_value_conditions"]:
-            walk(b["when"], lambda new, b=b: b.__setitem__("when", new))
+            walk(b["when"], lambda new, b=b: b.__setitem__("when", new), "when")
     if not targets:
         return None
-    questions = {f"u{i}": {"type": "choice", "criteria": TRIAGE,
-                           "instructions": f'Consider this condition from the law: "{(n.get("quote") or "")[:300]}". '
-                                           "Could it be true for an ordinary multifamily apartment building of five or "
-                                           "more units that is not subsidised or affordable housing?"}
-                 for i, (n, _) in enumerate(targets)}
+    questions = {}
+    for i, (n, _, role) in enumerate(targets):
+        quote = (n.get("quote") or "")[:300]
+        questions[f"u{i}"] = {"type": "choice", "criteria": TRIAGE,
+                              "instructions": f'Consider this condition from the law: "{quote}". '
+                                              "Could it be true for an ordinary multifamily apartment building of five or "
+                                              "more units that is not subsidised or affordable housing?"}
+        questions[f"v{i}"] = {"type": "choice", "criteria": TRIAGE,
+                              "instructions": f'Consider this condition from the law: "{quote}". {TRIAGE_ROLE[role]} '
+                                              "Could the condition itself be true for an ordinary multifamily apartment "
+                                              "building of five or more residential units rented to tenants, that is not "
+                                              "subsidised or affordable housing? Judge the condition as written, not the "
+                                              "law as a whole."}
     answers, usage = llm.jev(state_text[:60000], questions, stage="jev_triage", ref=ref)
-    for i, (n, setter) in enumerate(targets):
-        a = answers[f"u{i}"]
-        if a["choice"] in ("no", "yes") and a["confidence"] >= min_conf:
-            setter(_wrap(n, a["choice"], a["confidence"]))
+    for i, (n, setter, _) in enumerate(targets):
+        a, b = answers[f"u{i}"], answers[f"v{i}"]
+        best, other = (a, b) if a["confidence"] >= b["confidence"] else (b, a)
+        vetoed = other["choice"] != best["choice"] and other["confidence"] >= veto
+        if best["choice"] in ("no", "yes") and best["confidence"] >= min_conf and not vetoed:
+            setter(_wrap(n, best["choice"], best["confidence"]))
         else:
-            n["triaged"] = {"jev": a["choice"], "confidence": a["confidence"], "kept_unparsed": True}
+            n["triaged"] = {"jev": [a["choice"], b["choice"]], "confidence": [a["confidence"], b["confidence"]],
+                            "kept_unparsed": True}
     return usage
 
 
