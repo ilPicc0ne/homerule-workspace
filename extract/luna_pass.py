@@ -8,7 +8,7 @@ import json
 import re
 from concurrent.futures import ThreadPoolExecutor
 
-from . import config, llm, jev_pass, jev_check
+from . import config, llm, jev_pass, jev_check, parts as P
 from .corpus import load_text
 
 I7 = json.load(open(config.ROOT / "contracts" / "facts.json"))
@@ -201,6 +201,13 @@ def locate(text, quote):
     j = nt.find(nq) if nq else -1
     if j >= 0:
         return idx[j], idx[j + len(nq) - 1] + 1, "normalised"
+    # PDF text often splits words ("t hose", "th e"): compare with all whitespace removed, map back to the source
+    st = [(i, ch) for i, ch in enumerate(nt) if not ch.isspace()]
+    sq = "".join(ch for ch in nq if not ch.isspace())
+    joined = "".join(ch for _, ch in st)
+    j = joined.find(sq) if len(sq) >= 20 else -1
+    if j >= 0:
+        return idx[st[j][0]], idx[st[j + len(sq) - 1][0]] + 1, "whitespace_insensitive"
     return None
 
 
@@ -273,10 +280,24 @@ def _has_ref(n):
     return n["kind"] == "ref" or any(_has_ref(c) for c in n.get("children") or [])
 
 
-def check(doc_out, level="state"):
+def check(doc_out, level="state", labels=None, min_conf=0.8):
     """Problems per obligation index, plus document-level problems."""
     per, doc = {}, []
     obs = doc_out["obligations"]
+    if labels:   # completeness: a category Jev sees in rule sections must have an obligation
+        seen = {o["category"] for o in obs}
+        wanted = {}
+        for k, v in labels.items():
+            if k.endswith("_cat") and k.split(":")[-1].startswith("s") and v["choice"] != "none" \
+                    and v["confidence"] >= min_conf:
+                t = labels.get(k[:-4] + "_type")
+                if t and t["choice"] in ("rule", "exception_or_scope") and t["confidence"] >= min_conf:
+                    wanted.setdefault(v["choice"], 0)
+                    wanted[v["choice"]] += 1
+        for cat, n in wanted.items():
+            if cat not in seen:
+                doc.append(f"{n} section(s) state {cat.replace('_', ' ')} rules, but no obligation in that "
+                           f"category was extracted")
     if doc_out["document_status"] in ("pending", "enacted") and not obs:
         doc.append(f"document_status is {doc_out['document_status']} but no obligations were extracted")
     for i, o in enumerate(obs):
@@ -413,34 +434,99 @@ def pending_stub(out, entries, texts, labels):
     return citation
 
 
+def _pipeline(user, state, level, ref, repair_on, labels=None):
+    """L1 extraction, code checks, J5-J8 cross-checks, L2 repair, overrides, J9 triage for one prompt."""
+    out, usage = llm.luna([{"role": "system", "content": SYSTEM}, {"role": "user", "content": user}],
+                          SCHEMA, "obligations", stage="luna_extract", ref=ref)
+    per, doc_problems = check(out, level, labels)
+    jev_answers, jev_usage = jev_check.run(state, out, level, ref)          # J5-J8 in parallel
+    for i, p in jev_check.disagreements(out, jev_answers).items():
+        per.setdefault(i, []).extend(p)
+    first = {"obligations": {str(k): v for k, v in per.items()}, "document": doc_problems}
+    repair_usage = repair(user, out, per, doc_problems, ref) if repair_on and (per or doc_problems) else None
+    overrides = jev_check.apply_overrides(out, jev_answers)
+    triage_usage = triage_unparsed(state, out, ref)
+    return out, {"first": first, "overrides": overrides,
+                 "usage": {"luna": usage, "jev_check": jev_usage, "repair": repair_usage, "triage": triage_usage}}
+
+
+HEAD = {"type": "choice", "instructions": ""}
+
+
+def merge_parts(outs, outline_text, ref):
+    """Union of part outputs; one headline per category chosen by Jev over the outline when parts disagree."""
+    out = {"document_status": outs[0]["document_status"], "status_quote": outs[0]["status_quote"],
+           "events": [], "obligations": []}
+    seen_events = set()
+    for o in outs:
+        for e in o["events"]:
+            key = (e["kind"], e["date"], e["relative_rule"])
+            if key not in seen_events:
+                seen_events.add(key)
+                out["events"].append(e)
+        out["obligations"] += o["obligations"]
+        if o["document_status"] in ("pending", "failed", "struck") and out["document_status"] in ("enacted", "unclear"):
+            out["document_status"] = o["document_status"]
+    by_cat = {}
+    for i, o in enumerate(out["obligations"]):
+        if o["effect"] == "protection_or_duty" and (o["is_headline"] or o.get("key_value")):
+            by_cat.setdefault(o["category"], []).append(i)
+    qs = {f"head_{c}": jev_check.head_question(c, out["obligations"], idx) for c, idx in by_cat.items() if len(idx) > 1}
+    if qs:
+        state = outline_text + "\n\n" + "\n".join(f"- {jev_check._quote(out['obligations'][i], 300)}"
+                                                    for idx in by_cat.values() for i in idx)
+        answers, _ = llm.jev(state, qs, stage="jev_merge_headline", ref=ref)
+        for k, a in answers.items():
+            chosen = int(a["choice"][1:])
+            for i in by_cat[k[5:]]:
+                out["obligations"][i]["is_headline"] = i == chosen
+    return out
+
+
 def extract(doc_id, bundle=None, repair_on=True):
-    """Extract one document, or a bundle of same-city summary documents in one Luna call (one Jev call each)."""
+    """Extract one document (split into parts if large), or a bundle of same-city summary documents."""
     ids = bundle or [doc_id]
     entries = [json.load(open(config.INDEX / f"{d}.json")) for d in ids]
     texts = [load_text(e) for e in entries]
-    parts, labels = [], {}
-    for d, e, t in zip(ids, entries, texts):
-        _, lab, _ = jev_pass.run_focused(d)
-        labels[d] = lab
-        parts.append(f"=== DOCUMENT {d} ({e['jurisdiction']}, {e['evidence_tier']}) ===\n"
-                     f"Section map (path | content type | topic | start), labels from a classifier, may be wrong:\n"
-                     f"{hints(e, t, lab)}\n\n{t}")
-    user = "\n\n".join(parts)
-    ref = "+".join(ids)
-    out, usage = llm.luna([{"role": "system", "content": SYSTEM}, {"role": "user", "content": user}],
-                          SCHEMA, "obligations", stage="luna_extract", ref=ref)
     level = "city" if "," in entries[0]["jurisdiction"] else "state"
-    full = "\n\n".join(texts)
-    per, doc_problems = check(out, level)
-    jev_answers, jev_usage = jev_check.run(full, out, level, ref)          # J5-J8 in parallel
-    for i, p in jev_check.disagreements(out, jev_answers).items():
-        per.setdefault(i, []).extend(p)
-    first_problems = {"obligations": {str(k): v for k, v in per.items()}, "document": doc_problems}
-    repair_usage = None
-    if repair_on and (per or doc_problems):
-        repair_usage = repair(user, out, per, doc_problems, ref)
-    overrides = jev_check.apply_overrides(out, jev_answers)
-    triage_usage = triage_unparsed(full, out, ref)
+    ref = "+".join(ids)
+    labels = {}
+    spans_parts = None
+    if not bundle and len(texts[0]) - entries[0]["body_start"] > P.BUDGET:
+        e, t = entries[0], texts[0]
+        spans_parts = P.split(e, t)
+        _, lab, _ = jev_pass.run_focused_parts(doc_id, spans_parts)
+        labels[doc_id] = lab
+
+        def one(k_span):
+            k, (a, b) = k_span
+            part_hints = "\n".join(line for line in hints(e, t, lab).splitlines())
+            user = (f"=== DOCUMENT {doc_id} ({e['jurisdiction']}, {e['evidence_tier']}), PART {k + 1} of "
+                    f"{len(spans_parts)} ===\nContext from the rest of the document (do not extract obligations "
+                    f"from it):\n{P.context_for(e, t, (a, b), lab)}\n\nSection map (path | content type | topic | "
+                    f"start), labels from a classifier, may be wrong:\n{part_hints}\n\n=== PART TEXT ===\n{t[a:b]}")
+            part_labels = {k2: v for k2, v in lab.items() if k2.startswith("s")
+                           and a <= e["sections"][int(k2[1:].split("_")[0])]["start"] < b}
+            return _pipeline(user, t[a:b], level, f"{ref}#part{k + 1}", repair_on, part_labels)
+
+        with ThreadPoolExecutor(min(6, len(spans_parts))) as ex:
+            results = list(ex.map(one, enumerate(spans_parts)))
+        out = merge_parts([r[0] for r in results], P.outline(e), ref)
+        meta = {"first": [r[1]["first"] for r in results], "overrides": sum((r[1]["overrides"] for r in results), []),
+                "usage": [r[1]["usage"] for r in results]}
+    else:
+        parts = []
+        for d, e, t in zip(ids, entries, texts):
+            _, lab, _ = jev_pass.run_focused(d)
+            labels[d] = lab
+            parts.append(f"=== DOCUMENT {d} ({e['jurisdiction']}, {e['evidence_tier']}) ===\n"
+                         f"Section map (path | content type | topic | start), labels from a classifier, may be wrong:\n"
+                         f"{hints(e, t, lab)}\n\n{t}")
+        merged_labels = {f"{d}:{k}": v for d in ids for k, v in labels[d].items()}
+        out, meta = _pipeline("\n\n".join(parts), "\n\n".join(texts), level, ref, repair_on,
+                              {k.split(":", 1)[1] if len(ids) == 1 else k: v for k, v in merged_labels.items()})
+    usage = meta["usage"]
+    first_problems, overrides = meta["first"], meta["overrides"]
     stub = pending_stub(out, entries, texts, labels)
     per, doc_problems = check(out, level)
     text = "\n\n".join(texts)
@@ -469,9 +555,8 @@ def extract(doc_id, bundle=None, repair_on=True):
               "jev": {d: {"doc_type": labels[d]["doc_type"], "doc_status": labels[d]["doc_status"],
                           "dates": {k: v for k, v in labels[d].items() if k.startswith("d")}} for d in ids},
               "luna": out, "checks_before_repair": first_problems, "jev_overrides": overrides, "pending_stub": stub,
-              "jev_check_usage": jev_usage, "document_problems": doc_problems,
-              "spans": spans, "quote_failures": failed, "luna_usage": usage, "repair_usage": repair_usage,
-              "triage_usage": triage_usage}
+              "parts": spans_parts, "document_problems": doc_problems,
+              "spans": spans, "quote_failures": failed, "usage": usage}
     (config.OUT / "extracted").mkdir(parents=True, exist_ok=True)
     (config.OUT / "extracted" / f"{ref}.json").write_text(json.dumps(record, indent=1, ensure_ascii=False))
     return record
@@ -490,16 +575,30 @@ def units_for(doc_ids):
 
 
 def extract_many(doc_ids, workers=6, repair_on=True):
+    """All units; a unit that fails is logged to out/extracted_failures.json and skipped, never aborts the run."""
     units = units_for(doc_ids)
+    failures = []
+
+    def one(u):
+        try:
+            return extract(u[0], u if len(u) > 1 else None, repair_on)
+        except Exception as e:                       # noqa: BLE001 - one unit must not stop the corpus
+            failures.append({"unit": "+".join(u), "error": str(e)[:500]})
+            return None
+
     with ThreadPoolExecutor(workers) as ex:
-        return list(ex.map(lambda u: extract(u[0], u if len(u) > 1 else None, repair_on), units))
+        results = [r for r in ex.map(one, units) if r]
+    (config.OUT / "extracted_failures.json").write_text(json.dumps(failures, indent=1))
+    return results
 
 
 if __name__ == "__main__":
     import sys
     for r in extract_many(sys.argv[1:]):
         obs = r["luna"]["obligations"]
-        print(r["doc_id"], len(obs), "obligations;", "before repair:",
-              len(r["checks_before_repair"]["obligations"]), "flagged; after:",
+        first = r["checks_before_repair"]
+        flagged = sum(len(f["obligations"]) for f in first) if isinstance(first, list) else len(first["obligations"])
+        print(r["doc_id"], f"parts={len(r['parts']) if r['parts'] else 1}", len(obs), "obligations;", "before repair:",
+              flagged, "flagged; after:",
               sum(o["parse_status"] == "failed" for o in obs), "failed,",
               sum(o["parse_status"] == "partial" for o in obs), "partial; quote failures", len(r["quote_failures"]))

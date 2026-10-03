@@ -52,8 +52,20 @@ def _cached(kind, body, run, stage, ref, call):
     return resp
 
 
-def luna(messages, schema, name, stage, ref, run=0, max_tokens=32000, reasoning="medium"):
-    body = {"model": config.LUNA, "messages": messages, "max_tokens": max_tokens,
+FALLBACK_LUNA = "openai/gpt-5.6-luna"
+
+
+def luna(messages, schema, name, stage, ref, run=0, max_tokens=32000, reasoning="medium", model=None):
+    try:
+        return _luna(messages, schema, name, stage, ref, run, max_tokens, reasoning, model or config.LUNA)
+    except RuntimeError as e:
+        if "content_filter" in str(e) and (model or config.LUNA) != FALLBACK_LUNA:
+            return _luna(messages, schema, name, stage + "_fallback_model", ref, run, max_tokens, reasoning, FALLBACK_LUNA)
+        raise
+
+
+def _luna(messages, schema, name, stage, ref, run, max_tokens, reasoning, model):
+    body = {"model": model, "messages": messages, "max_tokens": max_tokens,
             "reasoning": {"effort": reasoning},
             "response_format": {"type": "json_schema", "json_schema": {"name": name, "strict": True, "schema": schema}}}
     resp = _cached("luna", body, run, stage, ref, lambda: _post("/v1/chat/completions", body))

@@ -158,3 +158,32 @@ def run_focused(doc_id, max_state=100000):
             answers.update(a)
             usage.append(u)
     return entry, answers, usage
+
+
+def run_focused_parts(doc_id, spans):
+    """Large documents: J2-J4 per part with the part as state (questions only about that part), J1 once on
+    the outline plus the first part. Same answer keys as run_focused."""
+    from .parts import outline
+    entry = json.load(open(config.INDEX / f"{doc_id}.json"))
+    text = load_text(entry)
+    allq = focused_questions(entry, text)
+    secs = entry["sections"]
+    calls = [("J1", f"Outline:\n{outline(entry)}\n\n{text[spans[0][0]:spans[0][1]]}", allq["J1"])]
+    for a, b in spans:
+        for name in ("J2", "J3"):
+            qs = {k: v for k, v in allq[name].items() if a <= secs[int(k[1:].split("_")[0])]["start"] < b}
+            if qs:
+                calls.append((name, text[a:b], qs))
+        qs = {k: v for k, v in allq["J4"].items() if a <= entry["dates"][int(k[1:].split("_")[0])]["start"] < b}
+        if qs:
+            calls.append(("J4", text[a:b], qs))
+
+    def one(c):
+        return llm.jev(c[1], c[2], stage=f"jev_{c[0]}", ref=doc_id)
+
+    answers, usage = {}, []
+    with ThreadPoolExecutor(min(8, len(calls))) as ex:
+        for a, u in ex.map(one, calls):
+            answers.update(a)
+            usage.append(u)
+    return entry, answers, usage

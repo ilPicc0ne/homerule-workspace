@@ -1,0 +1,20 @@
+# TEST FIXTURE (held out): written before the full-corpus extraction was inspected; never used to tune
+# prompts or checks. Expected answers from the brief, the guide and the cited statutes' plain text.
+# rule: key in tests/eval_suite.py RULES (jurisdiction + category + citation regex).
+
+- {id: H01-berk-state-cap, address: A0005, as_of: "2026-10-01", rule: CA-RENT, expect: unknown, source: "Berkeley: no year built (guide §4.1), so the 15-year exemption is undecided"}
+- {id: H02-sd-state-cap, address: A0019, as_of: "2026-10-01", rule: CA-RENT, expect: unknown, source: "San Diego: no year built (guide §4.1); no local rent control"}
+- {id: H03-sd-alg, address: A0019, as_of: "2026-10-01", rule: SD-ALG, expect: applies, source: "brief p.3: SD §§98.1101-98.1104 (Jun 2025)"}
+- {id: H04-berk-alg, address: A0005, as_of: "2026-10-01", rule: BERK-ALG, expect: applies, source: "brief p.3: Berkeley ch. 13.63 (2026); both published dates are before Oct 2026"}
+- {id: H05-sf-alg, address: A0016, as_of: "2026-10-01", rule: SF-ALG, expect: applies, source: "brief p.3 mock-up"}
+- {id: H06-nj-deposit, address: A0002, as_of: "2026-10-01", rule: NJ-DEP, expect: applies, value: one_and_half, source: "brief p.3; 20-unit building, owner-occupied small-building exemption cannot apply"}
+- {id: H07-ma-deposit-camb, address: A0010, as_of: "2026-10-01", rule: MA-DEP, expect: applies, source: "brief p.3: G.L. c.186 §15B"}
+- {id: H08-nj-fee-now, address: A0003, as_of: "2026-10-01", rule: NJ-FEE, expect: applies, source: "brief p.3: P.L.2025 c.405, eff. 5/1/2026"}
+- {id: H09-nj-fee-before, address: A0003, as_of: "2026-04-30", rule: NJ-FEE, expect: not_yet_effective, source: "brief p.3: eff. 5/1/2026"}
+- {id: H10-ma-broker, address: A0258, as_of: "2026-10-01", rule: MA-BROKER, expect: applies, source: "brief p.3: c.112 §87DDD½ (8/1/2025)"}
+- {id: H11-ca-soi, address: A0001, as_of: "2026-10-01", rule: CA-SCREEN, expect: applies, source: "brief p.3: FEHA source-of-income (SB 329)"}
+- {id: H12-nj-fair-chance, address: A0008, as_of: "2026-10-01", rule: NJ-SCREEN, expect: applies, source: "brief p.3: NJ Fair Chance in Housing Act (2021); 151-unit building"}
+- {id: H13-nj-eviction, address: A0003, as_of: "2026-10-01", rule: NJ-EVICT, expect: applies, source: "brief p.3: N.J.S.A. 2A:18-61.1; class 4C apartment building"}
+- {id: H14-la-deposit, address: A0001, as_of: "2026-10-01", rule: CA-DEP, expect: applies, value: one_month, source: "32-unit building: small-landlord exception cannot apply"}
+- {id: H15-boston-deposit, address: A0258, as_of: "2026-10-01", rule: MA-DEP, expect: applies, source: "brief p.3: G.L. c.186 §15B"}
+- {id: H16-sf-just-cause, address: A0016, as_of: "2026-10-01", rule: SF-EVICT, expect: applies, source: "brief p.3 mock-up: S.F. Admin. Code §37.9"}

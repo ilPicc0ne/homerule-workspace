@@ -1,0 +1,237 @@
+"""Compile extracted records into the interface files (I2 rules, I8 findings).
+
+out/extracted/*.json -> out/rules.compiled.json (I2), out/rules.json (starter schema), out/findings.json (I8).
+Supplemental sources (Sxxx) compile to separate *.supplemental.json files until the organisers confirm they
+count for citations. One headline rule per document unit and category; jurisdiction strings map to the IDs in
+contracts/jurisdictions.json (I1).
+"""
+import datetime as dt
+import json
+import re
+
+from . import config, status as S
+
+AS_OF = config.DEFAULT_AS_OF
+JUR = json.load(open(config.ROOT / "contracts" / "jurisdictions.json"))["jurisdictions"]
+BY_SCHEMA = {j["schema_name"]: j for j in JUR if j.get("schema_name")}
+CAT_CODE = {"rent_increase_limits": "RENT", "just_cause_eviction": "EVICT", "security_deposits": "DEP",
+            "application_screening_fees": "FEE", "screening_restrictions": "SCREEN", "algorithmic_rent_setting": "ALG"}
+
+
+def _first_day_after_months(d, n):
+    d = dt.date.fromisoformat(d)
+    m = d.month - 1 + n
+    return dt.date(d.year + m // 12, m % 12 + 1, 1).isoformat()
+
+
+def effective(events, state, provision=None):
+    """from (operative, else effective; explicit or derived), until (repeal), precision, derivation.
+    Events scoped to the obligation's own provision (or a parent of it) win over act-level events."""
+    if provision:
+        def related(e):
+            a = e.get("applies_to") or "act"
+            return a == "act" or provision.startswith(a) or a.startswith(provision)
+        own = [e for e in events if (e.get("applies_to") or "act") != "act" and related(e)]
+        if any(e["kind"] in ("operative", "effective") for e in own):
+            events = own + [e for e in events if e["kind"] in ("enacted", "repealed")]
+        else:   # act-level dates only; a date scoped to another provision says nothing about this one
+            events = [e for e in events if related(e)]
+    enacted = next((e["date"] for e in events if e["kind"] == "enacted" and e.get("date")), None)
+    out = {"from": None, "until": None, "precision": "day", "derived": None}
+    for kind in ("operative", "effective"):
+        cands = []
+        for e in events:
+            if e["kind"] != kind:
+                continue
+            d = e.get("date")
+            if d and re.fullmatch(r"\d{4}-\d{2}-\d{2}", d):
+                cands.append((d, None, "day"))
+            elif d and re.fullmatch(r"\d{4}-\d{2}", d):
+                cands.append((d + "-01", None, "month"))
+            elif e.get("relative_rule") == "first_day_of_nth_month_after_enactment" and enacted and e.get("n"):
+                cands.append((_first_day_after_months(enacted[:7] + "-01", int(e["n"])),
+                              f"first day of month {int(e['n'])} after enactment {enacted}", "day"))
+            elif e.get("relative_rule") == "no_date_in_text" and enacted and state == "CA":
+                cands.append((f"{int(enacted[:4]) + 1}-01-01",
+                              f"California default: January 1 after enactment {enacted} (Cal. Const. art. IV § 8(c))", "day"))
+        if cands:
+            # the version in force now: the latest start on or before as-of, else the earliest future start
+            past = sorted(c for c in cands if c[0] <= AS_OF)
+            pick = past[-1] if past else sorted(cands)[0]
+            out["from"], out["derived"], out["precision"] = pick
+            break
+    repeals = sorted(e["date"] for e in events if e["kind"] == "repealed" and e.get("date")
+                     and re.fullmatch(r"\d{4}-\d{2}-\d{2}", e["date"]))
+    out["until"] = repeals[0] if repeals else None
+    return out
+
+
+def status(doc_status, eff, as_of=AS_OF):
+    if doc_status in ("failed", "struck"):
+        return "failed"
+    if doc_status == "pending":
+        return "pending"
+    if eff["until"] and eff["until"] <= as_of:
+        return "repealed"
+    if eff["from"] and eff["from"] > as_of:
+        return "enacted_not_effective"
+    return "in_force"
+
+
+def to_node(n):
+    """Internal condition node -> I7/I2 compact Node."""
+    k = n["kind"]
+    if k == "always":
+        return True
+    if k == "never":
+        return False
+    if k in ("all", "any"):
+        return {k: [to_node(c) for c in n["children"]]}
+    if k == "not":
+        return {"not": to_node(n["children"][0])}
+    if k == "fact":
+        return {"fact": n["fact"], "op": n["op"], "value": n["values"] if n["op"] == "in" else n["value"]}
+    if k == "age_years":
+        return {"age_years": {"op": n["op"], "n": n["years"]}}
+    if k == "ref":
+        return {"ref": n["ref"]}
+    return {"unparsed": n.get("quote") or ""}
+
+
+def _core(citation):
+    m = re.search(r"\d+[A-Za-z]?(?:[.:-]\d+[A-Za-z½]*)*", citation or "")
+    return m.group(0) if m else re.sub(r"\W+", "", (citation or "x"))[:12]
+
+
+_TEXT = {}
+
+
+def source_span(span):
+    """The verbatim source text at a located span (never the model's copy)."""
+    vid = span["version_id"]
+    if vid not in _TEXT:
+        _TEXT[vid] = (config.VERSIONS / f"{vid.split(':', 1)[1]}.txt").read_bytes().decode("utf-8")
+    return _TEXT[vid][span["start"]:span["end"]]
+
+
+def internal_rules(extracted_dir=None, as_of=AS_OF):
+    """Headline rules in the internal format the reference evaluator and the tests use."""
+    rules, seen = [], set()
+    for f in sorted((extracted_dir or config.OUT / "extracted").glob("*.json")):
+        r = json.load(open(f))
+        jur = r["jurisdiction"]
+        state = jur.split(", ")[-1] if ", " in jur else jur
+        lu = r["luna"]
+        for n, o in enumerate(lu["obligations"]):
+            if not o["is_headline"] or o["effect"] == "procedure_or_admin":
+                continue
+            key = (jur, o["category"], _core(o["citation"]), o["effect"])
+            if key in seen:
+                continue
+            seen.add(key)
+            span = r["spans"].get(f".obligations[{n}].requirement_quote")
+            doc_status, status_evidence = lu["document_status"], None
+            if doc_status == "pending" and ", " in jur and not o.get("stub"):     # a city ordinance read as a draft
+                verdict, evidence, _ = S.corroborate(r["doc_ids"][0], jur, o["citation"], o["title"], r["source_urls"][0])
+                status_evidence = {"verdict": verdict, **evidence}
+                if verdict == "adopted":
+                    doc_status = "enacted"
+            rules.append({
+                "id": f"{r['doc_id']}:{n}:{o['slug']}", "unit": r["doc_id"], "jurisdiction": jur, "state": state,
+                "category": o["category"], "citation": o["citation"], "effect": o["effect"], "title": o["title"],
+                "requirement": o["requirement"], "provision": o["provision"],
+                "requirement_quote": source_span(span) if span else None,    # verbatim from the pinned source
+                "quote_located": bool(span),
+                "source_doc_id": span["doc_id"] if span else r["doc_ids"][0],
+                "source_url": r["source_urls"][r["doc_ids"].index(span["doc_id"])] if span else r["source_urls"][0],
+                "retrieved": r["retrieved"][0], "document_status": doc_status, "status_evidence": status_evidence,
+                "events": lu["events"],
+                "key_value": o["key_value"], "cap_low": o["cap_pct_low"], "cap_high": o["cap_pct_high"],
+                "coverage_conditions": o["coverage_conditions"], "exemptions": o["exemptions"],
+                "applies_if": o["applies_if"], "exempt_if": o["exempt_if"],
+                "key_value_conditions": o["key_value_conditions"], "tenant_conditions": o["tenant_conditions"],
+                "interactions": o["interactions"], "parse_status": o.get("parse_status", "ok"),
+                "checks": o.get("checks", []), "stub": o.get("stub", False),
+                "origin": "supplemental" if r["doc_id"].startswith("S") else "starter"})
+    return rules
+
+
+def compiled(rule):
+    j = BY_SCHEMA.get(rule["jurisdiction"], {})
+    eff = effective(rule["events"], rule["state"], rule.get("provision"))
+    inter = rule["interactions"][0] if rule["interactions"] else None
+    return {
+        "team_rule_id": f"{j.get('id', rule['jurisdiction'])}-{CAT_CODE[rule['category']]}-{_core(rule['citation'])}",
+        "jurisdiction": j.get("id", rule["jurisdiction"]), "level": j.get("level", "state"),
+        "category": rule["category"], "status": status(rule["document_status"], eff), "effective": eff,
+        "applies_if": to_node(rule["applies_if"]), "exempt_if": to_node(rule["exempt_if"]),
+        "tenant_conditions": [t["text"] for t in rule["tenant_conditions"]],
+        "key_value": rule["key_value"],
+        "key_value_conditions": [{"value": b["value"], "when": to_node(b["when"]), "tenant_note": b.get("tenant_note")}
+                                 for b in rule["key_value_conditions"]],
+        "interaction": ({"type": inter["type"], "target_category": inter["target_category"], "quote": inter["quote"]}
+                        if inter else {"type": "none"}),
+        "retrieved_at": rule["retrieved"], "parse_status": rule["parse_status"], "checks": rule["checks"],
+        "x_source": {"unit": rule["unit"], "source_doc_id": rule["source_doc_id"], "citation": rule["citation"],
+                     "status_evidence": rule.get("status_evidence"),
+                     "origin": rule["origin"], "stub": rule["stub"]},
+    }
+
+
+STARTER_STATUS = {"in_force": "in_force", "enacted_not_effective": "not_yet_effective", "pending": "pending",
+                  "failed": "failed"}
+
+
+def starter_record(rule, comp):
+    if comp["status"] == "repealed":
+        return None
+    j = BY_SCHEMA.get(rule["jurisdiction"], {})
+    return {
+        "team_rule_id": comp["team_rule_id"], "jurisdiction": rule["jurisdiction"], "level": j.get("level", "state"),
+        "category": rule["category"], "status": STARTER_STATUS[comp["status"]], "title": rule["title"],
+        "requirement": rule["requirement"], "key_value": rule["key_value"],
+        "coverage_conditions": rule["coverage_conditions"], "exemptions": rule["exemptions"],
+        "overrides": [], "interaction": comp["interaction"]["type"] if comp["interaction"]["type"] != "none" else None,
+        "effective_date": comp["effective"]["from"], "citation": rule["citation"],
+        "source_doc_id": rule["source_doc_id"], "source_url": rule["source_url"],
+        "quoted_span": rule["requirement_quote"], "confidence": 0.9 if rule["parse_status"] == "ok" else 0.5,
+        "conflict_flag": comp["interaction"]["type"] == "may_preempt_local", "conflict_note": None,
+    }
+
+
+def findings(rules):
+    """I8: bans on local rules from the extracted text, and jurisdiction x category cells with no text at all."""
+    out = []
+    for r in rules:
+        if r["effect"] == "bars_or_limits_local_rules":
+            out.append({"jurisdiction": BY_SCHEMA.get(r["jurisdiction"], {}).get("id", r["jurisdiction"]),
+                        "category": r["category"], "kind": "barred_by_law", "citation": r["citation"],
+                        "quote": r["requirement_quote"], "source_doc_ids": [r["source_doc_id"]],
+                        "note": "Bars or limits local rules on this topic in this state."})
+    inv = json.load(open(config.OUT / "inventory.json"))
+    for name, info in inv.items():
+        if not info["has_text"]:
+            j = BY_SCHEMA.get(name, {})
+            for cat in CAT_CODE:
+                out.append({"jurisdiction": j.get("id", name), "category": cat, "kind": "not_in_corpus",
+                            "citation": None, "quote": None,
+                            "source_doc_ids": [d["doc_id"] for d in info["documents"]],
+                            "note": "Only manifest links (no supplied text) for this jurisdiction."})
+    return out
+
+
+def build(extracted_dir=None, suffix=""):
+    rules = internal_rules(extracted_dir)
+    comps = [compiled(r) for r in rules]
+    starter = [rec for rec, c in ((starter_record(r, c), c) for r, c in zip(rules, comps))
+               if rec and c["x_source"]["origin"] == "starter"]
+    (config.OUT / f"rules.compiled{suffix}.json").write_text(json.dumps(comps, indent=1, ensure_ascii=False))
+    (config.OUT / f"rules{suffix}.json").write_text(json.dumps({"rules": starter}, indent=1, ensure_ascii=False))
+    (config.OUT / f"findings{suffix}.json").write_text(json.dumps(findings(rules), indent=1, ensure_ascii=False))
+    return rules, comps
+
+
+if __name__ == "__main__":
+    rules, comps = build()
+    from collections import Counter
+    print(len(comps), "compiled rules;", Counter(c["status"] for c in comps), Counter(c["parse_status"] for c in comps))

@@ -39,6 +39,24 @@ OP_CHOICES = {
 }
 
 
+MAIN_SLOT = {
+    "rent_increase_limits": "the cap on how much rent may be increased",
+    "just_cause_eviction": "the rule that a landlord needs one of the listed causes to evict",
+    "security_deposits": "the maximum security deposit a landlord may charge",
+    "application_screening_fees": "the cap or ban on application or screening fees",
+    "screening_restrictions": "the restriction on how applicants may be screened",
+    "algorithmic_rent_setting": "the ban or restriction on algorithmic rent-setting",
+}
+
+
+def head_question(cat, obs, idx):
+    crit = {f"o{i}": _quote(obs[i], 150) + (f" [stated limit: {obs[i]['key_value']}]" if obs[i].get("key_value") else "")
+            for i in idx}
+    return {"type": "choice", "criteria": crit,
+            "instructions": f"Which of these provisions states {MAIN_SLOT.get(cat, 'the main rule')}? "
+                            "Pick the provision that states it directly, not a supporting duty."}
+
+
 def _quote(o, n=220):
     return " ".join((o.get("requirement_quote") or o.get("requirement") or "").split())[:n]
 
@@ -74,10 +92,7 @@ def questions(out, level):
             by_cat.setdefault(o["category"], []).append(i)
     for cat, idx in by_cat.items():
         if len(idx) > 1:
-            j6[f"head_{cat}"] = {"type": "choice",
-                                 "criteria": {f"o{i}": _quote(obs[i], 160) for i in idx},
-                                 "instructions": f"Which of these provisions is the main rule of this law on {cat.replace('_', ' ')}: "
-                                                 "the cap, ban or core protection a renter would ask about first?"}
+            j6[f"head_{cat}"] = head_question(cat, obs, idx)
     return {"J5": j5, "J6": j6, "J7": j7, "J8": j8}
 
 

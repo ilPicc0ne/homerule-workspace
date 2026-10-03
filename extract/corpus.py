@@ -154,3 +154,36 @@ def build():
 if __name__ == "__main__":
     for line in build():
         print(*line)
+
+
+# ---------- supplemental sources (data/supplemental-legal) ----------
+SUPP = config.ROOT / "data" / "supplemental-legal"
+SUPP_TIER = {"municipal_enactment": "primary_text", "municipal_amendment": "primary_text",
+             "official_unannotated_statute": "primary_text", "municipal_regulations_collection": "primary_text",
+             "official_hosted_statute_reproduction": "official_summary", "official_summary": "official_summary",
+             "official_guidance": "official_summary"}
+
+
+def build_supplemental():
+    """Index only sources the terms review cleared for rule extraction (use_for_rule_extraction: true)."""
+    manifest = json.load(open(SUPP / "manifest.json"))
+    done, held = [], []
+    for s in manifest["sources"]:
+        if not s.get("use_for_rule_extraction"):
+            held.append((s["source_id"], s.get("terms_review_status")))
+            continue
+        raw = (SUPP / s["text_path"]).read_bytes()
+        sha = hashlib.sha256(raw).hexdigest()
+        pinned = config.VERSIONS / f"{sha}.txt"
+        if not pinned.exists():
+            pinned.write_bytes(raw)
+        text = raw.decode("utf-8")
+        entry = {"doc_id": s["source_id"], "version_id": f"sha256:{sha}", "manifest_sha256_matches": s["text_sha256"] == sha,
+                 "jurisdiction": s["jurisdiction"], "url": s["url"], "source_type": s["source_kind"],
+                 "evidence_tier": SUPP_TIER.get(s["source_kind"], "official_summary"), "corpus_origin": "supplemental",
+                 "retrieved": s.get("retrieved_at") or s.get("retrieved") or s.get("transfer_completed_at"), "length": len(text), "body_start": 0,
+                 "sections": parse_sections(text, 0), "dates": date_candidates(text, 0),
+                 "boundaries": boundary_candidates(text, 0), "review_notes": s.get("review_notes")}
+        (config.INDEX / f"{s['source_id']}.json").write_text(json.dumps(entry, indent=1, ensure_ascii=False))
+        done.append(s["source_id"])
+    return done, held
