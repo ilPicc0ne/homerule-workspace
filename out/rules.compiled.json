@@ -1,0 +1,2888 @@
+[
+ {
+  "team_rule_id": "CA-BERKELEY-ALG-13.63.030",
+  "jurisdiction": "CA-BERKELEY",
+  "level": "city",
+  "category": "algorithmic_rent_setting",
+  "status": "in_force",
+  "effective": {
+   "from": "2026-03-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:44 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D001",
+   "source_doc_id": "D001",
+   "citation": "Berkeley Mun. Code § 13.63.030(B)",
+   "status_evidence": {
+    "verdict": "adopted",
+    "jev": "adopted",
+    "confidence": 0.6,
+    "codified_links": [],
+    "adoption_date_from_url": "2025-12-02",
+    "statements": [
+     "Published sources give different effective dates for Berkeley’s coordinated-pricing-algorithm ban. March 1, 2026 (Berkeley ordinance text, Chapter 13.63); January 2026 (August 2026 law-firm alert)"
+    ],
+    "basis": "published effective dates (open question): 2026-01-01, 2026-03-01"
+   },
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-BERKELEY-SCREEN-13.106",
+  "jurisdiction": "CA-BERKELEY",
+  "level": "city",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "any": [
+    {
+     "all": [
+      {
+       "fact": "units",
+       "op": "ge",
+       "value": 1
+      },
+      {
+       "fact": "units",
+       "op": "le",
+       "value": 3
+      },
+      {
+       "fact": "owner_occupied",
+       "op": "eq",
+       "value": true
+      }
+     ]
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "The ordinance lists lifetime sex offenders as an exemption.",
+   "The ordinance lists limited exemptions for public housing and Section 8 properties.",
+   "The exemption concerns a rental agreement allowing the owner to move back home under the cited provision.",
+   "The exemption concerns existing tenants seeking to sublet or add or replace roommates."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D003+D004+D005+D006+D007+D008",
+   "source_doc_id": "D003",
+   "citation": "Berkeley Municipal Code § 13.106",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-BERKELEY-FEE-13.78",
+  "jurisdiction": "CA-BERKELEY",
+  "level": "city",
+  "category": "application_screening_fees",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": "$68.96 for 2026",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D003+D004+D005+D006+D007+D008",
+   "source_doc_id": "D005",
+   "citation": "Berkeley Municipal Code § 13.78; Cal. Civ. Code § 1950.6",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-BERKELEY-EVICT-BerkeleyMuni",
+  "jurisdiction": "CA-BERKELEY",
+  "level": "city",
+  "category": "just_cause_eviction",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The tenant owes rental debt, measured against one month of the HUD FMR for an equivalent-size unit in the applicable fiscal year."
+  ],
+  "key_value": "At least one month of the applicable HUD Fair Market Rent",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D003+D004+D005+D006+D007+D008",
+   "source_doc_id": "D006",
+   "citation": "Berkeley Municipal Code, Rent Stabilization and Good Cause for Eviction Ordinance",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-BERKELEY-RENT-13.76.110A",
+  "jurisdiction": "CA-BERKELEY",
+  "level": "city",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "A landlord may use banked unused AGAs to increase rent by more than 5% to reach the rent ceiling."
+  ],
+  "key_value": "5%",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D003+D004+D005+D006+D007+D008",
+   "source_doc_id": "D006",
+   "citation": "Berkeley Municipal Code § 13.76.110A",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-BERKELEY-EVICT-BerkeleyRent",
+  "jurisdiction": "CA-BERKELEY",
+  "level": "city",
+  "category": "just_cause_eviction",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": "$19,413 standard relocation assistance payment for 2026",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D003+D004+D005+D006+D007+D008",
+   "source_doc_id": "D004",
+   "citation": "Berkeley Rent Stabilization and Good Cause for Eviction Ordinance; Berkeley Ellis Implementation Ordinance",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-BERKELEY-DEP-1950.5",
+  "jurisdiction": "CA-BERKELEY",
+  "level": "city",
+  "category": "security_deposits",
+  "status": "in_force",
+  "effective": {
+   "from": "2024-07-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": "One month’s rent",
+  "key_value_conditions": [
+   {
+    "value": "Two months’ rent",
+    "when": {
+     "all": [
+      {
+       "fact": "units",
+       "op": "le",
+       "value": 4
+      },
+      {
+       "unparsed": "landlords who own only two rental properties"
+      },
+      {
+       "any": [
+        {
+         "fact": "owner_type",
+         "op": "eq",
+         "value": "individual"
+        },
+        {
+         "unparsed": "family trust"
+        },
+        {
+         "unparsed": "limited liability company (LLC) where all members are natural persons"
+        }
+       ]
+      }
+     ]
+    },
+    "tenant_note": "The owner must own only two rental properties with no more than four residential units total, and ownership must be held by a natural person, family trust, or LLC whose members are all natural persons."
+   }
+  ],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D003+D004+D005+D006+D007+D008",
+   "source_doc_id": "D007",
+   "citation": "Cal. Civ. Code § 1950.5",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-BERKELEY-DEP-BerkeleyRent",
+  "jurisdiction": "CA-BERKELEY",
+  "level": "city",
+  "category": "security_deposits",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "any": [
+    {
+     "all": [
+      {
+       "fact": "use_class",
+       "op": "eq",
+       "value": "two_family"
+      },
+      {
+       "fact": "owner_occupied",
+       "op": "eq",
+       "value": true
+      }
+     ]
+    },
+    {
+     "unparsed": "Unit where the owner shares a kitchen or bath with the tenant if the owner lived on the property at the time the tenancy started"
+    },
+    {
+     "all": [
+      {
+       "fact": "owner_occupied",
+       "op": "eq",
+       "value": true
+      },
+      {
+       "unparsed": "one unit is an ADU"
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "University rental units such as dormitories."
+      }
+     ]
+    },
+    {
+     "fact": "use_class",
+     "op": "eq",
+     "value": "co_op"
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "The Golden Duplex exemption requires the duplex to have been owner-occupied on December 31, 1979.",
+   "The owner-shared kitchen or bath exemption applies if the owner lived on the property when the tenancy started.",
+   "The ADU exemption applies to tenancies started after November 7, 2018.",
+   "The stated ADU exemption requires either unit to be owner-occupied."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "failed",
+  "checks": [
+   "headline cap or limit without key_value"
+  ],
+  "x_source": {
+   "unit": "D009",
+   "source_doc_id": "D009",
+   "citation": "Berkeley Rent Stabilization and Eviction for Just Cause Ordinance",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-BOSTON-SCREEN-BostonFairCh",
+  "jurisdiction": "MA-BOSTON",
+  "level": "city",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": "2020-11-06",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": {
+   "any": [
+    {
+     "unparsed": "Housing providers receiving Department of Neighborhood Development (DND) funding and/or land"
+    },
+    {
+     "fact": "subsidised",
+     "op": "eq",
+     "value": true
+    }
+   ]
+  },
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:44 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D010+D012+D013+D014",
+   "source_doc_id": "D010",
+   "citation": "Boston Fair Chance Tenant Selection Policy",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-BOSTON-SCREEN-BostonFairHo",
+  "jurisdiction": "MA-BOSTON",
+  "level": "city",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": "2020-11-06",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "Protected characteristics listed include race, color, religion, disability, national origin, ancestry, sex, gender identity, gender expression, age, sexual orientation, marital status, rental assistance, family status, and military status."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:44 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D010+D012+D013+D014",
+   "source_doc_id": "D012",
+   "citation": "Boston Fair Housing Regulations",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-BOSTON-EVICT-10-11.7",
+  "jurisdiction": "MA-BOSTON",
+  "level": "city",
+  "category": "just_cause_eviction",
+  "status": "in_force",
+  "effective": {
+   "from": "2020-11-06",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "any": [
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "in any hospital, skilled nursing facility or health facility"
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "in a non-profit facility whose primary purpose is providing short-term treatment, assistance or therapy for alcohol, drug, or other substance abuse."
+      }
+     ]
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "The notice is also required for any tenant asked to leave a property, including tenants or former owners when a property is acquired from foreclosure, a bank, or a mortgage lender."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:44 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D010+D012+D013+D014",
+   "source_doc_id": "D014",
+   "citation": "Boston City Ordinances § 10-11.7",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-BOSTON-RENT-3744",
+  "jurisdiction": "MA-BOSTON",
+  "level": "city",
+  "category": "rent_increase_limits",
+  "status": "pending",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "failed",
+  "checks": [
+   "headline cap or limit without key_value"
+  ],
+  "x_source": {
+   "unit": "D011",
+   "source_doc_id": "D011",
+   "citation": "Mass. H.3744",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": true
+  }
+ },
+ {
+  "team_rule_id": "CA-SCREEN-12955",
+  "jurisdiction": "CA",
+  "level": "state",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "When an owner occupies a home and rents to one additional person, the owner may exclude applicants based on protected characteristics, but may not make, print, or publish discriminatory statements, notices, or advertisements.",
+   "Qualifying housing specifically for seniors may limit occupancy based on age."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D016",
+   "source_doc_id": "D016",
+   "citation": "Cal. Gov. Code § 12955",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-ALG-16729",
+  "jurisdiction": "CA",
+  "level": "state",
+  "category": "algorithmic_rent_setting",
+  "status": "in_force",
+  "effective": {
+   "from": "2026-01-01",
+   "until": null,
+   "precision": "day",
+   "derived": "California default: January 1 after enactment 2025-10-06 (Cal. Const. art. IV § 8(c))"
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D022",
+   "source_doc_id": "D022",
+   "citation": "Cal. Bus. & Prof. Code § 16729(a)",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-EVICT-1946.2",
+  "jurisdiction": "CA",
+  "level": "state",
+  "category": "just_cause_eviction",
+  "status": "in_force",
+  "effective": {
+   "from": "2024-04-01",
+   "until": "2030-01-01",
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "any": [
+    {
+     "age_years": {
+      "op": "lt",
+      "n": 15
+     }
+    },
+    {
+     "fact": "subsidised",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "all": [
+      {
+       "fact": "use_class",
+       "op": "eq",
+       "value": "single_family"
+      },
+      {
+       "fact": "owner_occupied",
+       "op": "eq",
+       "value": true
+      },
+      {
+       "fact": "units",
+       "op": "le",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "fact": "units",
+       "op": "eq",
+       "value": 2
+      },
+      {
+       "fact": "owner_occupied",
+       "op": "eq",
+       "value": true
+      }
+     ]
+    },
+    {
+     "ref": "local_just_cause"
+    },
+    {
+     "all": [
+      {
+       "fact": "use_class",
+       "op": "in",
+       "value": [
+        "single_family",
+        "condo"
+       ]
+      },
+      {
+       "not": {
+        "fact": "owner_type",
+        "op": "in",
+        "value": [
+         "reit",
+         "corporation"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "The tenant must have continuously and lawfully occupied the property for 12 months; if additional adult tenants are added before an existing tenant has occupied for 24 months, the statutory alternative occupancy tests apply.",
+   "The termination must be based on an applicable at-fault or no-fault just-cause ground listed in the section.",
+   "The local-ordinance exclusion applies only in the circumstances specified by the statute, including qualifying ordinances adopted on or before September 1, 2019, or qualifying more-protective ordinances adopted or amended later."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "yields_to_local",
+   "target_category": "just_cause_eviction",
+   "quote": "This section does not apply to the following residential real property:"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D023",
+   "source_doc_id": "D023",
+   "citation": "Cal. Civil Code § 1946.2",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-RENT-1947.12",
+  "jurisdiction": "CA",
+  "level": "state",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": "2024-04-01",
+   "until": "2030-01-01",
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "any": [
+    {
+     "fact": "subsidised",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "age_years": {
+      "op": "lt",
+      "n": 15
+     }
+    },
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "Dormitories owned and operated by an institution of higher education or a kindergarten and grades 1 to 12, inclusive, school."
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "fact": "use_class",
+       "op": "in",
+       "value": [
+        "single_family",
+        "condo"
+       ]
+      },
+      {
+       "unparsed": "The owner is not any of the following: (i) A real estate investment trust, as defined in Section 856 of the Internal Revenue Code. (ii) A corporation. (iii) A limited liability company in which at least one member is a corporation. (iv) Management of a mobilehome park, as defined in Section 798.2."
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "fact": "units",
+       "op": "eq",
+       "value": 2
+      },
+      {
+       "fact": "owner_occupied",
+       "op": "eq",
+       "value": true
+      },
+      {
+       "unparsed": "neither unit is an accessory dwelling unit or a junior accessory dwelling unit"
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "This section shall not apply to a homeowner of a mobilehome, as defined in Section 798.9."
+      }
+     ]
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "For the separately alienable property exception, tenants must have been provided the statutory written exemption notice."
+  ],
+  "key_value": "5% plus the percentage change in the cost of living, capped at 10%, whichever is lower",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "yields_to_local",
+   "target_category": "rent_increase_limits",
+   "quote": "Housing subject to rent or price control through a public entity’s valid exercise of its police power consistent with Chapter 2.7 (commencing with Section 1954.50) that restricts annual increases in the rental rate to an amount less than that provided in subdivision (a)."
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D024",
+   "source_doc_id": "D024",
+   "citation": "Cal. Civ. Code § 1947.12",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-DEP-1950.5",
+  "jurisdiction": "CA",
+  "level": "state",
+  "category": "security_deposits",
+  "status": "in_force",
+  "effective": {
+   "from": "2024-07-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "An advance payment of at least six months’ rent is permitted if the lease term is six months or longer.",
+   "A mutually agreed fee or charge for specified alterations requested by the tenant is not precluded by the cap.",
+   "The cap in this subdivision does not apply to security collected or demanded before July 1, 2024."
+  ],
+  "key_value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D025",
+   "source_doc_id": "D025",
+   "citation": "Cal. Civ. Code § 1950.5(c)(1)",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-FEE-1950.6",
+  "jurisdiction": "CA",
+  "level": "state",
+  "category": "application_screening_fees",
+  "status": "in_force",
+  "effective": {
+   "from": "2026-01-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": "$30 per applicant; adjusted annually commensurate with an increase in the Consumer Price Index beginning January 1, 1998",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D026",
+   "source_doc_id": "D026",
+   "citation": "Cal. Civ. Code § 1950.6",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-CAMBRIDGE-SCREEN-14.04",
+  "jurisdiction": "MA-CAMBRIDGE",
+  "level": "city",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "all": [
+    {
+     "fact": "use_class",
+     "op": "eq",
+     "value": "two_family"
+    },
+    {
+     "fact": "owner_occupied",
+     "op": "eq",
+     "value": true
+    }
+   ]
+  },
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D029+D031",
+   "source_doc_id": "D029",
+   "citation": "Cambridge Code of Ordinances ch. 14.04",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-CAMBRIDGE-EVICT-8.71",
+  "jurisdiction": "MA-CAMBRIDGE",
+  "level": "city",
+  "category": "just_cause_eviction",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "any": [
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "rental units in a hospital, skilled nursing facility or health facility or in a non-profit facility that has the primary purpose of providing short term assistance, treatment, assistance or therapy for alcohol, drug or other substance abuse."
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "Short Term Rental Units as set forth in Article 4, Section 4.60 of the Cambridge Zoning Ordinance."
+      }
+     ]
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "This duty applies when legal steps to terminate a tenancy are taken, such as a Notice to Quit or Summary Process."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D029+D031",
+   "source_doc_id": "D031",
+   "citation": "Cambridge Municipal Code ch. 8.71",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-JERSEY-CITY-RENT-JerseyCityLa",
+  "jurisdiction": "NJ-JERSEY-CITY",
+  "level": "city",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The tenant claims the rent being charged is illegal."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "parse_status": "failed",
+  "checks": [
+   "headline cap or limit without key_value"
+  ],
+  "x_source": {
+   "unit": "D036+S009",
+   "source_doc_id": "D036",
+   "citation": "Jersey City Landlord/Tenant Relations webpage",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-LOS-ANGELES-EVICT-165.03",
+  "jurisdiction": "CA-LOS-ANGELES",
+  "level": "city",
+  "category": "just_cause_eviction",
+  "status": "in_force",
+  "effective": {
+   "from": "2025-08-20",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The tenant must have lived in the same unit for at least six months or the original lease must have expired, whichever comes first."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D040+D041+D042+D043",
+   "source_doc_id": "D040",
+   "citation": "LAMC § 165.03",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-LOS-ANGELES-RENT-1947.12",
+  "jurisdiction": "CA-LOS-ANGELES",
+  "level": "city",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": "2024-08-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": {
+   "age_years": {
+    "op": "gt",
+    "n": 15
+   }
+  },
+  "exempt_if": {
+   "any": [
+    {
+     "age_years": {
+      "op": "lt",
+      "n": 15
+     }
+    },
+    {
+     "ref": "local_rent_control"
+    },
+    {
+     "fact": "subsidised",
+     "op": "eq",
+     "value": true
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "A two-unit property is exempt only if the second unit was occupied by an owner throughout the tenancy.",
+   "The described single-family home and condominium exemption also requires written notice to the tenant and specified ownership circumstances."
+  ],
+  "key_value": "5% plus the percentage change in cost of living, capped at 10%",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "parse_status": "failed",
+  "checks": [
+   "a city ordinance's coverage uses ref (circular): write which buildings it covers"
+  ],
+  "x_source": {
+   "unit": "D040+D041+D042+D043",
+   "source_doc_id": "D040",
+   "citation": "Cal. Civ. Code § 1947.12",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-LOS-ANGELES-RENT-151.06",
+  "jurisdiction": "CA-LOS-ANGELES",
+  "level": "city",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": "2026-02-02",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": {
+   "fact": "built",
+   "op": "le",
+   "value": "1978-10-01"
+  },
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The stated 3% increase rate applies for the specified annual period."
+  ],
+  "key_value": "3% for July 1, 2025 through June 30, 2026",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "parse_status": "ok",
+  "checks": [
+   "key not supported by its quote (0.96)"
+  ],
+  "x_source": {
+   "unit": "D040+D041+D042+D043",
+   "source_doc_id": "D041",
+   "citation": "LAMC § 151.06",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-ALG-5222",
+  "jurisdiction": "MA",
+  "level": "state",
+  "category": "algorithmic_rent_setting",
+  "status": "pending",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D045",
+   "source_doc_id": "D045",
+   "citation": "Mass. H.5222",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": true
+  }
+ },
+ {
+  "team_rule_id": "MA-ALG-2983",
+  "jurisdiction": "MA",
+  "level": "state",
+  "category": "algorithmic_rent_setting",
+  "status": "pending",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D046",
+   "source_doc_id": "D046",
+   "citation": "Mass. S.2983",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-RENT-40P",
+  "jurisdiction": "MA",
+  "level": "state",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "may_preempt_local",
+   "target_category": "rent_increase_limits",
+   "quote": "No city or town may enact, maintain or enforce rent control of any kind"
+  },
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D048",
+   "source_doc_id": "D048",
+   "citation": "Mass. Gen. Laws ch. 40P, § 4",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-SCREEN-151B",
+  "jurisdiction": "MA",
+  "level": "state",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": {
+   "any": [
+    {
+     "fact": "subsidised",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "fact": "units",
+     "op": "gt",
+     "value": 1
+    }
+   ]
+  },
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "failed",
+  "checks": [
+   "applies_if.1: value 1 not found in its quote"
+  ],
+  "x_source": {
+   "unit": "D049",
+   "source_doc_id": "D049",
+   "citation": "Mass. Gen. Laws ch. 151B, § 4(6)(a)",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-EVICT-186",
+  "jurisdiction": "MA",
+  "level": "state",
+  "category": "just_cause_eviction",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "Rent is due under a written lease and the tenant has neglected or refused to pay it."
+  ],
+  "key_value": "14 days",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D050",
+   "source_doc_id": "D050",
+   "citation": "Mass. Gen. Laws ch. 186, § 11",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-DEP-186",
+  "jurisdiction": "MA",
+  "level": "state",
+  "category": "security_deposits",
+  "status": "in_force",
+  "effective": {
+   "from": "2025-08-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "Does not apply to a lease, rental, occupancy or tenancy of 100 days or less for a vacation or recreational purpose."
+  ],
+  "key_value": "Security deposit may not exceed the first month's rent",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D052",
+   "source_doc_id": "D052",
+   "citation": "Mass. Gen. Laws ch. 186, § 15B",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-FEE-186",
+  "jurisdiction": "MA",
+  "level": "state",
+  "category": "application_screening_fees",
+  "status": "in_force",
+  "effective": {
+   "from": "2025-08-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D052",
+   "source_doc_id": "D052",
+   "citation": "Mass. Gen. Laws ch. 186, § 15B(1)(b)",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "MA-FEE-112",
+  "jurisdiction": "MA",
+  "level": "state",
+  "category": "application_screening_fees",
+  "status": "in_force",
+  "effective": {
+   "from": "2025-08-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": "Only the party who originally engaged and contracted with the broker may pay the fee.",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:56 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D057",
+   "source_doc_id": "D057",
+   "citation": "Mass. Gen. Laws ch. 112, § 87DDD½",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-SCREEN-46:8-55",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": "2022-01-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "all": [
+    {
+     "fact": "owner_occupied",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "fact": "units",
+     "op": "le",
+     "value": 4
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "The prohibition applies before a conditional offer; the statute excepts inquiries about a conviction for manufacturing or producing methamphetamine on federally assisted housing premises and lifetime sex-offender registration."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D065",
+   "source_doc_id": "D065",
+   "citation": "N.J. Stat. Ann. § 46:8-55(a)(1)",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-SCREEN-46:8-56",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": "2022-01-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "all": [
+    {
+     "fact": "owner_occupied",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "fact": "units",
+     "op": "le",
+     "value": 4
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "The ban covers records evaluated either before or after a conditional offer; listed records include expunged, pardoned, vacated/nullified and sealed convictions, and juvenile adjudications."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D065",
+   "source_doc_id": "D065",
+   "citation": "N.J. Stat. Ann. § 46:8-56(a)",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-SCREEN-46:8-58",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": "2022-01-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "all": [
+    {
+     "fact": "owner_occupied",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "fact": "units",
+     "op": "le",
+     "value": 4
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "The statutory exceptions concern methamphetamine manufacture or production on federally assisted housing premises and lifetime sex-offender registration."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D065",
+   "source_doc_id": "D065",
+   "citation": "N.J. Stat. Ann. § 46:8-58(a)",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-SCREEN-46:8-60",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": "2022-01-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "all": [
+    {
+     "fact": "owner_occupied",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "fact": "units",
+     "op": "le",
+     "value": 4
+    }
+   ]
+  },
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D065",
+   "source_doc_id": "D065",
+   "citation": "N.J. Stat. Ann. § 46:8-60",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-FEE-46:8-18.1",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "application_screening_fees",
+  "status": "in_force",
+  "effective": {
+   "from": "2026-05-01",
+   "until": null,
+   "precision": "day",
+   "derived": "first day of month 4 after enactment 2026-01-20"
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "any": [
+    {
+     "fact": "use_class",
+     "op": "in",
+     "value": [
+      "single_family",
+      "two_family"
+     ]
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "The requirements do not apply to a New Jersey Real Estate Commission licensee unless the licensee is the landlord of the residential rental property."
+  ],
+  "key_value": "$50",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D066",
+   "source_doc_id": "D066",
+   "citation": "N.J. Stat. § 46:8-18.1(a)",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-DEP-46:8-21.2",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "security_deposits",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "all": [
+    {
+     "fact": "owner_occupied",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "any": [
+      {
+       "fact": "units",
+       "op": "eq",
+       "value": 2
+      },
+      {
+       "fact": "units",
+       "op": "eq",
+       "value": 3
+      }
+     ]
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "A tenant in an owner-occupied two- or three-family dwelling may make the Security Deposit Law applicable by sending the landlord a written request and allowing 30 days."
+  ],
+  "key_value": "1.5 times one month’s rent",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D067",
+   "source_doc_id": "D067",
+   "citation": "N.J.S.A. 46:8-21.2",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-SCREEN-15",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The disclosure duty applies when the rental application is denied due to the applicant’s credit report."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D067",
+   "source_doc_id": "D067",
+   "citation": "15 U.S.C.A. § 1681m",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-RENT-2A:42-84.5",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": {
+   "all": [
+    {
+     "fact": "units",
+     "op": "ge",
+     "value": 3
+    },
+    {
+     "age_years": {
+      "op": null,
+      "n": 30
+     }
+    }
+   ]
+  },
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": "30 years following completion of construction",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "may_preempt_local",
+   "target_category": "rent_increase_limits",
+   "quote": "newly constructed multiple dwellings shall be exempt from any local rent control ordinances for a period of 30 years"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D067",
+   "source_doc_id": "D067",
+   "citation": "N.J.S.A. 2A:42-84.5",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-RENT-2A:18-61.1",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": "Must not be unconscionable",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "coexists",
+   "target_category": "rent_increase_limits",
+   "quote": "must comply with any municipal ordinances governing rent increases."
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D067",
+   "source_doc_id": "D067",
+   "citation": "N.J.S.A. 2A:18-61.1 et seq.",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-EVICT-2A:18-61.1",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "just_cause_eviction",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The Act may not apply to two- or three-unit owner-occupied premises with two or fewer rental units; hotel, motel, or guest-house occupants who are transient or seasonal; or a specified unit held in trust for an immediate family member who is developmentally disabled and permanently occupies it.",
+   "Hotel and motel occupants without an alternate residence who reside there continually are covered."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D067",
+   "source_doc_id": "D067",
+   "citation": "N.J.S.A. 2A:18-61.1",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-SCREEN-10:5-12",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "screening_restrictions",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "any": [
+    {
+     "all": [
+      {
+       "fact": "use_class",
+       "op": "eq",
+       "value": "two_family"
+      },
+      {
+       "fact": "owner_occupied",
+       "op": "eq",
+       "value": true
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "fact": "use_class",
+       "op": "eq",
+       "value": "single_family"
+      },
+      {
+       "fact": "owner_occupied",
+       "op": "eq",
+       "value": true
+      }
+     ]
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "The familial-status prohibition does not apply to housing for older persons as defined in the LAD.",
+   "The brochure states a religious-organization exception for preference given to persons of the same religion."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D068",
+   "source_doc_id": "D068",
+   "citation": "N.J.S.A. 10:5-12",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-ALG-56:9-23",
+  "jurisdiction": "NJ",
+  "level": "state",
+  "category": "algorithmic_rent_setting",
+  "status": "enacted_not_effective",
+  "effective": {
+   "from": "2027-07-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "may_preempt_local",
+   "target_category": "algorithmic_rent_setting",
+   "quote": "A municipality shall be prohibited from enacting an ordinance that conflicts with this act."
+  },
+  "retrieved_at": "2026-10-01 22:56 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D069",
+   "source_doc_id": "D069",
+   "citation": "N.J. Stat. Ann. § 56:9-23(e)",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-SAN-DIEGO-EVICT-98.0704",
+  "jurisdiction": "CA-SAN-DIEGO",
+  "level": "city",
+  "category": "just_cause_eviction",
+  "status": "in_force",
+  "effective": {
+   "from": "2023-06-24",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "any": [
+    {
+     "fact": "subsidised",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "age_years": {
+      "op": "lt",
+      "n": 15
+     }
+    },
+    {
+     "fact": "owner_occupied",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "mobilehomes subject to the Mobilehome Residency Law"
+      }
+     ]
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "The no-fault grounds include owner/family occupancy, withdrawal from the rental market, specified government or court orders, and demolition or substantial remodel, subject to the statute’s stated requirements and limits.",
+   "A tenant’s lease terms and conduct may determine whether an at-fault ground applies; these are not building facts."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D073",
+   "source_doc_id": "D073",
+   "citation": "San Diego Municipal Code § 98.0704",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-SAN-DIEGO-ALG-98.1103",
+  "jurisdiction": "CA-SAN-DIEGO",
+  "level": "city",
+  "category": "algorithmic_rent_setting",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D076",
+   "source_doc_id": "D076",
+   "citation": "San Diego Municipal Code § 98.1103(b)",
+   "status_evidence": {
+    "verdict": "adopted",
+    "jev": "adopted",
+    "confidence": 0.47,
+    "codified_links": [
+     "https://gocodebook.com/library/us/ca/san-diego-zoning/division-11-prohibition-of-anti-competitive-automated-rent-price-fixing/98.1103-use-and-sale-of-algorithmic-devices-prohibited"
+    ],
+    "adoption_date_from_url": null,
+    "statements": []
+   },
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-SAN-FRANCISCO-EVICT-37.9",
+  "jurisdiction": "CA-SAN-FRANCISCO",
+  "level": "city",
+  "category": "just_cause_eviction",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "Some tenancies exempt from rent-increase limitations, including newly constructed units that first obtained a Certificate of Occupancy after June 13, 1979, remain subject to the eviction provisions.",
+   "The just-cause reason must be the dominant motive for pursuing the eviction."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D078+D079+D080+D081+D082+D083",
+   "source_doc_id": "D079",
+   "citation": "San Francisco Rent Ordinance § 37.9(a)",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-SAN-FRANCISCO-RENT-37.3",
+  "jurisdiction": "CA-SAN-FRANCISCO",
+  "level": "city",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": "2026-03-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": {
+   "fact": "built",
+   "op": "le",
+   "value": "1979-06-13"
+  },
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The rate applies from March 1, 2026 through February 28, 2027."
+  ],
+  "key_value": "1.6%",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "failed",
+  "checks": [
+   "applies_if: op le contradicts 'after' in its quote"
+  ],
+  "x_source": {
+   "unit": "D078+D079+D080+D081+D082+D083",
+   "source_doc_id": "D080",
+   "citation": "San Francisco Rent Ordinance § 37.3",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-SAN-FRANCISCO-ALG-37.10C",
+  "jurisdiction": "CA-SAN-FRANCISCO",
+  "level": "city",
+  "category": "algorithmic_rent_setting",
+  "status": "in_force",
+  "effective": {
+   "from": "2024-10-14",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D078+D079+D080+D081+D082+D083",
+   "source_doc_id": "D081",
+   "citation": "San Francisco Rent Ordinance § 37.10C",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-SAN-FRANCISCO-DEP-37.6",
+  "jurisdiction": "CA-SAN-FRANCISCO",
+  "level": "city",
+  "category": "security_deposits",
+  "status": "in_force",
+  "effective": {
+   "from": "2026-03-01",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The listed rate applies from March 1, 2026 through February 28, 2027."
+  ],
+  "key_value": "4.2%",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D078+D079+D080+D081+D082+D083",
+   "source_doc_id": "D083",
+   "citation": "San Francisco Rent Ordinance § 37.6",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-SANTA-ANA-RENT-SantaAnaRent",
+  "jurisdiction": "CA-SANTA-ANA",
+  "level": "city",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": "2021-11-19",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "any": [
+    {
+     "fact": "built",
+     "op": "gt",
+     "value": "1995-02-01"
+    },
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "mobile home spaces offered for rent after January 1, 1990"
+      }
+     ]
+    }
+   ]
+  },
+  "tenant_conditions": [],
+  "key_value": "Lower of 3% per year or 80% of the CPI change; 2.87% for September 1, 2026 through August 31, 2027",
+  "key_value_conditions": [
+   {
+    "value": "2.87% maximum allowable rent increase for September 1, 2026 through August 31, 2027",
+    "when": true,
+    "tenant_note": null
+   }
+  ],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D084+D085",
+   "source_doc_id": "D085",
+   "citation": "Santa Ana Rent Stabilization Ordinance",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "CA-SANTA-ANA-EVICT-SantaAnaJust",
+  "jurisdiction": "CA-SANTA-ANA",
+  "level": "city",
+  "category": "just_cause_eviction",
+  "status": "in_force",
+  "effective": {
+   "from": "2021-11-19",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": {
+   "any": [
+    {
+     "age_years": {
+      "op": "lt",
+      "n": 15
+     }
+    },
+    {
+     "fact": "subsidised",
+     "op": "eq",
+     "value": true
+    },
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "hotel and transient occupancy"
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "hospital and care facilities"
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "dormitories"
+      }
+     ]
+    },
+    {
+     "all": [
+      {
+       "not": {
+        "all": [
+         {
+          "fact": "use_class",
+          "op": "in",
+          "value": [
+           "apartment",
+           "mixed_use"
+          ]
+         },
+         {
+          "fact": "units",
+          "op": "ge",
+          "value": 5
+         },
+         {
+          "fact": "subsidised",
+          "op": "eq",
+          "value": false
+         }
+        ]
+       }
+      },
+      {
+       "unparsed": "other shared living quarters"
+      }
+     ]
+    }
+   ]
+  },
+  "tenant_conditions": [
+   "The tenancy must have lasted more than 30 days for this protection to apply."
+  ],
+  "key_value": "30 days",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "D084+D085",
+   "source_doc_id": "D085",
+   "citation": "Santa Ana Just Cause Eviction Ordinance",
+   "status_evidence": null,
+   "origin": "starter",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-JERSEY-CITY-ALG-218-12",
+  "jurisdiction": "NJ-JERSEY-CITY",
+  "level": "city",
+  "category": "algorithmic_rent_setting",
+  "status": "in_force",
+  "effective": {
+   "from": "2025-06-10",
+   "until": null,
+   "precision": "day",
+   "derived": "New Jersey municipal default: 20 days after final passage 2025-05-21 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-03T21:00:55.189844+00:00",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "S001",
+   "source_doc_id": "S001",
+   "citation": "Jersey City Code § 218-12(2)(a)",
+   "status_evidence": null,
+   "origin": "supplemental",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-HOBOKEN-ALG-Hobokenordin",
+  "jurisdiction": "NJ-HOBOKEN",
+  "level": "city",
+  "category": "algorithmic_rent_setting",
+  "status": "in_force",
+  "effective": {
+   "from": "2025-07-29",
+   "until": null,
+   "precision": "day",
+   "derived": "New Jersey municipal default: 20 days after final passage 2025-07-09 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-03T21:02:42.249507+00:00",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "S008+S011",
+   "source_doc_id": "S008",
+   "citation": "Hoboken ordinance (citation not stated)",
+   "status_evidence": null,
+   "origin": "supplemental",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-HOBOKEN-RENT-10:54",
+  "jurisdiction": "NJ-HOBOKEN",
+  "level": "city",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The tenant must believe the rent exceeds the legal rent.",
+   "The tenant must provide a statement explaining the reason for the request and supporting materials deemed necessary to resolve the matter."
+  ],
+  "key_value": "Right to request a legal rent calculation",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "S012",
+   "source_doc_id": "S012",
+   "citation": "Hoboken Rent Control Regulations § 10:54(A)",
+   "status_evidence": null,
+   "origin": "supplemental",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-HOBOKEN-RENT-18:54",
+  "jurisdiction": "NJ-HOBOKEN",
+  "level": "city",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": null,
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The tenant must apply for a rent reduction, and the deterioration must exist at the application date or have existed within 60 days before filing.",
+   "The period valued begins no earlier than one year before the application and continues through the Board's determination."
+  ],
+  "key_value": "An amount equal to the value of the deteriorated services",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
+  "parse_status": "failed",
+  "checks": [
+   "requirement_quote not found in the source"
+  ],
+  "x_source": {
+   "unit": "S012",
+   "source_doc_id": "S012",
+   "citation": "Hoboken Rent Control Regulations § 18:54(H)",
+   "status_evidence": null,
+   "origin": "supplemental",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-HOBOKEN-RENT-3",
+  "jurisdiction": "NJ-HOBOKEN",
+  "level": "city",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": "2025-02-12",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "This rule applies to an apartment rented to multiple tenants; vacancy occurs when the last original tenant leaves."
+  ],
+  "key_value": "Vacancy is deemed to occur when the last original tenant vacates",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "S012",
+   "source_doc_id": "S012",
+   "citation": "Hoboken Rent Control Regulations, Regulation #3: Vacancy Decontrol as to Multiple Tenants",
+   "status_evidence": null,
+   "origin": "supplemental",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-HOBOKEN-RENT-18:66",
+  "jurisdiction": "NJ-HOBOKEN",
+  "level": "city",
+  "category": "rent_increase_limits",
+  "status": "in_force",
+  "effective": {
+   "from": "2009-04-22",
+   "until": null,
+   "precision": "day",
+   "derived": null
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The landlord must legally have owned the dwelling during the year covered by the certificate.",
+   "The dwelling must be registered at filing, and the certificate must be filed before a request for legal rent calculation to be used in a legal rent determination."
+  ],
+  "key_value": "No later than one year after the later of vacancy or first rental to a replacement tenant",
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "S012",
+   "source_doc_id": "S012",
+   "citation": "Hoboken Rent Control Regulations § 18:66",
+   "status_evidence": null,
+   "origin": "supplemental",
+   "stub": false
+  }
+ },
+ {
+  "team_rule_id": "NJ-JERSEY-CITY-ALG-218-12.3",
+  "jurisdiction": "NJ-JERSEY-CITY",
+  "level": "city",
+  "category": "algorithmic_rent_setting",
+  "status": "in_force",
+  "effective": {
+   "from": "2025-10-15",
+   "until": null,
+   "precision": "day",
+   "derived": "New Jersey municipal default: 20 days after final passage 2025-09-25 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+  },
+  "applies_if": true,
+  "exempt_if": false,
+  "tenant_conditions": [
+   "The disclosure is required with any lease or written notice of rent increase for a residential dwelling unit."
+  ],
+  "key_value": null,
+  "key_value_conditions": [],
+  "interaction": {
+   "type": "none"
+  },
+  "retrieved_at": "2026-10-03T23:25:58.281553+00:00",
+  "parse_status": "ok",
+  "checks": [],
+  "x_source": {
+   "unit": "S017",
+   "source_doc_id": "S017",
+   "citation": "Jersey City Code § 218-12.3(a)",
+   "status_evidence": null,
+   "origin": "supplemental",
+   "stub": false
+  }
+ }
+]
