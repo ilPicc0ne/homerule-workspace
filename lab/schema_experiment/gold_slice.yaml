@@ -1,0 +1,231 @@
+# TEST FIXTURE: hand-written reference records for the slice laws, used only to measure whether the
+# extended schema can carry the answers (experiment part a). Never exported, never shown to a prompt.
+# Each record has the extended fields (evaluated by code) and `base`: the same law in the starter
+# schema's fields only (read by a model in arm A). Sources: the cited corpus documents.
+
+- id: CA-RENT
+  doc: D024
+  jurisdiction: CA
+  category: rent_increase_limits
+  citation: Cal. Civ. Code § 1947.12
+  effect: protection_or_duty
+  document_status: enacted
+  events:
+    - {kind: effective, date: "2024-01-01"}
+    - {kind: operative, date: "2024-04-01"}
+    - {kind: repealed, date: "2030-01-01"}
+  key_value: 5% plus CPI, max 10% per 12 months
+  cap_low: 5
+  cap_high: 10
+  applies_if: always
+  exempt_if:
+    any:
+      - {fact: building.affordable_restricted, op: eq, value: true}
+      - {fact: building.use_class, op: eq, value: dormitory}
+      - all: [{age: building.certificate_date, op: lt, years: 15}, {fact: building.use_class, op: ne, value: mobilehome}]
+      - all:
+          - {fact: building.separately_alienable, op: eq, value: true}
+          - not: {fact: landlord.owner_type, op: in, values: [reit, corporation, llc_with_corporate_member]}
+      - all: [{fact: building.units, op: le, value: 2}, {fact: landlord.owner_occupied, op: eq, value: true}]
+  interactions:
+    - {kind: exempt_where_local_rule_stricter, target_category: rent_increase_limits}
+  base:
+    title: Tenant Protection Act rent cap
+    requirement: >-
+      An owner may not raise rent over any 12-month period by more than 5% plus the change in the cost of
+      living, or 10%, whichever is lower. Operative April 1, 2024; repealed as of January 1, 2030.
+    key_value: 5% plus CPI, max 10%
+    coverage_conditions: Residential real property in California.
+    exemptions: >-
+      Deed-restricted affordable housing; school dormitories; housing issued a certificate of occupancy within
+      the previous 15 years (except mobilehomes); single-family homes and condominiums not owned by a REIT,
+      corporation or LLC with a corporate member (with the statutory notice); owner-occupied duplexes; housing
+      subject to local rent control that restricts annual increases to less than this section.
+    interaction: Does not apply where a stricter local rent control ordinance covers the unit.
+    effective_date: "2024-01-01"
+    status: in_force
+
+- id: CA-DEP
+  doc: D025
+  jurisdiction: CA
+  category: security_deposits
+  citation: Cal. Civ. Code § 1950.5
+  effect: protection_or_duty
+  document_status: enacted
+  events:
+    - {kind: operative, date: "2024-07-01"}
+  key_value: one month's rent
+  applies_if: always
+  exempt_if: never
+  value_branches:
+    - value: two months' rent
+      when:
+        all:
+          - {fact: landlord.owner_type, op: in, values: [natural_person, llc_natural_persons]}
+          - {fact: landlord.portfolio_properties, op: le, value: 2}
+          - {fact: landlord.portfolio_units, op: le, value: 4}
+          - not: {fact: tenant.service_member, op: eq, value: true}
+  base:
+    title: Security deposit limit
+    requirement: A landlord may not demand or receive security above one month's rent.
+    key_value: one month's rent
+    coverage_conditions: Residential rentals in California; security collected or demanded on or after July 1, 2024.
+    exemptions: >-
+      A landlord who is a natural person (or an LLC whose members are all natural persons) and owns no more than
+      two residential rental properties with no more than four units in total may take up to two months' rent,
+      unless the prospective tenant is a service member.
+    interaction: null
+    effective_date: "2024-07-01"
+    status: in_force
+
+- id: SF-RENT
+  doc: D079+D080
+  jurisdiction: San Francisco, CA
+  category: rent_increase_limits
+  citation: S.F. Admin. Code ch. 37
+  effect: protection_or_duty
+  document_status: enacted
+  events: []
+  key_value: 1.6% annual allowable increase (Mar 1, 2026 - Feb 28, 2027)
+  cap_low: 1.6
+  cap_high: 1.6
+  applies_if: always
+  exempt_if: {date_fact: building.certificate_date, op: gt, date: "1979-06-13"}
+  base:
+    title: San Francisco Rent Ordinance annual allowable increase
+    requirement: For rent-controlled units the annual allowable increase from March 1, 2026 to February 28, 2027 is 1.6%.
+    key_value: 1.6%
+    coverage_conditions: Rental units covered by the San Francisco Rent Ordinance.
+    exemptions: Units that first obtained a certificate of occupancy after June 13, 1979 are exempt from the rent increase limits.
+    interaction: null
+    effective_date: null
+    status: in_force
+
+- id: LA-RENT
+  doc: D041+D042
+  jurisdiction: Los Angeles, CA
+  category: rent_increase_limits
+  citation: L.A. Mun. Code ch. XV art. 1 (RSO)
+  effect: protection_or_duty
+  document_status: enacted
+  events: []
+  key_value: 3% annual allowable increase
+  cap_low: 3
+  cap_high: 3
+  applies_if: {date_fact: building.built_date, op: le, date: "1978-10-01"}
+  exempt_if: never
+  base:
+    title: Los Angeles Rent Stabilization Ordinance annual allowable increase
+    requirement: Rent increases for units under the RSO are limited to the annual allowable increase, currently 3%.
+    key_value: 3%
+    coverage_conditions: Rental properties in the City of Los Angeles first built on or before October 1, 1978.
+    exemptions: null
+    interaction: null
+    effective_date: null
+    status: in_force
+
+- id: CA-ALG
+  doc: D022
+  jurisdiction: CA
+  category: algorithmic_rent_setting
+  citation: Cal. Bus. & Prof. Code § 16729
+  effect: protection_or_duty
+  document_status: enacted
+  events:
+    - {kind: enacted, date: "2025-10-06"}
+    - {kind: effective, date: null, relative_rule: no_date_in_text}
+  applies_if: always
+  exempt_if: never
+  base:
+    title: Ban on common pricing algorithms (AB 325)
+    requirement: It is unlawful to use or distribute a common pricing algorithm as part of a conspiracy to restrain trade.
+    key_value: null
+    coverage_conditions: All persons in California.
+    exemptions: null
+    interaction: null
+    effective_date: "2026-01-01"
+    status: in_force
+
+- id: NJ-ALG
+  doc: D069
+  jurisdiction: NJ
+  category: algorithmic_rent_setting
+  citation: P.L.2026, c.43 (FAIR Act)
+  effect: protection_or_duty
+  document_status: enacted
+  events:
+    - {kind: enacted, date: "2026-07-20"}
+    - {kind: effective, date: null, relative_rule: first_day_of_nth_month_after_enactment, n: 12}
+  applies_if: always
+  exempt_if: never
+  interactions:
+    - {kind: possible_conflict_with_local, target_category: algorithmic_rent_setting}
+  base:
+    title: NJ FAIR Act ban on algorithmic rent coordination
+    requirement: Rental property owners may not use coordinator services that set or recommend rents.
+    key_value: null
+    coverage_conditions: Rental property owners in New Jersey.
+    exemptions: null
+    interaction: Municipalities may not enact ordinances that conflict with this act.
+    effective_date: "2027-07-01"
+    status: not_yet_effective
+
+- id: MA-ALG-S2983
+  doc: D046
+  jurisdiction: MA
+  category: algorithmic_rent_setting
+  citation: Mass. S.2983 (194th)
+  effect: protection_or_duty
+  document_status: pending
+  events: []
+  applies_if: always
+  exempt_if: never
+  base:
+    title: An Act prohibiting algorithmic rent setting (S.2983)
+    requirement: Would prohibit algorithmic rent setting.
+    key_value: null
+    coverage_conditions: Massachusetts rental housing.
+    exemptions: null
+    interaction: null
+    effective_date: null
+    status: pending
+
+- id: MA-ALG-H5222
+  doc: D045
+  jurisdiction: MA
+  category: algorithmic_rent_setting
+  citation: Mass. H.5222 (194th)
+  effect: protection_or_duty
+  document_status: pending
+  events: []
+  applies_if: always
+  exempt_if: never
+  base:
+    title: House bill on algorithmic rent setting (H.5222)
+    requirement: Would restrict algorithmic rent setting.
+    key_value: null
+    coverage_conditions: Massachusetts rental housing.
+    exemptions: null
+    interaction: null
+    effective_date: null
+    status: pending
+
+- id: MA-40P
+  doc: D048
+  jurisdiction: MA
+  category: rent_increase_limits
+  citation: M.G.L. c. 40P § 4
+  effect: bars_or_limits_local_rules
+  document_status: enacted
+  events: []
+  applies_if: always
+  exempt_if: never
+  base:
+    title: Statewide prohibition of local rent control
+    requirement: No city or town may enact, maintain or enforce rent control, except voluntary regulation in towns that accept the chapter.
+    key_value: null
+    coverage_conditions: All Massachusetts cities and towns.
+    exemptions: null
+    interaction: Bars local rent control.
+    effective_date: null
+    status: in_force
