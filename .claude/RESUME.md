@@ -1,37 +1,40 @@
 # Resume
 
-**Updated:** 2026-10-03T20:00Z
+**Updated:** 2026-10-03T22:06Z
 **Branch:** main
-**Last commit:** c427b24 — No mentor for the challenge: questions go to Discord, D8 dropped
-**Working tree:** clean
+**Last commit:** 88036c8 — Merge pull request #28 from ilPicc0ne/s/landing
+**Working tree:** clean (before this wrap-up commit)
 
 ## Pick up next
 
-1. Dimitar accepts the invite (github.com/ilPicc0ne/homerule-workspace), clones, copies the starter pack into `data/realpage-starter/` (git-ignored).
-2. M0: calibrate output formats against `schema/` and `submission_templates/` (the participant pack has no score.py, no dev key).
-3. 22:00 spike: extraction baseline, geocoding, freeze the predicate AST schema (see `docs/PRD.md` Technical requirements and `docs/ARCHITECTURE.md`).
-4. Ask in the Discord challenge channel: score.py release, hour-16 time and format, how "unknown" counts, starter-pack licensing for a public repo.
-5. Share the review page https://claude.ai/artifact/ARbRPgGyA4ndhd7LvbztSu with Dimitar as Editor; settle D1–D7 (D7 = renter, tentative).
-6. Sun ~14:00: `scripts/publish.sh`, read the leak check, `--push`, flip `ilPicc0ne/homerule` to public.
+1. Demo site: a high-effort agent was building it on branch `s/demo-site` (worktree `/Users/silvan/claude/code/personal/homerule-demo`) when the session was cleared; its final report was not received. Check `git log s/demo-site`, run `web/scripts` quote check, open the preview, review (light only, clean minimal, "Demo data | Live" toggle), then PR, merge and `vercel deploy --prod` from `web/`.
+2. Dimitar: answer on issue #27 (task split, first issue). Remove `split:proposed` from accepted issues.
+3. Start #7 address lookup → `out/addresses.resolved.json` (start from `lab/geocode-500`, rules in docs/ARCHITECTURE.md B).
+4. Discord answers (score.py, hour-16 time, unknown scoring, no-rule format, T6, corpus licence) → PRD open questions.
+5. Email deliverability: mark `alerts@yourhomerule.com` not-spam in Outlook, warm-up; check Authentication-Results.
 
 ## Open questions
 
-- D1 self-repair loop tier, D2 TypeScript vs Python engine, D3 tagline "Your rights as a renter, for your exact address." (Dimitar may veto), D4 demo hero, D5 MCP, D6 measured contrast.
-- Exact time of the hour-16 ordinance (somewhere 07:00–11:00 CEST?).
+- Hour-16 drop time and format — context: brief scores T6, pack PDF says no release.
+- score.py / dev key release — context: participant pack has neither; `make eval` report is the fallback for the videos.
+- Jev quality (#3) — context: vendor claims unverified, frontier model is the fallback.
 
 ## Recent decisions
 
-- c2 RealPage, product HomeRule — *why:* both funnel runs said yes; fits retrieval/evals + prop-tech; 75% scored by script.
-- Rules as filtered data, not RAG; conflicts flagged, never decided by a model — *why:* deterministic, auditable, avoids legal-advice drift (docs/decisions/0002, 0003).
-- Private workspace + filtered public export (`.publish-paths`, git filter-repo) — *why:* public repo with build history, notes never leak.
+- docs/PRD.md is the master (scope, priorities with status = feature list), docs/ARCHITECTURE.md the how — *why:* one source, no overlap; old plans archived.
+- Contracts I1 `contracts/jurisdictions.json` + I7 `contracts/facts.json` — *why:* the only two joins between Dimitar's rules and Silvan's addresses; rules.json writes `schema_name`.
+- Files in git as data store, Redis (Upstash) only for subscriptions, redeploy for hour 16 — *why:* tiny static data, reproducible, auditable.
+- No own chatbot; address dashboard with six renter questions, rule page (quote, law link, audit trail), search at all jurisdiction levels; MCP P2 — *why:* plain-language score, risk of advice on a public link.
+- Domain yourhomerule.com (Vercel project `homerule`), Resend verified — *why:* .com for mail, matches tagline "Your rights as a renter, for your exact address."
+- Split: Dimitar up to rules.json + ingest + eval + extra data sources + MCP + scoreboard; Silvan addresses, engine, web, email, score, submission — *why:* balance over time; issues #2–#27 with `split:proposed`.
 
 ## Surprises / gotchas
 
-- Participant pack lacks score.py and the dev key — *avoid:* rely on the brief-derived assertion suite.
-- Address traps: Boston neighbourhood names as city, ~83 NJ ZIPs are owner mailing ZIPs, San Ysidro = San Diego — *avoid:* neighbourhood table, never geocode NJ ZIPs.
-- No mentor or judge assigned to this challenge — questions go to Discord.
-- Chrome extension timed out twice — *avoid:* do browser tasks by hand.
+- `!` shell commands are non-interactive — *avoid:* domain buys and logins in a normal terminal.
+- First test mail landed in Outlook spam (new domain) — *avoid:* warm-up, HTML + unsubscribe header.
+- NJ ZIPs are owner mailing ZIPs; a Cambridge street matched in Boston without ZIP — *avoid:* rules in ARCHITECTURE B.
+- GitHub API timeouts can silently drop an issue — *avoid:* list issues after bulk creation.
 
 ## Long-form
 
-See `.claude/SESSIONS.md`, `docs/decisions/`, `notes/plan/`, `notes/meetings/`.
+See `.claude/SESSIONS.md`, `docs/decisions/`, `docs/PRD.md`, `docs/ARCHITECTURE.md`.
