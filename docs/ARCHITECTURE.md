@@ -33,11 +33,12 @@ Frozen before parallel work; changed only via PR with the other person tagged.
 | ID | Interface | From → to | Must hold |
 |---|---|---|---|
 | I1 | `contracts/jurisdictions.json`: 13 rule-bearing IDs (e.g. `NJ-HOBOKEN`) plus display-only county entries; each with legal name, level, `parent` (city → county → state), Census code, `schema_name` (the exact string the rule schema expects, e.g. "San Francisco, CA") and `aliases` ("Dorchester", "SF", "Jersey City NJ") | S → D, S | Only these IDs internally; `rules.json` writes `schema_name`; search resolves names and aliases through it |
-| I2 | `out/rules.json` + `out/rules.compiled.json` | D → S | Schema-valid; `jurisdiction` = the list's `schema_name`; status mapped to the schema values (`enacted_not_effective` → `not_yet_effective`, `repealed` → `failed`); effective date or null (two dates kept when sources disagree); verbatim quote |
+| I2 | `out/rules.json` + `out/rules.compiled.json` | D → S | Schema-valid; `jurisdiction` = the list's `schema_name`; status mapped to the schema values (`enacted_not_effective` → `not_yet_effective`; repealed rules are left out of `rules.json`, since `failed` means a measure that never became law); effective date or null (two dates kept when sources disagree); verbatim quote |
 | I3 | `out/addresses.resolved.json` | S → engine, D eval | All 500; jurisdiction IDs, coords, facts as ranges, source + confidence |
 | I4 | Engine CLI `build --as-of <date>` | S → eval, web | Deterministic; writes `lookups.json` and `changes.json` in the guide's shapes |
 | I5 | `/api/address/<id>?as_of=` | S → page, email, MCP | Same data as `lookups.json`; `as_of`, retrieval dates, `not_legal_advice: true` |
 | I6 | Per-address diff | S → changes, change log, email | One computation feeds all three |
+| I8 | `out/findings.json`: what is not a rule — `barred_by_law` (e.g. MA c.40P), `measure_failed` (e.g. IP 25-21), `not_in_corpus` (e.g. Hoboken ch. 158: manifest link, no text) per jurisdiction × category, with quote where one exists; `open_question` (the guide's known open questions, e.g. Berkeley's two published effective dates: our rule and its source next to each competing claim and its source) | D → S | Never emitted as rules; the page shows them ("No rent cap: barred by …") and they fill the 13 × 6 grid |
 | I7 | `contracts/facts.json`: building-fact names, types, operators, three-valued semantics, special nodes (`age_years`, `ref`, `unparsed`) | S → D | Coverage conditions use only these names; anything else becomes `unparsed` (unknown) or a tenant condition |
 
 ## Shared vocabulary: the jurisdiction list
@@ -79,10 +80,17 @@ type Node = {all: Node[]} | {any: Node[]} | {not: Node} | boolean
 
 type Compiled = { team_rule_id: string; jurisdiction: string; level: "state"|"city";
   category: string; status: "in_force"|"enacted_not_effective"|"pending"|"failed"|"repealed";
-  effective: {from: string|null; precision: "day"|"month"|"year"};
+  effective: {from: string|null;       // operative date if the text gives one, else effective date
+              until: string|null;       // repeal or sunset date (e.g. Civ. Code §1947.12: 2030-01-01)
+              precision: "day"|"month"|"year";
+              derived: string|null};    // how a computed date was derived, e.g. "1st day of 12th month after enactment"
   applies_if: Node; exempt_if: Node; tenant_conditions: string[];
+  key_value: string|null;
+  key_value_conditions: {value: string; when: Node; tenant_note: string|null}[];  // alternative amounts, e.g. the
+                                        // small-landlord deposit cap; coverage is unaffected
   interaction: {type: "none"|"yields_to_local"|"coexists"|"may_preempt_local", target_category?: string, quote?: string};
-  retrieved_at: string; parse_status: "ok"|"partial"|"failed" };
+  retrieved_at: string; parse_status: "ok"|"partial"|"failed";
+  checks: string[] };                   // names of failed extraction checks; empty when parse_status is ok
 ```
 
 ## B · Address resolution
@@ -118,7 +126,7 @@ Requirements: PRD scoring (Address coverage); interface I4.
 A deterministic function of (rules, compiled predicates, resolved addresses, as-of date). The same input gives byte-identical output. Per address and rule:
 
 1. **Jurisdiction:** the rule's jurisdiction ID is in the address's stack, else the rule is not listed.
-2. **Status gate:** failed or repealed rules are never listed; pending → `pending`; an effective date after as-of → `not_yet_effective`.
+2. **Status gate:** failed or repealed rules are never listed, nor rules whose `effective.until` is on or before as-of; pending → `pending`; an `effective.from` after as-of → `not_yet_effective`.
 3. **Coverage:** `applies_if ∧ ¬exempt_if` under three-valued logic over fact ranges. True → `applies`; unknown → `unknown` with the missing facts named; false → not listed. A building whose year equals a certificate-of-occupancy cutoff year is unknown.
 4. **Precedence**, per category:
    - A state rule that yields to local rules becomes `superseded` (governed by the local rule) when the local rule applies.

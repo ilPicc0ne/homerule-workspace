@@ -1,12 +1,17 @@
 # HomeRule pipeline. Targets fail loudly until implemented; see docs/ARCHITECTURE.md.
 AS_OF ?= 2026-10-01
 
-.PHONY: all extract resolve build eval ingest rerun web
+.PHONY: all extract resolve build eval ingest rehearse rerun web
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
-extract:                                 ## A · corpus -> out/rules.json, out/rules.compiled.json (Dimitar)
-	@echo "extract: not implemented yet (extract/)"; exit 1
+extract:                                 ## A · corpus -> out/rules.json, out/rules.compiled.json, out/findings.json (Dimitar)
+	python3 -m extract.corpus
+	python3 -m extract.luna_pass $$(ls out/index | grep "^[DS]" | sed "s/.json//")
+	python3 -m extract.gate
+	python3 -m extract.links
+	python3 -m extract.open_questions
+	python3 -m extract.compile
 
 resolve:                                 ## B · sample addresses -> out/addresses.resolved.json (Silvan)
 	@echo "resolve: not implemented yet (engine/)"; exit 1
@@ -15,13 +20,24 @@ build:                                   ## C+D · engine -> outputs/lookups.jso
 	@echo "build: not implemented yet (engine/), AS_OF=$(AS_OF)"; exit 1
 
 eval:                                    ## assertion suite, T1-T6, trap addresses, quote check, disclaimer crawl
-	@echo "eval: not implemented yet (tests/)"; exit 1
+	python3 -m tests.eval_suite --supplemental
 
-ingest:                                  ## hour-16: make ingest DOC=<path> [TEST=<t6.json>]
-	@echo "ingest: not implemented yet, DOC=$(DOC)"; exit 1
+ingest:                                  ## hour-16: make ingest DOC=<path> JUR="Cambridge, MA" [ID=X002]
+	python3 -m extract.ingest $(DOC) --jurisdiction "$(JUR)" --id $(or $(ID),X002)
+	python3 -m tests.eval_suite --supplemental
 
-rerun:                                   ## live re-extraction of one doc: make rerun DOC=D0xx
-	@echo "rerun: not implemented yet, DOC=$(DOC)"; exit 1
+rehearse:                                ## hour-16 dry run on the fictional tests/fixtures/synthetic/X001.txt; removed afterwards
+	python3 -m extract.ingest tests/fixtures/synthetic/X001.txt --jurisdiction "Cambridge, MA" --id X001
+	python3 -m tests.eval_suite --supplemental
+	rm -f out/index/X001.json out/extracted/X001.json
+	python3 -m extract.compile
+	python3 -m tests.eval_suite --supplemental > /dev/null
+
+rerun:                                   ## live re-extraction of one doc, fresh model calls: make rerun DOC=D0xx
+	EXTRACT_RUN=live-$$(date +%s) python3 -m extract.luna_pass $(DOC)
+	python3 -m extract.gate $$(ls out/extracted | sed 's/.json//' | grep -w $(DOC))
+	python3 -m extract.compile
+	python3 -m tests.eval_suite --supplemental
 
 web:                                     ## local dev server
 	cd web && npm run dev
