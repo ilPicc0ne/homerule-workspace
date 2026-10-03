@@ -1,5 +1,5 @@
 {
-  "_comment": "Shared jurisdiction vocabulary (interface I1, docs/ARCHITECTURE.md). Internal IDs everywhere; rules.json writes schema_name. Counties are display-only (no county law in the corpus). Census GEOIDs verified 04.10.2026 via the Census geocoder. San Francisco is a consolidated city and county.",
+  "_comment": "Shared jurisdiction vocabulary (interface I1, docs/ARCHITECTURE.md). Internal IDs everywhere; rules.json writes schema_name. Counties are display-only (no county law in the corpus). Census GEOIDs verified 04.10.2026 via the Census geocoder. San Francisco is a consolidated city and county. census_cousub_geoid: the Census county subdivision of an NJ/MA municipality (verified 04.10.2026); in NJ and MA the municipality is the county subdivision, so an address with no incorporated place still resolves to its town or township.",
   "jurisdictions": [
     {
       "id": "CA",
@@ -199,6 +199,7 @@
       "schema_name": "Jersey City, NJ",
       "parent": "NJ-HUDSON-COUNTY",
       "census_geoid": "3436000",
+      "census_cousub_geoid": "3401736000",
       "rules": true,
       "aliases": [
         "JC"
@@ -211,6 +212,7 @@
       "schema_name": "Hoboken, NJ",
       "parent": "NJ-HUDSON-COUNTY",
       "census_geoid": "3432250",
+      "census_cousub_geoid": "3401732250",
       "rules": true,
       "aliases": []
     },
@@ -221,6 +223,7 @@
       "schema_name": "Newark, NJ",
       "parent": "NJ-ESSEX-COUNTY",
       "census_geoid": "3451000",
+      "census_cousub_geoid": "3401351000",
       "rules": true,
       "aliases": []
     },
@@ -231,6 +234,7 @@
       "schema_name": "Boston, MA",
       "parent": "MA-SUFFOLK-COUNTY",
       "census_geoid": "2507000",
+      "census_cousub_geoid": "2502507000",
       "rules": true,
       "aliases": [
         "Dorchester",
@@ -254,6 +258,7 @@
       "schema_name": "Cambridge, MA",
       "parent": "MA-MIDDLESEX-COUNTY",
       "census_geoid": "2511000",
+      "census_cousub_geoid": "2501711000",
       "rules": true,
       "aliases": []
     }
