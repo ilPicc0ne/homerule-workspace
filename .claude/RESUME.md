@@ -1,39 +1,37 @@
 # Resume
 
-**Updated:** 2026-10-03T22:06Z
+**Updated:** 2026-10-03T22:20Z
 **Branch:** main
-**Last commit:** 88036c8 — Merge pull request #28 from ilPicc0ne/s/landing
+**Last commit:** 172c2f0 — Ignore .worktrees/
 **Working tree:** clean (before this wrap-up commit)
 
 ## Pick up next
 
-1. Demo site: a high-effort agent was building it on branch `s/demo-site` (worktree `/Users/silvan/claude/code/personal/homerule-demo`) when the session was cleared; its final report was not received. Check `git log s/demo-site`, run `web/scripts` quote check, open the preview, review (light only, clean minimal, "Demo data | Live" toggle), then PR, merge and `vercel deploy --prod` from `web/`.
-2. Dimitar: answer on issue #27 (task split, first issue). Remove `split:proposed` from accepted issues.
-3. Start #7 address lookup → `out/addresses.resolved.json` (start from `lab/geocode-500`, rules in docs/ARCHITECTURE.md B).
-4. Discord answers (score.py, hour-16 time, unknown scoring, no-rule format, T6, corpus licence) → PRD open questions.
-5. Email deliverability: mark `alerts@yourhomerule.com` not-spam in Outlook, warm-up; check Authentication-Results.
+1. Address resolver (#7, #10): fresh session in `.worktrees/address` (branch `s/address-lookup`), paste the kickoff prompt (goal, decisions, tests-first). Edge cases: `lab/resolve-edge-cases/README.md` on that branch.
+2. Demo site: agent was building on `s/demo-site` in `/Users/silvan/claude/code/personal/homerule-demo`; no commits pushed at wrap-up time. Check if it finished; review (light only, "Demo data | Live" toggle, quote check), PR, merge, `vercel deploy --prod` from `web/`; then `git worktree move ../homerule-demo .worktrees/demo`.
+3. Dimitar: issue #27 (task split), then #2 grid triage, #3 Jev test, #4 extraction.
+4. Discord answers → PRD open questions. Email warm-up: mark `alerts@yourhomerule.com` not-spam.
 
 ## Open questions
 
-- Hour-16 drop time and format — context: brief scores T6, pack PDF says no release.
-- score.py / dev key release — context: participant pack has neither; `make eval` report is the fallback for the videos.
-- Jev quality (#3) — context: vendor claims unverified, frontier model is the fallback.
+- Hour-16 drop time and format; score.py / dev key release — context: posted to Discord.
+- Do use-code unit ranges count as known in the key? — context: we treat them as known behind a switch.
 
 ## Recent decisions
 
-- docs/PRD.md is the master (scope, priorities with status = feature list), docs/ARCHITECTURE.md the how — *why:* one source, no overlap; old plans archived.
-- Contracts I1 `contracts/jurisdictions.json` + I7 `contracts/facts.json` — *why:* the only two joins between Dimitar's rules and Silvan's addresses; rules.json writes `schema_name`.
-- Files in git as data store, Redis (Upstash) only for subscriptions, redeploy for hour 16 — *why:* tiny static data, reproducible, auditable.
-- No own chatbot; address dashboard with six renter questions, rule page (quote, law link, audit trail), search at all jurisdiction levels; MCP P2 — *why:* plain-language score, risk of advice on a public link.
-- Domain yourhomerule.com (Vercel project `homerule`), Resend verified — *why:* .com for mail, matches tagline "Your rights as a renter, for your exact address."
-- Split: Dimitar up to rules.json + ingest + eval + extra data sources + MCP + scoreboard; Silvan addresses, engine, web, email, score, submission — *why:* balance over time; issues #2–#27 with `split:proposed`.
+- Address iteration goal: live search on the site → jurisdiction tree; one TypeScript resolver for site and batch — *why:* visible, scalability proof, no drift.
+- Tree Federal › State › County › City / Township / unincorporated; legislative districts P2 — *why:* NJ/MA municipalities are county subdivisions; unincorporated areas fall to county law.
+- Use-code units ("5+", NJ class 4C) as known facts behind a switch — *why:* settles small-building exemptions for nearly all 500.
+- Worktrees under git-ignored `.worktrees/` — *why:* keep `code/personal/` free of repo-lookalike folders.
+- PRD master in docs/, contracts I1/I7, files as data store, no own chatbot, yourhomerule.com + Resend — see SESSIONS.
 
 ## Surprises / gotchas
 
-- `!` shell commands are non-interactive — *avoid:* domain buys and logins in a normal terminal.
-- First test mail landed in Outlook spam (new domain) — *avoid:* warm-up, HTML + unsubscribe header.
-- NJ ZIPs are owner mailing ZIPs; a Cambridge street matched in Boston without ZIP — *avoid:* rules in ARCHITECTURE B.
-- GitHub API timeouts can silently drop an issue — *avoid:* list issues after bulk creation.
+- East LA: postal "Los Angeles" but unincorporated — *avoid:* never trust postal city; use Census place.
+- Brookline: town with no Census place — *avoid:* county subdivision as municipality in NJ/MA.
+- Census one-line returns no match for place-only input ("Boston, MA", ZIPs) — *avoid:* resolve via jurisdiction list/aliases.
+- Vercel deploy uploads only `web/` — *avoid:* sync contracts into web/ with a drift test.
+- `!` commands are non-interactive; first test mail went to spam.
 
 ## Long-form
 

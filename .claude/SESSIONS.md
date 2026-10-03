@@ -28,3 +28,17 @@
 
 **Next:**
 - Review and ship the demo site (s/demo-site); Dimitar on #27; address lookup #7.
+
+## 2026-10-03T22:20Z — Address iteration planned, worktrees tidied
+
+**Decisions:**
+- Iteration goal widened from batch #7 to live search with jurisdiction tree (#7 + #10) — *why:* visible on the site, proves scalability.
+- TypeScript resolver shared by /api/resolve and make resolve; contracts synced into web/ with a drift test — *why:* one implementation; Vercel uploads only web/.
+- Tree with federal level, township and unincorporated handling; use-code units as known facts behind a switch.
+- Worktrees in .worktrees/ (address moved, landing removed; demo to move later).
+
+**Surprises:**
+- Live Census probe: East LA unincorporated despite postal LA; Brookline town without a Census place; place-only input gets no match.
+
+**Next:**
+- Fresh session in .worktrees/address with the kickoff prompt; review demo site; Dimitar on #27.
