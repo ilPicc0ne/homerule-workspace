@@ -41,7 +41,7 @@ Bonus the guide offers: show its four open legal questions (e.g. Berkeley's ban 
 | What can they check about me? | Screening restrictions |
 | Can rent-setting software be used on my rent? | Algorithmic rent-setting |
 
-Each card: status in words, one-line summary, quote, citation, dates, confidence badge, and the level the rule comes from. "Unknown" names the missing fact and how to check it. Tenant facts (length of tenancy, etc.) are notes, never inputs.
+Each card: status in words, one-line summary, quote, citation, dates, confidence badge, the level the rule comes from, and **"What you can do next"**: who to contact or what to check, with a link (e.g. "SF Rent Board: rent increase questions", "Ask the landlord for the certificate of occupancy date"). A pointer, never advice on the user's own case. "Unknown" names the missing fact and how to check it. Tenant facts (length of tenancy, etc.) are notes, never inputs.
 
 **Ask at any level: one search box, one hierarchy.** The search accepts an address, a city, a neighbourhood ("Dorchester"), a county or a state, and resolves it through the jurisdiction list (with aliases), so nobody has to know the exact name or ID.
 - **Address** → the address page (below).
@@ -84,7 +84,8 @@ This is the project's feature list; each build updates its status in the same co
 | P1 | Chatbot scoreboard: ~20 dated city-level questions, plain chatbot vs HomeRule, date-stamped | D | planned |
 | P1 | Impact map on the rule page with date slider | S | planned |
 | P0 | Hour-16 ingest in one command | D | planned |
-| P1 | Real email sending (double opt-in) | S | planned |
+| P1 | Real email sending (double opt-in) via Resend from `alerts@yourhomerule.com`; deliverability: HTML + text, unsubscribe link and header, warm-up | S | partial (domain verified, test mail sent) |
+| P0 | Coming-soon landing page on yourhomerule.com | S | WIP (`s/landing`, preview) |
 | P1 | Renter-protection score + compare picked addresses (no ranking, no rent levels, unknown counted apart) | S | planned |
 | P1 | Renter answers one missing building fact ("you told us", never in the scored files) | S | planned |
 | P1 | Map pin | S | planned |
@@ -139,7 +140,7 @@ This is the project's feature list; each build updates its status in the same co
 
 | # | Beat | Shows | Time |
 |---|---|---|---|
-| 1 | **Chatbot scoreboard:** "ChatGPT 9/20 · HomeRule 19/20" on dated questions (struck Boston ballot, NJ $50 fee cap) | The headline, as a number | 0:15 |
+| 1 | **Chatbot scoreboard** (only with its method on screen: who wrote the questions, date, model and version, link to the question set; if not measured by 12:00, drop it and open on beat 2): "ChatGPT 9/20 · HomeRule 19/20" on dated questions (struck Boston ballot, NJ $50 fee cap) | The headline, as a number | 0:15 |
 | 2 | **Ana's address, 3515 Fillmore St, SF:** six cards; rent card: SF ordinance applies, state cap superseded | The product | 0:30 |
 | 3 | **Same question, two more buildings:** 10635 Sherman Grove Ave, LA → unknown with what to check; 471 Columbia Rd "Dorchester" → Boston, no rent cap | Honest unknown, postal ≠ legal city, no invented rules | 0:25 |
 | 4 | **Click the answer → rule page:** quote in the law text, link to the official source, what the model extracted vs what the code decided | The AI and the responsible design, visible | 0:25 |

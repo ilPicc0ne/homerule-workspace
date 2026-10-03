@@ -9,3 +9,7 @@ engine/
 web/
 outputs/
 tests/
+contracts/
+Makefile
+AGENTS.md
+CLAUDE.md

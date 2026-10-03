@@ -38,6 +38,7 @@ Frozen before parallel work; changed only via PR with the other person tagged.
 | I4 | Engine CLI `build --as-of <date>` | S → eval, web | Deterministic; writes `lookups.json` and `changes.json` in the guide's shapes |
 | I5 | `/api/address/<id>?as_of=` | S → page, email, MCP | Same data as `lookups.json`; `as_of`, retrieval dates, `not_legal_advice: true` |
 | I6 | Per-address diff | S → changes, change log, email | One computation feeds all three |
+| I7 | `contracts/facts.json`: building-fact names, types, operators, three-valued semantics, special nodes (`age_years`, `ref`, `unparsed`) | S → D | Coverage conditions use only these names; anything else becomes `unparsed` (unknown) or a tenant condition |
 
 ## Shared vocabulary: the jurisdiction list
 
@@ -70,8 +71,8 @@ Runs one pass per category, in parallel. Adding or fixing a category reruns only
 
 ```ts
 type Node = {all: Node[]} | {any: Node[]} | {not: Node} | boolean
-  | {fact: "units"|"built"|"use_class"|"jurisdiction"|"owner_type"|"owner_occupied"|"subsidised",
-     op: "eq"|"ne"|"lt"|"le"|"gt"|"ge"|"in", value: string|number|string[]}
+  | {fact: "built"|"units"|"use_class"|"subsidised"|"owner_type"|"owner_occupied",   // contracts/facts.json
+     op: "eq"|"ne"|"lt"|"le"|"gt"|"ge"|"in", value: string|number|boolean|string[]}
   | {age_years: {op: "lt"|"le"|"gt"|"ge", n: number}}   // relative to the as-of date
   | {ref: string}                                        // another rule's result, e.g. local rent control
   | {unparsed: string};                                  // evaluates to unknown
@@ -145,8 +146,10 @@ A change is either a new document (ingest) or a second date (as-of query).
 
 Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [priorities](PRD.md#priorities-and-feature-status), [user journeys](PRD.md#user-journeys).
 
-- **Hosting:** Vercel (Next.js), Pro plan, phone-first.
-- **Data:** the page reads precomputed engine output, not a live computation, so the page and the scored files show the same results.
+- **Hosting:** Vercel (Next.js 16), Pro plan, project `homerule`, domains `yourhomerule.com` and `www.yourhomerule.com`, phone-first.
+- **Data store: files in git, no database.** Rules, resolved addresses and engine results are a few MB of JSON, committed and reproducible with `make all`; the page reads them at build time, so the page and the scored files show the same results. Address resolution runs once offline and is committed as a cache. The only mutable data is subscriptions (Redis, below).
+- **Hour-16 update:** the ingest rebuilds the outputs and triggers a production redeploy (~1 min). Fallback if a redeploy is too slow: upload the outputs to Vercel Blob and let the page read from there.
+- **Contacts for "what you can do next":** a small table per jurisdiction (rent board, housing department, legal-aid line) in `contracts/contacts.json`, with source links; cards pick the entry for the rule's jurisdiction and category.
 - **Routes:**
   - `/`: search over the 500 addresses, with example addresses.
   - `/a/[id]`: the address dashboard, in this order:
@@ -163,7 +166,7 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
   - `/api/address/[id]?as_of=`: read-only JSON with `as_of`, retrieval dates and `not_legal_advice: true`.
   - Later `/api/mcp`, the same functions behind `mcp-handler`.
 - **As-of dates:** the engine runs at build time for a fixed list: 2025-12-31 and 2026-01-02 (T1), 2026-10-01 (default), and each effective date in the rules ±1 day. The picker snaps to this list.
-- **Email (P1):** subscriptions per address ID with double opt-in. Sent after a rebuild from the diff, through a transactional mail service.
+- **Email (P1):** Resend (EU region), domain `yourhomerule.com` verified (DKIM on `resend._domainkey`, SPF and bounce MX on `send.`, DMARC `p=none`); sender `HomeRule <alerts@yourhomerule.com>`. Subscriptions per address ID with double opt-in; sent after a rebuild from the diff. Deliverability: HTML + text part, unsubscribe link and `List-Unsubscribe` header, a warm-up of a few mails to our own inboxes. The first test landed in Outlook spam (new domain, no reputation yet). Use a dedicated sending-only API key for the app, not the account-wide one.
 - **Subscription store (Silvan):** Upstash Redis from the Vercel Marketplace, free tier [assumed]. Keys: `sub:<address_id>` = set of confirmed emails; `pending:<token>` = email + address ID with a 48 h expiry for double opt-in. Nothing else is stored. Swap for Neon Postgres if we ever need queries beyond "who follows this address".
 
 ## Audit and evaluation
