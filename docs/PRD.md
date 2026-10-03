@@ -58,7 +58,7 @@ Each card: status in words, one-line summary, quote, citation, dates, confidence
 
 1. "Not legal advice" · as-of date (snaps to a fixed list of dates)
 2. Address search over the 500, example addresses on the landing page
-3. **"Email me when the law changes for this address"**
+3. **"Email me when the law changes for this address"**, directly next to the address field; enterable only once an address is found, and named after it ("Alerts for 3515 Fillmore St")
 4. Map with pin (P1)
 5. Where this is: State › County › City; note when postal city ≠ legal city
 6. Building facts: year built, units, source; "unknown" shown plainly
