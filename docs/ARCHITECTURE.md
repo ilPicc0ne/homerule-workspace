@@ -38,6 +38,7 @@ Frozen before parallel work; changed only via PR with the other person tagged.
 | I4 | Engine CLI `build --as-of <date>` | S → eval, web | Deterministic; writes `lookups.json` and `changes.json` in the guide's shapes |
 | I5 | `/api/address/<id>?as_of=` | S → page, email, MCP | Same data as `lookups.json`; `as_of`, retrieval dates, `not_legal_advice: true` |
 | I6 | Per-address diff | S → changes, change log, email | One computation feeds all three |
+| I7 | `contracts/facts.json`: building-fact names, types, operators, three-valued semantics, special nodes (`age_years`, `ref`, `unparsed`) | S → D | Coverage conditions use only these names; anything else becomes `unparsed` (unknown) or a tenant condition |
 
 ## Shared vocabulary: the jurisdiction list
 
@@ -70,8 +71,8 @@ Runs one pass per category, in parallel. Adding or fixing a category reruns only
 
 ```ts
 type Node = {all: Node[]} | {any: Node[]} | {not: Node} | boolean
-  | {fact: "units"|"built"|"use_class"|"jurisdiction"|"owner_type"|"owner_occupied"|"subsidised",
-     op: "eq"|"ne"|"lt"|"le"|"gt"|"ge"|"in", value: string|number|string[]}
+  | {fact: "built"|"units"|"use_class"|"subsidised"|"owner_type"|"owner_occupied",   // contracts/facts.json
+     op: "eq"|"ne"|"lt"|"le"|"gt"|"ge"|"in", value: string|number|boolean|string[]}
   | {age_years: {op: "lt"|"le"|"gt"|"ge", n: number}}   // relative to the as-of date
   | {ref: string}                                        // another rule's result, e.g. local rent control
   | {unparsed: string};                                  // evaluates to unknown
