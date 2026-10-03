@@ -109,6 +109,8 @@ export async function resolveAll(rows: SampleRow[], opts: { mode: CacheMode; uni
     bump(`jurisdiction_source:${a.source.jurisdiction}`);
     bump(`units_source:${a.source.units}`);
     bump(`built_source:${a.source.built}`);
+    bump(`subsidised_source:${a.source.subsidised}`);
+    for (const x of a.assumptions) bump(`assumption:${x}`);
     if (a.postal_differs) bump("postal_city_differs");
     if (a.review.length) bump("needs_review");
   }

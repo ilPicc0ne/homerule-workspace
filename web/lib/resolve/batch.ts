@@ -89,6 +89,8 @@ export async function resolveSampleRow(row: SampleRow, opts: BatchOptions): Prom
     census: { matched_address: m?.matchedAddress ?? null, attempts },
     facts: facts.facts,
     source: { jurisdiction: source, ...facts.source },
+    source_detail: facts.source_detail,
+    assumptions: facts.assumptions,
     confidence: { jurisdiction: confidence, ...facts.confidence },
     review: [...review, ...facts.review],
     retrieved_at: row.retrieved_at,

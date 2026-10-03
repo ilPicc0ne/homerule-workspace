@@ -114,6 +114,47 @@ test("unit sources are tagged csv / use_code / none", () => {
   assert.ok(n("use_code") > 100);
 });
 
+const csvRow = (id: string) => rows.find((r) => r.address_id === id)!;
+
+test("subsidised: known on every row; true only for SUBSD HOUSING and NJ AFFORDABL (27), else false by assumption", () => {
+  const sub = file.addresses.filter((a) => a.facts.subsidised === true);
+  assert.equal(file.addresses.filter((a) => a.facts.subsidised === null).length, 0);
+  assert.equal(sub.length, 27);
+  assert.ok(sub.some((a) => a.address_id === "A0049"));
+  for (const a of sub) assert.equal(a.source.subsidised, "use_code", a.address_id);
+  for (const a of file.addresses.filter((x) => x.facts.subsidised === false)) {
+    assert.equal(a.source.subsidised, "assumption", a.address_id);
+    assert.ok(a.assumptions.includes("no_recorded_affordability_restriction"), a.address_id);
+  }
+});
+
+test("Boston land use A rows all carry units ≥ 7; those without a range are tagged boston_land_use_A_is_7_plus", () => {
+  const boston = file.addresses.filter((a) => csvRow(a.address_id).use_code.startsWith("A/"));
+  assert.equal(boston.length, 60);
+  for (const a of boston) {
+    assert.ok(a.facts.units && a.facts.units.min >= 7, a.address_id);
+    assert.equal(a.assumptions.includes("boston_land_use_A_is_7_plus"), !/APT 7-30/.test(csvRow(a.address_id).use_description), a.address_id);
+  }
+  assert.equal(byId.get("A0093")!.facts.use_class, "apartment"); // ELDERLY HOME
+});
+
+test("every record carries sorted, unique assumptions and a source_detail per fact", () => {
+  for (const a of file.addresses) {
+    assert.deepEqual(a.assumptions, [...new Set(a.assumptions)].sort(), a.address_id);
+    assert.deepEqual(Object.keys(a.source_detail).sort(), ["built", "subsidised", "units", "use_class"]);
+    if (a.facts.units) assert.ok(a.source_detail.units, a.address_id);
+    if (a.facts.built) assert.ok(a.source_detail.built, a.address_id);
+  }
+});
+
+test("A0227, A0041, A0398: CSV vs use code contradiction still → null units plus a review flag", () => {
+  for (const id of ["A0227", "A0041", "A0398"]) {
+    const a = byId.get(id)!;
+    assert.equal(a.facts.units, null, id);
+    assert.ok(a.review.some((r) => r.startsWith("units:")), id);
+  }
+});
+
 test("rows without a house number fall back to the postal city, coords null", () => {
   for (const id of ["A0098", "A0128", "A0346"]) {
     const a = byId.get(id)!;

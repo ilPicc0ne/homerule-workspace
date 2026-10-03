@@ -51,11 +51,20 @@ export type Facts = {
   owner_occupied: null;
 };
 
+/** "assumption": filled in by a named rule of thumb (see `assumptions` on the record), not read from the record. */
 export type FactSources = {
   built: "csv" | "none";
   units: "csv" | "use_code" | "none";
-  use_class: "use_code" | "none";
-  subsidised: "use_code" | "none";
+  use_class: "use_code" | "assumption" | "none";
+  subsidised: "use_code" | "assumption" | "none";
+};
+
+/** Short human strings naming where each fact came from, for the engine's explanations; null when the fact is null. */
+export type FactSourceDetail = {
+  built: string | null;
+  units: string | null;
+  use_class: string | null;
+  subsidised: string | null;
 };
 
 export type SampleRow = {
@@ -98,6 +107,9 @@ export type ResolvedAddress = {
   census: { matched_address: string | null; attempts: CensusAttempt[] };
   facts: Facts;
   source: { jurisdiction: "census" | "postal_city" | "neighbourhood" } & FactSources;
+  source_detail: FactSourceDetail;
+  /** Named assumptions behind the facts, sorted and unique, e.g. ["no_recorded_affordability_restriction"]. */
+  assumptions: string[];
   confidence: { jurisdiction: number; built: number; units: number };
   review: string[];
   retrieved_at: string;
