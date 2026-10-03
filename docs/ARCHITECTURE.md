@@ -146,7 +146,9 @@ A change is either a new document (ingest) or a second date (as-of query).
 Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [priorities](PRD.md#priorities-and-feature-status), [user journeys](PRD.md#user-journeys).
 
 - **Hosting:** Vercel (Next.js), Pro plan, phone-first.
-- **Data:** the page reads precomputed engine output, not a live computation, so the page and the scored files show the same results.
+- **Data store: files in git, no database.** Rules, resolved addresses and engine results are a few MB of JSON, committed and reproducible with `make all`; the page reads them at build time, so the page and the scored files show the same results. Address resolution runs once offline and is committed as a cache. The only mutable data is subscriptions (Redis, below).
+- **Hour-16 update:** the ingest rebuilds the outputs and triggers a production redeploy (~1 min). Fallback if a redeploy is too slow: upload the outputs to Vercel Blob and let the page read from there.
+- **Contacts for "what you can do next":** a small table per jurisdiction (rent board, housing department, legal-aid line) in `contracts/contacts.json`, with source links; cards pick the entry for the rule's jurisdiction and category.
 - **Routes:**
   - `/`: search over the 500 addresses, with example addresses.
   - `/a/[id]`: the address dashboard, in this order:
