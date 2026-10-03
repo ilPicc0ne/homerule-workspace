@@ -1,0 +1,149 @@
+// Shapes shared by the web resolver (/api/resolve, /where) and the batch run
+// (make resolve → out/addresses.resolved.json, interface I3 in docs/ARCHITECTURE.md).
+
+export type LevelKind = "federal" | "state" | "county" | "municipality" | "unincorporated";
+
+export type TreeLevel = {
+  level: LevelKind;
+  /** What this level is called: "Country", "State", "County", "City", "Town", "Township", "Unincorporated area". */
+  label: string;
+  /** Plain name without the Census suffix: "Los Angeles", "Brookline". */
+  name: string;
+  /** Our jurisdiction ID from contracts/jurisdictions.json, or null when the place is not on the list. */
+  id: string | null;
+  geoid: string | null;
+  /** True when HomeRule holds rules for this level ("rules in HomeRule"); false = "not covered". */
+  covered: boolean;
+  note?: string;
+};
+
+export type Coverage = "covered" | "state_only" | "not_covered";
+
+export type Coords = { lat: number; lon: number };
+
+export type DateRange = { from: string; to: string };
+export type IntRange = { min: number; max: number | null };
+
+export type UseClass =
+  | "apartment"
+  | "condo"
+  | "co_op"
+  | "two_family"
+  | "single_family"
+  | "mixed_use"
+  | "subsidised_housing";
+
+/** Building facts in the vocabulary of contracts/facts.json (I7). */
+export type Facts = {
+  built: DateRange | null;
+  units: IntRange | null;
+  use_class: UseClass | null;
+  subsidised: boolean | null;
+  owner_type: null;
+  owner_occupied: null;
+};
+
+export type FactSources = {
+  built: "csv" | "none";
+  units: "csv" | "use_code" | "none";
+  use_class: "use_code" | "none";
+  subsidised: "use_code" | "none";
+};
+
+export type SampleRow = {
+  address_id: string;
+  street_address: string;
+  postal_city: string;
+  state: string;
+  zip: string;
+  year_built: string;
+  units: string;
+  use_code: string;
+  use_description: string;
+  source_dataset: string;
+  retrieved_at: string;
+};
+
+export type CensusAttempt = {
+  street: string;
+  city: string;
+  state: string;
+  zip_sent: boolean;
+  matches: number;
+  accepted: boolean;
+  /** Municipality Census put the address in, when it contradicted the postal city. */
+  rejected_city?: string | null;
+};
+
+export type ResolvedAddress = {
+  address_id: string;
+  input: { street_address: string; postal_city: string; state: string; zip: string };
+  normalised_street: string | null;
+  street_changes: string[];
+  jurisdictions: { state: string; county: string | null; city: string | null };
+  /** Our IDs from the top down, for the engine's jurisdiction test. */
+  stack: string[];
+  legal_city: string | null;
+  postal_city: string;
+  postal_differs: boolean;
+  coords: Coords | null;
+  census: { matched_address: string | null; attempts: CensusAttempt[] };
+  facts: Facts;
+  source: { jurisdiction: "census" | "postal_city" | "neighbourhood" } & FactSources;
+  confidence: { jurisdiction: number; built: number; units: number };
+  review: string[];
+  retrieved_at: string;
+  tree: TreeLevel[];
+};
+
+export type ResolvedFile = {
+  _comment: string;
+  census: { benchmark: string; vintage: string };
+  units_from_use_code: boolean;
+  count: number;
+  summary: Record<string, number>;
+  addresses: ResolvedAddress[];
+};
+
+type Base = { query: string; not_legal_advice: true };
+
+export type AddressResult = Base & {
+  kind: "address";
+  source: "census" | "sample";
+  matched_address: string;
+  coords: Coords | null;
+  tree: TreeLevel[];
+  coverage: Coverage;
+  notes: string[];
+  warnings: string[];
+  /** Present for the 500 sample addresses only. */
+  sample?: Pick<ResolvedAddress, "address_id" | "facts" | "source" | "confidence" | "review" | "retrieved_at">;
+};
+
+export type PlaceResult = Base & {
+  kind: "place";
+  matched: { via: "name" | "alias" | "county" | "state" | "zip"; text: string };
+  tree: TreeLevel[];
+  coverage: Coverage;
+  notes: string[];
+  /** Covered cities below a state or county, for browsing. */
+  children: { id: string; name: string }[];
+};
+
+export type AmbiguousResult = Base & {
+  kind: "ambiguous";
+  message: string;
+  candidates: { matched_address: string; municipality: string; state: string; covered: boolean }[];
+  total: number;
+};
+
+export type NotFoundResult = Base & {
+  kind: "not_found";
+  reason: "empty" | "no_match" | "unknown_place";
+  message: string;
+  suggestion?: string;
+};
+
+export type UnavailableResult = Base & { kind: "unavailable"; message: string };
+
+export type ResolveResult = AddressResult | PlaceResult | AmbiguousResult | NotFoundResult | UnavailableResult;

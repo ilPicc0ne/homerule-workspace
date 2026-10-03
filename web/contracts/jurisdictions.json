@@ -1,0 +1,266 @@
+{
+  "_comment": "Shared jurisdiction vocabulary (interface I1, docs/ARCHITECTURE.md). Internal IDs everywhere; rules.json writes schema_name. Counties are display-only (no county law in the corpus). Census GEOIDs verified 04.10.2026 via the Census geocoder. San Francisco is a consolidated city and county. census_cousub_geoid: the Census county subdivision of an NJ/MA municipality (verified 04.10.2026); in NJ and MA the municipality is the county subdivision, so an address with no incorporated place still resolves to its town or township.",
+  "jurisdictions": [
+    {
+      "id": "CA",
+      "level": "state",
+      "legal_name": "California",
+      "schema_name": "CA",
+      "parent": null,
+      "census_geoid": "06",
+      "rules": true,
+      "aliases": [
+        "California"
+      ]
+    },
+    {
+      "id": "NJ",
+      "level": "state",
+      "legal_name": "New Jersey",
+      "schema_name": "NJ",
+      "parent": null,
+      "census_geoid": "34",
+      "rules": true,
+      "aliases": [
+        "New Jersey"
+      ]
+    },
+    {
+      "id": "MA",
+      "level": "state",
+      "legal_name": "Massachusetts",
+      "schema_name": "MA",
+      "parent": null,
+      "census_geoid": "25",
+      "rules": true,
+      "aliases": [
+        "Massachusetts"
+      ]
+    },
+    {
+      "id": "CA-LOS-ANGELES-COUNTY",
+      "level": "county",
+      "legal_name": "Los Angeles County",
+      "schema_name": null,
+      "parent": "CA",
+      "census_geoid": "06037",
+      "rules": false,
+      "aliases": []
+    },
+    {
+      "id": "CA-SAN-FRANCISCO-COUNTY",
+      "level": "county",
+      "legal_name": "San Francisco County",
+      "schema_name": null,
+      "parent": "CA",
+      "census_geoid": "06075",
+      "rules": false,
+      "aliases": []
+    },
+    {
+      "id": "CA-SAN-DIEGO-COUNTY",
+      "level": "county",
+      "legal_name": "San Diego County",
+      "schema_name": null,
+      "parent": "CA",
+      "census_geoid": "06073",
+      "rules": false,
+      "aliases": []
+    },
+    {
+      "id": "CA-ALAMEDA-COUNTY",
+      "level": "county",
+      "legal_name": "Alameda County",
+      "schema_name": null,
+      "parent": "CA",
+      "census_geoid": "06001",
+      "rules": false,
+      "aliases": []
+    },
+    {
+      "id": "CA-ORANGE-COUNTY",
+      "level": "county",
+      "legal_name": "Orange County",
+      "schema_name": null,
+      "parent": "CA",
+      "census_geoid": "06059",
+      "rules": false,
+      "aliases": []
+    },
+    {
+      "id": "NJ-HUDSON-COUNTY",
+      "level": "county",
+      "legal_name": "Hudson County",
+      "schema_name": null,
+      "parent": "NJ",
+      "census_geoid": "34017",
+      "rules": false,
+      "aliases": []
+    },
+    {
+      "id": "NJ-ESSEX-COUNTY",
+      "level": "county",
+      "legal_name": "Essex County",
+      "schema_name": null,
+      "parent": "NJ",
+      "census_geoid": "34013",
+      "rules": false,
+      "aliases": []
+    },
+    {
+      "id": "MA-SUFFOLK-COUNTY",
+      "level": "county",
+      "legal_name": "Suffolk County",
+      "schema_name": null,
+      "parent": "MA",
+      "census_geoid": "25025",
+      "rules": false,
+      "aliases": []
+    },
+    {
+      "id": "MA-MIDDLESEX-COUNTY",
+      "level": "county",
+      "legal_name": "Middlesex County",
+      "schema_name": null,
+      "parent": "MA",
+      "census_geoid": "25017",
+      "rules": false,
+      "aliases": []
+    },
+    {
+      "id": "CA-LOS-ANGELES",
+      "level": "city",
+      "legal_name": "Los Angeles city",
+      "schema_name": "Los Angeles, CA",
+      "parent": "CA-LOS-ANGELES-COUNTY",
+      "census_geoid": "0644000",
+      "rules": true,
+      "aliases": [
+        "LA",
+        "City of Los Angeles",
+        "Van Nuys",
+        "North Hollywood",
+        "Hollywood",
+        "Sherman Oaks",
+        "Reseda"
+      ]
+    },
+    {
+      "id": "CA-SAN-FRANCISCO",
+      "level": "city",
+      "legal_name": "San Francisco city",
+      "schema_name": "San Francisco, CA",
+      "parent": "CA-SAN-FRANCISCO-COUNTY",
+      "census_geoid": "0667000",
+      "rules": true,
+      "aliases": [
+        "SF",
+        "San Fran",
+        "City and County of San Francisco"
+      ]
+    },
+    {
+      "id": "CA-SAN-DIEGO",
+      "level": "city",
+      "legal_name": "San Diego city",
+      "schema_name": "San Diego, CA",
+      "parent": "CA-SAN-DIEGO-COUNTY",
+      "census_geoid": "0666000",
+      "rules": true,
+      "aliases": [
+        "SD",
+        "San Ysidro"
+      ]
+    },
+    {
+      "id": "CA-BERKELEY",
+      "level": "city",
+      "legal_name": "Berkeley city",
+      "schema_name": "Berkeley, CA",
+      "parent": "CA-ALAMEDA-COUNTY",
+      "census_geoid": "0606000",
+      "rules": true,
+      "aliases": []
+    },
+    {
+      "id": "CA-SANTA-ANA",
+      "level": "city",
+      "legal_name": "Santa Ana city",
+      "schema_name": "Santa Ana, CA",
+      "parent": "CA-ORANGE-COUNTY",
+      "census_geoid": "0669000",
+      "rules": true,
+      "aliases": []
+    },
+    {
+      "id": "NJ-JERSEY-CITY",
+      "level": "city",
+      "legal_name": "Jersey City city",
+      "schema_name": "Jersey City, NJ",
+      "parent": "NJ-HUDSON-COUNTY",
+      "census_geoid": "3436000",
+      "census_cousub_geoid": "3401736000",
+      "rules": true,
+      "aliases": [
+        "JC"
+      ]
+    },
+    {
+      "id": "NJ-HOBOKEN",
+      "level": "city",
+      "legal_name": "Hoboken city",
+      "schema_name": "Hoboken, NJ",
+      "parent": "NJ-HUDSON-COUNTY",
+      "census_geoid": "3432250",
+      "census_cousub_geoid": "3401732250",
+      "rules": true,
+      "aliases": []
+    },
+    {
+      "id": "NJ-NEWARK",
+      "level": "city",
+      "legal_name": "Newark city",
+      "schema_name": "Newark, NJ",
+      "parent": "NJ-ESSEX-COUNTY",
+      "census_geoid": "3451000",
+      "census_cousub_geoid": "3401351000",
+      "rules": true,
+      "aliases": []
+    },
+    {
+      "id": "MA-BOSTON",
+      "level": "city",
+      "legal_name": "Boston city",
+      "schema_name": "Boston, MA",
+      "parent": "MA-SUFFOLK-COUNTY",
+      "census_geoid": "2507000",
+      "census_cousub_geoid": "2502507000",
+      "rules": true,
+      "aliases": [
+        "Dorchester",
+        "Roxbury",
+        "East Boston",
+        "Brighton",
+        "Allston",
+        "South Boston",
+        "Jamaica Plain",
+        "Hyde Park",
+        "Mattapan",
+        "Charlestown",
+        "West Roxbury",
+        "Roslindale"
+      ]
+    },
+    {
+      "id": "MA-CAMBRIDGE",
+      "level": "city",
+      "legal_name": "Cambridge city",
+      "schema_name": "Cambridge, MA",
+      "parent": "MA-MIDDLESEX-COUNTY",
+      "census_geoid": "2511000",
+      "census_cousub_geoid": "2501711000",
+      "rules": true,
+      "aliases": []
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+// make resolve: the 500 sample addresses → out/addresses.resolved.json (interface I3).
+//
+//   node scripts/resolve-batch.ts            offline, from the committed Census cache (deterministic)
+//   node scripts/resolve-batch.ts --live     call Census for requests missing from the cache, then save them
+//   node scripts/resolve-batch.ts --refresh  call Census for every request and overwrite the cache
+//   --no-use-code-units                      unit ranges from use codes don't count as facts
+import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { BENCHMARK, VINTAGE, censusMatches, structuredUrl, type FetchLike } from "../lib/resolve/census.ts";
+import { resolveSampleRow } from "../lib/resolve/batch.ts";
+import type { ResolvedAddress, ResolvedFile, SampleRow } from "../lib/resolve/types.ts";
+
+const here = dirname(fileURLToPath(import.meta.url));
+export const ROOT = resolve(here, "..", "..");
+export const SAMPLE_CSV = "data/realpage-starter/data/sample_addresses.csv";
+export const OUT_FILE = "out/addresses.resolved.json";
+export const CACHE_DIR = "engine/cache/census";
+
+export type CacheMode = "offline" | "live" | "refresh";
+
+/** Minimal RFC 4180 reader: quoted fields may hold commas ("2,4B-16U-H-X"). */
+export function parseCsv(text: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let field = "";
+  let quoted = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (quoted) {
+      if (c === '"' && text[i + 1] === '"') {
+        field += '"';
+        i++;
+      } else if (c === '"') quoted = false;
+      else field += c;
+    } else if (c === '"') quoted = true;
+    else if (c === ",") {
+      row.push(field);
+      field = "";
+    } else if (c === "\n" || c === "\r") {
+      if (c === "\r" && text[i + 1] === "\n") i++;
+      row.push(field);
+      if (row.some((f) => f !== "")) rows.push(row);
+      row = [];
+      field = "";
+    } else field += c;
+  }
+  row.push(field);
+  if (row.some((f) => f !== "")) rows.push(row);
+  return rows;
+}
+
+export function readSampleCsv(path: string): SampleRow[] {
+  const [header, ...rows] = parseCsv(readFileSync(path, "utf8"));
+  return rows.map((r) => Object.fromEntries(header.map((h, i) => [h, r[i] ?? ""])) as SampleRow);
+}
+
+export const cacheKey = (url: string) => createHash("sha256").update(url).digest("hex").slice(0, 16);
+
+/**
+ * A fetch backed by engine/cache/census: one file per request URL with the raw Census response.
+ * Offline mode never touches the network and fails loudly on a cache miss.
+ */
+export function cachedFetch(mode: CacheMode, dir = join(ROOT, CACHE_DIR)): FetchLike {
+  return async (url, init) => {
+    const file = join(dir, `${cacheKey(url)}.json`);
+    if (mode !== "refresh" && existsSync(file)) {
+      const rec = JSON.parse(readFileSync(file, "utf8"));
+      return new Response(JSON.stringify(rec.body), { status: rec.status });
+    }
+    if (mode === "offline") throw new Error(`Census cache miss (run make resolve-live): ${url}`);
+    const res = await fetch(url, init);
+    if (res.status === 200) {
+      const body = await res.json();
+      mkdirSync(dir, { recursive: true });
+      writeFileSync(file, JSON.stringify({ url, status: 200, body }) + "\n");
+      return new Response(JSON.stringify(body), { status: 200 });
+    }
+    return res;
+  };
+}
+
+async function mapLimit<T, R>(items: T[], limit: number, fn: (t: T) => Promise<R>): Promise<R[]> {
+  const out: R[] = new Array(items.length);
+  let next = 0;
+  await Promise.all(
+    Array.from({ length: Math.min(limit, items.length) }, async () => {
+      while (next < items.length) {
+        const i = next++;
+        out[i] = await fn(items[i]);
+      }
+    }),
+  );
+  return out;
+}
+
+export async function resolveAll(rows: SampleRow[], opts: { mode: CacheMode; unitsFromUseCode?: boolean }): Promise<ResolvedFile> {
+  const fetch = cachedFetch(opts.mode);
+  const unitsFromUseCode = opts.unitsFromUseCode ?? true;
+  const geocode = (a: Parameters<typeof structuredUrl>[0]) =>
+    censusMatches(structuredUrl(a), { fetch, timeoutMs: 40000, retries: opts.mode === "offline" ? 0 : 3, retryDelayMs: 2000 });
+  const addresses = await mapLimit(rows, opts.mode === "offline" ? 1 : 6, (r) => resolveSampleRow(r, { geocode, unitsFromUseCode }));
+
+  const summary: Record<string, number> = {};
+  const bump = (k: string) => (summary[k] = (summary[k] ?? 0) + 1);
+  for (const a of addresses) {
+    bump(`city:${a.jurisdictions.city}`);
+    bump(`jurisdiction_source:${a.source.jurisdiction}`);
+    bump(`units_source:${a.source.units}`);
+    bump(`built_source:${a.source.built}`);
+    if (a.postal_differs) bump("postal_city_differs");
+    if (a.review.length) bump("needs_review");
+  }
+  return {
+    _comment:
+      "Resolved sample addresses (interface I3, docs/ARCHITECTURE.md B). Generated by `make resolve` from the committed Census cache; do not edit by hand. Facts follow contracts/facts.json; null = unknown.",
+    census: { benchmark: BENCHMARK, vintage: VINTAGE },
+    units_from_use_code: unitsFromUseCode,
+    count: addresses.length,
+    summary: Object.fromEntries(Object.entries(summary).sort(([a], [b]) => a.localeCompare(b))),
+    addresses,
+  };
+}
+
+/** One address per line: small diffs, still valid JSON. */
+export function serialise(file: ResolvedFile): string {
+  const { addresses, ...head } = file;
+  const top = JSON.stringify(head, null, 2).replace(/\n}$/, "");
+  return `${top},\n  "addresses": [\n${addresses.map((a: ResolvedAddress) => `    ${JSON.stringify(a)}`).join(",\n")}\n  ]\n}\n`;
+}
+
+async function main() {
+  const args = new Set(process.argv.slice(2));
+  const mode: CacheMode = args.has("--refresh") ? "refresh" : args.has("--live") ? "live" : "offline";
+  const rows = readSampleCsv(join(ROOT, SAMPLE_CSV));
+  const file = await resolveAll(rows, { mode, unitsFromUseCode: !args.has("--no-use-code-units") });
+  mkdirSync(join(ROOT, "out"), { recursive: true });
+  writeFileSync(join(ROOT, OUT_FILE), serialise(file));
+  const s = file.summary;
+  console.log(
+    `resolve: ${file.count} addresses → ${OUT_FILE} · census ${s["jurisdiction_source:census"] ?? 0}, postal city ${s["jurisdiction_source:postal_city"] ?? 0}, neighbourhood ${s["jurisdiction_source:neighbourhood"] ?? 0} · postal≠legal ${s.postal_city_differs ?? 0} · review ${s.needs_review ?? 0}`,
+  );
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
+}

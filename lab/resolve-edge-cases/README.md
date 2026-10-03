@@ -18,4 +18,16 @@ Endpoint: `geocoder/geographies/onelineaddress`, benchmark/vintage Current, `lay
 
 Batch-run findings (lab/geocode-500): leading-zero ordinals ("05TH AV"), double addresses ("600 JACKSON/601 HARRISON"), ranges ("322-322.5"), lot suffixes, rows without a house number (6), a street unknown to Census (21 Guerrero St), Cambridge street matching Boston without ZIP, NJ ZIPs are owner mailing ZIPs.
 
-Still to probe: Census timeout/5xx, multiple matches, CA county subdivisions (CCDs are statistical, never a municipality), NJ townships that are also CDPs.
+Probed 04.10.2026 (fixtures in `web/tests/fixtures/census/`, rules in docs/ARCHITECTURE.md B):
+
+| Input | Census result | Resolver |
+|---|---|---|
+| 100 Main St, MA | 50 matches in different towns | `ambiguous`, up to 8 candidates |
+| 100 Main St, Springfield | 7 matches in CO, MA, NE, … | `ambiguous` across states |
+| 1 Main St, Los Angeles, CA | 1 match in La Selva Beach (Watsonville) | warning: typed city ≠ Census city |
+| 33 Washington St, Toms River, NJ | Toms River township (FUNCSTAT A) + Toms River CDP | township governs, CDP ignored |
+| 205 Claremont Ave, Montclair, NJ | Montclair township, no CDP | township |
+| any CA address | a CCD county subdivision (FUNCSTAT S) | never a municipality |
+| NJ/MA cities | place A + county subdivision F with the same name | the place; cousub GEOID also on the list |
+| MA counties | FUNCSTAT N | tree says "no county government" |
+| timeout / 5xx | (simulated) | one retry, then `unavailable` |

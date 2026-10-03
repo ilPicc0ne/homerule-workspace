@@ -1,0 +1,26 @@
+{
+ "query": "10635 Sherman Grove Ave, Los Angeles, CA",
+ "status": 200,
+ "body": {
+  "result": {
+   "input": {
+    "address": {
+     "address": "10635 Sherman Grove Ave, Los Angeles, CA"
+    },
+    "vintage": {
+     "isDefault": true,
+     "id": "4",
+     "vintageName": "Current_Current",
+     "vintageDescription": "Current Vintage - Current Benchmark"
+    },
+    "benchmark": {
+     "isDefault": true,
+     "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+     "id": "4",
+     "benchmarkName": "Public_AR_Current"
+    }
+   },
+   "addressMatches": []
+  }
+ }
+}

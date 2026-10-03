@@ -1,15 +1,18 @@
 # HomeRule pipeline. Targets fail loudly until implemented; see docs/ARCHITECTURE.md.
 AS_OF ?= 2026-10-01
 
-.PHONY: all extract resolve build eval ingest rerun web
+.PHONY: all extract resolve resolve-live build eval ingest rerun web
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
 extract:                                 ## A · corpus -> out/rules.json, out/rules.compiled.json (Dimitar)
 	@echo "extract: not implemented yet (extract/)"; exit 1
 
-resolve:                                 ## B · sample addresses -> out/addresses.resolved.json (Silvan)
-	@echo "resolve: not implemented yet (engine/)"; exit 1
+resolve:                                 ## B · sample addresses -> out/addresses.resolved.json, offline from engine/cache/census (Silvan)
+	cd web && npm run resolve
+
+resolve-live:                            ## B · same, calling Census for requests missing from the cache
+	cd web && node scripts/resolve-batch.ts --live && npm run sync
 
 build:                                   ## C+D · engine -> outputs/lookups.json, outputs/changes.json (Silvan)
 	@echo "build: not implemented yet (engine/), AS_OF=$(AS_OF)"; exit 1
