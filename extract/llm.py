@@ -1,10 +1,12 @@
 """OpenRouter client for Luna (structured chat completions) and Jev (decisions).
 
 Every call is cached by request hash under build/cache and logged to audit/calls.jsonl.
-Pass a different `run` value to force a fresh call for the same request (stability tests).
+Pass a different `run` value to force a fresh call for the same request (stability tests); EXTRACT_RUN in the
+environment does the same for a whole command (make rerun).
 """
 import hashlib
 import json
+import os
 import time
 import urllib.error
 import urllib.request
@@ -34,6 +36,7 @@ def _post(path, body, timeout=600):
 
 
 def _cached(kind, body, run, stage, ref, call):
+    run = os.environ.get("EXTRACT_RUN") or run
     digest = hashlib.sha256((json.dumps(body, sort_keys=True) + f"|run={run}").encode()).hexdigest()
     path = config.CACHE / kind / f"{digest}.json"
     if path.exists():

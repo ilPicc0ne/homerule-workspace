@@ -73,7 +73,7 @@ This is the project's feature list; each build updates its status in the same co
 
 | Prio | Feature | Owner | Status |
 |---|---|---|---|
-| P0 | Extraction → `rules.json` | D | planned |
+| P0 | Extraction → `rules.json` | D | partial (`d/extract-slice`: full corpus + cleared supplemental sources, 24/27 assertions, quotes 99.2% verbatim, eval suite; open: Jersey City text, Santa Ana, Berkeley status) |
 | P0 | Jurisdiction list + address lookup (Census geocoder) | S | planned |
 | P0 | Engine → `lookups.json`, `changes.json`, per-address diff | S | planned |
 | P0 | Address page (sections 1–3, 5–10), JSON endpoint per address | S | planned |
@@ -83,7 +83,7 @@ This is the project's feature list; each build updates its status in the same co
 | P1 | Jurisdiction pages for all levels (state › county › city), rules with their conditions | S | planned |
 | P1 | Chatbot scoreboard: ~20 dated city-level questions, plain chatbot vs HomeRule, date-stamped | D | planned |
 | P1 | Impact map on the rule page with date slider | S | planned |
-| P0 | Hour-16 ingest in one command | D | planned |
+| P0 | Hour-16 ingest in one command | D | built (`make ingest`, `make rehearse`, `make rerun`; rehearsal 45/45 addresses in ~24 s) |
 | P1 | Real email sending (double opt-in) via Resend from `alerts@yourhomerule.com`; deliverability: HTML + text, unsubscribe link and header, warm-up | S | partial (domain verified, test mail sent) |
 | P0 | Coming-soon landing page on yourhomerule.com | S | WIP (`s/landing`, preview) |
 | P1 | Renter-protection score + compare picked addresses (no ranking, no rent levels, unknown counted apart) | S | planned |

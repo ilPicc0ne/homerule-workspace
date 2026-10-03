@@ -1,13 +1,52 @@
 # extract (Dimitar)
 
-A · Extraction: corpus → `out/rules.json` + `out/rules.compiled.json` (+ `out/findings.json`). See `docs/ARCHITECTURE.md` (A · Extraction) and interface I2.
+A · Extraction: corpus → `out/rules.json` + `out/rules.compiled.json` + `out/findings.json`. See `docs/ARCHITECTURE.md` (A · Extraction, interfaces I2, I7, I8). The model reads each law once; code decides applicability (decision 0002).
+
+## Commands
+
+| Command | Does |
+|---|---|
+| `make extract` | Index the corpus and the cleared supplemental sources, extract every document, gate, link findings, compile |
+| `make eval` | Assertions, coverage matrix, T1-T6, `out/changes.json`, address questions → `out/eval/report_supplemental.md` |
+| `make ingest DOC=<path> JUR="Cambridge, MA" [ID=X002]` | Hour 16: one new text file → rules, findings, the affected addresses (no code or prompt change) |
+| `make rehearse` | The hour-16 run on the fictional `tests/fixtures/synthetic/X001.txt`; removes it afterwards so it never reaches the outputs |
+| `make rerun DOC=D0xx` | Live re-extraction of one document with fresh model calls (cache bypassed via `EXTRACT_RUN`) |
+
+Model calls are cached by request hash (`build/cache/`), so a rerun of `make extract` is free and deterministic. Every call is logged to `audit/calls.jsonl`. Key: `OPENROUTER_API_KEY` in `.env.local`. Models: Luna `openai/gpt-6-luna` (free-form extraction), Jev `typesafe/jev-1.13` (choice questions with calibrated confidence).
+
+## Pipeline per document
+
+1. **Index (code):** pin the text by hash, parse the header, evidence tier, section tree, date and boundary-phrase candidates.
+2. **Jev J1-J4 (parallel, full document as state):** document type and status, section content type, section category, what each date marks.
+3. **Luna L1:** obligations with I7 coverage conditions, exemptions, amounts, dated events, interactions and verbatim quotes. Same-city agency summaries are bundled; documents over 30,000 characters are split along the section tree with shared context and merged.
+4. **Code checks:** quotes found in the source, conditions only over I7 facts, no circular references, every labelled category covered.
+5. **Jev J5-J8:** cross-check Luna's closed fields (effect, headline, interaction type, fact/operator); a confident disagreement overrides.
+6. **Luna L2:** one targeted repair call for whatever the checks flagged.
+7. **Jev J9:** triage of conditions left `unparsed`.
+8. **Gate G1-G4 (`gate.py`):** is each claim and key value supported by its quote, which date the rule starts, does the provision also regulate another topic (then one targeted Luna call), what status the text shows.
+9. **Compile (`compile.py`):** effective dates (provision-scoped events, relative rules such as "first day of the sixth month after adoption"), status, I2 records with `source_span` materialised from the pinned text, I8 findings.
+
+## Modules
 
 | Module | Does |
 |---|---|
-| `corpus.py` | Pins every text by content hash (`build/versions/`), parses the SOURCE/RETRIEVED header, evidence tier, sections, date and boundary-phrase candidates → `out/index/`, `out/inventory.json`. No model calls. `python3 -m extract.corpus` |
-| `sections.py` | Legal structure as nested sections with code-point offsets (`1950.5/c/5/A/ii`); paragraph blocks for the rest |
-| `jev_pass.py` | One Jev call per document: document type and status, per-section content type and category, what each date marks |
-| `luna_pass.py` | One Luna call per document (agency summaries of one city bundled): obligations with conditions, amounts, events, interactions, quotes; quotes located in the pinned text |
-| `llm.py` | OpenRouter client; every call cached (`build/cache/`) and logged (`audit/calls.jsonl`) |
+| `corpus.py` | Index → `out/index/`, `out/inventory.json`; `build_supplemental()` indexes only sources with `use_for_rule_extraction: true` |
+| `sections.py` | Legal structure as nested sections with offsets (`1950.5/c/5/A/ii`) |
+| `parts.py` | Splits large documents into parts with header, outline, definitions and referenced sections as context |
+| `jev_pass.py`, `jev_check.py` | Jev labels (J1-J4) and cross-checks (J5-J8) |
+| `luna_pass.py` | Extraction, quote location, checks, repair, triage, pending-bill record |
+| `status.py` | Corroborates a "draft" reading against the manifest's code-publisher links |
+| `gate.py` | Verification gate G1-G4 |
+| `links.py` | One Jev call over link-only manifest rows → `out/link_findings.json` (failed measures, bans with no corpus text) |
+| `compile.py` | `out/rules.compiled.json` (all rules), `out/rules.json` (starter corpus only, the scored file), `out/findings.json` |
+| `changes.py` | `changes.json` in the guide's shape from the same evaluation as the lookups |
+| `ingest.py` | Hour-16 ingest |
+| `llm.py` | OpenRouter client with cache and audit log |
 
-Key: `OPENROUTER_API_KEY` in `.env.local`. Models: `openai/gpt-6-luna`, `typesafe/jev-1.13`.
+## State (04.10.2026, eval with supplemental sources)
+
+- Quotes: 1731/1745 verbatim in the pinned source (99.2%).
+- Assertions over the brief's named rules: 24/27. Misses: Berkeley ch. 13.63 (the corpus has a first-reading draft, read as pending), Santa Ana (manifest link only), Jersey City (text only in a held supplemental source).
+- Address questions: 23/24 tuning, 15/16 held out.
+- T1 250/250, T3 140/140 flips, T4 110/110, T5 0 with IP 25-21 recorded as failed, T6 rehearsal 45/45 in about 24 s. T2 40/90 and T3 flags 40/90: Jersey City missing.
+- Known gaps: the state rent cap's nested exemptions return `unknown` for some exempt-looking buildings; D058 is refused by the content filter on both models (logged in `out/extracted_failures.json`).

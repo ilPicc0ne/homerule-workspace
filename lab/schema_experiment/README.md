@@ -10,21 +10,19 @@ Issue #3 (Jev test) and the evidence behind decision 0002. Run: `python3 -m lab.
 - **Part a**: hand-written reference records for the 9 slice laws (`gold_slice.yaml`). Can the schema carry the answers?
 - **Part b**: what the extraction pipeline produced from 13 corpus documents (`out/extracted/`). Can we fill it today?
 
-## Results (04.10.2026, 00:10 CEST)
+## Results (04.10.2026, 01:15 CEST, after code checks, repair and the gate)
 
 | | Arm B: code decides | Arm A: Luna decides (3 runs) |
 |---|---|---|
 | a · reference records | **24/24**, amounts 3/3, identical every run | 23 / 18 / 23 of 24, amounts 2 / 1 / 2 of 3, 18/24 answers identical across runs |
-| b · extracted records | **11/24**, amounts 3/3 | 19 / 18 / 20 of 24, amounts 2/3, 21/24 identical across runs |
+| b · extracted records | **23/24**, amounts 2/3, identical every run | 19 / 20 / 20 of 24, amounts 1 / 2 / 2 of 3, 17/24 answers identical across runs |
 
-- **Part a**: the schema can hold every answer and code gives the same answer every time. The plain approach is mostly right but drifts between runs (one run called a 1926 SF building "unknown") and never gets a conditional deposit amount. Caveat: the reference records were written knowing the questions, so 24/24 is a ceiling.
-- **Part b**: all 13 of B's errors come from three extraction defects, each detectable by code:
-  1. local coverage left `unparsed` (SF, LA): 8 answers;
-  2. an exemption extracted as `always` (FAIR Act): 3 answers;
-  3. pending MA bills extracted with no obligations: 2 answers (both arms).
-- Where extraction was right, B wins exactly what the starter schema can't express: the 2030 sunset (A wrong in 3/3 runs) and the conditional deposit (A wrong in 3/3 runs).
+- **Part a**: the schema can hold every answer and code gives the same answer every time. Caveat: the reference records were written knowing the questions, so 24/24 is a ceiling, not a result.
+- **Part b**: on what the pipeline extracts today, code decides 23/24 vs 19-20/24 for the plain approach, and gives the same answer every run (A changes 7 of 24 answers between runs). B wins what the starter schema can't express: the 2030 sunset of §1947.12 (Q13, A wrong in 3/3 runs), dated transitions (Q8, Q9) and missing building facts kept as `unknown` (Q4, A guessed in 2/3 runs).
+- B's one miss (Q2) is an extraction defect: the state cap's exemptions are nested (the 15-year exemption is an exception to the exemption list), and the extracted predicate returns `unknown` for a 2005 SF building where the statute says it applies. One amount miss (Q11): the tenancy-in-common deposit is extracted as a conditional value the facts can't decide.
+- The earlier run (00:10, 11/24) failed on three extraction defects, all now caught by code checks: local coverage left `unparsed`, an exemption extracted as `always`, pending bills with no obligations.
 
-**Conclusion:** keep rules as code; the work is in filling the conditions reliably. Extraction gets code checks plus one targeted Luna repair call, and `parse_status: failed` rules need an engine fallback (decision for the engine owner).
+**Conclusion:** keep rules as code (decision 0002). The full-corpus numbers are in `out/eval/report_supplemental.md` (`make eval`).
 
 ## Jev (issue #3)
 

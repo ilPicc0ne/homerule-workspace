@@ -151,11 +151,6 @@ def build():
     return summary
 
 
-if __name__ == "__main__":
-    for line in build():
-        print(*line)
-
-
 # ---------- supplemental sources (data/supplemental-legal) ----------
 SUPP = config.ROOT / "data" / "supplemental-legal"
 SUPP_TIER = {"municipal_enactment": "primary_text", "municipal_amendment": "primary_text",
@@ -187,3 +182,10 @@ def build_supplemental():
         (config.INDEX / f"{s['source_id']}.json").write_text(json.dumps(entry, indent=1, ensure_ascii=False))
         done.append(s["source_id"])
     return done, held
+
+
+if __name__ == "__main__":
+    for line in build():
+        print(*line)
+    done, held = build_supplemental()
+    print("supplemental indexed:", *done, "| held:", *(f"{i}({why})" for i, why in held))
