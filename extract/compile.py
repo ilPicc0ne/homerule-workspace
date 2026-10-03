@@ -24,9 +24,12 @@ def _first_day_after_months(d, n):
     return dt.date(d.year + m // 12, m % 12 + 1, 1).isoformat()
 
 
-def effective(events, state, provision=None):
+def effective(events, jurisdiction, provision=None):
     """from (operative, else effective; explicit or derived), until (repeal), precision, derivation.
-    Events scoped to the obligation's own provision (or a parent of it) win over act-level events."""
+    Events scoped to the obligation's own provision (or a parent of it) win over act-level events.
+    jurisdiction: a schema name ("CA", "Jersey City, NJ"); statutory defaults depend on state and level."""
+    state = jurisdiction.split(", ")[-1]
+    city = ", " in jurisdiction
     if provision:
         def related(e):
             a = e.get("applies_to") or "act"
@@ -51,9 +54,13 @@ def effective(events, state, provision=None):
             elif e.get("relative_rule") == "first_day_of_nth_month_after_enactment" and enacted and e.get("n"):
                 cands.append((_first_day_after_months(enacted[:7] + "-01", int(e["n"])),
                               f"first day of month {int(e['n'])} after enactment {enacted}", "day"))
-            elif e.get("relative_rule") == "no_date_in_text" and enacted and state == "CA":
+            elif e.get("relative_rule") == "no_date_in_text" and enacted and state == "CA" and not city:
                 cands.append((f"{int(enacted[:4]) + 1}-01-01",
                               f"California default: January 1 after enactment {enacted} (Cal. Const. art. IV § 8(c))", "day"))
+            elif e.get("relative_rule") == "no_date_in_text" and enacted and state == "NJ" and city:
+                d = (dt.date.fromisoformat(enacted) + dt.timedelta(days=20)).isoformat()
+                cands.append((d, f"New Jersey municipal default: 20 days after final passage {enacted} (N.J.S.A. "
+                                 "40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later", "day"))
         if cands:
             # the version in force now: the latest start on or before as-of, else the earliest future start
             past = sorted(c for c in cands if c[0] <= AS_OF)
@@ -157,7 +164,7 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                 doc_status = "enacted"
                 status_evidence["verdict"] = "adopted"
                 status_evidence["basis"] = "published effective dates (open question): " + ", ".join(dated)
-            if dated and doc_status == "enacted" and not effective(events, state, o["provision"])["from"]:
+            if dated and doc_status == "enacted" and not effective(events, jur, o["provision"])["from"]:
                 # the text gives no date; published dates disagree: the later one, flagged as an open question
                 events = events + [{"kind": "effective", "date": dated[-1], "precision": "day", "relative_rule": "none",
                                     "n": None, "applies_to": "act", "quote": "open question: published dates disagree",
@@ -185,7 +192,7 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
 
 def compiled(rule):
     j = BY_SCHEMA.get(rule["jurisdiction"], {})
-    eff = effective(rule["events"], rule["state"], rule.get("provision"))
+    eff = effective(rule["events"], rule["jurisdiction"], rule.get("provision"))
     inter = rule["interactions"][0] if rule["interactions"] else None
     return {
         "team_rule_id": f"{j.get('id', rule['jurisdiction'])}-{CAT_CODE[rule['category']]}-{_core(rule['citation'])}",
@@ -210,7 +217,7 @@ STARTER_STATUS = {"in_force": "in_force", "enacted_not_effective": "not_yet_effe
 
 
 def starter_record(rule, comp):
-    if comp["status"] == "repealed":
+    if comp["status"] == "repealed" or not rule["requirement_quote"]:     # no verbatim quote: compiled only
         return None
     j = BY_SCHEMA.get(rule["jurisdiction"], {})
     return {
@@ -257,8 +264,14 @@ def findings(rules):
 def build(extracted_dir=None, suffix=""):
     rules = internal_rules(extracted_dir)
     comps = [compiled(r) for r in rules]
-    starter = [rec for rec, c in ((starter_record(r, c), c) for r, c in zip(rules, comps))
-               if rec and c["x_source"]["origin"] == "starter"]
+    seen = {}
+    for c in comps:          # team_rule_id must be unique: a repeat gets a deterministic suffix, never aborts a run
+        n = seen.get(c["team_rule_id"], 0)
+        seen[c["team_rule_id"]] = n + 1
+        if n:
+            print(f"warning: duplicate team_rule_id {c['team_rule_id']} -> suffix -{n + 1}")
+            c["team_rule_id"] = f"{c['team_rule_id']}-{n + 1}"
+    starter = [rec for rec in (starter_record(r, c) for r, c in zip(rules, comps)) if rec]   # starter, supplemental, ingested
     (config.OUT / f"rules.compiled{suffix}.json").write_text(json.dumps(comps, indent=1, ensure_ascii=False))
     (config.OUT / f"rules{suffix}.json").write_text(json.dumps({"rules": starter}, indent=1, ensure_ascii=False))
     (config.OUT / f"findings{suffix}.json").write_text(json.dumps(findings(rules), indent=1, ensure_ascii=False))

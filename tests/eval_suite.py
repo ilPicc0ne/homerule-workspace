@@ -52,7 +52,7 @@ RULES = {   # question key -> (jurisdiction schema_name, category, citation rege
 def normalise_dates(rules):
     """The evaluator reads events; give it the compiled from/until so both agree."""
     for r in rules:
-        eff = C.effective(r["events"], r["state"], r.get("provision"))
+        eff = C.effective(r["events"], r["jurisdiction"], r.get("provision"))
         r["eff"] = eff
         r["events"] = ([{"kind": "effective", "date": eff["from"], "relative_rule": "none", "n": None}] if eff["from"] else []) + \
                       ([{"kind": "repealed", "date": eff["until"], "relative_rule": "none", "n": None}] if eff["until"] else [])
@@ -207,7 +207,7 @@ def changes_json(rules, finds, addresses, all_rules):
                 "T4": (in_state("MA"), set()), "T5": (set(), set())}
     x = [r for r in all_rules if r["origin"] == "ingested"]
     if x:   # T6 rehearsal on the synthetic ordinance, if it has been ingested
-        eff = min(C.effective(r["events"], r["state"], r.get("provision"))["from"] or "9999" for r in x)
+        eff = min(C.effective(r["events"], r["jurisdiction"], r.get("provision"))["from"] or "9999" for r in x)
         before = normalise_dates([dict(r) for r in rules])
         after = normalise_dates([dict(r) for r in rules + x])
         tests.append({"test_id": "T6", "type": "ingest", "rules_before": before, "rules_after": after,

@@ -94,7 +94,7 @@ def run():
     out = []
     for i, it in enumerate(items):
         mine = [r for r in rules if r["jurisdiction"] in it["jurisdictions"] and r["category"] == it["category"]]
-        dates = {C.effective(r["events"], r["state"], r.get("provision")).get("from"): r for r in mine}
+        dates = {C.effective(r["events"], r["jurisdiction"], r.get("provision")).get("from"): r for r in mine}
         claims = []
         for k, c in enumerate(it["claims"]):
             a = answers.get(f"i{i}_c{k}")
@@ -116,7 +116,7 @@ def run():
                 "quote": None, "source_doc_ids": sorted({c["source_doc_id"] for c in claims if c["source_doc_id"]}
                                                         | {r["source_doc_id"] for r in ours}),
                 "our_rules": [{"id": r["id"], "citation": r["citation"], "source_doc_id": r["source_doc_id"],
-                               "effective": C.effective(r["events"], r["state"], r.get("provision")),
+                               "effective": C.effective(r["events"], r["jurisdiction"], r.get("provision")),
                                "key_value": r.get("key_value"), "quote": r["requirement_quote"]} for r in ours]})
     (config.OUT / "open_questions.json").write_text(json.dumps(out, indent=1, ensure_ascii=False))
     return out

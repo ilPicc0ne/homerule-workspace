@@ -37,7 +37,7 @@ def ingest(path, jurisdiction, doc_id):
     gate.run([doc_id])
     rules_after = C.internal_rules()
     new = [r for r in rules_after if r["unit"] == doc_id]
-    effs = sorted({C.effective(r["events"], r["state"], r.get("provision"))["from"] for r in new} - {None})
+    effs = sorted({C.effective(r["events"], r["jurisdiction"], r.get("provision"))["from"] for r in new} - {None})
     return {"doc_id": doc_id, "new_rules": new, "effective": effs, "rules_before": rules_before,
             "rules_after": rules_after, "seconds": round(time.time() - t0, 1)}
 

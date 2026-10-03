@@ -87,7 +87,7 @@ def L_derived(r):
     """Dates derived from relative effective-date rules in the unit's events."""
     from .compile import effective
     out = []
-    eff = effective(r["luna"]["events"], r["jurisdiction"].split(", ")[-1])
+    eff = effective(r["luna"]["events"], r["jurisdiction"])
     if eff.get("derived") and eff.get("from"):
         out.append((eff["from"], eff["derived"]))
     return out
