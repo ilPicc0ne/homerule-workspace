@@ -25,6 +25,10 @@ Work in progress. Submission: Sun 04.10.2026, 15:00 CEST.
 | `data/realpage-starter/` | Original starter pack, tracked in this workspace; excluded from the public submission copy |
 | `notes/`, `lab/` | Private workspace only: plans, meetings, ideas, experiments (not in the public repo) |
 
+## How we work
+
+Branch per feature (`d/…` Dimitar, `s/…` Silvan), small PRs into `main`, one GitHub issue per PRD feature row, status updated in the PRD by the PR that changes it. Details for people and coding agents: [AGENTS.md](AGENTS.md).
+
 ## Docs
 
 Product docs: [docs/](docs/README.md).
