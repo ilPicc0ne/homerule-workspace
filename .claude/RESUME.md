@@ -9,14 +9,14 @@
 
 1. Dimitar accepts the invite (github.com/ilPicc0ne/homerule-workspace), clones, copies the starter pack into `data/realpage-starter/` (git-ignored).
 2. M0: calibrate output formats against `schema/` and `submission_templates/` (the participant pack has no score.py, no dev key).
-3. 22:00 spike: extraction baseline, geocoding, freeze the predicate AST schema (see `notes/plan/prd.md` Technical requirements and `docs/ARCHITECTURE.md`).
+3. 22:00 spike: extraction baseline, geocoding, freeze the predicate AST schema (see `docs/PRD.md` Technical requirements and `docs/ARCHITECTURE.md`).
 4. Ask in the Discord challenge channel: score.py release, hour-16 time and format, how "unknown" counts, starter-pack licensing for a public repo.
 5. Share the review page https://claude.ai/artifact/ARbRPgGyA4ndhd7LvbztSu with Dimitar as Editor; settle D1–D7 (D7 = renter, tentative).
 6. Sun ~14:00: `scripts/publish.sh`, read the leak check, `--push`, flip `ilPicc0ne/homerule` to public.
 
 ## Open questions
 
-- D1 self-repair loop tier, D2 TypeScript vs Python engine, D3 headline (proposal: "Your landlord has a lawyer. Now you have the law."), D4 demo hero, D5 MCP, D6 measured contrast.
+- D1 self-repair loop tier, D2 TypeScript vs Python engine, D3 tagline "Your rights as a renter, for your exact address." (Dimitar may veto), D4 demo hero, D5 MCP, D6 measured contrast.
 - Exact time of the hour-16 ordinance (somewhere 07:00–11:00 CEST?).
 
 ## Recent decisions

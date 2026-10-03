@@ -5,5 +5,5 @@ Public product documentation. Planning, meetings and idea iterations live in the
 | File | What |
 |---|---|
 | [ARCHITECTURE.md](ARCHITECTURE.md) | How HomeRule is built: extraction, address resolution, engine, change tracking, web |
-| [FEATURES.md](FEATURES.md) | Feature list with status |
+| [PRD.md](PRD.md) | Product requirements: scope, priorities with feature status, owners, user journeys, demo case |
 | [decisions/](decisions/README.md) | Decision records |

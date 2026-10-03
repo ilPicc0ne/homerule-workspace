@@ -1,5 +1,7 @@
 # HomeRule
 
+**Your rights as a renter, for your exact address.**
+
 > **Not legal advice.** HomeRule shows which published housing rules may apply to an address, with quotes and dates. It does not tell anyone what to do and is not a compliance certification.
 
 **A model has a training cutoff. A law has an effective date.**
