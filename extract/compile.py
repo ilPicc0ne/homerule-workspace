@@ -151,7 +151,8 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                 "applies_if": o["applies_if"], "exempt_if": o["exempt_if"],
                 "key_value_conditions": o["key_value_conditions"], "tenant_conditions": o["tenant_conditions"],
                 "interactions": o["interactions"], "parse_status": o.get("parse_status", "ok"),
-                "checks": o.get("checks", []), "stub": o.get("stub", False),
+                "checks": o.get("checks", []) + o.get("gate_flags", []), "gate_flags": o.get("gate_flags", []),
+                "gate_status": r.get("gate_status"), "stub": o.get("stub", False),
                 "origin": "supplemental" if r["doc_id"].startswith("S") else "starter"})
     return rules
 
@@ -194,7 +195,8 @@ def starter_record(rule, comp):
         "overrides": [], "interaction": comp["interaction"]["type"] if comp["interaction"]["type"] != "none" else None,
         "effective_date": comp["effective"]["from"], "citation": rule["citation"],
         "source_doc_id": rule["source_doc_id"], "source_url": rule["source_url"],
-        "quoted_span": rule["requirement_quote"], "confidence": 0.9 if rule["parse_status"] == "ok" else 0.5,
+        "quoted_span": rule["requirement_quote"],
+        "confidence": 0.9 if rule["parse_status"] == "ok" and not rule.get("gate_flags") else 0.5,
         "conflict_flag": comp["interaction"]["type"] == "may_preempt_local", "conflict_note": None,
     }
 
