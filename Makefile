@@ -5,8 +5,12 @@ AS_OF ?= 2026-10-01
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
-extract:                                 ## A · corpus -> out/rules.json, out/rules.compiled.json (Dimitar)
-	@echo "extract: not implemented yet (extract/)"; exit 1
+extract:                                 ## A · corpus -> out/rules.json, out/rules.compiled.json, out/findings.json (Dimitar)
+	python3 -m extract.corpus
+	python3 -m extract.luna_pass $$(ls out/index | grep '^D' | sed 's/.json//')
+	python3 -m extract.gate
+	python3 -m extract.links
+	python3 -m extract.compile
 
 resolve:                                 ## B · sample addresses -> out/addresses.resolved.json (Silvan)
 	@echo "resolve: not implemented yet (engine/)"; exit 1
@@ -15,10 +19,11 @@ build:                                   ## C+D · engine -> outputs/lookups.jso
 	@echo "build: not implemented yet (engine/), AS_OF=$(AS_OF)"; exit 1
 
 eval:                                    ## assertion suite, T1-T6, trap addresses, quote check, disclaimer crawl
-	@echo "eval: not implemented yet (tests/)"; exit 1
+	python3 -m tests.eval_suite
 
-ingest:                                  ## hour-16: make ingest DOC=<path> [TEST=<t6.json>]
-	@echo "ingest: not implemented yet, DOC=$(DOC)"; exit 1
+ingest:                                  ## hour-16: make ingest DOC=<path> JUR="Cambridge, MA" [ID=X002]
+	python3 -m extract.ingest $(DOC) --jurisdiction "$(JUR)" --id $(or $(ID),X002)
+	python3 -m tests.eval_suite
 
 rerun:                                   ## live re-extraction of one doc: make rerun DOC=D0xx
 	@echo "rerun: not implemented yet, DOC=$(DOC)"; exit 1

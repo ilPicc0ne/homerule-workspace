@@ -153,7 +153,7 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                 "interactions": o["interactions"], "parse_status": o.get("parse_status", "ok"),
                 "checks": o.get("checks", []) + o.get("gate_flags", []), "gate_flags": o.get("gate_flags", []),
                 "gate_status": r.get("gate_status"), "stub": o.get("stub", False),
-                "origin": "supplemental" if r["doc_id"].startswith("S") else "starter"})
+                "origin": {"S": "supplemental", "X": "ingested"}.get(r["doc_id"][0], "starter")})
     return rules
 
 
@@ -210,6 +210,10 @@ def findings(rules):
                         "category": r["category"], "kind": "barred_by_law", "citation": r["citation"],
                         "quote": r["requirement_quote"], "source_doc_ids": [r["source_doc_id"]],
                         "note": "Bars or limits local rules on this topic in this state."})
+    links = config.OUT / "link_findings.json"         # manifest links classified by extract/links.py
+    if links.exists():
+        for f in json.load(open(links)):
+            out.append({**f, "citation": f"manifest link: {f['url']}"})
     inv = json.load(open(config.OUT / "inventory.json"))
     for name, info in inv.items():
         if not info["has_text"]:

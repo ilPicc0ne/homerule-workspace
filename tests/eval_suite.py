@@ -9,6 +9,7 @@
 Address results use the reference evaluator in lab/schema_experiment/evaluate.py until the engine
 (interface I4) exists. Run: python3 -m tests.eval_suite [--supplemental]
 """
+import datetime as dt
 import json
 import re
 import sys
@@ -16,7 +17,7 @@ from collections import Counter, defaultdict
 
 import yaml
 
-from extract import compile as C, config
+from extract import changes as CH, compile as C, config
 from lab.schema_experiment import evaluate as E, facts as FA
 
 FIX = config.ROOT / "tests" / "fixtures"
@@ -195,6 +196,39 @@ def change_tests(rules, addresses, res):
     return out
 
 
+# ---------- 4b changes.json in the guide's shape, T1-T6 ----------
+def changes_json(rules, finds, addresses, all_rules):
+    tests = json.load(open(config.STARTER / "dev" / "change_tests.json"))
+    city = {a: FA.address_facts(r)["address.city"].values[0] for a, r in addresses.items()}
+    in_state = lambda st: {a for a, c in city.items() if c.split(", ")[-1] == st}
+    in_city = lambda c: {a for a, x in city.items() if x == c}
+    expected = {"T1": (in_state("CA"), set()), "T2": (in_city("Hoboken, NJ") | in_city("Jersey City, NJ"), set()),
+                "T3": (in_state("NJ"), in_city("Hoboken, NJ") | in_city("Jersey City, NJ")),
+                "T4": (in_state("MA"), set()), "T5": (set(), set())}
+    x = [r for r in all_rules if r["origin"] == "ingested"]
+    if x:   # T6 rehearsal on the synthetic ordinance, if it has been ingested
+        eff = min(C.effective(r["events"], r["state"], r.get("provision"))["from"] or "9999" for r in x)
+        before = normalise_dates([dict(r) for r in rules])
+        after = normalise_dates([dict(r) for r in rules + x])
+        tests.append({"test_id": "T6", "type": "ingest", "rules_before": before, "rules_after": after,
+                      "dates": [(dt.date.fromisoformat(eff) + dt.timedelta(days=1)).isoformat()], "effective": eff})
+        units = {a for a in in_city("Cambridge, MA") if (lambda f: f.known and f.lo >= 6)(
+            FA.address_facts(addresses[a]).get("units", FA.UNKNOWN))}
+        expected["T6"] = (units, set())
+    out = CH.run_tests(tests, rules, finds, list(addresses), E.evaluate, lambda a: FA.address_facts(addresses[a]))
+    report = {}
+    for tid, v in out.items():
+        want, want_flags = expected.get(tid, (set(), set()))
+        got, flags = set(v["affected_address_ids"]), set(v["conflict_flag_address_ids"])
+        shape_ok = set(v) == {"affected_address_ids", "conflict_flag_address_ids", "notes"}
+        report[tid] = {"expected": len(want), "got": len(got), "missing": len(want - got), "extra": len(got - want),
+                       "flags_expected": len(want_flags), "flags_got": len(flags & want_flags),
+                       "flags_extra": len(flags - want_flags), "shape_ok": shape_ok, "notes": v["notes"][:300],
+                       "ok": got == want and flags == want_flags and shape_ok}
+    (config.OUT / "changes.json").write_text(json.dumps(out, indent=1))
+    return report
+
+
 # ---------- 5 address questions ----------
 def value_ok(expected, got):
     if expected is None:
@@ -231,7 +265,8 @@ SUPPLEMENTAL = [False]
 def run(supplemental=False):
     SUPPLEMENTAL[0] = supplemental
     dirs = [config.OUT / "extracted"]
-    rules = [r for r in C.internal_rules(dirs[0]) if supplemental or r["origin"] == "starter"]
+    all_rules = C.internal_rules(dirs[0])
+    rules = [r for r in all_rules if r["origin"] == "starter" or (supplemental and r["origin"] == "supplemental")]
     rules = normalise_dates(rules)
     finds = C.findings(rules)
     addresses = FA.load()
@@ -241,6 +276,7 @@ def run(supplemental=False):
         "rules": len(rules), "integrity": integrity(dirs), "assertions": assertions(rules, finds),
         "matrix": {f"{k[0]}|{k[1]}": v for k, v in matrix(rules, finds).items()},
         "changes": change_tests(rules, addresses, res),
+        "changes_json": changes_json(rules, finds, addresses, all_rules),
         "questions_tuning": questions(rules, addresses, res, FIX / "address_questions.yaml"),
         "questions_holdout": questions(rules, addresses, res, FIX / "address_questions_holdout.yaml"),
     }
@@ -270,6 +306,11 @@ def markdown(rep):
         L.append(f"| {j['id']} | " + " | ".join(m[f"{j['id']}|{c}"] for c in CATS) + " |")
     L += ["", "## Change tests", "", "| test | expected | got |", "|---|---|---|"]
     L += [f"| {k} | {v['expected']} | {'✓ ' if v['ok'] else '✗ '}{v['got']} |" for k, v in rep["changes"].items()]
+    L += ["", "## changes.json (guide shape), T1-T6", "", "| test | expected addresses | got | missing | extra | flags (exp/got/extra) | shape | notes |",
+          "|---|---|---|---|---|---|---|---|"]
+    L += [f"| {k} | {v['expected']} | {'✓ ' if v['ok'] else '✗ '}{v['got']} | {v['missing']} | {v['extra']} | "
+          f"{v['flags_expected']}/{v['flags_got']}/{v['flags_extra']} | {'✓' if v['shape_ok'] else '✗'} | {v['notes'][:120]} |"
+          for k, v in rep["changes_json"].items()]
     for name in ("questions_tuning", "questions_holdout"):
         qs = rep[name]
         vals = [x["value_ok"] for x in qs if x["value_ok"] is not None]
