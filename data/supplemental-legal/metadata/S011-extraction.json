@@ -1,0 +1,16 @@
+{
+  "source_id": "S011",
+  "raw_path": "raw/S011-hoboken-rent-control-office.html",
+  "text_path": "text/S011.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "4ae45e9c6c73b7e67a7a5ad5afcbf92a4c183e92fd6b93e401b0bcebe7e0f72e",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 7090,
+      "method": "htmlparser-visible-text",
+      "navigation_retained": true
+    }
+  ]
+}

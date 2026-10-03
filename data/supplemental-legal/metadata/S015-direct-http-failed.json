@@ -1,0 +1,13 @@
+{
+  "source_id": "S015",
+  "url": "https://lis.njleg.state.nj.us/nxt/gateway.dll/statutes/1/112/670",
+  "retrieved_at": "2026-10-03T21:19:56.784186+00:00",
+  "returncode": 28,
+  "error": "curl: (28) Failed to connect to lis.njleg.state.nj.us port 443 after 8006 ms: Timeout was reached",
+  "raw_path": "raw/S015-nj-2a18-611-legislature.html",
+  "url_effective": "https://lis.njleg.state.nj.us/nxt/gateway.dll/statutes/1/112/670",
+  "http_code": 0,
+  "content_type": null,
+  "size_download": 0,
+  "time_total": 8.006509
+}

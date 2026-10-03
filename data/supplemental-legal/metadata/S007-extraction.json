@@ -1,0 +1,33 @@
+{
+  "source_id": "S007",
+  "raw_path": "raw/S007-newark-moratorium-rescission-2023.pdf",
+  "text_path": "text/S007.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "8dc0b9a05eb6e506f0c0e7516b2a75925e348c352e3caa3bd5f8e6e626d42b03",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 1878,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 95.86616110996576,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 2,
+      "start_char": 1881,
+      "end_char": 3429,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 96.25047380000008,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 3,
+      "start_char": 3432,
+      "end_char": 3763,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 87.9444199818182,
+      "ocr_review_required": true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "source_id": "S015",
+  "url": "https://lis.njleg.state.nj.us/nxt/gateway.dll/statutes/1/112/670",
+  "retrieved_on": "2026-10-03",
+  "recorded_at": "2026-10-03T21:22:11.987904+00:00",
+  "method": "web research tool open, complete lines 0 through 42 retained without line labels",
+  "http_code": null,
+  "raw_path": "raw/S015-nj-2a18-611-legislature.web.txt",
+  "note": "Local curl timed out; no raw HTML captured. Successful research-tool extraction is stored explicitly as .web.txt."
+}
