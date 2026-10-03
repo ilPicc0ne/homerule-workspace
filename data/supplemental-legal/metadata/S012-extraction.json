@@ -1,0 +1,111 @@
+{
+  "source_id": "S012",
+  "raw_path": "raw/S012-hoboken-ch155-regulations-2026.pdf",
+  "text_path": "text/S012.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "78f85c5cb2a172159f4019af751e66c7e90d9738acbdde940e4c63e6a66d7946",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 303,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 89.84044373170731,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 2,
+      "start_char": 306,
+      "end_char": 2512,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 3,
+      "start_char": 2515,
+      "end_char": 4521,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 92.4106135545172,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 4,
+      "start_char": 4524,
+      "end_char": 7363,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 94.80722038528151,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 5,
+      "start_char": 7366,
+      "end_char": 10341,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 6,
+      "start_char": 10344,
+      "end_char": 11533,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 7,
+      "start_char": 11536,
+      "end_char": 13723,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 8,
+      "start_char": 13726,
+      "end_char": 16107,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 9,
+      "start_char": 16110,
+      "end_char": 16999,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 10,
+      "start_char": 17002,
+      "end_char": 18283,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 11,
+      "start_char": 18286,
+      "end_char": 19567,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 12,
+      "start_char": 19570,
+      "end_char": 20915,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 90.65958372881357,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 13,
+      "start_char": 20918,
+      "end_char": 21852,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 14,
+      "start_char": 21855,
+      "end_char": 23233,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    }
+  ]
+}
