@@ -71,15 +71,17 @@ Each card: status in words, one-line summary, quote, citation, dates, confidence
 
 This is the project's feature list; each build updates its status in the same commit.
 
+**No feature without asking first.** Nobody (person or agent) builds a feature that isn't in this table or its issue. A new idea goes into the table as `idea` and gets agreed before any code.
+
 | Prio | Feature | Owner | Status |
 |---|---|---|---|
 | P0 | Extraction → `rules.json` | D | planned |
-| P0 | Jurisdiction list + address lookup (Census geocoder) | S | planned |
+| P0 | Jurisdiction list + address lookup (Census geocoder) | S | built (`make resolve`, 500/500) |
 | P0 | Engine → `lookups.json`, `changes.json`, per-address diff | S | planned |
 | P0 | Address page (sections 1–3, 5–10), JSON endpoint per address | S | planned |
 | P0 | Change log + email preview, triggered by a demo-only ingest | S | planned |
 | P0 | Rule page: quote in source, link to the law, audit trail with reasoning boundary | S (audit data from D) | planned |
-| P0 | Search resolves address / city / neighbourhood / county / state via the jurisdiction list; "not covered" for anything outside | S | planned |
+| P0 | Search resolves address / city / neighbourhood / county / state via the jurisdiction list; "not covered" for anything outside | S | built (`/api/resolve`, tree view on `/where`; address page links pending) |
 | P1 | Jurisdiction pages for all levels (state › county › city), rules with their conditions | S | planned |
 | P1 | Chatbot scoreboard: ~20 dated city-level questions, plain chatbot vs HomeRule, date-stamped | D | planned |
 | P1 | Impact map on the rule page with date slider | S | planned |
@@ -92,11 +94,12 @@ This is the project's feature list; each build updates its status in the same co
 | P1 | Show the guide's four open legal questions as flags with both sources (e.g. Berkeley's two effective dates) | D | planned |
 | P1 | Spanish card summaries (brief stretch goal; quotes stay English) | S | planned |
 | P1 | "I rent / I own" wording toggle (sponsor's users) | S | planned |
-| P2 | Typed address outside the sample, e.g. Santa Ana (brief stretch goal "new jurisdiction live") | S | planned |
+| P2 | Typed address outside the sample, e.g. Santa Ana (brief stretch goal "new jurisdiction live") | S | partial (jurisdiction tree on `/where`; rules need the engine) |
 | P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-to-extend-coverage-p1-checked-04102026)) | D | planned |
 | P2 | MCP route | D | planned |
 | P2 | Compare view · city outline on the map | S | planned |
 | P3 | ChatGPT custom GPT on the JSON endpoint | D | planned |
+| Idea | Search typo tolerance: near-miss names ("Hobokn") → suggestion via edit distance over the list and aliases, never applied silently | S | idea |
 | Idea | Own chatbot · addresses outside the 500 · neighbourhood comparison · repairs card | — | idea |
 
 ## User journeys
