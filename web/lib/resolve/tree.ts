@@ -1,9 +1,10 @@
 // The legal jurisdiction tree: Federal › State › County › Municipality (city, town, township) or
-// "unincorporated", each level marked covered (rules in HomeRule) or not.
+// "unincorporated". Each level is "covered" (rules in HomeRule), "not_covered" (law exists here,
+// HomeRule doesn't have it) or "no_rules" (nothing to cover at this level).
 import type { Geographies, CensusArea } from "./census.ts";
-import { byId, chain, displayName, findCounty, findCousub, findPlace, findState } from "./jurisdictions.ts";
+import { byId, chain, displayName, findCounty, findCousub, findPlace, findState, type Jurisdiction } from "./jurisdictions.ts";
 import type { StateInfo } from "./states.ts";
-import type { Coverage, TreeLevel } from "./types.ts";
+import type { Coverage, LevelStatus, TreeLevel } from "./types.ts";
 
 export const FEDERAL: TreeLevel = {
   level: "federal",
@@ -11,9 +12,33 @@ export const FEDERAL: TreeLevel = {
   name: "United States",
   id: null,
   geoid: null,
+  status: "not_covered",
   covered: false,
-  note: "Federal housing law is not in HomeRule.",
+  note: "Federal law (fair housing, tenant-screening reports) applies everywhere; it isn't in HomeRule.",
 };
+
+const flag = (status: LevelStatus) => ({ status, covered: status === "covered" });
+
+const statusOf = (j: Jurisdiction | null | undefined): LevelStatus => (j?.rules ? "covered" : "not_covered");
+
+/**
+ * The county level. inCity: the address lies inside a city or town (false = unincorporated,
+ * null = unknown, e.g. a search for the county itself). funcstat: Census's government status.
+ */
+function countyLevel(name: string, geoid: string, ours: Jurisdiction | null, inCity: boolean | null, funcstat?: string): TreeLevel {
+  const base = { level: "county" as const, label: "County", name, id: ours?.id ?? null, geoid };
+  if (ours?.rules) return { ...base, ...flag("covered") };
+  if (funcstat === "N" || ours?.county_law === "none") {
+    return { ...base, ...flag("no_rules"), note: "This county has no county government, so there are no county rules; the city or town makes local rules." };
+  }
+  if (funcstat === "C") return { ...base, ...flag("no_rules"), note: "City and county are one government here; its rules are at the city level." };
+  if (ours?.county_law === "unincorporated_only") {
+    return inCity
+      ? { ...base, ...flag("no_rules"), note: `${name}'s rent and eviction rules cover only unincorporated areas, not addresses inside a city.` }
+      : { ...base, ...flag("not_covered"), note: `${name}'s own rent and eviction rules apply ${inCity === false ? "here" : "in its unincorporated areas"}; they aren't in HomeRule.` };
+  }
+  return { ...base, ...flag("not_covered"), note: "No county rules in HomeRule." };
+}
 
 /** "Brookline town" → {name: "Brookline", label: "Town"} using Census's BASENAME. */
 function nameAndLabel(a: CensusArea): { name: string; label: string } {
@@ -42,31 +67,12 @@ export function treeFromGeographies(g: Geographies): TreeLevel[] {
       name: st.BASENAME ?? st.NAME,
       id: ours?.id ?? null,
       geoid: st.GEOID,
-      covered: !!ours?.rules,
+      ...flag(statusOf(ours)),
     });
   }
 
   const co = g["Counties"]?.[0];
   const countyName = co ? co.NAME : null;
-  if (co && co.GEOID !== "11001") {
-    const ours = findCounty(co.GEOID);
-    tree.push({
-      level: "county",
-      label: "County",
-      name: co.NAME,
-      id: ours?.id ?? null,
-      geoid: co.GEOID,
-      covered: !!ours?.rules,
-      note:
-        co.FUNCSTAT === "N"
-          ? "This county has no county government; the city or town governs."
-          : co.FUNCSTAT === "C"
-            ? "City and county are one government here."
-            : ours?.rules
-              ? undefined
-              : "No county rules in HomeRule.",
-    });
-  }
 
   const places = g["Incorporated Places"] ?? [];
   const towns = (g["County Subdivisions"] ?? []).filter(isGovernment);
@@ -77,23 +83,26 @@ export function treeFromGeographies(g: Geographies): TreeLevel[] {
     const { name, label } = nameAndLabel(t);
     if (places.some((p) => nameAndLabel(p).name === name)) continue;
     const ours = findCousub(t.GEOID);
-    municipalities.push({ level: "municipality", label, name, id: ours?.id ?? null, geoid: t.GEOID, covered: !!ours?.rules });
+    municipalities.push({ level: "municipality", label, name, id: ours?.id ?? null, geoid: t.GEOID, ...flag(statusOf(ours)) });
   }
   for (const p of places) {
     const { name, label } = nameAndLabel(p);
     const ours = findPlace(p.GEOID);
-    municipalities.push({ level: "municipality", label, name, id: ours?.id ?? null, geoid: p.GEOID, covered: !!ours?.rules });
+    municipalities.push({ level: "municipality", label, name, id: ours?.id ?? null, geoid: p.GEOID, ...flag(statusOf(ours)) });
   }
   // No place on the list but an F county subdivision that is one of our NJ/MA cities.
   if (!municipalities.length) {
     for (const c of g["County Subdivisions"] ?? []) {
       const ours = findCousub(c.GEOID);
       if (ours) {
-        municipalities.push({ level: "municipality", label: "City", name: displayName(ours), id: ours.id, geoid: c.GEOID, covered: ours.rules });
+        municipalities.push({ level: "municipality", label: "City", name: displayName(ours), id: ours.id, geoid: c.GEOID, ...flag(statusOf(ours)) });
       }
     }
   }
 
+  if (co && co.GEOID !== "11001") {
+    tree.push(countyLevel(co.NAME, co.GEOID, findCounty(co.GEOID), municipalities.length > 0, co.FUNCSTAT));
+  }
   if (municipalities.length) {
     tree.push(...municipalities);
   } else if (co) {
@@ -105,33 +114,32 @@ export function treeFromGeographies(g: Geographies): TreeLevel[] {
       name: area ? `${area} (unincorporated)` : "Unincorporated area",
       id: null,
       geoid: cdp?.GEOID ?? null,
-      covered: false,
-      note: `Not inside any city. ${countyName} governs here; no city's local rules apply.`,
+      ...flag("no_rules"),
+      note: `Not inside any city, so no city's rules apply. ${countyName} governs here.`,
     });
   }
   return tree;
 }
 
-function levelFor(id: string): TreeLevel {
+function levelFor(id: string, inCity: boolean | null): TreeLevel {
   const j = byId.get(id)!;
-  if (j.level === "state") return { level: "state", label: "State", name: j.legal_name, id: j.id, geoid: j.census_geoid, covered: j.rules };
-  if (j.level === "county") {
-    return { level: "county", label: "County", name: j.legal_name, id: j.id, geoid: j.census_geoid, covered: j.rules, note: j.rules ? undefined : "No county rules in HomeRule." };
-  }
-  return { level: "municipality", label: "City", name: displayName(j), id: j.id, geoid: j.census_geoid, covered: j.rules };
+  if (j.level === "state") return { level: "state", label: "State", name: j.legal_name, id: j.id, geoid: j.census_geoid, ...flag(statusOf(j)) };
+  if (j.level === "county") return countyLevel(j.legal_name, j.census_geoid, j, inCity);
+  return { level: "municipality", label: "City", name: displayName(j), id: j.id, geoid: j.census_geoid, ...flag(statusOf(j)) };
 }
 
 /** Tree for an entry on our list: Boston → United States › Massachusetts › Suffolk County › Boston. */
 export function treeForJurisdiction(id: string): TreeLevel[] {
   const j = byId.get(id);
   if (!j) throw new Error(`unknown jurisdiction ${id}`);
-  return [FEDERAL, ...chain(j).map((c) => levelFor(c.id))];
+  const inCity = j.level === "city" ? true : null;
+  return [FEDERAL, ...chain(j).map((c) => levelFor(c.id, inCity))];
 }
 
 /** Tree for a state that may be outside our scope ("Texas"). */
 export function treeForState(s: StateInfo): TreeLevel[] {
   if (byId.has(s.abbr)) return treeForJurisdiction(s.abbr);
-  return [FEDERAL, { level: "state", label: s.abbr === "DC" ? "Federal district" : "State", name: s.name, id: null, geoid: s.fips, covered: false }];
+  return [FEDERAL, { level: "state", label: s.abbr === "DC" ? "Federal district" : "State", name: s.name, id: null, geoid: s.fips, ...flag("not_covered") }];
 }
 
 export function coverageOf(tree: TreeLevel[]): Coverage {

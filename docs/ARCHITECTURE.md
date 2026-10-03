@@ -32,7 +32,7 @@ Frozen before parallel work; changed only via PR with the other person tagged.
 
 | ID | Interface | From → to | Must hold |
 |---|---|---|---|
-| I1 | `contracts/jurisdictions.json`: 13 rule-bearing IDs (e.g. `NJ-HOBOKEN`) plus display-only county entries; each with legal name, level, `parent` (city → county → state), Census code (`census_geoid`; NJ/MA cities also `census_cousub_geoid`), `schema_name` (the exact string the rule schema expects, e.g. "San Francisco, CA") and `aliases` ("Dorchester", "SF", "Jersey City NJ") | S → D, S | Only these IDs internally; `rules.json` writes `schema_name`; search resolves names and aliases through it |
+| I1 | `contracts/jurisdictions.json`: 13 rule-bearing IDs (e.g. `NJ-HOBOKEN`) plus display-only county entries; each with legal name, level, `parent` (city → county → state), Census code (`census_geoid`; NJ/MA cities also `census_cousub_geoid`; counties optionally `county_law`), `schema_name` (the exact string the rule schema expects, e.g. "San Francisco, CA") and `aliases` ("Dorchester", "SF", "Jersey City NJ") | S → D, S | Only these IDs internally; `rules.json` writes `schema_name`; search resolves names and aliases through it |
 | I2 | `out/rules.json` + `out/rules.compiled.json` | D → S | Schema-valid; `jurisdiction` = the list's `schema_name`; status mapped to the schema values (`enacted_not_effective` → `not_yet_effective`, `repealed` → `failed`); effective date or null (two dates kept when sources disagree); verbatim quote |
 | I3 | `out/addresses.resolved.json` (type `ResolvedFile` in `web/lib/resolve/types.ts`) | S → engine, D eval | All 500; jurisdiction IDs + `stack`, tree, coords, facts as ranges, source + confidence per field, `review` flags |
 | I4 | Engine CLI `build --as-of <date>` | S → eval, web | Deterministic; writes `lookups.json` and `changes.json` in the guide's shapes |
@@ -101,7 +101,7 @@ Input: `data/sample_addresses.csv`. Output: `out/addresses.resolved.json`. Code:
    - conflicting facts → unknown plus a flag;
    - owner type is always unknown.
 
-**Jurisdiction tree** (`tree.ts`), the same for the batch and the website: Federal (never covered) › State › County › Municipality, each level marked covered (rules in HomeRule) or not.
+**Jurisdiction tree** (`tree.ts`), the same for the batch and the website: Federal › State › County › Municipality. Each level has a status: `covered` (rules in HomeRule), `not_covered` (law exists there, HomeRule doesn't have it: federal law, an unchecked county, LA County for an unincorporated address) or `no_rules` (nothing to cover: no county government, county law only for unincorporated areas, no city government). Counties carry `county_law` in the list (`none` for Suffolk and Middlesex, `unincorporated_only` for LA County, ch. 8.52); unchecked counties stay `not_covered`.
 - Municipality = the Census incorporated place; else a county subdivision with an active government (Census `FUNCSTAT` A: NJ townships, MA towns such as Brookline town). CA county subdivisions are statistical CCDs and never count; a CDP is only a label.
 - No incorporated place and no town government → "unincorporated": the county governs, no city's law applies (4801 E 3rd St, postal "Los Angeles", is unincorporated East Los Angeles).
 - MA counties have no county government (`FUNCSTAT` N); the tree says so.

@@ -112,3 +112,49 @@ test("tree from the list: Boston and Los Angeles County", () => {
   assert.deepEqual(treeForJurisdiction("MA-BOSTON").map((l) => l.id), [null, "MA", "MA-SUFFOLK-COUNTY", "MA-BOSTON"]);
   assert.deepEqual(treeForJurisdiction("CA-LOS-ANGELES-COUNTY").map((l) => l.level), ["federal", "state", "county"]);
 });
+
+// Three states per level: rules in HomeRule · not covered (law exists, not in HomeRule) · no rules at this level.
+const statuses = (t: TreeLevel[]) => t.map((l) => `${l.level}:${l.status}`);
+
+test("federal: not covered, and the note says it applies everywhere", () => {
+  const t = treeForJurisdiction("MA-BOSTON");
+  assert.equal(t[0].status, "not_covered");
+  assert.match(t[0].note ?? "", /everywhere/);
+});
+
+test("MA counties have no county government → no rules at this level, on both paths", () => {
+  const viaList = treeForJurisdiction("MA-BOSTON");
+  assert.deepEqual(statuses(viaList), ["federal:not_covered", "state:covered", "county:no_rules", "municipality:covered"]);
+  assert.match(viaList[2].note ?? "", /no county government/i);
+  const viaCensus = treeFromGeographies(firstMatch("134 Oxford St, Cambridge, MA").geographies);
+  assert.equal(viaCensus.find((l) => l.level === "county")?.status, "no_rules");
+});
+
+test("LA County inside LA city: county rules cover unincorporated areas only → no rules at this level", () => {
+  const t = treeForJurisdiction("CA-LOS-ANGELES");
+  const county = t.find((l) => l.level === "county")!;
+  assert.equal(county.status, "no_rules");
+  assert.match(county.note ?? "", /unincorporated/);
+});
+
+test("East LA: LA County's own rules apply but aren't in HomeRule → not covered; no city level", () => {
+  const t = treeFromGeographies(firstMatch("4801 E 3rd St, Los Angeles, CA 90022").geographies);
+  const county = t.find((l) => l.level === "county")!;
+  assert.equal(county.status, "not_covered");
+  assert.match(county.note ?? "", /apply here/);
+  assert.equal(t[t.length - 1].status, "no_rules");
+});
+
+test("SF: city and county are one government → county level has no rules of its own", () => {
+  const t = treeFromGeographies(firstMatch("3515 Fillmore St, San Francisco, CA").geographies);
+  assert.equal(t.find((l) => l.level === "county")?.status, "no_rules");
+});
+
+test("a county we haven't checked stays 'not covered' (Hudson County)", () => {
+  const t = treeForJurisdiction("NJ-HOBOKEN");
+  assert.equal(t.find((l) => l.level === "county")?.status, "not_covered");
+});
+
+test("covered mirrors status", () => {
+  for (const id of ["MA-BOSTON", "CA-LOS-ANGELES", "NJ-NEWARK"]) for (const l of treeForJurisdiction(id)) assert.equal(l.covered, l.status === "covered");
+});

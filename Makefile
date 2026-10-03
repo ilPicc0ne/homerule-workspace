@@ -12,7 +12,7 @@ resolve:                                 ## B · sample addresses -> out/address
 	cd web && npm run resolve
 
 resolve-live:                            ## B · same, calling Census for requests missing from the cache
-	cd web && node scripts/resolve-batch.ts --live && npm run sync
+	cd web && npm run sync && node scripts/resolve-batch.ts --live && npm run sync
 
 build:                                   ## C+D · engine -> outputs/lookups.json, outputs/changes.json (Silvan)
 	@echo "build: not implemented yet (engine/), AS_OF=$(AS_OF)"; exit 1

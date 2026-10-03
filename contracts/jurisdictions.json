@@ -1,5 +1,5 @@
 {
-  "_comment": "Shared jurisdiction vocabulary (interface I1, docs/ARCHITECTURE.md). Internal IDs everywhere; rules.json writes schema_name. Counties are display-only (no county law in the corpus). Census GEOIDs verified 04.10.2026 via the Census geocoder. San Francisco is a consolidated city and county. census_cousub_geoid: the Census county subdivision of an NJ/MA municipality (verified 04.10.2026); in NJ and MA the municipality is the county subdivision, so an address with no incorporated place still resolves to its town or township.",
+  "_comment": "Shared jurisdiction vocabulary (interface I1, docs/ARCHITECTURE.md). Internal IDs everywhere; rules.json writes schema_name. Counties are display-only (no county law in the corpus). Census GEOIDs verified 04.10.2026 via the Census geocoder. San Francisco is a consolidated city and county. census_cousub_geoid: the Census county subdivision of an NJ/MA municipality (verified 04.10.2026); in NJ and MA the municipality is the county subdivision, so an address with no incorporated place still resolves to its town or township. county_law (counties only, optional): \"none\" = no county government, so no county rules exist (MA Suffolk, Middlesex; Census FUNCSTAT N); \"unincorporated_only\" = county tenant rules cover only areas outside any city (LA County Code ch. 8.52, checked 04.10.2026). Absent = not checked: shown as not covered.",
   "jurisdictions": [
     {
       "id": "CA",
@@ -45,6 +45,8 @@
       "parent": "CA",
       "census_geoid": "06037",
       "rules": false,
+      "county_law": "unincorporated_only",
+      "county_law_source": "https://library.municode.com/ca/los_angeles_county/codes/code_of_ordinances?nodeId=TIT8COPRBUWARE_DIV3HO_CH8.52RESTTEPR",
       "aliases": []
     },
     {
@@ -115,6 +117,7 @@
       "parent": "MA",
       "census_geoid": "25025",
       "rules": false,
+      "county_law": "none",
       "aliases": []
     },
     {
@@ -125,6 +128,7 @@
       "parent": "MA",
       "census_geoid": "25017",
       "rules": false,
+      "county_law": "none",
       "aliases": []
     },
     {

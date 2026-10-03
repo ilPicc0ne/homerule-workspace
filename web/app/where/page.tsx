@@ -4,13 +4,13 @@ import { icons } from "../icons";
 import { resolveQuery } from "@/lib/resolve/resolve.ts";
 import { sampleIndex } from "@/lib/resolve/samples.ts";
 import { SUGGESTIONS } from "@/lib/resolve/suggest.ts";
-import type { AddressResult, Coverage, ResolveResult, TreeLevel } from "@/lib/resolve/types.ts";
+import type { AddressResult, Coverage, LevelStatus, ResolveResult, TreeLevel } from "@/lib/resolve/types.ts";
 import SearchBox from "./search-box";
 import s from "./where.module.css";
 
 /*
   /where: type any US address (or a city, neighbourhood, county, state) and see its legal
-  jurisdiction tree, each level marked "rules in HomeRule" or "not covered". Server-rendered from
+  jurisdiction tree, each level marked "rules in HomeRule", "not covered" or "no rules at this level". Server-rendered from
   ?q=, so a plain GET form works without client JS and every result has a shareable URL.
 */
 
@@ -28,6 +28,12 @@ const EXAMPLES = [
   "Hoboken, NJ",
 ];
 
+const BADGE: Record<LevelStatus, string> = {
+  covered: "Rules in HomeRule",
+  not_covered: "Not covered",
+  no_rules: "No rules at this level",
+};
+
 const COVERAGE: Record<Coverage, string> = {
   covered: "HomeRule has local and state rules for this place.",
   state_only: "HomeRule has the state's rules here, but not this place's local rules.",
@@ -39,13 +45,13 @@ function Tree({ tree }: { tree: TreeLevel[] }) {
     <ol className={s.tree} aria-label="Jurisdictions, from the top down">
       {tree.map((l, i) => (
         <li key={`${l.level}-${l.geoid ?? l.name}-${i}`} className={s.level}>
-          <span className={s.dot} data-covered={l.covered} aria-hidden="true" />
+          <span className={s.dot} data-status={l.status} aria-hidden="true" />
           <div className={s.levelBody}>
             <span className={s.levelLabel}>{l.label}</span>
             <span className={s.levelName}>{l.name}</span>
             {l.note && <span className={s.levelNote}>{l.note}</span>}
           </div>
-          <span className={l.covered ? s.badgeOn : s.badgeOff}>{l.covered ? "Rules in HomeRule" : "Not covered"}</span>
+          <span className={s.badge} data-status={l.status}>{BADGE[l.status]}</span>
         </li>
       ))}
     </ol>

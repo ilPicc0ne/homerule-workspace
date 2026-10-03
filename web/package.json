@@ -12,7 +12,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "node --test \"tests/**/*.test.ts\"",
-    "resolve": "node scripts/resolve-batch.ts && npm run sync"
+    "resolve": "npm run sync && node scripts/resolve-batch.ts && npm run sync"
   },
   "dependencies": {
     "next": "16.3.8",

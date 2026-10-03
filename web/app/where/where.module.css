@@ -160,9 +160,14 @@
   background: var(--surface);
 }
 
-.dot[data-covered="true"] {
+.dot[data-status="covered"] {
   border-color: var(--accent);
   background: var(--accent);
+}
+
+.dot[data-status="no_rules"] {
+  border-style: dashed;
+  background: transparent;
 }
 
 .levelBody {
@@ -188,8 +193,7 @@
   color: var(--muted);
 }
 
-.badgeOn,
-.badgeOff {
+.badge {
   font-size: 0.78rem;
   font-weight: 600;
   border-radius: 999px;
@@ -198,13 +202,19 @@
   margin-top: 0.15rem;
 }
 
-.badgeOn {
+.badge[data-status="covered"] {
   background: var(--accent-soft);
   color: var(--accent);
 }
 
-.badgeOff {
+.badge[data-status="not_covered"] {
   background: var(--neutral-soft);
+  color: var(--muted);
+}
+
+.badge[data-status="no_rules"] {
+  background: transparent;
+  border: 1px dashed var(--line);
   color: var(--muted);
 }
 
@@ -213,8 +223,7 @@
     grid-template-columns: 1rem 1fr;
   }
 
-  .badgeOn,
-  .badgeOff {
+  .badge {
     grid-column: 2;
     justify-self: start;
     margin-top: 0;

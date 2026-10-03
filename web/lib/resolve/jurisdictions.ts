@@ -13,6 +13,9 @@ export type Jurisdiction = {
   census_geoid: string;
   census_cousub_geoid?: string;
   rules: boolean;
+  /** Counties only: "none" = no county government; "unincorporated_only" = county tenant law outside cities only. */
+  county_law?: "none" | "unincorporated_only";
+  county_law_source?: string;
   aliases: string[];
 };
 

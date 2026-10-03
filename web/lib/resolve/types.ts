@@ -12,10 +12,18 @@ export type TreeLevel = {
   /** Our jurisdiction ID from contracts/jurisdictions.json, or null when the place is not on the list. */
   id: string | null;
   geoid: string | null;
-  /** True when HomeRule holds rules for this level ("rules in HomeRule"); false = "not covered". */
+  /**
+   * covered: HomeRule holds this level's rules · not_covered: law exists here, HomeRule doesn't have it ·
+   * no_rules: nothing to cover at this level (no county government, county law only for unincorporated
+   * areas, no city government).
+   */
+  status: LevelStatus;
+  /** status === "covered", kept for callers that only need yes/no. */
   covered: boolean;
   note?: string;
 };
+
+export type LevelStatus = "covered" | "not_covered" | "no_rules";
 
 export type Coverage = "covered" | "state_only" | "not_covered";
 
