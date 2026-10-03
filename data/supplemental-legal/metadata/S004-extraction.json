@@ -1,0 +1,169 @@
+{
+  "source_id": "S004",
+  "raw_path": "raw/S004-hoboken-ch155-city-linked.pdf",
+  "text_path": "text/S004.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "d1bf7064a7cd37269abf3ad8e32bc29c8c94c3b45ed9b3e43bb8a48242ae0403",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 13,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 96.025169,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 2,
+      "start_char": 16,
+      "end_char": 2017,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 92.0488604783951,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 3,
+      "start_char": 2020,
+      "end_char": 3557,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 92.56260894354843,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 4,
+      "start_char": 3560,
+      "end_char": 4293,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 87.73238537815125,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 5,
+      "start_char": 4296,
+      "end_char": 5402,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 94.91807011931816,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 6,
+      "start_char": 5405,
+      "end_char": 6127,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 88.03741433962264,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 7,
+      "start_char": 6130,
+      "end_char": 7139,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 90.1801226369048,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 8,
+      "start_char": 7142,
+      "end_char": 9038,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 92.32255322895621,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 9,
+      "start_char": 9041,
+      "end_char": 11225,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 94.40782343250689,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 10,
+      "start_char": 11228,
+      "end_char": 12245,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 91.22599893641622,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 11,
+      "start_char": 12248,
+      "end_char": 13845,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 95.07697708880313,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 12,
+      "start_char": 13848,
+      "end_char": 16303,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 94.6096646941747,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 13,
+      "start_char": 16306,
+      "end_char": 19616,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 94.53065784402084,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 14,
+      "start_char": 19619,
+      "end_char": 22553,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 93.83617008817201,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 15,
+      "start_char": 22556,
+      "end_char": 23473,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 87.91743032530121,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 16,
+      "start_char": 23476,
+      "end_char": 24621,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 91.59295063350778,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 17,
+      "start_char": 24624,
+      "end_char": 25969,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 90.50485782426776,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 18,
+      "start_char": 25972,
+      "end_char": 26861,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 95.0458367553957,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 19,
+      "start_char": 26864,
+      "end_char": 29492,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 92.51788600982803,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 20,
+      "start_char": 29495,
+      "end_char": 29790,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 93.33282408695652,
+      "ocr_review_required": true
+    }
+  ]
+}

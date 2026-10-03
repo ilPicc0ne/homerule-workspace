@@ -1,0 +1,185 @@
+{
+  "source_id": "S005",
+  "raw_path": "raw/S005-newark-rent-control-2017.pdf",
+  "text_path": "text/S005.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "56d2111b53b68a4f4e8db19ece212713877a51347ee6104621b98b9a9b098115",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 3110,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 64.83279007272729,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 2,
+      "start_char": 3113,
+      "end_char": 7296,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 91.68657365373551,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 3,
+      "start_char": 7299,
+      "end_char": 11393,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 89.71348019738747,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 4,
+      "start_char": 11396,
+      "end_char": 15123,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 90.87285587301585,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 5,
+      "start_char": 15126,
+      "end_char": 18578,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 91.97632139080449,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 6,
+      "start_char": 18581,
+      "end_char": 22731,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 91.44250033427757,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 7,
+      "start_char": 22734,
+      "end_char": 26732,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 62.9626859,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 8,
+      "start_char": 26735,
+      "end_char": 30944,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 90.7359308260869,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 9,
+      "start_char": 30947,
+      "end_char": 34608,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 90.75057007186555,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 10,
+      "start_char": 34611,
+      "end_char": 38641,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 91.16389576544948,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 11,
+      "start_char": 38644,
+      "end_char": 41941,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 90.99858018430041,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 12,
+      "start_char": 41944,
+      "end_char": 44879,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 89.47124995474134,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 13,
+      "start_char": 44882,
+      "end_char": 47638,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 90.30223156431536,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 14,
+      "start_char": 47641,
+      "end_char": 50931,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 90.03931156899502,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 15,
+      "start_char": 50934,
+      "end_char": 53993,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 89.78720925278805,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 16,
+      "start_char": 53996,
+      "end_char": 57414,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 89.48169522703625,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 17,
+      "start_char": 57417,
+      "end_char": 61351,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 89.50933513313615,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 18,
+      "start_char": 61354,
+      "end_char": 65541,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 92.18290496078438,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 19,
+      "start_char": 65544,
+      "end_char": 69495,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 90.46845911453754,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 20,
+      "start_char": 69498,
+      "end_char": 72696,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 90.48990628782285,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 21,
+      "start_char": 72699,
+      "end_char": 74681,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 87.60421579696971,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 22,
+      "start_char": 74684,
+      "end_char": 77585,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 87.13032308444448,
+      "ocr_review_required": true
+    }
+  ]
+}

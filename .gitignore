@@ -8,3 +8,17 @@ __pycache__/
 .venv/
 .DS_Store
 .worktrees/
+
+# Supplemental sources on hold after the terms review (use_for_rule_extraction: false): local only
+data/supplemental-legal/text/S004.txt
+data/supplemental-legal/raw/S004-hoboken-ch155-city-linked.pdf
+data/supplemental-legal/text/S005.txt
+data/supplemental-legal/raw/S005-newark-rent-control-2017.pdf
+data/supplemental-legal/text/S006.txt
+data/supplemental-legal/raw/S006-newark-rent-control-2019-amendment.pdf
+data/supplemental-legal/text/S007.txt
+data/supplemental-legal/raw/S007-newark-moratorium-rescission-2023.pdf
+data/supplemental-legal/text/S010.txt
+data/supplemental-legal/raw/S010-newark-rent-control-office.html
+# Local copies excluded from the usable corpus after source-terms review
+data/supplemental-legal/excluded/

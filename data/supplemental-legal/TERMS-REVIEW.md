@@ -1,0 +1,45 @@
+# Source access and reuse review
+
+Checked October 3, 2026; Jersey City browser-download follow-up October 4. Scope: 16 catalogued sources including two Jersey City amendments. This is a documented project decision based on published policies, not a legal ruling or blanket clearance. No content was pushed or permission request sent.
+
+## Result
+
+| Sources | Finding | Project decision |
+|---|---|---|
+| S002: NJ DCA deposit statute | State policy expressly permits copying/distributing State information, subject to material-specific restrictions. DCA links this policy; no special restriction found in this statute reproduction. NJ robots does not disallow this path. | Usable source for extraction; its 2010 currency remains a separate unresolved issue. |
+| S003: DCA-hosted LexisNexis compilation | Third-party annotations and copyright notice. State permission does not establish reuse rights for the commentary. | Excluded from active raw/text folders. S015 replaces the core § 2A:18-61.1 provision, **not every section in the 96-page compilation**. |
+| S014: Municode Chapter 260 export | Current in-app Terms of use link points to CivicPlus terms, which expressly restrict AI uses, including exports. The older indexed Municode terms are not the basis of this decision. | Excluded from active raw/text folders. Complete suitable replacement not found. |
+| S005–S007, S010: Newark CivicEngage documents/guidance | Newark uses CivicEngage. CivicPlus terms cover its Solutions; applicability of any separate municipal agreement/permission is unknown. Robots allows the acquired paths, which does not resolve AI-use restrictions. | Hold for platform-terms resolution or independent municipal delivery. Do not treat city-domain hosting as clearance. |
+| S001, S016, S017: Jersey City CivicWeb signed ordinance and amendments | Official portal expressly offers public downloads. The signed documents were downloaded from the official public portal. Default crawlers are disallowed by robots; named search engines have exceptions. No applicable prohibition on these limited downloads/AI use was identified in the reviewed portal policies. | Eligible source inputs under the limited project decision below; no broad crawl permission, manual-human provenance, organizer approval, or complete currentness verification claimed. |
+| S004: Hoboken PDF shared through Dropbox | Publicly linked by city; `dl=1` is a documented Dropbox download interface. Dropbox bars unsupported scraping, and robots disallows `/s/`. | Supported shared-download route identified, but no further automated fetching on that route; prefer the city-hosted newer collection S012 for ongoing work. This is not a general crawling permission. |
+| S008, S011: Hoboken guidance | Checked city footer, public pages, and robots. No relevant collection restriction found. Footer Privacy Policy link returns the home page, not a substantive policy. | Reasonable to use as limited official guidance; no explicit blanket reuse license established. |
+| S009: Jersey City guidance | City privacy/disclaimer checked. Robots permits the acquired path. No relevant collection restriction found. | Reasonable to use as limited official guidance; not a full Chapter 260 replacement. |
+| S012: Hoboken city-linked CDN PDF | Official office links this document. No document-specific reuse restriction identified. CDN robots returns 403, so its directives could not be reviewed. | No identified prohibition on this targeted public document; avoid asserting complete host-policy verification or launching a CDN crawl. OCR review still required. |
+| S015: NJ Legislature § 2A:18-61.1 | Official unannotated statute; legislature disclaimer confirms the public statutory database is unannotated and publicly provided. | Preferred replacement for the core eviction provision. Browser research extraction retained, not original HTML; direct local HTTP transfer timed out. |
+
+## Policies checked
+
+- [NJ conditions of use, Section F](https://www.nj.gov/nj/legal.shtml), linked from [DCA](https://www.nj.gov/dca/), permits State-information reuse with exceptions for restricted material. The department privacy notice concerns information handling; it provides no additional third-party-content license.
+- [Current CivicPlus terms, Section 8](https://www.civicplus.help/legal-center/docs/civicplus-terms-of-use), reached through Municode's actual UI link, define AI purposes to include grounding, retrieval augmentation, evaluation, and development. They restrict using both platform material and government data obtained through the service for those purposes without written consent, including via exports. General export functionality therefore does not resolve our use case. Any separate applicable agreement remains unknown.
+- [Jersey City agenda portal](https://cityofjerseycity.civicweb.net/Portal/) offers digital access/downloads; [its robots policy](https://cityofjerseycity.civicweb.net/robots.txt) disallows default crawlers, with named search-engine exceptions. Both signals are recorded; this is not permission for a crawl.
+- [Dropbox acceptable use](https://www.dropbox.com/acceptable_use) restricts unsupported access, while [official download documentation](https://help.dropbox.com/share/force-download) supports the `dl=1` interface used. Its [robots policy](https://www.dropbox.com/robots.txt) separately disallows shared-link crawling.
+- [Jersey City privacy policy](https://www.jerseycitynj.gov/jobs/privacypolicy), [Hoboken footer](https://www.hobokennj.gov/), and [Newark copyright link](https://www.newarknj.gov/copyright) were checked. Newark's copyright route exposed no substantive terms in the returned page. Absence of an identified prohibition is not an affirmative license.
+- [NJ Legislature disclaimer](https://www.njleg.state.nj.us/disclaimer) describes public, unannotated statutes and warns that database inclusion does not establish operative status. Its statute-host robots endpoint could not be retrieved by the research tool.
+
+Saved robots responses and HTTP outcomes are in `metadata/terms-review/`. A failed/403/404 policy fetch is recorded as unavailable, not permission. The review is retrospective: it cannot establish what every policy said at acquisition time.
+
+## Replacement limits and next acquisition route
+
+S015 retains all subsections (a)–(r) and source history for § 2A:18-61.1. The original compilation also covered §§ 61.1a–61.1h, 61.2, 61.3, 61.3a, and 61.4–61.11; those additional sections are not replaced by S015.
+
+Targeted searches of Jersey City's own site and its rent-control resource page found individual amendments and a link back to Municode, but no complete independent consolidated Chapter 260. S009 remains useful guidance; it is not equivalent to the whole chapter. Recover the complete chapter directly from the municipal clerk or an independently licensed publication before calling this gap closed. No email/request was sent.
+
+Excluded S003/S014 originals and derived text are preserved locally under the Git-ignored `excluded/` folder for recovery. Manifest paths and statuses identify them. Ingestion software does not yet exist: `use_for_rule_extraction` and the existing automatic-ingestion flags are metadata decisions that future code must honor, not a deployed enforcement mechanism.
+
+## Jersey City follow-up — October 4, 2026
+
+The earlier mandatory human-download hold was too broad: robots alone did not establish a terms prohibition on the portal’s ordinary public download function. At the user’s request, the agent used browser document links to obtain the signed ordinance and two signed amendments. These were agent-assisted downloads, not manual human acquisitions. CivicWeb is an iCompass/Diligent service; the separate CivicPlus/Municode AI restriction above was not found to apply to this portal. No authentication bypass, user-agent spoofing, or crawl was used. This is a limited source-use decision based on the reviewed evidence, not a guarantee of legal or competition approval.
+
+S001’s newly downloaded bytes exactly match the existing PDF. Its original transfer record and previous hold are retained alongside `metadata/S001-browser-reacquisition.json`. S016 (25-076) was downloaded from the July 16 meeting minutes; S017 (25-098) from the September 24 agenda. Both contain signed final-adoption pages. The independently city-hosted first-reading notice remains research-only: it differs from the adopted law. See `metadata/jersey-city-route-followup-2026-10-04/`.
+
+For extraction, use S001 with S016 and S017. Preserve deletions, additions, and renumbering from the PDFs; text extraction flattens these distinctions. Council adoption and mayor approval were verified, but effective dates and subsequent changes through the challenge’s as-of date still require review. No rules, test outputs, or scores were changed. The full Chapter 260 replacement gap remains open; these documents concern Chapter 218.
