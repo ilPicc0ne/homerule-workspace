@@ -73,7 +73,7 @@ This is the project's feature list; each build updates its status in the same co
 
 | Prio | Feature | Owner | Status |
 |---|---|---|---|
-| P0 | Extraction → `rules.json` | D | partial (`d/extract-slice`: full corpus + cleared supplemental sources, 26/27 assertions, T1-T5 all pass, quotes 99.2% verbatim, eval suite; open: Santa Ana text, Jersey City effective dates) |
+| P0 | Extraction → `rules.json` | D | built (26/27 brief-named rules, T1-T5 pass, quotes 100% verbatim in `rules.json`, `make eval`, prompt lint + freeze, audit trail `out/audit.json`; Santa Ana has no text in the corpus: recorded as a finding) |
 | P0 | Jurisdiction list + address lookup (Census geocoder) | S | planned |
 | P0 | Engine → `lookups.json`, `changes.json`, per-address diff | S | planned |
 | P0 | Address page (sections 1–3, 5–10), JSON endpoint per address | S | planned |

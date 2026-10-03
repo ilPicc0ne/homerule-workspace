@@ -181,7 +181,7 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 
 Requirements: PRD scoring (Responsible design), [Done by the 12:00 freeze](PRD.md#done-by-the-1200-freeze), [Never](PRD.md#never).
 
-- **Audit log**, `audit/*.jsonl`, append-only: one line per model call and per build (stage, document, model, prompt hash, input hash, verdicts, rule IDs, cost, git SHA). Raw model outputs sit in `audit/raw/`.
+- **Audit log**, `audit/*.jsonl` (git-ignored, append-only): `calls.jsonl` one line per model call (stage, document, model, request hash, seconds, cost, usage), `builds.jsonl` one line per build. Raw model responses sit in `build/cache/` keyed by request hash.
 - **`make eval`** runs, and writes one report:
   - the assertion suite: brief-named rules with status and date;
   - the jurisdiction × category grid;
@@ -189,7 +189,8 @@ Requirements: PRD scoring (Responsible design), [Done by the 12:00 freeze](PRD.m
   - the trap addresses;
   - the quote check;
   - a crawl for "not legal advice".
-- **Prompt lint:** no citation, date or key value from the assertion suite appears in any prompt. Prompts are frozen before the hour-16 drop (hash checked).
+- **Prompt lint** (`extract/prompts.py`, in `make eval`): no citation, date or key value from the test suite (`tests/fixtures/`, `dev/change_tests.json`) appears in any prompt literal; reviewed exceptions are listed with a reason. **Freeze:** `make freeze` writes the prompt digest to `extract/PROMPTS.lock` before the hour-16 drop; `make eval` reports whether the prompts still match it.
+- **Curated audit trail** `out/audit.json` (D → S, for the rule page), one entry per `team_rule_id`: `source` (version, URL, retrieved, verbatim quote), `model` (what Luna extracted, dates as stated), `checks` (code checks, Jev overrides, gate answers with confidence, triaged conditions), `code` (status, effective dates and how they were derived, status evidence, open questions), `calls` (stage, model, request hash, cost). The `model` / `code` split is the reasoning boundary. `audit/builds.jsonl` gets one line per build (git SHA, prompt digest, counts).
 - **Promotion rule:** a change to prompts or the engine is kept only if no eval component drops.
 
 ## Scaling to a new jurisdiction

@@ -10,6 +10,7 @@ A · Extraction: corpus → `out/rules.json` + `out/rules.compiled.json` + `out/
 | `make eval` | Assertions, coverage matrix, T1-T6, `out/changes.json`, address questions → `out/eval/report_supplemental.md` |
 | `make ingest DOC=<path> JUR="Cambridge, MA" [ID=X002]` | Hour 16: one new text file → rules, findings, the affected addresses (no code or prompt change) |
 | `make rehearse` | The hour-16 run on the fictional `tests/fixtures/synthetic/X001.txt`; removes it afterwards so it never reaches the outputs |
+| `make freeze` | Before the hour-16 drop: lock the prompt digest (`extract/PROMPTS.lock`); `make eval` reports a mismatch |
 | `make rerun DOC=D0xx` | Live re-extraction of one document with fresh model calls (cache bypassed via `EXTRACT_RUN`) |
 
 Model calls are cached by request hash (`build/cache/`), so a rerun of `make extract` is free and deterministic. Every call is logged to `audit/calls.jsonl`. Key: `OPENROUTER_API_KEY` in `.env.local`. Models: Luna `openai/gpt-6-luna` (free-form extraction), Jev `typesafe/jev-1.13` (choice questions with calibrated confidence).
@@ -42,6 +43,8 @@ Model calls are cached by request hash (`build/cache/`), so a rerun of `make ext
 | `compile.py` | `out/rules.compiled.json` (all rules), `out/rules.json` (the scored file: every rule with a verbatim quote, from the starter corpus, cleared supplemental sources or an ingested document), `out/findings.json`. Effective dates with no date in the text use the statutory default: California statutes January 1 after enactment, New Jersey municipal ordinances 20 days after final passage |
 | `changes.py` | `changes.json` in the guide's shape from the same evaluation as the lookups |
 | `ingest.py` | Hour-16 ingest |
+| `prompts.py` | Prompt lint (no test-suite value in a prompt) and the prompt digest / freeze |
+| `audit.py` | `out/audit.json`: per rule, what the model extracted, what checked it, what code decided, and the calls behind it; `audit/builds.jsonl` |
 | `llm.py` | OpenRouter client with cache and audit log |
 
 ## State (04.10.2026, eval with supplemental sources)
