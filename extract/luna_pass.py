@@ -8,7 +8,7 @@ import json
 import re
 from concurrent.futures import ThreadPoolExecutor
 
-from . import config, llm, jev_pass
+from . import config, llm, jev_pass, jev_check
 from .corpus import load_text
 
 I7 = json.load(open(config.ROOT / "contracts" / "facts.json"))
@@ -385,6 +385,34 @@ def triage_unparsed(state_text, out, ref, min_conf=0.8):
     return usage
 
 
+def pending_stub(out, entries, texts, labels):
+    """A pending bill with nothing extractable still gets one bill-level record, so it can be listed as pending."""
+    if out["obligations"]:
+        return None
+    d = entries[0]["doc_id"]
+    jev_status = labels[d]["doc_status"]["choice"]
+    if out["document_status"] != "pending" and jev_status != "pending":
+        return None
+    text = texts[0]
+    m = re.search(r"An Act [^\n]{10,200}", text)
+    quote = m.group(0).strip() if m else (out.get("status_quote") or "")
+    bill = re.search(r"/Bills/\d+/([HS])(\d+)", entries[0]["url"])
+    citation = f"Mass. {bill.group(1)}.{bill.group(2)}" if bill else entries[0]["url"]
+    node = {"kind": "always", "children": [], "fact": None, "op": None, "value": None, "values": None,
+            "years": None, "ref": None, "quote": None}
+    out["document_status"] = "pending"
+    out["obligations"].append({
+        "provision": "bill", "slug": "pending-bill", "title": quote[:120] or citation,
+        "category": labels[d]["doc_category"]["choice"] if labels[d].get("doc_category") else "none",
+        "effect": "protection_or_duty", "is_headline": True, "citation": citation,
+        "requirement": f"Pending bill: {quote}" if quote else "Pending bill (no provisions in the supplied text)",
+        "requirement_quote": quote, "key_value": None, "key_value_quote": None, "cap_pct_low": None,
+        "cap_pct_high": None, "coverage_conditions": None, "exemptions": None, "applies_if": node,
+        "exempt_if": {**node, "kind": "never"}, "key_value_conditions": [], "tenant_conditions": [],
+        "interactions": [], "penalty": None, "stub": True})
+    return citation
+
+
 def extract(doc_id, bundle=None, repair_on=True):
     """Extract one document, or a bundle of same-city summary documents in one Luna call (one Jev call each)."""
     ids = bundle or [doc_id]
@@ -392,7 +420,7 @@ def extract(doc_id, bundle=None, repair_on=True):
     texts = [load_text(e) for e in entries]
     parts, labels = [], {}
     for d, e, t in zip(ids, entries, texts):
-        _, lab, _ = jev_pass.run_single(d)
+        _, lab, _ = jev_pass.run_focused(d)
         labels[d] = lab
         parts.append(f"=== DOCUMENT {d} ({e['jurisdiction']}, {e['evidence_tier']}) ===\n"
                      f"Section map (path | content type | topic | start), labels from a classifier, may be wrong:\n"
@@ -402,12 +430,18 @@ def extract(doc_id, bundle=None, repair_on=True):
     out, usage = llm.luna([{"role": "system", "content": SYSTEM}, {"role": "user", "content": user}],
                           SCHEMA, "obligations", stage="luna_extract", ref=ref)
     level = "city" if "," in entries[0]["jurisdiction"] else "state"
+    full = "\n\n".join(texts)
     per, doc_problems = check(out, level)
+    jev_answers, jev_usage = jev_check.run(full, out, level, ref)          # J5-J8 in parallel
+    for i, p in jev_check.disagreements(out, jev_answers).items():
+        per.setdefault(i, []).extend(p)
     first_problems = {"obligations": {str(k): v for k, v in per.items()}, "document": doc_problems}
     repair_usage = None
     if repair_on and (per or doc_problems):
         repair_usage = repair(user, out, per, doc_problems, ref)
-    triage_usage = triage_unparsed("\n\n".join(texts), out, ref)
+    overrides = jev_check.apply_overrides(out, jev_answers)
+    triage_usage = triage_unparsed(full, out, ref)
+    stub = pending_stub(out, entries, texts, labels)
     per, doc_problems = check(out, level)
     text = "\n\n".join(texts)
     spans, failed = {}, []
@@ -434,7 +468,8 @@ def extract(doc_id, bundle=None, repair_on=True):
               "source_urls": [e["url"] for e in entries], "retrieved": [e["retrieved"] for e in entries],
               "jev": {d: {"doc_type": labels[d]["doc_type"], "doc_status": labels[d]["doc_status"],
                           "dates": {k: v for k, v in labels[d].items() if k.startswith("d")}} for d in ids},
-              "luna": out, "checks_before_repair": first_problems, "document_problems": doc_problems,
+              "luna": out, "checks_before_repair": first_problems, "jev_overrides": overrides, "pending_stub": stub,
+              "jev_check_usage": jev_usage, "document_problems": doc_problems,
               "spans": spans, "quote_failures": failed, "luna_usage": usage, "repair_usage": repair_usage,
               "triage_usage": triage_usage}
     (config.OUT / "extracted").mkdir(parents=True, exist_ok=True)

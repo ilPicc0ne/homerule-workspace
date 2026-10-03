@@ -123,3 +123,38 @@ def run_per_section(doc_id, workers=8):
     for i, a, _ in results:
         answers[f"s{i}_type"], answers[f"s{i}_cat"] = a["type"], a["cat"]
     return entry, answers, [u for _, _, u in results]
+
+
+# ---------- focused calls: one kind of question per call, full document as state, run in parallel ----------
+DOC_CATEGORY = {**CATEGORIES}
+
+
+def focused_questions(entry, text):
+    """J1 document, J2 section content type, J3 section category, J4 dates: four separate question sets."""
+    allq = questions_for(entry, text)
+    j1 = {k: allq[k] for k in ("doc_type", "doc_status")}
+    j1["doc_category"] = {"type": "choice", "criteria": DOC_CATEGORY,
+                          "instructions": "Which housing topic is the main subject of this document?"}
+    j2 = {k: v for k, v in allq.items() if k.endswith("_type") and k.startswith("s")}
+    j3 = {k: v for k, v in allq.items() if k.endswith("_cat")}
+    j4 = {k: v for k, v in allq.items() if k.startswith("d") and k.endswith("_kind")}
+    return {"J1": j1, "J2": j2, "J3": j3, "J4": j4}
+
+
+def run_focused(doc_id, max_state=100000):
+    entry = json.load(open(config.INDEX / f"{doc_id}.json"))
+    text = load_text(entry)
+    state = text[entry["body_start"]:][:max_state]
+    groups = {k: v for k, v in focused_questions(entry, text).items() if v}
+
+    def one(item):
+        name, qs = item
+        a, u = llm.jev(state, qs, stage=f"jev_{name}", ref=doc_id)
+        return a, u
+
+    answers, usage = {}, []
+    with ThreadPoolExecutor(len(groups)) as ex:
+        for a, u in ex.map(one, groups.items()):
+            answers.update(a)
+            usage.append(u)
+    return entry, answers, usage
