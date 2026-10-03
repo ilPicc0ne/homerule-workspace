@@ -76,19 +76,19 @@ This is the project's feature list; each build updates its status in the same co
 | P0 | Extraction → `rules.json` | D | planned |
 | P0 | Jurisdiction list + address lookup (Census geocoder) | S | planned |
 | P0 | Engine → `lookups.json`, `changes.json`, per-address diff | S | planned |
-| P0 | Address page (sections 1–3, 5–10), JSON endpoint per address | S | planned |
-| P0 | Change log + email preview, triggered by a demo-only ingest | S | planned |
-| P0 | Rule page: quote in source, link to the law, audit trail with reasoning boundary | S (audit data from D) | planned |
+| P0 | Address page (sections 1–3, 5–10), JSON endpoint per address | S | partial (demo data, 8 addresses; `s/demo-site`) |
+| P0 | Change log + email preview, triggered by a demo-only ingest | S | partial (client-side demo on 134 Oxford St; `s/demo-site`) |
+| P0 | Rule page: quote in source, link to the law, audit trail with reasoning boundary | S (audit data from D) | partial (demo data; `s/demo-site`) |
 | P0 | Search resolves address / city / neighbourhood / county / state via the jurisdiction list; "not covered" for anything outside | S | planned |
-| P1 | Jurisdiction pages for all levels (state › county › city), rules with their conditions | S | planned |
+| P1 | Jurisdiction pages for all levels (state › county › city), rules with their conditions | S | partial (demo data; `s/demo-site`) |
 | P1 | Chatbot scoreboard: ~20 dated city-level questions, plain chatbot vs HomeRule, date-stamped | D | planned |
-| P1 | Impact map on the rule page with date slider | S | planned |
+| P1 | Impact map on the rule page with date slider | S | partial (SVG dot map, demo colouring; `s/demo-site`) |
 | P0 | Hour-16 ingest in one command | D | planned |
 | P1 | Real email sending (double opt-in) via Resend from `alerts@yourhomerule.com`; deliverability: HTML + text, unsubscribe link and header, warm-up | S | partial (domain verified, test mail sent) |
 | P0 | Coming-soon landing page on yourhomerule.com | S | WIP (`s/landing`, preview) |
 | P1 | Renter-protection score + compare picked addresses (no ranking, no rent levels, unknown counted apart) | S | planned |
 | P1 | Renter answers one missing building fact ("you told us", never in the scored files) | S | planned |
-| P1 | Map pin | S | planned |
+| P1 | Map pin | S | built (SVG dot map, no base map; `s/demo-site`) |
 | P1 | Show the guide's four open legal questions as flags with both sources (e.g. Berkeley's two effective dates) | D | planned |
 | P1 | Spanish card summaries (brief stretch goal; quotes stay English) | S | planned |
 | P1 | "I rent / I own" wording toggle (sponsor's users) | S | planned |
