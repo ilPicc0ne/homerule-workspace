@@ -367,6 +367,8 @@ The suite also covers T1–T5 and the legal-city cases. It is split by a stable 
 
 ## 8. Mentor questions and open decisions
 
+> **Update Sat 03.10. ~22:45:** no mentor or judge is assigned to this challenge. The questions below go to the Discord challenge channel instead (priority: score.py release, hour-16 time and format, how unknowns count, licensing of the starter pack for a public repo). D8 is dropped.
+
 **Mentor questions,** only what the guide leaves open, ranked by points at stake:
 1. When exactly (CEST) does hour 16 drop? Is it text plus a manifest row plus a T6 spec? What does the "live rerun in the demo" involve?
 2. Do affected sets and lookups count addresses whose coverage is unknown? Does the key treat use-code unit classes ("5+ units", "APT 7-30 UNITS") as known facts?

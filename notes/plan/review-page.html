@@ -311,9 +311,9 @@ html{scroll-behavior:smooth}
       <tr><td>22.7M renter households (a record 49%) spend more than 30% of income on housing</td><td class="tags t-verified">verified</td><td>Brief p.1; Harvard JCHS</td></tr>
       <tr><td>26% of renters denied a deposit; 42% got it back in full</td><td class="tags t-verified">verified, weak surveys</td><td>Industry surveys (2013, 2021)</td></tr>
       <tr><td>Renters don't know which layer of law covers them</td><td class="tags t-unknown">unknown</td><td>No survey found</td></tr>
-      <tr><td>Renters would use an address-level tool; a cited sheet speeds up a clinic consult</td><td class="tags t-assumed">assumed</td><td>Cheapest test: RealPage mentor and one US clinic volunteer react to the sheet</td></tr>
+      <tr><td>Renters would use an address-level tool; a cited sheet speeds up a clinic consult</td><td class="tags t-assumed">assumed</td><td>Cheapest test: one US clinic volunteer reacts to the sheet</td></tr>
       <tr><td>212 of 500 buildings have no year built</td><td class="tags t-unknown">unknown</td><td>Kickoff captions, not in the PDF; check the CSV</td></tr>
-      <tr><td>Starter-pack conventions: as-of date, granularity, unknown credit, "no rule" format</td><td class="tags t-unknown">unknown</td><td>Participant guide; mentor</td></tr>
+      <tr><td>Starter-pack conventions: as-of date, granularity, unknown credit, "no rule" format</td><td class="tags t-unknown">unknown</td><td>Participant guide; Discord challenge channel</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -351,18 +351,14 @@ const DECISIONS = [
   {id:"d7", q:"Primary user on screen", owner:"Both",
    opts:[{k:"renter",t:"Renter, with a printable clinic sheet",d:"The brief's first user group; the clinic sheet is the handoff.",rec:true},
          {k:"clinic",t:"Tenant-clinic intake volunteer",d:"Dimitar's 'brief for the lawyer' idea; one user, faster triage."},
-         {k:"advocate",t:"Advocate or agency",d:"Which buildings a bill covers; least emotional demo."}]},
-  {id:"d8", q:"Who talks to the RealPage mentor tonight", owner:"Both",
-   ctx:"Questions: scored as-of date, T3 conflict-flag format, hour-16 format, dev/held-out overlap, may the brief's named rules be a test set.",
-   opts:[{k:"silvan",t:"Silvan, before 22:00",d:"Dimitar keeps building the spike.",rec:true},
-         {k:"dimitar",t:"Dimitar",d:"He knows the extraction questions best."}]},
+         {k:"advocate",t:"Advocate or agency",d:"Which buildings a bill covers; least emotional demo."}]}
 ];
 
 const CHALLENGES = [
   {t:"score.py conventions are unknown", sev:"high", owner:"Dimitar",
    why:"As-of date, rule granularity, partial credit for unknown and the 'no rule' format decide 75 points, and the starter pack is not read yet.",
-   appr:[{n:"Read the participant guide first, calibrate on the dev key",d:"Match our records to the 10 dev rules before extracting the rest.",pick:true},
-         {n:"Ask the mentor",d:"Five questions, tonight (D8)."},
+   appr:[{n:"Calibrate on schema and submission templates",d:"The participant pack has no score.py and no dev key; match our files to schema/ and submission_templates/ first.",pick:true},
+         {n:"Ask in the Discord challenge channel",d:"No mentor or judge is assigned to this challenge; ask there: score.py release, hour-16 time and format, unknown counting."},
          {n:"Parametrise the as-of date",d:"lookups.json built for any date; 2026-10-01 assumed until confirmed."}],
    check:"score.py prints a baseline on our own files by 22:00."},
   {t:"Extraction granularity and verbatim citations", sev:"high", owner:"Dimitar",
