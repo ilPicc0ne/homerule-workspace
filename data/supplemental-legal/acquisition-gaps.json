@@ -1,0 +1,133 @@
+[
+  {
+    "id": "G01",
+    "priority": 1,
+    "topic": "Hoboken algorithmic ordinance primary text",
+    "related_sources": [
+      "S008"
+    ],
+    "url": "https://hobokennj.iqm2.com/Citizens/Detail_LegiFile.aspx?CssClass=&Frame=&ID=12291&MediaPosition=&MeetingID=2943",
+    "status": "fetch_timeout",
+    "attempt_metadata": "metadata/S013-transfer.json",
+    "next_action": "Recover enacted ordinance and signed/adopted status through official legislative record or clerk archive."
+  },
+  {
+    "id": "G02",
+    "priority": 1,
+    "topic": "Complete and current Hoboken/Newark rent-control code",
+    "related_sources": [
+      "S004",
+      "S005",
+      "S006",
+      "S007",
+      "S012"
+    ],
+    "status": "partial_sources_acquired",
+    "next_action": "Resolve amendment chains and complete Chapters 155 / Title 19. eCode publisher captures were deferred because terms need resolution; municipal originals preferred."
+  },
+  {
+    "id": "G03",
+    "priority": 1,
+    "topic": "Current NJ statutory text",
+    "related_sources": [
+      "S002",
+      "S003"
+    ],
+    "status": "historical_or_annotated_only",
+    "next_action": "Verify legislature versions of 46:8-19 through 26 and 2A:18-61.1 et seq.; acquire linked new-construction exemption provisions. Legislature host timed out during initial attempt."
+  },
+  {
+    "id": "G04",
+    "priority": 1,
+    "topic": "NJ FAIR Act primary text and dates",
+    "related_sources": [],
+    "status": "not_acquired",
+    "next_action": "Verify bill/session-law identifier from starter D060 and challenge T3, then acquire official enactment. Do not convert challenge scenario dates alone into proof of an enactment."
+  },
+  {
+    "id": "G05",
+    "priority": 2,
+    "topic": "Jersey City post-April 2026 amendments",
+    "related_sources": [
+      "S014"
+    ],
+    "status": "not_audited",
+    "next_action": "Check ordinances adopted after publisher version through the requested as-of date; publication date and operative date are separate."
+  },
+  {
+    "id": "G06",
+    "priority": 2,
+    "topic": "OCR and amendment markup",
+    "related_sources": [
+      "S004",
+      "S005",
+      "S006",
+      "S007",
+      "S012"
+    ],
+    "status": "review_required",
+    "next_action": "Review legally material dates, numbers, subsection labels, and deleted/inserted spans against rendered pages before promoting rules or exact quotes."
+  },
+  {
+    "id": "G07",
+    "priority": 2,
+    "topic": "Other challenge jurisdictions/categories",
+    "related_sources": [],
+    "status": "outside_first_batch",
+    "next_action": "Expand CA/MA primary-source gaps after prioritizing against starter coverage; NJ discrimination/screening statutory sources also remain."
+  },
+  {
+    "id": "G08",
+    "priority": 2,
+    "topic": "Address-to-building facts pilot",
+    "related_sources": [],
+    "status": "not_started",
+    "next_action": "Pilot official Jersey City rent-control inventory and assessor/parcel data on a small sample. Record address match, unit/building scope, date, and evidence; missing registry row must remain unknown, not exempt.",
+    "candidate_discovery_urls": [
+      "https://rentcontrol.jcnj.org",
+      "https://www.jerseycitynj.gov/news/residents_to_fight_illegal_rent_increases"
+    ]
+  },
+  {
+    "id": "G09",
+    "priority": 1,
+    "topic": "Current source terms and AI-use holds",
+    "status": "reviewed_with_holds",
+    "report": "TERMS-REVIEW.md",
+    "next_action": "Keep S003/S014 excluded; resolve CivicPlus applicability for Newark. S001/S016/S017 targeted public browser downloads reviewed October 4; no broad CivicWeb crawl authorized."
+  },
+  {
+    "id": "G10",
+    "priority": 1,
+    "topic": "Jersey City full Chapter 260 replacement",
+    "status": "no_complete_suitable_alternative_found",
+    "related_sources": [
+      "S014",
+      "S009"
+    ],
+    "next_action": "Obtain complete chapter directly from municipal clerk or an independently licensed source. Official guidance and individual amendments do not replace the complete chapter."
+  },
+  {
+    "id": "G11",
+    "priority": 2,
+    "topic": "NJ annotated-compilation replacement scope",
+    "status": "core_provision_replaced_only",
+    "related_sources": [
+      "S003",
+      "S015"
+    ],
+    "next_action": "Acquire other unannotated statutory sections from the legislature if required; S015 covers only 2A:18-61.1."
+  },
+  {
+    "id": "G12",
+    "priority": 1,
+    "topic": "Jersey City algorithmic-rent ordinance version chain",
+    "related_sources": [
+      "S001",
+      "S016",
+      "S017"
+    ],
+    "status": "signed_base_and_two_amendments_acquired",
+    "next_action": "Extract with amendment markup intact, resolve effective dates from primary authority, check further changes through as-of date, and rerun coverage/conflict evaluations. Acquisition alone does not close scoring gaps."
+  }
+]

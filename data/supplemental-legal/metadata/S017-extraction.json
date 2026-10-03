@@ -1,0 +1,39 @@
+{
+  "source_id": "S017",
+  "raw_path": "raw/S017-jersey-city-25-098.pdf",
+  "text_path": "text/S017.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "48bf6c7887b2e30615e7a7918af40d57b1b423a3c6d03d98bc501dc078638784",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 3125,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 2,
+      "start_char": 3128,
+      "end_char": 4822,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 3,
+      "start_char": 4825,
+      "end_char": 7641,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 4,
+      "start_char": 7644,
+      "end_char": 8999,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    }
+  ],
+  "amendment_markup_review_required": true,
+  "render_review_notes": "Adds mandatory sworn rent-setting disclosure at section 218-12.3 and corrects section 218-1(A). Visually inspected pages 1–3 including signature page; preserve amendment markup and distinguish unrelated security-guard provision."
+}

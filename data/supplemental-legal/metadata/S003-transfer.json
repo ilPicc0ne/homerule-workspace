@@ -1,0 +1,10 @@
+{
+  "source_id": "S003",
+  "url": "https://www.nj.gov/dca/codes/codreg/pdf_regs/2A_18_61.pdf",
+  "retrieved_at": "2026-10-03T21:02:16.871898+00:00",
+  "retrieval_time_basis": "local downloaded artifact modification time; exact transfer start not logged",
+  "raw_path": "excluded/raw/S003-nj-eviction-annotated.pdf",
+  "method": "curl",
+  "http_code": null,
+  "note": "HTTP headers not retained; status not reconstructed."
+}

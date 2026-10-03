@@ -58,8 +58,8 @@ Each card: status in words, one-line summary, quote, citation, dates, confidence
 
 1. "Not legal advice" · as-of date (snaps to a fixed list of dates)
 2. Address search over the 500, example addresses on the landing page
-3. **"Email me when the law changes for this address"**
-4. Map with pin (P1)
+3. **"Email me when the law changes for this address"**, directly next to the address field; enterable only once an address is found, and named after it ("Alerts for 3515 Fillmore St")
+4. Map view (P1): pin and legal-city outline with a one-line caption
 5. Where this is: State › County › City; note when postal city ≠ legal city
 6. Building facts: year built, units, source; "unknown" shown plainly
 7. Summary chips: applies / unknown / changing / none
@@ -90,7 +90,7 @@ This is the project's feature list; each build updates its status in the same co
 | P0 | Coming-soon landing page on yourhomerule.com | S | WIP (`s/landing`, preview) |
 | P1 | Renter-protection score + compare picked addresses (no ranking, no rent levels, unknown counted apart) | S | planned |
 | P1 | Renter answers one missing building fact ("you told us", never in the scored files) | S | planned |
-| P1 | Map pin | S | planned |
+| P1 | Map view on the address page: pin + outline of the legal city, caption "Inside <city> city limits"; tap to enlarge (tiles + Census TIGER boundaries) | S | planned |
 | P1 | Show the guide's four open legal questions as flags with both sources (e.g. Berkeley's two effective dates) | D | planned |
 | P1 | Spanish card summaries (brief stretch goal; quotes stay English) | S | planned |
 | P1 | "I rent / I own" wording toggle (sponsor's users) | S | planned |

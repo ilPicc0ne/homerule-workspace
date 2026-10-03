@@ -1,0 +1,58 @@
+{
+  "source_id": "S002",
+  "raw_path": "raw/S002-nj-deposit-dca-2010.pdf",
+  "text_path": "text/S002.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "bd00e4cd0a15f4ecbf125c8792d0dbdd708917657d81606ac9fc1a8bc4128037",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 2979,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 2,
+      "start_char": 2982,
+      "end_char": 6890,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 3,
+      "start_char": 6893,
+      "end_char": 10460,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 4,
+      "start_char": 10463,
+      "end_char": 14165,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 5,
+      "start_char": 14168,
+      "end_char": 18215,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 6,
+      "start_char": 18218,
+      "end_char": 21009,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 7,
+      "start_char": 21012,
+      "end_char": 23075,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    }
+  ]
+}
