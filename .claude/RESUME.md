@@ -12,6 +12,8 @@
 3. Dimitar: issue #27 (task split), then #2 grid triage, #3 Jev test, #4 extraction.
 4. Discord answers → PRD open questions. Email warm-up: mark `alerts@yourhomerule.com` not-spam.
 
+5. Housekeeping: kill leftover automation Chromes once the address session is done (`pkill -f "disable-field-trial-config"`; closes only Playwright-launched browsers), and stop the local dev servers on ports 3100 (demo) and 3210 (address) when no longer needed.
+
 ## Open questions
 
 - Hour-16 drop time and format; score.py / dev key release — context: posted to Discord.
