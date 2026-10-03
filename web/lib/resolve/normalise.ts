@@ -17,7 +17,17 @@ const SUFFIX: Record<string, string> = {
   SQUARE: "SQ",
   HIGHWAY: "HWY",
   CIRCLE: "CIR",
+  // Short forms the sample CSV uses beside the USPS ones ("4115 LINCOLN WY", "521 ARGUELLO BL").
+  WAY: "WAY",
+  WY: "WAY",
+  BL: "BLVD",
+  PARK: "PK",
+  ALLEY: "ALY",
 };
+
+/** Street suffixes, full and short ("COURT", "CT", "WY"), upper case. */
+const SUFFIXES = new Set([...Object.keys(SUFFIX), ...Object.values(SUFFIX)]);
+export const isStreetSuffix = (word: string) => SUFFIXES.has(word.toUpperCase());
 
 const DIRECTION: Record<string, string> = { NORTH: "N", SOUTH: "S", EAST: "E", WEST: "W" };
 

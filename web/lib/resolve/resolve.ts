@@ -3,7 +3,7 @@
 // Ambiguity is returned to the caller, never decided silently.
 import { CensusUnavailable, censusMatches, oneLineUrl, type CensusMatch, type FetchLike } from "./census.ts";
 import { parseInput } from "./input.ts";
-import { CITY_COUNT, childrenOf, displayName, searchPlace, searchState, stateOf } from "./jurisdictions.ts";
+import { CITY_COUNT, childrenOf, displayName, searchPlace, searchState, stateOf, type Jurisdiction } from "./jurisdictions.ts";
 import { plain } from "./normalise.ts";
 import type { SampleIndex } from "./samples.ts";
 import { stateForZip, type StateInfo } from "./states.ts";
@@ -16,13 +16,16 @@ export type ResolveDeps = {
   timeoutMs?: number;
   retries?: number;
   retryDelayMs?: number;
+  /** The resolution date (YYYY-MM-DD) stamped as as_of; defaults to today (UTC). */
+  today?: string;
 };
 
 const SCOPE = `HomeRule has law for 3 states and ${CITY_COUNT} cities: California (Los Angeles, San Francisco, San Diego, Berkeley, Santa Ana), New Jersey (Jersey City, Hoboken, Newark) and Massachusetts (Boston, Cambridge).`;
 
 const title = (s: string) => s.toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase());
 
-const base = (query: string) => ({ query, not_legal_advice: true as const });
+// as_of is stamped once, in resolveQuery.
+const base = (query: string) => ({ query, not_legal_advice: true as const, as_of: "" });
 
 function placeResult(query: string, tree: TreeLevel[], matched: PlaceResult["matched"], notes: string[], coverage?: Coverage): PlaceResult {
   const last = tree[tree.length - 1];
@@ -43,7 +46,26 @@ function stateOnly(query: string, s: StateInfo, typed: string | null, via: Place
   } else if (!inScope) {
     notes.push(`${SCOPE} ${s.name} isn't one of them.`);
   }
-  return placeResult(query, tree, { via, text: typed ?? s.name }, notes, inScope ? (typed ? "state_only" : "covered") : "not_covered");
+  return placeResult(query, tree, { via, text: typed ?? s.name }, notes);
+}
+
+/**
+ * The contract's spelling of a neighbourhood alias ("North Hollywood"), or null when the alias is an
+ * abbreviation or another spelling of the city itself ("LA", "San Fran", "City of Los Angeles").
+ */
+function neighbourhood(j: Jurisdiction, typed: string): string | null {
+  const alias = j.aliases.find((a) => plain(a) === plain(typed));
+  if (!alias || alias.length <= 3) return null;
+  const city = plain(displayName(j));
+  const a = plain(alias);
+  if (city.startsWith(a) || a.replace(/^city (and county )?of /, "") === city) return null;
+  return alias;
+}
+
+/** "…but the legal city is Y.", plus "Y's rules apply." only when HomeRule covers Y. */
+function legalCityNote(postal: string, local: TreeLevel): string {
+  const note = `The postal city is ${postal}, but the legal city is ${local.name}.`;
+  return local.covered ? `${note} ${local.name}'s rules apply.` : note;
 }
 
 function resolvePlace(query: string, place: string, state: StateInfo | null): ResolveResult {
@@ -52,7 +74,8 @@ function resolvePlace(query: string, place: string, state: StateInfo | null): Re
   const hit = searchPlace(place, state);
   if (hit) {
     const j = hit.jurisdiction;
-    const notes = hit.via === "alias" ? [`${title(place)} is part of ${displayName(j)}; ${displayName(j)}'s rules apply there.`] : [];
+    const alias = hit.via === "alias" ? neighbourhood(j, place) : null;
+    const notes = alias ? [`${alias} is part of ${displayName(j)}; ${displayName(j)}'s rules apply there.`] : [];
     return placeResult(query, treeForJurisdiction(j.id), { via: hit.via, text: place }, notes);
   }
   if (!state) {
@@ -77,7 +100,7 @@ function notesFor(match: CensusMatch, tree: TreeLevel[]): string[] {
     return [`The postal address says ${title(postal)}, but this spot is outside the City of ${title(postal)}: it is unincorporated ${county}. City of ${title(postal)} rules don't apply here.`];
   }
   if (plain(postal) !== plain(local.name)) {
-    return [`The postal city is ${title(postal)}, but the legal city is ${local.name}. ${local.name}'s rules apply.`];
+    return [legalCityNote(title(postal), local)];
   }
   return [];
 }
@@ -101,7 +124,8 @@ function warningsFor(typedCity: string | null, state: StateInfo | null, match: C
 
 function fromSample(query: string, a: ResolvedAddress): AddressResult {
   const notes: string[] = [];
-  if (a.postal_differs && a.legal_city) notes.push(`The postal city is ${a.postal_city}, but the legal city is ${a.legal_city}. ${a.legal_city}'s rules apply.`);
+  const local = localLevel(a.tree);
+  if (a.postal_differs && a.legal_city && local) notes.push(legalCityNote(a.postal_city, local));
   const warnings =
     a.source.jurisdiction === "census"
       ? []
@@ -116,11 +140,16 @@ function fromSample(query: string, a: ResolvedAddress): AddressResult {
     coverage: coverageOf(a.tree),
     notes,
     warnings,
-    sample: { address_id: a.address_id, facts: a.facts, source: a.source, confidence: a.confidence, review: a.review, retrieved_at: a.retrieved_at },
+    sample: { address_id: a.address_id, facts: a.facts, source: a.source, source_detail: a.source_detail, assumptions: a.assumptions, confidence: a.confidence, review: a.review, retrieved_at: a.retrieved_at },
   };
 }
 
 export async function resolveQuery(query: string, deps: ResolveDeps): Promise<ResolveResult> {
+  const result = await resolveUnstamped(query, deps);
+  return { ...result, as_of: deps.today ?? new Date().toISOString().slice(0, 10) };
+}
+
+async function resolveUnstamped(query: string, deps: ResolveDeps): Promise<ResolveResult> {
   const p = parseInput(query);
 
   if (p.kind === "empty") {
@@ -190,6 +219,12 @@ export async function resolveQuery(query: string, deps: ResolveDeps): Promise<Re
   }
 
   const { m, tree } = trees[0];
+  // A sample address typed with another postal city ("…, Sunland, CA" for an LA building): Census
+  // finds it, and the sample file has the building facts.
+  const cityId = localLevel(tree)?.id;
+  const known = cityId ? deps.samples?.atMatch(m.matchedAddress.split(",")[0], cityId) : null;
+  if (known) return fromSample(query, known);
+
   return {
     ...base(query),
     kind: "address",

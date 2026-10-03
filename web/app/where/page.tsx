@@ -5,6 +5,7 @@ import { resolveQuery } from "@/lib/resolve/resolve.ts";
 import { sampleIndex } from "@/lib/resolve/samples.ts";
 import { SUGGESTIONS } from "@/lib/resolve/suggest.ts";
 import type { AddressResult, Coverage, LevelStatus, ResolveResult, TreeLevel } from "@/lib/resolve/types.ts";
+import { factRows, placeLead, reviewText } from "@/lib/resolve/wording.ts";
 import SearchBox from "./search-box";
 import s from "./where.module.css";
 
@@ -58,16 +59,9 @@ function Tree({ tree }: { tree: TreeLevel[] }) {
   );
 }
 
-const fmtRange = (r: { min: number; max: number | null }) => (r.max === null ? `${r.min} or more` : r.min === r.max ? `${r.min}` : `${r.min}–${r.max}`);
-
 function Facts({ sample }: { sample: NonNullable<AddressResult["sample"]> }) {
-  const f = sample.facts;
-  const rows: [string, string, string][] = [
-    ["Year built", f.built ? f.built.from.slice(0, 4) : "Unknown", sample.source.built === "csv" ? "property record" : "not in the data"],
-    ["Units", f.units ? fmtRange(f.units) : "Unknown", sample.source.units === "csv" ? "property record" : sample.source.units === "use_code" ? "from the use code" : "not in the data"],
-    ["Use", f.use_class ? f.use_class.replace(/_/g, " ") : "Unknown", sample.source.use_class === "use_code" ? "from the use code" : "not in the data"],
-    ["Owner type", "Unknown", "never in the data"],
-  ];
+  const rows = factRows(sample);
+  const review = reviewText(sample.review, sample.facts);
   return (
     <section className={s.facts} aria-labelledby="facts-title">
       <h2 id="facts-title">Building facts</h2>
@@ -81,7 +75,11 @@ function Facts({ sample }: { sample: NonNullable<AddressResult["sample"]> }) {
           </div>
         ))}
       </dl>
-      {sample.review.length > 0 && <p className={s.small}>Flagged for review: {sample.review.join("; ")}</p>}
+      {review.map((t) => (
+        <p key={t} className={s.small}>
+          {t}
+        </p>
+      ))}
       <p className={s.small}>
         Sample address {sample.address_id}, data retrieved {sample.retrieved_at.slice(0, 10)}.
       </p>
@@ -130,7 +128,7 @@ function Result({ r }: { r: ResolveResult }) {
         {r.kind === "address" ? r.matched_address : r.matched.text}
       </p>
       <p className={s.lead} data-coverage={r.coverage}>
-        {COVERAGE[r.coverage]}
+        {(r.kind === "place" && placeLead(r)) || COVERAGE[r.coverage]}
       </p>
       {r.kind === "address" && r.warnings.map((w) => <p key={w} className={s.warning}>{w}</p>)}
       {r.notes.map((n) => (
@@ -159,7 +157,7 @@ export default async function WherePage({ searchParams }: PageProps<"/where">) {
   const raw = (await searchParams).q;
   const q = (Array.isArray(raw) ? raw[0] : raw)?.slice(0, 200) ?? "";
   const result = q ? await resolveQuery(q, { fetch, samples: sampleIndex() }) : null;
-  const asOf = new Date().toISOString().slice(0, 10);
+  const asOf = result?.as_of ?? new Date().toISOString().slice(0, 10);
 
   return (
     <>
@@ -194,7 +192,7 @@ export default async function WherePage({ searchParams }: PageProps<"/where">) {
         )}
       </main>
       <footer className="wrap footer">
-        <p>Not legal advice. Shows which governments may make housing rules for a place. As of {asOf}.</p>
+        <p>Not legal advice. Shows which governments may make housing rules for a place. {result ? "Resolved on" : "As of"} {asOf}.</p>
         <p>Jurisdictions from the US Census geocoder; postal city names don&apos;t decide which city&apos;s law applies.</p>
       </footer>
     </>

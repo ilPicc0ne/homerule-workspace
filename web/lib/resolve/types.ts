@@ -125,7 +125,8 @@ export type ResolvedFile = {
   addresses: ResolvedAddress[];
 };
 
-type Base = { query: string; not_legal_advice: true };
+/** as_of: the resolution date, YYYY-MM-DD (AGENTS.md: on every API payload). */
+type Base = { query: string; not_legal_advice: true; as_of: string };
 
 export type AddressResult = Base & {
   kind: "address";
@@ -137,7 +138,7 @@ export type AddressResult = Base & {
   notes: string[];
   warnings: string[];
   /** Present for the 500 sample addresses only. */
-  sample?: Pick<ResolvedAddress, "address_id" | "facts" | "source" | "confidence" | "review" | "retrieved_at">;
+  sample?: Pick<ResolvedAddress, "address_id" | "facts" | "source" | "source_detail" | "assumptions" | "confidence" | "review" | "retrieved_at">;
 };
 
 export type PlaceResult = Base & {

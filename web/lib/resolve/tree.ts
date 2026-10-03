@@ -146,7 +146,10 @@ export function coverageOf(tree: TreeLevel[]): Coverage {
   const state = tree.find((l) => l.level === "state");
   if (!state?.covered) return "not_covered";
   const local = tree.filter((l) => l.level === "municipality" || l.level === "unincorporated");
-  return local.some((l) => l.covered) ? "covered" : local.length ? "state_only" : "covered";
+  if (local.some((l) => l.covered)) return "covered";
+  // No local level (a state or county on its own): "covered" only if the county's own rules are in.
+  if (!local.length && tree.some((l) => l.level === "county" && l.covered)) return "covered";
+  return "state_only";
 }
 
 /** The level that decides local law: the last municipality, or the unincorporated marker. */

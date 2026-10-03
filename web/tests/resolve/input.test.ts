@@ -60,3 +60,19 @@ test("a state on its own", () => {
   assert.equal(p.place, "");
   assert.equal(p.state?.abbr, "NJ");
 });
+
+// A trailing "Ct"/"Wy" after a street is a street suffix (Court, Way), not Connecticut or Wyoming.
+for (const q of ["4115 LINCOLN WY", "734 Jamaica Ct", "10 Camelot Ct"]) {
+  test(`'${q}': trailing suffix is not read as a state`, () => {
+    const p = parseInput(q);
+    assert.equal(p.kind, "address");
+    assert.equal(p.state, null);
+    assert.equal(p.street, q);
+  });
+}
+
+test("a suffix-like state still counts when a ZIP follows it or commas separate it", () => {
+  assert.equal(parseInput("10 Main St Hartford CT 06103").state?.abbr, "CT");
+  assert.equal(parseInput("10 Main St, Hartford, CT").state?.abbr, "CT");
+  assert.equal(parseInput("boston ma").state?.abbr, "MA");
+});

@@ -6,7 +6,12 @@ import { searchPlace } from "./jurisdictions.ts";
 import { plain, streetKey } from "./normalise.ts";
 import type { ResolvedAddress, ResolvedFile } from "./types.ts";
 
-export type SampleIndex = { lookup(p: ParsedInput): ResolvedAddress | null; size: number };
+export type SampleIndex = {
+  lookup(p: ParsedInput): ResolvedAddress | null;
+  /** A Census match as a sample: its street line ("10635 SHERMAN GROVE AVE") in our municipality cityId. */
+  atMatch(street: string, cityId: string): ResolvedAddress | null;
+  size: number;
+};
 
 let cached: SampleIndex | null = null;
 
@@ -29,6 +34,10 @@ export function sampleIndex(file: ResolvedFile = data as unknown as ResolvedFile
 
   const index: SampleIndex = {
     size: file.addresses.length,
+    atMatch(street, cityId) {
+      const hits = (byKey.get(streetKey(street)) ?? []).filter((a) => a.jurisdictions.city === cityId);
+      return hits.length === 1 ? hits[0] : null;
+    },
     lookup(p) {
       if (p.kind !== "address" || !p.street) return null;
       const inState = (a: ResolvedAddress) => !p.state || a.input.state === p.state.abbr;

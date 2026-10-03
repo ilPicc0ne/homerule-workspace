@@ -1,5 +1,6 @@
 // Reads free text from the search box: a street address (goes to Census), a place (resolved through
 // our jurisdiction list), a ZIP on its own, or nothing.
+import { isStreetSuffix } from "./normalise.ts";
 import { STATES, stateByAbbr, type StateInfo } from "./states.ts";
 
 export type ParsedInput = {
@@ -16,6 +17,7 @@ export type ParsedInput = {
 };
 
 const NAMES = [...STATES].sort((a, b) => b.name.length - a.name.length);
+const HOUSE_NUMBER = /^\d+[A-Za-z]?(-\d+[A-Za-z]?)?\s+\S/;
 
 export function parseInput(raw: string): ParsedInput {
   const text = raw.replace(/\s+/g, " ").trim();
@@ -47,14 +49,17 @@ export function parseInput(raw: string): ParsedInput {
   if (!out.state) {
     const abbr = work.match(/[\s,]([A-Za-z]{2})$/);
     const s = abbr && stateByAbbr.get(abbr[1].toUpperCase());
-    if (s) {
+    // "734 Jamaica Ct", "4115 LINCOLN WY": without commas or a ZIP, a trailing CT/WY after a house
+    // number is the street suffix (Court, Way), not Connecticut or Wyoming.
+    const suffix = !!abbr && !out.zip && !work.includes(",") && HOUSE_NUMBER.test(work) && isStreetSuffix(abbr[1]);
+    if (s && !suffix) {
       out.state = s;
       work = work.slice(0, work.length - 2);
     }
   }
   work = work.replace(/[\s,]+$/, "").trim();
 
-  if (/^\d+[A-Za-z]?(-\d+[A-Za-z]?)?\s+\S/.test(work)) {
+  if (HOUSE_NUMBER.test(work)) {
     const parts = work.split(",").map((p) => p.trim()).filter(Boolean);
     out.kind = "address";
     out.street = parts[0];

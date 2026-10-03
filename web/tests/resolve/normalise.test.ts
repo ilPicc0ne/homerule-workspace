@@ -39,3 +39,22 @@ test("streetKey makes typed and recorded streets comparable", () => {
   assert.equal(streetKey("1031 Clinton St."), streetKey("1031-1035 CLINTON ST"));
   assert.notEqual(streetKey("3515 Fillmore St"), streetKey("3517 Fillmore St"));
 });
+
+test("streetKey treats full and short suffixes alike (sample CSV suffixes)", () => {
+  for (const [a, b] of [
+    ["4115 Lincoln Way", "4115 LINCOLN WY"],
+    ["2229 Dwight Way", "2229 DWIGHT WAY"],
+    ["734 Jamaica Court", "734 JAMAICA CT"],
+    ["4257 San Pedro Place", "4257 SAN PEDRO PL"],
+    ["27 Irving Terrace", "27 Irving Ter"],
+    ["521 Arguello Boulevard", "521 ARGUELLO BL"],
+    ["1 Potter Park", "1 Potter Pk"],
+    ["5 Main Highway", "5 MAIN HWY"],
+    ["5 Main Parkway", "5 MAIN PKWY"],
+    ["5 Main Alley", "5 MAIN ALY"],
+    ["5 Main Circle", "5 MAIN CIR"],
+    ["5 Main Square", "5 MAIN SQ"],
+  ]) {
+    assert.equal(streetKey(a), streetKey(b), `${a} vs ${b}`);
+  }
+});
