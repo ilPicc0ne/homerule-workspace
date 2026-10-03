@@ -1,26 +1,613 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+  HomeRule landing.
+  Palette: street-sign green on a cool paper, a highlighter for quoted law,
+  a slate blue reserved for "unknown". Type: Overpass (Highway Gothic lineage)
+  for everything we say, Source Serif 4 for everything the law says.
+*/
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --paper: #f2f4f1;
+  --surface: #ffffff;
+  --ink: #17231e;
+  --ink-soft: #4a5852;
+  --line: #c9d2cc;
+  --sign: #0b5e44;
+  --sign-text: #ffffff;
+  --post: #8c9692;
+  --mark: #f5d547;
+  --mark-text: #1d1a08;
+  --unknown: #3e5c7a;
+  --notice-bg: #17231e;
+  --notice-text: #f2f4f1;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #0f1a16;
+    --surface: #16241f;
+    --ink: #e6ece8;
+    --ink-soft: #a9b6af;
+    --line: #2d3d36;
+    --sign: #0f6b4d;
+    --sign-text: #ffffff;
+    --post: #56625d;
+    --mark: #e9cb3e;
+    --mark-text: #1d1a08;
+    --unknown: #8fb0d1;
+    --notice-bg: #e6ece8;
+    --notice-text: #0f1a16;
   }
 }
 
+@theme inline {
+  --font-sans: var(--font-overpass), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-overpass), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+:focus-visible {
+  outline: 3px solid var(--mark);
+  outline-offset: 2px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .wrap {
+    padding-inline: 2rem;
+  }
+}
+
+/* Not-legal-advice strip, always first on the page */
+.notice {
+  background: var(--notice-bg);
+  color: var(--notice-text);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  padding: 0.6rem 1rem;
+  text-align: center;
+}
+
+/* Masthead */
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.25rem;
+}
+
+.soon {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+/* Sign plates: the one motif. White letters, inset white keyline, rounded corners. */
+.plate {
+  display: inline-block;
+  background: var(--sign);
+  color: var(--sign-text);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border-radius: 0.4rem;
+  box-shadow:
+    inset 0 0 0 2px var(--sign),
+    inset 0 0 0 3.5px var(--sign-text);
+}
+
+.plate-small {
+  font-size: 1.05rem;
+  padding: 0.35rem 0.75rem 0.2rem;
+}
+
+.plate-city {
+  font-size: 0.95rem;
+  padding: 0.4rem 0.75rem 0.25rem;
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  gap: 2.5rem;
+  padding-block: 1.5rem 3.5rem;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 4rem;
+    padding-block: 3rem 5rem;
+  }
+}
+
+.hero h1 {
+  font-size: clamp(2.35rem, 7.5vw, 4.25rem);
+  line-height: 1.02;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  max-width: 14ch;
+}
+
+.lede {
+  margin-top: 1.5rem;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  max-width: 34rem;
+}
+
+/* The example: a street sign on a post, the answer hanging below it */
+.example {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  background: var(--sign);
+  color: var(--sign-text);
+  border-radius: 0.6rem;
+  padding: 0.85rem 1.4rem 0.6rem;
+  box-shadow:
+    inset 0 0 0 4px var(--sign),
+    inset 0 0 0 6px var(--sign-text);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.sign-number {
+  font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+  opacity: 0.92;
+}
+
+.sign-street {
+  font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+  letter-spacing: 0.01em;
+}
+
+.post {
+  width: 0.6rem;
+  height: 1.75rem;
+  background: var(--post);
+}
+
+.answer {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--sign);
+  border-radius: 0.25rem 0.25rem 0.75rem 0.75rem;
+  padding: 1.25rem 1.25rem 1rem;
+  transform-origin: top center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .answer {
+    animation: hang 900ms cubic-bezier(0.2, 0.9, 0.25, 1.15) 120ms both;
+  }
+}
+
+@keyframes hang {
+  from {
+    opacity: 0;
+    transform: translateY(-0.75rem) rotate(-1.5deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.answer-tag {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.tag {
+  font-weight: 700;
+  color: var(--mark-text);
+  background: var(--mark);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem 0.05rem;
+}
+
+.answer-where {
+  margin-top: 0.85rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.answer-q {
+  margin-top: 0.25rem;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.rule {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.rule-status {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.rule-note {
+  margin-top: 0.25rem;
+  padding-left: 1.6rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.rule-quiet .rule-status {
+  color: var(--ink-soft);
+}
+
+.rule-quiet .mark {
+  opacity: 0.45;
+}
+
+.quote {
+  margin: 0.85rem 0 0 1.6rem;
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.quote mark {
+  background: linear-gradient(transparent 12%, var(--mark) 12%, var(--mark) 88%, transparent 88%);
+  color: var(--mark-text);
+  padding-inline: 0.1em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.rule-meta {
+  margin: 0.7rem 0 0 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.asof {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+/* Status marks: shape carries the meaning, not just colour */
+.mark {
+  flex: none;
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  position: relative;
+  top: 0.12em;
+}
+
+.mark-inforce {
+  background: var(--sign);
+}
+
+.mark-upcoming {
+  border: 2px solid var(--sign);
+  background: linear-gradient(90deg, var(--sign) 50%, transparent 50%);
+}
+
+.mark-pending {
+  border: 2px dashed var(--ink-soft);
+}
+
+.mark-unknown {
+  border: 2px solid var(--unknown);
+}
+
+.mark-unknown::after {
+  content: "?";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+  padding-top: 0.12em;
+  color: var(--unknown);
+}
+
+/* Sections */
+.band {
+  padding-block: 3.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 4.6vw, 2.3rem);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.section-lede {
+  margin-top: 0.85rem;
+  color: var(--ink-soft);
+  max-width: 38rem;
+}
+
+/* Six questions */
+.questions {
+  margin-top: 2rem;
+  display: grid;
+  gap: 0;
+}
+
+@media (min-width: 720px) {
+  .questions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 3rem;
+  }
+}
+
+.questions li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 1rem 0 1rem 1rem;
+  border-left: 4px solid var(--sign);
+  margin-bottom: 0.75rem;
+}
+
+.question {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.topic {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* Date ruler: a vertical line through time; the pending bill sits off the line */
+.ruler {
+  margin-top: 2.25rem;
+  max-width: 38rem;
+}
+
+.ruler-item {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.ruler-item:not(.ruler-off)::before,
+.ruler-today::after {
+  content: "";
+  position: absolute;
+  left: calc(0.5rem - 1px);
+  width: 2px;
+  background: var(--line);
+}
+
+.ruler-item:not(.ruler-off)::before {
+  top: 1.35rem;
+  bottom: 0;
+}
+
+.ruler-today::after {
+  top: 0;
+  bottom: -1.5rem;
+  z-index: -1;
+}
+
+.ruler-item .mark {
+  background-color: var(--paper);
+}
+
+.ruler-item .mark-inforce {
+  background: var(--sign);
+}
+
+.ruler-item .mark-upcoming {
+  background: linear-gradient(90deg, var(--sign) 50%, var(--paper) 50%);
+}
+
+.ruler-item h3 {
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.ruler-item p {
+  color: var(--ink-soft);
+}
+
+.ruler-today {
+  position: relative;
+  isolation: isolate;
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.ruler-today::before {
+  content: "";
+  width: 2rem;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--mark);
+  flex: none;
+}
+
+.ruler-today span {
+  background: var(--mark);
+  color: var(--mark-text);
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.5rem 0.05rem;
+}
+
+.ruler-off {
+  margin-top: 0.5rem;
+  margin-left: 2rem;
+}
+
+/* Promises */
+.promises {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1.75rem;
+}
+
+@media (min-width: 720px) {
+  .promises {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 3rem;
+  }
+}
+
+.promises dt {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.promises dd {
+  margin-top: 0.25rem;
+  color: var(--ink-soft);
+  max-width: 34rem;
+}
+
+/* Coverage */
+.states {
+  margin-top: 2rem;
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .states {
+    grid-template-columns: 1.6fr 1.2fr 1fr;
+  }
+}
+
+.state h3 {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.state ul {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Alerts mock */
+.alerts-row {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 34rem;
+}
+
+@media (min-width: 560px) {
+  .alerts-row {
+    flex-direction: row;
+  }
+}
+
+.alerts-row input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  padding: 0.75rem 0.9rem 0.6rem;
+  border: 1.5px solid var(--line);
+  border-radius: 0.4rem;
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: not-allowed;
+}
+
+.alerts-row input::placeholder {
+  color: var(--ink-soft);
+  opacity: 0.8;
+}
+
+.alerts-row button {
+  font: inherit;
+  font-weight: 700;
+  padding: 0.75rem 1.1rem 0.6rem;
+  border-radius: 0.4rem;
+  border: 1.5px dashed var(--ink-soft);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: not-allowed;
+  white-space: nowrap;
+}
+
+/* Footer */
+.footer {
+  padding-block: 2.5rem 3rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.footer p {
+  max-width: 44rem;
 }
