@@ -1,0 +1,540 @@
+<title>HomeRule Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: a civic review dossier. Sticky section index on wide screens, one reading column; decision cards are the only "objects", statuses use the lookups.json vocabulary as chips. */
+:root{
+  --paper:#F2F5F7; --surface:#FFFFFF; --ink:#15202B; --muted:#56616E; --line:#D3DAE1; --soft:#E7ECF0;
+  --accent:#0B6B66; --accent-ink:#FFFFFF; --accent-soft:#DDEFED;
+  --applies:#1D7A43; --unknown:#9A5A00; --pending:#6A44B8; --superseded:#5E6773; --notyet:#1F5DA8; --risk:#B3261E;
+  --f-display:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-law:"IBM Plex Serif",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0E1318; --surface:#161D24; --ink:#E5EAEF; --muted:#9BA7B3; --line:#2B3541; --soft:#1D2630;
+  --accent:#43C0B5; --accent-ink:#06201E; --accent-soft:#12302E;
+  --applies:#5BC88A; --unknown:#E9A84A; --pending:#B39AF2; --superseded:#A0A9B4; --notyet:#7FB0EE; --risk:#F2857D; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0E1318; --surface:#161D24; --ink:#E5EAEF; --muted:#9BA7B3; --line:#2B3541; --soft:#1D2630;
+  --accent:#43C0B5; --accent-ink:#06201E; --accent-soft:#12302E;
+  --applies:#5BC88A; --unknown:#E9A84A; --pending:#B39AF2; --superseded:#A0A9B4; --notyet:#7FB0EE; --risk:#F2857D; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--f-body);margin:0}
+a{color:var(--accent)}
+.shell{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 80px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:40px}
+@media (max-width:900px){.shell{grid-template-columns:minmax(0,1fr);gap:20px;padding-inline:16px}}
+nav.index{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);align-self:start;display:grid;gap:4px;font-size:14px}
+nav.index a{color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:6px}
+nav.index a:hover,nav.index a:focus-visible{color:var(--ink);background:var(--soft)}
+nav.index .tag{font:600 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 8px 6px}
+@media (max-width:900px){nav.index{position:static;display:flex;flex-wrap:wrap;gap:6px}nav.index .tag{width:100%}}
+main{display:grid;gap:56px;min-width:0}
+section{display:grid;gap:16px;min-width:0;scroll-margin-top:16px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5vw,52px);line-height:1.05;font-weight:800;letter-spacing:-.02em}
+h2{font-size:24px;font-weight:700;letter-spacing:-.01em}
+h3{font-size:17px;font-weight:700}
+.eyebrow{font:600 12px var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+p{margin:0;max-width:68ch}
+.lede{font-size:18px;color:var(--muted)}
+.muted{color:var(--muted)}
+code,.mono{font-family:var(--f-mono);font-size:.88em}
+code{background:var(--soft);padding:1px 5px;border-radius:4px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* hero */
+.hero{display:grid;gap:18px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.quote{font:italic 400 clamp(20px,2.6vw,26px)/1.4 var(--f-law);border-left:3px solid var(--accent);padding-left:18px;max-width:40ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;font:500 13px var(--f-mono);color:var(--muted)}
+.meta b{color:var(--ink);font-weight:600}
+.clock{font-variant-numeric:tabular-nums}
+
+/* statute card (illustrative lookup) */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:760px){.two{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:10px;align-content:start;min-width:0}
+.lookup{font-size:14px;display:grid;gap:0}
+.lookup .addr{font:600 13px var(--f-mono);color:var(--muted);padding-bottom:8px;border-bottom:1px solid var(--line)}
+.row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;padding:10px 0;border-bottom:1px solid var(--soft)}
+.row:last-child{border-bottom:0}
+.row .cat{font-weight:600}
+.row q{font-family:var(--f-law);font-style:italic;quotes:"\201C" "\201D"}
+.cite{font:500 12px var(--f-mono);color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:6px;font:600 11px var(--f-mono);letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.s-applies{color:var(--applies)} .s-unknown{color:var(--unknown)} .s-pending{color:var(--pending)} .s-superseded{color:var(--superseded)} .s-notyet{color:var(--notyet)}
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+.ask{background:var(--accent-soft);border-radius:8px;padding:10px 12px;font-size:14px}
+ol.plain,ul.plain{margin:0;padding-left:20px;display:grid;gap:6px}
+
+/* differentiators */
+.diff{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:d}
+@media (max-width:860px){.diff{grid-template-columns:minmax(0,1fr)}}
+.diff div{border-top:2px solid var(--accent);padding-top:12px;display:grid;gap:6px;align-content:start}
+.diff b{font-family:var(--f-display);font-size:16px}
+.diff p{font-size:15px;color:var(--muted)}
+
+/* decisions */
+.who{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.status-line{font-size:14px;color:var(--muted)}
+.decisions{display:grid;gap:14px}
+.dcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:12px;min-width:0}
+.dhead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;align-items:baseline}
+.owner{font:600 12px var(--f-mono);color:var(--muted)}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start;text-align:left;width:100%;font:inherit;color:inherit;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[disabled]{cursor:default}
+.radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--muted);margin-top:4px}
+.opt[aria-pressed="true"] .radio{border-color:var(--accent);background:radial-gradient(circle,var(--accent) 0 45%,transparent 50%)}
+.opt .t{font-weight:600}
+.opt .d{display:block;font-size:14px;color:var(--muted)}
+.rec{font:600 11px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.voters{display:flex;gap:4px;align-items:center;min-height:22px}
+.voters img{width:22px;height:22px;border-radius:50%;border:2px solid var(--surface)}
+.note{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px;resize:vertical;min-height:38px}
+.notes{display:grid;gap:4px;font-size:14px}
+.notes .n{color:var(--muted)} .notes .n b{color:var(--ink)}
+
+/* challenges */
+.challenges{display:grid;gap:12px}
+details.ch{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:0}
+details.ch summary{cursor:pointer;list-style:none;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
+details.ch summary::-webkit-details-marker{display:none}
+details.ch summary .t{font-weight:700}
+details.ch summary .why{display:block;font-size:14px;color:var(--muted);font-weight:400}
+.sev{font:600 11px var(--f-mono);text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:999px;border:1px solid currentColor}
+.sev.high{color:var(--risk)} .sev.med{color:var(--unknown)} .sev.low{color:var(--superseded)}
+.chbody{padding:0 16px 16px;display:grid;gap:12px}
+.approaches{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.appr{border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:6px;align-content:start;font-size:14px}
+.appr.pick{border-color:var(--accent);background:var(--accent-soft)}
+.appr .h{display:flex;justify-content:space-between;gap:8px;font-weight:700}
+.check{font-size:14px} .check b{font-family:var(--f-mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent)}
+
+/* tables */
+.table-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14px}
+th{font:600 11px var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:10px 12px;border-bottom:1px solid var(--soft);vertical-align:top}
+tr.tier td{background:var(--soft);font:700 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+td.n,td.h{font-family:var(--f-mono);white-space:nowrap;font-variant-numeric:tabular-nums}
+.who-s,.who-d{font:600 12px var(--f-mono);padding:1px 6px;border-radius:4px;background:var(--soft)}
+
+/* pipeline */
+.pipe{display:grid;gap:10px}
+.lane{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;flex:1 1 150px;min-width:0}
+.box b{display:block;font-size:14px}
+.box span{font:500 12px var(--f-mono);color:var(--muted)}
+.box.llm{border-color:var(--pending)} .box.out{border-color:var(--applies)} .box.front{border-color:var(--accent)}
+.arrow{align-self:center;color:var(--muted);font:600 16px var(--f-mono)}
+@media (max-width:640px){.arrow{display:none}}
+.keys{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted)}
+.keys i{display:inline-block;width:12px;height:12px;border-radius:3px;border:2px solid;vertical-align:-2px;margin-right:4px}
+
+/* timeline */
+.timeline{display:grid;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.tl{position:relative;padding:0 0 16px 20px;display:grid;gap:4px}
+.tl::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--muted)}
+.tl.gate::before{border-color:var(--accent);background:var(--accent)}
+.tl .when{font:600 13px var(--f-mono);font-variant-numeric:tabular-nums}
+.tl .what{font-size:15px}
+.tl .gatelist{font-size:14px;color:var(--muted)}
+.cut{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:500 13px var(--f-mono)}
+.cut span{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+.cut em{color:var(--muted);font-style:normal}
+
+.beats{display:grid;gap:10px}
+.beat{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;font-size:15px}
+.beat .ts{font:600 13px var(--f-mono);color:var(--accent);padding-top:2px}
+
+.tags{font:600 11px var(--f-mono);text-transform:uppercase;letter-spacing:.04em}
+.t-verified{color:var(--applies)} .t-assumed{color:var(--unknown)} .t-unknown{color:var(--risk)}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<div class="shell">
+<nav class="index" aria-label="Sections">
+  <div class="tag">HomeRule · c2</div>
+  <a href="#overview">Overview</a>
+  <a href="#decisions">Decisions</a>
+  <a href="#challenges">Technical challenges</a>
+  <a href="#scope">Feature scope</a>
+  <a href="#stack">Tech stack</a>
+  <a href="#plan">Plan and gates</a>
+  <a href="#demo">Demo</a>
+  <a href="#evidence">Evidence</a>
+</nav>
+
+<main>
+<section class="hero" id="overview">
+  <div class="eyebrow">Hack-Nation 7 · Challenge 2 · RealPage · Rental Housing Law Navigator</div>
+  <h1>HomeRule</h1>
+  <p class="quote">A model has a training cutoff. A law has an effective date.</p>
+  <p class="lede">Housing law compiled into checkable, dated rules. Every address gets a quoted answer, or one honest question. The same engine serves renters on the web and any AI assistant through MCP.</p>
+  <div class="meta">
+    <span>Working name · concept from the deep-work review, Sat 03.10. 20:30</span>
+    <span>Freeze <b>Sun 12:00</b> · Submit <b>Sun 15:00</b></span>
+    <span class="clock" id="clock">–</span>
+  </div>
+</section>
+
+<section aria-labelledby="ps-h">
+  <h2 id="ps-h">Problem and solution</h2>
+  <div class="two">
+    <div class="panel">
+      <div class="eyebrow">Problem</div>
+      <p>A renter with a notice or a charge has days to decide whether to push back. The answer depends on three layers of law, the building's age and size, and dates that move every few months. Tenants have a lawyer in about 3–4% of eviction cases. The chatbot they reach for:</p>
+      <ul class="plain">
+        <li>cannot know laws passed after its training,</li>
+        <li>confuses pending, struck and not-yet-effective law,</li>
+        <li>does not know that a "Los Angeles" mailing address can lie outside the city.</li>
+      </ul>
+      <p class="muted" style="font-size:14px">Where knowing the rules moves money: a rent increase (pay or contest the cap), a deposit (demand it back; MA treble, CA up to ×2), an application fee (NJ cap $50 from 5/1/2026), an eviction notice (does just cause apply?).</p>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">Solution, shown on one address</div>
+      <div class="lookup" aria-label="Illustrative lookup">
+        <div class="addr">Illustrative · Berkeley, CA · as of 2026-10-01 · thresholds to be checked in the corpus</div>
+        <div class="row"><span class="cat">Deposit cap</span><span><span class="chip s-applies">applies</span><br><q>one month's rent</q> <span class="cite">Cal. Civ. Code §1950.5 · AB 12, eff. 7/1/2024</span></span></div>
+        <div class="row"><span class="cat">Rent increase</span><span><span class="chip s-unknown">unknown</span><br>One fact decides it: first occupied before 1980?</span></div>
+        <div class="row"><span class="cat">State rent cap</span><span><span class="chip s-superseded">superseded</span> if the local ordinance applies <span class="cite">Cal. Civ. Code §1947.12</span></span></div>
+        <div class="row"><span class="cat">Algorithmic pricing</span><span><span class="chip s-applies">applies</span> <span class="cite">Berkeley ch. 13.63 · AB 325/SB 763 eff. 1/1/2026</span></span></div>
+      </div>
+      <div class="ask"><b>The one question:</b> "Was your building first occupied before 1980? Check the rent registry or your lease." The answer re-evaluates both rent rules, client-side.</div>
+      <div class="legend" aria-label="Status vocabulary from lookups.json"><span class="chip s-applies">applies</span><span class="chip s-unknown">unknown</span><span class="chip s-superseded">superseded</span><span class="chip s-notyet">not yet effective</span><span class="chip s-pending">pending</span></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="diff-h">
+  <h2 id="diff-h">Why it is different</h2>
+  <p class="muted">All three simulated crowds build the same six products: RAG chatbot, address dashboard, change tracker, date-slider map, bilingual card, landlord view. They differ in the UI, not in the 75 scripted points, and none of them measures anything.</p>
+  <div class="diff">
+    <div><b>Discipline on the traps</b><p>Legal city, verbatim quotes, local over state, statuses, misses costing double, the 19 "no rule" findings. The 75 script points come by construction.</p></div>
+    <div><b>A measured contrast</b><p>The crowd's architecture (an LLM decides coverage) against ours, on the judges' own score.py and ~25 dated trap questions. It answers "why not just ask ChatGPT?" with a number.</p></div>
+    <div><b>One engine, two front doors</b><p>The hour-16 ordinance did not exist at 10:59. Minutes later the web page and Claude, through MCP, both cite it.</p></div>
+  </div>
+</section>
+
+<section id="decisions" aria-labelledby="dec-h">
+  <h2 id="dec-h">Decisions to make</h2>
+  <p class="muted">Pick an option and add a note. Each of you sees the other's pick next to the option. Recommendations come from the concept review.</p>
+  <div class="who" id="whoLine"><span class="status-line" id="dbStatus">Connecting…</span></div>
+  <div class="decisions" id="decisionList"></div>
+</section>
+
+<section id="challenges" aria-labelledby="ch-h">
+  <h2 id="ch-h">Technical challenges and approaches</h2>
+  <p class="muted">Ordered by how much of the score depends on them. The highlighted approach is the current plan; the others are fallbacks.</p>
+  <div class="challenges" id="challengeList"></div>
+</section>
+
+<section id="scope" aria-labelledby="sc-h">
+  <h2 id="sc-h">Feature scope</h2>
+  <p class="muted">About 9 productive hours each before the 12:00 freeze. Musts take Dimitar 8.75 h and Silvan 8.5 h, so Shoulds start only once M10 is live.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>Feature</th><th>Acceptance check</th><th>Owner</th><th>h</th></tr></thead>
+    <tbody id="scopeBody"></tbody>
+  </table></div>
+  <div class="cut" aria-label="Cut order"><em>Cut first →</em><span>C4 live lookup</span><span>C3 provider wording</span><span>C2 Spanish</span><span>C1 overnight loop</span><span>S5 clinic sheet</span><span>S2b trap set</span><span>S3 MCP</span><span>S2a contrast</span><span>S1 one question</span></div>
+  <p class="muted" style="font-size:14px"><b>Never cut:</b> M1–M10, score.py on screen, the hour-16 run, "not legal advice", the live link.</p>
+</section>
+
+<section id="stack" aria-labelledby="st-h">
+  <h2 id="st-h">Tech stack</h2>
+  <div class="pipe">
+    <div class="lane">
+      <div class="box"><b>87 law documents</b><span>starter pack corpus</span></div><span class="arrow">→</span>
+      <div class="box llm"><b>Extraction agent</b><span>Python · claude-opus-5-5 · structured output</span></div><span class="arrow">→</span>
+      <div class="box"><b>Span snapper + verifier</b><span>exact → normalised → fuzzy ≥90</span></div><span class="arrow">→</span>
+      <div class="box out"><b>rules.json</b><span>+ rules.compiled.json (predicate AST)</span></div>
+    </div>
+    <div class="lane">
+      <div class="box"><b>500 addresses</b><span>assessor CSV</span></div><span class="arrow">→</span>
+      <div class="box"><b>Census batch geocoder</b><span>postal city → legal place</span></div><span class="arrow">→</span>
+      <div class="box"><b>TypeScript rule engine</b><span>Kleene logic · dates · yields_to</span></div><span class="arrow">→</span>
+      <div class="box out"><b>lookups.json · changes.json</b><span>as-of parameter · T1–T6</span></div>
+    </div>
+    <div class="lane">
+      <div class="box"><b>score.py + assertion suite</b><span>repair half / gate half · audit JSONL</span></div><span class="arrow">→</span>
+      <div class="box front"><b>Web page</b><span>Next.js + Tailwind on Vercel</span></div><span class="arrow">+</span>
+      <div class="box front"><b>MCP route</b><span>mcp-handler v2 · same engine</span></div>
+    </div>
+    <div class="keys"><span><i style="border-color:var(--pending)"></i>LLM call</span><span><i style="border-color:var(--applies)"></i>scored output</span><span><i style="border-color:var(--accent)"></i>front door</span></div>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Layer</th><th>Choice</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Extraction</td><td>Python 3.12, <code>anthropic</code> SDK, <code>claude-opus-5-5</code> (effort high), structured outputs against the provided schema</td><td>Document first in the prompt so reruns read from cache; schema-valid by construction</td></tr>
+      <tr><td>Checks</td><td><code>claude-haiku-4-5</code> for summary checks and Spanish; <code>rapidfuzz</code>, <code>jsonschema</code></td><td>Span snapping in code: the Citations API does not combine with structured outputs</td></tr>
+      <tr><td>Rules</td><td><code>rules.json</code> exactly in the provided schema; predicates in a sidecar <code>rules.compiled.json</code> (all/any/not, fact-op-value, age_years, ref)</td><td>Scored file stays clean; AST schema frozen at 22:00 and validated on both sides</td></tr>
+      <tr><td>Engine</td><td>One TypeScript module for the Node build, the browser and MCP</td><td>Scored output and UI cannot drift; instant re-evaluation for the one question (open decision D2)</td></tr>
+      <tr><td>Storage</td><td>JSON in git plus append-only <code>audit/*.jsonl</code> (doc, model, prompt hash, raw output, verdicts, score)</td><td>No database to run; the audit trail is the responsible-design story</td></tr>
+      <tr><td>Front</td><td>Next.js + Tailwind on Vercel, MCP route in the same app</td><td>One deploy, a live link judges can open on a phone</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="plan" aria-labelledby="pl-h">
+  <h2 id="pl-h">Plan and gates</h2>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<section id="demo" aria-labelledby="de-h">
+  <h2 id="de-h">Demo, 2:30</h2>
+  <div class="beats">
+    <div class="beat"><span class="ts">0:00</span><span>"A model has a training cutoff. A law has an effective date." A real recording of a plain chatbot mishandling the struck MA ballot question or the 11:00 ordinance.</span></div>
+    <div class="beat"><span class="ts">0:15</span><span>Ana, Berkeley, rent-increase notice. Stack CA › Alameda › Berkeley. Deposit cap applies, quoted. Rent increase unknown: one fact decides it. She answers; the local ordinance applies and AB 1482 is superseded. She prints the clinic sheet.</span></div>
+    <div class="beat"><span class="ts">0:50</span><span>Jersey City: FAIR Act applies from 7/1/2027, conflict flag against §218-12. Boston: no rent cap, the ballot question was struck. "Proposed is not law."</span></div>
+    <div class="beat"><span class="ts">1:10</span><span>Hour 16, clock visible. One command; N rules with verified quotes; M Cambridge addresses now "not yet effective, applies from &lt;date&gt;"; X minutes.</span></div>
+    <div class="beat"><span class="ts">1:40</span><span>The same question in Claude through the HomeRule MCP cites this morning's ordinance, with the as-of date and "not legal advice".</span></div>
+    <div class="beat"><span class="ts">2:05</span><span>Proof: score.py report, contrast table, audit log.</span></div>
+  </div>
+  <p class="quote" style="font-size:19px">Housing law changes faster than any model retrains. HomeRule compiles it into checkable rules, so every address, and every assistant, gets today's law with the quote.</p>
+</section>
+
+<section id="evidence" aria-labelledby="ev-h">
+  <h2 id="ev-h">Evidence</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Claim</th><th>Status</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Tenants have a lawyer in ~3–4% of eviction cases, landlords in ~80–84%</td><td class="tags t-verified">verified, secondary</td><td><a href="https://civilrighttocounsel.org/resources/organizing_around_right_to_counsel/" target="_blank" rel="noopener">civilrighttocounsel.org</a></td></tr>
+      <tr><td>92% of low-income Americans' serious civil legal problems get no or inadequate help (2022)</td><td class="tags t-verified">verified</td><td><a href="https://justicegap.lsc.gov/resource/executive-summary-2022/" target="_blank" rel="noopener">LSC Justice Gap</a></td></tr>
+      <tr><td>22.7M renter households (a record 49%) spend more than 30% of income on housing</td><td class="tags t-verified">verified</td><td>Brief p.1; Harvard JCHS</td></tr>
+      <tr><td>26% of renters denied a deposit; 42% got it back in full</td><td class="tags t-verified">verified, weak surveys</td><td>Industry surveys (2013, 2021)</td></tr>
+      <tr><td>Renters don't know which layer of law covers them</td><td class="tags t-unknown">unknown</td><td>No survey found</td></tr>
+      <tr><td>Renters would use an address-level tool; a cited sheet speeds up a clinic consult</td><td class="tags t-assumed">assumed</td><td>Cheapest test: RealPage mentor and one US clinic volunteer react to the sheet</td></tr>
+      <tr><td>212 of 500 buildings have no year built</td><td class="tags t-unknown">unknown</td><td>Kickoff captions, not in the PDF; check the CSV</td></tr>
+      <tr><td>Starter-pack conventions: as-of date, granularity, unknown credit, "no rule" format</td><td class="tags t-unknown">unknown</td><td>Participant guide; mentor</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>Built from <code>funnel/deepdives/c2-winning-concept.md</code> and <code>funnel/decision.md</code> in the snp repo. Not legal advice, and neither is the product.</footer>
+</main>
+</div>
+
+<script>
+const DECISIONS = [
+  {id:"d1", q:"Self-repair loop: headline feature or overnight extra?", owner:"Dimitar decides",
+   ctx:"The gated loop (repair only kept if it holds on held-back cases) is Dimitar's main interest. The concept review demoted it because the claim rests on 8 gate addresses and can't be seen in a 60-second video.",
+   opts:[{k:"could",t:"Could: overnight only if 03:00 is green",d:"Shown in the tech video as a score curve; not the headline.",rec:true},
+         {k:"should",t:"Should: part of the headline",d:"Pitch becomes 'keeps itself current and proves it'; costs ~3 h of Shoulds."},
+         {k:"drop",t:"Drop it",d:"All of Dimitar's time goes into extraction quality and the contrast table."}]},
+  {id:"d2", q:"Rule engine language", owner:"Dimitar decides",
+   ctx:"The engine turns rules.compiled.json into the five statuses per address. It runs in the build, in the browser (one-question re-evaluation) and behind MCP.",
+   opts:[{k:"ts",t:"TypeScript, one module everywhere",d:"Scored output and UI can't drift; Dimitar's loop shells out to node build-lookups (<1 s).",rec:true},
+         {k:"py",t:"Python, with an API for the web",d:"Closer to the extraction code; the web calls a hosted endpoint, so a second host to deploy."}]},
+  {id:"d3", q:"Headline and pitch", owner:"Both",
+   opts:[{k:"cutoff",t:"\"A model has a training cutoff; a law has an effective date.\"",d:"Proven by the contrast table and hour 16.",rec:true},
+         {k:"current",t:"\"The only navigator that keeps itself current and proves it's right.\"",d:"Leans on the self-repair loop (D1 = Should)."},
+         {k:"renter",t:"\"Know your rights at your address, with the quote.\"",d:"Closest to the brief; most teams will say something similar."}]},
+  {id:"d4", q:"Demo hero", owner:"Silvan decides",
+   ctx:"Demoing an algorithmic-pricing ban casts RealPage's own product as the villain in front of RealPage's jury.",
+   opts:[{k:"berkeley",t:"Ana, Berkeley, rent-increase notice",d:"Shows layers, superseded state law and the one question.",rec:true},
+         {k:"hoboken",t:"Maria, Hoboken, algorithmic pricing",d:"Strong FAIR Act date story, but sponsor-awkward."}]},
+  {id:"d5", q:"MCP front door", owner:"Silvan decides",
+   opts:[{k:"should",t:"Should (S3), about 1 h",d:"Claude cites the hour-16 ordinance; also the tool arm of the trap set.",rec:true},
+         {k:"could",t:"Could, cut early",d:"Web only; frees an hour for the renter page."}]},
+  {id:"d6", q:"Measured contrast against the crowd architecture", owner:"Dimitar decides",
+   opts:[{k:"both",t:"Both: score.py contrast (S2a) and trap set (S2b)",d:"~2.5 h; the strongest proof, plain model's correct answers reported too.",rec:true},
+         {k:"s2a",t:"Only the score.py contrast (S2a)",d:"~1 h; one number on the judges' own script."},
+         {k:"none",t:"No contrast",d:"Saves time; the differentiation then rests on hour 16 alone."}]},
+  {id:"d7", q:"Primary user on screen", owner:"Both",
+   opts:[{k:"renter",t:"Renter, with a printable clinic sheet",d:"The brief's first user group; the clinic sheet is the handoff.",rec:true},
+         {k:"clinic",t:"Tenant-clinic intake volunteer",d:"Dimitar's 'brief for the lawyer' idea; one user, faster triage."},
+         {k:"advocate",t:"Advocate or agency",d:"Which buildings a bill covers; least emotional demo."}]},
+  {id:"d8", q:"Who talks to the RealPage mentor tonight", owner:"Both",
+   ctx:"Questions: scored as-of date, T3 conflict-flag format, hour-16 format, dev/held-out overlap, may the brief's named rules be a test set.",
+   opts:[{k:"silvan",t:"Silvan, before 22:00",d:"Dimitar keeps building the spike.",rec:true},
+         {k:"dimitar",t:"Dimitar",d:"He knows the extraction questions best."}]},
+];
+
+const CHALLENGES = [
+  {t:"score.py conventions are unknown", sev:"high", owner:"Dimitar",
+   why:"As-of date, rule granularity, partial credit for unknown and the 'no rule' format decide 75 points, and the starter pack is not read yet.",
+   appr:[{n:"Read the participant guide first, calibrate on the dev key",d:"Match our records to the 10 dev rules before extracting the rest.",pick:true},
+         {n:"Ask the mentor",d:"Five questions, tonight (D8)."},
+         {n:"Parametrise the as-of date",d:"lookups.json built for any date; 2026-10-01 assumed until confirmed."}],
+   check:"score.py prints a baseline on our own files by 22:00."},
+  {t:"Extraction granularity and verbatim citations", sev:"high", owner:"Dimitar",
+   why:"Extraction (25) matches on jurisdiction × category × citation against 58 rules; citations (15) need a quoted span that exists in the corpus. LLMs paraphrase and over-extract.",
+   appr:[{n:"One record per jurisdiction × category × cited section",d:"Dev-key citation style; links-only docs skipped.",pick:true},
+         {n:"Span snapper",d:"Exact → normalised → fuzzy ≥90 against the source; failures kept and flagged, never dropped.",pick:true},
+         {n:"Two-model extraction",d:"A second model disagrees → human review. Better quality, double cost; rejected for time."}],
+   check:"≥4/10 dev rules by 22:00, ≥7/10 by 03:00; ≥95% of spans verbatim."},
+  {t:"Coverage conditions as executable logic", sev:"high", owner:"Silvan",
+   why:"Coverage tests (year built, units, owner type, exemptions) arrive as prose. If they don't compile, lookups fall back to guessing.",
+   appr:[{n:"Predicate AST with three-valued logic",d:"all/any/not, fact-op-value, age_years, cross-rule refs; missing fact → unknown, never omitted.",pick:true},
+         {n:"Fixed fields fallback",d:"Year cutoff, minimum units, owner type, exemption flags. Triggered if <70% of conditions parse."}],
+   check:"8 trap tests green, incl. the brief's SF 1962/20-unit example and T1."},
+  {t:"Legal city vs mailing city", sev:"med", owner:"Silvan",
+   why:"A 'Los Angeles' postal address can lie outside the city; using the postal city is a scored trap.",
+   appr:[{n:"Census batch geocoder → incorporated place",d:"No key, up to 10,000 addresses per batch; results cached and committed.",pick:true},
+         {n:"TIGER boundaries locally",d:"Point-in-polygon if the geocoder misses; slower to set up."}],
+   check:"≥95% of 500 addresses resolved; postal ≠ legal cases logged."},
+  {t:"Dates, statuses and precedence", sev:"med", owner:"Silvan",
+   why:"Enacted ≠ in effect, pending ≠ law, struck ≠ law, the stricter rule wins and must say why. T1, T3, T4, T5 test exactly this.",
+   appr:[{n:"Explicit yields_to table + status logic in the engine",d:"AB 1482 yields to local rent control; Civ. 1946.2 to local just cause; algorithmic bans coexist; FAIR Act = conflict flag.",pick:true},
+         {n:"Let the LLM decide per address",d:"The crowd approach; inconsistent and unauditable. Only as the contrast arm."}],
+   check:"T1 flips between 12/31/2025 and 1/2/2026; T5 affected set is empty."},
+  {t:"Overfitting the tiny dev key", sev:"med", owner:"Dimitar",
+   why:"10 rules and 20 addresses. Any tuning loop learns them by heart and looks better than it is.",
+   appr:[{n:"Assertion suite from the brief",d:"~26 named rules, T1–T5 and the SF example, split into repair and gate halves.",pick:true},
+         {n:"Prompt lint",d:"Keeps rule facts out of prompts; also proves extraction is not hand-coded.",pick:true},
+         {n:"Hour-16 as true out-of-sample test",d:"The only unseen law; report it honestly."}],
+   check:"A promoted change never regresses the gate half."},
+  {t:"Hour-16 ordinance, live and unaided", sev:"med", owner:"Dimitar",
+   why:"Released around Sun 10:00–11:00. Must be extracted without prompt edits and show the right future effective date.",
+   appr:[{n:"One command, rehearsed at 09:00",d:"Re-ingest a held-back ordinance; watch the Drive folder from 09:30; commit inputs, outputs and audit lines with timestamps.",pick:true}],
+   check:"Record reproduced in under 10 minutes."},
+  {t:"The legal-advice line", sev:"low", owner:"Silvan",
+   why:"Must not present output as legal advice or help evade a rule; responsible design is 10 points.",
+   appr:[{n:"Show, never judge",d:"Never compare a user's number to a cap or say 'illegal'; CPI caps shown as a formula; 'Not legal advice' in every view and every MCP payload.",pick:true}],
+   check:"Every screen and payload carries the disclaimer, as-of date and status."},
+];
+
+const SCOPE = [
+  ["tier","Must"],
+  ["M1","Extraction per document and category, plain summary, links-only docs filtered","Schema-valid rules.json, 50–90 records","D","4"],
+  ["M2","Span snapper, citation canonicaliser, verify-and-retry; failures kept and flagged","≥95% spans verbatim; dev ≥7/10 by 03:00","D","2.5"],
+  ["M3","Statuses enacted / pending / struck; 'no rule' only where a document bars it","T5 empty; MA bills pending","D+S","–"],
+  ["M4","Census geocoding → legal city, cached","≥95% of 500 resolved","S","1.5"],
+  ["M5","TS engine: AST, Kleene logic, intervals, yields_to, date/status","8 trap tests green","S","3"],
+  ["M6","lookups.json (500) at a parametrised as-of date; tenant facts as notes","Zero missed 'applies' on 20 dev addresses","S","0.5"],
+  ["M7","changes.json T1–T6 with before/after sets and T3 flag","T1 flips; T2 within city limits","S","1"],
+  ["M8","Eval harness: score.py + assertion suite, repair/gate halves, audit JSONL","make eval prints one report","D","1.25"],
+  ["M9","Hour-16 ingestion as one command, rehearsed","Record reproduced in <10 min","D","1"],
+  ["M10","Web page: stack, cards, 'what changes next', proof page, disclaimer","Deployed URL works on a phone","S","2.5"],
+  ["tier","Should, in priority order"],
+  ["S1","One question: missing building facts ranked by outcomes settled, with how to check","One answer settles ≥2 categories (Berkeley)","S","1.5"],
+  ["S2a","Contrast on score.py: LLM-decides-coverage vs compiled engine","score.py numbers for both","D","1"],
+  ["S3","MCP via mcp-handler: lookup_address, rules_as_of, whats_changing, missing_facts","Claude Desktop cites the hour-16 ordinance","S","1"],
+  ["S2b","Trap set: ~25 dated questions, plain model vs model + HomeRule","One script regenerates the table","D","1.5"],
+  ["S5","Clinic sheet: print styles of the result","One page per address","S","0.75"],
+  ["tier","Could"],
+  ["C1","Overnight prompt search, promoted only on the gate half (decision D1)","Promoted variant ≥ baseline","D","–"],
+  ["C2–C4","Spanish · provider wording · live geocoding of typed addresses","–","S/D","–"],
+];
+
+const TIMELINE = [
+  {w:"Sat 20:30–22:00", a:"D: starter pack, schema, score.py, dev-key docs, baseline. S: address CSV gaps, geocoding, predicate format + trap tests, new public product repo (not snp), Vercel skeleton with disclaimer."},
+  {w:"22:00 · go / no-go", gate:true, a:"score.py prints on our files · ≥4/10 dev rules · ≥90% spans verbatim · geocoding has run · AST schema frozen.", g:"<3/10 rules: cut S2b, S3 and C, both on extraction. <70% conditions parse: switch to fixed fields."},
+  {w:"22:00–00:30", a:"D: all 87 docs, span verifier, rules.json v1, audit log. S: engine, precedence and date/status logic, lookups.json for 500."},
+  {w:"00:30–03:00", a:"D: eval harness, repair/gate halves (loop only if D1 says so). S: T1–T5 runner, changes.json v1, full score.py, commit."},
+  {w:"03:00 · checkpoint", gate:true, a:"One command builds all three files in <15 min · 8 trap tests green · dev ≥7/10 rules, zero missed 'applies' · URL live.", g:"Anything red: no overnight loop, the morning goes to Musts only. Sleep 03:00–07:30."},
+  {w:"07:30–10:30", a:"D: contrast (S2a/S2b), hour-16 command. S: renter page, one question, proof page, MCP route, deploy."},
+  {w:"09:00–09:30", a:"Rehearse hour 16 on a held-back ordinance; watch the Drive folder from 09:30."},
+  {w:"~11:00 · hour 16", gate:true, a:"Ingest the Cambridge ordinance unaided, screen recorded with a visible clock; T6 into changes.json.", g:"No prompt edits after the release."},
+  {w:"12:00 · feature freeze", gate:true, a:"Final score.py, final JSON files committed."},
+  {w:"12:00–14:30", a:"Tech video (D), demo video and pitch (S), team video together."},
+  {w:"15:00 · submit", gate:true, a:"HackOS and the Google Form backup; repo public, live link checked."},
+];
+
+/* ---------- static render ---------- */
+const $ = s => document.querySelector(s);
+function el(tag, attrs={}, ...kids){const e=document.createElement(tag);for(const[k,v] of Object.entries(attrs)){if(k==="class")e.className=v;else if(k==="text")e.textContent=v;else e.setAttribute(k,v)}kids.flat().forEach(c=>c!=null&&e.append(c));return e}
+
+CHALLENGES.forEach(c=>{
+  const d=el("details",{class:"ch"});
+  d.append(el("summary",{},el("span",{},el("span",{class:"t",text:c.t}),el("span",{class:"why",text:c.why})),el("span",{class:"sev "+c.sev,text:c.sev==="high"?"high":c.sev==="med"?"medium":"low"})));
+  const body=el("div",{class:"chbody"});
+  body.append(el("div",{class:"owner",text:"Owner: "+c.owner}));
+  const ap=el("div",{class:"approaches"});
+  c.appr.forEach(a=>ap.append(el("div",{class:"appr"+(a.pick?" pick":"")},el("div",{class:"h"},el("span",{text:a.n}),a.pick?el("span",{class:"rec",text:"plan"}):null),el("span",{text:a.d}))));
+  body.append(ap,el("div",{class:"check"},el("b",{text:"Check "}),document.createTextNode(c.check)));
+  d.append(body);$("#challengeList").append(d);
+});
+document.querySelector("#challengeList details")?.setAttribute("open","");
+
+SCOPE.forEach(r=>{
+  if(r[0]==="tier"){$("#scopeBody").append(el("tr",{class:"tier"},el("td",{colspan:"5",text:r[1]})));return}
+  const own=r[3].split("+").map(o=>el("span",{class:o.startsWith("D")?"who-d":"who-s",text:o==="D"?"Dimitar":o==="S"?"Silvan":o}));
+  $("#scopeBody").append(el("tr",{},el("td",{class:"n",text:r[0]}),el("td",{text:r[1]}),el("td",{text:r[2]}),el("td",{},...own),el("td",{class:"h",text:r[4]})));
+});
+
+TIMELINE.forEach(t=>$("#timeline").append(el("div",{class:"tl"+(t.gate?" gate":"")},el("span",{class:"when",text:t.w}),el("span",{class:"what",text:t.a}),t.g?el("span",{class:"gatelist",text:t.g}):null)));
+
+const DEADLINE=new Date("2026-10-04T15:00:00+02:00"), FREEZE=new Date("2026-10-04T12:00:00+02:00");
+function tick(){const now=new Date();const f=(d)=>{const m=Math.round((d-now)/60000);return m<=0?"passed":`${Math.floor(m/60)} h ${m%60} min`};$("#clock").textContent=`Freeze in ${f(FREEZE)} · submission in ${f(DEADLINE)}`}
+tick();setInterval(tick,30000);
+
+/* ---------- decisions with shared picks ---------- */
+let db=null, user=null, me=null, picks={}, mine={}, canWrite=false, writeQ=Promise.resolve();
+
+function renderDecisions(profiles){
+  const list=$("#decisionList");list.replaceChildren();
+  DECISIONS.forEach(dec=>{
+    const card=el("article",{class:"dcard","aria-labelledby":"q-"+dec.id});
+    card.append(el("div",{class:"dhead"},el("h3",{id:"q-"+dec.id,text:dec.q}),el("span",{class:"owner",text:dec.owner})));
+    if(dec.ctx)card.append(el("p",{class:"muted",style:"font-size:14px",text:dec.ctx}));
+    const opts=el("div",{class:"opts",role:"group","aria-label":dec.q});
+    dec.opts.forEach(o=>{
+      const minePick=mine[dec.id]?.option===o.k;
+      const voters=Object.entries(picks).filter(([uid,p])=>p?.decisions?.[dec.id]?.option===o.k).map(([uid])=>uid);
+      const vs=el("span",{class:"voters"});
+      voters.forEach(uid=>{const p=profiles?.[uid];const img=el("img",{alt:(p?.name||"Someone")+" picked this",title:p?.name||"Someone"});img.src=p?.avatarUrl||"";vs.append(img)});
+      const b=el("button",{type:"button",class:"opt","aria-pressed":String(minePick)},
+        el("span",{class:"radio","aria-hidden":"true"}),
+        el("span",{},el("span",{class:"t",text:o.t}),el("span",{class:"d",text:o.d})),
+        el("span",{style:"display:grid;gap:4px;justify-items:end"},o.rec?el("span",{class:"rec",text:"recommended"}):null,vs));
+      if(!canWrite)b.disabled=true;
+      b.addEventListener("click",()=>choose(dec.id,o.k));
+      opts.append(b);
+    });
+    card.append(opts);
+    const others=Object.entries(picks).filter(([uid,p])=>uid!==me&&p?.decisions?.[dec.id]?.note);
+    if(others.length){const n=el("div",{class:"notes"});others.forEach(([uid,p])=>n.append(el("div",{class:"n"},el("b",{text:(profiles?.[uid]?.name||"Someone")+": "}),document.createTextNode(p.decisions[dec.id].note))));card.append(n)}
+    if(canWrite){
+      const ta=el("textarea",{class:"note",id:"note-"+dec.id,rows:"1",placeholder:"Your note (optional)","aria-label":"Your note on "+dec.q});
+      ta.value=mine[dec.id]?.note||"";
+      let t;ta.addEventListener("input",()=>{clearTimeout(t);t=setTimeout(()=>saveNote(dec.id,ta.value),900)});
+      ta.addEventListener("blur",()=>{clearTimeout(t);saveNote(dec.id,ta.value)});
+      card.append(ta);
+    }
+    list.append(card);
+  });
+}
+async function render(){
+  const ids=Object.keys(picks);
+  const profiles=user&&ids.length?await user.profiles(ids):{};
+  const active=document.activeElement?.id;
+  renderDecisions(profiles);
+  if(active&&active.startsWith("note-"))document.getElementById(active)?.focus();
+}
+function persist(){
+  if(!db||!me)return;
+  const body={decisions:JSON.parse(JSON.stringify(mine)),updatedAt:new Date().toISOString()};
+  writeQ=writeQ.then(()=>db.doc("picks/"+me).set(body)).catch(e=>{
+    if(e?.code==="invalid_argument"){canWrite=false;$("#dbStatus").textContent="You can view the picks but not change them (ask Silvan for Contributor access).";render()}
+    else $("#dbStatus").textContent="Saving failed, try again in a moment.";
+  });
+}
+function choose(id,k){mine[id]={...(mine[id]||{}),option:k};render();persist()}
+function saveNote(id,v){if((mine[id]?.note||"")===v)return;mine[id]={...(mine[id]||{}),note:v};persist()}
+
+renderDecisions({});
+(async()=>{
+  if(!window.claude?.use){$("#dbStatus").textContent="Open this page in claude.ai while signed in to record picks.";return}
+  [user,db]=await Promise.all([claude.use("user"),claude.use("db")]);
+  if(!db){$("#dbStatus").textContent="Picks can't be saved in this view. Open the page in claude.ai while signed in.";return}
+  me=user?await user.id():null;
+  const w=user?await user.can("data.write"):null;
+  canWrite=!!me&&w!==false;
+  $("#dbStatus").textContent=canWrite?"Your picks save automatically.":"You can view the picks but not change them.";
+  db.collection("picks").onSnapshot(snap=>{
+    const next={};snap.docs.forEach(d=>{if(d.exists)next[d.id]=d.data()});
+    picks=next;
+    if(me&&next[me]&&!Object.keys(mine).length)mine=JSON.parse(JSON.stringify(next[me].decisions||{}));
+    render();
+  },()=>{$("#dbStatus").textContent="Live updates stopped. Reload the page to see new picks."});
+})();
+</script>

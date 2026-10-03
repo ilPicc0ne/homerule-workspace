@@ -1,0 +1,11 @@
+# Allowlist for the public repo (git filter-repo --paths-from-file). Only these paths and
+# their history are published. A new public folder must be added here, nothing else leaks.
+README.md
+LICENSE
+.gitignore
+docs/
+extract/
+engine/
+web/
+outputs/
+tests/

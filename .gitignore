@@ -1,0 +1,10 @@
+# Starter pack stays local until the organizers confirm code and data licensing
+data/realpage-starter/
+data/brief/
+.env*
+!.env.example
+node_modules/
+.next/
+__pycache__/
+.venv/
+.DS_Store

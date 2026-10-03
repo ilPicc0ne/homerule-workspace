@@ -1,0 +1,8 @@
+{
+  "archive_filename": "participant-final-no-hour16 3-20261003T175446Z-1-001.zip",
+  "archive_sha256": "1fc881d1827addba289aa3aa16af9307c16d3ff6bba9363b17d7f4aca78358fc",
+  "imported_on": "2026-10-03",
+  "destination": "data/realpage-starter",
+  "files": 65,
+  "note": "Extracted unchanged; removed only the archive top-level folder name. This pack does not include the hour-16 ordinance, score.py, or the dev answer key."
+}
