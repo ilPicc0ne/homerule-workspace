@@ -1,5 +1,4 @@
-# Starter pack stays local until the organizers confirm code and data licensing
-data/realpage-starter/
+# Brief stays local; starter pack is tracked in this workspace and excluded from public publishing
 data/brief/
 .env*
 !.env.example

@@ -10,4 +10,4 @@ Before flipping the public repo's visibility:
 2. Grep the filtered copy for planning-only words: `notes/`, `wispr`, `Official Use Only`, `villain`, `profile`.
 3. Check the README: live link, the three JSON files, how to run, "Not legal advice".
 
-Rules while building: planning and AI drafts go to `notes/`, experiments to `lab/`, the starter pack and brief stay in git-ignored `data/`. `docs/` is for public product docs only (architecture, scoring results, features, decision records in `docs/decisions/`). The private build plan stays in `notes/plan/`.
+Rules while building: planning and AI drafts go to `notes/`, experiments to `lab/`. The starter pack is tracked in this workspace under `data/realpage-starter/`; the brief stays git-ignored. Neither is included in the public publishing allowlist. `docs/` is for public product docs only (architecture, scoring results, features, decision records in `docs/decisions/`). The private build plan stays in `notes/plan/`.
