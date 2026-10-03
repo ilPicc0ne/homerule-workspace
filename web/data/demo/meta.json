@@ -1,0 +1,93 @@
+{
+ "data_source": "demo",
+ "label": "Demo data",
+ "note": "Hand-prepared from the challenge brief and PRD; the rule engine will replace it. Quotes are verbatim from the corpus.",
+ "default_as_of": "2026-10-01",
+ "retrieved_at": "2026-10-01",
+ "as_of_dates": [
+  {
+   "date": "2025-12-31",
+   "label": "Before California's AB 325"
+  },
+  {
+   "date": "2026-01-02",
+   "label": "AB 325 in force"
+  },
+  {
+   "date": "2026-10-01",
+   "label": "Default date"
+  },
+  {
+   "date": "2027-07-01",
+   "label": "NJ FAIR Act starts"
+  },
+  {
+   "date": "2027-07-02",
+   "label": "Day after"
+  }
+ ],
+ "demo_address_ids": [
+  "A0016",
+  "A0081",
+  "A0105",
+  "A0107",
+  "A0258",
+  "A0256",
+  "A0010",
+  "A0005"
+ ],
+ "simulation": {
+  "address_id": "A0010",
+  "rule": {
+   "rule_id": "DEMO-CAM-H16",
+   "jurisdiction_id": "MA-CAMBRIDGE",
+   "schema_name": "Cambridge, MA",
+   "level": "city",
+   "kind": "rule",
+   "category": "algorithmic_rent_setting",
+   "title": "Demo ordinance (placeholder until the real hour-16 release)",
+   "fictional": true,
+   "status": "not_yet_effective",
+   "effective_date": "2027-01-01",
+   "citation": "Fictional placeholder, not a real ordinance",
+   "source_doc_id": null,
+   "source_url": null,
+   "source_kind": "none",
+   "retrieved_at": null,
+   "quoted_span": null,
+   "summary": "A fictional Cambridge ordinance used to rehearse the hour-16 change. Not law.",
+   "key_value": null,
+   "coverage_in_words": "Rental housing in Cambridge (placeholder).",
+   "coverage_facts": [],
+   "exemptions": null,
+   "interaction": {
+    "type": "none"
+   },
+   "status_history": [
+    {
+     "from": "2026-10-04",
+     "status": "not_yet_effective"
+    },
+    {
+     "from": "2027-01-01",
+     "status": "in_force"
+    }
+   ],
+   "what_next": {
+    "label": "This is a rehearsal; nothing to do"
+   },
+   "audit": {
+    "model_extracted": {
+     "category": "algorithmic_rent_setting",
+     "status": "not_yet_effective",
+     "effective_date": "2027-01-01",
+     "quote_found_in_source": false,
+     "confidence": 0.0
+    },
+    "code_decided": [
+     "Placeholder for the hour-16 ingest: the real ordinance replaces this record."
+    ]
+   }
+  }
+ }
+}
