@@ -134,7 +134,7 @@ def open_questions():
 
 def internal_rules(extracted_dir=None, as_of=AS_OF):
     """Headline rules in the internal format the reference evaluator and the tests use."""
-    rules, seen = [], set()
+    rules, seen = [], {}
     oq = open_questions()
     for f in sorted((extracted_dir or config.OUT / "extracted").glob("*.json")):
         r = json.load(open(f))
@@ -145,9 +145,12 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
             if not o["is_headline"] or o["effect"] == "procedure_or_admin":
                 continue
             key = (jur, o["category"], _core(o["citation"]), o["effect"])
-            if key in seen:
+            if key in seen:      # same citation: one record, the other headline provisions kept as its details
+                span = r["spans"].get(f".obligations[{n}].requirement_quote")
+                seen[key]["details"].append({"provision": o["provision"], "requirement": o["requirement"],
+                                             "key_value": o["key_value"], "source_doc_id": span["doc_id"] if span else None,
+                                             "quote": source_span(span) if span else None})
                 continue
-            seen.add(key)
             span = r["spans"].get(f".obligations[{n}].requirement_quote")
             doc_status, status_evidence, events = lu["document_status"], None, lu["events"]
             questions = oq.get((jur, o["category"]), [])
@@ -187,7 +190,8 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                 "interactions": o["interactions"], "parse_status": o.get("parse_status", "ok"),
                 "checks": o.get("checks", []) + o.get("gate_flags", []), "gate_flags": o.get("gate_flags", []),
                 "gate_status": r.get("gate_status"), "stub": o.get("stub", False),
-                "origin": {"S": "supplemental", "X": "ingested"}.get(r["doc_id"][0], "starter")})
+                "origin": {"S": "supplemental", "X": "ingested"}.get(r["doc_id"][0], "starter"), "details": []})
+            seen[key] = rules[-1]
     return rules
 
 
@@ -213,6 +217,7 @@ def compiled(rule):
                      "effect": rule["effect"], "cap_pct_low": rule["cap_low"], "cap_pct_high": rule["cap_high"],
                      "status_evidence": rule.get("status_evidence"),
                      "origin": rule["origin"], "stub": rule["stub"]},
+        "details": rule.get("details", []),   # other headline provisions under the same citation
     }
 
 

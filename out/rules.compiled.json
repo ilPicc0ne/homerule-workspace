@@ -43,7 +43,8 @@
    },
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-BERKELEY-SCREEN-13.106",
@@ -106,7 +107,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-BERKELEY-FEE-13.78",
@@ -142,7 +144,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-BERKELEY-EVICT-BerkeleyMuni",
@@ -180,7 +183,30 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "Measure BB/just cause",
+    "requirement": "A landlord may not evict a tenant for failing to sign a substantially similar lease upon expiration of a fixed-term lease.",
+    "key_value": null,
+    "source_doc_id": "D006",
+    "quote": "A landlord cannot evict a tenant for failing to sign a substantially similar lease upon expiration of a fixed-term lease."
+   },
+   {
+    "provision": "Measure BB/just cause/material lease terms",
+    "requirement": "For a material-term eviction, the term must be mutually agreed, the violation must cause substantial actual damage, and the landlord must demonstrate unreasonable tenant behavior.",
+    "key_value": null,
+    "source_doc_id": "D006",
+    "quote": "The alleged violation must cause substantial, actual damage to the landlord."
+   },
+   {
+    "provision": "Measure BB/tenant organization",
+    "requirement": "Tenants living on qualifying properties have an enforceable right to create tenant associations and engage in organizing activities.",
+    "key_value": null,
+    "source_doc_id": "D006",
+    "quote": "Tenants who live on certain properties now have an enforceable right to create tenant associations, and engage in organizing activities."
+   }
+  ]
  },
  {
   "team_rule_id": "CA-BERKELEY-RENT-13.76.110A",
@@ -218,7 +244,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-BERKELEY-EVICT-BerkeleyRent",
@@ -254,7 +281,16 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "p3",
+    "requirement": "The guide indicates that listed fully and partially covered unit types are covered for just cause for eviction.",
+    "key_value": null,
+    "source_doc_id": "D009",
+    "quote": "Partially Covered Yes No Yes Yes"
+   }
+  ]
  },
  {
   "team_rule_id": "CA-BERKELEY-DEP-1950.5",
@@ -322,7 +358,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-BERKELEY-DEP-BerkeleyRent",
@@ -433,7 +470,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "MA-BOSTON-SCREEN-BostonFairCh",
@@ -480,7 +518,23 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "p6-p8",
+    "requirement": "The Agent must not consider arrests that did not result in conviction, convictions subject to judicial relief, juvenile records, or convictions more than five years old when determining housing eligibility or considering eviction.",
+    "key_value": null,
+    "source_doc_id": "D010",
+    "quote": "The Developer/Agent (Agent) agrees to not consider any of the following categories when \ndetermining housing eligibility and or considering eviction:"
+   },
+   {
+    "provision": "p25",
+    "requirement": "The Agent must not use an applicant's credit score to approve or deny a housing application.",
+    "key_value": null,
+    "source_doc_id": "D010",
+    "quote": "The agent agrees not to use the applicant credit score to approve or deny housing    \napplications."
+   }
+  ]
  },
  {
   "team_rule_id": "MA-BOSTON-SCREEN-BostonFairHo",
@@ -518,7 +572,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "MA-BOSTON-EVICT-10-11.7",
@@ -621,7 +676,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "MA-BOSTON-RENT-3744",
@@ -659,7 +715,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": true
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-SCREEN-12955",
@@ -698,7 +755,30 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "p3",
+    "requirement": "Housing providers must not discriminate against tenants based on how they will pay rent, including by refusing to comply with rental-assistance program requirements or applying different tenancy terms or privileges.",
+    "key_value": null,
+    "source_doc_id": "D016",
+    "quote": "California law protects tenants from discrimination based on how a tenant will be paying rent (“source of income”)."
+   },
+   {
+    "provision": "p3",
+    "requirement": "Housing providers must provide reasonable accommodations necessary to give a person with a disability an equal opportunity to use and enjoy housing.",
+    "key_value": null,
+    "source_doc_id": "D016",
+    "quote": "Tenants, residents, and applicants with disabilities are entitled to reasonable accommodations and/or modifications that are necessary to allow them an equal opportunity to use and enjoy housing, including a housing unit and any common areas."
+   },
+   {
+    "provision": "12955/o/1/B/i",
+    "requirement": "When there is a government rent subsidy, a housing provider using an applicant's credit history must offer the applicant the option to provide lawful, verifiable alternative evidence of the applicant's reasonable ability to pay the tenant's portion of rent.",
+    "key_value": null,
+    "source_doc_id": "D027",
+    "quote": "Use a person’s credit history as part of the application process for a rental accommodation without offering the applicant the option, at the applicant’s discretion, of providing lawful, verifiable alternative evidence"
+   }
+  ]
  },
  {
   "team_rule_id": "CA-ALG-16729",
@@ -734,7 +814,16 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "16729/b",
+    "requirement": "A person must not use or distribute a common pricing algorithm if the person coerces another person to set or adopt a price or commercial term recommended by the algorithm for the same or similar products or services in California.",
+    "key_value": null,
+    "source_doc_id": "D022",
+    "quote": "It shall be unlawful for a person to use or distribute a common pricing algorithm if the person coerces another person to set or adopt a recommended price or commercial term recommended by the common pricing algorithm for the same or similar products or services in the jurisdiction of this state."
+   }
+  ]
  },
  {
   "team_rule_id": "CA-EVICT-1946.2",
@@ -854,7 +943,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-RENT-1947.12",
@@ -1013,7 +1103,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-DEP-1950.5",
@@ -1053,7 +1144,23 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "1950.5/e/1",
+    "requirement": "A landlord may claim from security only amounts reasonably necessary for the purposes specified by law.",
+    "key_value": "Only amounts reasonably necessary for the purposes specified in subdivision (b).",
+    "source_doc_id": "D025",
+    "quote": "the landlord\nmay claim of the security only those amounts as are reasonably necessary for the purposes specified in subdivision (b)."
+   },
+   {
+    "provision": "1950.5/h/1",
+    "requirement": "No later than 21 calendar days after the tenant vacates, the landlord must furnish an itemized statement showing the basis, amount, and disposition of security received and return any remainder, subject to the statutory earliest-time restriction.",
+    "key_value": "No later than 21 calendar days after the tenant vacates, subject to the statutory earliest-time restriction.",
+    "source_doc_id": "D025",
+    "quote": "No later than 21 calendar days after the tenant has vacated the premises"
+   }
+  ]
  },
  {
   "team_rule_id": "CA-FEE-1950.6",
@@ -1089,7 +1196,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "MA-CAMBRIDGE-SCREEN-14.04",
@@ -1138,7 +1246,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "MA-CAMBRIDGE-EVICT-8.71",
@@ -1241,7 +1350,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-JERSEY-CITY-RENT-JerseyCityLa",
@@ -1281,7 +1391,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-LOS-ANGELES-EVICT-165.03",
@@ -1319,7 +1430,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-LOS-ANGELES-RENT-1947.12",
@@ -1382,7 +1494,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-LOS-ANGELES-RENT-151.06",
@@ -1426,7 +1539,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "MA-ALG-5222",
@@ -1462,7 +1576,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": true
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "MA-ALG-2983",
@@ -1498,7 +1613,16 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "S.2983",
+    "requirement": "The bill would prohibit algorithmic rent setting.",
+    "key_value": null,
+    "source_doc_id": "D047",
+    "quote": "An Act prohibiting algorithmic rent setting"
+   }
+  ]
  },
  {
   "team_rule_id": "MA-RENT-40P",
@@ -1542,7 +1666,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "MA-SCREEN-151B",
@@ -1593,7 +1718,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "MA-EVICT-186",
@@ -1631,7 +1757,23 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "12",
+    "requirement": "For a tenant at will's neglect or refusal to pay rent due, the landlord may determine the tenancy by giving the tenant 14 days' written notice to quit.",
+    "key_value": "14 days' written notice to quit",
+    "source_doc_id": "D051",
+    "quote": "In case of neglect or refusal to pay the rent due from a tenant at will, fourteen days' notice to quit, given in writing by the landlord to the tenant, shall be sufficient to determine the tenancy"
+   },
+   {
+    "provision": "18",
+    "requirement": "Certain notices or substantial changes to tenancy within six months after protected tenant activity—or activity on the tenant's behalf or relating to the building—create a rebuttable presumption of reprisal. The presumption may be rebutted only by clear and convincing evidence of no reprisal and sufficient independent justification.",
+    "key_value": "Six months",
+    "source_doc_id": "D053",
+    "quote": "The receipt of any notice of termination of tenancy, except for nonpayment of rent, or, of increase in rent, or, of any substantial alteration in the terms of tenancy within six months"
+   }
+  ]
  },
  {
   "team_rule_id": "MA-DEP-186",
@@ -1669,7 +1811,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "MA-FEE-186",
@@ -1705,7 +1848,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "MA-FEE-112",
@@ -1741,7 +1885,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-SCREEN-46:8-55",
@@ -1792,7 +1937,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-SCREEN-46:8-56",
@@ -1843,7 +1989,16 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "5/b",
+    "requirement": "After a conditional offer, a provider may consider only the listed serious convictions and qualifying indictable offenses within the specified lookback periods: first degree six years, second or third degree four years, and fourth degree one year.",
+    "key_value": null,
+    "source_doc_id": "D065",
+    "quote": "After the issuance of a conditional offer to an\napplicant, a housing provider may only consider a criminal record in the\napplicant’s history that:"
+   }
+  ]
  },
  {
   "team_rule_id": "NJ-SCREEN-46:8-58",
@@ -1894,7 +2049,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-SCREEN-46:8-60",
@@ -1943,7 +2099,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-FEE-46:8-18.1",
@@ -1992,7 +2149,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-DEP-46:8-21.2",
@@ -2052,7 +2210,16 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "46:8-21.2",
+    "requirement": "An owner or lessee may not require a security deposit greater than one and one-half times one month’s rent.",
+    "key_value": "1.5 times one month's rent",
+    "source_doc_id": "S002",
+    "quote": "An owner or lessee may not require more than a sum equal to 1 1/2 times 1 month's rental"
+   }
+  ]
  },
  {
   "team_rule_id": "NJ-SCREEN-15",
@@ -2090,7 +2257,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-RENT-2A:42-84.5",
@@ -2148,7 +2316,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-RENT-2A:18-61.1",
@@ -2192,7 +2361,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-EVICT-2A:18-61.1",
@@ -2231,7 +2401,16 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "2",
+    "requirement": "A tenant covered by this section may not be removed unless the landlord establishes one of the specified good-cause grounds in § 2(a)–(r).",
+    "key_value": null,
+    "source_doc_id": "S015",
+    "quote": "No lessee or tenant or the assigns, under-tenants or legal representatives of such lessee or tenant may be removed by the Superior Court from any house, building, mobile home or land in a mobile home park or tenement leased for residential purposes"
+   }
+  ]
  },
  {
   "team_rule_id": "NJ-SCREEN-10:5-12",
@@ -2301,7 +2480,16 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "p5",
+    "requirement": "A landlord may not discriminate in housing based on the lawful income or lawful rent or mortgage payment source used by a tenant or purchaser, including by denying a lawful Section 8 voucher recipient the right to rent solely because of that income source.",
+    "key_value": null,
+    "source_doc_id": "D068",
+    "quote": "The LAD also prohibits housing discrimination  based\non the source of lawful income or source of lawful rent\nor mortgage payment a tenant or purchaser uses."
+   }
+  ]
  },
  {
   "team_rule_id": "NJ-ALG-56:9-23",
@@ -2345,7 +2533,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-SAN-DIEGO-EVICT-98.0704",
@@ -2434,7 +2623,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-SAN-DIEGO-ALG-98.1103",
@@ -2479,7 +2669,8 @@
    },
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-SAN-FRANCISCO-EVICT-37.9",
@@ -2518,7 +2709,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-SAN-FRANCISCO-RENT-37.3",
@@ -2562,7 +2754,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-SAN-FRANCISCO-ALG-37.10C",
@@ -2598,7 +2791,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-SAN-FRANCISCO-DEP-37.6",
@@ -2636,7 +2830,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-SANTA-ANA-RENT-SantaAnaRent",
@@ -2717,7 +2912,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "CA-SANTA-ANA-EVICT-SantaAnaJust",
@@ -2893,7 +3089,8 @@
    "status_evidence": null,
    "origin": "starter",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-JERSEY-CITY-ALG-218-12",
@@ -2929,7 +3126,23 @@
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
-  }
+  },
+  "details": [
+   {
+    "provision": "218/2/1",
+    "requirement": "A real estate lessor, agent, or subcontractor may not subscribe to, contract with, exchange anything of value for, or otherwise utilize the services of a Service Provider.",
+    "key_value": null,
+    "source_doc_id": "S016",
+    "quote": "It is unlawful for any real estate lessor, agent, or subcontractor thereof, to subscribe to, contract with, or\n      otherwise exchange anything of value in return for or otherwise utilize the services of a Service\n      Provider."
+   },
+   {
+    "provision": "218/2/2",
+    "requirement": "A service provider may not facilitate an agreement among real estate lessors not to compete on any aspect of residential dwelling units, including rental pricing, fees, or other rental terms.",
+    "key_value": null,
+    "source_doc_id": "S016",
+    "quote": "No service provider shall facilitate an agreement not to compete among real estate lessors with respect to\n       any aspect of residential dwelling units, including rental pricing, fees, or any other rental terms."
+   }
+  ]
  },
  {
   "team_rule_id": "NJ-HOBOKEN-ALG-Hobokenordin",
@@ -2965,7 +3178,8 @@
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-HOBOKEN-RENT-10:54",
@@ -3004,7 +3218,8 @@
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-HOBOKEN-RENT-18:54",
@@ -3045,7 +3260,8 @@
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-HOBOKEN-RENT-3",
@@ -3083,7 +3299,8 @@
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-HOBOKEN-RENT-18:66",
@@ -3122,7 +3339,8 @@
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
-  }
+  },
+  "details": []
  },
  {
   "team_rule_id": "NJ-JERSEY-CITY-ALG-218-12.3",
@@ -3160,6 +3378,7 @@
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
-  }
+  },
+  "details": []
  }
 ]
