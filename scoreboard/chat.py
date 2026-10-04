@@ -94,6 +94,24 @@ def excerpt(doc_id, quote, after=700):
     return " ".join(text[m.start():m.end() + after].split())
 
 
+DEFINITION = re.compile(r"[“\"]([^”\"]{3,60})[”\"]\s+means\b")
+
+
+def definitions(doc_id, *texts, limit=3, size=500):
+    """Definitions in the same source ('"X" means ...') of terms the rule uses."""
+    src = _source_text(doc_id) if doc_id else None
+    if not src:
+        return []
+    used = " ".join(t for t in texts if t).lower()
+    out = []
+    for m in DEFINITION.finditer(src):
+        if m.group(1).lower() in used:
+            out.append(" ".join(src[m.start():m.start() + size].split()))
+            if len(out) == limit:
+                break
+    return out
+
+
 def records(city, category, date):
     """The rules and findings HomeRule has for this city's stack and topic, as of the date."""
     ids = stack(city)
@@ -115,6 +133,7 @@ def records(city, category, date):
             "relation_to_local_rules": (c.get("interaction") or {}).get("type"),
             "source_excerpt": excerpt(t.get("source_doc_id"), t.get("quoted_span")) or t.get("quoted_span"),
             "source_url": t.get("source_url"),
+            "definitions_in_source": definitions(t.get("source_doc_id"), t.get("requirement"), t.get("quoted_span")),
             "more_provisions_of_this_law": [
                 {"requirement": d["requirement"], "key_value": d.get("key_value"),
                  "source_excerpt": excerpt(d.get("source_doc_id"), d.get("quote"), 300) or d.get("quote")}

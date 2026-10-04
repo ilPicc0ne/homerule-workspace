@@ -98,7 +98,7 @@ This is the project's feature list; each build updates its status in the same co
 | P0 | Rule page: quote in source, link to the law, audit trail with reasoning boundary | S (audit data from D) | planned |
 | P0 | Search resolves address / city / neighbourhood / county / state via the jurisdiction list; "not covered" for anything outside | S | planned |
 | P1 | Jurisdiction pages for all levels (state › county › city), rules with their conditions | S | planned |
-| P1 | Chatbot scoreboard: ~20 dated city-level questions, plain chatbot vs HomeRule, date-stamped | D | measured (`scoreboard/`): plain 16/20, plain + web search 20/20, HomeRule 18/20; not a headline number |
+| P1 | Chatbot scoreboard: ~20 dated city-level questions, plain chatbot vs HomeRule, date-stamped | D | measured (`scoreboard/`): plain 16/20 (4 wrong), plain + web search 20/20, HomeRule 18/20 (0 wrong); not a headline number |
 | P1 | Impact map on the rule page with date slider | S | planned |
 | P0 | Hour-16 ingest in one command | D | built (`make ingest`, `make rehearse`, `make rerun`; rehearsal 45/45 addresses in ~24 s) |
 | P1 | Real email sending (double opt-in) via Resend from `alerts@yourhomerule.com`; deliverability: HTML + text, unsubscribe link and header, warm-up | S | partial (domain verified, test mail sent) |
