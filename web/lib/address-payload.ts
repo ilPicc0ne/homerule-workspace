@@ -1,5 +1,6 @@
 import { DATA_SOURCE, DATA_SOURCE_LABEL } from "./config.ts";
-import type { Dataset, Meta } from "./types";
+import { ruleStatusOn } from "./law.ts";
+import type { Result, Dataset, Meta } from "./types";
 
 /*
   The JSON for one sample address (interface I5), shared by GET /api/address/[id] and the MCP tool
@@ -26,21 +27,21 @@ export const AS_OF_RE = /^\d{4}-\d{2}-\d{2}$/;
 
 export type Payload = { status: number; body: Record<string, unknown> };
 
-export function addressPayload(data: Dataset | null, id: string, requested: string | null): Payload {
+export function addressPayload(data: Dataset | null, id: string, requested: string | null, evaluated?: { asOf: string; results: Result[] }): Payload {
   if (!data) {
     return { status: 503, body: { ...base(), error: "Live data not available yet; it arrives with the rule engine." } };
   }
   if (requested && !AS_OF_RE.test(requested)) {
     return { status: 400, body: { ...base(), error: "as_of must look like YYYY-MM-DD." } };
   }
-  const asOf = snapAsOf(data.meta, requested);
+  const asOf = evaluated?.asOf ?? snapAsOf(data.meta, requested);
   const asOfDates = data.meta.as_of_dates.map((d) => d.date);
 
   const address = data.addresses.find((a) => a.address_id === id);
   if (!address) {
     return { status: 404, body: { ...base(), as_of: asOf, error: `Unknown address id ${id}.` } };
   }
-  if (!address.demo) {
+  if (!address.demo && !evaluated) {
     return {
       status: 404,
       body: {
@@ -54,7 +55,7 @@ export function addressPayload(data: Dataset | null, id: string, requested: stri
   }
 
   const rules = new Map(data.rules.map((r) => [r.rule_id, r]));
-  const results = (data.lookups[asOf]?.[id] ?? []).map((r) => {
+  const results = (evaluated?.results ?? data.lookups[asOf]?.[id] ?? []).map((r) => {
     const rule = rules.get(r.rule_id);
     return {
       ...r,
@@ -63,7 +64,7 @@ export function addressPayload(data: Dataset | null, id: string, requested: stri
         jurisdiction: rule.schema_name,
         level: rule.level,
         citation: rule.citation,
-        status: rule.status,
+        status: ruleStatusOn(rule, asOf),
         effective_date: rule.effective_date,
         effective_until: rule.effective_until ?? null,
         effective_dates_disputed: rule.effective_dates_disputed,

@@ -2,6 +2,7 @@ import type { Badge } from "./changes/impact.ts";
 import { ruleEnds } from "./changes/ends.ts";
 import type { AddressChanges, Source } from "./changes/types.ts";
 import { contactFor, type Contact } from "./contacts.ts";
+import { ruleStatusOn } from "./law.ts";
 import { formatDate } from "./format.ts";
 import { missingFacts } from "./missing.ts";
 import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain.ts";
@@ -140,6 +141,7 @@ export function buildAddressView(args: {
   rules: Record<string, Rule>;
   asOf: string;
   cityName: string;
+  historySince?: string;
   findings: Record<string, Finding[]>;
   /** The diff's change sources (for `ending_rule_ids`) and this address's diff record (null for a typed address). */
   changes?: { sources: Record<string, Source>; rec: AddressChanges | null };
@@ -162,7 +164,7 @@ export function buildAddressView(args: {
     const replaced = inCat.filter((r) => r.result === "superseded");
     // A state "no protection here" rule (e.g. MA bars rent control) the engine doesn't list as a result.
     if (!strong.length && !unknown.length && !weak.length) {
-      const basic = Object.values(rules).find((r) => r.category === t.cat && r.level === "state" && isWeak(r.rule_id) && r.status === "in_force");
+      const basic = Object.values(rules).find((r) => r.category === t.cat && r.level === "state" && isWeak(r.rule_id) && ruleStatusOn(r, asOf) === "in_force");
       if (basic)
         weak.push({ rule_id: basic.rule_id, category: basic.category, result: "applies", confidence: basic.audit.model_extracted.confidence, explanation: `Statewide ${stateName} rule (${basic.citation}).`, what_next: basic.what_next });
     }
@@ -345,7 +347,7 @@ export function buildAddressView(args: {
   const listed = new Map(results.map((r) => [r.rule_id, r]));
   const future: TimelineEvent[] = [];
   const past: TimelineEvent[] = [];
-  const yearAgo = `${Number(asOf.slice(0, 4)) - 1}${asOf.slice(4)}`;
+  const yearAgo = args.historySince ?? `${Number(asOf.slice(0, 4)) - 1}${asOf.slice(4)}`;
   for (const r of listed.values()) {
     const rule = rules[r.rule_id];
     if (!rule?.effective_date || r.result === "pending") continue;
@@ -363,7 +365,7 @@ export function buildAddressView(args: {
   // Rules ending at this address (sunset or repeal). A version swap (a successor starting that day) is not an end:
   // the successor's start event says it replaces the earlier version instead.
   if (args.changes) {
-    const { ends, swaps } = ruleEnds({ asOf, results, rules, sources: args.changes.sources, rec: args.changes.rec });
+    const { ends, swaps } = ruleEnds({ asOf, historySince: args.historySince, results, rules, sources: args.changes.sources, rec: args.changes.rec });
     for (const e of ends) {
       const rule = rules[e.ruleId];
       if (!rule) continue;
