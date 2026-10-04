@@ -140,6 +140,8 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 | P0 | Palette + header option A "Quiet": teal-derived accent, softer clay caution, slate-navy UI chrome | S | built (#58, #63) |
 | P2 | Brand icon: roof-scales mark as favicon, apple-icon, site headers and email logo | S | built (#70, live in production 8e7c326) |
 | P1 | As-of date picker / date slider on the address page | S | not built: header shows the single as-of date "Oct 1, 2026"; `meta.as_of_dates` has one entry |
+| P2 | MCP server `/api/mcp` (issue #23): public, read-only, Streamable HTTP via `mcp-handler` 2.2.0, stateless (no Redis sessions). Tools `find_place` (resolver: tree, legal vs postal city, coverage, sample `address_id`), `get_rules` (sample address = the `/api/address/[id]` payload; jurisdiction = every rule in the State › City stack with status on `as_of`, verbatim quote, citation, source URL, coverage conditions, unknowns named), `coverage`. Every result: `not_legal_advice`, `as_of`, `retrieved`, `how_to_present`; one audit log line per call (tool, ids, as_of; no IP, no query text); 300 POSTs per IP per minute via Upstash | S | built (PR "MCP server + /connect page (#23)", preview only; **not in production** until Silvan pushes `production`). Address results exist for the one engine date (2026-10-01): an address `as_of` on another date answers for 2026-10-01 and adds each rule's status on the asked date. Claude/ChatGPT can only reach production (previews are login-protected) |
+| P2 | `/connect` page: "Make your chatbot rent-law aware", connector URL + copy, tabs Claude / ChatGPT / Developers (Claude Code command, Cursor + VS Code install links, JSON config), example prompt, disclaimer; linked from the landing page and the address page footer ("Ask your chatbot about this address" copies a prompt) | S | built (same PR, preview only) |
 
 ### Alerts (email)
 
@@ -165,7 +167,6 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 | P1 | Spanish card summaries (brief stretch goal; quotes stay English) | S | planned |
 | P1 | "I rent / I own" wording toggle | S | planned |
 | P2 | Legal-aid finder for the exact address | S | planned |
-| P2 | MCP route (`/api/mcp`) | D | planned (no code) |
 | P3 | ChatGPT custom GPT on the JSON endpoint | D | planned |
 | Idea | Search typo tolerance ("Hobokn" → suggestion, never applied silently) | S | idea |
 | Idea | Google Places autocomplete for any US address (attribution and Maps terms apply) | S | idea (`NEXT_PUBLIC_GOOGLE_MAPS_KEY` exists in Vercel; only the 3D map view reads it) |
@@ -262,7 +263,7 @@ The order of beats still holds with the one-view page (v3, live). The answers on
 |---|---|
 | Everything up to `rules.json`: triage, Jev classification, extraction, quote check, statuses | Jurisdiction list (13 IDs both sides use), address lookup, building facts |
 | Hour-16 ingest, eval suite, audit log | Engine, lookups, changes, diff |
-| Extra data sources (P1), MCP route and ChatGPT GPT (P2/P3) | |
+| Extra data sources (P1), ChatGPT GPT (P3) | MCP server + /connect (P2, #23) |
 | | Page, change log, email + subscription store, score |
 | Technical video | Submission package 12:00–15:00 (videos, method note, README) |
 

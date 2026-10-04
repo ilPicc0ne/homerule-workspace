@@ -27,7 +27,7 @@ corpus (87 docs, manifest)          sample addresses (500, CSV)
           jurisdiction pages, JSON API, alerts (Upstash Redis + Resend)
 ```
 
-The engine is Python (`engine/`, `extract/`); the website and the address resolver are TypeScript (`web/`). No MCP server is built.
+The engine is Python (`engine/`, `extract/`); the website and the address resolver are TypeScript (`web/`). A read-only MCP server (`/api/mcp`) wraps the same resolver and data for chatbots.
 
 Everything between the corpus and the outputs is one command: `make all`. Extraction results are cached, so a rebuild without new documents takes minutes.
 
@@ -269,8 +269,22 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 - `/api/resolve?q=`: free text → `{kind: address | place | ambiguous | not_found | unavailable, tree, coverage, notes, …}`; 404 not found, 503 when Census is down.
 - `/api/address/[id]`: I5.
 - Alerts: `POST /api/subscribe`, `/confirm` (page with a POST button) + `POST /api/confirm`, `/unsubscribe` (page) + `POST /api/unsubscribe` (RFC 8058 one-click), `/alerts/confirmed|unsubscribed|invalid`, `POST /api/alerts/dispatch`.
-- Not built: `/api/mcp`, an as-of picker.
+- `/api/mcp`: the MCP server (below). `/connect`: how to add it to Claude, ChatGPT, Claude Code, Cursor, VS Code.
+- Not built: an as-of picker.
 - **Contacts:** `contracts/contacts.json` (36 entries with source and retrieval date) synced to `web/contracts/contacts.json`; each tile picks the entry for its jurisdiction and topic.
+
+### MCP server (`/api/mcp`, issue #23)
+
+- **Transport:** `mcp-handler` 2.2.0 (`@modelcontextprotocol/server` 2.3.0, `zod` 4.6.5, exact pins), Streamable HTTP, stateless: no Redis session store, no SSE stream (GET answers 405). Route `web/app/api/mcp/route.ts` (GET, POST, DELETE). URL: `https://yourhomerule.com/api/mcp`. No auth: public data only.
+- **Tools** (`web/lib/mcp/tools.ts`, pure functions, all `readOnlyHint: true`; no new legal logic):
+  - `find_place(query ≤ 200 chars)` → `resolveQuery` (`lib/resolve`): jurisdiction tree with per-level status, coverage, legal vs postal city, notes, sample `address_id` for the 500, the id to pass to `get_rules`, and a site link (`/a/<id>`, `/a/at?q=`, `/j/<id>` or `/where?q=`).
+  - `get_rules(address_id | jurisdiction_id, as_of?)` → for an address: `addressPayload()` (`lib/address-payload.ts`, the same function as `/api/address/[id]`). For a jurisdiction: every non-fictional rule of its `chain()` (state + city) with `ruleStatusOn(rule, as_of)` (`lib/law.ts`), citation, verbatim `quoted_span`, dates, status history, source URL, `coverage_in_words`, the building facts that leave it unknown, interaction, plus `findings.json` for the stack. It lists rules; it does not decide precedence (an address does).
+  - `coverage()` → states, cities, topics, data as-of, what is not covered.
+- **as_of:** jurisdiction rules are evaluated on any date from their status history. Address results exist only for the engine's dates (`meta.as_of_dates`, today 2026-10-01); another date snaps as in `/api/address` and the answer adds `as_of_note` and each rule's status on the asked date.
+- **Every result:** `not_legal_advice: true`, disclaimer, `as_of`, `retrieved` (data date + engine dates), `how_to_present`, `link`. The server `instructions` repeat the presentation rules (quote + date, not legal advice, never "compliant"/"illegal", name unknowns, never compare a renter's numbers to a cap). Content = a one-paragraph summary + compact JSON. Bad input or unknown ids are tool errors (`isError`), never 500s.
+- **Audit:** one `console.log` JSON line per call (tool, resolved address/jurisdiction id, as_of, error flag; no IP, no query text) in the Vercel runtime logs.
+- **Rate limit:** 300 POSTs per IP per minute via the Upstash store's `hit()` (`mcp:rl:<ip>:<minute>`), fails open if Redis is down. Generous because claude.ai and ChatGPT call from shared cloud IPs. Follow-up if abused: a Vercel Firewall rule on `/api/mcp`.
+- **Reachability:** previews are behind Vercel login, so cloud chatbots can only use production. Local test: `next dev` + JSON-RPC via curl (initialize → tools/list → tools/call).
 
 ### Email and alerts
 

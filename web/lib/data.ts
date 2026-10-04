@@ -66,11 +66,5 @@ export function childrenOf(id: string): Jurisdiction[] {
   return jurisdictions.filter((j) => j.parent === id);
 }
 
-/** Snap a requested date to the published list: the latest listed date on or before it. */
-export function snapAsOf(meta: Meta, requested: string | null | undefined): string {
-  const dates = meta.as_of_dates.map((d) => d.date);
-  if (!requested) return meta.default_as_of;
-  if (dates.includes(requested)) return requested;
-  const earlier = dates.filter((d) => d <= requested);
-  return earlier.length ? earlier[earlier.length - 1] : dates[0];
-}
+/** Snap a requested date to the published list (shared with the API payload). */
+export { snapAsOf } from "./address-payload.ts";

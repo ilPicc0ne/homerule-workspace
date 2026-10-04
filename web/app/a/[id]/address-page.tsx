@@ -6,6 +6,7 @@ import { useId, useMemo, useState, type KeyboardEvent, type ReactNode } from "re
 import AddressMap from "@/components/address-map";
 import BrandMark from "@/components/brand-mark";
 import AlertForm from "@/components/alerts/alert-form";
+import AskChatbot from "@/components/ask-chatbot";
 import ExampleAlert from "@/components/alerts/example-alert";
 import type { MapProps } from "@/components/address-map-gl";
 import type { AddressView, Helper, RuleRow, Tile, TileStatus, TimelineEvent } from "@/lib/address-view";
@@ -726,6 +727,7 @@ export default function AddressPageView(p: PageProps) {
             quotes the law and shows its date. When a fact is missing, it says so instead of guessing. When two rules may conflict, it shows
             both and flags it; it doesn’t decide.
           </p>
+          <AskChatbot place={[v.street, v.postal].filter(Boolean).join(", ")} />
           <p className="fine">
             Not legal advice: HomeRule shows what published rules say, not how they apply to your own case.{" "}
             {DATA_SOURCE === "demo"

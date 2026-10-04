@@ -84,6 +84,9 @@ export default function Home() {
           <br />
           <span className="muted">3 states and 10 cities. Anything else says &ldquo;not covered&rdquo;, never a guess.</span>
         </p>
+        <p className="muted" style={{ textAlign: "center" }}>
+          Use Claude or ChatGPT? <Link href="/connect">Make your chatbot rent-law aware</Link>.
+        </p>
         <p className="tagline">A model has a training cutoff. A law has an effective date.</p>
       </section>
     </main>
