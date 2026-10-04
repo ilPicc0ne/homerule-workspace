@@ -17,3 +17,12 @@ B · Address resolution, C · Engine, D · Change and diff → `outputs/lookups.
 | `build.py` | CLI, status gate for month/year precision, output files, summary |
 
 Python: `python3 -m venv .venv && .venv/bin/pip install pyyaml` (only the eval needs pyyaml); the Makefile uses `.venv/bin/python` when it exists.
+
+## Extra data and useful next facts
+
+`make fact-gaps` generates read-only, per-address investigation plans in
+`out/fact_gaps.json`. It re-evaluates hypothetical answers using the existing
+engine; it does not change I3 or score outputs. `make enrich-buildings` replays the
+pinned NJ parcel evidence, and `make enrich-buildings-live` explicitly refreshes
+those public API queries. See `data/building-evidence/README.md` for the source
+review, limitations, score integration and commands.

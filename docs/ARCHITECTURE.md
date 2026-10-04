@@ -300,3 +300,21 @@ Only the Census geocoder is P0. Nothing below runs before the P0 items are green
 | LA RSO lookup, SF Rent Board | Hand validation of ~5 addresses | Manual | 0.5 h |
 
 Skipped: Alameda County (no public building data, so Berkeley stays unknown, stated as a known limit) · Open States (LegiScan is enough) · data.boston.gov (blocked from Switzerland).
+
+### Extra-data investigation plan (issue #22)
+
+`make fact-gaps` reads I2/I3 and writes `out/fact_gaps.json`: for each address,
+ranked questions derived by partitioning one building fact at the extracted
+thresholds and re-running the existing engine. Each question has hypothetical
+outcomes, supporting rule citations and a route to the relevant record. Tenant
+conditions, unparsed conditions and date uncertainty remain explicit. The optional
+`--scores` argument joins unsettled score topics from the score feature without
+changing its formula or claiming score uplift.
+
+`make enrich-buildings` replays the bounded NJ parcel pilot under
+`data/building-evidence/`; `make enrich-buildings-live` explicitly refreshes it.
+All matches remain evidence leads: no I3 overwrite, personal tenancy input or
+automatic score change. See `data/building-evidence/README.md` for provenance,
+source limitations, measured results and the UI handoff. This first pilot and the
+next-fact planner were explicitly requested on 2026-10-04; source promotion and
+UI integration remain separate work.

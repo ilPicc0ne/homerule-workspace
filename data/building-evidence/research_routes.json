@@ -1,0 +1,35 @@
+{
+  "retrieved_at": "2026-10-04",
+  "not_legal_advice": true,
+  "routes": [
+    {
+      "jurisdiction": "CA-LOS-ANGELES",
+      "facts": ["built", "units", "use_class"],
+      "name": "LADBS building records",
+      "url": "https://www.ladbs.org/services/check-status/online-building-records",
+      "method": "Search the online building records; request records not available there from the Records Section.",
+      "email": "Records.LADBS@lacity.org",
+      "source_quote": "Email a completed Records Research Request Form to Records.LADBS@lacity.org",
+      "limitation": "Record-specific review needed. Construction, alteration, completion and original occupancy dates are different facts."
+    },
+    {
+      "jurisdiction": "CA-SAN-DIEGO",
+      "facts": ["built", "units", "use_class"],
+      "name": "San Diego Development Services, existing occupancy certificates",
+      "url": "https://www.sandiego.gov/development-services/forms-publications/information-bulletin/585",
+      "method": "Request the existing building's original certificate and include the project address. Research fees may apply.",
+      "email": "DSDRCD@sandiego.gov",
+      "source_quote": "To request a copy of a Certificate of Occupancy for an existing building, email DSDRCD@sandiego.gov.",
+      "limitation": "A request route, not a certificate already acquired. An alteration permit's issue or closure date does not establish original occupancy."
+    },
+    {
+      "jurisdiction": "NJ",
+      "facts": ["built", "units", "use_class"],
+      "name": "NJOGIS parcels and MOD-IV",
+      "url": "https://nj.gov/njgin/edata/parcels/",
+      "method": "Review the exact-address parcel evidence and confirm the relevant building with its assessor or building department.",
+      "source_quote": "Search all parcels in NJ by address, county, municipality, block and lot.",
+      "limitation": "Parcel assessment data may be stale or cover multiple buildings. An exact address match does not establish legal applicability."
+    }
+  ]
+}

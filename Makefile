@@ -65,3 +65,14 @@ alert:                                   ## demo hook, the last step once the pr
 	$(if $(SOURCE),,$(error SOURCE=<change source id> is required))
 	$(if $(RESET),cd web && node --env-file-if-exists=.env.local scripts/alerts.ts reset "$(SOURCE)")
 	cd web && node --env-file-if-exists=.env.local scripts/alerts.ts trigger "$(SOURCE)" $(if $(URL),--url $(URL))
+
+.PHONY: fact-gaps enrich-buildings enrich-buildings-live
+fact-gaps:                              ## read-only investigation plans; no score or I3 changes
+	$(PY) -m engine.fact_gaps --as-of $(AS_OF)
+
+enrich-buildings:                       ## replay pinned public NJ building-evidence responses, offline
+	$(PY) -m engine.enrich_nj
+
+enrich-buildings-live:                  ## explicitly refresh three exact-address NJ API queries
+	$(PY) -m engine.enrich_nj --fetch
+

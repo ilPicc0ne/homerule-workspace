@@ -1,0 +1,750 @@
+{
+  "response": {
+    "features": [
+      {
+        "attributes": {
+          "BLDG_DESC": "4S.B",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3434422,
+          "PAMS_PIN": "0714_1988_16",
+          "PCLLASTUPD": 1438318800000,
+          "PROP_LOC": "66 MONROE ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3434428,
+          "PAMS_PIN": "0714_174_13",
+          "PCLLASTUPD": 1438318800000,
+          "PROP_LOC": "46 JEFFERSON ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3435793,
+          "PAMS_PIN": "0714_1949_19",
+          "PCLLASTUPD": 1438318800000,
+          "PROP_LOC": "408-410 5TH ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3435794,
+          "PAMS_PIN": "0714_1950_49",
+          "PCLLASTUPD": 1438318800000,
+          "PROP_LOC": "409 5TH ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3436494,
+          "PAMS_PIN": "0714_763_27",
+          "PCLLASTUPD": 1438318800000,
+          "PROP_LOC": "684-686 SUMMER AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S.F.",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3437178,
+          "PAMS_PIN": "0714_2003_12",
+          "PCLLASTUPD": 1438318800000,
+          "PROP_LOC": "834-836 RAYMOND BLVD",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S.B.",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3437188,
+          "PAMS_PIN": "0714_1998_1",
+          "PCLLASTUPD": 1438318800000,
+          "PROP_LOC": "554 MARKET ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3437219,
+          "PAMS_PIN": "0714_174_30",
+          "PCLLASTUPD": 1438318800000,
+          "PROP_LOC": "51 MADISON ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S.F.",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3437227,
+          "PAMS_PIN": "0714_1999_40",
+          "PCLLASTUPD": 1438318800000,
+          "PROP_LOC": "30 JACKSON ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S.B.",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3437234,
+          "PAMS_PIN": "0714_2003.01_35",
+          "PCLLASTUPD": 1438318800000,
+          "PROP_LOC": "521-523 MARKET ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3438775,
+          "PAMS_PIN": "0714_3625_17",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "223-229 SHEPHARD AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3439163,
+          "PAMS_PIN": "0714_3632_6",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "338 CLINTON PL",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3439967,
+          "PAMS_PIN": "0714_3644_5",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "583-589 ELIZABETH AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SF",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3441936,
+          "PAMS_PIN": "0714_3035_17",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "317-319 W RUNYON ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SF4UG",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3442039,
+          "PAMS_PIN": "0714_3066_3",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "498-500 HAWTHORNE AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "2.5SF4UG",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3445729,
+          "PAMS_PIN": "0714_2665_20",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "342-344 IRVINE TURNER BLV",
+          "YR_CONSTR": 1910
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3447271,
+          "PAMS_PIN": "0714_3009_12",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "876-878 S 14TH ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SF",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3448449,
+          "PAMS_PIN": "0714_335_14",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "521-523 S 17TH",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SF",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3452817,
+          "PAMS_PIN": "0714_4059_74",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "104 SUNSET AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3457066,
+          "PAMS_PIN": "0714_4132_3",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "773-775 SANDFORD AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SF5UG",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3460076,
+          "PAMS_PIN": "0714_2839_15",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "65-71 NORFLOK ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3461124,
+          "PAMS_PIN": "0714_472_11",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "40-42 MT PROSPECT AVE",
+          "YR_CONSTR": 1900
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3461184,
+          "PAMS_PIN": "0714_1914_35",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "202-208 6TH AVE W",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "2.5SF",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3461626,
+          "PAMS_PIN": "0714_1908_15",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "162-166 5TH ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SF",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3462127,
+          "PAMS_PIN": "0714_1927_56",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "137 N 11TH ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": null,
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3462415,
+          "PAMS_PIN": "0714_641_5.01",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "646-648 N 6TH ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3463528,
+          "PAMS_PIN": "0714_597_51",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "587 N 6TH ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SF3UG",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3463535,
+          "PAMS_PIN": "0714_599_44",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "585 5TH ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB-2UG",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3464204,
+          "PAMS_PIN": "0714_694_15",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "717 N 6TH ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SF",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3464703,
+          "PAMS_PIN": "0714_781_4",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "229-231 GRAFTON AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3464747,
+          "PAMS_PIN": "0714_810_1",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "280-284 VERONA AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3464772,
+          "PAMS_PIN": "0714_526_4",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "211-213 SUMMER AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SF",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3464797,
+          "PAMS_PIN": "0714_820_2",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "37 IRVING ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": null,
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3466866,
+          "PAMS_PIN": "0714_558_6",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "312-314 MT PROSPECT AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SF",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3466921,
+          "PAMS_PIN": "0714_556_3",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "130-132 2ND AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "2SF2UG",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3468166,
+          "PAMS_PIN": "0714_878_25",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "26-28 COTTAGE ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3468961,
+          "PAMS_PIN": "0714_510_12",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "174 MT PROSPECT AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3469908,
+          "PAMS_PIN": "0714_485_10",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "57 STONE ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3470526,
+          "PAMS_PIN": "0714_194_24",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "151-153 LAFAYETTE ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "1SCB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3470915,
+          "PAMS_PIN": "0714_877_21",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "84-86 WALNUT ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SF",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3471248,
+          "PAMS_PIN": "0714_192_28",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "139 ELM ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3471861,
+          "PAMS_PIN": "0714_197_1",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "83-85 MCWHORTER ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "USCB16UG",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3471862,
+          "PAMS_PIN": "0714_197_25",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "76-80 BRUEN ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB1UG",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3472969,
+          "PAMS_PIN": "0714_1181_1",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "526-532 MULBERRY ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB2UG",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3473485,
+          "PAMS_PIN": "0714_958_45",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "304 E KINNEY ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3474309,
+          "PAMS_PIN": "0714_956_68",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "283 ADAMS ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3SB3UG",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3474638,
+          "PAMS_PIN": "0714_978_38",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "294-296 VAN BUREN ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S.F.",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3476596,
+          "PAMS_PIN": "0714_2040_11",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "70 DARCY ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "2SF3UG",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3477552,
+          "PAMS_PIN": "0714_2383_9",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "93-95 HAWKINS ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "2.5S.F.",
+          "COMM_DWELL": null,
+          "DWELL": 1,
+          "MUN_NAME": "NEWARK CITY",
+          "OBJECTID": 3478179,
+          "PAMS_PIN": "0714_2011_35",
+          "PCLLASTUPD": 1421298000000,
+          "PROP_LOC": "38-38- SOMME ST",
+          "YR_CONSTR": 0
+        }
+      }
+    ],
+    "fields": [
+      {
+        "alias": "OBJECTID",
+        "defaultValue": null,
+        "domain": null,
+        "name": "OBJECTID",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeOID"
+      },
+      {
+        "alias": "PAMS_PIN",
+        "defaultValue": null,
+        "domain": null,
+        "length": 38,
+        "name": "PAMS_PIN",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "MUN_NAME",
+        "defaultValue": null,
+        "domain": null,
+        "length": 40,
+        "name": "MUN_NAME",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "PROP_LOC",
+        "defaultValue": null,
+        "domain": null,
+        "length": 25,
+        "name": "PROP_LOC",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "YR_CONSTR",
+        "defaultValue": null,
+        "domain": null,
+        "name": "YR_CONSTR",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeSmallInteger"
+      },
+      {
+        "alias": "BLDG_DESC",
+        "defaultValue": null,
+        "domain": null,
+        "length": 15,
+        "name": "BLDG_DESC",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "DWELL",
+        "defaultValue": null,
+        "domain": null,
+        "name": "DWELL",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeSmallInteger"
+      },
+      {
+        "alias": "COMM_DWELL",
+        "defaultValue": null,
+        "domain": null,
+        "name": "COMM_DWELL",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeSmallInteger"
+      },
+      {
+        "alias": "PCLLASTUPD",
+        "defaultValue": null,
+        "domain": null,
+        "length": 8,
+        "name": "PCLLASTUPD",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeDate"
+      }
+    ],
+    "geometryType": "esriGeometryPolygon",
+    "globalIdFieldName": "",
+    "objectIdFieldName": "OBJECTID",
+    "spatialReference": {
+      "latestWkid": 3857,
+      "wkid": 102100
+    },
+    "uniqueIdField": {
+      "isSystemMaintained": true,
+      "name": "OBJECTID"
+    }
+  },
+  "retrieved_at": "2026-10-04T02:22:10.985157+00:00",
+  "sha256": "ac039cb5d2294d1fcce4611f9cf458e6968057201e007e86638ff569dd8a87c4",
+  "source_url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?f=json&where=MUN_NAME+%3D+%27NEWARK+CITY%27+AND+PROP_LOC+IN+%28%27104+SUNSET+AVE%27%2C%27130-132+2ND+AVE%27%2C%27137+N+11TH+ST%27%2C%27139+ELM+ST%27%2C%27151-153+LAFAYETTE+ST%27%2C%27162-166+5TH+ST%27%2C%27174+MT+PROSPECT+AVE%27%2C%27202-208+6TH+AVE+W%27%2C%27211-213+SUMMER+AVE%27%2C%27223-229+SHEPHARD+AVE%27%2C%27229-231+GRAFTON+AVE%27%2C%2726-28+COTTAGE+ST%27%2C%27280-284+VERONA+AVE%27%2C%27283+ADAMS+ST%27%2C%27294-296+VAN+BUREN+ST%27%2C%2730+JACKSON+ST%27%2C%27304+E+KINNEY+ST%27%2C%27312-314+MT+PROSPECT+AVE%27%2C%27317-319+W+RUNYON+ST%27%2C%27338+CLINTON+PL%27%2C%27342-344+IRVINE+TURNER+BLV%27%2C%2737+IRVING+ST%27%2C%2738-38-+SOMME+ST%27%2C%2740-42+MT+PROSPECT+AVE%27%2C%27408-410+5TH+ST%27%2C%27409+5TH+ST%27%2C%2746+JEFFERSON+ST%27%2C%27498-500+HAWTHORNE+AVE%27%2C%2751+MADISON+ST%27%2C%27521-523+MARKET+ST%27%2C%27521-523+S+17TH%27%2C%27526-532+MULBERRY+ST%27%2C%27554+MARKET+ST%27%2C%2757+STONE+ST%27%2C%27583-589+ELIZABETH+AVE%27%2C%27585+5TH+ST%27%2C%27587+N+6TH+ST%27%2C%27646-648+N+6TH+ST%27%2C%2765-71+NORFLOK+ST%27%2C%2766+MONROE+ST%27%2C%27684-686+SUMMER+AVE%27%2C%2770+DARCY+ST%27%2C%27717+N+6TH+ST%27%2C%2776-80+BRUEN+ST%27%2C%27773-775+SANDFORD+AVE%27%2C%2783-85+MCWHORTER+ST%27%2C%27834-836+RAYMOND+BLVD%27%2C%2784-86+WALNUT+ST%27%2C%27876-878+S+14TH+ST%27%2C%2793-95+HAWKINS+ST%27%29&outFields=OBJECTID%2CPAMS_PIN%2CMUN_NAME%2CPROP_LOC%2CYR_CONSTR%2CBLDG_DESC%2CDWELL%2CCOMM_DWELL%2CPCLLASTUPD&returnGeometry=false&resultRecordCount=2000&orderByFields=OBJECTID",
+  "transport_sha256": "9f8b592ed011853f936cd1ebe7e48fe62ffed93ec9d39d5fbb0a8aff1f8ac809"
+}

@@ -1,0 +1,620 @@
+{
+  "response": {
+    "features": [
+      {
+        "attributes": {
+          "BLDG_DESC": "3B-7U/4B-24U-G",
+          "COMM_DWELL": null,
+          "DWELL": 31,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1104959,
+          "PAMS_PIN": "0905_15_5",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "69-75 JACKSON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4B-7U-H",
+          "COMM_DWELL": null,
+          "DWELL": 7,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1105862,
+          "PAMS_PIN": "0905_20_17",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "361 FIRST ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4F-8U",
+          "COMM_DWELL": null,
+          "DWELL": 8,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1107854,
+          "PAMS_PIN": "0905_39_31",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "208 JEFFERSON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4B-8U",
+          "COMM_DWELL": null,
+          "DWELL": 8,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1108129,
+          "PAMS_PIN": "0905_30_16",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "126 ADAMS ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "6B-30U-G",
+          "COMM_DWELL": null,
+          "DWELL": 30,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1108186,
+          "PAMS_PIN": "0905_41_16",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "204 GRAND ST",
+          "YR_CONSTR": 2000
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-35U-G",
+          "COMM_DWELL": null,
+          "DWELL": 35,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1108205,
+          "PAMS_PIN": "0905_42_18",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "208 CLINTON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-5U-H-(CO-OP)",
+          "COMM_DWELL": null,
+          "DWELL": 5,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1108246,
+          "PAMS_PIN": "0905_42_13",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "227 GRAND ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4B-9U",
+          "COMM_DWELL": null,
+          "DWELL": 9,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1108847,
+          "PAMS_PIN": "0905_165_14",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "227 WILLOW AVE",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4F-7U",
+          "COMM_DWELL": null,
+          "DWELL": 7,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1108940,
+          "PAMS_PIN": "0905_43_16",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "229 CLINTON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-14U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": 14,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1109540,
+          "PAMS_PIN": "0905_189_40",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "206 BLOOMFIELD ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4B-5U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": 5,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1109608,
+          "PAMS_PIN": "0905_188_31",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "124 BLOOMFIELD ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4B-8U-H",
+          "COMM_DWELL": null,
+          "DWELL": 8,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1110482,
+          "PAMS_PIN": "0905_47_28",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "310 MONROE ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-20U-H",
+          "COMM_DWELL": null,
+          "DWELL": 20,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1110486,
+          "PAMS_PIN": "0905_47_13",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "327 JACKSON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4F-6U",
+          "COMM_DWELL": null,
+          "DWELL": 6,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1110521,
+          "PAMS_PIN": "0905_58_21",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "408 MADISON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4B-7U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": 7,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1110929,
+          "PAMS_PIN": "0905_61_20",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "404 GRAND ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-12U-BA",
+          "COMM_DWELL": null,
+          "DWELL": 12,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1111130,
+          "PAMS_PIN": "0905_166_10",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "321 WILLOW AVE",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4 1/2B-10U-BA",
+          "COMM_DWELL": null,
+          "DWELL": 10,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1111190,
+          "PAMS_PIN": "0905_179_28",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "332-334 GARDEN ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "2,4B-16U-H-X",
+          "COMM_DWELL": null,
+          "DWELL": 16,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1111461,
+          "PAMS_PIN": "0905_202_12",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "323 BLOOMFIELD ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-64U/5B-64U-G",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1111834,
+          "PAMS_PIN": "0905_73_1",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "600 JACKSON/601 HARRISON",
+          "YR_CONSTR": 2007
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4F-8U-C/3F-2U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1113026,
+          "PAMS_PIN": "0905_69_21",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "526 ADAMS ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "2F-4U/2F-2U",
+          "COMM_DWELL": null,
+          "DWELL": 6,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1113048,
+          "PAMS_PIN": "0905_78_4",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "607 ADAMS ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-1OU",
+          "COMM_DWELL": null,
+          "DWELL": 10,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1113098,
+          "PAMS_PIN": "0905_70_6",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "525 ADAMS ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4B-5U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": 5,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1113926,
+          "PAMS_PIN": "0905_216_4",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "504 COURT ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-6B-25U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1115535,
+          "PAMS_PIN": "0905_160_7",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "832 WILLOW AVE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-6U-AFFORDABL",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1115568,
+          "PAMS_PIN": "0905_159_7",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "721 CLINTON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4B-9U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": 9,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1116113,
+          "PAMS_PIN": "0905_219_3",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "805 WASHINGTON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4B-5U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": 5,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1116223,
+          "PAMS_PIN": "0905_207_23.02",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "822 WASHINGTON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "2,5B-90U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1117363,
+          "PAMS_PIN": "0905_161_6",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "911-923 CLINTON ST",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-14U",
+          "COMM_DWELL": null,
+          "DWELL": 14,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1117388,
+          "PAMS_PIN": "0905_162_2",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "1015 CLINTON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "6B-20U-G",
+          "COMM_DWELL": null,
+          "DWELL": 20,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1117390,
+          "PAMS_PIN": "0905_162_4",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "1031-1035 CLINTON ST",
+          "YR_CONSTR": 2001
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-10U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": 10,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1117461,
+          "PAMS_PIN": "0905_184_19",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "935 PARK AVE",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-10U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": 10,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1117494,
+          "PAMS_PIN": "0905_184_15",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "925 PARK AVE",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-10U-BA",
+          "COMM_DWELL": null,
+          "DWELL": 10,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1117985,
+          "PAMS_PIN": "0905_196_16",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "931 GARDEN ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-14U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": 14,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1118001,
+          "PAMS_PIN": "0905_196_9.01",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "913 GARDEN ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-10U-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": 10,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1118011,
+          "PAMS_PIN": "0905_196_12",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "923 GARDEN ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-26U-H-CO-OP",
+          "COMM_DWELL": null,
+          "DWELL": 26,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1118045,
+          "PAMS_PIN": "0905_220_29",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "920 HUDSON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-11U-H-BA-G",
+          "COMM_DWELL": null,
+          "DWELL": 11,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1118067,
+          "PAMS_PIN": "0905_221_14",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "1032 HUDSON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4B-8U-BA",
+          "COMM_DWELL": null,
+          "DWELL": 8,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1118080,
+          "PAMS_PIN": "0905_221_12.01",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "1037 WASHINGTON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5B-12U-1BX-H-BA",
+          "COMM_DWELL": null,
+          "DWELL": 12,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1119264,
+          "PAMS_PIN": "0905_243_17",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "1126 HUDSON ST",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "13B-93U-2C-G",
+          "COMM_DWELL": 2,
+          "DWELL": 93,
+          "MUN_NAME": "HOBOKEN CITY",
+          "OBJECTID": 1122958,
+          "PAMS_PIN": "0905_263.03_1",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "1401 HUDSON ST",
+          "YR_CONSTR": 2010
+        }
+      }
+    ],
+    "fields": [
+      {
+        "alias": "OBJECTID",
+        "defaultValue": null,
+        "domain": null,
+        "name": "OBJECTID",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeOID"
+      },
+      {
+        "alias": "PAMS_PIN",
+        "defaultValue": null,
+        "domain": null,
+        "length": 38,
+        "name": "PAMS_PIN",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "MUN_NAME",
+        "defaultValue": null,
+        "domain": null,
+        "length": 40,
+        "name": "MUN_NAME",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "PROP_LOC",
+        "defaultValue": null,
+        "domain": null,
+        "length": 25,
+        "name": "PROP_LOC",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "YR_CONSTR",
+        "defaultValue": null,
+        "domain": null,
+        "name": "YR_CONSTR",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeSmallInteger"
+      },
+      {
+        "alias": "BLDG_DESC",
+        "defaultValue": null,
+        "domain": null,
+        "length": 15,
+        "name": "BLDG_DESC",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "DWELL",
+        "defaultValue": null,
+        "domain": null,
+        "name": "DWELL",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeSmallInteger"
+      },
+      {
+        "alias": "COMM_DWELL",
+        "defaultValue": null,
+        "domain": null,
+        "name": "COMM_DWELL",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeSmallInteger"
+      },
+      {
+        "alias": "PCLLASTUPD",
+        "defaultValue": null,
+        "domain": null,
+        "length": 8,
+        "name": "PCLLASTUPD",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeDate"
+      }
+    ],
+    "geometryType": "esriGeometryPolygon",
+    "globalIdFieldName": "",
+    "objectIdFieldName": "OBJECTID",
+    "spatialReference": {
+      "latestWkid": 3857,
+      "wkid": 102100
+    },
+    "uniqueIdField": {
+      "isSystemMaintained": true,
+      "name": "OBJECTID"
+    }
+  },
+  "retrieved_at": "2026-10-04T02:22:07.698159+00:00",
+  "sha256": "33379f9971637b75eb91366d427f8a19a77feb500f002f311a0154bc81bc7d72",
+  "source_url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?f=json&where=MUN_NAME+%3D+%27HOBOKEN+CITY%27+AND+PROP_LOC+IN+%28%271015+CLINTON+ST%27%2C%271031-1035+CLINTON+ST%27%2C%271032+HUDSON+ST%27%2C%271037+WASHINGTON+ST%27%2C%271126+HUDSON+ST%27%2C%27124+BLOOMFIELD+ST%27%2C%27126+ADAMS+ST%27%2C%271401+HUDSON+ST%27%2C%27204+GRAND+ST%27%2C%27206+BLOOMFIELD+ST%27%2C%27208+CLINTON+ST%27%2C%27208+JEFFERSON+ST%27%2C%27227+GRAND+ST%27%2C%27227+WILLOW+AVE%27%2C%27229+CLINTON+ST%27%2C%27310+MONROE+ST%27%2C%27321+WILLOW+AVE%27%2C%27323+BLOOMFIELD+ST%27%2C%27327+JACKSON+ST%27%2C%27332-334+GARDEN+ST%27%2C%27361+FIRST+ST%27%2C%27404+GRAND+ST%27%2C%27408+MADISON+ST%27%2C%27504+COURT+ST%27%2C%27525+ADAMS+ST%27%2C%27526+ADAMS+ST%27%2C%27600+JACKSON%2F601+HARRISON%27%2C%27607+ADAMS+ST%27%2C%2769-75+JACKSON+ST%27%2C%27721+CLINTON+ST%27%2C%27805+WASHINGTON+ST%27%2C%27822+WASHINGTON+ST%27%2C%27832+WILLOW+AVE%27%2C%27911-923+CLINTON+ST%27%2C%27913+GARDEN+ST%27%2C%27920+HUDSON+ST%27%2C%27923+GARDEN+ST%27%2C%27925+PARK+AVE%27%2C%27931+GARDEN+ST%27%2C%27935+PARK+AVE%27%29&outFields=OBJECTID%2CPAMS_PIN%2CMUN_NAME%2CPROP_LOC%2CYR_CONSTR%2CBLDG_DESC%2CDWELL%2CCOMM_DWELL%2CPCLLASTUPD&returnGeometry=false&resultRecordCount=2000&orderByFields=OBJECTID",
+  "transport_sha256": "626a8a2c95f397604d46fd64f93912273f9d5c2cbdb6bc09b2148d4588274188"
+}

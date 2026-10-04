@@ -1,0 +1,102 @@
+{
+  "source_url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0",
+  "copyright": "NJ Office of Information Technology, Office of GIS (NJOGIS); \nAtlantic County; \nBergen County; \nBurlington County; \nCamden County; \nCape May County; \nCumberland County; \nEssex County; \nGloucester County; \nHudson County; \nHunterdon County; \nMercer County; \nMiddlesex County; \nMonmouth County; \nMorris County; \nOcean County; \nPassaic County; \nSalem County; \nSomerset County; \nSussex County; \nUnion County; \nWarren County; \nNewark; \nEast Brunswick; \nNew Brunswick; \nNorth Brunswick; \nPiscataway; \nSouth Brunswick; \nWoodbridge;\nCivil Solutions; \nSpatial Data Logic\n\nProcessing of data from Division of Taxation for use in this dataset was performed by NJOIT, Enterprise Data Services, Data Warehouse.",
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "sqlType": "sqlTypeOther",
+      "nullable": false,
+      "editable": false,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "PAMS_PIN",
+      "type": "esriFieldTypeString",
+      "alias": "PAMS_PIN",
+      "sqlType": "sqlTypeOther",
+      "length": 38,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "PCLLASTUPD",
+      "type": "esriFieldTypeDate",
+      "alias": "PCLLASTUPD",
+      "sqlType": "sqlTypeOther",
+      "length": 8,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null,
+      "precision": 1
+    },
+    {
+      "name": "MUN_NAME",
+      "type": "esriFieldTypeString",
+      "alias": "MUN_NAME",
+      "sqlType": "sqlTypeOther",
+      "length": 40,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "PROP_LOC",
+      "type": "esriFieldTypeString",
+      "alias": "PROP_LOC",
+      "sqlType": "sqlTypeOther",
+      "length": 25,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "BLDG_DESC",
+      "type": "esriFieldTypeString",
+      "alias": "BLDG_DESC",
+      "sqlType": "sqlTypeOther",
+      "length": 15,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "YR_CONSTR",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "YR_CONSTR",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "DWELL",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "DWELL",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "COMM_DWELL",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "COMM_DWELL",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    }
+  ]
+}

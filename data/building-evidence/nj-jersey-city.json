@@ -1,0 +1,750 @@
+{
+  "response": {
+    "features": [
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-6U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1124865,
+          "PAMS_PIN": "0906_803_5",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "43 POPLAR ST.",
+          "YR_CONSTR": 1900
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-6U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1125745,
+          "PAMS_PIN": "0906_1502_3",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "1064 SUMMIT AVE.",
+          "YR_CONSTR": 1900
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "10S-B-A-151U-HE",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1126564,
+          "PAMS_PIN": "0906_2102_4",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "1065 SUMMIT AVENUE",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-7U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1126679,
+          "PAMS_PIN": "0906_2105_32",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "202 SOUTH ST.",
+          "YR_CONSTR": 1915
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-8U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1128166,
+          "PAMS_PIN": "0906_2604_36",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "240 BOWERS ST.",
+          "YR_CONSTR": 1900
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-B-A-22U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1128662,
+          "PAMS_PIN": "0906_2705_37",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "86 CHARLES ST.",
+          "YR_CONSTR": 1918
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-A-12U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1130925,
+          "PAMS_PIN": "0906_3802_24",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "60-62 CAMBRIDGE AVE",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-6U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1131432,
+          "PAMS_PIN": "0906_4204_24",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "146 CARLTON AVE.",
+          "YR_CONSTR": 1925
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-B-A-14U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1132229,
+          "PAMS_PIN": "0906_4504_9",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "140 NEW YORK AVE.",
+          "YR_CONSTR": 1924
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-B-A-13U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1133131,
+          "PAMS_PIN": "0906_5008_4",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "45 RAVINE AVE.",
+          "YR_CONSTR": 1912
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-B-D-7U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1133445,
+          "PAMS_PIN": "0906_5201_6",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "127 OGDEN AVE.",
+          "YR_CONSTR": 1910
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-5U-NH",
+          "COMM_DWELL": null,
+          "DWELL": 5,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1134146,
+          "PAMS_PIN": "0906_5704_5",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "107 BEACON AVE.",
+          "YR_CONSTR": 1
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S+BT-F-6U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1134206,
+          "PAMS_PIN": "0906_5701_11",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "65 OAKLAND AVE.",
+          "YR_CONSTR": 1
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-6U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1134265,
+          "PAMS_PIN": "0906_5801_27",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "36 PROSPECT ST.",
+          "YR_CONSTR": 1923
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-B-D-6U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1134519,
+          "PAMS_PIN": "0906_5902_15",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "13 JEFFERSON AVE.",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-6U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1136368,
+          "PAMS_PIN": "0906_6602_22",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "128 ST. PAULS AVE.",
+          "YR_CONSTR": 1890
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-8U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1136561,
+          "PAMS_PIN": "0906_6808_19",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "29 CONCORD ST",
+          "YR_CONSTR": 1890
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-B-D-6U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1140154,
+          "PAMS_PIN": "0906_9205_12",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "1051 WEST SIDE AVE.",
+          "YR_CONSTR": 1900
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "5S-BT-B-C-21U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1140221,
+          "PAMS_PIN": "0906_9305_10",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "882 PAVONIA AVE.",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-D-7U-NH-G",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1141728,
+          "PAMS_PIN": "0906_10007_16",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "314 SEVENTH ST.",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "6S-B+F-45U-17G",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1143278,
+          "PAMS_PIN": "0906_10803_29.01",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "211 BALDWIN AVE.",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3&4S-B&F-14U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1145615,
+          "PAMS_PIN": "0906_11402_12",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "233-235 SECOND ST.",
+          "YR_CONSTR": 1870
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-5U-NH",
+          "COMM_DWELL": null,
+          "DWELL": 5,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1148113,
+          "PAMS_PIN": "0906_12003_29",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "54 STUYVESANT AVE.",
+          "YR_CONSTR": 1910
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-FD-12U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1148213,
+          "PAMS_PIN": "0906_12003_1",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "221 SIP AVE.",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-BA-21U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1148857,
+          "PAMS_PIN": "0906_12202_28",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "91 JORDAN AVE.",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4-S-BT-21U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1148894,
+          "PAMS_PIN": "0906_12201_22",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "319 SUMMIT AVE.",
+          "YR_CONSTR": 1920
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-B-A-13U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1148978,
+          "PAMS_PIN": "0906_12306_11",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "102 BALDWIN AVE.",
+          "YR_CONSTR": 1912
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-A-46U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1150355,
+          "PAMS_PIN": "0906_12803_5",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "95 WAYNE ST.",
+          "YR_CONSTR": 1
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-6U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1151081,
+          "PAMS_PIN": "0906_13203_60",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "166 HIGHLAND AVE.",
+          "YR_CONSTR": 1912
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-D-8U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1152430,
+          "PAMS_PIN": "0906_13903_20",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "52 BRIGHT ST.",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-7U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1156068,
+          "PAMS_PIN": "0906_14702_31",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "200 NUNDA AVE.",
+          "YR_CONSTR": 1
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-A-25U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1156922,
+          "PAMS_PIN": "0906_15302_29",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "101 CLIFTON PL.",
+          "YR_CONSTR": 3
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-6U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1158632,
+          "PAMS_PIN": "0906_16101_17",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "225 DUNCAN AVE.",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-A-21U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1158724,
+          "PAMS_PIN": "0906_16103_25",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "38A GAUTIER AVE.",
+          "YR_CONSTR": 1925
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-A-17U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1159215,
+          "PAMS_PIN": "0906_16402_36",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "90 KENSINGTON AVE.",
+          "YR_CONSTR": 1925
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "2-4S-B-A-26U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1159309,
+          "PAMS_PIN": "0906_16501_11",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "315-319 FAIRMOUNT AVENUE",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-B-12U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1163953,
+          "PAMS_PIN": "0906_19303_25",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "75 CLENDENNY AVE.",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "2S-B-A-6U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1164320,
+          "PAMS_PIN": "0906_19503_44",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "320 FORREST ST.",
+          "YR_CONSTR": 1912
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-D-8U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1164323,
+          "PAMS_PIN": "0906_19503_34",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "59 OAK ST.",
+          "YR_CONSTR": 1901
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-D-8U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1164325,
+          "PAMS_PIN": "0906_19503_32",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "63 OAK ST.",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-B-D-6U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1164795,
+          "PAMS_PIN": "0906_20003_27",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "230 VAN HORNE ST.",
+          "YR_CONSTR": 1895
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-A-21U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1165861,
+          "PAMS_PIN": "0906_20601_4",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "317 UNION ST.",
+          "YR_CONSTR": 1930
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-6U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1168696,
+          "PAMS_PIN": "0906_22701_12",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "157-155 CLERK ST.",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S+BT-F-6U",
+          "COMM_DWELL": null,
+          "DWELL": 4,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1168712,
+          "PAMS_PIN": "0906_22701_34",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "664 OCEAN AVE.",
+          "YR_CONSTR": 1910
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-A-16U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1170428,
+          "PAMS_PIN": "0906_24001_26",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "115 BAYVIEW AVE.",
+          "YR_CONSTR": 0
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-6U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1174427,
+          "PAMS_PIN": "0906_26201_83",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "154 TERHUNE AVE.",
+          "YR_CONSTR": 1922
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-A-17U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1174784,
+          "PAMS_PIN": "0906_26402_19.01",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "78 STEVENS AVE.",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-B-D-6U-H",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1177794,
+          "PAMS_PIN": "0906_28201_24",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "14 RUTGERS AVE.",
+          "YR_CONSTR": 1913
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "3S-F-D-6U-NH",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1179516,
+          "PAMS_PIN": "0906_29401_54",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "94 NEPTUNE AVE.",
+          "YR_CONSTR": null
+        }
+      },
+      {
+        "attributes": {
+          "BLDG_DESC": "4S-B-44U",
+          "COMM_DWELL": null,
+          "DWELL": null,
+          "MUN_NAME": "JERSEY CITY CITY",
+          "OBJECTID": 1179810,
+          "PAMS_PIN": "0906_29503_4",
+          "PCLLASTUPD": null,
+          "PROP_LOC": "238 & 242 GARFIELD AVE.",
+          "YR_CONSTR": 1928
+        }
+      }
+    ],
+    "fields": [
+      {
+        "alias": "OBJECTID",
+        "defaultValue": null,
+        "domain": null,
+        "name": "OBJECTID",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeOID"
+      },
+      {
+        "alias": "PAMS_PIN",
+        "defaultValue": null,
+        "domain": null,
+        "length": 38,
+        "name": "PAMS_PIN",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "MUN_NAME",
+        "defaultValue": null,
+        "domain": null,
+        "length": 40,
+        "name": "MUN_NAME",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "PROP_LOC",
+        "defaultValue": null,
+        "domain": null,
+        "length": 25,
+        "name": "PROP_LOC",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "YR_CONSTR",
+        "defaultValue": null,
+        "domain": null,
+        "name": "YR_CONSTR",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeSmallInteger"
+      },
+      {
+        "alias": "BLDG_DESC",
+        "defaultValue": null,
+        "domain": null,
+        "length": 15,
+        "name": "BLDG_DESC",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "DWELL",
+        "defaultValue": null,
+        "domain": null,
+        "name": "DWELL",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeSmallInteger"
+      },
+      {
+        "alias": "COMM_DWELL",
+        "defaultValue": null,
+        "domain": null,
+        "name": "COMM_DWELL",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeSmallInteger"
+      },
+      {
+        "alias": "PCLLASTUPD",
+        "defaultValue": null,
+        "domain": null,
+        "length": 8,
+        "name": "PCLLASTUPD",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeDate"
+      }
+    ],
+    "geometryType": "esriGeometryPolygon",
+    "globalIdFieldName": "",
+    "objectIdFieldName": "OBJECTID",
+    "spatialReference": {
+      "latestWkid": 3857,
+      "wkid": 102100
+    },
+    "uniqueIdField": {
+      "isSystemMaintained": true,
+      "name": "OBJECTID"
+    }
+  },
+  "retrieved_at": "2026-10-04T02:24:32.393850+00:00",
+  "sha256": "04520d66c985474cd8c15ee88b447779fc8495943cab02632dd09654fd889f3e",
+  "source_url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?f=json&where=MUN_NAME+%3D+%27JERSEY+CITY+CITY%27+AND+PROP_LOC+IN+%28%27101+CLIFTON+PL.%27%2C%27102+BALDWIN+AVE.%27%2C%271051+WEST+SIDE+AVE.%27%2C%271064+SUMMIT+AVE.%27%2C%271065+SUMMIT+AVENUE%27%2C%27107+BEACON+AVE.%27%2C%27115+BAYVIEW+AVE.%27%2C%27127+OGDEN+AVE.%27%2C%27128+ST.+PAULS+AVE.%27%2C%2713+JEFFERSON+AVE.%27%2C%2714+RUTGERS+AVE.%27%2C%27140+NEW+YORK+AVE.%27%2C%27146+CARLTON+AVE.%27%2C%27154+TERHUNE+AVE.%27%2C%27157-155+CLERK+ST.%27%2C%27166+HIGHLAND+AVE.%27%2C%27200+NUNDA+AVE.%27%2C%27202+SOUTH+ST.%27%2C%27211+BALDWIN+AVE.%27%2C%27221+SIP+AVE.%27%2C%27225+DUNCAN+AVE.%27%2C%27230+VAN+HORNE+ST.%27%2C%27233-235+SECOND+ST.%27%2C%27238+%26+242+GARFIELD+AVE.%27%2C%27240+BOWERS+ST.%27%2C%2729+CONCORD+ST%27%2C%27314+SEVENTH+ST.%27%2C%27315-319+FAIRMOUNT+AVENUE%27%2C%27317+UNION+ST.%27%2C%27319+SUMMIT+AVE.%27%2C%27320+FORREST+ST.%27%2C%2736+PROSPECT+ST.%27%2C%2738A+GAUTIER+AVE.%27%2C%2743+POPLAR+ST.%27%2C%2745+RAVINE+AVE.%27%2C%2752+BRIGHT+ST.%27%2C%2754+STUYVESANT+AVE.%27%2C%2759+OAK+ST.%27%2C%2760-62+CAMBRIDGE+AVE%27%2C%2763+OAK+ST.%27%2C%2765+OAKLAND+AVE.%27%2C%27664+OCEAN+AVE.%27%2C%2775+CLENDENNY+AVE.%27%2C%2778+STEVENS+AVE.%27%2C%2786+CHARLES+ST.%27%2C%27882+PAVONIA+AVE.%27%2C%2790+KENSINGTON+AVE.%27%2C%2791+JORDAN+AVE.%27%2C%2794+NEPTUNE+AVE.%27%2C%2795+WAYNE+ST.%27%29&outFields=OBJECTID%2CPAMS_PIN%2CMUN_NAME%2CPROP_LOC%2CYR_CONSTR%2CBLDG_DESC%2CDWELL%2CCOMM_DWELL%2CPCLLASTUPD&returnGeometry=false&resultRecordCount=2000&orderByFields=OBJECTID",
+  "transport_sha256": "48346687414f50553202d755819b25d68549517a8d85b06cf8755075aa8c70aa"
+}

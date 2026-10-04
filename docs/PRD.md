@@ -121,7 +121,7 @@ This is the project's feature list; each build updates its status in the same co
 | P1 | Spanish card summaries (brief stretch goal; quotes stay English) | S | planned |
 | P1 | "I rent / I own" wording toggle (sponsor's users) | S | planned |
 | P2 | Typed address outside the sample, e.g. Santa Ana (brief stretch goal "new jurisdiction live") | S | partial (jurisdiction tree on `/where`; rules need the engine) |
-| P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-to-extend-coverage-p1-checked-04102026)) | D | planned |
+| P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-to-extend-coverage-p1-checked-04102026)) | D | partial (issue #22: `make fact-gaps` ranks useful next building facts; `make enrich-buildings` replays 140 exact NJ parcel matches as evidence leads; no automatic promotion or score change; record-request routes for LA/SD, UI integration pending) |
 | P2 | MCP route | D | planned |
 | P2 | Compare view | S | planned |
 | P3 | ChatGPT custom GPT on the JSON endpoint | D | planned |
