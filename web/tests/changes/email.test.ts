@@ -5,6 +5,7 @@ import { changes } from "../../lib/changes/data.ts";
 import { addressChange, esc, FROM, plainChange, render } from "../../lib/changes/email.ts";
 import type { AddressChange } from "../../lib/changes/email.ts";
 import type { Change } from "../../lib/changes/types.ts";
+import { badgeFor } from "../../lib/changes/impact.ts";
 
 const j3 = () => {
   const ac = addressChange(changes, "A0256", "asof:2026-10-01..2027-07-02");
@@ -46,6 +47,44 @@ test("renter-impact badge: from #59's renter_impact.verdict only; old impact str
   // the classifier strings the old impactOf read are not #59's shape: no badge
   assert.doesNotMatch(render(withImpact({ impact: "more_protection", renter_impact: "more_protection" })).html, /renter protection/);
   assert.equal(plainChange(base.entry.changes[0], base.as_of).badge, null);
+});
+
+test("email: every change shows its topic label (as on the site) and the site's verdict badge, in HTML and text", () => {
+  const ac0 = j3();
+  // no badge on the site (here: engine verdict "unchanged") -> no badge in the email, the topic label still shows
+  const none = render(ac0);
+  assert.ok(none.html.includes(">Software that sets rents</span>From Jul 1, 2027"), "topic label, no badge");
+  assert.doesNotMatch(none.html, /class="vb-(up|dn|un)"/);
+  assert.match(none.text, /• Software that sets rents — From Jul 1, 2027[^\n(]*$/m);
+  // ↑ / ↓ / grey: inline-styled pill (arrow + text, aria with 'Your unit may differ.'), same words in the text part
+  // (the FAIR Act carries a conflict flag here: grey reads 'may conflict')
+  const cases = [
+    ["better", "↑", "This change adds renter protection", "vb-up", "#11643D", "#E2F2E8"],
+    ["worse", "↓", "This change narrows renter protection", "vb-dn", "#9B2C2C", "#FBE9E7"],
+    ["unclear", "?", "May conflict with another rule, not decided", "vb-un", "#4D5256", "#ECEDEE"],
+  ];
+  for (const [verdict, arrow, text, cls, color, bg] of cases) {
+    const r = render({ ...ac0, entry: { ...ac0.entry, changes: ac0.entry.changes.map((c) => ({ ...c, renter_impact: { verdict } as Change["renter_impact"] })) } });
+    assert.ok(r.html.includes(`>Software that sets rents</span><span class="${cls}"`), verdict);
+    assert.ok(r.html.includes(`color:${color};background:${bg}"><span aria-hidden="true">${arrow}</span> ${esc(text)}</span>`), verdict);
+    assert.ok(r.html.includes(`aria-label="${esc(text)}. Your unit may differ."`), verdict);
+    assert.ok(r.text.includes(`• Software that sets rents — From Jul 1, 2027`), verdict);
+    assert.ok(r.text.includes(`(${arrow} ${text}. Your unit may differ.)`), verdict);
+  }
+});
+
+test("email: every item of every live alert has its topic label, and a badge exactly where the site shows one", () => {
+  for (const [id, rec] of Object.entries(changes.addresses)) {
+    for (const entry of rec.entries) {
+      const m = render({ address_id: id, label: rec.label, as_of: changes.as_of, entry });
+      const badged = entry.changes.filter((c) => badgeFor(c)).length;
+      const items = m.text.split("\n").filter((l) => l.startsWith("• "));
+      assert.equal(items.length, entry.changes.length, `${id} ${entry.source}`);
+      assert.equal(items.filter((l) => /\((↑|↓|\?) [^)]*Your unit may differ\.\)$/.test(l)).length, badged, `${id} ${entry.source}`);
+      assert.equal((m.html.match(/class="vb-(up|dn|un)"/g) ?? []).length, badged, `${id} ${entry.source}`);
+      assert.equal((m.html.match(/<span class="mu" style="display:block[^>]*>/g) ?? []).length, entry.changes.length, `${id} ${entry.source}`);
+    }
+  }
 });
 
 test("unsubscribe link and List-Unsubscribe header", () => {
