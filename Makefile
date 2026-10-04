@@ -2,7 +2,7 @@
 AS_OF ?= 2026-10-01
 PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
-.PHONY: all extract resolve resolve-live build score test eval check freeze ingest rehearse demo-change rerun web
+.PHONY: notify alert all extract resolve resolve-live build score test eval check freeze ingest rehearse demo-change rerun web
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
@@ -78,3 +78,11 @@ rerun:                                   ## live re-extraction of one doc, fresh
 
 web:                                     ## local dev server
 	cd web && npm run dev
+
+notify:                                  ## change alerts, local: dry run lists who would get which email; SEND=1 sends (allowed subscribers only during the closed test; no DEMO_TOKEN needed)
+	cd web && node --env-file-if-exists=.env.local scripts/alerts.ts notify --changes $(or $(CHANGES),../out/changes.full.json) $(if $(SOURCE),--source $(SOURCE)) $(if $(SEND),--send)
+
+alert:                                   ## demo hook, the last step once the production deploy is Ready: make alert SOURCE=<id> [RESET=1] [URL=https://yourhomerule.com]
+	$(if $(SOURCE),,$(error SOURCE=<change source id> is required))
+	$(if $(RESET),cd web && node --env-file-if-exists=.env.local scripts/alerts.ts reset "$(SOURCE)")
+	cd web && node --env-file-if-exists=.env.local scripts/alerts.ts trigger "$(SOURCE)" $(if $(URL),--url $(URL))

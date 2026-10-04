@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { icons } from "../icons";
+import BrandMark from "@/components/brand-mark";
+import { icons } from "@/components/icons";
 import { resolveQuery } from "@/lib/resolve/resolve.ts";
 import { sampleIndex } from "@/lib/resolve/samples.ts";
 import { SUGGESTIONS } from "@/lib/resolve/suggest.ts";
@@ -163,7 +164,9 @@ export default async function WherePage({ searchParams }: PageProps<"/where">) {
     <>
       <header className="wrap top">
         <Link href="/" className="brand">
-          <span className="brand-mark">{icons.home}</span>
+          <span className="brand-mark">
+            <BrandMark />
+          </span>
           HomeRule
         </Link>
       </header>

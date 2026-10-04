@@ -1,0 +1,41 @@
+/* Site-wide prototype notice: solid navy (the UI accent), never green or clay (status colours). */
+.proto-banner {
+  background: #2b3b4e;
+  color: #fff;
+}
+.proto-banner p {
+  margin: 0 auto;
+  max-width: 72rem;
+  padding: 10px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  font: 500 14.5px/1.45 var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  text-align: center;
+}
+.proto-banner span {
+  text-wrap: balance;
+}
+.proto-banner strong {
+  font-weight: 700;
+}
+.proto-banner-icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.proto-banner-icon .dot {
+  fill: currentColor;
+}
+@media (max-width: 480px) {
+  .proto-banner p {
+    font-size: 14px;
+    text-align: left;
+  }
+}

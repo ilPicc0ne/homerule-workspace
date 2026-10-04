@@ -1,14 +1,20 @@
-import AddressPreview from "./address-preview";
-import { icons } from "./icons";
+import Link from "next/link";
+import { icons } from "@/components/icons";
+import LiveUnavailable from "@/components/live-unavailable";
+import SearchBox from "@/components/search-box";
+import { getDataset, jurisdictions } from "@/lib/data";
+import { buildIndex } from "@/lib/demo-search";
+import { CATEGORIES, QUESTION } from "@/lib/law";
+import type { Category } from "@/lib/types";
 
-const questions = [
-  { label: "Rent increases", icon: icons.rent },
-  { label: "Eviction protection", icon: icons.shield },
-  { label: "Deposits", icon: icons.key },
-  { label: "Application fees", icon: icons.receipt },
-  { label: "Screening", icon: icons.idcard },
-  { label: "Rent-setting software", icon: icons.chip },
-];
+const questionIcon: Record<Category, React.ReactNode> = {
+  rent_increase_limits: icons.rent,
+  just_cause_eviction: icons.shield,
+  security_deposits: icons.key,
+  application_screening_fees: icons.receipt,
+  screening_restrictions: icons.idcard,
+  algorithmic_rent_setting: icons.chip,
+};
 
 const trust = [
   { label: "Quoted from the law", icon: icons.quote },
@@ -17,67 +23,69 @@ const trust = [
 ];
 
 export default function Home() {
+  const data = getDataset();
+  if (!data) return <LiveUnavailable />;
+
+  const index = buildIndex(data.addresses, jurisdictions);
+  const demo = data.meta.demo_address_ids
+    .map((id) => data.addresses.find((a) => a.address_id === id))
+    .filter((a) => a !== undefined);
+  const states = jurisdictions.filter((j) => j.level === "state");
+
   return (
-    <>
-      <header className="wrap top">
-        <span className="brand">
-          <span className="brand-mark">{icons.home}</span>
-          HomeRule
-        </span>
-        <span className="pill pill-soft">Coming soon</span>
-      </header>
+    <main>
+      <section className="wrap hero" aria-labelledby="hero-title">
+        <h1 id="hero-title">Your rights as a renter, for your exact address.</h1>
+        <p className="hero-sub">See which housing rules apply to your home, today and next.</p>
+        <SearchBox index={index} />
+        <ul className="try" aria-label="Example addresses">
+          {demo.map((a) => (
+            <li key={a.address_id}>
+              <Link className="try-chip" href={`/a/${a.address_id}`}>
+                {a.street}
+                <span>{a.postal_city}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-      <main>
-        <div className="wrap">
-          <AddressPreview />
-        </div>
+      <section className="wrap landing-section" aria-labelledby="questions-title">
+        <h2 id="questions-title">Six questions, answered for your address</h2>
+        <ul className="tiles">
+          {CATEGORIES.map((c) => (
+            <li key={c} className="tile">
+              {questionIcon[c]}
+              {QUESTION[c]}
+            </li>
+          ))}
+        </ul>
+      </section>
 
-        <section className="wrap section" aria-labelledby="questions-title">
-          <h2 id="questions-title">Six questions, answered for your address</h2>
-          <ul className="chips">
-            {questions.map(({ label, icon }) => (
-              <li key={label} className="chip">
-                <span className="chip-icon">{icon}</span>
-                {label}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="wrap section" aria-labelledby="trust-title">
-          <h2 id="trust-title" className="sr-only">
-            How every answer works
-          </h2>
-          <ul className="trust">
-            {trust.map(({ label, icon }) => (
-              <li key={label}>
-                <span className="trust-icon">{icon}</span>
-                {label}
-              </li>
-            ))}
-          </ul>
-
-          <div className="coverage">
-            <p>
-              <span>California</span>
-              <span className="dot" aria-hidden="true">
-                ·
-              </span>
-              <span>New Jersey</span>
-              <span className="dot" aria-hidden="true">
-                ·
-              </span>
-              <span>Massachusetts</span>
-              <span className="cities">— 10 cities</span>
-            </p>
-          </div>
-        </section>
-      </main>
-
-      <footer className="wrap footer">
-        <p>Not legal advice. Shows published rules that may apply, with quotes and dates.</p>
-        <p>Built at Hack-Nation 7 for the RealPage challenge.</p>
-      </footer>
-    </>
+      <section className="wrap landing-section" aria-labelledby="trust-title">
+        <h2 id="trust-title" className="sr-only">
+          How every answer works
+        </h2>
+        <ul className="trust">
+          {trust.map(({ label, icon }) => (
+            <li key={label}>
+              {icon}
+              {label}
+            </li>
+          ))}
+        </ul>
+        <p className="coverage">
+          {states.map((s, i) => (
+            <span key={s.id}>
+              {i > 0 && <span className="coverage-sep" aria-hidden="true" />}
+              <Link href={`/j/${s.id}`}>{s.legal_name}</Link>
+            </span>
+          ))}
+          <br />
+          <span className="muted">3 states and 10 cities. Anything else says &ldquo;not covered&rdquo;, never a guess.</span>
+        </p>
+        <p className="tagline">A model has a training cutoff. A law has an effective date.</p>
+      </section>
+    </main>
   );
 }

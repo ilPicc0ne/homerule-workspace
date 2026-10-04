@@ -1,0 +1,103 @@
+/* Alerts: the email overlay and the form notes. Light only, like the site. */
+dialog.em-dlg {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  box-sizing: border-box;
+  height: fit-content;
+  width: min(680px, calc(100vw - 16px));
+  max-height: calc(100dvh - 16px);
+  padding: 0;
+  border: 1px solid #dce3ea;
+  border-radius: 16px;
+  background: #fff;
+  color: #15222e;
+  box-shadow: 0 24px 60px -20px rgb(21 34 46 / 0.45);
+}
+.em-dlg::backdrop {
+  background: rgb(21 34 46 / 0.45);
+}
+.em-box {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 18px);
+  padding: 14px;
+  gap: 10px;
+}
+.em-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.em-t {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.em-x {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border: 1px solid #dce3ea;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #3a4855;
+  cursor: pointer;
+}
+.em-note {
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #fbeed3;
+  border: 1px solid #eed29f;
+  color: #87480a;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.em-meta {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  font-size: 0.85rem;
+}
+.em-meta div {
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+}
+.em-meta dt {
+  flex: none;
+  width: 4.2rem;
+  color: #5b6875;
+}
+.em-meta dd {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.em-frame {
+  flex: 1;
+  width: 100%;
+  min-height: 60dvh;
+  border: 1px solid #e9eef2;
+  border-radius: 10px;
+  background: #fdfcfa;
+}
+.al-more {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #3a4855;
+}
+.al-err {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #87480a;
+}
+.ex-alert {
+  margin-top: 0;
+}

@@ -1,0 +1,30 @@
+import { addressLabel, clientIp, depsFor } from "@/lib/alerts/server";
+import { subscribe } from "@/lib/alerts/service";
+
+/*
+  POST /api/subscribe  {email, address_id}
+  Saves a pending request (Upstash Redis, 48 h) and sends the double opt-in email; during the closed test only to
+  emails the seed script allowed. Rate-limited per IP. Never says whether the email is already subscribed. Returns {status, preview}:
+  the preview is the confirmation email with a non-working link, for the simulated view on the page.
+*/
+export async function POST(req: Request) {
+  let body: { email?: unknown; address_id?: unknown };
+  try {
+    body = await req.json();
+  } catch {
+    return Response.json({ status: "invalid", error: "Send JSON." }, { status: 400 });
+  }
+  const email = typeof body.email === "string" ? body.email : "";
+  const addressId = typeof body.address_id === "string" ? body.address_id : "";
+  const label = addressLabel(addressId);
+  if (!label) return Response.json({ status: "invalid", error: "Unknown address." }, { status: 400 });
+  const deps = depsFor(req);
+  if (!deps) return Response.json({ status: "unavailable", error: "Alerts are not set up here." }, { status: 503 });
+  try {
+    const r = await subscribe({ email, addressId, label, ip: clientIp(req) }, deps);
+    return Response.json(r, { status: r.status === "invalid" ? 400 : r.status === "rate_limited" ? 429 : 200 });
+  } catch (e) {
+    console.error("subscribe failed", (e as Error).message);
+    return Response.json({ status: "unavailable", error: "Something went wrong. Please try later." }, { status: 503 });
+  }
+}
