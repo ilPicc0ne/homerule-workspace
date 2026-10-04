@@ -3,7 +3,7 @@
 This repo (`ilPicc0ne/homerule-workspace`) stays **private**: it holds notes, meetings, ideas and lab work. The submission repo is a filtered copy with only the paths in `.publish-paths`, history included.
 
     scripts/publish.sh            # builds the filtered copy in /tmp and shows what would be public
-    scripts/publish.sh --push     # pushes it to ilPicc0ne/homerule (created private; flip to public by hand)
+    scripts/publish.sh --push     # pushes it to ilPicc0ne/yourhomerule (created private; flip to public by hand)
 
 Before flipping the public repo's visibility:
 1. Read the file list and `git log --stat` the script prints.
