@@ -1,0 +1,20 @@
+SOURCE: synthetic test document (FICTIONAL - for rehearsing the hour-16 ingest; not law, never exported)
+RETRIEVED: 2026-10-04 03:00 UTC
+
+CITY OF CAMBRIDGE
+ORDINANCE NO. 2026-X1 (FICTIONAL TEST ORDINANCE)
+
+AN ORDINANCE AMENDING THE CAMBRIDGE MUNICIPAL CODE BY ADDING CHAPTER 8.99, RENTAL APPLICATION FEES
+
+Section 1. Chapter 8.99 is added to read:
+
+8.99.010 Application fees prohibited.
+(a) No landlord of a residential building containing six or more dwelling units shall charge a prospective tenant any fee for a rental application, tenant screening or credit check.
+(b) This section shall not apply to a building in which the owner occupies one of the units as the owner's principal residence.
+
+8.99.020 Enforcement.
+A landlord who violates section 8.99.010 shall refund the fee and is liable for a civil penalty of up to $300 per violation.
+
+Section 2. This ordinance shall take effect on the first day of the sixth month next following its adoption.
+
+ADOPTED by the City Council of the City of Cambridge on September 15, 2026.

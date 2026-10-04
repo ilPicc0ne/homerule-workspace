@@ -1,0 +1,777 @@
+{
+ "run_at": "2026-10-04 00:03 UTC",
+ "arms": {
+  "plain": "openai/gpt-6-luna",
+  "plain_web": "openai/gpt-6-luna:online",
+  "homerule": "openai/gpt-6-luna"
+ },
+ "grader": "typesafe/jev-1.13",
+ "summary": {
+  "plain": {
+   "correct": 16,
+   "partly": 0,
+   "wrong": 4,
+   "error": 0,
+   "n": 20,
+   "model": "openai/gpt-6-luna"
+  },
+  "plain_web": {
+   "correct": 19,
+   "partly": 0,
+   "wrong": 1,
+   "error": 0,
+   "n": 20,
+   "model": "openai/gpt-6-luna"
+  },
+  "homerule": {
+   "correct": 15,
+   "partly": 1,
+   "wrong": 4,
+   "error": 0,
+   "n": 20,
+   "model": "openai/gpt-6-luna"
+  }
+ },
+ "rows": [
+  {
+   "id": "R1-boston-rent",
+   "city": "Boston, MA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "plain",
+   "text": "For a **standard, unsubsidized rental in Boston**, there is generally **no legal percentage or dollar cap** on a rent increase. The landlord could propose a large increase; whether and when it can take effect depends on your tenancy and the required notice. Massachusetts law bars local rent control (M.G.L. c. 40P).\n\n- **During a fixed-term lease:** Rent generally cannot go up before the lease ends unless the lease itself allows it.\n- **At renewal or for a month-to-month tenancy:** The landlord can generally offer a new rent amount, but must give proper notice. For a tenancy at will, Massachusetts law generally requires notice of at least **30 days or one full rental period, whichever is longer** (M.G.L. c. 186, § 12); your lease may require more.\n- **Exceptions:** Subsidized or income-restricted housing may have program-specific limits. Increases also cannot be discriminatory or retaliatory.\n\nCheck your lease for renewal and notice terms. If you share whether you have a fixed-term lease or rent month to month—and the proposed effective date—I can help assess the timing.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.86
+  },
+  {
+   "id": "R1-boston-rent",
+   "city": "Boston, MA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "plain_web",
+   "text": "**As of October 1, 2026, there is generally no dollar or percentage cap on a rent increase for an ordinary, unsubsidized apartment in Boston.** A landlord could propose a substantial increase—but the rules depend on whether your lease is still in effect or you’re renting month to month. Massachusetts’ 2026 rent-cap ballot initiative was barred from the November ballot by the state Supreme Judicial Court on June 23, 2026, and state law generally bars cities from imposing rent control. ([malegislature.gov](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40p/Section4?utm_source=openai))\n\n- **During a fixed-term lease:** Your landlord generally can’t raise the rent before the lease ends unless your lease allows it or you agree. At renewal, there’s generally no statewide cap on the proposed amount. ([masslegalhelp.org](https://www.masslegalhelp.org/housing-apartments-shelter/rent/rent-basics?utm_source=openai))\n- **Month to month (tenancy at will):** There’s no general cap on the amount, but the landlord must give proper written notice to end the current tenancy and offer a new one at the higher rent. For a monthly tenancy, the notice is generally at least 30 days or one full rental period, whichever is longer. ([malegislature.gov](https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12?utm_source=openai))\n- **Possible exceptions:** Subsidized housing and voucher programs have separate rules. For example, Massachusetts MRVP/AHVP contract-rent increases effective on or after July 1, 2026, are limited to 3%; that limit concerns the **contract rent**, not necessarily the tenant’s share. ([mass.gov](https://www.mass.gov/important-changes/updates-to-the-massachusetts-rental-voucher-program-mrvp-alternative-housing-voucher-program-ahvp?utm_source=openai))\n\nA rent increase can still be unlawful for reasons such as retaliation. If you share whether you have a fixed-term lease, are month to month, or have a subsidy—and when the proposed increase would start—I can help apply the rules to your situation. ([malegislature.gov](https://malegislature.gov/laws/generallaws/partii/titlei/chapter186/section18?utm_source=openai))",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.98
+  },
+  {
+   "id": "R1-boston-rent",
+   "city": "Boston, MA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "homerule",
+   "text": "HomeRule’s records show no Boston rent-increase limit in force on 2026-10-01. Massachusetts law bars local rent control, except for a city that accepts the state chapter and follows its restrictions; the records don’t say whether that exception applies to Boston (Mass. Gen. Laws ch. 40P, § 4). A bill seeking authority for Boston to adopt rent stabilization was still pending, not law (Mass. H.3744).",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 2,
+    "findings": 2
+   },
+   "grade": "partly",
+   "grade_confidence": 0.47
+  },
+  {
+   "id": "R2-cambridge-rent",
+   "city": "Cambridge, MA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "plain",
+   "text": "**There’s no general rent-increase cap in Cambridge.** As of October 1, 2026, a landlord can generally propose any increase when your current lease ends or your tenancy is otherwise properly ended. There’s no standard percentage limit.\n\n- **Fixed-term lease:** Your landlord generally can’t raise the rent during the lease unless the lease allows it. At renewal, they can offer a new rent amount.\n- **Month-to-month or other tenancy at will:** The landlord generally must give written notice at least **30 days or one full rental period ahead, whichever is longer**. If you don’t agree to the new rent, the landlord may seek to end the tenancy—but must follow the legal process and cannot lock you out.\n- **Exceptions:** Different limits may apply to subsidized or deed-restricted housing. Increases also can’t be discriminatory or retaliatory, or violate your lease.\n\nMassachusetts law generally bars municipalities from imposing rent control without state authorization (M.G.L. c. 40P). The notice rule is in **M.G.L. c. 186, § 12**. Check your lease and any program or affordability restrictions before deciding whether a specific increase is valid.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.84
+  },
+  {
+   "id": "R2-cambridge-rent",
+   "city": "Cambridge, MA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "plain_web",
+   "text": "**For a regular private, market-rate rental in Cambridge, there’s no general dollar or percentage cap on a rent increase** as of **October 1, 2026**. So the increase could be substantial—but timing and your lease matter. Cambridge’s former rent control ended, and a proposed statewide rent-cap measure was barred from the November 2026 ballot by the Massachusetts Supreme Judicial Court on June 23, 2026. ([cambridgema.gov](https://www.cambridgema.gov/cdd/housing/housingdevelopment/projects?utm_source=openai))\n\n- **During a fixed-term lease:** Your landlord generally must follow the lease; rent usually can’t go up before the term ends unless the lease allows it. At renewal, the landlord can propose a new rent. ([mass.gov](https://www.mass.gov/guides/the-attorney-generals-guide-to-landlord-and-tenant-rights?os=ios&utm_source=openai))\n- **If you’re a tenant at will (often month-to-month):** The landlord can offer a new tenancy at a higher rent, but must give proper written notice ending the existing tenancy. For monthly rent, that generally means at least 30 days or one full rental period, whichever is longer. ([malegislature.gov](https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12))\n- **Exceptions:** Subsidized housing and voucher programs have separate rules. For example, MRVP and AHVP increases effective on or after July 1, 2026 are generally limited to 3%, subject to program rules. An increase also can’t be retaliatory or discriminatory. ([mass.gov](https://www.mass.gov/important-changes/updates-to-the-massachusetts-rental-voucher-program-mrvp-alternative-housing-voucher-program-ahvp?utm_source=openai))\n\nIf you share whether you have a fixed-term lease or are month-to-month, when the increase would take effect, and whether you use a voucher, I can help apply the rules to your situation. This is general information, not legal advice.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.77
+  },
+  {
+   "id": "R2-cambridge-rent",
+   "city": "Cambridge, MA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "homerule",
+   "text": "HomeRule’s records show no rent-increase cap in force in Cambridge on 2026-10-01, so they don’t provide a maximum percentage. Massachusetts law bars local rent control, except for a city that accepts the chapter and adopts a regulation under its restrictions (Mass. Gen. Laws ch. 40P, § 4). The records don’t show that Cambridge has done so. This is not a conclusion about other limits that may apply to your lease.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 2
+   },
+   "grade": "correct",
+   "grade_confidence": 0.69
+  },
+  {
+   "id": "R3-sf-rent",
+   "city": "San Francisco, CA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "plain",
+   "text": "**If your home is covered by San Francisco rent control, the annual allowable increase is 1.6% for increases effective March 1, 2026 through February 28, 2027.** That’s the ordinary annual increase—not necessarily the absolute maximum if an owner has approved additional charges or banked unused increases.\n\nFor example, 1.6% of $2,000 is **$32**, making the rent $2,032. Generally, the increase can’t take effect until you’ve been in the unit for at least 12 months, and your landlord must give proper written notice.\n\nThe 1.6% rate does **not** apply to every San Francisco rental. Many newer units and some other exempt homes aren’t subject to the City’s rent-increase limit. Some may instead be covered by California’s rent cap, which generally limits increases to 5% plus inflation, up to 10%; exemptions and the applicable rate depend on the unit and owner. Banked increases and certain approved pass-throughs may also change what’s allowed.\n\nTo check your situation, look up your address or ask the **SF Rent Board** whether the unit is covered and whether any additional increase is authorized.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.75
+  },
+  {
+   "id": "R3-sf-rent",
+   "city": "San Francisco, CA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "plain_web",
+   "text": "**As of October 1, 2026:** If your San Francisco home is covered by the City’s rent-increase limit, the annual increase is **1.6%** for increases effective **March 1, 2026 through February 28, 2027**. That’s **$32 more per month on $2,000 rent**. ([media.api.sf.gov](https://media.api.sf.gov/documents/577_All_Rates_3.26.pdf?utm_source=openai))\n\nThat figure is **not a universal cap for every San Francisco rental**:\n\n- **Covered by San Francisco rent control:** The landlord may generally impose the 1.6% annual increase once every 12 months. Banked increases or certain approved pass-throughs may affect the total; a current Rent Board license is required for annual or banked increases. ([media.api.sf.gov](https://media.api.sf.gov/documents/577_All_Rates_3.26.pdf?utm_source=openai))\n- **Not covered by the City’s rent cap but covered by California’s Tenant Protection Act:** For increases taking effect **August 1, 2026–July 31, 2027**, the San Francisco-area state cap is **8.8%**. It generally covers qualifying housing more than 15 years old, with exemptions. ([oag.ca.gov](https://oag.ca.gov/node/626563))\n- **Exempt from both caps:** A different limit may apply—or there may be no percentage cap—depending on the property, ownership, and required exemption notice.\n\nFor a rent-controlled unit, ordinary annual increases also generally require written notice and at least 12 months between increases. If you share the building’s construction or occupancy date, whether it’s a condo or single-family home, and your current rent, I can help narrow down which rule likely applies. This is general information, not a determination of your unit’s legal rent.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.68
+  },
+  {
+   "id": "R3-sf-rent",
+   "city": "San Francisco, CA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "homerule",
+   "text": "If your unit is covered by San Francisco rent control, the annual allowable increase is **1.6%** from March 1, 2026, through February 28, 2027 (San Francisco Rent Ordinance § 37.3).\n\nIf it isn’t covered by that local limit, California’s general cap may apply: **5% plus the change in cost of living, or 10%, whichever is lower**, measured over 12 months (Cal. Civ. Code § 1947.12). That state cap has exemptions, and stricter local rent controls take precedence. Coverage depends on the unit and building; for example, the city summary says rental units first receiving a Certificate of Occupancy after June 13, 1979, are exempt from local rent-increase limits.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 2,
+    "findings": 0
+   },
+   "grade": "correct",
+   "grade_confidence": 0.73
+  },
+  {
+   "id": "R4-sd-rent",
+   "city": "San Diego, CA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "plain",
+   "text": "For a **covered rental in San Diego**, California’s rent cap is **5% plus the applicable San Diego-area CPI increase, with a hard maximum of 10% over any 12-month period**. The cap for **October 1, 2026** is the rate in effect from **August 1, 2026 through July 31, 2027**.\n\nI can’t verify that period’s published CPI figure here, so I can’t give you a reliable exact percentage. The calculation is:\n\n**Allowed increase = the lower of 10% or (5% + the applicable CPI change).**\n\nThat limit generally applies to the **total increase in a 12-month period**—not to each rent increase separately—and landlords generally may not raise rent more than twice in that period. For example, if the applicable cap were 8%, a $2,000 rent could rise by at most $160, to $2,160.\n\nThe cap may **not** apply to some units, including certain newer buildings and qualifying single-family homes or condos (when the required exemption notice and ownership conditions are met). A fixed-term lease may also restrict increases during the lease. If the unit is exempt, other rules—including notice requirements—still apply. **Check the California Civil Rights Department’s current Tenant Protection Act rent-cap rate for San Diego** and your lease or exemption notice before relying on a specific figure.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.8
+  },
+  {
+   "id": "R4-sd-rent",
+   "city": "San Diego, CA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "plain_web",
+   "text": "**For a rental covered by California’s Tenant Protection Act (AB 1482), the maximum increase in San Diego is 8.2%** for an increase taking effect **August 1, 2026 through July 31, 2027**. It’s a combined limit over any 12-month period—not 8.2% for each increase—and it’s a ceiling, not an automatic increase. ([oag.ca.gov](https://oag.ca.gov/node/626563?utm_source=openai))\n\nFor example, if the lowest rent charged for your unit in the previous 12 months was **$2,000**, the most it could generally go up under this cap is **$164**, to **$2,164**.\n\nThe cap covers most rentals in buildings more than 15 years old, but some homes are exempt—for example, certain individually owned single-family homes or condos, and newer housing. A fixed-term lease may also limit when rent can be raised. For covered increases of 10% or less, California generally requires **at least 30 days’ written notice**. ([oag.ca.gov](https://oag.ca.gov/tenants?utm_source=openai))\n\nSo the key question is whether **your specific unit is covered**. If you share the rent, increase amount, effective date, and type/age of housing, I can help check the calculation.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.43
+  },
+  {
+   "id": "R4-sd-rent",
+   "city": "San Diego, CA",
+   "as_of": "2026-10-01",
+   "card": "How much can my rent go up?",
+   "arm": "homerule",
+   "text": "Generally, California law limits increases to **5% plus the change in cost of living, or 10%, whichever is lower**, over any 12-month period. The calculation uses the lowest gross rent charged in the prior 12 months; accepted discounts and concessions don’t reduce that baseline. **Cal. Civ. Code § 1947.12.**\n\nThis applies after the initial rental rate is set, but statutory exemptions apply, including for certain newer or affordable housing and qualifying owner-occupied duplexes. Stricter local rent controls would take precedence, but HomeRule’s records list no San Diego-specific rent-increase cap.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 0
+   },
+   "grade": "correct",
+   "grade_confidence": 0.91
+  },
+  {
+   "id": "E1-sf-eviction",
+   "city": "San Francisco, CA",
+   "as_of": "2026-10-01",
+   "card": "When can they end my tenancy?",
+   "arm": "plain",
+   "text": "**Short answer:** In San Francisco, a landlord generally cannot end a covered tenancy just because a lease term expires, they want a higher rent, or they would prefer a different tenant. They usually need a legally recognized reason (“just cause”) and must follow the required notice and court process.\n\nFor most residential tenants, San Francisco’s local just-cause protections generally apply after **six months’ occupancy**. Coverage has exceptions, and California’s statewide just-cause law may protect tenants in some units not covered locally.\n\n### Common just-cause reasons\n\n**Tenant-related (“at-fault”) reasons** can include:\n\n- Not paying rent that is legally due.\n- A significant lease violation that remains uncured after proper notice.\n- Creating a nuisance, causing substantial damage, or using the unit for an illegal purpose.\n- Refusing lawful access after proper notice.\n- An unauthorized sublet or assignment in circumstances covered by the law.\n- Refusing a qualifying written lease renewal offered on substantially similar terms.\n\n**Landlord-related (“no-fault”) reasons** can include:\n\n- The owner, or a qualifying close relative, genuinely moving into the unit.\n- Withdrawing the unit from the rental market under the Ellis Act.\n- Demolishing the unit or permanently removing it from residential use.\n- Certain qualifying, substantial rehabilitation or capital-improvement work that requires the tenant to leave.\n\nThese grounds have detailed conditions. For example, an owner move-in must be genuine and comply with rules about who may move in, how long they must occupy the unit, and protected tenants. No-fault evictions commonly require relocation assistance; the amounts are adjusted, so check the current San Francisco Rent Board schedule.\n\n### Notice and removal\n\nThe required notice depends on the reason and the tenancy. Some curable violations use a **3-day notice**; termination notices are often **30 or 60 days**, depending on the circumstances. The notice must state a valid reason and meet legal requirements. A landlord generally must then win an eviction case before the sheriff can remove a tenant. A landlord cannot lawfully evict someone by changing the locks, shutting off utilities, or removing their belongings.\n\nThe main local rules are in **San Francisco Administrative Code §§ 37.9 and 37.9C**; statewide rules include **California Civil Code §§ 1946.1 and 1946.2**. Because you asked specifically about **October 1, 2026**, check the San Francisco Rent Board or a tenant attorney for any amendments or updated payment amounts effective on that date. This is general information, not advice about a specific notice or lease.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.27
+  },
+  {
+   "id": "E1-sf-eviction",
+   "city": "San Francisco, CA",
+   "as_of": "2026-10-01",
+   "card": "When can they end my tenancy?",
+   "arm": "plain_web",
+   "text": "**As of October 1, 2026:** In most cases, a San Francisco landlord cannot end your tenancy just because they want you out, your lease term expired, or the property was sold. Most residential renters—including many in newer buildings—have local **just-cause eviction protection**. A lease provision requiring you to leave simply because a fixed term ended generally cannot override those protections. ([sf.gov](https://www.sf.gov/information--evictions?utm_source=openai))\n\nA landlord can generally seek to end a protected tenancy only for a legally recognized reason, such as:\n\n- **Tenant-related reasons:** not paying lawful rent; a substantial lease violation that remains uncured after required warning; serious nuisance or property damage; illegal use; refusing lawful access; or certain unauthorized subtenancies. San Francisco law requires a written warning and opportunity to cure for several tenant-related grounds. ([codelibrary.amlegal.com](https://codelibrary.amlegal.com/codes/san_francisco/latest/sf_admin/0-0-0-16273))\n- **No-fault reasons:** a qualifying owner or relative move-in; withdrawing rental units under the Ellis Act; certain approved condominium-conversion sales; permitted demolition or removal from housing use; certain hazardous major repairs; lead remediation; or an approved development project requiring demolition. No-fault grounds have specific conditions, and some require relocation assistance or give tenants rights to return. ([codelibrary.amlegal.com](https://codelibrary.amlegal.com/codes/san_francisco/latest/sf_admin/0-0-0-16273))\n\n**The notice period depends on the reason and the rules that apply.** San Francisco eviction notices can involve deadlines of 3, 10, 30, 60, or 120 days; the notice must state the grounds, and required local procedures matter. ([sf.gov](https://www.sf.gov/information--evictions?utm_source=openai)) A notice alone does **not** let the landlord lock you out: if you don’t leave, the landlord generally must bring an eviction case and obtain a court order before the Sheriff can remove you. ([sf.gov](https://www.sf.gov/information--evictions?utm_source=openai))\n\nThere are exceptions and details that can turn on your exact housing arrangement—for example, the city ordinance treats a landlord who lives in the same rental unit differently. If you’ve received a notice, don’t assume it is valid or ignore its deadline: contact the **SF Rent Board at 415-252-4600** or an eviction-defense attorney promptly. ([codelibrary.amlegal.com](https://codelibrary.amlegal.com/codes/san_francisco/latest/sf_admin/0-0-0-16273))",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.33
+  },
+  {
+   "id": "E1-sf-eviction",
+   "city": "San Francisco, CA",
+   "as_of": "2026-10-01",
+   "card": "When can they end my tenancy?",
+   "arm": "homerule",
+   "text": "As of 2026-10-01, for a unit covered by San Francisco’s Rent Ordinance, the landlord needs a listed just-cause reason, and it must be the dominant motive for the eviction. Reasons include nonpayment, substantial lease breaches, nuisance, certain owner or family move-ins, and specified demolition or withdrawal circumstances. Lease expiration or a change in ownership alone is not cause. (San Francisco Rent Ordinance § 37.9(a))\n\nCalifornia law also generally requires just cause after 12 months of continuous, lawful occupancy and requires the cause in the written termination notice, subject to statutory exemptions. (Cal. Civil Code § 1946.2) The local rule may govern instead where it covers the unit. The records don’t specify which building facts determine local coverage, so I can’t tell whether it covers your unit.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 2,
+    "findings": 1
+   },
+   "grade": "correct",
+   "grade_confidence": 0.43
+  },
+  {
+   "id": "E2-newark-eviction",
+   "city": "Newark, NJ",
+   "as_of": "2026-10-01",
+   "card": "When can they end my tenancy?",
+   "arm": "plain",
+   "text": "**For most renters in Newark, a landlord can end the tenancy only for a legally recognized reason—not simply because the lease expired or they want the unit back.** New Jersey’s Anti-Eviction Act generally protects residential tenants, including many tenants whose lease has ended but who remain in the home. The main rules are in **N.J.S.A. 2A:18-61.1 and 2A:18-61.2**.\n\nCommon grounds include:\n\n- **Unpaid rent**\n- **Repeated late rent payments**\n- **Serious or repeated lease violations**, after any required notice and chance to correct them\n- **Nuisance, damage, or certain illegal conduct**\n- **The owner or an eligible family member genuinely moving into the property**\n- **The owner permanently withdrawing the property from residential rental use**\n- **Certain conversions, renovations, or other grounds specifically allowed by law**\n\nThe exact notice and other conditions depend on the reason. For example, New Jersey enacted a 30-day notice rule for many nonpayment cases in 2024, but exceptions and later changes may matter.\n\n**A lease ending, the property being sold, or the landlord wanting a higher rent does not, by itself, usually permit eviction** of a tenant protected by the Act. Newark rent-control rules may also limit rent increases, but they are separate from the state eviction protections.\n\nThere are exceptions to the Anti-Eviction Act, including certain **small, owner-occupied buildings** and some seasonal or transient housing. If an exception applies, different rules may govern termination.\n\nEven when a landlord has a valid reason, they generally **cannot lock you out, remove your belongings, or shut off utilities to make you leave**. They must use the court process and obtain a warrant of removal before a court officer can carry out an eviction.\n\n**Date caveat:** I can’t verify which amendments or local rules will be in force specifically on **October 1, 2026**. For a notice you’ve received, check its stated reason and date with the New Jersey Courts or a New Jersey tenant lawyer; Newark tenants may also seek help from Newark’s Office of Tenant Legal Services or Legal Services of New Jersey.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.92
+  },
+  {
+   "id": "E2-newark-eviction",
+   "city": "Newark, NJ",
+   "as_of": "2026-10-01",
+   "card": "When can they end my tenancy?",
+   "arm": "plain_web",
+   "text": "## Short answer\n\n**For a typical Newark apartment in a multi-unit building, your landlord usually cannot end your tenancy just because your lease expires or they want a different tenant.** New Jersey’s Anti-Eviction Act generally requires a legally recognized reason (“good cause”) to evict or refuse to renew. The landlord must prove that reason in court. Some exceptions apply, especially for an owner-occupied small property, transient or seasonal housing, and certain protected or subsidized tenancies. ([nj.gov](https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf?utm_source=openai))\n\n### Common grounds and notice periods\n\nThe notice period depends on the reason. These are generally **minimums before the landlord can file an eviction case**—not a date when the landlord can personally remove you:\n\n| Reason | General notice before filing |\n|---|---:|\n| **Unpaid rent** | Generally, no advance “Notice to Quit” is required under the Anti-Eviction Act. |\n| **Disorderly conduct or damage to the unit** | 3 days; a warning to stop may also be required for disorderly conduct. |\n| **Repeated lease or reasonable-rule violations** | Usually a written warning to stop first, then 1 month’s notice. |\n| **Habitual unjustified late payment of rent** | Written warning to stop, then 1 month’s notice. |\n| **Serious housing-code situation requiring removal** | 3 months. |\n| **Owner seeks to personally occupy a qualifying small property, or a qualifying buyer wants to occupy it** | 2 months; if there is a written lease, the case generally cannot be filed until it expires. |\n| **Owner permanently retires the property from residential use** | 18 months, and a current lease must expire first. |\n| **Condo/co-op conversion** | Generally 3 years, with additional protections and exceptions. |\n\nThe exact notice and grounds are set by statute; this is a summary, not a complete list. ([lis.njleg.state.nj.us](https://lis.njleg.state.nj.us/nxt/gateway.dll/statutes/1/112/679))\n\n### What happens when a lease expires?\n\nFor most covered apartments, **lease expiration alone does not automatically require you to leave**. A landlord generally needs good cause to end or not renew the tenancy. One statutory ground can involve the landlord proposing reasonable, substantial lease changes that the tenant refuses, but that has its own notice requirements. ([nj.gov](https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf?utm_source=openai))\n\n### A notice is not an eviction\n\nA landlord’s letter—even a “Notice to Quit”—does **not** itself authorize a lockout. The landlord must file in court and obtain a judgment for possession; removal must then follow the court process. A landlord cannot legally evict you by changing the locks or shutting off utilities. ([nj.gov](https://nj.gov/dca/home/pdf/Landlord-Tenant_Process_Guide%28English%29.pdf))\n\n**Important exception:** If the landlord lives in the property and it has no more than two rental units, different rules may apply. The reason for the proposed termination and the building arrangement matter. ([lis.njleg.state.nj.us](https://lis.njleg.state.nj.us/nxt/gateway.dll/statutes/1/112/670))\n\nNewark’s rent-control rules apply to **some** residential units and mainly regulate rents; whether your unit is covered is a separate question. ([newarknj.gov](https://www.newarknj.gov/255/Division-of-Rent-Control?utm_source=openai)) If you’re facing an eviction threat, Newark’s Office of Tenant Legal Services offers screened, free help to eligible low-income Newark tenants; its listed phone is **973-877-9424**. ([newarknj.gov](https://www.newarknj.gov/617/Office-of-Tenant-Legal-Services))\n\nIf you share **the landlord’s stated reason, the notice you received, your lease end date, and whether the owner lives in the building**, I can help identify which rule and notice period may apply. This is general legal information, not legal advice.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.96
+  },
+  {
+   "id": "E2-newark-eviction",
+   "city": "Newark, NJ",
+   "as_of": "2026-10-01",
+   "card": "When can they end my tenancy?",
+   "arm": "homerule",
+   "text": "As of October 1, 2026, New Jersey law generally says a landlord may end a residential tenancy or refuse to renew only for good cause, and must prove the grounds in court. (N.J.S.A. 2A:18-61.1)\n\nThe records don’t list specific good-cause grounds, and HomeRule doesn’t have Newark’s local law text. The state rule has possible exceptions, including certain owner-occupied premises, transient or seasonal guests, and a specified family-trust unit; whether an exception applies depends on the circumstances.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 1
+   },
+   "grade": "correct",
+   "grade_confidence": 0.88
+  },
+  {
+   "id": "D1-sd-deposit",
+   "city": "San Diego, CA",
+   "as_of": "2026-10-01",
+   "card": "How much deposit can they ask?",
+   "arm": "plain",
+   "text": "For a residential rental in San Diego, the usual maximum security deposit is **one month’s rent**, whether the unit is furnished or unfurnished. That limit generally covers the total security deposit—not separate pet, cleaning, or other deposits.\n\nA qualifying small landlord may charge up to **two months’ rent**. To qualify, the landlord must be an individual, or an LLC whose members are all individuals, and own no more than two residential rental properties with no more than four units total. That exception does **not** apply if the renter is a service member.\n\nSo, for rent of $2,500, the usual cap is $2,500; a qualifying small landlord could ask for up to $5,000. These limits are in California Civil Code § 1950.5(c). Deposits collected before July 1, 2024, may be treated differently.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.97
+  },
+  {
+   "id": "D1-sd-deposit",
+   "city": "San Diego, CA",
+   "as_of": "2026-10-01",
+   "card": "How much deposit can they ask?",
+   "arm": "plain_web",
+   "text": "**As of October 1, 2026, in San Diego, the usual maximum is one month’s rent** for a residential security deposit, whether the unit is furnished or unfurnished.\n\nA narrow exception lets a qualifying small landlord charge **up to two months’ rent**: the landlord must be an individual, or an LLC whose members are all individuals, and own no more than two residential rental properties with no more than four dwelling units total. That exception **doesn’t apply if the tenant is a service member**. ([dre.ca.gov](https://www.dre.ca.gov/newsroom/DRE_Updates/2025_05_28_Know_Your_Rights.html))\n\nThe cap applies to the **total security**—a landlord generally can’t get around it by separately labeling extra amounts as pet, cleaning, or key deposits. An application-screening fee is separate. ([dre.ca.gov](https://dre.ca.gov/files/pdf/2025_Landlord_Tenant_Guide.pdf?utm_source=openai))",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.99
+  },
+  {
+   "id": "D1-sd-deposit",
+   "city": "San Diego, CA",
+   "as_of": "2026-10-01",
+   "card": "How much deposit can they ask?",
+   "arm": "homerule",
+   "text": "As of 2026-10-01, the general California limit is **one month’s rent** for a security deposit, separate from first month’s rent paid on or before move-in. Statutory exceptions may apply, but the records don’t detail them. (Cal. Civ. Code § 1950.5(c)(1))",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 1
+   },
+   "grade": "correct",
+   "grade_confidence": 0.25
+  },
+  {
+   "id": "D2-newark-deposit",
+   "city": "Newark, NJ",
+   "as_of": "2026-10-01",
+   "card": "How much deposit can they ask?",
+   "arm": "plain",
+   "text": "For an ordinary residential rental in Newark, the security deposit can be **no more than 1.5 months’ rent** under New Jersey law (N.J.S.A. 46:8-21.2). For example, at **$2,000/month**, the maximum deposit is **$3,000**. A refundable pet deposit or other refundable amount held as security counts toward that limit.\n\nThe landlord may also collect the **first month’s rent** separately. Later deposit increases are generally limited to **10% of the existing deposit in any 12-month period**. This is based on New Jersey law; check for any amendment effective by October 1, 2026.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.95
+  },
+  {
+   "id": "D2-newark-deposit",
+   "city": "Newark, NJ",
+   "as_of": "2026-10-01",
+   "card": "How much deposit can they ask?",
+   "arm": "plain_web",
+   "text": "As of **October 1, 2026**, a Newark landlord can generally require a **security deposit of up to 1½ months’ rent** under New Jersey law. ([lis.njleg.state.nj.us](https://lis.njleg.state.nj.us/nxt/gateway.dll/statutes/1/44283/44474?utm_source=openai))\n\nFor example, at **$2,000 monthly rent**, the maximum deposit is **$3,000**. If the landlord later increases the deposit to keep up with a rent increase, the added amount generally can’t exceed **10% of the existing deposit per year**, and the total deposit still can’t exceed the 1½-month cap. ([lis.njleg.state.nj.us](https://lis.njleg.state.nj.us/nxt/gateway.dll/statutes/1/44283/44474?utm_source=openai))",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.88
+  },
+  {
+   "id": "D2-newark-deposit",
+   "city": "Newark, NJ",
+   "as_of": "2026-10-01",
+   "card": "How much deposit can they ask?",
+   "arm": "homerule",
+   "text": "As of October 1, 2026, New Jersey law generally caps a security deposit at **1½ months’ rent** (N.J.S.A. 46:8-21.2). For an owner-occupied two- or three-family home, that rule applies if the tenant makes a written request and allows 30 days. HomeRule doesn’t have the text of any Newark-specific deposit rule, so I can’t say whether the city has an additional limit.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 1
+   },
+   "grade": "correct",
+   "grade_confidence": 0.9
+  },
+  {
+   "id": "D3-cambridge-deposit",
+   "city": "Cambridge, MA",
+   "as_of": "2026-10-01",
+   "card": "How much deposit can they ask?",
+   "arm": "plain",
+   "text": "For a residential rental in Cambridge, the **security deposit is capped at one month’s rent** under Massachusetts law. Cambridge does not have a separate higher security-deposit limit.\n\nThat is different from the total that may be due at move-in: a landlord may generally also collect **first month’s rent and last month’s rent**, each up to one month’s rent, plus the reasonable cost of a new lock and key. So the usual maximum upfront is **three months’ rent, plus that lock-and-key cost**—but only one month is the security deposit.\n\nSee [Mass. General Laws, c. 186, § 15B](https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B).",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.99
+  },
+  {
+   "id": "D3-cambridge-deposit",
+   "city": "Cambridge, MA",
+   "as_of": "2026-10-01",
+   "card": "How much deposit can they ask?",
+   "arm": "plain_web",
+   "text": "**As of October 1, 2026, the security deposit can be no more than one month’s rent**—so if rent is $2,500/month, the maximum security deposit is $2,500. This Massachusetts rule applies in Cambridge. ([malegislature.gov](https://malegislature.gov/Laws/GeneralLaws/Partii/Titlei/Chapter186/Section15b?utm_source=openai))\n\nThat’s separate from **last month’s rent**, which a landlord may also collect in advance. At move-in, the permitted charges generally include first month’s rent, last month’s rent, the security deposit, and the actual cost of a new lock and key. ([malegislature.gov](https://malegislature.gov/Laws/GeneralLaws/Partii/Titlei/Chapter186/Section15b?utm_source=openai))",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.97
+  },
+  {
+   "id": "D3-cambridge-deposit",
+   "city": "Cambridge, MA",
+   "as_of": "2026-10-01",
+   "card": "How much deposit can they ask?",
+   "arm": "homerule",
+   "text": "In Cambridge, a landlord may require a security deposit of no more than **one month’s rent**. This limit is in force as of October 1, 2026. (Mass. Gen. Laws ch. 186, § 15B)",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 0
+   },
+   "grade": "correct",
+   "grade_confidence": 0.94
+  },
+  {
+   "id": "F1-jc-fee-before",
+   "city": "Jersey City, NJ",
+   "as_of": "2026-04-30",
+   "card": "What can they charge me to apply?",
+   "arm": "plain",
+   "text": "**There is no generally applicable dollar cap on a rental-application fee in New Jersey or Jersey City** that I can identify as of April 30, 2026. A landlord can generally charge a fee for processing an application or screening a prospective tenant, but it should be a bona fide, reasonable charge—not a disguised extra deposit or an unexplained add-on. The often-quoted amounts (such as $25 or $50) are **not** a statewide legal maximum.\n\nBefore paying, ask the landlord or agent to confirm in writing:\n\n- the amount and what it covers (for example, a credit or background check);\n- whether it is refundable and what happens if they don’t process your application; and\n- whether any separate “administrative” or screening charges are also being added.\n\nAn application fee is separate from a **security deposit**, which is generally capped at **1½ months’ rent** under New Jersey law (N.J.S.A. 46:8-21.2). If the rental is rent-controlled, ask whether the fee is permitted for that particular unit as well. If the landlord uses a consumer report and rejects you based partly on it, federal law generally requires an adverse-action notice explaining your rights to contact the reporting agency and obtain a free copy of the report.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.42
+  },
+  {
+   "id": "F1-jc-fee-before",
+   "city": "Jersey City, NJ",
+   "as_of": "2026-04-30",
+   "card": "What can they charge me to apply?",
+   "arm": "plain_web",
+   "text": "**As of April 30, 2026:** For an ordinary private rental in Jersey City, New Jersey’s new **$50 application-fee cap is not in force yet**. It takes effect **May 1, 2026**. So, on April 30, there is no general statewide dollar cap on the application fee—though other rules against deceptive charges still apply. ([pub.njleg.state.nj.us](https://pub.njleg.state.nj.us/Bills/2024/PL25/405_.PDF))\n\nBefore collecting an application fee, the housing provider must give you a written disclosure about whether it considers criminal history and your right to provide information about inaccuracies, rehabilitation, or other mitigating factors. ([law.justia.com](https://law.justia.com/codes/new-jersey/title-46/section-46-8-55/?utm_source=openai))\n\n**Starting May 1:** covered landlords and their agents generally may charge no more than **$50 total** for an application or similar fee. The law has exceptions, including rentals in one- or two-family homes and certain charges by New Jersey real-estate licensees who are not the landlord. ([pub.njleg.state.nj.us](https://pub.njleg.state.nj.us/Bills/2024/PL25/405_.PDF))\n\nIf you tell me whether it’s a large apartment building, a one- or two-family home, or a broker-managed rental—and the fee amount—I can help assess which rule likely applies.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.99
+  },
+  {
+   "id": "F1-jc-fee-before",
+   "city": "Jersey City, NJ",
+   "as_of": "2026-04-30",
+   "card": "What can they charge me to apply?",
+   "arm": "homerule",
+   "text": "As of April 30, 2026, HomeRule’s records show no application-fee limit or ban in force in Jersey City. A New Jersey law limiting the fee to $50 is **not yet effective**; it starts May 1, 2026. It excludes one- or two-family dwellings offered for rent and certain real estate licensees who are not the landlord. (N.J. Stat. § 46:8-18.1(a))",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 0
+   },
+   "grade": "correct",
+   "grade_confidence": 0.91
+  },
+  {
+   "id": "F2-hoboken-fee",
+   "city": "Hoboken, NJ",
+   "as_of": "2026-10-01",
+   "card": "What can they charge me to apply?",
+   "arm": "plain",
+   "text": "For a **standard private rental in Hoboken**, there is **no general New Jersey or Hoboken dollar cap** on a rental-application fee as of **October 1, 2026**. A landlord may charge an application or screening fee; ask for the amount and what it covers before paying. The fee is not automatically refundable if you’re rejected, so check the stated refund terms.\n\nAn application fee is separate from a **broker’s fee** and from a **security deposit**—it cannot be used to get around the rules for those charges. If the landlord rejects you based on a consumer report, federal law gives you rights to notice and to obtain the report. Income-restricted housing or a particular rent-controlled unit may have additional rules.",
+   "model": "openai/gpt-6-luna",
+   "grade": "wrong",
+   "grade_confidence": 0.99
+  },
+  {
+   "id": "F2-hoboken-fee",
+   "city": "Hoboken, NJ",
+   "as_of": "2026-10-01",
+   "card": "What can they charge me to apply?",
+   "arm": "plain_web",
+   "text": "**As of October 1, 2026:** for most Hoboken rentals, a landlord or property manager can charge **up to $50 total to apply**. That cap includes application, credit/background-screening, administrative, and similar application-related fees; they can’t get around it by splitting the charges into separate line items. The cap took effect May 1, 2026. ([pub.njleg.state.nj.us](https://pub.njleg.state.nj.us/Bills/2024/PL25/405_.PDF))\n\nThere are important exceptions in the law: the $50 cap does **not** apply to a unit in a **one- or two-family dwelling**, or to a **New Jersey Real Estate Commission licensee**—unless that licensee is the landlord. So if you’re applying through a licensed real-estate agent or broker, or for a one- or two-family home, the cap may not apply. ([pub.njleg.state.nj.us](https://pub.njleg.state.nj.us/Bills/2024/PL25/405_.PDF))\n\nIf a covered landlord or manager is asking for more than $50, ask them to identify each charge and who is collecting it; you can also submit a complaint to the NJ Division of Consumer Affairs. ([njconsumeraffairs.gov](https://www.njconsumeraffairs.gov/News/Pages/04132026.aspx?utm_source=openai))",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.97
+  },
+  {
+   "id": "F2-hoboken-fee",
+   "city": "Hoboken, NJ",
+   "as_of": "2026-10-01",
+   "card": "What can they charge me to apply?",
+   "arm": "homerule",
+   "text": "As of 2026-10-01, New Jersey law caps an application or similar fee at **$50** for covered residential rentals (N.J. Stat. § 46:8-18.1(a)). The cap does not apply to a one- or two-family dwelling offered for rent, or when the agent is a New Jersey Real Estate Commission licensee and is not the landlord. HomeRule doesn’t have Hoboken ordinance text to confirm whether a local rule also applies.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 1
+   },
+   "grade": "correct",
+   "grade_confidence": 0.72
+  },
+  {
+   "id": "F3-boston-fee",
+   "city": "Boston, MA",
+   "as_of": "2026-10-01",
+   "card": "What can they charge me to apply?",
+   "arm": "plain",
+   "text": "**As of October 1, 2026, a Boston landlord or property manager generally cannot charge you an application, processing, or administrative fee.** Massachusetts law limits the charges a landlord can require; an application fee is not one of them. See Mass. Gen. Laws ch. 186, § 15B.\n\nA **narrow exception** may allow the actual cost of a credit check if it is paid to a third-party provider and is not marked up. That does not make a general application or background-check fee permissible.\n\nA broker’s fee is separate: since August 1, 2025, it is generally paid by whoever hired the broker. So if the landlord hired the listing broker, the landlord—not you—pays. If you hired a broker yourself, you may owe the fee you agreed to.\n\nThose rules are separate from permitted move-in charges, which can include first month’s rent, last month’s rent, a security deposit of up to one month’s rent, and the cost of a new lock and key.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.87
+  },
+  {
+   "id": "F3-boston-fee",
+   "city": "Boston, MA",
+   "as_of": "2026-10-01",
+   "card": "What can they charge me to apply?",
+   "arm": "plain_web",
+   "text": "**As of October 1, 2026, a landlord or their agent in Boston may charge you $0 to apply.** Massachusetts law bars application fees—including fees labeled as credit-check, background-check, screening, or administrative fees. Calling it something else doesn’t make it allowable. ([mass.gov](https://www.mass.gov/doc/broker-fee-advisory/download?utm_source=openai))\n\nA separate exception: **if you choose to hire your own rental broker**, that broker may charge you for the services they provide under your agreement. You don’t have to pay a broker hired by the landlord. ([malegislature.gov](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2?utm_source=openai))\n\nIf someone asks for an application fee, you can contact Boston’s Office of Housing Stability at **617-635-4200**. ([content.boston.gov](https://content.boston.gov/renting-boston))",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.7
+  },
+  {
+   "id": "F3-boston-fee",
+   "city": "Boston, MA",
+   "as_of": "2026-10-01",
+   "card": "What can they charge me to apply?",
+   "arm": "homerule",
+   "text": "As of 2026-10-01, Massachusetts law limits what a landlord or agent may require before a tenancy, allowing only charges permitted by **Mass. Gen. Laws ch. 186, § 15B(1)(b)**. HomeRule’s records don’t include the list of permitted charges, so I can’t say whether a particular application fee is allowed.\n\nA broker’s fee may be paid only by the party who originally engaged and contracted with the broker (**Mass. Gen. Laws ch. 112, § 87DDD½**).",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 2,
+    "findings": 0
+   },
+   "grade": "wrong",
+   "grade_confidence": 0.68
+  },
+  {
+   "id": "S1-jc-screening",
+   "city": "Jersey City, NJ",
+   "as_of": "2026-10-01",
+   "card": "What can they check about me?",
+   "arm": "plain",
+   "text": "Assuming “they” means a prospective landlord or property manager: they can usually check **identity, ability to pay, rental history and—within limits—criminal history**. They cannot use screening as a reason to discriminate.\n\n### What they may check\n- **Identity and addresses:** name, identity documents, and current or previous addresses.\n- **Credit and finances:** a credit or tenant-screening report may show credit history, debts, collections, and some public-record information. They can also ask you to document income, assets, or employment, or contact references you provide.\n- **Rental history:** prior landlord references and rental-related court records may appear in a screening report. A filing or allegation is not the same as a judgment or an eviction; check that the report gives the outcome accurately.\n- **Criminal history:** New Jersey’s **Fair Chance in Housing Act** generally bars asking about criminal history before making a conditional housing offer. After that, the law limits what records may be considered and requires an individualized assessment. Arrests that did not result in conviction, expunged records, and juvenile records generally cannot be used. Exceptions apply to some housing and landlords.\n\nA landlord normally cannot simply access your bank account or tax return; they can ask you to provide documents. They may also see publicly available information, but fair-housing protections still apply.\n\n### Important limits and your rights\n- A tenant-screening company must have a legally permitted purpose to provide a consumer report. If a report leads to a denial, a higher deposit or rent, or a requirement for a guarantor, that can be an **adverse action** under the federal Fair Credit Reporting Act. The landlord must tell you which reporting company was used and how to contact it. You can request a free copy from that company within 60 days and dispute errors.\n- New Jersey and federal fair-housing laws prohibit discrimination on protected grounds. New Jersey also protects **lawful sources of income**, including rental assistance; a landlord generally cannot reject you just because you use a subsidy.\n- New Jersey generally caps a residential security deposit at **1.5 months’ rent**.\n\nRead the application’s screening authorization and criteria, and ask which screening company they use. For a definitive snapshot of rules **as of October 1, 2026**, check the current New Jersey Division on Civil Rights guidance, since laws and regulations can change.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.78
+  },
+  {
+   "id": "S1-jc-screening",
+   "city": "Jersey City, NJ",
+   "as_of": "2026-10-01",
+   "card": "What can they check about me?",
+   "arm": "plain_web",
+   "text": "Assuming you mean **what a prospective landlord or property manager can check when you apply to rent**: as of **October 1, 2026**—two days before today, **October 3, 2026**—they may commonly verify your identity, income, credit, rental history, and references. A screening company may also produce a score or recommendation. ([consumer.ftc.gov](https://consumer.ftc.gov/articles/tenant-background-checks-and-your-rights))\n\n### Common checks\n\n- **Identity and address history:** Your name, date of birth, Social Security number, and current or previous addresses.\n- **Credit:** Credit accounts and payment history, and possibly relevant debts or bankruptcies.\n- **Income and employment:** Pay or income documents, employment details, and sometimes contact with an employer or other reference.\n- **Rental history:** Prior landlords’ references, rent-payment history, and housing-court or eviction-case records. A filed eviction case is not necessarily the same as an eviction judgment; check that any report shows the case’s outcome accurately.\n- **Criminal history:** This is subject to special New Jersey limits described below. ([consumer.ftc.gov](https://consumer.ftc.gov/articles/tenant-background-checks-and-your-rights))\n\n### Important limits on those checks\n\n**Criminal history:** For most New Jersey rentals, a housing provider cannot ask about or check your criminal history until **after making a conditional offer**. Even then, the provider generally cannot use arrests or charges that did not result in conviction, expunged or sealed records, pardoned or vacated convictions, or juvenile adjudications. Only specified convictions may be considered, and the law generally requires an individualized assessment before withdrawing an offer. There are exceptions to the law, including some small owner-occupied properties. ([njoag.gov](https://www.njoag.gov/about/divisions-and-offices/division-on-civil-rights-home/know-the-law/fair-chance-in-housing-act/?utm_source=openai))\n\n**Credit and background reports:** If a landlord uses a screening company, federal law limits how those reports may be obtained and used. Generally, negative information such as many civil or housing-court records cannot appear after seven years; bankruptcies may be reported for ten years. Criminal convictions have no federal FCRA time limit, but New Jersey’s separate criminal-history restrictions still apply. ([consumer.ftc.gov](https://consumer.ftc.gov/articles/tenant-background-checks-and-your-rights))\n\n**Income and rental assistance:** New Jersey bars discrimination based on lawful sources of income, including rental-assistance programs. If you use a voucher or subsidy, a landlord generally must calculate an income or financial standard based on **your share of the rent**, not the full rent. ([njoag.gov](https://www.njoag.gov/about/divisions-and-offices/division-on-civil-rights-home/know-the-law/njlad/discrimination-in-housing/?utm_source=openai))\n\n**Fair housing:** Screening criteria cannot be used to discriminate based on protected characteristics under fair-housing laws. The rules can be more specific for particular housing programs or property types.\n\n### If a report leads to a negative decision\n\nIf information in a consumer report contributes to a rejection, higher rent or deposit, or a cosigner requirement, the landlord must give you an **adverse-action notice** identifying the reporting company and explaining your right to dispute errors. You can request a free copy from that company within **60 days** of the notice. ([ftc.gov](https://www.ftc.gov/business-guidance/resources/using-consumer-reports-what-landlords-need-know))\n\nBefore paying an application or screening fee, you can ask what checks they run and what criteria they use. If you receive a report, review it for mistaken identity, incomplete eviction-case outcomes, duplicates, or records that should not be reported. ([consumer.ftc.gov](https://consumer.ftc.gov/articles/tenant-background-checks-and-your-rights))",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.93
+  },
+  {
+   "id": "S1-jc-screening",
+   "city": "Jersey City, NJ",
+   "as_of": "2026-10-01",
+   "card": "What can they check about me?",
+   "arm": "homerule",
+   "text": "HomeRule’s records don’t list every kind of screening a landlord may use. For covered rentals, a landlord can’t ask about criminal history before a conditional offer, except for specified methamphetamine-related convictions and lifetime sex-offender registration (N.J. Stat. Ann. § 46:8-55(a)(1)). They can’t evaluate you based on arrests or charges without conviction, expunged or pardoned convictions, legally nullified convictions, juvenile delinquency adjudications, or sealed records—even after an offer (N.J. Stat. Ann. § 46:8-56(a)). They also can’t require a drug or alcohol test (N.J. Stat. Ann. § 46:8-60). If denied based on a credit report, they must identify the reporting agency (15 U.S.C.A. § 1681m). These state-law protections exclude owner-occupied buildings with four or fewer units.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 6,
+    "findings": 1
+   },
+   "grade": "correct",
+   "grade_confidence": 0.95
+  },
+  {
+   "id": "S2-la-screening",
+   "city": "Los Angeles, CA",
+   "as_of": "2026-10-01",
+   "card": "What can they check about me?",
+   "arm": "plain",
+   "text": "For a rental **inside the City of Los Angeles**, a landlord or screening company may generally check:\n\n- **Identity and application details:** your identity, rental history, and the information you provide. They may ask for a Social Security number or other identifying information to run a report.\n- **Credit:** credit accounts, payment history, collections, bankruptcies, and sometimes a credit score. They may also verify income, employment, and references—including by contacting previous landlords.\n- **Rental and court history:** prior rent payments or tenancy problems, and some public court records. California restricts access to many eviction filings; a filing alone is not always publicly available or fair game for screening.\n- **Criminal history:** special rules apply in the City of Los Angeles. Covered housing providers generally cannot ask about or consider criminal history **before making a conditional rental offer**. After that, only certain history may be considered, and the provider must follow the ordinance’s notice and review process. Coverage and exemptions depend on the property and landlord.\n- **Publicly available information:** they may look at public online material, but cannot use it to discriminate or evade rules that apply to formal screening reports.\n\n**Important limits and rights**\n\n- A landlord generally needs a legally permitted reason to obtain a consumer report, and should tell you about screening and get the required authorization. If a report leads to a denial, higher rent or deposit, or a required co-signer, that is generally an **adverse action**: you must be told which reporting company supplied the report and how to dispute errors and obtain a free copy.\n- California and federal fair-housing laws prohibit decisions based on protected traits. California also protects **source of income**, including housing subsidies. Landlords generally may not ask about your immigration or citizenship status, subject to limited legal exceptions.\n- They may request income documents, but should not demand unnecessary private information. You can ask whether you may redact unrelated transactions from bank statements.\n- Screening and application-fee rules apply, and the fee cap changes over time. Ask for the written screening criteria and an itemized receipt before paying.\n\n“Los Angeles” can mean the **City** or elsewhere in Los Angeles County; local criminal-history rules may differ. Because you asked about **October 1, 2026**, confirm the current rules with the LA Civil Rights Department or a California tenant-rights organization—local ordinances and annual fee limits can change.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.73
+  },
+  {
+   "id": "S2-la-screening",
+   "city": "Los Angeles, CA",
+   "as_of": "2026-10-01",
+   "card": "What can they check about me?",
+   "arm": "plain_web",
+   "text": "Assuming you mean **a landlord or property manager screening you for a rental**, here’s the general picture **as of October 1, 2026**.\n\n### What they may check\nA landlord may review information you provide and may use a tenant-screening company to check things such as:\n\n- **Identity and address history**\n- **Credit history** and payment patterns\n- **Income, employment, and ability to pay rent**\n- **Rental history**, including references from prior landlords\n- **Eviction or other court records** and rent-related debts\n- **Criminal history**, subject to important limits\n\nScreening reports may also contain a score or recommendation. California’s tenant guide describes these common checks, including credit, rental, and eviction information. ([courts.ca.gov](https://www.courts.ca.gov/documents/California-Tenants-Guide.pdf?utm_source=openai))\n\n### Important limits and rights\n- **Criminal history:** A California housing provider generally may not consider arrests that did not lead to conviction, sealed or expunged convictions, juvenile records, or certain diversion matters. They cannot impose a blanket ban on everyone with a record; a conviction used to deny housing must be directly related to tenancy or a specific safety/property concern. ([calcivilrights.ca.gov](https://calcivilrights.ca.gov/housing/?utm_source=openai))\n- **Credit and income:** They may assess whether you can pay, but California protects lawful sources of income, including housing subsidies. If you have a government rent subsidy and the provider uses credit history, you must be offered the option to provide lawful, verifiable alternative evidence of your ability to pay your share of the rent. ([leginfo.legislature.ca.gov](https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202120220AB948&utm_source=openai))\n- **Immigration status:** If the unit is **within the City of Los Angeles**, landlords may not ask about or require you to state your immigration or citizenship status. ([codelibrary.amlegal.com](https://codelibrary.amlegal.com/codes/los_angeles/latest/lamc/0-0-0-319032?utm_source=openai))\n- **Reports and denials:** If a landlord takes an adverse action based partly or entirely on a consumer or tenant-screening report—such as denying you, requiring a cosigner, or charging more—they must tell you which reporting company supplied it. You can request a free copy from that company within **60 days** and dispute errors. ([consumer.ftc.gov](https://consumer.ftc.gov/articles/tenant-background-checks-and-your-rights?utm_source=openai))\n- **Application fees in California:** Since January 1, 2025, when a landlord charges a screening fee, they must provide their screening process in writing, consider completed applications in order, and approve the first applicant who meets the criteria. They generally cannot charge until they actually consider your application, and a nonselected applicant’s fee must be refunded under the statutory timing rules. ([dre.ca.gov](https://www.dre.ca.gov/publications/ResourceGuidebook/gb05_lookingfor.html?utm_source=openai))\n\nBefore paying a fee or sharing sensitive information, you can ask for the **written screening criteria**, which checks they plan to run, and the name of the screening company. If you’re denied or something seems wrong, request the report promptly and dispute inaccurate or prohibited information. This is general information, not legal advice.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.38
+  },
+  {
+   "id": "S2-la-screening",
+   "city": "Los Angeles, CA",
+   "as_of": "2026-10-01",
+   "card": "What can they check about me?",
+   "arm": "homerule",
+   "text": "HomeRule’s records don’t specify what information a Los Angeles landlord may check—such as credit, criminal, or rental history. They do show that California housing providers must not discriminate against or harass applicants or tenants because of a protected characteristic (Cal. Gov. Code § 12955). The records don’t provide further screening rules.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 1
+   },
+   "grade": "wrong",
+   "grade_confidence": 0.68
+  },
+  {
+   "id": "A1-la-alg-before",
+   "city": "Los Angeles, CA",
+   "as_of": "2025-12-31",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain",
+   "text": "**Not if it is the kind of rent-setting algorithm targeted by the law.** In the **City of Los Angeles**, a landlord generally may not use an algorithmic pricing tool to set or recommend your rent when it relies on **nonpublic rental data from competing landlords**. The city restriction has been in effect since 2025.\n\nThere is **not** a blanket ban on all software. Ordinary property-management tools, spreadsheets, or pricing analysis based on a landlord’s own data or publicly available information may still be used, subject to other rent laws.\n\nA statewide California law, **AB 325**, is scheduled to take effect **January 1, 2026**. It also restricts algorithmic rent-setting based on nonpublic competitor data. So, as of December 31, 2025, the LA city restriction already applies; the statewide rule begins the next day.\n\nWhether your rent is lawful still depends on your lease, any applicable rent-control rules, and required notice. If you suspect the landlord used a prohibited tool, ask in writing how the rent was set and what data the tool used, and keep the rent notice and related communications. If you are outside the City of LA but in Los Angeles County, the city rule may not apply, though the statewide law will.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.31
+  },
+  {
+   "id": "A1-la-alg-before",
+   "city": "Los Angeles, CA",
+   "as_of": "2025-12-31",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain_web",
+   "text": "**Assuming you mean the City of Los Angeles:** **Yes, a landlord could use rent-setting software on December 31, 2025—but its use was not automatically lawful just because it was software.** The key issue was whether the landlord and competitors used it to coordinate or fix rents, which can violate antitrust law.\n\nCalifornia had **not enacted the proposed rental-algorithm-specific ban, SB 52**; it was held in the Assembly Appropriations Committee. Los Angeles had considered studying the use of rent-setting software and the feasibility of a local ban, but that was not itself a ban. ([apcp.assembly.ca.gov](https://apcp.assembly.ca.gov/system/files/2025-12/2025-legislative-bill-summary.pdf?utm_source=openai))\n\nOne date detail: California’s **AB 325 had been signed**, but it was scheduled to take effect **January 1, 2026—not December 31, 2025**. It clarifies that using or distributing a shared pricing algorithm as part of an unlawful agreement to restrain trade is illegal; it does **not** make every use of rent-pricing software illegal. ([legiscan.com](https://legiscan.com/CA/text/AB325/id/3269757?utm_source=openai))\n\nSeparately, on **November 24, 2025**, the Justice Department announced a proposed settlement with RealPage that would restrict certain data-sharing and pricing practices **if approved by the court**. That was not a general ban on landlords using any rent-setting software. ([justice.gov](https://www.justice.gov/opa/pr/justice-department-requires-realpage-end-sharing-competitively-sensitive-information-and?utm_source=openai))\n\nWhatever tool a landlord uses, it does not override rent caps or other rules that apply to your particular unit. **Bottom line: software use alone wasn’t a blanket prohibition; coordinated price-fixing could be unlawful.** This is general information, not a determination about your landlord or lease.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.26
+  },
+  {
+   "id": "A1-la-alg-before",
+   "city": "Los Angeles, CA",
+   "as_of": "2025-12-31",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "homerule",
+   "text": "As of 2025-12-31, HomeRule’s records show no Los Angeles limit or ban on rent-setting software in force. California’s rule begins 2026-01-01; it bars using or distributing a common pricing algorithm **as part of an unlawful restraint of trade**, not software use generally (Cal. Bus. & Prof. Code § 16729(a)). This doesn’t establish that every use is lawful.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 1
+   },
+   "grade": "correct",
+   "grade_confidence": 0.34
+  },
+  {
+   "id": "A2-la-alg-after",
+   "city": "Los Angeles, CA",
+   "as_of": "2026-01-02",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain",
+   "text": "**Generally, no—if it is the kind of rent-setting algorithm California’s new law covers.** As of **January 1, 2026**, California’s **AB 325 (2025)** prohibits a landlord from using an algorithmic pricing device to set or recommend residential rents when the device uses **nonpublic competitor data**—such as rent or occupancy information supplied by competing landlords.\n\nThat is **not a ban on all rental software**. Ordinary lease-management tools, or pricing tools that do not rely on the covered nonpublic competitor data, may still be used. The law also does not itself set your rent or make every rent increase unlawful.\n\nIf your rent or renewal offer was set using a covered tool, ask your landlord in writing what pricing method and data were used, and keep the notice or listing. The law took effect on January 1, 2026, but it does **not automatically cancel an existing lease or reduce your current rent**. Separate rent caps and tenant protections may also apply; in the City of Los Angeles, those can depend on whether your unit is covered by the Rent Stabilization Ordinance. **Source: California AB 325 (2025).**",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.58
+  },
+  {
+   "id": "A2-la-alg-after",
+   "city": "Los Angeles, CA",
+   "as_of": "2026-01-02",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain_web",
+   "text": "**As of January 2, 2026: generally, yes—but not for price-fixing.** California had **not enacted a blanket ban** on landlords using rent-setting software. The proposed rental-specific ban, SB 52, was held in committee in 2025 and did not become law that year. ([mtc.ca.gov](https://mtc.ca.gov/sites/default/files/meetings/attachments/6442/2b_25_1299_Handout_November_Legislative_History_0.pdf?cb=c2a8a268))\n\nA broader antitrust law, **AB 325, took effect January 1, 2026**. It makes certain uses of a “common pricing algorithm” unlawful when they are part of an agreement or conspiracy to restrain trade, or when someone coerces another person to follow the algorithm’s recommended price. It does **not** make every software-generated rent recommendation illegal just because software was used. ([sfa.senate.ca.gov](https://sfa.senate.ca.gov/system/files/2025-12/digest_2025.pdf?utm_source=openai))\n\nFor Los Angeles County, the County’s documented action was to study possible limits on algorithmic rent-setting—not itself to enact a countywide ban. ([dcba.lacounty.gov](https://dcba.lacounty.gov/wp-content/uploads/2025/12/2025-04-16-Combating-LA-Countys-Price-Gouging-Crisis_rc_.pdf))\n\n**That doesn’t mean any rent the software suggests is lawful.** Rent-control limits, applicable rent caps, required notice, and other tenant protections still apply; software cannot authorize an increase that those rules prohibit. Whether a particular increase is allowed depends on your address, unit, and tenancy. This is general information, not a legal opinion about your lease.",
+   "model": "openai/gpt-6-luna",
+   "grade": "wrong",
+   "grade_confidence": 0.72
+  },
+  {
+   "id": "A2-la-alg-after",
+   "city": "Los Angeles, CA",
+   "as_of": "2026-01-02",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "homerule",
+   "text": "Not automatically prohibited. Since January 1, 2026, California law bars using or distributing a common pricing algorithm as part of an agreement or conspiracy that restrains trade in violation of the law. Whether a particular use of rent-setting software meets those conditions depends on the facts; the rule is not a blanket ban on all such software. (Cal. Bus. & Prof. Code § 16729(a))\n\nHomeRule’s records do not include a Los Angeles rule on this topic or enough information to determine whether software used to set your rent is covered.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 1
+   },
+   "grade": "wrong",
+   "grade_confidence": 0.15
+  },
+  {
+   "id": "A3-jc-alg",
+   "city": "Jersey City, NJ",
+   "as_of": "2026-10-01",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain",
+   "text": "**I can’t verify the law as of October 1, 2026—that date is in the future.** As of today, March 8, 2025, I’m not aware of a blanket New Jersey ban on software merely calculating or recommending a rent.\n\nThat does **not** mean any software-set rent is lawful. Using software to coordinate rents with competing landlords could raise antitrust issues. And if your Jersey City apartment is covered by the city’s rent-control rules, a software recommendation cannot override the applicable limit. Coverage and permitted increases depend on the unit and its rental history.\n\nAsk your landlord for the rent calculation and whether the unit is registered with Jersey City’s Rent Control office. For a reliable answer on October 1, 2026, the law will need to be checked again closer to that date.",
+   "model": "openai/gpt-6-luna",
+   "grade": "wrong",
+   "grade_confidence": 0.44
+  },
+  {
+   "id": "A3-jc-alg",
+   "city": "Jersey City, NJ",
+   "as_of": "2026-10-01",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain_web",
+   "text": "**As of October 1, 2026: generally, no—not if “rent-setting software” means a service that coordinates pricing using information from other landlords. But Jersey City’s rule is not a ban on every kind of software.**\n\nJersey City’s ordinance makes it unlawful for a landlord, its agent, or subcontractor to pay for **or otherwise use** a service provider that collects rental-market information, processes it computationally, and recommends rents, lease terms, or occupancy levels. The ordinance covers residential rentals in Jersey City, and the city amended it in July 2025 to clarify the prohibition. ([cityofjerseycity.civicweb.net](https://cityofjerseycity.civicweb.net/document/429156/Ordinance%20Amending%20Chapter%20218%20creating%20section.pdf))\n\nThat does **not** automatically prohibit ordinary property-management software, a spreadsheet, or a tool based only on a landlord’s own properties. Whether a particular product is covered depends on what information it uses and what it does; the ordinance includes an exception for actions relating exclusively to properties controlled by the same landlord. ([cityofjerseycity.civicweb.net](https://cityofjerseycity.civicweb.net/document/429156/Ordinance%20Amending%20Chapter%20218%20creating%20section.pdf))\n\nNew Jersey’s statewide FAIR Act was signed on **July 20, 2026**, but its new provisions are scheduled to take effect **July 1, 2027**. So on your specified date, the Jersey City ordinance is the directly relevant enacted local rule. The state law is also targeted—not a ban on all software—and has exceptions for certain tools and uses. ([pub.njleg.state.nj.us](https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM))\n\n**Practical takeaway:** A rent increase by itself doesn’t prove your landlord used a prohibited service, and the software rule is separate from whether the increase complies with rent-control limits or other rent rules. If you have specific evidence of a prohibited service, Jersey City’s ordinance says residents may report it to the Office of Landlord/Tenant Relations; the city lists **201-547-4821** as its contact number. ([cityofjerseycity.civicweb.net](https://cityofjerseycity.civicweb.net/document/429156/Ordinance%20Amending%20Chapter%20218%20creating%20section.pdf))\n\n*This is general legal information, not advice about your specific lease or apartment.*",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.92
+  },
+  {
+   "id": "A3-jc-alg",
+   "city": "Jersey City, NJ",
+   "as_of": "2026-10-01",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "homerule",
+   "text": "Not necessarily. Jersey City currently bars a landlord, agent, or subcontractor from paying for or contracting with a “Service Provider’s” services; the rule has an exception for certain same-owner properties and excludes certain licensed agents. So whether software use is barred depends on the service and circumstances. (Jersey City Code § 218-12(2)(a))\n\nWith a lease or written rent-increase notice, the landlord must also provide a sworn disclosure about the rent-setting method. (Jersey City Code § 218-12.3(a))\n\nNew Jersey’s coordinating-function ban does not start until July 1, 2027, and may override local rules once effective. As of October 1, 2026, it is not in force. (N.J. Stat. Ann. § 56:9-23(e))",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 3,
+    "findings": 3
+   },
+   "grade": "correct",
+   "grade_confidence": 0.51
+  },
+  {
+   "id": "A4-newark-alg",
+   "city": "Newark, NJ",
+   "as_of": "2026-10-01",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain",
+   "text": "**Generally, no—if the software is the kind New Jersey’s rent-setting law prohibits.** As of **October 1, 2026**, New Jersey bars landlords and property managers from using covered algorithmic pricing software to recommend residential rents or occupancy levels when it uses nonpublic, competitively sensitive information about other landlords’ rents or vacancies. A landlord generally cannot avoid the restriction simply by saying a person made the final decision.\n\nThat is **not a ban on all software**. Tools for billing, lease administration, or calculating a lawful increase may still be used. Whether a pricing tool is covered depends on what information it uses and how it operates; a product’s name alone may not answer that.\n\nNewark’s rent-control rules are a separate issue: if your unit is covered, an increase must also comply with those rules. Not every Newark rental is necessarily covered, and pricing software cannot override the local limits.\n\nIf you’re facing an increase, ask the landlord in writing how it was calculated and whether a pricing tool was used. You can also check your unit’s status and the allowed increase with the **Newark Rent Control Board**.",
+   "model": "openai/gpt-6-luna",
+   "grade": "wrong",
+   "grade_confidence": 0.55
+  },
+  {
+   "id": "A4-newark-alg",
+   "city": "Newark, NJ",
+   "as_of": "2026-10-01",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain_web",
+   "text": "**As of October 1, 2026: sometimes—but not automatically.** New Jersey’s FAIR Act has been signed into law, but it is **not yet effective**. Its effective date works out to **July 1, 2027**. So on October 1, 2026, the new act’s specific restrictions on rent-setting algorithms are not yet in force. ([pub.njleg.state.nj.us](https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM))\n\nThat doesn’t mean every use is lawful today: the FAIR Act preserves existing antitrust laws, which may already prohibit collusive pricing arrangements. The issue is not simply whether your landlord used software, but how it was used and whether landlords coordinated through it. ([pub.njleg.state.nj.us](https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM))\n\n**Starting July 1, 2027**, the FAIR Act will prohibit specified practices—for example, using an algorithmic system to process nonpublic, competitively sensitive rental information from multiple owners to set or recommend rents, lease terms, or occupancy levels in a way that coordinates pricing. It is **not a blanket ban on all software**; the law excludes, among other things, qualifying manual spreadsheets and databases that only query unprocessed data. ([pub.njleg.state.nj.us](https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM))\n\nSeparately, **if your Newark unit is covered by the city’s rent-control ordinance**, Newark says increases are governed by a CPI-based formula and cannot exceed 4%; coverage and other requirements matter, so that cap should not be assumed to apply to every unit. ([ecode360.com](https://ecode360.com/36623772?utm_source=openai)) You can ask Newark’s Rent Control Office whether your specific unit is covered: **973-733-3675**. ([newarknj.gov](https://www.newarknj.gov/255/Division-of-Rent-Control?utm_source=openai))\n\n*This is general legal information, not a determination about your lease or a particular increase.*",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.88
+  },
+  {
+   "id": "A4-newark-alg",
+   "city": "Newark, NJ",
+   "as_of": "2026-10-01",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "homerule",
+   "text": "As of October 1, 2026, HomeRule’s records show no rent-setting software ban in force in Newark. A New Jersey law barring a person from performing a “coordinating function” is not effective until July 1, 2027 (N.J. Stat. Ann. § 56:9-23(e)). HomeRule doesn’t have the text of any Newark law on this topic, so I can’t confirm whether a local restriction applies.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 2
+   },
+   "grade": "correct",
+   "grade_confidence": 0.46
+  },
+  {
+   "id": "A5-newark-alg-2027",
+   "city": "Newark, NJ",
+   "as_of": "2027-07-02",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain",
+   "text": "**Generally, no—if it is covered algorithmic rent-setting software.** As of July 2, 2027, New Jersey’s statewide prohibition applies in Newark. A landlord or property manager cannot use a covered algorithmic device to recommend or set residential rents. The law targets pricing tools, not every kind of software.\n\nSo software used just to record rent, send bills, or calculate an amount the landlord has independently chosen is different from software used to recommend what rent to charge. Whether a particular pricing tool is covered depends on the law’s definitions and the data it uses.\n\nThat ban does **not** automatically reduce or invalidate your current rent. Separately, if your unit is covered by Newark’s Rent Control Ordinance, the rent and any increase must also comply with Newark’s limits and procedures; an algorithm cannot override them. If you suspect either rule was violated, ask your landlord in writing how the rent or increase was calculated, and check with the Newark Rent Control Board about your unit’s coverage.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.85
+  },
+  {
+   "id": "A5-newark-alg-2027",
+   "city": "Newark, NJ",
+   "as_of": "2027-07-02",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain_web",
+   "text": "**Based on New Jersey law enacted by October 3, 2026, the expected answer for July 2, 2027 is: certain rent-setting software cannot be used—but not all software is banned.**\n\nNew Jersey’s FAIR Act is scheduled to take effect **July 1, 2027**. It prohibits landlords and others from using or providing algorithmic systems that perform a “coordinating function”—for example, systems that use multiple landlords’ nonpublic pricing, occupancy, or lease data to set or recommend rents, or that facilitate coordinated pricing across landlords. So if that is how software was used to set your rent, it would be prohibited under the law scheduled to be in force on July 2, 2027. ([pub.njleg.state.nj.us](https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM))\n\nThe act does **not** ban every computer tool used in rental management. It excludes, among other things, certain spreadsheets requiring human analysis, publicly available free rent estimates, and listing databases that don’t set or recommend rents. ([pub.njleg.state.nj.us](https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM))\n\nSeparately, **Newark rent control may limit the amount of an increase** for covered units; the city says its ordinance applies to certain residential units and lists a 4% maximum annual increase, subject to the ordinance’s requirements and exceptions. Whether your unit is covered is a separate question from whether software was used. ([newarknj.gov](https://www.newarknj.gov/255/Division-of-Rent-Control))\n\nBecause **July 2, 2027 is in the future** relative to today, this is based on the law enacted so far and its scheduled effective date; later changes are possible. For your unit’s rent-control status, Newark’s Division of Rent Control lists **973-733-3675** as its contact number. ([newarknj.gov](https://www.newarknj.gov/255/Division-of-Rent-Control))",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.65
+  },
+  {
+   "id": "A5-newark-alg-2027",
+   "city": "Newark, NJ",
+   "as_of": "2027-07-02",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "homerule",
+   "text": "As of July 2, 2027, New Jersey law prohibits a person from performing a “coordinating function” (N.J. Stat. Ann. § 56:9-23(e)). The records don’t define that term, so I can’t determine whether a particular rent-setting software use is covered—or whether it can be used on your rent. The state law may override local rules. HomeRule has no Newark law text on this topic.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 1,
+    "findings": 2
+   },
+   "grade": "wrong",
+   "grade_confidence": 0.31
+  },
+  {
+   "id": "A6-cambridge-alg",
+   "city": "Cambridge, MA",
+   "as_of": "2026-10-01",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain",
+   "text": "**Generally, no.** As of **October 1, 2026**, Massachusetts’s statewide ban applies in Cambridge: a landlord or agent may not use rent-setting software that relies on **nonpublic information about competing landlords**—such as their rents, occupancy, or lease terms—to recommend or set residential rents. The restriction can apply to proposed rents for new tenancies as well as renewals.\n\nThat does **not** mean all software is banned. Software used for ordinary lease administration, or a tool that does not use the prohibited competitor information, may be permissible. The law also is **not rent control**: it does not set a maximum rent or automatically reduce or invalidate a rent set unlawfully.\n\nIf you suspect your landlord used a prohibited tool, keep relevant listings and communications and ask in writing how the rent was determined. **Don’t withhold rent or assume your lease rent is automatically void**; get advice from a Massachusetts tenant lawyer or the state Attorney General’s office about your situation.",
+   "model": "openai/gpt-6-luna",
+   "grade": "wrong",
+   "grade_confidence": 0.98
+  },
+  {
+   "id": "A6-cambridge-alg",
+   "city": "Cambridge, MA",
+   "as_of": "2026-10-01",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "plain_web",
+   "text": "**As of October 1, 2026: generally, yes—but not without legal limits.** I found no enacted Massachusetts or Cambridge law that categorically bars a landlord from using rent-setting software to recommend or set your rent.\n\n- **Cambridge:** In June 2026, the City Council directed staff to develop policy or ordinance options on algorithmic rent-setting. That was a step toward a possible rule, not itself a ban. ([cambridgeday.com](https://www.cambridgeday.com/2026/06/25/council-airbnb-rental-algorithms/?utm_source=openai))\n- **Massachusetts:** A proposed state bill, S.2983, would prohibit landlords from relying on certain systems that use nonpublic competitor data, but the Legislature’s bill page lists it as referred to Senate Ways and Means—not enacted. ([malegislature.gov](https://malegislature.gov/bills/194/s2983?utm_source=openai))\n- **Antitrust limits still matter:** Using software is not automatically illegal, but using it to coordinate prices with competing landlords or exchange sensitive nonpublic pricing data can raise antitrust issues. Massachusetts and federal authorities have pursued such claims; some settlements and court orders apply to particular companies, rather than creating a blanket ban on rent software. ([mass.gov](https://www.mass.gov/news/ag-campbell-secures-7-million-multistate-settlement-with-property-management-company-livcor-over-algorithmic-rent-pricing-scheme?utm_source=openai))\n\nSo, **your landlord may use rent-setting software, but a system that facilitates unlawful coordination may not be lawful.** This is general information, not a determination about your landlord’s specific software or conduct.",
+   "model": "openai/gpt-6-luna",
+   "grade": "correct",
+   "grade_confidence": 0.97
+  },
+  {
+   "id": "A6-cambridge-alg",
+   "city": "Cambridge, MA",
+   "as_of": "2026-10-01",
+   "card": "Can rent-setting software be used on my rent?",
+   "arm": "homerule",
+   "text": "HomeRule’s records show no limit or ban on rent-setting software in force in Cambridge on 2026-10-01. Two state bills proposing restrictions were pending, not law: Mass. H.5222 and Mass. S.2983. The records don’t establish whether other laws affect your rent. This is information, not legal advice.",
+   "model": "openai/gpt-6-luna",
+   "records": {
+    "rules": 2,
+    "findings": 0
+   },
+   "grade": "correct",
+   "grade_confidence": 0.98
+  }
+ ]
+}

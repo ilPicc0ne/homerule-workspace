@@ -1,40 +1,46 @@
 # Resume
 
-**Updated:** 2026-10-03T22:20Z
+**Updated:** 2026-10-04T00:23Z
 **Branch:** main
-**Last commit:** 172c2f0 — Ignore .worktrees/
-**Working tree:** clean (before this wrap-up commit)
+**Last commit:** c7e6965 — Merge pull request #44 (PRD: renter-protection map)
+**Working tree:** clean except `.claude/worktrees/` (untracked, likely from the address session; not touched)
 
 ## Pick up next
 
-1. Address resolver (#7, #10): fresh session in `.worktrees/address` (branch `s/address-lookup`), paste the kickoff prompt (goal, decisions, tests-first). Edge cases: `lab/resolve-edge-cases/README.md` on that branch.
-2. Demo site: agent was building on `s/demo-site` in `/Users/silvan/claude/code/personal/homerule-demo`; no commits pushed at wrap-up time. Check if it finished; review (light only, "Demo data | Live" toggle, quote check), PR, merge, `vercel deploy --prod` from `web/`; then `git worktree move ../homerule-demo .worktrees/demo`.
-3. Dimitar: issue #27 (task split), then #2 grid triage, #3 Jev test, #4 extraction.
-4. Discord answers → PRD open questions. Email warm-up: mark `alerts@yourhomerule.com` not-spam.
+State 04.10. 02:20: Dimitar closed extraction (#4) and eval (#5). Open PRs: **#29** address resolver + search (`s/address-lookup`, worktree `.worktrees/address`), **#36** engine `make build` → lookups/changes (`s/engine`). Issue **#41** (rules, findings, source texts into web/) unassigned. Freeze 12:00, submission 15:00.
 
-5. Housekeeping: kill leftover automation Chromes once the address session is done (`pkill -f "disable-field-trial-config"`; closes only Playwright-launched browsers), and stop the local dev servers on ports 3100 (demo) and 3210 (address) when no longer needed.
+1. Review #29 then #36 (tests green, conflicts), merge; on `main` run `make resolve` + `make build`, commit `outputs/lookups.json` + `changes.json` from main. (35 scored points)
+2. `make eval` on main with all three files → fix list before the freeze.
+3. #41 (take it): data into web/, flip the demo site's toggle Demo data → Live.
+4. Rebuild the address page to mockup v3 (`/Users/silvan/claude/code/personal/homerule-demo/lab/ui-proposal/v3/index.html#sf`) on real data, locally first (#9, #26, #11).
+5. Hour-16 watch (~07:00–11:00): `make ingest`. Agree a sleep split with Dimitar so someone fresh catches it.
+6. 12:00–15:00 submission (#13).
+7. Housekeeping: `pkill -f "disable-field-trial-config"`; stop dev servers 3100/3210; move `../homerule-demo` to `.worktrees/demo`.
 
 ## Open questions
 
-- Hour-16 drop time and format; score.py / dev key release — context: posted to Discord.
-- Do use-code unit ranges count as known in the key? — context: we treat them as known behind a switch.
+- Hour-16 drop time; score.py / dev key; how unknowns score — context: Discord.
+- Phone numbers in contacts are unverified (mockups say "demo number").
 
 ## Recent decisions
 
-- Address iteration goal: live search on the site → jurisdiction tree; one TypeScript resolver for site and batch — *why:* visible, scalability proof, no drift.
-- Tree Federal › State › County › City / Township / unincorporated; legislative districts P2 — *why:* NJ/MA municipalities are county subdivisions; unincorporated areas fall to county law.
-- Use-code units ("5+", NJ class 4C) as known facts behind a switch — *why:* settles small-building exemptions for nearly all 500.
-- Worktrees under git-ignored `.worktrees/` — *why:* keep `code/personal/` free of repo-lookalike folders.
-- PRD master in docs/, contracts I1/I7, files as data store, no own chatbot, yourhomerule.com + Resend — see SESSIONS.
+- Subscription store Upstash Redis `homerule-subscriptions` (free) connected to Vercel project `homerule`; no Neon — *why:* Dimitar pushes output files to git, we deploy from here; only subscriptions are mutable.
+
+- One-view renter page: sticky address bar with "Get alerts" bell, "Next change" line, map, six accordion tiles with three levels (plain → next step → "Show the law"), labels "There's a rule" / "We're missing one fact" / "No local rule — state basics only" — *why:* renter critique (5–6/10 on v2), not for lawyers.
+- Never invite comparing the renter's number to a cap; state facts, let the reader conclude; grade 6–8 words — *why:* legal-advice risk found by the critique ("1.6%").
+- J7 "Take action": contact on every tile (P0, data Dimitar #32), action helpers (P1), legal-aid finder (P2).
+- Real map: MapLibre + OpenFreeMap Positron + Census TIGER city outline (P1).
+- I8 findings (Dimitar) feed the "why no rule" tiles.
+- Design work iterative, not one deep pass — *why:* the owner's eye is the test; deep-work took ~45 min for v2.
 
 ## Surprises / gotchas
 
-- East LA: postal "Los Angeles" but unincorporated — *avoid:* never trust postal city; use Census place.
-- Brookline: town with no Census place — *avoid:* county subdivision as municipality in NJ/MA.
-- Census one-line returns no match for place-only input ("Boston, MA", ZIPs) — *avoid:* resolve via jurisdiction list/aliases.
-- Vercel deploy uploads only `web/` — *avoid:* sync contracts into web/ with a drift test.
-- `!` commands are non-interactive; first test mail went to spam.
+- `vercel install <integration>` silently adds project-scoped agent skills (web/.agents/skills + .claude/skills symlinks, web/skills-lock.json) — *avoid:* check and /vet after every marketplace install (Upstash ones vetted: docs only).
+
+- Agents can stay "running" in the panel via leftover background children — *avoid:* TaskStop when the report is in.
+- Dimitar pushes to main often — *avoid:* pull/rebase before pushing; docs changes via small PRs.
+- See SESSIONS for earlier gotchas (East LA, Brookline, Vercel uploads only web/, spam).
 
 ## Long-form
 
-See `.claude/SESSIONS.md`, `docs/decisions/`, `docs/PRD.md`, `docs/ARCHITECTURE.md`.
+See `.claude/SESSIONS.md`, `docs/PRD.md`, `docs/ARCHITECTURE.md`, `docs/decisions/`.
