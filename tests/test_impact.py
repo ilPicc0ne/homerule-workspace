@@ -6,7 +6,7 @@ from pathlib import Path
 
 import yaml
 
-from engine import build as B, diff as D, facts as F, rules as R
+from engine import build as B, diff as D, facts as F, rules as R, score as S
 
 ROOT = Path(__file__).resolve().parent.parent
 FX = yaml.safe_load((ROOT / "tests" / "fixtures" / "impact.yaml").read_text(encoding="utf-8"))
@@ -45,6 +45,25 @@ class Changes(unittest.TestCase):
                     got = sorted({c["renter_impact"]["verdict"] for c in ch
                                   if self.by_id[c["team_rule_id"]]["category"] == f["category"]})
                 self.assertEqual(got, [f["expect"]], f"{f['why']}: {ch and [(c['team_rule_id'], c['change'], c['renter_impact']) for c in ch]}")
+
+
+class Scores(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.res = S.build(sorted({f["date"] for f in FX["scores"]} | set(S.CFG["dates"])))
+
+    def test_fixture(self):
+        for f in FX["scores"]:
+            with self.subTest(address=f["address"], date=f["date"]):
+                got = self.res["addresses"][f["address"]][f["date"]]
+                self.assertEqual((got["score"], got["high"], got["unknown_topics"]),
+                                 (f["score"], f["high"], f["unknown"]), f["why"])
+
+    def test_score_within_range(self):
+        for aid, per_date in self.res["addresses"].items():
+            for d, x in per_date.items():
+                with self.subTest(address=aid, date=d):
+                    self.assertTrue(x["low"] <= x["score"] <= x["high"], x)
 
 
 if __name__ == "__main__":

@@ -5,7 +5,8 @@ is in contracts/impact.json and travels with the score. Per address and date, pe
 - level: the strongest protecting rule that applies (strength vs the thresholds; presence topics are strong when a
   protection applies); a limiting rule that applies caps the topic; unknown when a protecting rule's result is
   unknown and could raise the level, reported apart with the topic's possible range;
-- score: 100 x weighted mean of the known topics' levels; low/high: the unknown topics at their lowest/highest.
+- score: 100 x weighted mean of the topics' levels, unknown topics at their lowest (what a renter can count on);
+  high: the unknown topics at their highest ("up to").
 Cities: median over their sample addresses. States: the statewide floor (state rules only), median over the
 state's sample addresses. Changes between consecutive dates: better / worse / unchanged per topic and overall.
 out/scores.json, one entry per line. python3 -m engine.score
@@ -68,13 +69,13 @@ def topic_levels(rows, rules_by_id):
 
 
 def aggregate(topics):
+    """score: the protection a renter can count on (unknown topics at their lowest, so score = low); high: with the
+    unknown topics at their highest ("up to"). Never a mean over the known topics only: that put the score above
+    its own range when a topic like eviction depends on facts we never know (e.g. 12 months of tenancy)."""
     w = CFG["weights"]
-    known = {c: t for c, t in topics.items() if t["level"] != "unknown"}
-    wk = sum(w[c] for c in known)
-    score = round(100 * sum(w[c] * LEVEL[t["level"]] for c, t in known.items()) / wk) if wk else None
     low = round(100 * sum(w[c] * LEVEL[t["at_least"]] for c, t in topics.items()))
     high = round(100 * sum(w[c] * LEVEL[t["at_most"]] for c, t in topics.items()))
-    return {"score": score, "low": low, "high": high,
+    return {"score": low, "low": low, "high": high,
             "unknown_topics": sorted(c for c, t in topics.items() if t["level"] == "unknown")}
 
 

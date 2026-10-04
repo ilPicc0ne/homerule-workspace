@@ -1,5 +1,5 @@
 {
-  "_comment": "Renter-protection score (engine/score.py, out/scores.json). Owner D (data), S (display). Every number here is a product choice, shown next to the score on the page. Levels: strong 1.0, basic 0.5, none 0, unknown = not counted (reported apart, with the score's range). A topic's level comes from the strongest protecting rule that applies to the address on the date; a limiting rule that applies (e.g. an exemption) caps the topic at basic.",
+  "_comment": "Renter-protection score (engine/score.py, out/scores.json). Owner D (data), S (display). Every number here is a product choice, shown next to the score on the page. Levels: strong 1.0, basic 0.5, none 0, unknown = counted at its lowest in the score (what a renter can count on), at its highest in `high`, and listed apart. A topic's level comes from the strongest protecting rule that applies to the address on the date; a limiting rule that applies (e.g. an exemption) caps the topic at basic.",
   "levels": {"strong": 1.0, "basic": 0.5, "none": 0.0},
   "weights": {
     "rent_increase_limits": 0.25,
