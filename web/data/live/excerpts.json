@@ -335,6 +335,27 @@
   "quote": "A tenant claiming the rent they are being charged is illegal may file an Illegal Rent Petition:",
   "after": "\nIllegal Rent Petition\nA tenant seeking a rent reduction due to the conditions of the building and/or apartment may file a Failure to Maintain Service Petition:\nFailure to Maintain Service Petition\nThe Landlord must be provided with a copy of the Petition and all documents. A completed Proof of Service form, Petition,…"
  },
+ "NJ-NEWARK-EVICT-19:2-14": {
+  "doc_id": "S018",
+  "offset": 59901,
+  "before": "… are so great that the Board could not hear them all itself within the time limits prescribed for such action by this chapter. The findings of the hearings conducted by him/her shall be submitted to the Board which, after review, shall make the final ruling. \n      \n      19:2-14.\tRETALIATORY EVICTION.\n      \n      \t",
+  "quote": "No landlord shall bring any action to recover possession of a dwelling unit as a reprisal for the tenant's efforts to secure or enforce any right under this chapter.",
+  "after": " \n       \n      19:2-15.\tAPPEAL JUDICIAL REVIEW.\n      \n      A landlord or tenant aggrieved by any action, regulation or determination of the Board may appeal that action, regulation or determination of the Rent Control Board to the Law Division of the Superior Court in accordance with New Jersey Court Rules within…"
+ },
+ "NJ-NEWARK-RENT-19:2-18.3": {
+  "doc_id": "S019",
+  "offset": 18374,
+  "before": "… normal maintenance, those costs shall be disallowed in computing the cost of rehabilitation. \nThe determination of the Board shall also take into account an inspection conducted by a representative from the Department of Engineering after the date of the application. \n\n§ 19:2-18.3. Substantial Rehabilitation. \n",
+  "quote": "Substantially reconstructed or rehabilitated dwellings shall not be restricted in initial rent charged, if the Rent Control Board has made the following determinations: \na. The Board shall determine that the cost of reconstruction or rehabilitation during a twelve-month period exceeds 50% of the fair market value of the property.",
+  "after": " The fair market value shall be established by an appraisal issued by a member of an appraisal institute such as the American Institute of Real Estate Appraisers, The Society of Real Estate Appraisers, The American Society of Appraisers, or the Independent Order of Fee Appraisers. The appraisal is to be completed…"
+ },
+ "NJ-NEWARK-RENT-19:2-22": {
+  "doc_id": "S018",
+  "offset": 85309,
+  "before": "… This chapter shall continue in full force and effect from October 19, 1988. \n      \n      19:2-22.\tLIMITATION ON INCREASES.\n      \n      \ta.\tSince an immediate rent increase of more than twenty-five (25%) percent above the prior monthly rent may be considered unconscionable and imposes a hardship on a tenant, ",
+  "quote": "the Rent Control Board shall not grant increases exceeding twenty-five (25%) percent in any one (1) year for any tenant.",
+  "after": "\n      \n      \tb.\tFor the purpose of determining whether the rent increase exceeds twenty-five (25%) percent of the monthly rent, all increases pursuant to Section 19:2-3, Rent Increases, 19:2-7, Major New Improvements and 19:2-8, Landlord Hardships, occurring within twelve (12) months prior to the effective date of…"
+ },
  "NJ-RENT-2A:18-61.1": {
   "doc_id": "D067",
   "offset": 67087,

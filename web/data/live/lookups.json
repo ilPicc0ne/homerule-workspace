@@ -320,6 +320,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -1256,6 +1289,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -1550,6 +1616,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -2381,6 +2480,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -3265,6 +3397,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -3392,6 +3557,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -5128,6 +5326,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -6768,6 +6999,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -6995,6 +7259,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -8757,6 +9054,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -10424,6 +10754,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -12304,6 +12667,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -13006,6 +13402,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -14223,6 +14652,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -15262,6 +15724,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -15389,6 +15884,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -15686,6 +16214,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -16315,6 +16876,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -17355,6 +17949,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -17587,6 +18214,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -18858,6 +19518,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -22789,6 +23482,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -24419,6 +25145,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -29725,6 +30484,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -31660,6 +32452,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -35550,6 +36375,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -35677,6 +36535,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -36806,6 +37697,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -37330,6 +38254,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -37580,6 +38537,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -39203,6 +40193,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -39521,6 +40544,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -39705,6 +40761,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -40412,6 +41501,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -40539,6 +41661,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -41060,6 +42215,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -42245,6 +43433,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -42866,6 +44087,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -44481,6 +45735,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -45730,6 +47017,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -46857,6 +48177,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -48163,6 +49516,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -49562,6 +50948,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -51498,6 +52917,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -53865,6 +55317,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -53992,6 +55477,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -55252,6 +56770,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {
@@ -57411,6 +58962,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -59212,6 +60796,39 @@
     }
    },
    {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
     "rule_id": "NJ-RENT-2A:18-61.1",
     "category": "rent_increase_limits",
     "result": "applies",
@@ -59973,6 +61590,39 @@
     "what_next": {
      "label": "Read the law at its official source",
      "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+    }
+   },
+   {
+    "rule_id": "NJ-NEWARK-RENT-19:2-22",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.891,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "what_next": {
+     "label": "Read the law at its official source",
+     "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
     }
    },
    {

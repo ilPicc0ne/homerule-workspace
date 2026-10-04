@@ -2634,6 +2634,442 @@
   }
  },
  {
+  "rule_id": "NJ-NEWARK-EVICT-19:2-14",
+  "jurisdiction_id": "NJ-NEWARK",
+  "schema_name": "Newark, NJ",
+  "level": "city",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Prohibit eviction actions in reprisal for exercising chapter rights",
+  "status": "in_force",
+  "effective_date": "2024-10-08",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2024-10-08",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Newark Code § 19:2-14",
+  "source_doc_id": "S018",
+  "source_url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-04T00:30:06.128858+00:00",
+  "quoted_span": "No landlord shall bring any action to recover possession of a dwelling unit as a reprisal for the tenant's efforts to secure or enforce any right under this chapter.",
+  "summary": "A landlord may not bring an action to recover possession of a dwelling unit in reprisal for a tenant's efforts to secure or enforce rights under the chapter.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "A landlord may not bring an action to recover possession of a dwelling unit in reprisal for a tenant's efforts to secure or enforce rights under the chapter.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-NEWARK.",
+    "Dates: in force from 2024-10-08 (New Jersey municipal default: 20 days after final passage 2024-09-18 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-NEWARK-EVICT-19:2-14-2",
+  "jurisdiction_id": "NJ-NEWARK",
+  "schema_name": null,
+  "level": "city",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Newark, N.J., Rev. Gen. Ordinances § 19:2-14",
+  "status": "in_force",
+  "effective_date": "2017-09-25",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2017-09-25",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Newark, N.J., Rev. Gen. Ordinances § 19:2-14",
+  "source_doc_id": "S021",
+  "source_url": "https://newark.legistar.com/ (File 17-1498, matter 1593182)",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
+  "quoted_span": null,
+  "summary": "A landlord may not bring an action to recover possession as reprisal for a tenant's effort to secure or enforce a right under the chapter.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://newark.legistar.com/ (File 17-1498, matter 1593182)"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "A landlord may not bring an action to recover possession as reprisal for a tenant's effort to secure or enforce a right under the chapter.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-NEWARK.",
+    "Dates: in force from 2017-09-25 until 2024-10-08 (New Jersey municipal default: 20 days after final passage 2017-09-05 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-NEWARK-EVICT-19:2-18.4",
+  "jurisdiction_id": "NJ-NEWARK",
+  "schema_name": null,
+  "level": "city",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Newark, N.J., Code § 19:2-18.4(h)",
+  "status": "in_force",
+  "effective_date": "2017-03-27",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2017-03-27",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Newark, N.J., Code § 19:2-18.4(h)",
+  "source_doc_id": "S020",
+  "source_url": "https://newark.legistar.com/ (File 17-0273, matter 1591971)",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
+  "quoted_span": null,
+  "summary": "A landlord must not gain access to an apartment by forcibly evicting a tenant contrary to New Jersey's eviction statute for the purpose of vacating and rehabilitating the apartment.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://newark.legistar.com/ (File 17-0273, matter 1591971)"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "A landlord must not gain access to an apartment by forcibly evicting a tenant contrary to New Jersey's eviction statute for the purpose of vacating and rehabilitating the apartment.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-NEWARK.",
+    "Dates: in force from 2017-03-27 until 2017-09-25 (New Jersey municipal default: 20 days after final passage 2017-03-07 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+  "jurisdiction_id": "NJ-NEWARK",
+  "schema_name": "Newark, NJ",
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Qualifying substantially rehabilitated dwellings may have unrestricted initial rent",
+  "status": "in_force",
+  "effective_date": "2026-06-09",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2026-06-09",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Newark Code § 19:2-18.3",
+  "source_doc_id": "S019",
+  "source_url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-04T00:30:06.128858+00:00",
+  "quoted_span": "Substantially reconstructed or rehabilitated dwellings shall not be restricted in initial rent charged, if the Rent Control Board has made the following determinations: \na. The Board shall determine that the cost of reconstruction or rehabilitation during a twelve-month period exceeds 50% of the fair market value of the property.",
+  "summary": "Substantially reconstructed or rehabilitated dwellings are not restricted in the initial rent charged if the Rent Control Board makes the required determinations, including that rehabilitation costs during a twelve-month period exceed 50% of fair market value.",
+  "key_value": "not restricted in initial rent charged",
+  "coverage_in_words": "The unrestricted initial rent applies only if the Rent Control Board makes the determinations required by § 19:2-18.3.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "Substantially reconstructed or rehabilitated dwellings are not restricted in the initial rent charged if the Rent Control Board makes the required determinations, including that rehabilitation costs during a twelve-month period exceed 50% of fair market value.",
+    "key_value": "not restricted in initial rent charged",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-NEWARK.",
+    "Dates: in force from 2026-06-09 (New Jersey municipal default: 20 days after final passage 2026-05-20 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-NEWARK-RENT-19:2-18.4",
+  "jurisdiction_id": "NJ-NEWARK",
+  "schema_name": null,
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Newark, N.J., Code § 19:2-18.4(a)",
+  "status": "in_force",
+  "effective_date": "2017-03-27",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2017-03-27",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Newark, N.J., Code § 19:2-18.4(a)",
+  "source_doc_id": "S020",
+  "source_url": "https://newark.legistar.com/ (File 17-0273, matter 1591971)",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
+  "quoted_span": null,
+  "summary": "For a vacant apartment unit that is rehabilitated, the permitted maximum increase depends on the rehabilitation expenditure: at least eight months of actual monthly rent per unit permits up to 20%; at least six months permits up to 15%; at least four months permits up to 10%. Spending at least $5,000 multiplied by the number of rooms permits an increase of up to 20% of the prior actual rent.",
+  "key_value": "Up to 20%",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://newark.legistar.com/ (File 17-0273, matter 1591971)"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "For a vacant apartment unit that is rehabilitated, the permitted maximum increase depends on the rehabilitation expenditure: at least eight months of actual monthly rent per unit permits up to 20%; at least six months permits up to 15%; at least four months permits up to 10%. Spending at least $5,000 multiplied by the number of rooms permits an increase of up to 20% of the prior actual rent.",
+    "key_value": "Up to 20%",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-NEWARK.",
+    "Dates: in force from 2017-03-27 until 2017-09-25 (New Jersey municipal default: 20 days after final passage 2017-03-07 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-NEWARK-RENT-19:2-2",
+  "jurisdiction_id": "NJ-NEWARK",
+  "schema_name": null,
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Newark Code § 19:2-2",
+  "status": "in_force",
+  "effective_date": "2023-08-22",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2023-08-22",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Newark Code § 19:2-2",
+  "source_doc_id": "S023",
+  "source_url": "https://newark.legistar.com/ (File 23-1048, matter 1606502)",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
+  "quoted_span": null,
+  "summary": "For the specified rehabilitated units receiving Section 8 subsidies or federal housing vouchers, rent may be raised but must not exceed HUD-established fair market rents while the unit remains in the specified program.",
+  "key_value": "Fair market rents as established by the United States Department of Housing and Urban Development",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [
+   "subsidised",
+   "units",
+   "use_class"
+  ],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://newark.legistar.com/ (File 23-1048, matter 1606502)"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "For the specified rehabilitated units receiving Section 8 subsidies or federal housing vouchers, rent may be raised but must not exceed HUD-established fair market rents while the unit remains in the specified program.",
+    "key_value": "Fair market rents as established by the United States Department of Housing and Urban Development",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-NEWARK.",
+    "Dates: in force from 2023-08-22 until 2024-10-08 (New Jersey municipal default: 20 days after final passage 2023-08-02 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
+    "Coverage: tested against whether the building is subsidised, what the building is used for, the number of units; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-NEWARK-RENT-19:2-22",
+  "jurisdiction_id": "NJ-NEWARK",
+  "schema_name": "Newark, NJ",
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Rent increases may not exceed 25% in one year",
+  "status": "in_force",
+  "effective_date": "2024-10-08",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2024-10-08",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Newark Code § 19:2-22(a)",
+  "source_doc_id": "S018",
+  "source_url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-04T00:30:06.128858+00:00",
+  "quoted_span": "the Rent Control Board shall not grant increases exceeding twenty-five (25%) percent in any one (1) year for any tenant.",
+  "summary": "The Rent Control Board must not grant an increase exceeding 25% in any one year for any tenant.",
+  "key_value": "25% in any one year",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "The Rent Control Board must not grant an increase exceeding 25% in any one year for any tenant.",
+    "key_value": "25% in any one year",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-NEWARK.",
+    "Dates: in force from 2024-10-08 (New Jersey municipal default: 20 days after final passage 2024-09-18 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-NEWARK-RENT-19:2-22-2",
+  "jurisdiction_id": "NJ-NEWARK",
+  "schema_name": null,
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Newark, N.J., Rev. Gen. Ordinances § 19:2-22(a)",
+  "status": "in_force",
+  "effective_date": "2017-09-25",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2017-09-25",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Newark, N.J., Rev. Gen. Ordinances § 19:2-22(a)",
+  "source_doc_id": "S021",
+  "source_url": "https://newark.legistar.com/ (File 17-1498, matter 1593182)",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
+  "quoted_span": null,
+  "summary": "The Board may not grant rent increases exceeding 25% in any one year for any tenant.",
+  "key_value": "25% in any one year",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://newark.legistar.com/ (File 17-1498, matter 1593182)"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "The Board may not grant rent increases exceeding 25% in any one year for any tenant.",
+    "key_value": "25% in any one year",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-NEWARK.",
+    "Dates: in force from 2017-09-25 until 2024-10-08 (New Jersey municipal default: 20 days after final passage 2017-09-05 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
   "rule_id": "NJ-RENT-2A:18-61.1",
   "jurisdiction_id": "NJ",
   "schema_name": "NJ",

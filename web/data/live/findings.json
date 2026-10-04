@@ -206,19 +206,6 @@
  "NJ-HOBOKEN": [
   {
    "category": "algorithmic_rent_setting",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D032",
-    "D033",
-    "D034"
-   ],
-   "url": null
-  },
-  {
-   "category": "algorithmic_rent_setting",
    "citation": "guide: known open questions in the law",
    "kind": "open_question",
    "note": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once it takes effect.",
@@ -226,71 +213,6 @@
    "source_doc_ids": [
     "D069",
     "S008"
-   ],
-   "url": null
-  },
-  {
-   "category": "application_screening_fees",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D032",
-    "D033",
-    "D034"
-   ],
-   "url": null
-  },
-  {
-   "category": "just_cause_eviction",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D032",
-    "D033",
-    "D034"
-   ],
-   "url": null
-  },
-  {
-   "category": "rent_increase_limits",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D032",
-    "D033",
-    "D034"
-   ],
-   "url": null
-  },
-  {
-   "category": "screening_restrictions",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D032",
-    "D033",
-    "D034"
-   ],
-   "url": null
-  },
-  {
-   "category": "security_deposits",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D032",
-    "D033",
-    "D034"
    ],
    "url": null
   }
@@ -317,86 +239,6 @@
     "D069",
     "S001",
     "S017"
-   ],
-   "url": null
-  }
- ],
- "NJ-NEWARK": [
-  {
-   "category": "algorithmic_rent_setting",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D070",
-    "D071",
-    "D072"
-   ],
-   "url": null
-  },
-  {
-   "category": "application_screening_fees",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D070",
-    "D071",
-    "D072"
-   ],
-   "url": null
-  },
-  {
-   "category": "just_cause_eviction",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D070",
-    "D071",
-    "D072"
-   ],
-   "url": null
-  },
-  {
-   "category": "rent_increase_limits",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D070",
-    "D071",
-    "D072"
-   ],
-   "url": null
-  },
-  {
-   "category": "screening_restrictions",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D070",
-    "D071",
-    "D072"
-   ],
-   "url": null
-  },
-  {
-   "category": "security_deposits",
-   "citation": null,
-   "kind": "not_in_corpus",
-   "note": "Only manifest links (no supplied text) for this jurisdiction.",
-   "quote": null,
-   "source_doc_ids": [
-    "D070",
-    "D071",
-    "D072"
    ],
    "url": null
   }
