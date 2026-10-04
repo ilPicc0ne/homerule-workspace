@@ -1,0 +1,40 @@
+{
+  "response": [
+    {
+      "APPROVAL_CLOSE_DATE": "",
+      "APPROVAL_DU_NET_CHANGE": "",
+      "APPROVAL_ID": "PMT-3319546",
+      "APPROVAL_ISSUE_DATE": "2025-05-07",
+      "APPROVAL_STATUS": "Inspection Followup",
+      "APPROVAL_TYPE": "Electrical Pmt",
+      "GIS_ADDRESS": "3860 Cherokee Av, San Diego, CA 92104",
+      "GIS_APN": "4474712600",
+      "JOB_BC_CODE_DESCRIPTION": "",
+      "JOB_ID": "JOB-080704",
+      "PROJECT_ID": "PRJ-1125417",
+      "PROJECT_STATUS": "Inspecting",
+      "PROJECT_TYPE": "Plan - Mechanical/Electrical/Plumbing Standalone"
+    },
+    {
+      "APPROVAL_CLOSE_DATE": "2025-05-07",
+      "APPROVAL_DU_NET_CHANGE": "",
+      "APPROVAL_ID": "PMT-3351255",
+      "APPROVAL_ISSUE_DATE": "2025-05-01",
+      "APPROVAL_STATUS": "Closed",
+      "APPROVAL_TYPE": "No-Plan - Nonresidential/Multifamily - Plumbing",
+      "GIS_ADDRESS": "4091 Morrell St, San Diego, CA 92109",
+      "GIS_APN": "4244330100",
+      "JOB_BC_CODE_DESCRIPTION": "",
+      "JOB_ID": "",
+      "PROJECT_ID": "",
+      "PROJECT_STATUS": "",
+      "PROJECT_TYPE": ""
+    }
+  ],
+  "retention": "selected sample rows and explicit fields only",
+  "retrieved_at": "2026-10-04T03:08:12.183719+00:00",
+  "rows_scanned": 54563,
+  "sha256": "8ca26da1ba5b63d9273f7f551cdae1201581f74f664def7526a48ed3e623d26e",
+  "source_url": "https://seshat.datasd.org/development_permits/approvals_issued_2025_datasd.csv",
+  "transport_sha256": "94699b58caf166f21d029566b54ef9dde30010d22ff21c01e0b341c05690bd94"
+}

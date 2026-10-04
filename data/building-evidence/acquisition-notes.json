@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-04",
+  "not_legal_advice": true,
+  "as_of": null,
+  "attempts": [
+    {
+      "source": "LA parcel API",
+      "outcome": "acquired",
+      "note": "Quoted the documented text house-number field after a type error. Long address filter exceeded GET URL limit (404); used documented form POST query operation."
+    },
+    {
+      "source": "LIHTC API",
+      "outcome": "acquired",
+      "note": "Oversized 500-address prefix query rejected; split into seven bounded batches of at most 80 sample addresses; response rows deduplicated by OBJECTID."
+    },
+    {
+      "source": "San Diego County parcels",
+      "outcome": "acquired",
+      "note": "House-number-only response was truncated and rejected. Query narrowed to house-number/street pairs."
+    },
+    {
+      "source": "Berkeley BESO",
+      "publisher_url": "https://berkeleyca.gov/construction-development/green-building/building-emissions-saving-ordinance-beso/annual-energy",
+      "url": "https://data.cityofberkeley.info/api/views/5vy5-rwja.json",
+      "outcome": "unavailable",
+      "note": "Officially linked public endpoint: Python TLS EOF, system curl empty response. No data obtained, no alternate proxy or disabled TLS used."
+    }
+  ]
+}

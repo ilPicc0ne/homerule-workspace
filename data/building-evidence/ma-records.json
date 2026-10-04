@@ -1,0 +1,2413 @@
+{
+  "response": {
+    "features": [
+      {
+        "attributes": {
+          "ADDR_NUM": "84",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "HAMPSHIRE ST",
+          "FY": 2026,
+          "LOC_ID": "F_765796_2959431",
+          "OBJECTID": 279913,
+          "PROP_ID": "77-76",
+          "SITE_ADDR": "84 HAMPSHIRE ST",
+          "TOWN_ID": 49,
+          "UNITS": 19,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "67",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "PLYMOUTH ST",
+          "FY": 2026,
+          "LOC_ID": "F_765988_2959828",
+          "OBJECTID": 280033,
+          "PROP_ID": "78-47",
+          "SITE_ADDR": "67 PLYMOUTH ST",
+          "TOWN_ID": 49,
+          "UNITS": 5,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1837
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "91",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "BROOKLINE ST",
+          "FY": 2026,
+          "LOC_ID": "F_763254_2957050",
+          "OBJECTID": 280409,
+          "PROP_ID": "94-91",
+          "SITE_ADDR": "91 BROOKLINE ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1902
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "15",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "BERKSHIRE ST",
+          "FY": 2026,
+          "LOC_ID": "F_766379_2959576",
+          "OBJECTID": 281260,
+          "PROP_ID": "40-148",
+          "SITE_ADDR": "15 BERKSHIRE ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1915
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "43",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "FAYETTE ST",
+          "FY": 2026,
+          "LOC_ID": "F_763377_2961132",
+          "OBJECTID": 294614,
+          "PROP_ID": "113-47",
+          "SITE_ADDR": "43 FAYETTE ST",
+          "TOWN_ID": 49,
+          "UNITS": 7,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "296-302",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "WESTERN AVE",
+          "FY": 2026,
+          "LOC_ID": "F_760823_2958046",
+          "OBJECTID": 298414,
+          "PROP_ID": "126-38",
+          "SITE_ADDR": "296-302 WESTERN AVE",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "85",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "HANCOCK ST",
+          "FY": 2026,
+          "LOC_ID": "F_761944_2959698",
+          "OBJECTID": 298458,
+          "PROP_ID": "116-92",
+          "SITE_ADDR": "85 HANCOCK ST",
+          "TOWN_ID": 49,
+          "UNITS": 18,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1996
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "35-37",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "INMAN ST",
+          "FY": 2026,
+          "LOC_ID": "F_763114_2959559",
+          "OBJECTID": 298573,
+          "PROP_ID": "118-55",
+          "SITE_ADDR": "35-37 INMAN ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "322-322.5",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "WESTERN AVE",
+          "FY": 2026,
+          "LOC_ID": "F_760660_2958018",
+          "OBJECTID": 298654,
+          "PROP_ID": "126-3",
+          "SITE_ADDR": "322-322.5 WESTERN AVE",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1915
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "60",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "KIRKLAND ST",
+          "FY": 2026,
+          "LOC_ID": "F_761345_2962702",
+          "OBJECTID": 307799,
+          "PROP_ID": "142-28",
+          "SITE_ADDR": "60 KIRKLAND ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1891
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "15",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "EVERETT ST",
+          "FY": 2026,
+          "LOC_ID": "F_759254_2963801",
+          "OBJECTID": 320487,
+          "PROP_ID": "157-51",
+          "SITE_ADDR": "15 EVERETT ST",
+          "TOWN_ID": 49,
+          "UNITS": 83,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1930
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "15",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "RICHDALE AVE",
+          "FY": 2026,
+          "LOC_ID": "F_758261_2966863",
+          "OBJECTID": 330696,
+          "PROP_ID": "178-122",
+          "SITE_ADDR": "15 RICHDALE AVE",
+          "TOWN_ID": 49,
+          "UNITS": 46,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "10",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "DOVER ST",
+          "FY": 2026,
+          "LOC_ID": "F_757059_2969030",
+          "OBJECTID": 332397,
+          "PROP_ID": "182-63",
+          "SITE_ADDR": "10 DOVER ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1922
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "15",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "CHESTER ST",
+          "FY": 2026,
+          "LOC_ID": "F_757520_2968769",
+          "OBJECTID": 332538,
+          "PROP_ID": "182-86",
+          "SITE_ADDR": "15 CHESTER ST",
+          "TOWN_ID": 49,
+          "UNITS": 29,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1965
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "49",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "ROSELAND ST",
+          "FY": 2026,
+          "LOC_ID": "F_759578_2966247",
+          "OBJECTID": 335733,
+          "PROP_ID": "152-18",
+          "SITE_ADDR": "49 ROSELAND ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "21",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "FOREST ST",
+          "FY": 2026,
+          "LOC_ID": "F_759806_2965717",
+          "OBJECTID": 335923,
+          "PROP_ID": "153-28",
+          "SITE_ADDR": "21 FOREST ST",
+          "TOWN_ID": 49,
+          "UNITS": 10,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1880
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "134",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "OXFORD ST",
+          "FY": 2026,
+          "LOC_ID": "F_759906_2965764",
+          "OBJECTID": 336116,
+          "PROP_ID": "151-70",
+          "SITE_ADDR": "134 OXFORD ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1915
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "4",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "ORCHARD ST",
+          "FY": 2026,
+          "LOC_ID": "F_759043_2967398",
+          "OBJECTID": 336393,
+          "PROP_ID": "179-38",
+          "SITE_ADDR": "4 ORCHARD ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "42",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "BAY STATE RD",
+          "FY": 2026,
+          "LOC_ID": "F_753551_2966314",
+          "OBJECTID": 511668,
+          "PROP_ID": "261-200",
+          "SITE_ADDR": "42 BAY STATE RD",
+          "TOWN_ID": 49,
+          "UNITS": 5,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 2012
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "230",
+          "CITY": "BOSTON",
+          "FULL_STR": "Everett ST",
+          "FY": 2023,
+          "LOC_ID": "F_783130_2958668",
+          "OBJECTID": 630684,
+          "PROP_ID": "0105144000",
+          "SITE_ADDR": "230 Everett ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "101",
+          "USE_DESC": "Single Family Residential",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "90",
+          "CITY": "BOSTON",
+          "FULL_STR": "BICKFORD ST",
+          "FY": 2023,
+          "LOC_ID": "F_763871_2943256",
+          "OBJECTID": 639303,
+          "PROP_ID": "1002334010",
+          "SITE_ADDR": "90 BICKFORD ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "118",
+          "USE_DESC": "ELDERLY HOME",
+          "YEAR_BUILT": 2004
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "151",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "NORTH FIRST ST",
+          "FY": 2026,
+          "LOC_ID": "F_770479_2961194",
+          "OBJECTID": 644987,
+          "PROP_ID": "1A-212",
+          "SITE_ADDR": "151 NORTH FIRST ST",
+          "TOWN_ID": 49,
+          "UNITS": null,
+          "USE_CODE": "0106",
+          "USE_DESC": "MXD RES-LAND-IMP",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "12",
+          "CITY": "BOSTON",
+          "FULL_STR": "BLACKWOOD ST",
+          "FY": 2023,
+          "LOC_ID": "F_769193_2950251",
+          "OBJECTID": 706915,
+          "PROP_ID": "0402381000",
+          "SITE_ADDR": "12 BLACKWOOD ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_774709_2952679",
+          "OBJECTID": 709384,
+          "PROP_ID": "0305105000",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "977",
+          "USE_DESC": "COLLEGE (ACADEMIC)",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_774709_2952679",
+          "OBJECTID": 709385,
+          "PROP_ID": "0305105001",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "985",
+          "USE_DESC": "Improved Municipal or Public Safety, Other City or Town",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_774808_2952717",
+          "OBJECTID": 709415,
+          "PROP_ID": "0305229001",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "387",
+          "USE_DESC": "Summer Camps - children's camps (not Ch. 61B)",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "197",
+          "CITY": "BOSTON",
+          "FULL_STR": "BEACON ST",
+          "FY": 2023,
+          "LOC_ID": "F_770626_2954338",
+          "OBJECTID": 711539,
+          "PROP_ID": "0502728000",
+          "SITE_ADDR": "197 BEACON ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "499",
+          "CITY": "BOSTON",
+          "FULL_STR": "BEACON ST",
+          "FY": 2023,
+          "LOC_ID": "F_767040_2953026",
+          "OBJECTID": 713121,
+          "PROP_ID": "0503887000",
+          "SITE_ADDR": "499 BEACON ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "25",
+          "CITY": "BOSTON",
+          "FULL_STR": "ORLANDO ST",
+          "FY": 2023,
+          "LOC_ID": "F_764826_2925648",
+          "OBJECTID": 713678,
+          "PROP_ID": "1802200000",
+          "SITE_ADDR": "25 ORLANDO ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 1965
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_762224_2925509",
+          "OBJECTID": 713863,
+          "PROP_ID": "1803370850",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "390",
+          "USE_DESC": "Developable Commercial Land",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "26",
+          "CITY": "BOSTON",
+          "FULL_STR": "SONOMA ST",
+          "FY": 2023,
+          "LOC_ID": "F_767696_2937697",
+          "OBJECTID": 717048,
+          "PROP_ID": "1202359000",
+          "SITE_ADDR": "26 SONOMA ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "72",
+          "CITY": "BOSTON",
+          "FULL_STR": "Burbank  ST",
+          "FY": 2023,
+          "LOC_ID": "F_767215_2950773",
+          "OBJECTID": 717714,
+          "PROP_ID": "0401475000",
+          "SITE_ADDR": "72 Burbank ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 2022
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "HARVARD ST",
+          "FY": 2023,
+          "LOC_ID": "F_770102_2932918",
+          "OBJECTID": 718587,
+          "PROP_ID": "1402330100",
+          "SITE_ADDR": "HARVARD ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "985",
+          "USE_DESC": "Improved Municipal or Public Safety, Other City or Town",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_765032_2928775",
+          "OBJECTID": 723367,
+          "PROP_ID": "1404798000",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "106",
+          "USE_DESC": "Accessory Land with Improvement",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "170",
+          "CITY": "BOSTON",
+          "FULL_STR": "W Springfield ST",
+          "FY": 2023,
+          "LOC_ID": "F_769866_2948946",
+          "OBJECTID": 727671,
+          "PROP_ID": "0900794000",
+          "SITE_ADDR": "170 W Springfield ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "368",
+          "CITY": "BOSTON",
+          "FULL_STR": "RIVERWAY ST",
+          "FY": 2023,
+          "LOC_ID": "F_761204_2946645",
+          "OBJECTID": 728487,
+          "PROP_ID": "1000314000",
+          "SITE_ADDR": "368 RIVERWAY ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "WILLOWWOOD ST",
+          "FY": 2023,
+          "LOC_ID": "F_768168_2929300",
+          "OBJECTID": 731222,
+          "PROP_ID": "1403568000",
+          "SITE_ADDR": "WILLOWWOOD ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "902",
+          "USE_DESC": "(formerly Counties.  Removed June 2009.)",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "10",
+          "CITY": "BOSTON",
+          "FULL_STR": "CAMELOT CT",
+          "FY": 2023,
+          "LOC_ID": "F_753252_2952977",
+          "OBJECTID": 733833,
+          "PROP_ID": "2101267000",
+          "SITE_ADDR": "10 CAMELOT CT",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1965
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "88",
+          "CITY": "BOSTON",
+          "FULL_STR": "Gardner ST",
+          "FY": 2023,
+          "LOC_ID": "F_757294_2954151",
+          "OBJECTID": 742628,
+          "PROP_ID": "2100538000",
+          "SITE_ADDR": "88 Gardner ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1965
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "30",
+          "CITY": "BOSTON",
+          "FULL_STR": "MEDFIELD ST",
+          "FY": 2023,
+          "LOC_ID": "F_762711_2951035",
+          "OBJECTID": 742906,
+          "PROP_ID": "2100117000",
+          "SITE_ADDR": "30 MEDFIELD ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "15",
+          "CITY": "BOSTON",
+          "FULL_STR": "CHESTER ST",
+          "FY": 2023,
+          "LOC_ID": "F_756583_2953241",
+          "OBJECTID": 743272,
+          "PROP_ID": "2100783000",
+          "SITE_ADDR": "15 CHESTER ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "13",
+          "CITY": "BOSTON",
+          "FULL_STR": "Shepard ST",
+          "FY": 2023,
+          "LOC_ID": "F_750655_2951896",
+          "OBJECTID": 750886,
+          "PROP_ID": "2205452000",
+          "SITE_ADDR": "13 Shepard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "101",
+          "USE_DESC": "Single Family Residential",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_764564_2929333",
+          "OBJECTID": 753780,
+          "PROP_ID": "1405198410",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "986",
+          "USE_DESC": "OTHER PUBLIC LAND",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "115",
+          "CITY": "BOSTON",
+          "FULL_STR": "KILSYTH RD",
+          "FY": 2023,
+          "LOC_ID": "F_751688_2949300",
+          "OBJECTID": 808887,
+          "PROP_ID": "2102080000",
+          "SITE_ADDR": "115 KILSYTH RD",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "33",
+          "CITY": "BOSTON",
+          "FULL_STR": "WARD ST",
+          "FY": 2023,
+          "LOC_ID": "F_776561_2945384",
+          "OBJECTID": 827900,
+          "PROP_ID": "0700676000",
+          "SITE_ADDR": "33 WARD ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 2019
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "178",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "RICHDALE AVE",
+          "FY": 2026,
+          "LOC_ID": "F_756756_2967051",
+          "OBJECTID": 838283,
+          "PROP_ID": "202-17",
+          "SITE_ADDR": "178 RICHDALE AVE",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "19",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "TROWBRIDGE ST",
+          "FY": 2026,
+          "LOC_ID": "F_760848_2960471",
+          "OBJECTID": 844458,
+          "PROP_ID": "134-14",
+          "SITE_ADDR": "19 TROWBRIDGE ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_774845_2952695",
+          "OBJECTID": 879147,
+          "PROP_ID": "0305249000",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "387",
+          "USE_DESC": "Summer Camps - children's camps (not Ch. 61B)",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "4-6",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "CLINTON ST",
+          "FY": 2026,
+          "LOC_ID": "F_762569_2959327",
+          "OBJECTID": 910384,
+          "PROP_ID": "118-3",
+          "SITE_ADDR": "4-6 CLINTON ST",
+          "TOWN_ID": 49,
+          "UNITS": 8,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_771430_2934324",
+          "OBJECTID": 914254,
+          "PROP_ID": "1700031000",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "985",
+          "USE_DESC": "Improved Municipal or Public Safety, Other City or Town",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "361",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "WASHINGTON ST",
+          "FY": 2026,
+          "LOC_ID": "F_764481_2958544",
+          "OBJECTID": 915213,
+          "PROP_ID": "89-82",
+          "SITE_ADDR": "361 WASHINGTON ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "8-12",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "SODEN ST",
+          "FY": 2026,
+          "LOC_ID": "F_761937_2958458",
+          "OBJECTID": 915219,
+          "PROP_ID": "124-91",
+          "SITE_ADDR": "8-12 SODEN ST",
+          "TOWN_ID": 49,
+          "UNITS": 44,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1975
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "358",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "HARVARD ST",
+          "FY": 2026,
+          "LOC_ID": "F_761256_2960485",
+          "OBJECTID": 944053,
+          "PROP_ID": "134-48",
+          "SITE_ADDR": "358 HARVARD ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "124",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "BERKSHIRE ST",
+          "FY": 2026,
+          "LOC_ID": "F_766989_2960727",
+          "OBJECTID": 1000311,
+          "PROP_ID": "37-56",
+          "SITE_ADDR": "124 BERKSHIRE ST",
+          "TOWN_ID": 49,
+          "UNITS": 8,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "345",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "COLUMBIA ST",
+          "FY": 2026,
+          "LOC_ID": "F_765485_2960705",
+          "OBJECTID": 1000350,
+          "PROP_ID": "80-13",
+          "SITE_ADDR": "345 COLUMBIA ST",
+          "TOWN_ID": 49,
+          "UNITS": 9,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "335A",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "HARVARD ST",
+          "FY": 2026,
+          "LOC_ID": "F_761875_2960418",
+          "OBJECTID": 1014661,
+          "PROP_ID": "115-72",
+          "SITE_ADDR": "335A HARVARD ST",
+          "TOWN_ID": 49,
+          "UNITS": 17,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "101",
+          "CITY": "BOSTON",
+          "FULL_STR": "Norfolk ST",
+          "FY": 2023,
+          "LOC_ID": "F_770848_2930471",
+          "OBJECTID": 1033349,
+          "PROP_ID": "1701438000",
+          "SITE_ADDR": "101 Norfolk ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "38",
+          "CITY": "BOSTON",
+          "FULL_STR": "KENILWORTH ST",
+          "FY": 2023,
+          "LOC_ID": "F_767496_2945135",
+          "OBJECTID": 1057270,
+          "PROP_ID": "0903209000",
+          "SITE_ADDR": "38 KENILWORTH ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 1890
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "23",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "ELM ST",
+          "FY": 2026,
+          "LOC_ID": "F_764618_2959341",
+          "OBJECTID": 1085470,
+          "PROP_ID": "88-51",
+          "SITE_ADDR": "23 ELM ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "227",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "CHARLES ST",
+          "FY": 2026,
+          "LOC_ID": "F_768317_2959569",
+          "OBJECTID": 1085511,
+          "PROP_ID": "26-170",
+          "SITE_ADDR": "227 CHARLES ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "GREENVILLE ST",
+          "FY": 2023,
+          "LOC_ID": "F_769581_2944900",
+          "OBJECTID": 1090844,
+          "PROP_ID": "0802553000",
+          "SITE_ADDR": "GREENVILLE ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "132",
+          "USE_DESC": "Undevelopable Residential Land",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "75",
+          "CITY": "BOSTON",
+          "FULL_STR": "ELM HILL AV",
+          "FY": 2023,
+          "LOC_ID": "F_767815_2938374",
+          "OBJECTID": 1109769,
+          "PROP_ID": "1202256000",
+          "SITE_ADDR": "75 ELM HILL AV",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "340",
+          "USE_DESC": "General Office Buildings",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "15",
+          "CITY": "BOSTON",
+          "FULL_STR": "Everett ST",
+          "FY": 2023,
+          "LOC_ID": "F_761856_2938068",
+          "OBJECTID": 1124345,
+          "PROP_ID": "1901154000",
+          "SITE_ADDR": "15 Everett ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "104",
+          "USE_DESC": "Two-Family Residential",
+          "YEAR_BUILT": 1890
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "25",
+          "CITY": "BOSTON",
+          "FULL_STR": "Everett ST",
+          "FY": 2023,
+          "LOC_ID": "F_781379_2959537",
+          "OBJECTID": 1127277,
+          "PROP_ID": "0104940000",
+          "SITE_ADDR": "25 Everett ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "101",
+          "USE_DESC": "Single Family Residential",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "73",
+          "CITY": "BOSTON",
+          "FULL_STR": "LUBEC ST",
+          "FY": 2023,
+          "LOC_ID": "F_782361_2960391",
+          "OBJECTID": 1162246,
+          "PROP_ID": "0104032000",
+          "SITE_ADDR": "73 LUBEC ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "151",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "NORTH FIRST ST",
+          "FY": 2026,
+          "LOC_ID": "F_770784_2961128",
+          "OBJECTID": 1222658,
+          "PROP_ID": "1A-210",
+          "SITE_ADDR": "151 NORTH FIRST ST",
+          "TOWN_ID": 49,
+          "UNITS": 468,
+          "USE_CODE": "0112",
+          "USE_DESC": "MXD >8-UNIT-APT",
+          "YEAR_BUILT": 2020
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_765271_2929741",
+          "OBJECTID": 1235738,
+          "PROP_ID": "1405198510",
+          "SITE_ADDR": "Harvard ST LOT 2A-13",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 2019
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_766213_2930358",
+          "OBJECTID": 1240422,
+          "PROP_ID": "1405196150",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "986",
+          "USE_DESC": "OTHER PUBLIC LAND",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "5",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "EVERETT ST",
+          "FY": 2026,
+          "LOC_ID": "F_759023_2963784",
+          "OBJECTID": 1284026,
+          "PROP_ID": "157-52",
+          "SITE_ADDR": "5 EVERETT ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1890
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "11",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "CARLISLE ST",
+          "FY": 2026,
+          "LOC_ID": "F_764804_2961034",
+          "OBJECTID": 1287065,
+          "PROP_ID": "84-75",
+          "SITE_ADDR": "11 CARLISLE ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_767212_2932485",
+          "OBJECTID": 1329864,
+          "PROP_ID": "1404266005",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "985",
+          "USE_DESC": "Improved Municipal or Public Safety, Other City or Town",
+          "YEAR_BUILT": 2003
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "5",
+          "CITY": "BOSTON",
+          "FULL_STR": "EVERETT ST",
+          "FY": 2023,
+          "LOC_ID": "F_776982_2935263",
+          "OBJECTID": 1368291,
+          "PROP_ID": "1600083000",
+          "SITE_ADDR": "5 EVERETT ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "101",
+          "USE_DESC": "Single Family Residential",
+          "YEAR_BUILT": 1940
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "1619",
+          "CITY": "BOSTON",
+          "FULL_STR": "COMMONWEALTH AV",
+          "FY": 2023,
+          "LOC_ID": "F_752457_2950411",
+          "OBJECTID": 1404002,
+          "PROP_ID": "2101918000",
+          "SITE_ADDR": "1619 COMMONWEALTH AV",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_774392_2960900",
+          "OBJECTID": 1416208,
+          "PROP_ID": "0203712000",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "965",
+          "USE_DESC": "GOVT OFFICE BLDG",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "GREENVILLE ST",
+          "FY": 2023,
+          "LOC_ID": "F_769688_2944734",
+          "OBJECTID": 1424145,
+          "PROP_ID": "0802607030",
+          "SITE_ADDR": "GREENVILLE ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "132",
+          "USE_DESC": "Undevelopable Residential Land",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "11",
+          "CITY": "BOSTON",
+          "FULL_STR": "Cortes ST",
+          "FY": 2023,
+          "LOC_ID": "F_772376_2952283",
+          "OBJECTID": 1431283,
+          "PROP_ID": "0501101000",
+          "SITE_ADDR": "11 Cortes ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "141",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "OXFORD ST",
+          "FY": 2026,
+          "LOC_ID": "F_759749_2965955",
+          "OBJECTID": 1441140,
+          "PROP_ID": "153-78",
+          "SITE_ADDR": "141 OXFORD ST",
+          "TOWN_ID": 49,
+          "UNITS": 8,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1915
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "14.5-16",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "VANDINE ST",
+          "FY": 2026,
+          "LOC_ID": "F_766650_2959731",
+          "OBJECTID": 1454312,
+          "PROP_ID": "40-105",
+          "SITE_ADDR": "14.5-16 VANDINE ST",
+          "TOWN_ID": 49,
+          "UNITS": 5,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "25",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "GORE ST",
+          "FY": 2026,
+          "LOC_ID": "F_769971_2960785",
+          "OBJECTID": 1456253,
+          "PROP_ID": "20-12",
+          "SITE_ADDR": "25 GORE ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1886
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "32",
+          "CITY": "BOSTON",
+          "FULL_STR": "Garrison ST",
+          "FY": 2023,
+          "LOC_ID": "F_769934_2951168",
+          "OBJECTID": 1546772,
+          "PROP_ID": "0400972000",
+          "SITE_ADDR": "32 Garrison ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "120",
+          "USE_DESC": "LUXURY APARTMENT",
+          "YEAR_BUILT": 1990
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_765075_2928836",
+          "OBJECTID": 1551418,
+          "PROP_ID": "1404800000",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "132",
+          "USE_DESC": "Undevelopable Residential Land",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "ST JAMES ST",
+          "FY": 2023,
+          "LOC_ID": "F_768448_2944132",
+          "OBJECTID": 1569194,
+          "PROP_ID": "1201360000",
+          "SITE_ADDR": "ST JAMES ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "970",
+          "USE_DESC": "Housing Authority",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "5",
+          "CITY": "BOSTON",
+          "FULL_STR": "EVERETT ST",
+          "FY": 2023,
+          "LOC_ID": "F_758692_2919158",
+          "OBJECTID": 1585583,
+          "PROP_ID": "1808969000",
+          "SITE_ADDR": "5 EVERETT ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "104",
+          "USE_DESC": "Two-Family Residential",
+          "YEAR_BUILT": 1915
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "123",
+          "CITY": "BOSTON",
+          "FULL_STR": "Condor ST",
+          "FY": 2023,
+          "LOC_ID": "F_781635_2964719",
+          "OBJECTID": 1586152,
+          "PROP_ID": "0103362000",
+          "SITE_ADDR": "123 Condor ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "104",
+          "USE_DESC": "Two-Family Residential",
+          "YEAR_BUILT": 2013
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "16",
+          "CITY": "BOSTON",
+          "FULL_STR": "Queensberry ST",
+          "FY": 2023,
+          "LOC_ID": "F_765488_2950289",
+          "OBJECTID": 1594863,
+          "PROP_ID": "0504270000",
+          "SITE_ADDR": "16 Queensberry ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "471",
+          "CITY": "BOSTON",
+          "FULL_STR": "COLUMBIA RD",
+          "FY": 2023,
+          "LOC_ID": "F_773153_2939598",
+          "OBJECTID": 1603110,
+          "PROP_ID": "1502618000",
+          "SITE_ADDR": "471 COLUMBIA RD",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 1930
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_774861_2952687",
+          "OBJECTID": 1631790,
+          "PROP_ID": "0305248001",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "387",
+          "USE_DESC": "Summer Camps - children's camps (not Ch. 61B)",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "13",
+          "CITY": "BOSTON",
+          "FULL_STR": "Shetland ST",
+          "FY": 2023,
+          "LOC_ID": "F_773003_2943679",
+          "OBJECTID": 1633670,
+          "PROP_ID": "0800437000",
+          "SITE_ADDR": "13 Shetland ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 2020
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "24",
+          "CITY": "BOSTON",
+          "FULL_STR": "ST ALBANS RD",
+          "FY": 2023,
+          "LOC_ID": "F_762462_2946942",
+          "OBJECTID": 1633833,
+          "PROP_ID": "1000274000",
+          "SITE_ADDR": "24 ST ALBANS RD",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 1923
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "21-23",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "MARION ST",
+          "FY": 2026,
+          "LOC_ID": "F_767238_2961177",
+          "OBJECTID": 1637519,
+          "PROP_ID": "36-113",
+          "SITE_ADDR": "21-23 MARION ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "663",
+          "CITY": "BOSTON",
+          "FULL_STR": "MASSACHUSETTS AV",
+          "FY": 2023,
+          "LOC_ID": "F_770659_2947700",
+          "OBJECTID": 1645032,
+          "PROP_ID": "0801580001",
+          "SITE_ADDR": "663 MASSACHUSETTS AV",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1905
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_762581_2926025",
+          "OBJECTID": 1650336,
+          "PROP_ID": "1803370900",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "390",
+          "USE_DESC": "Developable Commercial Land",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "ST JAMES ST",
+          "FY": 2023,
+          "LOC_ID": "F_767787_2944376",
+          "OBJECTID": 1655195,
+          "PROP_ID": "1201432000",
+          "SITE_ADDR": "ST JAMES ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "390",
+          "USE_DESC": "Developable Commercial Land",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "15",
+          "CITY": "BOSTON",
+          "FULL_STR": "EVERETT ST",
+          "FY": 2023,
+          "LOC_ID": "F_758482_2919266",
+          "OBJECTID": 1658569,
+          "PROP_ID": "1808963000",
+          "SITE_ADDR": "15 EVERETT ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "976",
+          "USE_DESC": "SCHOOL (ELEMENTARY & HIGH SCHOOL)",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "11",
+          "CITY": "BOSTON",
+          "FULL_STR": "CARLISLE ST",
+          "FY": 2023,
+          "LOC_ID": "F_769172_2939770",
+          "OBJECTID": 1661713,
+          "PROP_ID": "1202792000",
+          "SITE_ADDR": "11 CARLISLE ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "104",
+          "USE_DESC": "Two-Family Residential",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "15",
+          "CITY": "BOSTON",
+          "FULL_STR": "Everett ST",
+          "FY": 2023,
+          "LOC_ID": "F_781258_2959605",
+          "OBJECTID": 1692170,
+          "PROP_ID": "0104931000",
+          "SITE_ADDR": "15 Everett ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "101",
+          "USE_DESC": "Single Family Residential",
+          "YEAR_BUILT": 1861
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "63",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "INMAN ST",
+          "FY": 2026,
+          "LOC_ID": "F_763477_2960309",
+          "OBJECTID": 1713424,
+          "PROP_ID": "114-94",
+          "SITE_ADDR": "63 INMAN ST",
+          "TOWN_ID": 49,
+          "UNITS": 16,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1880
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "WILLOWWOOD ST",
+          "FY": 2023,
+          "LOC_ID": "F_768224_2928455",
+          "OBJECTID": 1790161,
+          "PROP_ID": "1403385000",
+          "SITE_ADDR": "WILLOWWOOD ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "16",
+          "CITY": "BOSTON",
+          "FULL_STR": "Brainerd RD",
+          "FY": 2023,
+          "LOC_ID": "F_756053_2952333",
+          "OBJECTID": 1797645,
+          "PROP_ID": "2101504000",
+          "SITE_ADDR": "16 Brainerd RD",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1930
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "165",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "CAMBRIDGEPARK DR",
+          "FY": 2026,
+          "LOC_ID": "F_751477_2969347",
+          "OBJECTID": 1830235,
+          "PROP_ID": "267.4-176",
+          "SITE_ADDR": "165 CAMBRIDGEPARK DR",
+          "TOWN_ID": 49,
+          "UNITS": 244,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 2014
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "WILLOWWOOD ST",
+          "FY": 2023,
+          "LOC_ID": "F_768142_2929634",
+          "OBJECTID": 1837540,
+          "PROP_ID": "1403576000",
+          "SITE_ADDR": "WILLOWWOOD ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "902",
+          "USE_DESC": "(formerly Counties.  Removed June 2009.)",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "165",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "HAMPSHIRE ST",
+          "FY": 2026,
+          "LOC_ID": "F_764719_2960810",
+          "OBJECTID": 1855523,
+          "PROP_ID": "84-70",
+          "SITE_ADDR": "165 HAMPSHIRE ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1905
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "27",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "IRVING TER",
+          "FY": 2026,
+          "LOC_ID": "F_761033_2962307",
+          "OBJECTID": 1935314,
+          "PROP_ID": "142-85",
+          "SITE_ADDR": "27 IRVING TER",
+          "TOWN_ID": 49,
+          "UNITS": 29,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1925
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "24-26",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "CONCORD AVE",
+          "FY": 2026,
+          "LOC_ID": "F_757301_2963393",
+          "OBJECTID": 1942211,
+          "PROP_ID": "216-34",
+          "SITE_ADDR": "24-26 CONCORD AVE",
+          "TOWN_ID": 49,
+          "UNITS": 84,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1890
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "4",
+          "CITY": "BOSTON",
+          "FULL_STR": "BEECHWOOD ST",
+          "FY": 2023,
+          "LOC_ID": "F_771128_2936591",
+          "OBJECTID": 1971730,
+          "PROP_ID": "1400037030",
+          "SITE_ADDR": "4 BEECHWOOD ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 2007
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "25",
+          "CITY": "BOSTON",
+          "FULL_STR": "Everett ST",
+          "FY": 2023,
+          "LOC_ID": "F_753856_2954483",
+          "OBJECTID": 1972544,
+          "PROP_ID": "2201762000",
+          "SITE_ADDR": "25 Everett ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "105",
+          "USE_DESC": "Three-Family Residential",
+          "YEAR_BUILT": 1890
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "36",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "TROWBRIDGE ST",
+          "FY": 2026,
+          "LOC_ID": "F_761150_2960750",
+          "OBJECTID": 1977783,
+          "PROP_ID": "135-88",
+          "SITE_ADDR": "36 TROWBRIDGE ST",
+          "TOWN_ID": 49,
+          "UNITS": 5,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "115",
+          "CITY": "BOSTON",
+          "FULL_STR": "NORWAY ST",
+          "FY": 2023,
+          "LOC_ID": "F_767293_2951198",
+          "OBJECTID": 1986858,
+          "PROP_ID": "0401406000",
+          "SITE_ADDR": "115 NORWAY ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1920
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "27",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "EVERETT ST",
+          "FY": 2026,
+          "LOC_ID": "F_759481_2963787",
+          "OBJECTID": 1999952,
+          "PROP_ID": "157-19",
+          "SITE_ADDR": "27 EVERETT ST",
+          "TOWN_ID": 49,
+          "UNITS": 10,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1880
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "81",
+          "CITY": "BOSTON",
+          "FULL_STR": "WESTLAND AV",
+          "FY": 2023,
+          "LOC_ID": "F_767240_2950677",
+          "OBJECTID": 2064321,
+          "PROP_ID": "0401471000",
+          "SITE_ADDR": "81 WESTLAND AV",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "ST JAMES ST",
+          "FY": 2023,
+          "LOC_ID": "F_768375_2944136",
+          "OBJECTID": 2066828,
+          "PROP_ID": "1201358000",
+          "SITE_ADDR": "ST JAMES ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "119",
+          "USE_DESC": "RES PARKING LOT",
+          "YEAR_BUILT": 1981
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "33-35",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "BROOKLINE ST",
+          "FY": 2026,
+          "LOC_ID": "F_763598_2957595",
+          "OBJECTID": 2112145,
+          "PROP_ID": "93-64",
+          "SITE_ADDR": "33-35 BROOKLINE ST",
+          "TOWN_ID": 49,
+          "UNITS": 16,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1929
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_770296_2933416",
+          "OBJECTID": 2122243,
+          "PROP_ID": "1700152000",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "132",
+          "USE_DESC": "Undevelopable Residential Land",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "194",
+          "CITY": "BOSTON",
+          "FULL_STR": "Havre ST",
+          "FY": 2023,
+          "LOC_ID": "F_781333_2961836",
+          "OBJECTID": 2139684,
+          "PROP_ID": "0106134000",
+          "SITE_ADDR": "194 Havre ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 2019
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_770257_2933419",
+          "OBJECTID": 2152807,
+          "PROP_ID": "1700151000",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "132",
+          "USE_DESC": "Undevelopable Residential Land",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "459",
+          "CITY": "BOSTON",
+          "FULL_STR": "BEACON ST",
+          "FY": 2023,
+          "LOC_ID": "F_767525_2953190",
+          "OBJECTID": 2154509,
+          "PROP_ID": "0503655000",
+          "SITE_ADDR": "459 BEACON ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "101",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "NORFOLK ST",
+          "FY": 2026,
+          "LOC_ID": "F_764127_2958910",
+          "OBJECTID": 2194270,
+          "PROP_ID": "90-97",
+          "SITE_ADDR": "101 NORFOLK ST",
+          "TOWN_ID": 49,
+          "UNITS": 4,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1930
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "13",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "SHEPARD ST",
+          "FY": 2026,
+          "LOC_ID": "F_758540_2964376",
+          "OBJECTID": 2200056,
+          "PROP_ID": "174-42",
+          "SITE_ADDR": "13 SHEPARD ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_765012_2928748",
+          "OBJECTID": 2241435,
+          "PROP_ID": "1404797000",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "106",
+          "USE_DESC": "Accessory Land with Improvement",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "24",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "BERKSHIRE ST",
+          "FY": 2026,
+          "LOC_ID": "F_766551_2959697",
+          "OBJECTID": 2303724,
+          "PROP_ID": "40-143",
+          "SITE_ADDR": "24 BERKSHIRE ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 2019
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "27",
+          "CITY": "BOSTON",
+          "FULL_STR": "Everett ST",
+          "FY": 2023,
+          "LOC_ID": "F_781400_2959521",
+          "OBJECTID": 2345503,
+          "PROP_ID": "0104941000",
+          "SITE_ADDR": "27 Everett ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "101",
+          "USE_DESC": "Single Family Residential",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "WILLOWWOOD ST",
+          "FY": 2023,
+          "LOC_ID": "F_768164_2929240",
+          "OBJECTID": 2408837,
+          "PROP_ID": "1403567000",
+          "SITE_ADDR": "WILLOWWOOD ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "902",
+          "USE_DESC": "(formerly Counties.  Removed June 2009.)",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_767123_2932347",
+          "OBJECTID": 2410927,
+          "PROP_ID": "1404266120",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 1991
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "231",
+          "CITY": "BOSTON",
+          "FULL_STR": "COMMONWEALTH AV",
+          "FY": 2023,
+          "LOC_ID": "F_769051_2953290",
+          "OBJECTID": 2441297,
+          "PROP_ID": "0503385000",
+          "SITE_ADDR": "231 COMMONWEALTH AV",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "191",
+          "CITY": "BOSTON",
+          "FULL_STR": "Park DR",
+          "FY": 2023,
+          "LOC_ID": "F_764337_2949595",
+          "OBJECTID": 2446727,
+          "PROP_ID": "2100003000",
+          "SITE_ADDR": "191 Park DR",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "45",
+          "CITY": "BOSTON",
+          "FULL_STR": "Myrtle ST",
+          "FY": 2023,
+          "LOC_ID": "F_773425_2956351",
+          "OBJECTID": 2447493,
+          "PROP_ID": "0300213000",
+          "SITE_ADDR": "45 Myrtle ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_765838_2930269",
+          "OBJECTID": 2467286,
+          "PROP_ID": "1405198700",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": 2007
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "610",
+          "CITY": "BOSTON",
+          "FULL_STR": "COLUMBUS AV",
+          "FY": 2023,
+          "LOC_ID": "F_769043_2949084",
+          "OBJECTID": 2474095,
+          "PROP_ID": "0901069000",
+          "SITE_ADDR": "610 COLUMBUS AV",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1899
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "GREENVILLE ST",
+          "FY": 2023,
+          "LOC_ID": "F_769669_2944562",
+          "OBJECTID": 2480506,
+          "PROP_ID": "0802605000",
+          "SITE_ADDR": "GREENVILLE ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "125",
+          "USE_DESC": "Other Congregate Housing (includes non-transient shared living arrangements)",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "189",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "THIRD ST",
+          "FY": 2026,
+          "LOC_ID": "F_769377_2959396",
+          "OBJECTID": 2489102,
+          "PROP_ID": "17-13",
+          "SITE_ADDR": "189 THIRD ST",
+          "TOWN_ID": 49,
+          "UNITS": 6,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "Harvard ST",
+          "FY": 2023,
+          "LOC_ID": "F_774827_2952704",
+          "OBJECTID": 2507935,
+          "PROP_ID": "0305250000",
+          "SITE_ADDR": "Harvard ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "387",
+          "USE_DESC": "Summer Camps - children's camps (not Ch. 61B)",
+          "YEAR_BUILT": null
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "1",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "CRAIGIE ST",
+          "FY": 2026,
+          "LOC_ID": "F_757147_2963525",
+          "OBJECTID": 2548422,
+          "PROP_ID": "224-12",
+          "SITE_ADDR": "1 CRAIGIE ST",
+          "TOWN_ID": 49,
+          "UNITS": 32,
+          "USE_CODE": "112",
+          "USE_DESC": "Apartments with More than Eight Units",
+          "YEAR_BUILT": 1910
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": "1",
+          "CITY": "CAMBRIDGE",
+          "FULL_STR": "POTTER PK",
+          "FY": 2026,
+          "LOC_ID": "F_758695_2965337",
+          "OBJECTID": 2548657,
+          "PROP_ID": "175-64",
+          "SITE_ADDR": "1 POTTER PK",
+          "TOWN_ID": 49,
+          "UNITS": 5,
+          "USE_CODE": "111",
+          "USE_DESC": "Apartments with Four to Eight Units",
+          "YEAR_BUILT": 1900
+        }
+      },
+      {
+        "attributes": {
+          "ADDR_NUM": null,
+          "CITY": "BOSTON",
+          "FULL_STR": "ST JAMES ST",
+          "FY": 2023,
+          "LOC_ID": "F_768347_2944430",
+          "OBJECTID": 2558888,
+          "PROP_ID": "1201230000",
+          "SITE_ADDR": "ST JAMES ST",
+          "TOWN_ID": 35,
+          "UNITS": null,
+          "USE_CODE": "985",
+          "USE_DESC": "Improved Municipal or Public Safety, Other City or Town",
+          "YEAR_BUILT": null
+        }
+      }
+    ],
+    "fields": [
+      {
+        "alias": "OBJECTID",
+        "defaultValue": null,
+        "domain": null,
+        "name": "OBJECTID",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeOID"
+      },
+      {
+        "alias": "LOC_ID",
+        "defaultValue": null,
+        "domain": null,
+        "length": 18,
+        "name": "LOC_ID",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "PROP_ID",
+        "defaultValue": null,
+        "domain": null,
+        "length": 30,
+        "name": "PROP_ID",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "TOWN_ID",
+        "defaultValue": null,
+        "domain": null,
+        "name": "TOWN_ID",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeInteger"
+      },
+      {
+        "alias": "SITE_ADDR",
+        "defaultValue": null,
+        "domain": null,
+        "length": 80,
+        "name": "SITE_ADDR",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "ADDR_NUM",
+        "defaultValue": null,
+        "domain": null,
+        "length": 12,
+        "name": "ADDR_NUM",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "FULL_STR",
+        "defaultValue": null,
+        "domain": null,
+        "length": 60,
+        "name": "FULL_STR",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "CITY",
+        "defaultValue": null,
+        "domain": null,
+        "length": 25,
+        "name": "CITY",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "FY",
+        "defaultValue": null,
+        "domain": null,
+        "name": "FY",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeInteger"
+      },
+      {
+        "alias": "YEAR_BUILT",
+        "defaultValue": null,
+        "domain": null,
+        "name": "YEAR_BUILT",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeInteger"
+      },
+      {
+        "alias": "UNITS",
+        "defaultValue": null,
+        "domain": null,
+        "name": "UNITS",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeInteger"
+      },
+      {
+        "alias": "USE_CODE",
+        "defaultValue": null,
+        "domain": null,
+        "length": 4,
+        "name": "USE_CODE",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "Use Description",
+        "defaultValue": null,
+        "domain": null,
+        "length": 255,
+        "name": "USE_DESC",
+        "sqlType": "sqlTypeOther",
+        "type": "esriFieldTypeString"
+      }
+    ],
+    "geometryType": "esriGeometryPolygon",
+    "globalIdFieldName": "GlobalID",
+    "objectIdFieldName": "OBJECTID",
+    "spatialReference": {
+      "latestWkid": 3857,
+      "wkid": 102100
+    },
+    "uniqueIdField": {
+      "isSystemMaintained": true,
+      "name": "OBJECTID"
+    }
+  },
+  "retrieved_at": "2026-10-04T03:05:14.896721+00:00",
+  "sha256": "22ae491adcff2397c43a7eadbf810c07e9d05c77fc4640077be94fd8fa42fb6f",
+  "source_url": "https://services1.arcgis.com/hGdibHYSPO59RG1h/ArcGIS/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0/query?f=json&where=TOWN_ID+IN+%2835%2C49%29+AND+UPPER%28SITE_ADDR%29+IN+%28%271+CRAIGIE+ST%27%2C%271+POTTER+PK%27%2C%2710+CAMELOT+CT%27%2C%2710+DOVER+ST%27%2C%27101+NORFOLK+ST%27%2C%2711+CARLISLE+ST%27%2C%2711+CORTES+ST%27%2C%27112-114+AMORY+ST%27%2C%27115+KILSYTH+RD%27%2C%27115+NORWAY+ST%27%2C%2712+BLACKWOOD+ST%27%2C%27123+CONDOR+ST%27%2C%27124+BERKSHIRE+ST%27%2C%2713+SHEPARD+ST%27%2C%2713+SHETLAND+ST%27%2C%27134+OXFORD+ST%27%2C%2714.5-16+VANDINE+ST%27%2C%27141+OXFORD+ST%27%2C%2715+BERKSHIRE+ST%27%2C%2715+CHESTER+ST%27%2C%2715+EVERETT+ST%27%2C%2715+RICHDALE+AV%27%2C%2715+RICHDALE+AVE%27%2C%2715+RICHDALE+AVENUE%27%2C%27151+NORTH+FIRST+ST%27%2C%2716+BRAINERD+RD%27%2C%2716+QUEENSBERRY+ST%27%2C%271619+COMMONWEALTH+AV%27%2C%271619+COMMONWEALTH+AVE%27%2C%271619+COMMONWEALTH+AVENUE%27%2C%27165+CAMBRIDGEPARK+DR%27%2C%27165+HAMPSHIRE+ST%27%2C%27170+W+SPRINGFIELD+ST%27%2C%27170-172+MAVERICK+ST%27%2C%27178+RICHDALE+AV%27%2C%27178+RICHDALE+AVE%27%2C%27178+RICHDALE+AVENUE%27%2C%2718-34+KINGBIRD+RD%27%2C%271850-1848+COMMONWEALTH+AV%27%2C%271850-1848+COMMONWEALTH+AVE%27%2C%271850-1848+COMMONWEALTH+AVENUE%27%2C%27189+THIRD+ST%27%2C%2719+TROWBRIDGE+ST%27%2C%27191+PARK+DR%27%2C%27194+HAVRE+ST%27%2C%27197+BEACON+ST%27%2C%272-98+DABNEY+ST%27%2C%2720+PHILLIPS+ST%27%2C%2721+FOREST+ST%27%2C%2721-23+FAULKNER+ST%27%2C%2721-23+MARION+ST%27%2C%27227+CHARLES+ST%27%2C%2723+ELM+ST%27%2C%27230+EVERETT+ST%27%2C%27231+COMMONWEALTH+AV%27%2C%27231+COMMONWEALTH+AVE%27%2C%27231+COMMONWEALTH+AVENUE%27%2C%2724+BERKSHIRE+ST%27%2C%2724+ST+ALBANS+RD%27%2C%2724-26+CONCORD+AV%27%2C%2724-26+CONCORD+AVE%27%2C%2724-26+CONCORD+AVENUE%27%2C%2725+EVERETT+ST%27%2C%2725+GORE+ST%27%2C%2725+ORLANDO+ST%27%2C%2726+SONOMA+ST%27%2C%2727+EVERETT+ST%27%2C%2727+IRVING+TER%27%2C%27296-302+WESTERN+AV%27%2C%27296-302+WESTERN+AVE%27%2C%27296-302+WESTERN+AVENUE%27%2C%272986-2930+WASHINGTON+ST%27%2C%2730+MEDFIELD+ST%27%2C%2730+WEST+HOWELL+ST+M-D%27%2C%2732+GARRISON+ST%27%2C%27322-322.5+WESTERN+AV%27%2C%27322-322.5+WESTERN+AVE%27%2C%27322-322.5+WESTERN+AVENUE%27%2C%2733+WARD+ST%27%2C%2733-35+BROOKLINE+ST%27%2C%27335A+HARVARD+ST%27%2C%27345+COLUMBIA+ST%27%2C%2735-37+INMAN+ST%27%2C%27358+HARVARD+ST%27%2C%2736+TROWBRIDGE+ST%27%2C%27361+WASHINGTON+ST%27%2C%27368+RIVERWAY+ST%27%2C%2738+KENILWORTH+ST%27%2C%274+BEECHWOOD+ST%27%2C%274+ORCHARD+ST%27%2C%274-6+CLINTON+ST%27%2C%2740-42+CLEARWAY+ST%27%2C%2741-43+EDGERLY+RD%27%2C%2742+BAY+STATE+RD%27%2C%2743+FAYETTE+ST%27%2C%2745+MYRTLE+ST%27%2C%27459+BEACON+ST%27%2C%27471+COLUMBIA+RD%27%2C%27473+HARVARD+ST%27%2C%2749+ROSELAND+ST%27%2C%27499+BEACON+ST%27%2C%275+EVERETT+ST%27%2C%2753-55+ASHFORD+ST%27%2C%2760+KIRKLAND+ST%27%2C%27610+COLUMBUS+AV%27%2C%27610+COLUMBUS+AVE%27%2C%27610+COLUMBUS+AVENUE%27%2C%2763+BAILEY+ST%27%2C%2763+INMAN+ST%27%2C%27663+MASSACHUSETTS+AV%27%2C%27663+MASSACHUSETTS+AVE%27%2C%27663+MASSACHUSETTS+AVENUE%27%2C%2767+PLYMOUTH+ST%27%2C%2769-71+WESTLAND+AV%27%2C%2769-71+WESTLAND+AVE%27%2C%2769-71+WESTLAND+AVENUE%27%2C%2772+BURBANK+ST%27%2C%2773+LUBEC+ST%27%2C%2775+ELM+HILL+AV%27%2C%2775+ELM+HILL+AVE%27%2C%2775+ELM+HILL+AVENUE%27%2C%278-12+SODEN+ST%27%2C%2781+WESTLAND+AV%27%2C%2781+WESTLAND+AVE%27%2C%2781+WESTLAND+AVENUE%27%2C%2784+HAMPSHIRE+ST%27%2C%2785+HANCOCK+ST%27%2C%2785-87+SIERRA+RD%27%2C%2788+GARDNER+ST%27%2C%2790+BICKFORD+ST%27%2C%2791+BROOKLINE+ST%27%2C%27GREENVILLE+ST%27%2C%27HARVARD+ST%27%2C%27HARVARD+ST+LOT+2A-13%27%2C%27ST+JAMES+ST%27%2C%27WILLOWWOOD+ST%27%29&outFields=OBJECTID%2CLOC_ID%2CPROP_ID%2CTOWN_ID%2CSITE_ADDR%2CADDR_NUM%2CFULL_STR%2CCITY%2CFY%2CYEAR_BUILT%2CUNITS%2CUSE_CODE%2CUSE_DESC&returnGeometry=false&resultRecordCount=2000&orderByFields=OBJECTID",
+  "transport_sha256": "dcb422bc2ef343d4abd52a6aff550633e43470dcb7828c6da57fd1ecaa0756b2"
+}

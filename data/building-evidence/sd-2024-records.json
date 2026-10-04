@@ -1,0 +1,70 @@
+{
+  "response": [
+    {
+      "APPROVAL_CLOSE_DATE": "",
+      "APPROVAL_DU_NET_CHANGE": "",
+      "APPROVAL_ID": "PMT-3228245",
+      "APPROVAL_ISSUE_DATE": "2024-05-14",
+      "APPROVAL_STATUS": "Issued",
+      "APPROVAL_TYPE": "Approval - Construction - Right Of Way Pmt-Const Plan",
+      "GIS_ADDRESS": "3137 Boston Av, San Diego, CA 92113",
+      "GIS_APN": "5502602600",
+      "JOB_BC_CODE_DESCRIPTION": "",
+      "JOB_ID": "JOB-051643",
+      "PROJECT_ID": "PRJ-1097228",
+      "PROJECT_STATUS": "Issued",
+      "PROJECT_TYPE": "Grading, ROW, Mapping - Standalone"
+    },
+    {
+      "APPROVAL_CLOSE_DATE": "2026-03-23",
+      "APPROVAL_DU_NET_CHANGE": "",
+      "APPROVAL_ID": "PMT-3277859",
+      "APPROVAL_ISSUE_DATE": "2024-10-17",
+      "APPROVAL_STATUS": "Closed",
+      "APPROVAL_TYPE": "Building Permit",
+      "GIS_ADDRESS": "4091 Morrell St, San Diego, CA 92109",
+      "GIS_APN": "4244330100",
+      "JOB_BC_CODE_DESCRIPTION": "Add/Alt NonRes Bldg or Struct",
+      "JOB_ID": "JOB-066345",
+      "PROJECT_ID": "PRJ-1112056",
+      "PROJECT_STATUS": "Closed",
+      "PROJECT_TYPE": "Building Construction"
+    },
+    {
+      "APPROVAL_CLOSE_DATE": "",
+      "APPROVAL_DU_NET_CHANGE": "",
+      "APPROVAL_ID": "AGR-0003389",
+      "APPROVAL_ISSUE_DATE": "2024-09-30",
+      "APPROVAL_STATUS": "Issued",
+      "APPROVAL_TYPE": "Approval - Process - Agreement",
+      "GIS_ADDRESS": "4091 Morrell St, San Diego, CA 92109",
+      "GIS_APN": "4244330100",
+      "JOB_BC_CODE_DESCRIPTION": "",
+      "JOB_ID": "",
+      "PROJECT_ID": "PRJ-1112056",
+      "PROJECT_STATUS": "Closed",
+      "PROJECT_TYPE": "Building Construction"
+    },
+    {
+      "APPROVAL_CLOSE_DATE": "",
+      "APPROVAL_DU_NET_CHANGE": "",
+      "APPROVAL_ID": "PMT-3318725",
+      "APPROVAL_ISSUE_DATE": "2024-10-22",
+      "APPROVAL_STATUS": "Issued",
+      "APPROVAL_TYPE": "Traffic Control Permit",
+      "GIS_ADDRESS": "4091 Morrell St, San Diego, CA 92109",
+      "GIS_APN": "4244330100",
+      "JOB_BC_CODE_DESCRIPTION": "",
+      "JOB_ID": "",
+      "PROJECT_ID": "",
+      "PROJECT_STATUS": "",
+      "PROJECT_TYPE": ""
+    }
+  ],
+  "retention": "selected sample rows and explicit fields only",
+  "retrieved_at": "2026-10-04T03:07:56.579776+00:00",
+  "rows_scanned": 55090,
+  "sha256": "14acaee5274c94cbef0d77d6668fbd3f0ccf013139d219dff313f88c97f88835",
+  "source_url": "https://seshat.datasd.org/development_permits/approvals_issued_2024_datasd.csv",
+  "transport_sha256": "cf83a4dab401c41f65a513e3e88137d4657278afab7d6d6b79b3edf8d544bb7c"
+}

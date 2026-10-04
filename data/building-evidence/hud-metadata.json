@@ -1,0 +1,75 @@
+{
+  "source_url": "https://egis.hud.gov/arcgis/rest/services/cpdmaps/HudMfProps/MapServer/1",
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "domain": null
+    },
+    {
+      "name": "PROPERTY_ID",
+      "type": "esriFieldTypeString",
+      "alias": "PROPERTY_ID",
+      "length": 9,
+      "domain": null
+    },
+    {
+      "name": "ADDRESS_LINE1_TEXT",
+      "type": "esriFieldTypeString",
+      "alias": "ADDRESS_LINE1_TEXT",
+      "length": 45,
+      "domain": null
+    },
+    {
+      "name": "PLACED_BASE_CITY_NAME_TEXT",
+      "type": "esriFieldTypeString",
+      "alias": "PLACED_BASE_CITY_NAME_TEXT",
+      "length": 30,
+      "domain": null
+    },
+    {
+      "name": "TOTAL_ASSISTED_UNIT_COUNT",
+      "type": "esriFieldTypeInteger",
+      "alias": "TOTAL_ASSISTED_UNIT_COUNT",
+      "domain": null
+    },
+    {
+      "name": "TOTAL_UNIT_COUNT",
+      "type": "esriFieldTypeInteger",
+      "alias": "TOTAL_UNIT_COUNT",
+      "domain": null
+    },
+    {
+      "name": "HAS_USE_RESTRICTION_IND",
+      "type": "esriFieldTypeString",
+      "alias": "HAS_USE_RESTRICTION_IND",
+      "length": 1,
+      "domain": null
+    },
+    {
+      "name": "STD_ST",
+      "type": "esriFieldTypeString",
+      "alias": "STD_ST",
+      "length": 2,
+      "domain": null
+    },
+    {
+      "name": "OCCUPANCY_DATE",
+      "type": "esriFieldTypeDate",
+      "alias": "OCCUPANCY_DATE",
+      "length": 8,
+      "domain": null
+    },
+    {
+      "name": "LAST_UPDT_DTTM",
+      "type": "esriFieldTypeDate",
+      "alias": "LAST_UPDT_DTTM",
+      "length": 8,
+      "domain": null
+    }
+  ],
+  "license": null,
+  "source_updated": null,
+  "attribution": "U.S. Department of Housing and Urban Development"
+}

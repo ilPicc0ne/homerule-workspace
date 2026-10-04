@@ -1,0 +1,7 @@
+{
+  "url": "https://gis-public.sandiegocounty.gov/robots.txt",
+  "checked_at": "2026-10-04T03:14:51.891594+00:00",
+  "access_basis": "Published County public feature query API. UNITQTY is parcel-level; two-character YEAR_EFFECTIVE is not interpreted as a construction/occupancy year.",
+  "publisher": "https://gis-public.sandiegocounty.gov/arcgis/rest/services/WorkflowLayers/FeatureServer",
+  "status": "unavailable_http_404"
+}

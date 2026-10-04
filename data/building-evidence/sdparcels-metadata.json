@@ -1,0 +1,177 @@
+{
+  "source_url": "https://gis-public.sandiegocounty.gov/arcgis/rest/services/WorkflowLayers/FeatureServer/0",
+  "attribution": "County of San Diego / SanGIS parcel assessment records",
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "domain": null,
+      "editable": false,
+      "nullable": false,
+      "defaultValue": null,
+      "modelName": "OBJECTID"
+    },
+    {
+      "name": "APN",
+      "type": "esriFieldTypeString",
+      "alias": "APN",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 10,
+      "defaultValue": null,
+      "modelName": "APN"
+    },
+    {
+      "name": "SITUS_JURIS",
+      "type": "esriFieldTypeString",
+      "alias": "SITUS_JURIS",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 2,
+      "defaultValue": null,
+      "modelName": "SITUS_JURIS"
+    },
+    {
+      "name": "SITUS_STREET",
+      "type": "esriFieldTypeString",
+      "alias": "SITUS_STREET",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 30,
+      "defaultValue": null,
+      "modelName": "SITUS_STREET"
+    },
+    {
+      "name": "SITUS_SUFFIX",
+      "type": "esriFieldTypeString",
+      "alias": "SITUS_SUFFIX",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 4,
+      "defaultValue": null,
+      "modelName": "SITUS_SUFFIX"
+    },
+    {
+      "name": "SITUS_POST_DIR",
+      "type": "esriFieldTypeString",
+      "alias": "SITUS_POST_DIR",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 2,
+      "defaultValue": null,
+      "modelName": "SITUS_POST_DIR"
+    },
+    {
+      "name": "SITUS_PRE_DIR",
+      "type": "esriFieldTypeString",
+      "alias": "SITUS_PRE_DIR",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 2,
+      "defaultValue": null,
+      "modelName": "SITUS_PRE_DIR"
+    },
+    {
+      "name": "SITUS_ADDRESS",
+      "type": "esriFieldTypeInteger",
+      "alias": "SITUS_ADDRESS",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "SITUS_ADDRESS"
+    },
+    {
+      "name": "SITUS_FRACTION",
+      "type": "esriFieldTypeString",
+      "alias": "SITUS_FRACTION",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 3,
+      "defaultValue": null,
+      "modelName": "SITUS_FRACTION"
+    },
+    {
+      "name": "SITUS_BUILDING",
+      "type": "esriFieldTypeString",
+      "alias": "SITUS_BUILDING",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 4,
+      "defaultValue": null,
+      "modelName": "SITUS_BUILDING"
+    },
+    {
+      "name": "SITUS_SUITE",
+      "type": "esriFieldTypeString",
+      "alias": "SITUS_SUITE",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 6,
+      "defaultValue": null,
+      "modelName": "SITUS_SUITE"
+    },
+    {
+      "name": "UNITQTY",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "UNITQTY",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "UNITQTY"
+    },
+    {
+      "name": "YEAR_EFFECTIVE",
+      "type": "esriFieldTypeString",
+      "alias": "YEAR_EFFECTIVE",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 2,
+      "defaultValue": null,
+      "modelName": "YEAR_EFFECTIVE"
+    },
+    {
+      "name": "NUCLEUS_SITUS_FROM_NBR",
+      "type": "esriFieldTypeInteger",
+      "alias": "NUCLEUS_SITUS_FROM_NBR",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "NUCLEUS_SITUS_FROM_NBR"
+    },
+    {
+      "name": "NUCLEUS_SITUS_THRU_NBR",
+      "type": "esriFieldTypeInteger",
+      "alias": "NUCLEUS_SITUS_THRU_NBR",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "NUCLEUS_SITUS_THRU_NBR"
+    },
+    {
+      "name": "SITUS_ZIP",
+      "type": "esriFieldTypeString",
+      "alias": "SITUS_ZIP",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 10,
+      "defaultValue": null,
+      "modelName": "SITUS_ZIP"
+    }
+  ]
+}

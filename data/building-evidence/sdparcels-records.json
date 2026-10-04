@@ -1,0 +1,1131 @@
+{
+  "response": {
+    "features": [
+      {
+        "attributes": {
+          "APN": "6301500600",
+          "NUCLEUS_SITUS_FROM_NBR": 1371,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 2110,
+          "SITUS_ADDRESS": 1371,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "27TH",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92154-3287",
+          "UNITQTY": 88,
+          "YEAR_EFFECTIVE": "85"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4713420900",
+          "NUCLEUS_SITUS_FROM_NBR": 4225,
+          "NUCLEUS_SITUS_THRU_NBR": 4231,
+          "OBJECTID": 4221,
+          "SITUS_ADDRESS": 4225,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "50TH",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92115-5020",
+          "UNITQTY": 6,
+          "YEAR_EFFECTIVE": "40"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "5354500100",
+          "NUCLEUS_SITUS_FROM_NBR": 265,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 9301,
+          "SITUS_ADDRESS": 265,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "22ND",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92102-2935",
+          "UNITQTY": 9,
+          "YEAR_EFFECTIVE": "06"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "3410412400",
+          "NUCLEUS_SITUS_FROM_NBR": 10303,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 9493,
+          "SITUS_ADDRESS": 10303,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "CAMINITO ALVAREZ",
+          "SITUS_SUFFIX": "",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92126-5825",
+          "UNITQTY": 152,
+          "YEAR_EFFECTIVE": "87"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "3410412300",
+          "NUCLEUS_SITUS_FROM_NBR": 10303,
+          "NUCLEUS_SITUS_THRU_NBR": 10617,
+          "OBJECTID": 9494,
+          "SITUS_ADDRESS": 10303,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "CAMINITO ALVAREZ",
+          "SITUS_SUFFIX": "",
+          "SITUS_SUITE": "933",
+          "SITUS_ZIP": "92126-5825",
+          "UNITQTY": 152,
+          "YEAR_EFFECTIVE": "87"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4531310600",
+          "NUCLEUS_SITUS_FROM_NBR": 3750,
+          "NUCLEUS_SITUS_THRU_NBR": 3760,
+          "OBJECTID": 18715,
+          "SITUS_ADDRESS": 3750,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "29TH",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92104-3643",
+          "UNITQTY": 5,
+          "YEAR_EFFECTIVE": "28"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "5451221600",
+          "NUCLEUS_SITUS_FROM_NBR": 512,
+          "NUCLEUS_SITUS_THRU_NBR": 516,
+          "OBJECTID": 22588,
+          "SITUS_ADDRESS": 512,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "32ND",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92102-4204",
+          "UNITQTY": 8,
+          "YEAR_EFFECTIVE": "40"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4464922200",
+          "NUCLEUS_SITUS_FROM_NBR": 3752,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 29347,
+          "SITUS_ADDRESS": 3752,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "33RD",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92104-7709",
+          "UNITQTY": 8,
+          "YEAR_EFFECTIVE": "88"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4394411000",
+          "NUCLEUS_SITUS_FROM_NBR": 4663,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 29590,
+          "SITUS_ADDRESS": 4663,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "33RD",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92116-6302",
+          "UNITQTY": 8,
+          "YEAR_EFFECTIVE": "70"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "5461260300",
+          "NUCLEUS_SITUS_FROM_NBR": 219,
+          "NUCLEUS_SITUS_THRU_NBR": 223,
+          "OBJECTID": 33539,
+          "SITUS_ADDRESS": 219,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "35TH",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92102     ",
+          "UNITQTY": 3,
+          "YEAR_EFFECTIVE": "47"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "5461630400",
+          "NUCLEUS_SITUS_FROM_NBR": 219,
+          "NUCLEUS_SITUS_THRU_NBR": 229,
+          "OBJECTID": 36682,
+          "SITUS_ADDRESS": 219,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "S",
+          "SITUS_STREET": "35TH",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92113-1605",
+          "UNITQTY": 7,
+          "YEAR_EFFECTIVE": "40"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4464910900",
+          "NUCLEUS_SITUS_FROM_NBR": 3735,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 38966,
+          "SITUS_ADDRESS": 3735,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "32ND",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92104-7715",
+          "UNITQTY": 8,
+          "YEAR_EFFECTIVE": "71"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4473523500",
+          "NUCLEUS_SITUS_FROM_NBR": 4135,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 41510,
+          "SITUS_ADDRESS": 4135,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "38TH",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92105-1351",
+          "UNITQTY": 7,
+          "YEAR_EFFECTIVE": "79"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4470620400",
+          "NUCLEUS_SITUS_FROM_NBR": 4545,
+          "NUCLEUS_SITUS_THRU_NBR": 4551,
+          "OBJECTID": 44460,
+          "SITUS_ADDRESS": 4545,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "N",
+          "SITUS_STREET": "39TH",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92116-4631",
+          "UNITQTY": 7,
+          "YEAR_EFFECTIVE": "00"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4244330100",
+          "NUCLEUS_SITUS_FROM_NBR": 4091,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 46638,
+          "SITUS_ADDRESS": 4091,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "MORRELL",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92109-6263",
+          "UNITQTY": 7,
+          "YEAR_EFFECTIVE": "70"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "5331721000",
+          "NUCLEUS_SITUS_FROM_NBR": 2142,
+          "NUCLEUS_SITUS_THRU_NBR": 2148,
+          "OBJECTID": 52167,
+          "SITUS_ADDRESS": 2142,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "2ND",
+          "SITUS_SUFFIX": "AVE",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92101-2061",
+          "UNITQTY": 9,
+          "YEAR_EFFECTIVE": "25"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4714513000",
+          "NUCLEUS_SITUS_FROM_NBR": 4046,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 53566,
+          "SITUS_ADDRESS": 4046,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "N",
+          "SITUS_STREET": "43RD",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92105-1526",
+          "UNITQTY": 11,
+          "YEAR_EFFECTIVE": "61"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4363830400",
+          "NUCLEUS_SITUS_FROM_NBR": 1336,
+          "NUCLEUS_SITUS_THRU_NBR": 1348,
+          "OBJECTID": 63302,
+          "SITUS_ADDRESS": 1336,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "BRUNNER",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92110     ",
+          "UNITQTY": 12,
+          "YEAR_EFFECTIVE": "95"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4393822300",
+          "NUCLEUS_SITUS_FROM_NBR": 4732,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 82074,
+          "SITUS_ADDRESS": 4732,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "BANCROFT",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92116-1663",
+          "UNITQTY": 7,
+          "YEAR_EFFECTIVE": "85"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4532122500",
+          "NUCLEUS_SITUS_FROM_NBR": 3654,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 87330,
+          "SITUS_ADDRESS": 3654,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "ARIZONA",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92104-4069",
+          "UNITQTY": 7,
+          "YEAR_EFFECTIVE": "87"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "5502602600",
+          "NUCLEUS_SITUS_FROM_NBR": 3137,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 92040,
+          "SITUS_ADDRESS": 3137,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "BOSTON",
+          "SITUS_SUFFIX": "AVE",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92113-3745",
+          "UNITQTY": 7,
+          "YEAR_EFFECTIVE": "69"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "5460400900",
+          "NUCLEUS_SITUS_FROM_NBR": 3784,
+          "NUCLEUS_SITUS_THRU_NBR": 3786,
+          "OBJECTID": 99666,
+          "SITUS_ADDRESS": 3784,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "E",
+          "SITUS_STREET": "BROADWAY",
+          "SITUS_SUFFIX": "",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92102-3451",
+          "UNITQTY": 9,
+          "YEAR_EFFECTIVE": "00"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4363831000",
+          "NUCLEUS_SITUS_FROM_NBR": 1307,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 122507,
+          "SITUS_ADDRESS": 1307,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "COLUSA",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92110-1627",
+          "UNITQTY": 12,
+          "YEAR_EFFECTIVE": "74"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4456420900",
+          "NUCLEUS_SITUS_FROM_NBR": 3911,
+          "NUCLEUS_SITUS_THRU_NBR": 3919,
+          "OBJECTID": 125619,
+          "SITUS_ADDRESS": 3911,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "CENTRE",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92103-3410",
+          "UNITQTY": 10,
+          "YEAR_EFFECTIVE": "10"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4482013100",
+          "NUCLEUS_SITUS_FROM_NBR": 4957,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 132749,
+          "SITUS_ADDRESS": 4957,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "CAPE MAY",
+          "SITUS_SUFFIX": "AVE",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92107-2554",
+          "UNITQTY": 10,
+          "YEAR_EFFECTIVE": "72"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4496110100",
+          "NUCLEUS_SITUS_FROM_NBR": 2151,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 133954,
+          "SITUS_ADDRESS": 2151,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "CHATSWORTH",
+          "SITUS_SUFFIX": "BLVD",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92107-2428",
+          "UNITQTY": 17,
+          "YEAR_EFFECTIVE": "48"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4710512600",
+          "NUCLEUS_SITUS_FROM_NBR": 4386,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 134057,
+          "SITUS_ADDRESS": 4386,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "COPELAND",
+          "SITUS_SUFFIX": "AVE",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92105-1248",
+          "UNITQTY": 8,
+          "YEAR_EFFECTIVE": "57"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4474712600",
+          "NUCLEUS_SITUS_FROM_NBR": 3860,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 137038,
+          "SITUS_ADDRESS": 3860,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "CHEROKEE",
+          "SITUS_SUFFIX": "AVE",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92104-3157",
+          "UNITQTY": 9,
+          "YEAR_EFFECTIVE": "64"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4483720100",
+          "NUCLEUS_SITUS_FROM_NBR": 1669,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 137949,
+          "SITUS_ADDRESS": 1669,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "SUNSET CLIFFS",
+          "SITUS_SUFFIX": "BLVD",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92107-3323",
+          "UNITQTY": 12,
+          "YEAR_EFFECTIVE": "41"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4253700800",
+          "NUCLEUS_SITUS_FROM_NBR": 3244,
+          "NUCLEUS_SITUS_THRU_NBR": 3248,
+          "OBJECTID": 148024,
+          "SITUS_ADDRESS": 3244,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "CLAIREMONT",
+          "SITUS_SUFFIX": "DR",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92117-6447",
+          "UNITQTY": 6,
+          "YEAR_EFFECTIVE": "25"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "6381201400",
+          "NUCLEUS_SITUS_FROM_NBR": 227,
+          "NUCLEUS_SITUS_THRU_NBR": 235,
+          "OBJECTID": 150433,
+          "SITUS_ADDRESS": 227,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "CYPRESS",
+          "SITUS_SUFFIX": "DR",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92173-2532",
+          "UNITQTY": 31,
+          "YEAR_EFFECTIVE": "79"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4451901100",
+          "NUCLEUS_SITUS_FROM_NBR": 4419,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 154398,
+          "SITUS_ADDRESS": 4419,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "CLEVELAND",
+          "SITUS_SUFFIX": "AVE",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92116-3964",
+          "UNITQTY": 10,
+          "YEAR_EFFECTIVE": "72"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4242112800",
+          "NUCLEUS_SITUS_FROM_NBR": 2209,
+          "NUCLEUS_SITUS_THRU_NBR": 2215,
+          "OBJECTID": 158426,
+          "SITUS_ADDRESS": 2209,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "GRAND",
+          "SITUS_SUFFIX": "AVE",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92109-4705",
+          "UNITQTY": 8,
+          "YEAR_EFFECTIVE": "70"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4444923800",
+          "NUCLEUS_SITUS_FROM_NBR": 4079,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 161203,
+          "SITUS_ADDRESS": 4079,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "FRONT",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92103-2078",
+          "UNITQTY": 22,
+          "YEAR_EFFECTIVE": "87"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4231711100",
+          "NUCLEUS_SITUS_FROM_NBR": 4428,
+          "NUCLEUS_SITUS_THRU_NBR": 4444,
+          "OBJECTID": 162529,
+          "SITUS_ADDRESS": 4428,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "GRESHAM",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92109-9202",
+          "UNITQTY": 5,
+          "YEAR_EFFECTIVE": "42"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4760223400",
+          "NUCLEUS_SITUS_FROM_NBR": 3526,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 168666,
+          "SITUS_ADDRESS": 3526,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "FAIRMOUNT",
+          "SITUS_SUFFIX": "AVE",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92105-3444",
+          "UNITQTY": 16,
+          "YEAR_EFFECTIVE": "85"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4475221300",
+          "NUCLEUS_SITUS_FROM_NBR": 4515,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 180679,
+          "SITUS_ADDRESS": 4515,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "FELTON",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92116-4469",
+          "UNITQTY": 8,
+          "YEAR_EFFECTIVE": "63"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4456713100",
+          "NUCLEUS_SITUS_FROM_NBR": 3978,
+          "NUCLEUS_SITUS_THRU_NBR": 3990,
+          "OBJECTID": 189950,
+          "SITUS_ADDRESS": 3978,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "FLORIDA",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92104-2787",
+          "UNITQTY": 8,
+          "YEAR_EFFECTIVE": "31"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4312600300",
+          "NUCLEUS_SITUS_FROM_NBR": 7072,
+          "NUCLEUS_SITUS_THRU_NBR": 7082,
+          "OBJECTID": 191034,
+          "SITUS_ADDRESS": 7072,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "EASTMAN",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92111-6004",
+          "UNITQTY": 6,
+          "YEAR_EFFECTIVE": "41"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4450511600",
+          "NUCLEUS_SITUS_FROM_NBR": 4616,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 192302,
+          "SITUS_ADDRESS": 4616,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "FLORIDA",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92116-2711",
+          "UNITQTY": 20,
+          "YEAR_EFFECTIVE": "54"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "5481610500",
+          "NUCLEUS_SITUS_FROM_NBR": 245,
+          "NUCLEUS_SITUS_THRU_NBR": 247,
+          "OBJECTID": 200369,
+          "SITUS_ADDRESS": 245,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "EUCLID",
+          "SITUS_SUFFIX": "AVE",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92114-3620",
+          "UNITQTY": 5,
+          "YEAR_EFFECTIVE": "80"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4234241500",
+          "NUCLEUS_SITUS_FROM_NBR": 3820,
+          "NUCLEUS_SITUS_THRU_NBR": 3838,
+          "OBJECTID": 209723,
+          "SITUS_ADDRESS": 3820,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "HAINES",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92109-6367",
+          "UNITQTY": 16,
+          "YEAR_EFFECTIVE": "62"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4451710700",
+          "NUCLEUS_SITUS_FROM_NBR": 4541,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 216745,
+          "SITUS_ADDRESS": 4541,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "HAMILTON",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92116-3033",
+          "UNITQTY": 7,
+          "YEAR_EFFECTIVE": "52"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4236471000",
+          "NUCLEUS_SITUS_FROM_NBR": 734,
+          "NUCLEUS_SITUS_THRU_NBR": 740,
+          "OBJECTID": 221427,
+          "SITUS_ADDRESS": 734,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "JAMAICA",
+          "SITUS_SUFFIX": "CT",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92109-7721",
+          "UNITQTY": 8,
+          "YEAR_EFFECTIVE": "58"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "5390910500",
+          "NUCLEUS_SITUS_FROM_NBR": 2924,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 241134,
+          "SITUS_ADDRESS": 2924,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "E",
+          "SITUS_STREET": "JUNIPER",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92104-5438",
+          "UNITQTY": 18,
+          "YEAR_EFFECTIVE": "58"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4457111900",
+          "NUCLEUS_SITUS_FROM_NBR": 3940,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 242841,
+          "SITUS_ADDRESS": 3940,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "IDAHO",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92104-2935",
+          "UNITQTY": 12,
+          "YEAR_EFFECTIVE": "61"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4463610700",
+          "NUCLEUS_SITUS_FROM_NBR": 4053,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 242881,
+          "SITUS_ADDRESS": 4053,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "IDAHO",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92104-2565",
+          "UNITQTY": 9,
+          "YEAR_EFFECTIVE": "68"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4451722900",
+          "NUCLEUS_SITUS_FROM_NBR": 4568,
+          "NUCLEUS_SITUS_THRU_NBR": 0,
+          "OBJECTID": 242929,
+          "SITUS_ADDRESS": 4568,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "IDAHO",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92116-3158",
+          "UNITQTY": 8,
+          "YEAR_EFFECTIVE": "60"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4463821000",
+          "NUCLEUS_SITUS_FROM_NBR": 4017,
+          "NUCLEUS_SITUS_THRU_NBR": 4023,
+          "OBJECTID": 245367,
+          "SITUS_ADDRESS": 4017,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "ILLINOIS",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92104-2659",
+          "UNITQTY": 6,
+          "YEAR_EFFECTIVE": "30"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4461810500",
+          "NUCLEUS_SITUS_FROM_NBR": 4361,
+          "NUCLEUS_SITUS_THRU_NBR": 4367,
+          "OBJECTID": 245421,
+          "SITUS_ADDRESS": 4361,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "ILLINOIS",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92104-1324",
+          "UNITQTY": 6,
+          "YEAR_EFFECTIVE": "60"
+        }
+      },
+      {
+        "attributes": {
+          "APN": "4515910300",
+          "NUCLEUS_SITUS_FROM_NBR": 3743,
+          "NUCLEUS_SITUS_THRU_NBR": 3753,
+          "OBJECTID": 245572,
+          "SITUS_ADDRESS": 3743,
+          "SITUS_BUILDING": null,
+          "SITUS_FRACTION": "",
+          "SITUS_JURIS": "SD",
+          "SITUS_POST_DIR": "",
+          "SITUS_PRE_DIR": "",
+          "SITUS_STREET": "INDIA",
+          "SITUS_SUFFIX": "ST",
+          "SITUS_SUITE": "",
+          "SITUS_ZIP": "92103-3727",
+          "UNITQTY": 6,
+          "YEAR_EFFECTIVE": "00"
+        }
+      }
+    ],
+    "fields": [
+      {
+        "alias": "OBJECTID",
+        "name": "OBJECTID",
+        "type": "esriFieldTypeOID"
+      },
+      {
+        "alias": "APN",
+        "length": 10,
+        "name": "APN",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "SITUS_ADDRESS",
+        "name": "SITUS_ADDRESS",
+        "type": "esriFieldTypeInteger"
+      },
+      {
+        "alias": "SITUS_STREET",
+        "length": 30,
+        "name": "SITUS_STREET",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "SITUS_SUFFIX",
+        "length": 4,
+        "name": "SITUS_SUFFIX",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "SITUS_JURIS",
+        "length": 2,
+        "name": "SITUS_JURIS",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "SITUS_ZIP",
+        "length": 10,
+        "name": "SITUS_ZIP",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "SITUS_PRE_DIR",
+        "length": 2,
+        "name": "SITUS_PRE_DIR",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "SITUS_POST_DIR",
+        "length": 2,
+        "name": "SITUS_POST_DIR",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "SITUS_FRACTION",
+        "length": 3,
+        "name": "SITUS_FRACTION",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "SITUS_BUILDING",
+        "length": 4,
+        "name": "SITUS_BUILDING",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "SITUS_SUITE",
+        "length": 6,
+        "name": "SITUS_SUITE",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "UNITQTY",
+        "name": "UNITQTY",
+        "type": "esriFieldTypeSmallInteger"
+      },
+      {
+        "alias": "YEAR_EFFECTIVE",
+        "length": 2,
+        "name": "YEAR_EFFECTIVE",
+        "type": "esriFieldTypeString"
+      },
+      {
+        "alias": "NUCLEUS_SITUS_FROM_NBR",
+        "name": "NUCLEUS_SITUS_FROM_NBR",
+        "type": "esriFieldTypeInteger"
+      },
+      {
+        "alias": "NUCLEUS_SITUS_THRU_NBR",
+        "name": "NUCLEUS_SITUS_THRU_NBR",
+        "type": "esriFieldTypeInteger"
+      }
+    ],
+    "geometryType": "esriGeometryPolygon",
+    "globalIdFieldName": "",
+    "hasZ": false,
+    "objectIdFieldName": "OBJECTID",
+    "spatialReference": {
+      "latestWkid": 2230,
+      "wkid": 102646
+    }
+  },
+  "retrieved_at": "2026-10-04T03:14:55.608223+00:00",
+  "sha256": "acec8dcc80c5ed815f3c952fb613af6cc37c1596eaf588fc9646820d87ca43ca",
+  "source_url": "https://gis-public.sandiegocounty.gov/arcgis/rest/services/WorkflowLayers/FeatureServer/0/query?f=json&where=SITUS_JURIS+%3D+%27SD%27+AND+%28%28SITUS_ADDRESS+%3D+10303+AND+SITUS_STREET+%3D+%27CAMINITO+ALVAREZ%27%29+OR+%28SITUS_ADDRESS+%3D+1307+AND+SITUS_STREET+%3D+%27COLUSA%27%29+OR+%28SITUS_ADDRESS+%3D+1336+AND+SITUS_STREET+%3D+%27BRUNNER%27%29+OR+%28SITUS_ADDRESS+%3D+1371+AND+SITUS_STREET+%3D+%2727TH%27%29+OR+%28SITUS_ADDRESS+%3D+1669+AND+SITUS_STREET+%3D+%27SUNSET+CLIFFS%27%29+OR+%28SITUS_ADDRESS+%3D+2142+AND+SITUS_STREET+%3D+%272ND%27%29+OR+%28SITUS_ADDRESS+%3D+2151+AND+SITUS_STREET+%3D+%27CHATSWORTH%27%29+OR+%28SITUS_ADDRESS+%3D+219+AND+SITUS_STREET+%3D+%2735TH%27%29+OR+%28SITUS_ADDRESS+%3D+2209+AND+SITUS_STREET+%3D+%27GRAND%27%29+OR+%28SITUS_ADDRESS+%3D+227+AND+SITUS_STREET+%3D+%27CYPRESS%27%29+OR+%28SITUS_ADDRESS+%3D+245+AND+SITUS_STREET+%3D+%27EUCLID%27%29+OR+%28SITUS_ADDRESS+%3D+265+AND+SITUS_STREET+%3D+%2722ND%27%29+OR+%28SITUS_ADDRESS+%3D+2924+AND+SITUS_STREET+%3D+%27JUNIPER%27%29+OR+%28SITUS_ADDRESS+%3D+3137+AND+SITUS_STREET+%3D+%27BOSTON%27%29+OR+%28SITUS_ADDRESS+%3D+3244+AND+SITUS_STREET+%3D+%27CLAIREMONT%27%29+OR+%28SITUS_ADDRESS+%3D+3526+AND+SITUS_STREET+%3D+%27FAIRMOUNT%27%29+OR+%28SITUS_ADDRESS+%3D+3654+AND+SITUS_STREET+%3D+%27ARIZONA%27%29+OR+%28SITUS_ADDRESS+%3D+3735+AND+SITUS_STREET+%3D+%2732ND%27%29+OR+%28SITUS_ADDRESS+%3D+3743+AND+SITUS_STREET+%3D+%27INDIA%27%29+OR+%28SITUS_ADDRESS+%3D+3750+AND+SITUS_STREET+%3D+%2729TH%27%29+OR+%28SITUS_ADDRESS+%3D+3752+AND+SITUS_STREET+%3D+%2733RD%27%29+OR+%28SITUS_ADDRESS+%3D+3784+AND+SITUS_STREET+%3D+%27BROADWAY%27%29+OR+%28SITUS_ADDRESS+%3D+3820+AND+SITUS_STREET+%3D+%27HAINES%27%29+OR+%28SITUS_ADDRESS+%3D+3860+AND+SITUS_STREET+%3D+%27CHEROKEE%27%29+OR+%28SITUS_ADDRESS+%3D+3911+AND+SITUS_STREET+%3D+%27CENTRE%27%29+OR+%28SITUS_ADDRESS+%3D+3940+AND+SITUS_STREET+%3D+%27IDAHO%27%29+OR+%28SITUS_ADDRESS+%3D+3978+AND+SITUS_STREET+%3D+%27FLORIDA%27%29+OR+%28SITUS_ADDRESS+%3D+4017+AND+SITUS_STREET+%3D+%27ILLINOIS%27%29+OR+%28SITUS_ADDRESS+%3D+4046+AND+SITUS_STREET+%3D+%2743RD%27%29+OR+%28SITUS_ADDRESS+%3D+4053+AND+SITUS_STREET+%3D+%27IDAHO%27%29+OR+%28SITUS_ADDRESS+%3D+4079+AND+SITUS_STREET+%3D+%27FRONT%27%29+OR+%28SITUS_ADDRESS+%3D+4091+AND+SITUS_STREET+%3D+%27MORRELL%27%29+OR+%28SITUS_ADDRESS+%3D+4135+AND+SITUS_STREET+%3D+%2738TH%27%29+OR+%28SITUS_ADDRESS+%3D+4225+AND+SITUS_STREET+%3D+%2750TH%27%29+OR+%28SITUS_ADDRESS+%3D+4361+AND+SITUS_STREET+%3D+%27ILLINOIS%27%29+OR+%28SITUS_ADDRESS+%3D+4386+AND+SITUS_STREET+%3D+%27COPELAND%27%29+OR+%28SITUS_ADDRESS+%3D+4419+AND+SITUS_STREET+%3D+%27CLEVELAND%27%29+OR+%28SITUS_ADDRESS+%3D+4428+AND+SITUS_STREET+%3D+%27GRESHAM%27%29+OR+%28SITUS_ADDRESS+%3D+4515+AND+SITUS_STREET+%3D+%27FELTON%27%29+OR+%28SITUS_ADDRESS+%3D+4541+AND+SITUS_STREET+%3D+%27HAMILTON%27%29+OR+%28SITUS_ADDRESS+%3D+4545+AND+SITUS_STREET+%3D+%2739TH%27%29+OR+%28SITUS_ADDRESS+%3D+4568+AND+SITUS_STREET+%3D+%27IDAHO%27%29+OR+%28SITUS_ADDRESS+%3D+4616+AND+SITUS_STREET+%3D+%27FLORIDA%27%29+OR+%28SITUS_ADDRESS+%3D+4663+AND+SITUS_STREET+%3D+%2733RD%27%29+OR+%28SITUS_ADDRESS+%3D+4732+AND+SITUS_STREET+%3D+%27BANCROFT%27%29+OR+%28SITUS_ADDRESS+%3D+4957+AND+SITUS_STREET+%3D+%27CAPE+MAY%27%29+OR+%28SITUS_ADDRESS+%3D+512+AND+SITUS_STREET+%3D+%2732ND%27%29+OR+%28SITUS_ADDRESS+%3D+7072+AND+SITUS_STREET+%3D+%27EASTMAN%27%29+OR+%28SITUS_ADDRESS+%3D+734+AND+SITUS_STREET+%3D+%27JAMAICA%27%29%29&outFields=OBJECTID%2CAPN%2CSITUS_ADDRESS%2CSITUS_STREET%2CSITUS_SUFFIX%2CSITUS_JURIS%2CSITUS_ZIP%2CSITUS_PRE_DIR%2CSITUS_POST_DIR%2CSITUS_FRACTION%2CSITUS_BUILDING%2CSITUS_SUITE%2CUNITQTY%2CYEAR_EFFECTIVE%2CNUCLEUS_SITUS_FROM_NBR%2CNUCLEUS_SITUS_THRU_NBR&returnGeometry=false&resultRecordCount=2000&orderByFields=OBJECTID",
+  "transport_sha256": "ed5c4f0bf0b1da02100bb70da9ec49ce8bb5cc2e7211a282af9e8775d6ef1799"
+}

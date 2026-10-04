@@ -1,0 +1,7 @@
+{
+  "url": "https://public.gis.lacounty.gov/robots.txt",
+  "checked_at": "2026-10-04T03:05:04.747075+00:00",
+  "access_basis": "County public query API. Building-line fields retained separately; no occupancy inference.",
+  "publisher": "https://egis-lacounty.hub.arcgis.com/",
+  "status": "unavailable_http_404"
+}

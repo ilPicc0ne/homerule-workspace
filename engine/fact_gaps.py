@@ -186,6 +186,7 @@ def plan_address(rules, rec, as_of, evidence=(), score_context=None):
             'hypothetical_only': True, 'baseline_unresolved_answers': len(open_answers),
             'next_question': questions[0]['fact'] if questions else None, 'questions': questions,
             'blockers': blockers, 'tenant_notes': tenant_notes,
+            'building_evidence': list(evidence),
             'assumptions': rec.get('assumptions', []),
             'score_context': score_context, 'score_effect': 'not_calculated'}
 
@@ -195,14 +196,16 @@ def main():
     p.add_argument('--as-of', default='2026-10-01')
     p.add_argument('--input-dir', type=Path, default=ROOT / 'out')
     p.add_argument('--output', type=Path, default=ROOT / 'out/fact_gaps.json')
-    p.add_argument('--evidence', type=Path, default=ROOT / 'data/building-evidence/nj-modiv.json')
+    p.add_argument('--evidence', type=Path, default=ROOT / 'data/building-evidence/public-evidence.json')
     p.add_argument('--scores', type=Path, help='Optional score-branch out/scores.json; contextual join only, no score recomputation')
     a = p.parse_args()
     dt.date.fromisoformat(a.as_of)
     names = ('rules.compiled.json', 'rules.json', 'findings.json', 'addresses.resolved.json')
     hashes = {name: hashlib.sha256((a.input_dir / name).read_bytes()).hexdigest() for name in names}
     rules, addresses = R.load(a.input_dir), F.load(a.input_dir / 'addresses.resolved.json')
-    evidence_payload = json.loads(a.evidence.read_text()) if a.evidence.exists() else {}
+    evidence_bytes = a.evidence.read_bytes() if a.evidence.exists() else None
+    evidence_hash = hashlib.sha256(evidence_bytes).hexdigest() if evidence_bytes else None
+    evidence_payload = json.loads(evidence_bytes) if evidence_bytes else {}
     if evidence_payload and evidence_payload['input_sha256'] != hashes['addresses.resolved.json']:
         raise ValueError('Evidence uses a different I3 snapshot; replay enrichment against these addresses first')
     evidence = evidence_payload.get('addresses', {})
@@ -215,7 +218,9 @@ def main():
                'tenant_notes_addresses': sum(bool(p['tenant_notes']) for p in plans.values())}
     if any(hashes[name] != hashlib.sha256((a.input_dir / name).read_bytes()).hexdigest() for name in names):
         raise ValueError('Inputs changed while planning; re-run against one stable snapshot')
-    result = {'as_of': a.as_of, 'not_legal_advice': True,
+    if evidence_bytes is not None and evidence_hash != hashlib.sha256(a.evidence.read_bytes()).hexdigest():
+        raise ValueError('Evidence changed while planning; replay against a stable snapshot')
+    result = {'as_of': a.as_of, 'not_legal_advice': True, 'evidence_input_sha256': evidence_hash,
               'method': 'Counterfactual partitions of one building fact at a time; rank worst-case then best-case reduction in unresolved rule/value answers. No probabilities or score uplift assumed.',
               'limits': ['Building-level hypotheses, not a determination about a tenant.',
                          'Unparsed and tenant conditions stay unresolved; public records cannot answer them automatically.',

@@ -1,0 +1,7 @@
+{
+  "url": "https://egis.hud.gov/robots.txt",
+  "checked_at": "2026-10-04T03:05:31.816823+00:00",
+  "access_basis": "Official public HUD GIS query API. Property/project counts and program flags are evidence leads only.",
+  "publisher": "https://www.hud.gov/hud-partners/multifamily-rems",
+  "status": "unavailable_http_404"
+}

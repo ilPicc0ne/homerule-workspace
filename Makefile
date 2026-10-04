@@ -70,9 +70,11 @@ alert:                                   ## demo hook, the last step once the pr
 fact-gaps:                              ## read-only investigation plans; no score or I3 changes
 	$(PY) -m engine.fact_gaps --as-of $(AS_OF)
 
-enrich-buildings:                       ## replay pinned public NJ building-evidence responses, offline
+enrich-buildings:                       ## replay all pinned public building-evidence responses, offline
 	$(PY) -m engine.enrich_nj
+	$(PY) -m engine.enrich_public
 
-enrich-buildings-live:                  ## explicitly refresh three exact-address NJ API queries
-	$(PY) -m engine.enrich_nj --fetch
+enrich-buildings-live:                  ## explicitly refresh public sources (SOURCE=la, ma, sf, hud, lihtc, sd or sdparcels)
+	$(if $(SOURCE),$(PY) -m engine.enrich_public --fetch $(SOURCE),$(PY) -m engine.enrich_nj --fetch)
+	$(if $(SOURCE),,$(PY) -m engine.enrich_public)
 

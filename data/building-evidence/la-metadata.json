@@ -1,0 +1,163 @@
+{
+  "source_url": "https://public.gis.lacounty.gov/public/rest/services/LACounty_Cache/LACounty_Parcel/MapServer/0",
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "domain": null
+    },
+    {
+      "name": "AIN",
+      "type": "esriFieldTypeString",
+      "alias": "AIN",
+      "length": 10,
+      "domain": null
+    },
+    {
+      "name": "SitusHouseNo",
+      "type": "esriFieldTypeString",
+      "alias": "SitusHouseNo",
+      "length": 5,
+      "domain": null
+    },
+    {
+      "name": "SitusFraction",
+      "type": "esriFieldTypeString",
+      "alias": "SitusFraction",
+      "length": 3,
+      "domain": null
+    },
+    {
+      "name": "SitusDirection",
+      "type": "esriFieldTypeString",
+      "alias": "SitusDirection",
+      "length": 1,
+      "domain": null
+    },
+    {
+      "name": "SitusUnit",
+      "type": "esriFieldTypeString",
+      "alias": "SitusUnit",
+      "length": 8,
+      "domain": null
+    },
+    {
+      "name": "SitusStreet",
+      "type": "esriFieldTypeString",
+      "alias": "SitusStreet",
+      "length": 32,
+      "domain": null
+    },
+    {
+      "name": "SitusAddress",
+      "type": "esriFieldTypeString",
+      "alias": "SADDR",
+      "length": 55,
+      "domain": null
+    },
+    {
+      "name": "SitusCity",
+      "type": "esriFieldTypeString",
+      "alias": "CITY",
+      "length": 24,
+      "domain": null
+    },
+    {
+      "name": "SitusZIP",
+      "type": "esriFieldTypeString",
+      "alias": "ZIP",
+      "length": 10,
+      "domain": null
+    },
+    {
+      "name": "UseCode",
+      "type": "esriFieldTypeString",
+      "alias": "UseCode",
+      "length": 4,
+      "domain": null
+    },
+    {
+      "name": "UseDescription",
+      "type": "esriFieldTypeString",
+      "alias": "UseDescription",
+      "length": 61,
+      "domain": null
+    },
+    {
+      "name": "YearBuilt1",
+      "type": "esriFieldTypeString",
+      "alias": "YearBuilt1",
+      "length": 4,
+      "domain": null
+    },
+    {
+      "name": "Units1",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "Units1",
+      "domain": null
+    },
+    {
+      "name": "YearBuilt2",
+      "type": "esriFieldTypeString",
+      "alias": "YearBuilt2",
+      "length": 4,
+      "domain": null
+    },
+    {
+      "name": "Units2",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "Units2",
+      "domain": null
+    },
+    {
+      "name": "YearBuilt3",
+      "type": "esriFieldTypeString",
+      "alias": "YearBuilt3",
+      "length": 4,
+      "domain": null
+    },
+    {
+      "name": "Units3",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "Units3",
+      "domain": null
+    },
+    {
+      "name": "YearBuilt4",
+      "type": "esriFieldTypeString",
+      "alias": "YearBuilt4",
+      "length": 4,
+      "domain": null
+    },
+    {
+      "name": "Units4",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "Units4",
+      "domain": null
+    },
+    {
+      "name": "YearBuilt5",
+      "type": "esriFieldTypeString",
+      "alias": "YearBuilt5",
+      "length": 4,
+      "domain": null
+    },
+    {
+      "name": "Units5",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "Units5",
+      "domain": null
+    },
+    {
+      "name": "Roll_Year",
+      "type": "esriFieldTypeString",
+      "alias": "Roll_Year",
+      "length": 4,
+      "domain": null
+    }
+  ],
+  "license": null,
+  "source_updated": null,
+  "attribution": "Los Angeles County Office of the Assessor"
+}

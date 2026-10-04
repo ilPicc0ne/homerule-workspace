@@ -1,0 +1,130 @@
+{
+  "source_url": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0",
+  "retrieved_at": "2026-10-04T03:16:48.042237+00:00",
+  "source_updated": {
+    "lastEditDate": 1747236808396,
+    "schemaLastEditDate": 1747236808396,
+    "dataLastEditDate": 1733772824220
+  },
+  "attribution": "U.S. Department of Housing and Urban Development, U.S. Census Bureau",
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "sqlType": "sqlTypeOther",
+      "nullable": false,
+      "editable": false,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "HUD_ID",
+      "type": "esriFieldTypeString",
+      "alias": "HUD_ID",
+      "sqlType": "sqlTypeOther",
+      "length": 25,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "PROJ_ADD",
+      "type": "esriFieldTypeString",
+      "alias": "PROJ_ADD",
+      "sqlType": "sqlTypeOther",
+      "length": 135,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "PROJ_CTY",
+      "type": "esriFieldTypeString",
+      "alias": "PROJ_CTY",
+      "sqlType": "sqlTypeOther",
+      "length": 35,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "PROJ_ST",
+      "type": "esriFieldTypeString",
+      "alias": "PROJ_ST",
+      "sqlType": "sqlTypeOther",
+      "length": 10,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "PROJ_ZIP",
+      "type": "esriFieldTypeString",
+      "alias": "PROJ_ZIP",
+      "sqlType": "sqlTypeOther",
+      "length": 15,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "N_UNITS",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "N_UNITS",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "LI_UNITS",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "LI_UNITS",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "YR_PIS",
+      "type": "esriFieldTypeString",
+      "alias": "YR_PIS",
+      "sqlType": "sqlTypeOther",
+      "length": 4,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "YR_ALLOC",
+      "type": "esriFieldTypeString",
+      "alias": "YR_ALLOC",
+      "sqlType": "sqlTypeOther",
+      "length": 4,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "TYPE",
+      "type": "esriFieldTypeString",
+      "alias": "TYPE",
+      "sqlType": "sqlTypeOther",
+      "length": 1,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    }
+  ]
+}

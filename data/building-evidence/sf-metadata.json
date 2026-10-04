@@ -1,0 +1,953 @@
+{
+  "source_url": "https://data.sf.gov/resource/wv5m-vpq2.json",
+  "fields": [
+    {
+      "id": 575507985,
+      "name": "Closed Roll Year",
+      "dataTypeName": "number",
+      "description": "The year listed represents the leading year of the fiscal year that the assessed value is effective for taxation purposes. For example, 2009 represents the 2009-2010 fiscal year during which the assessed values listed were effective (i.e. billed and collected). Note that a fiscal year starts July 1st and ends June 30th so that 2009 would start on July 1st, 2009 and end on June 30th 2010.",
+      "fieldName": "closed_roll_year",
+      "position": 1,
+      "renderTypeName": "number",
+      "tableColumnId": 123610546,
+      "width": 156,
+      "cachedContents": {
+        "non_null": "3934467",
+        "largest": "2025",
+        "null": "0",
+        "top": [
+          {
+            "item": "2019",
+            "count": "213531"
+          },
+          {
+            "item": "2018",
+            "count": "212779"
+          },
+          {
+            "item": "2024",
+            "count": "212653"
+          },
+          {
+            "item": "2023",
+            "count": "212206"
+          },
+          {
+            "item": "2022",
+            "count": "211551"
+          },
+          {
+            "item": "2025",
+            "count": "211547"
+          },
+          {
+            "item": "2016",
+            "count": "210729"
+          },
+          {
+            "item": "2021",
+            "count": "210698"
+          },
+          {
+            "item": "2020",
+            "count": "209695"
+          },
+          {
+            "item": "2015",
+            "count": "208927"
+          },
+          {
+            "item": "2017",
+            "count": "208041"
+          },
+          {
+            "item": "2014",
+            "count": "206816"
+          },
+          {
+            "item": "2013",
+            "count": "205509"
+          },
+          {
+            "item": "2012",
+            "count": "204113"
+          },
+          {
+            "item": "2010",
+            "count": "203053"
+          },
+          {
+            "item": "2009",
+            "count": "200901"
+          },
+          {
+            "item": "2008",
+            "count": "200182"
+          },
+          {
+            "item": "2007",
+            "count": "197778"
+          },
+          {
+            "item": "2011",
+            "count": "193758"
+          }
+        ],
+        "smallest": "2007",
+        "count": "3934467",
+        "cardinality": "3934467"
+      },
+      "format": {
+        "displayStyle": "plain",
+        "noCommas": "true",
+        "align": "left"
+      }
+    },
+    {
+      "id": 575507986,
+      "name": "Property Location",
+      "dataTypeName": "text",
+      "description": "Situs/Location, as well as room/unit number.",
+      "fieldName": "property_location",
+      "position": 2,
+      "renderTypeName": "text",
+      "tableColumnId": 35143905,
+      "width": 326,
+      "cachedContents": {
+        "non_null": "3934467",
+        "largest": "W000 0611 WASHINGTON          ST2202",
+        "null": "0",
+        "top": [
+          {
+            "item": "0000 0000                       0000",
+            "count": "28958"
+          },
+          {
+            "item": "0000 0000 V                     0000",
+            "count": "16040"
+          },
+          {
+            "item": "0000 0710 POWELL              ST0000",
+            "count": "15470"
+          },
+          {
+            "item": "0329 0327 FULTON              ST0000",
+            "count": "12290"
+          },
+          {
+            "item": "0000 0441 MASON               ST0000",
+            "count": "4116"
+          },
+          {
+            "item": "0399 0301 ANZA                ST0000",
+            "count": "2432"
+          },
+          {
+            "item": "0000 0055 SITUS TO BE ASSIGNEDST0000",
+            "count": "1382"
+          },
+          {
+            "item": "0000 0101 HORNE AVE BLDG 101    0000",
+            "count": "1377"
+          },
+          {
+            "item": "0730 0724 SITUS TO BE ASSIGNEDAV0000",
+            "count": "1284"
+          },
+          {
+            "item": "0000 0239 BRANNAN             ST0000",
+            "count": "1218"
+          },
+          {
+            "item": "0000 0000 SITUS TO BE ASSIGNED  0000",
+            "count": "783"
+          },
+          {
+            "item": "0000 0168 BLUXOME             ST0000",
+            "count": "724"
+          },
+          {
+            "item": "0000 0673 BRANNAN             ST0000",
+            "count": "724"
+          },
+          {
+            "item": "0000 5550 BARTLETT            ST0000",
+            "count": "706"
+          },
+          {
+            "item": "0000 0077 DOW                 PL0000",
+            "count": "701"
+          },
+          {
+            "item": "0000 0000 I-280 SOUTHBOUND      0000",
+            "count": "693"
+          },
+          {
+            "item": "0000 0388 BEALE               ST0000",
+            "count": "664"
+          },
+          {
+            "item": "0000 1600 WEBSTER             ST0000",
+            "count": "642"
+          },
+          {
+            "item": "0000 0083 MCALLISTER          ST0000",
+            "count": "622"
+          },
+          {
+            "item": "0000 P000                       0000",
+            "count": "616"
+          }
+        ],
+        "smallest": "0000 0000                       0000",
+        "count": "3934467",
+        "cardinality": "3934467"
+      },
+      "format": {
+        "align": "left"
+      }
+    },
+    {
+      "id": 575507987,
+      "name": "Parcel Number",
+      "dataTypeName": "text",
+      "description": "Block and Lot Number (Full Assessor Parcel Number)",
+      "fieldName": "parcel_number",
+      "position": 3,
+      "renderTypeName": "text",
+      "tableColumnId": 35143913,
+      "width": 143,
+      "cachedContents": {
+        "non_null": "3934467",
+        "largest": "9999999",
+        "null": "0",
+        "top": [
+          {
+            "item": "0762036",
+            "count": "19"
+          },
+          {
+            "item": "4760012",
+            "count": "19"
+          },
+          {
+            "item": "6308004I",
+            "count": "19"
+          },
+          {
+            "item": "1511008",
+            "count": "19"
+          },
+          {
+            "item": "0225016",
+            "count": "19"
+          },
+          {
+            "item": "1497009",
+            "count": "19"
+          },
+          {
+            "item": "3747012",
+            "count": "19"
+          },
+          {
+            "item": "5697016",
+            "count": "19"
+          },
+          {
+            "item": "0538015",
+            "count": "19"
+          },
+          {
+            "item": "6043001",
+            "count": "19"
+          },
+          {
+            "item": "5871031",
+            "count": "19"
+          },
+          {
+            "item": "0012007A",
+            "count": "19"
+          },
+          {
+            "item": "1190001F",
+            "count": "19"
+          },
+          {
+            "item": "5414030",
+            "count": "19"
+          },
+          {
+            "item": "6021032",
+            "count": "19"
+          },
+          {
+            "item": "6089002",
+            "count": "19"
+          },
+          {
+            "item": "2385017",
+            "count": "19"
+          },
+          {
+            "item": "1404015",
+            "count": "19"
+          },
+          {
+            "item": "4162084",
+            "count": "19"
+          },
+          {
+            "item": "1689009",
+            "count": "19"
+          }
+        ],
+        "smallest": "0001001",
+        "count": "3934467",
+        "cardinality": "3934467"
+      },
+      "format": {
+        "displayStyle": "plain",
+        "align": "left"
+      }
+    },
+    {
+      "id": 575507993,
+      "name": "Property Class Code",
+      "dataTypeName": "text",
+      "description": "Property type code defined in the field \"Property Class Code Definition.\" Property class codes and their related use codes are defined in the reference dataset: https://data.sfgov.org/d/pa56-ek2h\n\nPlease note, VCIX was truncated in the source and at the time records marked VCI could be VCIX. This is a rare code and indicates vacant land with restrictions as opposed to without.",
+      "fieldName": "property_class_code",
+      "position": 9,
+      "renderTypeName": "text",
+      "tableColumnId": 35143915,
+      "width": 128,
+      "cachedContents": {
+        "non_null": "3934467",
+        "largest": "ZEU",
+        "null": "0",
+        "top": [
+          {
+            "item": "D",
+            "count": "1806757"
+          },
+          {
+            "item": "Z",
+            "count": "857004"
+          },
+          {
+            "item": "F",
+            "count": "360679"
+          },
+          {
+            "item": "A",
+            "count": "139457"
+          },
+          {
+            "item": "TS",
+            "count": "102888"
+          },
+          {
+            "item": "A5",
+            "count": "71340"
+          },
+          {
+            "item": "LZ",
+            "count": "59074"
+          },
+          {
+            "item": "C",
+            "count": "53632"
+          },
+          {
+            "item": "V",
+            "count": "40138"
+          },
+          {
+            "item": "I",
+            "count": "38586"
+          },
+          {
+            "item": "A15",
+            "count": "33455"
+          },
+          {
+            "item": "ZBM",
+            "count": "31537"
+          },
+          {
+            "item": "FS",
+            "count": "26120"
+          },
+          {
+            "item": "VR",
+            "count": "25839"
+          },
+          {
+            "item": "O",
+            "count": "24256"
+          },
+          {
+            "item": "CO",
+            "count": "22196"
+          },
+          {
+            "item": "F2",
+            "count": "18987"
+          },
+          {
+            "item": "CZ",
+            "count": "17419"
+          },
+          {
+            "item": "VPUB",
+            "count": "16200"
+          },
+          {
+            "item": "X",
+            "count": "10546"
+          }
+        ],
+        "smallest": "A",
+        "count": "3934467",
+        "cardinality": "3934467"
+      },
+      "format": {
+        "displayStyle": "plain",
+        "align": "left"
+      }
+    },
+    {
+      "id": 575507994,
+      "name": "Property Class Code Definition",
+      "dataTypeName": "text",
+      "description": "Property type definition (name) based that defines the code in the field \"Property Class Code.\" Property class codes and their related use codes are defined in the reference dataset: https://data.sfgov.org/d/pa56-ek2h\n\nPlease note, the property use code VCIX was truncated in the source and at the time records marked VCI could be VCIX. This is a rare code and indicates vacant land with restrictions as opposed to without.\n",
+      "fieldName": "property_class_code_definition",
+      "position": 10,
+      "renderTypeName": "text",
+      "tableColumnId": 35143916,
+      "width": 186,
+      "cachedContents": {
+        "non_null": "3933609",
+        "largest": "Vacant TDR Parcel",
+        "null": "858",
+        "top": [
+          {
+            "item": "Dwelling",
+            "count": "1806757"
+          },
+          {
+            "item": "Condominium",
+            "count": "857004"
+          },
+          {
+            "item": "Flats & Duplex",
+            "count": "360679"
+          },
+          {
+            "item": "Apartment 4 units or less",
+            "count": "139457"
+          },
+          {
+            "item": "Timeshare",
+            "count": "102888"
+          },
+          {
+            "item": "Apartment 5 to 14 Units",
+            "count": "71340"
+          },
+          {
+            "item": "Live/Work Condominium",
+            "count": "59074"
+          },
+          {
+            "item": "Commercial Stores",
+            "count": "53632"
+          },
+          {
+            "item": "Vacant Lot",
+            "count": "40138"
+          },
+          {
+            "item": "Industrial",
+            "count": "38586"
+          },
+          {
+            "item": "Apartment 15 Units or more",
+            "count": "33455"
+          },
+          {
+            "item": "Condominium BMR",
+            "count": "31537"
+          },
+          {
+            "item": "Flat & Store 4 units or less",
+            "count": "26120"
+          },
+          {
+            "item": "Vacant Lot Residential",
+            "count": "25839"
+          },
+          {
+            "item": "Office",
+            "count": "24256"
+          },
+          {
+            "item": "Coop Units Unsegregated",
+            "count": "22196"
+          },
+          {
+            "item": "Flat & Store",
+            "count": "18987"
+          },
+          {
+            "item": "Commercial Store Condo",
+            "count": "17419"
+          },
+          {
+            "item": "Vacant Lot Public Use",
+            "count": "16200"
+          },
+          {
+            "item": "Misc",
+            "count": "10546"
+          }
+        ],
+        "smallest": "1 Flat & 1 Apt - 1 Parcel 5 to 14 units",
+        "count": "3934467",
+        "cardinality": "3934467"
+      },
+      "format": {
+        "displayStyle": "plain",
+        "align": "left"
+      }
+    },
+    {
+      "id": 575507995,
+      "name": "Year Property Built",
+      "dataTypeName": "text",
+      "description": "Year improvement was built (can be blend of original and newer construction)",
+      "fieldName": "year_property_built",
+      "position": 11,
+      "renderTypeName": "text",
+      "tableColumnId": 35143917,
+      "width": 133,
+      "cachedContents": {
+        "non_null": "3655138",
+        "largest": "2025",
+        "null": "279329",
+        "top": [
+          {
+            "item": "1900",
+            "count": "278510"
+          },
+          {
+            "item": "1925",
+            "count": "104413"
+          },
+          {
+            "item": "1907",
+            "count": "93001"
+          },
+          {
+            "item": "1908",
+            "count": "91526"
+          },
+          {
+            "item": "1924",
+            "count": "90705"
+          },
+          {
+            "item": "1926",
+            "count": "82043"
+          },
+          {
+            "item": "1941",
+            "count": "79802"
+          },
+          {
+            "item": "1923",
+            "count": "79602"
+          },
+          {
+            "item": "1927",
+            "count": "76355"
+          },
+          {
+            "item": "1906",
+            "count": "75775"
+          },
+          {
+            "item": "1940",
+            "count": "75263"
+          },
+          {
+            "item": "1910",
+            "count": "58979"
+          },
+          {
+            "item": "1922",
+            "count": "58525"
+          },
+          {
+            "item": "1912",
+            "count": "58320"
+          },
+          {
+            "item": "1947",
+            "count": "55179"
+          },
+          {
+            "item": "1948",
+            "count": "54870"
+          },
+          {
+            "item": "1939",
+            "count": "54270"
+          },
+          {
+            "item": "1928",
+            "count": "52898"
+          },
+          {
+            "item": "1950",
+            "count": "42519"
+          },
+          {
+            "item": "1909",
+            "count": "41913"
+          }
+        ],
+        "smallest": "1791",
+        "count": "3934467",
+        "cardinality": "3934467"
+      },
+      "format": {
+        "align": "left"
+      }
+    },
+    {
+      "id": 575508000,
+      "name": "Number of Units",
+      "dataTypeName": "number",
+      "description": "Number of units",
+      "fieldName": "number_of_units",
+      "position": 16,
+      "renderTypeName": "number",
+      "tableColumnId": 35143922,
+      "width": 149,
+      "cachedContents": {
+        "non_null": "3934465",
+        "largest": "50000.0",
+        "null": "2",
+        "top": [
+          {
+            "item": "1.0",
+            "count": "2431666"
+          },
+          {
+            "item": "0.0",
+            "count": "793425"
+          },
+          {
+            "item": "2.0",
+            "count": "320985"
+          },
+          {
+            "item": "3.0",
+            "count": "123048"
+          },
+          {
+            "item": "4.0",
+            "count": "80085"
+          },
+          {
+            "item": "6.0",
+            "count": "46573"
+          },
+          {
+            "item": "5.0",
+            "count": "27712"
+          },
+          {
+            "item": "12.0",
+            "count": "16868"
+          },
+          {
+            "item": "7.0",
+            "count": "12532"
+          },
+          {
+            "item": "8.0",
+            "count": "12336"
+          },
+          {
+            "item": "9.0",
+            "count": "8823"
+          },
+          {
+            "item": "10.0",
+            "count": "5696"
+          },
+          {
+            "item": "15.0",
+            "count": "4764"
+          },
+          {
+            "item": "18.0",
+            "count": "4417"
+          },
+          {
+            "item": "11.0",
+            "count": "3630"
+          },
+          {
+            "item": "14.0",
+            "count": "3549"
+          },
+          {
+            "item": "13.0",
+            "count": "3008"
+          },
+          {
+            "item": "24.0",
+            "count": "2511"
+          },
+          {
+            "item": "16.0",
+            "count": "2396"
+          },
+          {
+            "item": "21.0",
+            "count": "2066"
+          }
+        ],
+        "smallest": "0.0",
+        "count": "3934467",
+        "cardinality": "3934467"
+      },
+      "format": {
+        "precisionStyle": "standard",
+        "align": "right"
+      }
+    },
+    {
+      "id": 575508015,
+      "name": "Homeowner Exemption Value",
+      "dataTypeName": "number",
+      "description": "Homeowner's exemption\nvalue",
+      "fieldName": "homeowner_exemption_value",
+      "position": 31,
+      "renderTypeName": "number",
+      "tableColumnId": 35143941,
+      "width": 244,
+      "cachedContents": {
+        "non_null": "3934467",
+        "largest": "777000.0",
+        "null": "0",
+        "top": [
+          {
+            "item": "0.0",
+            "count": "2266501"
+          },
+          {
+            "item": "7000.0",
+            "count": "1653566"
+          },
+          {
+            "item": "14000.0",
+            "count": "9022"
+          },
+          {
+            "item": "5600.0",
+            "count": "2310"
+          },
+          {
+            "item": "21000.0",
+            "count": "1605"
+          },
+          {
+            "item": "28000.0",
+            "count": "721"
+          },
+          {
+            "item": "35000.0",
+            "count": "267"
+          },
+          {
+            "item": "42000.0",
+            "count": "137"
+          },
+          {
+            "item": "12600.0",
+            "count": "108"
+          },
+          {
+            "item": "11200.0",
+            "count": "66"
+          },
+          {
+            "item": "49000.0",
+            "count": "23"
+          },
+          {
+            "item": "84000.0",
+            "count": "21"
+          },
+          {
+            "item": "532000.0",
+            "count": "16"
+          },
+          {
+            "item": "301000.0",
+            "count": "13"
+          },
+          {
+            "item": "70000.0",
+            "count": "11"
+          },
+          {
+            "item": "19600.0",
+            "count": "9"
+          },
+          {
+            "item": "56000.0",
+            "count": "8"
+          },
+          {
+            "item": "26600.0",
+            "count": "6"
+          },
+          {
+            "item": "63000.0",
+            "count": "6"
+          },
+          {
+            "item": "77000.0",
+            "count": "6"
+          }
+        ],
+        "smallest": "0.0",
+        "count": "3934467",
+        "cardinality": "3934467"
+      },
+      "format": {
+        "precisionStyle": "currency",
+        "currencyStyle": "USD",
+        "noCommas": "false",
+        "align": "right"
+      }
+    },
+    {
+      "id": 575508028,
+      "name": "Row ID",
+      "dataTypeName": "text",
+      "description": "This is an identifier unique to each row for the purposes of managing updates to the dataset. It is the concatenation of YYYYMMDD corresponding to the January 1 of the roll year for the record and Parcel Number.",
+      "fieldName": "row_id",
+      "position": 44,
+      "renderTypeName": "text",
+      "tableColumnId": 65020179,
+      "width": 100,
+      "cachedContents": {
+        "non_null": "3934467",
+        "largest": "20259900503",
+        "null": "0",
+        "top": [
+          {
+            "item": "20251506012",
+            "count": "1"
+          },
+          {
+            "item": "20171654066",
+            "count": "1"
+          },
+          {
+            "item": "20227527033",
+            "count": "1"
+          },
+          {
+            "item": "20244152025",
+            "count": "1"
+          },
+          {
+            "item": "20255843028",
+            "count": "1"
+          },
+          {
+            "item": "20250572067",
+            "count": "1"
+          },
+          {
+            "item": "20212508022",
+            "count": "1"
+          },
+          {
+            "item": "20176085027A",
+            "count": "1"
+          },
+          {
+            "item": "20183257029",
+            "count": "1"
+          },
+          {
+            "item": "20090792T095O",
+            "count": "1"
+          },
+          {
+            "item": "20093789864",
+            "count": "1"
+          },
+          {
+            "item": "20151082054",
+            "count": "1"
+          },
+          {
+            "item": "20196619023",
+            "count": "1"
+          },
+          {
+            "item": "20255612058",
+            "count": "1"
+          },
+          {
+            "item": "20123604003",
+            "count": "1"
+          },
+          {
+            "item": "20076462016",
+            "count": "1"
+          },
+          {
+            "item": "20090091013",
+            "count": "1"
+          },
+          {
+            "item": "20241739025",
+            "count": "1"
+          },
+          {
+            "item": "20222859014",
+            "count": "1"
+          },
+          {
+            "item": "20231050014",
+            "count": "1"
+          }
+        ],
+        "smallest": "20070001001",
+        "count": "3934467",
+        "cardinality": "3934467"
+      },
+      "format": {
+        "displayStyle": "plain",
+        "align": "left"
+      }
+    }
+  ],
+  "license": {
+    "name": "Open Data Commons Public Domain Dedication and License",
+    "termsLink": "http://opendatacommons.org/licenses/pddl/1.0/"
+  },
+  "source_updated": 1782514236,
+  "attribution": "San Francisco Assessor-Recorder / DataSF"
+}

@@ -1,0 +1,9 @@
+{
+  "response": [],
+  "retention": "selected sample rows and explicit fields only",
+  "retrieved_at": "2026-10-04T03:08:24.675920+00:00",
+  "rows_scanned": 41614,
+  "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "source_url": "https://seshat.datasd.org/development_permits/approvals_issued_2026_datasd.csv",
+  "transport_sha256": "23c59e5cdd87da81788663f84413b08d6645532aff294cff18f45869c9b6a5d2"
+}

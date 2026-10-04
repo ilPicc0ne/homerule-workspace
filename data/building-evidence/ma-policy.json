@@ -1,0 +1,7 @@
+{
+  "url": "https://services1.arcgis.com/robots.txt",
+  "checked_at": "2026-10-04T03:05:06.976717+00:00",
+  "access_basis": "Public MassGIS feature service; official AGOL item 73d4c766167848b795f1048cad3919c7. Parcel boundaries not authoritative; UNITS can include non-residential units.",
+  "publisher": "https://www.mass.gov/info-details/massgis-data-property-tax-parcels",
+  "status": "unavailable_http_403"
+}

@@ -1,0 +1,186 @@
+{
+  "not_legal_advice": true,
+  "as_of": null,
+  "sources": {
+    "la": {
+      "api": "https://public.gis.lacounty.gov/public/rest/services/LACounty_Cache/LACounty_Parcel/MapServer/0",
+      "publisher": "https://egis-lacounty.hub.arcgis.com/",
+      "attribution": "Los Angeles County Office of the Assessor",
+      "fields": [
+        "OBJECTID",
+        "AIN",
+        "SitusAddress",
+        "SitusCity",
+        "SitusZIP",
+        "SitusHouseNo",
+        "SitusFraction",
+        "SitusDirection",
+        "SitusStreet",
+        "SitusUnit",
+        "UseCode",
+        "UseDescription",
+        "Roll_Year",
+        "YearBuilt1",
+        "Units1",
+        "YearBuilt2",
+        "Units2",
+        "YearBuilt3",
+        "Units3",
+        "YearBuilt4",
+        "Units4",
+        "YearBuilt5",
+        "Units5"
+      ],
+      "kind": "arcgis",
+      "scope": [
+        "CA-LOS-ANGELES"
+      ],
+      "access_basis": "County public query API. Building-line fields retained separately; no occupancy inference."
+    },
+    "ma": {
+      "api": "https://services1.arcgis.com/hGdibHYSPO59RG1h/ArcGIS/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0",
+      "publisher": "https://www.mass.gov/info-details/massgis-data-property-tax-parcels",
+      "attribution": "Commonwealth of Massachusetts Bureau of Geographic Information (MassGIS) and contributing municipal assessors",
+      "fields": [
+        "OBJECTID",
+        "LOC_ID",
+        "PROP_ID",
+        "TOWN_ID",
+        "SITE_ADDR",
+        "ADDR_NUM",
+        "FULL_STR",
+        "CITY",
+        "FY",
+        "YEAR_BUILT",
+        "UNITS",
+        "USE_CODE",
+        "USE_DESC"
+      ],
+      "kind": "arcgis",
+      "scope": [
+        "MA-BOSTON",
+        "MA-CAMBRIDGE"
+      ],
+      "access_basis": "Public MassGIS feature service; official AGOL item 73d4c766167848b795f1048cad3919c7. Parcel boundaries not authoritative; UNITS can include non-residential units."
+    },
+    "sf": {
+      "api": "https://data.sf.gov/resource/wv5m-vpq2.json",
+      "publisher": "https://data.sf.gov/d/wv5m-vpq2",
+      "attribution": "San Francisco Assessor-Recorder / DataSF",
+      "fields": [
+        "row_id",
+        "closed_roll_year",
+        "property_location",
+        "parcel_number",
+        "year_property_built",
+        "number_of_units",
+        "property_class_code",
+        "property_class_code_definition",
+        "homeowner_exemption_value"
+      ],
+      "kind": "socrata",
+      "scope": [
+        "CA-SAN-FRANCISCO"
+      ],
+      "access_basis": "Published Socrata API, Open Data Commons Public Domain Dedication and License. Fiscal roll 2025 only; year can blend original and newer construction."
+    },
+    "hud": {
+      "api": "https://egis.hud.gov/arcgis/rest/services/cpdmaps/HudMfProps/MapServer/1",
+      "publisher": "https://www.hud.gov/hud-partners/multifamily-rems",
+      "attribution": "U.S. Department of Housing and Urban Development",
+      "fields": [
+        "OBJECTID",
+        "PROPERTY_ID",
+        "ADDRESS_LINE1_TEXT",
+        "PLACED_BASE_CITY_NAME_TEXT",
+        "STD_ST",
+        "TOTAL_UNIT_COUNT",
+        "TOTAL_ASSISTED_UNIT_COUNT",
+        "HAS_USE_RESTRICTION_IND",
+        "OCCUPANCY_DATE",
+        "LAST_UPDT_DTTM"
+      ],
+      "kind": "arcgis",
+      "scope": [
+        "*"
+      ],
+      "access_basis": "Official public HUD GIS query API. Property/project counts and program flags are evidence leads only."
+    },
+    "lihtc": {
+      "api": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/LIHTC/FeatureServer/0",
+      "publisher": "https://www.huduser.gov/lihtc/",
+      "attribution": "U.S. Department of Housing and Urban Development, U.S. Census Bureau",
+      "fields": [
+        "OBJECTID",
+        "HUD_ID",
+        "PROJ_ADD",
+        "PROJ_CTY",
+        "PROJ_ST",
+        "PROJ_ZIP",
+        "N_UNITS",
+        "LI_UNITS",
+        "YR_PIS",
+        "YR_ALLOC",
+        "TYPE"
+      ],
+      "kind": "arcgis",
+      "scope": [
+        "*"
+      ],
+      "access_basis": "Published HUD public feature service. Historical program listing does not establish current restriction or all building addresses."
+    },
+    "sd": {
+      "api": "https://seshat.datasd.org/development_permits/",
+      "publisher": "https://data.sandiego.gov/datasets/development-permits/",
+      "attribution": "City of San Diego Development Services / Data & Analytics",
+      "fields": [
+        "PROJECT_ID",
+        "PROJECT_TYPE",
+        "PROJECT_STATUS",
+        "JOB_ID",
+        "GIS_ADDRESS",
+        "GIS_APN",
+        "JOB_BC_CODE_DESCRIPTION",
+        "APPROVAL_ID",
+        "APPROVAL_TYPE",
+        "APPROVAL_STATUS",
+        "APPROVAL_ISSUE_DATE",
+        "APPROVAL_CLOSE_DATE",
+        "APPROVAL_DU_NET_CHANGE"
+      ],
+      "kind": "csv",
+      "scope": [
+        "CA-SAN-DIEGO"
+      ],
+      "access_basis": "Official CSV downloads, Open Data Commons Public Domain Dedication and License. Issued-approval slices 2024, 2025 and 2026; not a complete building history or occupancy certificate."
+    },
+    "sdparcels": {
+      "api": "https://gis-public.sandiegocounty.gov/arcgis/rest/services/WorkflowLayers/FeatureServer/0",
+      "publisher": "https://gis-public.sandiegocounty.gov/arcgis/rest/services/WorkflowLayers/FeatureServer",
+      "attribution": "County of San Diego / SanGIS parcel assessment records",
+      "fields": [
+        "OBJECTID",
+        "APN",
+        "SITUS_ADDRESS",
+        "SITUS_STREET",
+        "SITUS_SUFFIX",
+        "SITUS_JURIS",
+        "SITUS_ZIP",
+        "SITUS_PRE_DIR",
+        "SITUS_POST_DIR",
+        "SITUS_FRACTION",
+        "SITUS_BUILDING",
+        "SITUS_SUITE",
+        "UNITQTY",
+        "YEAR_EFFECTIVE",
+        "NUCLEUS_SITUS_FROM_NBR",
+        "NUCLEUS_SITUS_THRU_NBR"
+      ],
+      "kind": "arcgis",
+      "scope": [
+        "CA-SAN-DIEGO"
+      ],
+      "access_basis": "Published County public feature query API. UNITQTY is parcel-level; two-character YEAR_EFFECTIVE is not interpreted as a construction/occupancy year."
+    }
+  }
+}

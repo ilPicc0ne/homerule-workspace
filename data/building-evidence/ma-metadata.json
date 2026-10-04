@@ -1,0 +1,150 @@
+{
+  "source_url": "https://services1.arcgis.com/hGdibHYSPO59RG1h/ArcGIS/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0",
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "sqlType": "sqlTypeOther",
+      "nullable": false,
+      "editable": false,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "LOC_ID",
+      "type": "esriFieldTypeString",
+      "alias": "LOC_ID",
+      "sqlType": "sqlTypeOther",
+      "length": 18,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "TOWN_ID",
+      "type": "esriFieldTypeInteger",
+      "alias": "TOWN_ID",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "PROP_ID",
+      "type": "esriFieldTypeString",
+      "alias": "PROP_ID",
+      "sqlType": "sqlTypeOther",
+      "length": 30,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "FY",
+      "type": "esriFieldTypeInteger",
+      "alias": "FY",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "USE_CODE",
+      "type": "esriFieldTypeString",
+      "alias": "USE_CODE",
+      "sqlType": "sqlTypeOther",
+      "length": 4,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "SITE_ADDR",
+      "type": "esriFieldTypeString",
+      "alias": "SITE_ADDR",
+      "sqlType": "sqlTypeOther",
+      "length": 80,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ADDR_NUM",
+      "type": "esriFieldTypeString",
+      "alias": "ADDR_NUM",
+      "sqlType": "sqlTypeOther",
+      "length": 12,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "FULL_STR",
+      "type": "esriFieldTypeString",
+      "alias": "FULL_STR",
+      "sqlType": "sqlTypeOther",
+      "length": 60,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "CITY",
+      "type": "esriFieldTypeString",
+      "alias": "CITY",
+      "sqlType": "sqlTypeOther",
+      "length": 25,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "YEAR_BUILT",
+      "type": "esriFieldTypeInteger",
+      "alias": "YEAR_BUILT",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "UNITS",
+      "type": "esriFieldTypeInteger",
+      "alias": "UNITS",
+      "sqlType": "sqlTypeOther",
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "USE_DESC",
+      "type": "esriFieldTypeString",
+      "alias": "Use Description",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    }
+  ],
+  "license": null,
+  "source_updated": {
+    "lastEditDate": 1790634108467,
+    "schemaLastEditDate": 1790634108467,
+    "dataLastEditDate": 1790634108467
+  },
+  "attribution": "Commonwealth of Massachusetts Bureau of Geographic Information (MassGIS) and contributing municipal assessors"
+}

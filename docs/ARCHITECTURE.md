@@ -318,3 +318,14 @@ automatic score change. See `data/building-evidence/README.md` for provenance,
 source limitations, measured results and the UI handoff. This first pilot and the
 next-fact planner were explicitly requested on 2026-10-04; source promotion and
 UI integration remain separate work.
+
+Expanded extra-data acquisition (same issue/branch): `engine/enrich_public.py`
+fetches bounded LA, MassGIS, SF, San Diego parcel/permit and HUD/LIHTC records;
+`make enrich-buildings` replays those snapshots plus NJ into
+`data/building-evidence/public-evidence.json`. This file carries raw source records,
+address-match status and typed evidence leads. `fact_gaps` attaches both relevant
+question evidence and all building evidence (including conflicts with existing
+assumptions). Construction, administrative occupancy, program service year,
+permit events and tax-exemption proxies keep distinct meanings. No I3/score
+mutation; ambiguous matches and program/building scope require review. See the
+building-evidence README for measured coverage, actual additions and acquisition gaps.
