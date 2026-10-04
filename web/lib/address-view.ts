@@ -1,5 +1,6 @@
 import contactsFile from "@/contracts/contacts.json";
 import { formatDate } from "./format";
+import { missingFacts } from "./missing";
 import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain";
 import type { Address, Finding, Result, Rule } from "./types";
 
@@ -216,15 +217,10 @@ export function buildAddressView(args: {
     if (!lead && pending.length) expl = "If a bill passes, HomeRule shows it here with its date.";
     if (!lead && !pending.length) expl = `HomeRule found no ${cityName ? "city or " : ""}state rule on this topic for this address. That doesn't mean there are no rules at all: federal law and your lease still apply.`;
 
-    // What we don't know yet: the engine's missing facts, or its explanation when the open
-    // condition is in the text, not in the building data.
-    const missing: Tile["missing"] = [];
-    for (const r of unknown) {
-      const rule = rules[r.rule_id];
-      const facts = r.missing_facts?.length ? r.missing_facts : null;
-      if (facts) for (const f of facts) missing.push({ fact: f.charAt(0).toUpperCase() + f.slice(1), why: `${rule.title} depends on it, and our data doesn't say.` });
-      else missing.push({ fact: "An exception in the law’s text", why: `${rule.title}: the rule has an exception our building records can’t check. The office below can tell you.` });
-    }
+    // What we don't know yet: the engine's missing facts (lead rule first, one line per fact), the
+    // approval date when the build year can't settle a cutoff, or an exception in the text.
+    const contact = contactFor(city, state, t.cat);
+    const missing: Tile["missing"] = missingFacts(unknown, rules, contact?.name ?? null);
 
     const lawNotes = replaced.map((r) => {
       const rule = rules[r.rule_id];
@@ -330,7 +326,7 @@ export function buildAddressView(args: {
       expl,
       missing,
       flag,
-      contact: contactFor(city, state, t.cat),
+      contact,
       helpers,
       next,
       lawNotes,
