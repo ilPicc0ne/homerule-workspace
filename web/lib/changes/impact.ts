@@ -89,9 +89,32 @@ export function badgeFor(c: Change): Badge | null {
  */
 export function eventBadge(rec: AddressChanges | null | undefined, ruleId: string, date?: string): Badge | null {
   if (!rec) return null;
-  const cs = rec.entries.flatMap((e) => e.changes).filter((c) => c.team_rule_id === ruleId);
+  // A rule's end (sunset/repeal) is its own event (endBadge); a start event never takes the end change's verdict.
+  const cs = rec.entries.flatMap((e) => e.changes).filter((c) => c.team_rule_id === ruleId && !endsIn(c));
   const pick = (date ? cs.find((c) => c.effective_from === date) : undefined) ?? (cs.length === 1 ? cs[0] : undefined);
   return pick ? badgeFor(pick) : null;
+}
+
+/**
+ * A change caused by the rule's own end date (sunset or repeal): the rule is removed and its `effective_until` falls inside
+ * the source's window (before < until <= after). Without a window, any removed change carrying `effective_until`.
+ */
+export function endsIn(c: Pick<Change, "change" | "effective_until">, win?: { before_as_of: string; after_as_of: string } | null): boolean {
+  const u = c.effective_until;
+  if (c.change !== "removed" || !u) return false;
+  return !win || (win.before_as_of < u && u <= win.after_as_of);
+}
+
+/** The date a change is about: its end date when the rule ends, else its start date. */
+export function changeDate(c: Change, win?: { before_as_of: string; after_as_of: string } | null): string | null {
+  return endsIn(c, win) ? (c.effective_until ?? null) : c.effective_from;
+}
+
+/** The badge for an "Ends: …" history event: the verdict of that rule's end change (removed, same end date) at this address. */
+export function endBadge(rec: AddressChanges | null | undefined, ruleId: string, until: string): Badge | null {
+  if (!rec) return null;
+  const c = rec.entries.flatMap((e) => e.changes).find((x) => x.team_rule_id === ruleId && endsIn(x) && x.effective_until === until);
+  return c ? badgeFor(c) : null;
 }
 
 /**
@@ -100,10 +123,16 @@ export function eventBadge(rec: AddressChanges | null | undefined, ruleId: strin
  * per-item badges carry the detail, and the line never claims a direction the data doesn't show.
  * Past only (every date on or before the as-of date) -> "has changed … since <date>".
  */
-export function firstLine(changes: Change[], short: string, asOf: string, fallbackDate?: string | null): string {
+export function firstLine(
+  changes: Change[],
+  short: string,
+  asOf: string,
+  fallbackDate?: string | null,
+  win?: { before_as_of: string; after_as_of: string } | null,
+): string {
   const live = changes.filter((c) => !isPending(c));
   const kinds = new Set(live.map(badgeFor).filter((b): b is Badge => !!b).map((b) => b.kind));
-  const dates = (live.length ? live : changes).map((c) => c.effective_from).filter((d): d is string => !!d).sort();
+  const dates = (live.length ? live : changes).map((c) => changeDate(c, win)).filter((d): d is string => !!d).sort();
   const earliest = dates[0] ?? fallbackDate ?? null;
   const past = dates.length > 0 ? dates.every((d) => d <= asOf) : !!earliest && earliest <= asOf;
   const when = earliest ? ` ${past ? "since" : "from"} ${formatDate(earliest)}` : "";

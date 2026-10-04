@@ -9,7 +9,7 @@ import { featuredEntry, longDate } from "./wording.ts";
 import { PLAIN, TOPICS } from "../plain.ts";
 import { formatDate } from "../format.ts";
 import rulesData from "../../data/live/rules.json" with { type: "json" };
-import { badgeFor, firstLine } from "./impact.ts";
+import { badgeFor, endsIn, firstLine } from "./impact.ts";
 import type { Badge, BadgeKind } from "./impact.ts";
 
 export const FROM = "HomeRule <alerts@yourhomerule.com>";
@@ -84,14 +84,21 @@ export function shortAddress(label: string): string {
 
 export type PlainChange = { rule_id: string; topic: string; sentence: string; badge: Badge | null };
 
-/** One change in renter words: topic + the address page's plain line + the date. No titles, statuses or citations. */
-export function plainChange(c: Change, asOf: string, rules: Map<string, RuleRec> = RULES): PlainChange {
+/** One change in renter words: topic + the address page's plain line + the date. No titles, statuses or citations.
+ *  `win`: the entry's before/after dates; a removed rule whose end date falls inside it reads "Ends on <date>". */
+export function plainChange(
+  c: Change,
+  asOf: string,
+  rules: Map<string, RuleRec> = RULES,
+  win?: { before_as_of: string; after_as_of: string } | null,
+): PlainChange {
   const rule = rules.get(c.team_rule_id);
   const topic = TOPICS.find((t) => t.cat === (c.category || rule?.category))?.title ?? "Housing rules";
   let line = (PLAIN[c.team_rule_id]?.line ?? rule?.summary ?? "A rule for this address changed.").trim();
   if (!/[.!?]$/.test(line)) line += ".";
   const date = formatDate(c.effective_from);
-  if (c.change === "removed") line = `This rule no longer shows for your address: ${line}`;
+  if (endsIn(c, win)) line = `${(c.effective_until ?? "") > asOf ? "Ends" : "Ended"} on ${formatDate(c.effective_until)}: ${line}`;
+  else if (c.change === "removed") line = `This rule no longer shows for your address: ${line}`;
   else if (date && !line.includes(date)) line = `${(c.effective_from ?? "") > asOf ? "From" : "Since"} ${date}: ${line}`;
   return { rule_id: c.team_rule_id, topic, sentence: line, badge: badgeFor(c) };
 }
@@ -106,9 +113,9 @@ export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEma
   const banner = opts.banner ?? (demo ? `${demo}: built from a fictional test document, not real law.` : null);
   const short = shortAddress(ac.label);
   const subject = `${demo ? `[${demo}] ` : ""}Something changes for your rent rules at ${short}`;
-  const items = ac.entry.changes.map((c) => plainChange(c, ac.as_of));
+  const items = ac.entry.changes.map((c) => plainChange(c, ac.as_of, RULES, ac.entry));
   const asOf = longDate(ac.as_of);
-  const lead = firstLine(ac.entry.changes, short, ac.as_of, ac.entry.after_as_of);
+  const lead = firstLine(ac.entry.changes, short, ac.as_of, ac.entry.after_as_of, ac.entry);
   const intro = "Here is what's new:";
   const cta = "See the details";
   const history = `${page}#h-ahead`;
