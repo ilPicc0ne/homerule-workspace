@@ -9,12 +9,16 @@ import s from "./connect.module.css";
 
 export const metadata: Metadata = {
   title: "Connect your chatbot",
-  description: "Add HomeRule to Claude, ChatGPT or your editor: dated, quoted renter-protection law for 3 states and 10 cities.",
+  description:
+    "Add HomeRule to Claude, ChatGPT or your editor: everything on the website, with the law's own words and links, for 3 states and 10 cities.",
 };
 
 const MCP_URL = "https://yourhomerule.com/api/mcp";
-const EXAMPLE =
-  "Use HomeRule: what renter protections apply at 471 Columbia Rd, Dorchester, MA? Quote the law with its date, and tell me what's unknown.";
+const EXAMPLES = [
+  "Use HomeRule: what renter protections apply at 471 Columbia Rd, Dorchester, MA? Quote the law with its date, and tell me what's unknown.",
+  "Use HomeRule: what's changing for renters in Newark? Show old → new with the law's own words and dates.",
+  "Use HomeRule: what does New Jersey's FAIR Act on rent-setting software say, and when does it take effect?",
+];
 
 export default function ConnectPage() {
   return (
@@ -23,8 +27,8 @@ export default function ConnectPage() {
         <p className={s.kicker}>For Claude, ChatGPT and coding tools</p>
         <h1>Make your chatbot rent-law aware</h1>
         <p className={s.sub}>
-          Add HomeRule as a connector. Your chatbot can then look up an address and answer with the law&rsquo;s own words, its date and a
-          link, for 3 states and 10 cities.
+          Add HomeRule as a connector. Your chatbot gets everything on the website, with the law&rsquo;s own words and links: an
+          address&rsquo;s six topics, what&rsquo;s changing, each rule in full and each city&rsquo;s rules, for 3 states and 10 cities.
         </p>
       </div>
 
@@ -42,7 +46,11 @@ export default function ConnectPage() {
         <h2 id="try-title" className={s.label}>
           Try this first
         </h2>
-        <CopyField value={EXAMPLE} label="Copy prompt" multiline />
+        <div className={s.prompts}>
+          {EXAMPLES.map((e) => (
+            <CopyField key={e} value={e} label="Copy prompt" multiline />
+          ))}
+        </div>
       </section>
 
       <p className={s.disclaimer}>

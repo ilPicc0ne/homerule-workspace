@@ -14,6 +14,8 @@ export type Contact = {
   free: boolean;
   eligibility: string | null;
   sourceUrl: string;
+  /** When the contact's source page was read (contracts/contacts.json). */
+  retrievedAt: string | null;
 };
 
 type ContactEntry = { jurisdiction: string; category: string; contacts: Record<string, string | null>[] };
@@ -41,6 +43,7 @@ export function contactFor(city: string | null, state: string, category: string)
         free: /\bfree\b/i.test(String(k.what_for ?? "")),
         eligibility: k.eligibility ?? null,
         sourceUrl: String(k.source_url),
+        retrievedAt: k.retrieved_at ?? null,
       };
     }
   }

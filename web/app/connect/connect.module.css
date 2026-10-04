@@ -150,3 +150,7 @@
   padding: 1rem 1.125rem;
   margin: 0;
 }
+.prompts {
+  display: grid;
+  gap: 0.5rem;
+}

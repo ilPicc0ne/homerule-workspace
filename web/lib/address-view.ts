@@ -1,7 +1,7 @@
 import { contactFor, type Contact } from "./contacts.ts";
-import { formatDate } from "./format";
-import { missingFacts } from "./missing";
-import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain";
+import { formatDate } from "./format.ts";
+import { missingFacts } from "./missing.ts";
+import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain.ts";
 import type { Address, Finding, Result, Rule } from "./types";
 
 export { contactFor, type Contact };
@@ -13,6 +13,26 @@ export { contactFor, type Contact };
 */
 
 export type TileStatus = "protect" | "depends" | "none";
+
+/** The tile status in words, as the address page shows it. */
+export const TILE_STATUS_WORDS: Record<TileStatus, string> = {
+  protect: "There’s a rule",
+  depends: "We’re missing one fact",
+  none: "No local rule — state basics only",
+};
+
+/** The page's "at a glance" sentences, from the tile statuses. */
+export function glanceSummary(tiles: { status: TileStatus }[]): string[] {
+  const counts = { protect: 0, depends: 0, none: 0 } as Record<TileStatus, number>;
+  tiles.forEach((t) => counts[t.status]++);
+  const n = (k: TileStatus, one: string, many: string) => `${counts[k]} ${counts[k] === 1 ? one : many}`;
+  const sum: string[] = [];
+  if (counts.protect === 6) sum.push("There’s a rule for each of the 6 topics at this address.");
+  else if (counts.protect) sum.push(`There’s a rule for ${n("protect", "topic", "topics")}.`);
+  if (counts.depends) sum.push(`For ${n("depends", "topic", "topics")}, we’re missing one fact.`);
+  if (counts.none) sum.push(`For ${n("none", "topic", "topics")}, there’s no local rule, so state basics apply.`);
+  return sum;
+}
 
 export type RuleRow = {
   rule_id: string;
