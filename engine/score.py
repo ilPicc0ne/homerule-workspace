@@ -19,6 +19,7 @@ from statistics import median
 import copy
 
 from engine import build as B, explain as X, facts as F, rules as R
+from extract.conditional_values import rent_months
 
 ROOT = Path(__file__).resolve().parent.parent
 CFG = json.loads((ROOT / "contracts" / "impact.json").read_text(encoding="utf-8"))
@@ -45,6 +46,21 @@ def rule_level(rule):
     return "strong" if v <= t["strong_at_most"] else "basic" if v <= t["basic_at_most"] else "none"
 
 
+def value_levels(rule, row):
+    """A conditional deposit cap has a guaranteed and a possible protection level."""
+    lv = rule_level(rule)
+    value = row.get("value")
+    if rule["category"] != "security_deposits" or not rule.get("key_value_conditions") or not value:
+        return lv, lv
+    values = value.get("conditional", []) if isinstance(value, dict) else [value]
+    numbers = [rent_months(v) for v in values]
+    if not numbers or any(n is None for n in numbers):
+        return ("none", lv) if isinstance(value, dict) else (lv, lv)
+    t = CFG["thresholds"]["security_deposits"]
+    levels = ["strong" if n <= t["strong_at_most"] else "basic" if n <= t["basic_at_most"] else "none" for n in numbers]
+    return min(levels, key=ORDER.index), max(levels, key=ORDER.index)
+
+
 def _has_condition(rule):
     """Does the rule name any building condition (coverage or exemption)?"""
     return (rule.get("applies_if") or {}).get("kind") != "always" or (rule.get("exempt_if") or {}).get("kind") != "never"
@@ -66,13 +82,13 @@ def topic_levels(rows, rules_by_id):
                 (limits if decided else may_limit).append(rule["id"])
             if direction != "protects":
                 continue
-            lv = rule_level(rule)
+            lv, possible_lv = value_levels(rule, row)
             if row["result"] in ("applies", "superseded"):   # superseded: a stricter local rule governs, also listed
                 if ORDER.index(lv) > ORDER.index(best):
                     best = lv
                 used.append(rule["id"])
-            if row["result"] in ("applies", "superseded", "unknown") and ORDER.index(lv) > ORDER.index(possible):
-                possible = lv
+            if row["result"] in ("applies", "superseded", "unknown") and ORDER.index(possible_lv) > ORDER.index(possible):
+                possible = possible_lv
         cap = CFG["limiting_rule_caps_at"]
         if (limits or may_limit) and ORDER.index(best) > ORDER.index(cap):
             best = cap
@@ -283,9 +299,14 @@ def open_questions(rec, d, rows, topics, rules, by_id):
             continue
         facts, text = [], []
         for row in rows:
-            if by_id[row["team_rule_id"]]["category"] != cat or row["result"] != "unknown":
+            value = row.get("value")
+            conditional = value if isinstance(value, dict) else {}
+            if by_id[row["team_rule_id"]]["category"] != cat or (row["result"] != "unknown" and not conditional):
                 continue
-            for m in row.get("missing") or []:
+            for qualification in conditional.get("qualifications", []):
+                if qualification not in text:
+                    text.append(qualification)
+            for m in sorted(set(row.get("missing") or []) | set(conditional.get("depends_on", []))):
                 if m.startswith("unparsed: "):
                     m = _full_text(by_id[row["team_rule_id"]], m[len("unparsed: "):])
                     if m not in text:

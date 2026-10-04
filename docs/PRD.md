@@ -36,7 +36,7 @@ Bonus the guide offers: show its four open legal questions (e.g. Berkeley's ban 
 |---|---|
 | How much can my rent go up? | Rent increase limits |
 | When can they end my tenancy? (reasons · notice · relocation money) | Just-cause eviction |
-| How much deposit can they ask? | Security deposits |
+| How much deposit can they ask? | Security deposits; conditional limits and unresolved exception conditions (#136) |
 | What can they charge me to apply? | Application and screening fees |
 | What can they check about me? | Screening restrictions |
 | Can rent-setting software be used on my rent? | Algorithmic rent-setting |
