@@ -1,47 +1,46 @@
 # Resume
 
-**Updated:** 2026-10-04T01:15Z
+**Updated:** 2026-10-04T04:50Z (06:50 CEST)
 **Branch:** main
-**Last commit:** Wrap-up: address, engine, change-log PRs
-**Working tree:** clean (`.claude/worktrees/` = subagent worktrees, git-ignored)
+**Production:** `8e7c326` on yourhomerule.com (main is ahead: docs, outputs/rules.json, rule-page fix)
+**Working tree:** clean apart from git-ignored worktrees and the local `.claude/REHEARSAL.md`
 
 ## Pick up next
 
-State 04.10. ~03:15. Freeze 12:00, submission 15:00. Open PRs, merge in this order:
-**#30** extraction (Dimitar; approved, must merge main in first) → **#29** address resolver + /where (`s/address-lookup`, worktree `.worktrees/address`) → **#36** engine `make build` (`s/engine`, stacked on #29+#30) → **#45** change log + email preview (`s/changes`, stacked on #36).
+Freeze 12:00, submission 15:00.
 
-1. Merge chain above; after each merge, merge main into the next branch. Then on `main`: `make resolve && make build AS_OF=2026-10-01`, commit `outputs/lookups.json` + `changes.json`. (35 scored points)
-2. `make eval` on main → fix list. Known: H01 Berkeley state cap (superseded vs expected unknown), state-cap counts differ from Dimitar's README — both with Dimitar (#36).
-3. `make demo-change` (J4) needs OPENROUTER_API_KEY or Dimitar's warm build/cache.
-4. #41 data into web/; address page reads `out/lookups.full.json` + I3, not its own demo data (135 rows of facts disagree). Link `/changes/[id]`.
-5. Merging s/demo-site breaks `/where` (icons moved to `components/`): fix the import.
-6. Hour-16 watch (~07:00–11:00), sleep split with Dimitar. 12:00–15:00 submission (#13).
-7. Housekeeping: after merges `git worktree remove` the 4 `.claude/worktrees/agent-*`; `pkill -f "disable-field-trial-config"`; move `../homerule-demo` to `.worktrees/demo`.
+1. **Dimitar, first thing:** paste him the note (session log 04.10. night): `outputs/rules.json` is a placeholder copy (#74) → after his hour-16 ingest, one final `make build` on main and commit all three scored files together. Also: `NJ-NEWARK-RENT-19:2-18.3` is an exemption tagged `protection_or_duty` (page works around it, #63); prompt lock mismatch; `renter_impact` field for the email badge (`more_protection` / `less_protection` / `neutral`).
+2. **Email rehearsal (Silvan's phone):** runbook `.claude/REHEARSAL.md` (local, not in git). Demo inbox seeded for A0011, real NJ source `asof:2026-10-01..2027-07-02`, dry run = exactly 1 recipient. Re-run the dry run before each take; send = `make alert SOURCE=… URL=https://yourhomerule.com`; reset between takes. Live take = Dimitar's hour-16 change.
+3. **Demo package** (deep-work agent, restarted 06:45 after a connection drop): `notes/demo/DEMO.md`, `GAPS.md`, `PRODUCT-REVIEW.md`, `video/script.json` + storyboard on branch `s/demo-script` (PR "Demo script, product review script, gaps"). English video rendered with `/Users/silvan/claude/code/tools/demo-video` (MP4 stays in the tool's `out/`). Then publish DEMO.md as a private claude.ai page for Silvan + Dimitar.
+4. **Production push** of current main after a look at the main preview (`git push origin <main sha>:refs/heads/production`).
+5. Open PRs from other sessions (not reviewed here): #77/#72/#71 sunsets + change verdict (stacked), #75, #68, #59, #55, #53, #48 (contacts already on main via #56 → close).
 
 ## Open questions
 
 - Hour-16 drop time; score.py / dev key; how unknowns score — context: Discord.
-- Phone numbers in contacts are unverified.
-- Starter-pack licence "TBD by organizers" — context: public repo publishes `out/` intermediates, not `data/`.
+- Postal address for the email footer: placeholder in `web/lib/alerts/disclaimer.ts` (US mail law before mailing strangers).
+- Starter-pack licence "TBD by organizers"; `web/` holds short source excerpts — check before the public repo goes public.
+- Phone numbers in contacts are unverified (shown as "not yet checked by us").
 
 ## Recent decisions
 
-- No feature without asking first (PRD rule) — *why:* scope creep before the freeze.
-- One engine: I3 adapter + CLI around Dimitar's evaluator; dates from compiled `effective.from/until`; month precision → unknown inside the window — *why:* agreed on #30.
-- I3 assumes `subsidised: false` without an affordability code and Boston A/ = 7+ units, tagged per record — *why:* otherwise the APT5 guard is never true (0 → 468 rows).
-- Tree levels: rules in HomeRule · not covered · no rules at this level; `county_law` in I1 (MA counties none, LA County unincorporated only) — *why:* "not covered" mixed missing law with absent law.
-- Autocomplete over own data (500 + places); Google Places = idea (PRD) — *why:* no key/terms/cost for the demo.
-- Subscription store Upstash Redis; one-view renter page (v3); real map MapLibre + TIGER (other session).
+- Vercel: root `web`, previews per PR and `main` (stable alias `homerule-git-main-…`), production only by pushing to branch `production` — *why:* nothing goes live by accident.
+- Law data stay files in git; only subscriptions are mutable (Upstash). No Neon — *why:* deterministic builds, one source of truth.
+- Alerts: who may get mail is data on the subscriber (`allowed`, `demo`), unsubscribe = random token per subscription; env only `RESEND_API_KEY`, `DEMO_TOKEN`, `ALERTS_SITE_URL` — *why:* Silvan's proposal, fewer secrets.
+- Alerts middle way: double opt-in, closed test, change alerts only by manual trigger; prototype banner on every page and mail — *why:* no automatic legal claims in strangers' inboxes.
+- UI option A "Quiet": navy `#2B3B4E` for UI, green/clay/grey only as status colours; icon = roof scales — *why:* green is the renter signal.
+- Plain alert email: one sentence per change, button to the address page — *why:* the legal-style mail was unreadable.
+- I3 assumptions, tree levels, one engine, autocomplete over own data — see earlier entries in SESSIONS.
 
 ## Surprises / gotchas
 
-- Census fuzzy-matches another city silently ("1 Main St, Los Angeles" → La Selva Beach) — *avoid:* typed-city warning.
-- `npm run resolve` synced contracts after the batch → stale output — *avoid:* sync before and after (fixed).
-- Dimitar's `out/extracted/` + `build/cache` exist only on his machine — *avoid:* engine reads committed `out/rules.compiled.json`.
-- Parallel sessions share one Playwright browser — *avoid:* don't run browser checks in two sessions at once.
-- `vercel install` adds agent skills silently — *avoid:* /vet after marketplace installs.
-- Dimitar pushes to main often — *avoid:* merge main into branches before pushing.
+- Auto mode blocks: secret-store writes (Vercel env), creating the `production` branch, merges without a first-hand review — *avoid:* Silvan runs `scripts/alerts-env.sh`; review diffs before `gh pr merge`.
+- `vercel env add … preview` piped from a script silently did nothing (branch prompt) — *avoid:* `--yes --force` + verify (fixed in #66).
+- Subagents die on connection drops (ECONNREFUSED) mid-task — *avoid:* commit and push each deliverable as soon as it exists.
+- Census fuzzy-matches another city silently — *avoid:* typed-city warning.
+- Dimitar's `out/extracted/` + `build/cache` exist only on his machine; `make demo-change` needs OPENROUTER_API_KEY.
+- Parallel sessions share one Playwright browser; Dimitar pushes to main often — merge main into branches before pushing.
 
 ## Long-form
 
-See `.claude/SESSIONS.md`, `docs/PRD.md`, `docs/ARCHITECTURE.md`, `docs/decisions/`.
+See `.claude/SESSIONS.md`, `docs/PRD.md` (CUJ table "CUJ → live URL → status → gap"), `docs/ARCHITECTURE.md`, `docs/decisions/`.
