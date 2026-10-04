@@ -36,7 +36,7 @@ Bonus the guide offers: show its four open legal questions (e.g. Berkeley's ban 
 |---|---|
 | How much can my rent go up? | Rent increase limits |
 | When can they end my tenancy? (reasons · notice · relocation money) | Just-cause eviction |
-| How much deposit can they ask? | Security deposits |
+| How much deposit can they ask? | Security deposits; conditional limits and unresolved exception conditions (#136) |
 | What can they charge me to apply? | Application and screening fees |
 | What can they check about me? | Screening restrictions |
 | Can rent-setting software be used on my rent? | Algorithmic rent-setting |
@@ -103,6 +103,7 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 | P0 | Prompt lint + freeze (`make freeze`, `extract/PROMPTS.lock`) | D | built (#35, later prompt updates through #106): lint, vocabulary-drift check and committed lock; run `python -m extract.prompts` before hour 16 to verify the current digest. The earlier mismatch observation is historical, not a current check |
 | P0 | Jurisdiction list + address resolution (Census geocoder, offline cache) | S | built (#29): `make resolve`, 500/500, `out/addresses.resolved.json` |
 | P0 | Engine → `outputs/lookups.json`, `outputs/changes.json`, `out/lookups.full.json` | S | built (#36, #40, #47): `make build`, all 500 addresses, T1–T5 in `outputs/changes.json` (T6 needs the hour-16 document), J1–J3 + Dorchester as tests (`tests/test_engine.py`) |
+| P0 | Conditional deposit amounts through compiler, engine and card | D | built (#136): preserve supporting cap conditions and evidence; show possible amounts, keep owner-wide and tenant conditions unresolved, and score the range |
 | P0 | Per-address diff (I6) → `out/changes.full.json` | S | built (#45, #113, #119): `engine/diff.py`; 9 as-of sources including rule start and end dates, 390 addresses with an entry, 1,514 changes at `fcff56b`; per-change verdict, `rating` (positive / neutral / negative) and why; `tests/test_diff.py` checks agreement with `changes.json` |
 | P0 | `outputs/` holds the three scored files | S | built (#110): all three committed; `outputs/rules.json` matches `out/rules.json`. The release copy remains explicit after a build on main |
 | P0 | Hour-16 ingest in one command | D | built (#30): `make ingest`, `make rehearse`, `make rerun` |

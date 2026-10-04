@@ -1,4 +1,4 @@
-import type { Category, Result, ResultValue, Rule } from "./types.ts";
+import type { Category, EvaluatedValue, Result, ResultValue, Rule } from "./types.ts";
 
 export const FACT_WORDS: Record<string, string> = {
   built: "the year the building was built",
@@ -11,6 +11,7 @@ export const FACT_WORDS: Record<string, string> = {
 
 /** I4's full engine row, before the existing page projection. */
 export type EngineRow = {
+  value?: EvaluatedValue;
   team_rule_id: string;
   category: Category;
   result: ResultValue;
@@ -36,6 +37,7 @@ export function engineRows(rows: EngineRow[], rules: Pick<Rule, "rule_id" | "wha
       result: r.result,
       confidence: r.confidence ?? 0,
       explanation: r.explanation,
+      ...(r.value != null ? { value: r.value } : {}),
       what_next: r.result === "unknown" && missing.length
         ? { label: `Ask your landlord or the city's housing office about ${missing.join(" and ")}` }
         : rule.what_next,

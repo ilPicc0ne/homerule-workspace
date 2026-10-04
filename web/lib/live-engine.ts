@@ -13,6 +13,11 @@ const responseSchema = z.object({
     result: z.enum(["applies", "unknown", "superseded", "not_yet_effective", "pending"]),
     confidence: z.number().min(0).max(1),
     explanation: z.string(),
+    value: z.union([z.string(), z.object({
+      conditional: z.array(z.string().nullable()).min(1),
+      depends_on: z.array(z.string()),
+      qualifications: z.array(z.string()).optional(),
+    })]).nullable().optional(),
     missing: z.array(z.string()),
     missing_deciding: z.array(z.string()).optional(),
     governed_by: z.string().nullable().optional(),

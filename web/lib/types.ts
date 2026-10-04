@@ -121,7 +121,11 @@ export type Rule = {
 export type WhatNext = { label: string; url?: string };
 
 // ---- lookups.json (I4/I5) ----
+export type EvaluatedValue = string | { conditional: (string | null)[]; depends_on: string[]; qualifications?: string[] } | null;
+
 export type Result = {
+  /** Address-specific amount; conditional even when the law itself applies. */
+  value?: EvaluatedValue;
   rule_id: string;
   category: Category;
   result: ResultValue;

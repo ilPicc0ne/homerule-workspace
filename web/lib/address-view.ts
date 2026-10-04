@@ -121,8 +121,17 @@ function confWord(n: number): string {
   return n >= 0.85 ? "high" : n >= 0.65 ? "medium" : "low";
 }
 
-function plainLine(rule: Rule | undefined): string {
+function conditionalValue(result?: Result) {
+  return result?.value && typeof result.value === "object" ? result.value : null;
+}
+
+function plainLine(rule: Rule | undefined, result?: Result): string {
   if (!rule) return "";
+  const value = conditionalValue(result);
+  if (value) {
+    const amounts = value.conditional.filter((v): v is string => !!v).map((v) => v.split(/[;,]|\.(?:\s|$)/)[0].toLowerCase());
+    return `The limit may be ${amounts.join(" or ")}, depending on the exception.`;
+  }
   return PLAIN[rule.rule_id]?.line || rule.summary;
 }
 
@@ -174,9 +183,9 @@ export function buildAddressView(args: {
     // The plain answer: the lead rule's line; a second line only when it adds a level.
     const lines: string[] = [];
     const lead = strong[0] ?? unknown[0] ?? weak[0];
-    if (lead) lines.push(plainLine(rules[lead.rule_id]));
+    if (lead) lines.push(plainLine(rules[lead.rule_id], lead));
     if (status === "protect" && strong[1] && !isCarveOut(rules[strong[1].rule_id]) && rules[strong[1].rule_id].level !== rules[strong[0].rule_id].level) {
-      lines.push(plainLine(rules[strong[1].rule_id]));
+      lines.push(plainLine(rules[strong[1].rule_id], strong[1]));
     }
     if (status === "none" && !lead) {
       lines.push(
@@ -189,7 +198,9 @@ export function buildAddressView(args: {
       lines.push(`${pending.length === 1 ? "One bill is" : `${pending.length} bills are`} proposed; a bill is not law.`);
     }
 
+    const conditionalResults = [...strong, ...unknown, ...weak].filter(r => conditionalValue(r));
     const notes: Tile["notes"] = [];
+    if (conditionalResults.length) notes.push({ kind: "depends", text: "The amount depends on an exception we can’t verify" });
     if (unknown.length && status === "protect") notes.push({ kind: "depends", text: "One more rule depends on a missing fact" });
     for (const r of later) {
       const rule = rules[r.rule_id];
@@ -217,6 +228,10 @@ export function buildAddressView(args: {
     // Explanation: hand-written words for the lead rule, else the engine's own sentence.
     const leadRule = lead ? rules[lead.rule_id] : undefined;
     let expl = (leadRule && PLAIN[leadRule.rule_id]?.expl) || (lead?.explanation ?? "");
+    for (const r of conditionalResults) {
+      const detail = `${r.explanation} Possible amounts: ${conditionalValue(r)!.conditional.filter(Boolean).join(" Or: ")}`;
+      expl = r === lead ? detail : `${expl} ${detail}`;
+    }
     if (!lead && pending.length) expl = "If a bill passes, HomeRule shows it here with its date.";
     if (!lead && !pending.length) expl = `HomeRule found no ${cityName ? "city or " : ""}state rule on this topic for this address. That doesn't mean there are no rules at all: federal law and your lease still apply.`;
 
@@ -224,6 +239,15 @@ export function buildAddressView(args: {
     // approval date when the build year can't settle a cutoff, or an exception in the text.
     const contact = contactFor(city, state, t.cat);
     const missing: Tile["missing"] = missingFacts(unknown, rules, contact?.name ?? null);
+    for (const fact of new Set(conditionalResults.flatMap(r => conditionalValue(r)?.depends_on ?? []))) {
+      if (!fact.startsWith("unparsed: ")) missing.push({
+        fact: FACT_PLAIN[fact as keyof typeof FACT_PLAIN]?.name ?? fact,
+        why: "The amount depends on this fact, which our data cannot establish.",
+      });
+    }
+    for (const qualification of new Set(conditionalResults.flatMap(r => conditionalValue(r)?.qualifications ?? []))) {
+      missing.push({ fact: "Exception condition", why: qualification });
+    }
 
     const lawNotes = replaced.map((r) => {
       const rule = rules[r.rule_id];
@@ -311,7 +335,7 @@ export function buildAddressView(args: {
         st,
         stWord,
         quote: rule.quoted_span,
-        why: st === "applies" ? null : r.explanation,
+        why: st === "applies" && !conditionalValue(r) ? null : r.explanation,
         citation: rule.citation,
         sourceUrl: rule.source_url,
         sourceName: hostName(rule.source_url),
