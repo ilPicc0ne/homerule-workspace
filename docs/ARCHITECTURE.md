@@ -308,6 +308,16 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 | `NEXT_PUBLIC_DEFAULT_MAP_VIEW` | Vercel preview `3d` (set 04.10.2026); production decided `3d`, not yet set (unset → `map`) | `web/lib/map-view.ts`: the first-time view on the address page (`map` or `3d`); a visitor's own switch choice and `?map=` win. With `3d`, every address page view is a Google map load (quota 500/day, then the MapLibre fallback) |
 | `NEXT_PUBLIC_GOOGLE_MAPS_KEY` | Vercel production, preview, development; `vercel env pull` → `.env.local` | `web/components/address-map-3d.tsx` (3D map view, loaded only after the visitor picks 3D). Browser key `homerule-maps-browser`: Maps JavaScript API only; referrers `yourhomerule.com/*`, `*.yourhomerule.com/*`, `*.vercel.app/*`, `localhost:*/*`, `127.0.0.1:*/*` (explicit entries since 04.10.2026: `https://yourhomerule.com/*`, `https://www.yourhomerule.com/*`, `https://*.yourhomerule.com/*`, `https://*.vercel.app/*`, `http://localhost:3000/*`, `http://localhost:3064/*`, `http://localhost/*`, `http://127.0.0.1:3000/*`, `http://127.0.0.1:3064/*`; the earlier `localhost:*/*` wildcard was rejected); quota 500 map loads/day for 3D and 500 for 2D. Billed as Dynamic Maps (Essentials, US$7 per 1,000 loads after 10,000 free per month) [assumed: Google's usage page says 3D map loads count under Dynamic Maps; the price list has no separate 3D SKU] |
 
+### Map data (build time, committed)
+
+| File | Source | Script | Used by |
+|---|---|---|---|
+| `web/data/city-outlines.geojson` | Census TIGER/Line 2025 places | `scripts/build-city-outlines.sh` | Both maps: legal-city outline |
+| `web/data/building-footprints.json` | OpenStreetMap via Overpass API (ODbL) | `scripts/build-building-footprints.ts` | Both maps: building highlight (sure matches only) |
+| `web/data/elevations.json` | Open-Meteo Elevation API (Copernicus GLO-90 DEM, free, no key), retrieved 04.10.2026 | `scripts/build-elevations.ts` (≤ 100 points per request, cached) | 3D view only: ground elevation at the camera target (building centroid for sure matches, else the Census geocode), 492/500 |
+
+Why elevation: `Map3DElement`'s camera centre altitude is metres above sea level. A centre at altitude 0 on a hill lies under the street, and at the 50° final tilt the view shifts by ≈ elevation × tan 50° (140 Portola Dr, SF, 210 m → ~250 m off). With the stored elevation the final shot and the orbit are centred on the ground. A typed address outside the sample has no stored elevation and nothing is fetched at runtime: its final shot is straight down (tilt 0), where the altitude cannot shift the view. The opening city shot is tilt 0 at altitude 0 for the same reason.
+
 There is no `DEMO_RECIPIENTS` variable. `scripts/alerts-env.sh` is meant to set `DEMO_TOKEN` and `ALERTS_SITE_URL` for preview too; on 04.10.2026 ~05:00 Vercel listed them for production only, so dispatch works only on production.
 
 ## Audit and evaluation

@@ -47,3 +47,18 @@ export function buildingFootprint(addressId: string): Footprint | null {
   }
   return footprints[addressId] ?? null;
 }
+
+let elevations: Record<string, number> | undefined;
+
+/** Ground elevation (m above sea level) at the 3D camera target of a sample address (scripts/build-elevations.ts); null when none. */
+export function groundElevation(addressId: string): number | null {
+  if (!elevations) {
+    const file = path.join(process.cwd(), "data", "elevations.json");
+    try {
+      elevations = (JSON.parse(readFileSync(file, "utf8")) as { elevations: Record<string, number> }).elevations;
+    } catch {
+      elevations = {};
+    }
+  }
+  return elevations[addressId] ?? null;
+}

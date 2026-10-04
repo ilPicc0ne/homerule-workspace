@@ -1,7 +1,7 @@
 // Map · 3D switch (#64): which view opens, and the 3D camera path from city outline to building.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { DEFAULT_MAP_VIEW, buildingCamera, cityCamera, initialMapView, outerRings, highlightFor, parseMapView, sureFootprint } from "../lib/map-view.ts";
+import { DEFAULT_MAP_VIEW, buildingCamera, cameraOffsetM, cityCamera, initialMapView, outerRings, highlightFor, parseMapView, sureFootprint } from "../lib/map-view.ts";
 import { distanceToRing, type Footprint } from "../lib/footprint.ts";
 
 test("MapLibre is the default view unless NEXT_PUBLIC_DEFAULT_MAP_VIEW says 3d", () => {
@@ -43,9 +43,38 @@ test("opening shot without an outline is over the building; nothing at all gives
   assert.equal(cityCamera([], null), null);
 });
 
-test("final shot: the building at ~300 m, tilt 50°", () => {
-  const cam = buildingCamera({ lon: -122.43, lat: 37.8 });
-  assert.deepEqual(cam, { center: { lat: 37.8, lng: -122.43, altitude: 0 }, range: 300, tilt: 50, heading: 0 });
+test("final shot: the building at ~300 m, tilt 50°, centre at the ground elevation", () => {
+  // 140 Portola Dr, SF (A0105) sits at ~210 m: the centre must be there, not at sea level.
+  const cam = buildingCamera({ lon: -122.444, lat: 37.7487 }, 210);
+  assert.deepEqual(cam, { center: { lat: 37.7487, lng: -122.444, altitude: 210 }, range: 300, tilt: 50, heading: 0 });
+  assert.equal(buildingCamera({ lon: -74.03, lat: 40.74 }, 0).center.altitude, 0);
+  assert.equal(buildingCamera({ lon: -74.03, lat: 40.74 }, 0).tilt, 50);
+});
+
+test("final shot without a known elevation (typed address): straight down, so altitude cannot shift the view", () => {
+  for (const e of [undefined, null, NaN]) {
+    const cam = buildingCamera({ lon: -118.2, lat: 34.0 }, e);
+    assert.equal(cam.tilt, 0);
+    assert.equal(cam.center.altitude, 0);
+    assert.equal(cameraOffsetM(500, cam.tilt), 0);
+  }
+});
+
+test("the bug this fixes: altitude 0 on a 210 m hill at 50° tilt is ~250 m off; the stored elevation removes it", () => {
+  assert.ok(Math.abs(cameraOffsetM(210, 50) - 250) < 1);
+  const cam = buildingCamera({ lon: -122.444, lat: 37.7487 }, 210);
+  assert.equal(cameraOffsetM(210 - cam.center.altitude, cam.tilt), 0);
+});
+
+test("every stored elevation is a plausible ground height in metres", async () => {
+  const { readFileSync } = await import("node:fs");
+  const doc = JSON.parse(readFileSync(new URL("../data/elevations.json", import.meta.url), "utf8"));
+  assert.match(doc.source, /Open-Meteo/);
+  assert.match(doc.retrieved, /^\d{4}-\d{2}-\d{2}$/);
+  const vals = Object.values(doc.elevations) as number[];
+  assert.ok(vals.length > 450, `${vals.length} elevations`);
+  for (const v of vals) assert.ok(Number.isInteger(v) && v > -100 && v < 3000, `elevation ${v}`);
+  assert.ok(Math.abs(doc.elevations.A0105 - 210) < 15, `A0105 ${doc.elevations.A0105}`);
 });
 
 const ring: [number, number][] = [[-74.041, 40.738], [-74.040, 40.738], [-74.040, 40.739], [-74.041, 40.739], [-74.041, 40.738]];
