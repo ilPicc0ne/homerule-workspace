@@ -1088,28 +1088,6 @@
       {
        "after": {
         "conflict_flag": false,
-        "explanation": "Unknown whether Cal. Civ. Code § 1947.12 covers this address: depends on built 2012 (year_built, LA County eGIS parcels), too close to the 15-year age limit (July 2, 2012) to tell; and on whether local rent control covers the unit. Check the certificate-of-occupancy date (city building department or the landlord).",
-        "result": "unknown"
-       },
-       "before": null,
-       "category": "rent_increase_limits",
-       "change": "added",
-       "citation": "Cal. Civ. Code § 1947.12",
-       "conflict_flag_changed": false,
-       "document_status": "enacted",
-       "effective_from": "2024-08-01",
-       "jurisdiction_id": "CA-LOS-ANGELES",
-       "origin": "starter",
-       "requirement_quote": "A\nnnual rent increases are limited to no more than 5% plus the percentage change in the cost of living for the region in which the property is located, or 10% whichever is lower).",
-       "result_changed": true,
-       "scored": true,
-       "source_url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco",
-       "team_rule_id": "CA-LOS-ANGELES-RENT-1947.12",
-       "title": "Annual rent-increase limit under AB 1482"
-      },
-      {
-       "after": {
-        "conflict_flag": false,
         "explanation": "Unknown whether Cal. Civ. Code § 1947.12 covers this address: depends on built 2012 (year_built, LA County eGIS parcels), too close to the 15-year age limit (July 2, 2012) to tell; and on whether the owner lives there (not in the data). Check the certificate-of-occupancy date (city building department or the landlord) and whether the owner lives in the building (ask the landlord).",
         "result": "unknown"
        },
@@ -24922,7 +24900,6 @@
    "document": null,
    "kind": "as_of",
    "rule_ids": [
-    "CA-LOS-ANGELES-RENT-1947.12",
     "CA-RENT-1947.12",
     "NJ-ALG-56:9-23"
    ],

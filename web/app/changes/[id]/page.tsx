@@ -139,7 +139,7 @@ export default async function ChangesPage({ params }: { params: Promise<Params> 
         )}
       </main>
       <footer className="wrap footer">
-        <p>Not legal advice. Shows which published housing rules may apply to an address and what changed. As of {changes.as_of}.</p>
+        <p>Not legal advice. Shows which published housing rules may apply to an address and what changed. As of {longDate(changes.as_of)}.</p>
       </footer>
     </>
   );
