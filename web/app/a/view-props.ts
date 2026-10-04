@@ -20,7 +20,7 @@ export function searchIndex(data: Dataset) {
   return data.addresses.map((a) => ({ id: a.address_id, street: a.street, city: a.postal_city, st: a.state_code }));
 }
 
-export function viewProps(data: Dataset, address: Address, results: Result[], extra?: { typed?: boolean; legalNote?: string }): ViewProps {
+export function viewProps(data: Dataset, address: Address, results: Result[], extra?: { typed?: boolean; legalNote?: string; asOf?: string }): ViewProps {
   const core = addressPageData(data, address, results, extra);
   const city = address.jurisdictions.city ? jurisdictionById(address.jurisdictions.city) : undefined;
   const outline = cityOutline(city?.id) as GeoJSON.Feature | null;

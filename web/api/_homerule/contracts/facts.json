@@ -1,0 +1,90 @@
+{
+  "_comment": "Building-fact vocabulary (interface I7, docs/ARCHITECTURE.md). Silvan's address lookup produces these facts per address; Dimitar's extraction writes coverage conditions (applies_if / exempt_if) using ONLY these names, types and operators. Anything a rule needs that is not here (length of tenancy, household, lease terms) goes into tenant_conditions as plain text, never into a predicate. Semantics are three-valued: a comparison is true if every value in the fact's range satisfies it, false if none does, unknown if some do or the fact is null.",
+  "facts": [
+    {
+      "name": "built",
+      "type": "date_range",
+      "shape": {"from": "YYYY-MM-DD", "to": "YYYY-MM-DD"},
+      "ops": ["lt", "le", "gt", "ge"],
+      "value_type": "date (YYYY-MM-DD)",
+      "source": "year_built from the CSV; year y becomes [y-01-01, y-12-31]. Stands in for certificate-of-occupancy date, so a cutoff inside the build year evaluates to unknown.",
+      "example_condition": {"fact": "built", "op": "le", "value": "1979-06-13"},
+      "example_value": {"from": "1926-01-01", "to": "1926-12-31"},
+      "null_means": "year built missing (all Berkeley and San Diego rows, many NJ rows)"
+    },
+    {
+      "name": "units",
+      "type": "int_range",
+      "shape": {"min": "int", "max": "int or null for open-ended"},
+      "ops": ["eq", "ne", "lt", "le", "gt", "ge"],
+      "value_type": "integer",
+      "source": "units from the CSV, else parsed from use_description (\"5B-20U\" -> 20, \"APT 7-30 UNITS\" -> 7..30, \"(5+ units)\" -> 5..null). Conflicting sources -> null plus a review flag.",
+      "example_condition": {"fact": "units", "op": "ge", "value": 5},
+      "example_value": {"min": 21, "max": 21},
+      "null_means": "unit count unknown"
+    },
+    {
+      "name": "use_class",
+      "type": "enum",
+      "values": ["apartment", "condo", "co_op", "two_family", "single_family", "mixed_use", "subsidised_housing"],
+      "ops": ["eq", "ne", "in"],
+      "value_type": "one value or a list for 'in'",
+      "source": "mapped from use_code / use_description per dataset",
+      "example_condition": {"fact": "use_class", "op": "in", "value": ["condo", "single_family"]},
+      "example_value": "apartment",
+      "null_means": "use not mappable"
+    },
+    {
+      "name": "subsidised",
+      "type": "bool",
+      "ops": ["eq"],
+      "value_type": "true / false",
+      "source": "use_description (\"SUBSD HOUSING\", NJ \"AFFORDABL\") → true; a record with no affordability code → false [assumption no_recorded_affordability_restriction, mirrors the extraction's APT5 guard]; later HUD LIHTC / multifamily assisted lists (P1)",
+      "example_condition": {"fact": "subsidised", "op": "eq", "value": true},
+      "example_value": null,
+      "null_means": "not known: no use code or description to read"
+    },
+    {
+      "name": "owner_type",
+      "type": "enum",
+      "values": ["individual", "corporation", "reit", "public"],
+      "ops": ["eq", "ne", "in"],
+      "value_type": "one value or a list for 'in'",
+      "source": "never in the data (owner names excluded from the pack)",
+      "example_condition": {"fact": "owner_type", "op": "in", "value": ["corporation", "reit"]},
+      "example_value": null,
+      "null_means": "always null; rules that depend only on it evaluate to unknown, unless another fact already decides (e.g. units >= 5 rules out a small-landlord exception)"
+    },
+    {
+      "name": "owner_occupied",
+      "type": "bool",
+      "ops": ["eq"],
+      "value_type": "true / false",
+      "source": "never set from data in the scored outputs; tax-exemption proxies appear as card notes only",
+      "example_condition": {"fact": "owner_occupied", "op": "eq", "value": true},
+      "example_value": null,
+      "null_means": "always null in lookups.json"
+    }
+  ],
+  "special_nodes": [
+    {
+      "node": "age_years",
+      "shape": {"age_years": {"op": "lt | le | gt | ge", "n": "integer"}},
+      "meaning": "Building age relative to the as-of date, computed from 'built' (e.g. California's cap exempts buildings under 15 years: {\"age_years\": {\"op\": \"lt\", \"n\": 15}} in exempt_if).",
+      "example": {"age_years": {"op": "lt", "n": 15}}
+    },
+    {
+      "node": "ref",
+      "shape": {"ref": "local_rent_control | local_just_cause"},
+      "meaning": "Another rule's result at the same address (e.g. a state rule that applies only where no local rent control applies). Evaluates to that rule's true / false / unknown.",
+      "example": {"not": {"ref": "local_rent_control"}}
+    },
+    {
+      "node": "unparsed",
+      "shape": {"unparsed": "the original condition text"},
+      "meaning": "A condition the extraction could not map to these facts. Always evaluates to unknown, never dropped.",
+      "example": {"unparsed": "units with a rent-control exemption filing on record"}
+    }
+  ],
+  "combinators": ["all", "any", "not"]
+}
