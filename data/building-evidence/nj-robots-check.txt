@@ -1,0 +1,1 @@
+{"robots_url": "https://services2.arcgis.com/robots.txt", "status": "unavailable_http_403", "basis": "https://nj.gov/njgin/edata/parcels/", "scope": "documented public API; three sample-only queries"}
