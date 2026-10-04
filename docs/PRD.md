@@ -254,7 +254,7 @@ Walked read-only on yourhomerule.com: no form submitted, no signup, no send.
 | 4 | **Click the answer → rule page:** quote in the law text, link to the official source, what the model extracted vs what the code decided | The AI and the responsible design, visible | 0:25 |
 | 5 | **Date slider on the FAIR Act map:** NJ dots flip on 02.07.2027, conflict rings on Hoboken and Jersey City | Change tracking | 0:20 |
 | 6 | **Hour-16 live:** ingest the new ordinance on camera with a clock, change log updates, the alert email arrives on a phone | Automation, the live proof | 0:30 |
-| 7 | **Proof frame:** 500/500 addresses resolved · 38 postal-city corrections · 100% verbatim quotes · T1–T6 pass | Credibility | 0:05 |
+| 7 | **Proof frame:** 500/500 addresses resolved · 38 postal-city corrections · 100% verbatim quotes · T1–T5 pass | Credibility | 0:05 |
 
 The order of beats still holds with the one-view page (v3, live). The answers on the site now come from the engine; these addresses are also engine tests. There is no date slider (see Known gaps): beat 5 needs a stand-in, e.g. Coming up and the change log on `/a/A0256` → `/changes/A0256`. Beat 1's numbers are placeholders; the measured scoreboard is plain 16/20, web search 20/20, HomeRule 18/20.
 
@@ -279,7 +279,7 @@ The interfaces between us (file shapes, the jurisdiction list) are in [ARCHITECT
 - `make eval` green:
   - ≥22 of the ~27 rules the brief names, with the right status and date;
   - every jurisdiction × category cell triaged;
-  - T1–T6 right;
+  - T1–T5 right;
   - the demo addresses right;
   - 100% of quotes verbatim;
   - "not legal advice" found everywhere.
@@ -289,12 +289,12 @@ The interfaces between us (file shapes, the jurisdiction list) are in [ARCHITECT
 
 | Item | Owner | Done when |
 |---|---|---|
-| `rules.json`, `lookups.json`, `changes.json` committed in `outputs/` from a build on `main` | S | Schema-valid, all 500 addresses, T1–T6 present |
+| `rules.json`, `lookups.json`, `changes.json` committed in `outputs/` from a build on `main` | S | Schema-valid, all 500 addresses, T1–T5 present (no T6: the hour-16 ordinance was removed, organizers 04.10.) |
 | Public GitHub repo with code, README (how to run), output files | S | A fresh clone runs `make all` |
 | Live demo link (yourhomerule.com) | S | Works on a phone |
 | Team video (Team Intro) | S | Both of us, ≤ 60 s ([docs/VIDEO.md](VIDEO.md)) |
 | Demo video, with the scores on screen | S | ≤ 60 s, follows `notes/demo/video/STORY.md` cut to 60 s ([docs/VIDEO.md](VIDEO.md)) |
-| Technical video (Teach): `score.py` report on the dev set (or the `make eval` report if no score.py ships), T1–T6 results, the hour-16 run, a live `make rerun DOC=` | D | ≤ 60 s, all four visible on screen ([docs/VIDEO.md](VIDEO.md)) |
+| Technical video (Teach): our own validation, the `make eval` report (no `score.py`: organizers 04.10.), T1–T5 results, the new-ordinance rehearsal (fictional X001, labelled), a live `make rerun DOC=` | D | ≤ 60 s, all four visible on screen ([docs/VIDEO.md](VIDEO.md)) |
 | One-page method note | S | Sources, pipeline, what code decides vs the model, limits |
 
 ## Never
@@ -306,8 +306,8 @@ The interfaces between us (file shapes, the jurisdiction list) are in [ARCHITECT
 
 ## Open questions
 
-- Will `score.py` and the dev key be released? How are unknowns scored? (Discord)
-- When exactly does the hour-16 ordinance drop?
+- ~~Will `score.py` and the dev key be released?~~ No (organizers 04.10.): videos show our own output and validation. How are unknowns scored? (Discord)
+- ~~When exactly does the hour-16 ordinance drop?~~ It doesn't: removed in the v5 participant release; T1–T5 only (organizers 04.10.).
 - How are the 19 "no rule" findings represented in `rules.json`?
 - Jev access and quality (5-document test).
 - Tagline: Dimitar may still argue for the provocative line, "Your landlord has a lawyer. You have the law."

@@ -7,6 +7,10 @@ Not legal advice; every page and email says so.
 
 **Sources.** The starter corpus plus supplemental official texts cleared for extraction (site terms checked; held
 or restricted sources stay out). Every document is pinned by hash; every quote is located word for word in it.
+47 of the 54 scored rules cite the supplied corpus. 7 cite official texts we saved because the corpus lists them as
+link only (the Hoboken and Jersey City rent-setting software bans that T2 and T3 need, Hoboken rent control, three
+Newark rules): each keeps its official URL, retrieval date and verbatim quote, with `source_doc_id` null in
+`rules.json` (it isn't a manifest document), and doesn't count toward the citation metric.
 
 **Pipeline.**
 1. *Resolve:* Census geocoder, legal city (not postal city), state › county › city stack; building facts (year
@@ -31,7 +35,7 @@ dates, coverage, precedence, and whether a change is better or worse for renters
 its request hash; each rule's audit trail shows quote, checks, gate answers and calls.
 
 **Evaluation** (`make check`, every change): brief-named rules 26/27 (the miss, Santa Ana, has no text in the
-corpus and is recorded as a finding); change tests T1–T5 pass, hour-16 rehearsal 45/45 addresses; address
+corpus and is recorded as a finding); change tests T1–T5 pass, a new-ordinance rehearsal (fictional text) 45/45 addresses; address
 questions 24/24 on the tuning set and 16/16 on a held-out set never used for tuning; scored quotes 100% verbatim.
 Prompts are linted (no test-suite value may appear in a prompt) and frozen by hash.
 
