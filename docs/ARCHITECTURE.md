@@ -304,6 +304,7 @@ Built 04.10.2026 for the prototype (owner decision; the demand test in `notes/pl
 - **Technical debt (fix before `ALERTS_CRON_SEND=1`; harmless in the closed test, review of #90, 04.10.2026):**
   - One unreadable `told:` field (bad JSON) throws in `corrections()` and fails the whole run with a 500, for every subscriber. Parse per field and skip a bad one with a log line.
   - The run walks subscribers one by one with several Redis round trips each. At a few hundred subscribers it can hit the Vercel function time limit. A timeout after Resend accepted a digest but before its `sent:`/`digest:` keys are written sends that digest again on the next run. Fix: write the `digest:` key first (claim), batch Redis calls (pipeline), and pass Resend's `Idempotency-Key` per digest.
+  - No run monitoring beyond the runtime logs (Vercel keeps them ~1 day without Observability Plus; the run logs one summary line). Before real sends: ping healthchecks.io at the end of each run (one env var with the check URL), so a missed or failed run raises an email.
   - Without a jurisdiction (a correction for a rule that left the data), the time zone falls back to New York, so a Los Angeles subscriber's "today" can be off by one day for that line.
 
 ### Subscription store (Upstash Redis)
