@@ -1,9 +1,13 @@
 // The alert email for one address and one change source, rendered from the same diff as the change log
-// (I6). Rendering only: sending is `make notify SEND=1` (web/scripts/notify.ts), never automatic.
+// (I6). Plain on purpose: one sentence per change (the same words as the address page) and a link to the page.
+// Rendering only: sending is `make notify SEND=1` (web/scripts/notify.ts), never automatic.
 import type { AddressChanges, ChangesFile, Change, Entry } from "./types.ts";
 import { esc } from "../alerts/html.ts";
 import { footerHtml, footerText } from "../alerts/disclaimer.ts";
-import { changeLine, entryHeading, featuredEntry, longDate, resultWords, ruleName } from "./wording.ts";
+import { featuredEntry, longDate } from "./wording.ts";
+import { PLAIN, TOPICS } from "../plain.ts";
+import { formatDate } from "../format.ts";
+import rulesData from "../../data/live/rules.json" with { type: "json" };
 
 export const FROM = "HomeRule <alerts@yourhomerule.com>";
 export const SITE = "https://yourhomerule.com";
@@ -49,82 +53,96 @@ export function unsubscribeUrl(site: string, token: string): string {
   return `${site.replace(/\/$/, "")}/api/unsubscribe?token=${encodeURIComponent(token)}`;
 }
 
-function safeUrl(u: string | null): string | null {
-  return u && /^https?:\/\//.test(u) ? u : null;
+/** Renter-facing impact from the classifier: "impact" or "renter_impact" on the change or the rule record. */
+export type Impact = "more_protection" | "less_protection" | "neutral";
+
+export const IMPACT_LABEL: Record<Exclude<Impact, "neutral">, { text: string; color: string; bg: string }> = {
+  more_protection: { text: "More protection for renters", color: "#1F6B4A", bg: "#E6F2EC" },
+  less_protection: { text: "Less protection for renters", color: "#9A4A2E", bg: "#F7EAE3" },
+};
+
+type RuleRec = { rule_id: string; category?: string; summary?: string; title?: string; impact?: unknown; renter_impact?: unknown };
+const RULES = new Map((rulesData as unknown as RuleRec[]).map((r) => [r.rule_id, r]));
+
+function impactOf(...recs: (object | undefined)[]): Impact | null {
+  for (const r of recs) {
+    const o = r as { impact?: unknown; renter_impact?: unknown } | undefined;
+    const v = o?.impact ?? o?.renter_impact;
+    if (v === "more_protection" || v === "less_protection" || v === "neutral") return v;
+  }
+  return null;
 }
 
-function block(c: Change) {
-  const quote = c.requirement_quote;
-  const url = safeUrl(c.source_url);
-  const why = c.after?.explanation ?? c.before?.explanation ?? "";
-  return { name: ruleName(c), line: changeLine(c), quote, url, why, citation: c.citation, eff: c.effective_from, c };
+/** The short address for subject and button: the part before the first comma. */
+export function shortAddress(label: string): string {
+  return label.split(",")[0].trim();
+}
+
+export type PlainChange = { topic: string; sentence: string; impact: Impact | null };
+
+/** One change in renter words: topic + the address page's plain line + the date. No titles, statuses or citations. */
+export function plainChange(c: Change, asOf: string, rules: Map<string, RuleRec> = RULES): PlainChange {
+  const rule = rules.get(c.team_rule_id);
+  const topic = TOPICS.find((t) => t.cat === (c.category || rule?.category))?.title ?? "Housing rules";
+  let line = (PLAIN[c.team_rule_id]?.line ?? rule?.summary ?? "A rule for this address changed.").trim();
+  if (!/[.!?]$/.test(line)) line += ".";
+  const date = formatDate(c.effective_from);
+  if (c.change === "removed") line = `This rule no longer shows for your address: ${line}`;
+  else if (date && !line.includes(date)) line = `${(c.effective_from ?? "") > asOf ? "From" : "Since"} ${date}: ${line}`;
+  return { topic, sentence: line, impact: impactOf(c, rule) };
 }
 
 export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEmail {
   const site = (opts.site ?? SITE).replace(/\/$/, "");
   const token = opts.token ?? UNSUBSCRIBE_TOKEN;
   const unsubscribe = unsubscribeUrl(site, token);
-  const page = `${site}/changes/${encodeURIComponent(ac.address_id)}`;
+  const page = `${site}/a/${encodeURIComponent(ac.address_id)}`;
+  const log = `${site}/changes/${encodeURIComponent(ac.address_id)}`;
   const demo = ac.entry.demo_label;
   const banner = opts.banner ?? (demo ? `${demo}: built from a fictional test document, not real law.` : null);
-  const n = ac.entry.changes.length;
-  const subject = `${demo ? `[${demo}] ` : ""}${n === 1 ? "A housing rule changed" : `${n} housing rules changed`} for ${ac.label}`;
-  const blocks = ac.entry.changes.map(block);
+  const short = shortAddress(ac.label);
+  const subject = `${demo ? `[${demo}] ` : ""}Something changes for your rent rules at ${short}`;
+  const items = ac.entry.changes.map((c) => plainChange(c, ac.as_of));
   const asOf = longDate(ac.as_of);
-  const header = `Not legal advice. HomeRule shows which published housing rules may apply to an address, with quotes and dates. Data as of ${asOf}.`;
+  const greeting = `Hi, a housing rule for ${short} is changing. Here is what's new:`;
+  const cta = `See what this means for ${short}`;
 
   const text = [
     ...(banner ? [banner.toUpperCase(), ""] : []),
-    header,
+    greeting,
     "",
-    `${ac.label}`,
-    `${entryHeading(ac.entry)}:`,
+    ...items.flatMap((i) => [`• ${i.topic} — ${i.sentence}${i.impact && i.impact !== "neutral" ? ` (${IMPACT_LABEL[i.impact].text})` : ""}`]),
     "",
-    ...blocks.flatMap((b) => [
-      `• ${b.name}`,
-      `  What changed: ${b.line}`,
-      ...(b.why ? [`  Why: ${b.why}`] : []),
-      ...(b.quote ? [`  The rule says: "${b.quote}"`] : []),
-      `  Citation: ${b.citation ?? "not stated"} · in effect from ${longDate(b.eff)}`,
-      ...(b.url ? [`  Official source: ${b.url}`] : []),
-      "",
-    ]),
-    `See the change log: ${page}`,
+    `${cta}: ${page}`,
+    `Change log: ${log}`,
     "",
     `You get this because you asked for alerts on ${ac.label}. Unsubscribe: ${unsubscribe}`,
-    `HomeRule · ${FROM.replace(/^.*<|>$/g, "")} · Not legal advice · as of ${asOf}`,
+    `HomeRule · Not legal advice · data as of ${asOf}`,
     ...footerText(),
   ].join("\n");
 
+  const ink = "#2B3B4E";
   const font = "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif";
-  const htmlBlocks = blocks
+  const badge = (i: PlainChange) =>
+    i.impact && i.impact !== "neutral"
+      ? `<span style="display:inline-block;margin:0 0 6px;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;color:${IMPACT_LABEL[i.impact].color};background:${IMPACT_LABEL[i.impact].bg}">${esc(IMPACT_LABEL[i.impact].text)}</span><br>`
+      : "";
+  const htmlItems = items
     .map(
-      (b) => `<tr><td style="padding:16px 0;border-top:1px solid #e4eae9">
-<p style="margin:0 0 4px;font-weight:700;font-size:16px">${esc(b.name)}</p>
-<p style="margin:0 0 8px"><span style="color:#5a6a6e">What changed:</span> ${esc(resultWords(b.c.before))} &rarr; <strong>${esc(resultWords(b.c.after))}</strong>${
-        b.c.conflict_flag_changed || b.c.after?.conflict_flag
-          ? `<br><span style="color:#6b4500">${b.c.after?.conflict_flag ? "May conflict with another rule: flagged, not decided." : "Conflict flag removed."}</span>`
-          : ""
-      }</p>
-${b.why ? `<p style="margin:0 0 8px;color:#1d2b2f">${esc(b.why)}</p>` : ""}
-${b.quote ? `<blockquote style="margin:0 0 8px;padding:8px 12px;border-left:3px solid #0f766e;background:#e8f5f2">&ldquo;${esc(b.quote)}&rdquo;</blockquote>` : ""}
-<p style="margin:0;font-size:14px;color:#5a6a6e">${esc(b.citation ?? "Citation not stated")} &middot; in effect from ${esc(longDate(b.eff))}${
-        b.url ? ` &middot; <a href="${esc(b.url)}" style="color:#0f766e">Official source</a>` : ""
-      }</p>
-</td></tr>`,
+      (i) => `<tr><td style="padding:12px 0;border-top:1px solid #e8ebee">${badge(i)}<p style="margin:0;font-size:16px;line-height:1.5"><strong>${esc(i.topic)}</strong> &mdash; ${esc(i.sentence)}</p></td></tr>`,
     )
     .join("\n");
 
   const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${esc(subject)}</title></head>
-<body style="margin:0;background:#fdfcfa;color:#1d2b2f;${font}">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;padding:16px">
-${banner ? `<tr><td style="padding:10px 12px;background:#fff4e0;color:#6b4500;border-radius:8px;font-weight:700">${esc(banner)}</td></tr>` : ""}
-<tr><td style="padding:12px 0;font-size:13px;color:#5a6a6e"><strong>Not legal advice.</strong> HomeRule shows which published housing rules may apply to an address, with quotes and dates. Data as of ${esc(asOf)}.</td></tr>
-<tr><td style="padding:8px 0"><p style="margin:0;font-size:20px;font-weight:700">${esc(ac.label)}</p><p style="margin:4px 0 0;color:#5a6a6e">${esc(entryHeading(ac.entry))}</p></td></tr>
-${htmlBlocks}
-<tr><td style="padding:16px 0"><a href="${esc(page)}" style="display:inline-block;background:#0f766e;color:#fff;padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:600">See the change log</a></td></tr>
-<tr><td style="padding:16px 0;border-top:1px solid #e4eae9;font-size:12px;color:#5a6a6e">You get this because you asked for alerts on ${esc(ac.label)}. <a href="${esc(unsubscribe)}" style="color:#5a6a6e">Unsubscribe</a>.<br>HomeRule &middot; Not legal advice &middot; as of ${esc(asOf)}<br><br>${footerHtml()}</td></tr>
+<body style="margin:0;background:#ffffff;color:${ink};${font}">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;padding:20px 16px">
+${banner ? `<tr><td style="padding:8px 12px;background:#f3f4f6;color:#5b6573;border-radius:8px;font-size:13px">${esc(banner)}</td></tr>` : ""}
+<tr><td style="padding:16px 0 8px;font-size:16px;line-height:1.5">${esc(greeting)}</td></tr>
+${htmlItems}
+<tr><td style="padding:20px 0 8px"><a href="${esc(page)}" style="display:inline-block;background:${ink};color:#ffffff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:600;font-size:16px">${esc(cta)}</a></td></tr>
+<tr><td style="padding:0 0 24px;font-size:13px"><a href="${esc(log)}" style="color:${ink}">See the full change log</a></td></tr>
+<tr><td style="padding:16px 0 0;border-top:1px solid #e8ebee;font-size:11px;line-height:1.5;color:#8a939e">You get this because you asked for alerts on ${esc(ac.label)}. <a href="${esc(unsubscribe)}" style="color:#8a939e">Unsubscribe</a>.<br>Not legal advice &middot; data as of ${esc(asOf)}<br>${footerHtml()}</td></tr>
 </table></body></html>`;
 
   return {
