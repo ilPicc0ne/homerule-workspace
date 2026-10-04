@@ -60,6 +60,10 @@ is exposed to the client. `LIVE_ENGINE_DISABLED=1` forces the existing fallback.
   three-second deadline behavior and provisional fallback.
 - Required repository gate: `make check`. Do not call it green unless the whole
   extraction/rehearsal sequence passed; cache misses can require model access.
+  If re-extraction changes the canonical rules, run `cd web && npm run sync`
+  before rerunning the gate. The endpoint parity test deliberately catches a
+  deployment bundle built from a different rule snapshot. Keep data refreshes
+  separate from API-only changes.
 - `/a/at?q=1200%203rd%20Ave%2C%20San%20Diego%2C%20CA` is outside the 500 samples.
   Verify all six topic cards, expand Rent increases, use Show the law and source
   links. Building facts stay unknown. The successful live path says "Some answers
