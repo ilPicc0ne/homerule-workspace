@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>HomeRule address view</title>
+<meta name="description" content="HomeRule mockup v3: which housing rules apply at one address today, and what is about to change.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Crect width=%2224%22 height=%2224%22 rx=%227%22 fill=%22%2315222E%22/%3E%3Cpath d=%22M4 11.5 12 5l8 6.5M6.5 10v9h11v-9M9.5 15h5%22 fill=%22none%22 stroke=%22white%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..800&family=Source+Serif+4:opsz,wght@8..60,400..600&display=swap">
+<style>
+/*
+  HomeRule v2, light only.
+  Two voices: Atkinson Hyperlegible Next speaks plain language, Source Serif 4 is the law's own words.
+  Colour is reserved: green / amber / slate only ever rate the renter's protection on a topic;
+  blue is for actions and time (alerts, dates, "coming up"). Every status is mark + word + colour.
+*/
+:root{
+  color-scheme:light;
+  --page:#fff; --wash:#F4F6F9; --surface:#fff;
+  --ink:#15222E; --ink-2:#3A4855; --muted:#5B6875; --faint:#AEB9C4;
+  --line:#DCE3EA; --line-soft:#E9EEF2;
+  --blue:#2747C4; --blue-ink:#1D379E; --blue-tint:#EDF1FD; --blue-line:#C9D4F6;
+  --green:#1C8150; --green-ink:#11643D; --green-tint:#E2F2E8; --green-soft:#F5FAF7; --green-line:#C9E5D3;
+  --amber:#C98112; --amber-ink:#87480A; --amber-tint:#FBEED3; --amber-soft:#FEF8EC; --amber-line:#EED29F;
+  --slate:#7D8B98; --slate-ink:#4A5764; --slate-tint:#E8ECF1; --slate-soft:#F7F8FA; --slate-line:#D8DEE5;
+  --r-lg:20px; --r-md:12px; --r-sm:8px;
+  --sh-1:0 1px 2px rgb(21 34 46/.05);
+  --sh-2:0 1px 2px rgb(21 34 46/.04),0 18px 40px -20px rgb(21 34 46/.30);
+  --ui:"Atkinson Hyperlegible Next",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --law:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --stick:68px;
+}
+.s-protect{--s:var(--green);--s-ink:var(--green-ink);--s-tint:var(--green-tint);--s-soft:var(--green-soft);--s-line:var(--green-line)}
+.s-depends{--s:var(--amber);--s-ink:var(--amber-ink);--s-tint:var(--amber-tint);--s-soft:var(--amber-soft);--s-line:var(--amber-line)}
+.s-none{--s:var(--slate);--s-ink:var(--slate-ink);--s-tint:var(--slate-tint);--s-soft:var(--slate-soft);--s-line:var(--slate-line)}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--ink);font:400 1rem/1.55 var(--ui);-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-anchor:none}
+p,h1,h2,h3,h4,h5,ul,ol,blockquote{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:var(--blue-ink);text-decoration-thickness:1px;text-underline-offset:3px}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.sr{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.icon{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding-left:16px;padding-right:16px}
+@media(min-width:720px){.wrap{padding-left:32px;padding-right:32px}}
+
+/* ---------- brand row (phones) ---------- */
+.brandrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:4px;padding-bottom:0}
+@media(min-width:900px){.brandrow{display:none}}
+.brand-r{display:flex;align-items:center;gap:10px}
+.nla{font-size:.8125rem;font-weight:700;color:var(--ink-2);white-space:nowrap}
+@media(max-width:359px){.brandrow{flex-wrap:wrap;row-gap:0}.brand-r{gap:8px;margin-left:auto}}
+.logo{display:inline-flex;align-items:center;gap:9px;min-height:44px;color:var(--ink);text-decoration:none;font-weight:800;font-size:1.1875rem;letter-spacing:-.015em}
+.logo-mark{width:30px;height:30px;border-radius:9px;background:var(--ink);color:#fff;display:grid;place-items:center}
+.logo-mark .icon{width:20px;height:20px;stroke-width:2}
+.demo{display:inline-flex;align-items:center;padding:3px 10px;border:1.5px dashed var(--faint);border-radius:999px;font-size:.8125rem;font-weight:700;color:var(--slate-ink);white-space:nowrap}
+
+/* ---------- sticky address area ---------- */
+.bar{position:sticky;top:0;z-index:30;background:rgb(255 255 255/.93);-webkit-backdrop-filter:saturate(1.5) blur(14px);backdrop-filter:saturate(1.5) blur(14px);border-bottom:1px solid var(--line)}
+.bar-in{position:relative;display:flex;align-items:flex-end;gap:8px;padding-top:10px;padding-bottom:10px}
+.bar .logo{display:none}
+.bar-trust{display:none}
+@media(min-width:900px){
+  .bar .logo{display:inline-flex;align-self:center;margin-right:10px}
+  .bar-in{gap:14px;padding-top:12px;padding-bottom:12px}
+}
+@media(min-width:900px){
+  .bar-trust{display:flex;flex-direction:column;align-items:flex-end;gap:5px;margin-left:auto;align-self:center;font-size:.8125rem;color:var(--muted);white-space:nowrap}
+  .bar-trust .nla2{display:none}
+}
+@media(min-width:1140px){.bar-trust .nla2{display:inline}}
+.fld-l{display:flex;align-items:center;gap:6px;margin:0 0 5px;font-size:.8125rem;font-weight:700;color:var(--ink-2);line-height:1.2;min-width:0}
+.fld-l .icon{width:16px;height:16px;color:var(--blue)}
+.fld-l span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fld{display:flex;align-items:center;gap:8px;min-height:48px;padding:0 2px 0 12px;background:var(--surface);border:1.5px solid #8593A1;border-radius:var(--r-md);transition:border-color .15s,box-shadow .15s,background .15s}
+.fld:focus-within{border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-tint)}
+.fld>.icon{color:var(--muted)}
+.fld input{flex:1;min-width:0;height:44px;padding:0;border:0;outline:0;background:transparent;font-size:1rem}
+.fld input::placeholder{color:var(--muted);opacity:1}
+.fld input::-webkit-search-cancel-button{display:none}
+.look{position:relative;flex:1 1 auto;min-width:0}
+.look .fld-l{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(min-width:900px){.look{flex:1 1 360px;max-width:470px}.look .fld-l{position:static;width:auto;height:auto;clip:auto;overflow:visible}}
+.look input{font-weight:700;text-overflow:ellipsis}
+.look input:placeholder-shown{font-weight:400}
+.clear{display:grid;place-items:center;width:44px;height:44px;flex:none;border:0;border-radius:9px;background:none;color:var(--muted)}
+.clear:hover{background:var(--wash);color:var(--ink)}
+.clear[hidden]{display:none}
+
+.sugg{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:40;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh-2);padding:8px;animation:pop .16s var(--ease)}
+.sugg[hidden]{display:none}
+@media(min-width:900px){.sugg{right:auto;width:max(100%,430px)}}
+@keyframes pop{from{opacity:0;transform:translateY(-4px)}}
+.sugg-h{padding:6px 10px 4px;font-size:.8125rem;font-weight:700;color:var(--muted)}
+.opt{display:flex;align-items:center;gap:12px;min-height:58px;padding:8px 10px;border-radius:10px;cursor:pointer}
+.opt[aria-selected="true"],.opt:hover{background:var(--wash)}
+.opt-st{width:38px;height:38px;flex:none;border-radius:10px;background:var(--blue-tint);color:var(--blue-ink);display:grid;place-items:center;font-weight:800;font-size:.8125rem;letter-spacing:.02em}
+.opt-t{display:flex;flex-direction:column;min-width:0;line-height:1.3}
+.opt-a{font-weight:700}
+.opt-c{font-size:.875rem;color:var(--muted)}
+.opt .cur{margin-left:auto;color:var(--blue)}
+.sugg-none{padding:10px;font-size:.9375rem;color:var(--ink-2)}
+.sugg-foot{margin-top:6px;padding:8px 10px 4px;border-top:1px solid var(--line-soft);font-size:.8125rem;color:var(--muted)}
+
+/* "Get alerts": a compact button right at the address; opens the email field in place */
+.alwrap{position:relative;flex:none}
+.bell{display:inline-flex;align-items:center;gap:7px;min-height:48px;padding:0 14px;border:1.5px solid var(--blue-line);border-radius:var(--r-md);background:var(--blue-tint);color:var(--blue-ink);font-weight:700;white-space:nowrap}
+.bell:hover:not(:disabled){border-color:var(--blue)}
+.bell:disabled{border-style:dashed;border-color:var(--faint);background:var(--wash);color:var(--muted);cursor:not-allowed}
+.bell[aria-expanded="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+@media(max-width:359px){.bell{padding:0 12px}.bell-l{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
+.alert{position:absolute;right:0;top:calc(100% + 10px);z-index:41;width:min(400px,calc(100vw - 32px));padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh-2);animation:pop .16s var(--ease)}
+.alert[hidden]{display:none}
+.al-row{display:flex;gap:8px}
+.al-row .fld{flex:1;min-width:0}
+.al-btn{min-height:48px;padding:0 16px;border:0;border-radius:var(--r-md);background:var(--blue);color:#fff;font-weight:700;white-space:nowrap}
+.al-btn:hover{background:var(--blue-ink)}
+.alert.sent .al-btn{background:var(--blue-tint);color:var(--blue-ink)}
+.al-status{display:flex;align-items:center;gap:8px;margin-top:8px;padding:9px 12px;border-radius:10px;background:var(--blue-tint);border:1px solid var(--blue-line);color:var(--blue-ink);font-size:.875rem;font-weight:700;line-height:1.35}
+.al-status[hidden]{display:none}
+.al-status .icon{width:18px;height:18px}
+
+/* preview banner (inside the sticky area) */
+.pv{display:none;background:var(--blue-tint);border-top:1px solid var(--blue-line)}
+.is-preview .pv{display:block}
+.pv-in{display:flex;align-items:center;gap:10px;min-height:56px;color:var(--blue-ink);font-weight:700;font-size:.9375rem}
+.pv-t{flex:1;line-height:1.3}
+.pv-btn{min-height:44px;padding:0 14px;border-radius:10px;border:1.5px solid var(--blue-line);background:var(--surface);color:var(--blue-ink);font-weight:700;white-space:nowrap}
+
+/* ---------- page grid: phones stack; desktop = address + map on top, Now (left) | Coming up (right) ---------- */
+.page{display:grid;gap:24px;padding-top:16px;padding-bottom:56px}
+.page>*{min-width:0}
+@media(min-width:1000px){
+  .page{grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto auto 1fr;column-gap:56px;row-gap:28px;padding-top:32px;padding-bottom:80px}
+  .hero{grid-column:1 / -1;grid-row:1}
+  .glance{grid-column:1;grid-row:2}
+  .today{grid-column:1;grid-row:3;margin-top:12px}
+  .ahead{grid-column:2;grid-row:2 / span 2;align-self:start}
+}
+
+/* ---------- hero: address, map, legal place, building facts ---------- */
+.hero{display:grid;grid-template-columns:104px minmax(0,1fr);grid-template-areas:"h1 h1" "nxt nxt" "map where" "map facts" "src src";column-gap:14px;row-gap:8px;align-items:start}
+@media(min-width:640px){.hero{grid-template-columns:132px minmax(0,1fr);column-gap:18px}}
+@media(min-width:1000px){.hero{grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto auto auto auto auto 1fr;grid-template-areas:"h1 map" "nxt map" "where map" "facts map" "src map" ". map";column-gap:56px;row-gap:10px}}
+.addr{grid-area:h1;margin-bottom:4px;font-size:clamp(2rem,1.55rem + 2.2vw,3.15rem);line-height:1.04;letter-spacing:-.03em;font-weight:800}
+@media(min-width:1000px){.addr{margin-bottom:6px}}
+.addr:focus,.empty h1:focus{outline:none}
+.where{grid-area:where}
+.nxt{grid-area:nxt;display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;padding:10px 12px;border-radius:var(--r-md);background:var(--blue-tint);border:1px solid var(--blue-line);color:var(--blue-ink);font-size:.9375rem;line-height:1.4}
+.nxt .icon{width:18px;height:18px;margin-top:1px}
+.nxt b{font-weight:800}
+.crumb{display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;font-size:.875rem;font-weight:800;color:var(--ink);line-height:1.35}
+.crumb .icon{width:17px;height:17px;color:var(--muted)}
+.crumb .sep{color:var(--faint);font-weight:400}
+.cap{margin-top:3px;font-size:.9375rem;line-height:1.4;color:var(--ink-2)}
+.cap-sub{margin-top:2px;font-size:.875rem;color:var(--muted)}
+@media(min-width:1000px){.crumb{font-size:.9375rem}.cap{font-size:1.0625rem}}
+.facts{grid-area:facts;display:flex;flex-wrap:wrap;gap:6px}
+.fact{display:inline-flex;align-items:center;gap:6px;min-height:30px;padding:4px 10px 4px 8px;border-radius:999px;background:var(--wash);font-size:.8125rem;font-weight:700;color:var(--ink-2);line-height:1.25}
+.fact .icon{width:16px;height:16px;color:var(--muted)}
+@media(min-width:1000px){.facts{gap:8px;margin-top:6px}.fact{min-height:36px;padding:6px 13px 6px 10px;font-size:.9375rem}.fact .icon{width:18px;height:18px}}
+.fact.unk{background:none;border:1.5px dashed var(--faint);font-weight:500}
+.fact.key{background:var(--amber-soft);border-color:var(--amber-line);color:var(--amber-ink);font-weight:700}
+.fact.key .icon{color:var(--amber-ink)}
+.fact-src{grid-area:src;font-size:.8125rem;color:var(--muted)}
+
+/* map thumbnail (phone) / card (desktop); tap to enlarge */
+.map-btn{grid-area:map;position:relative;display:block;width:100%;aspect-ratio:1;padding:0;border:1px solid var(--line);border-radius:16px;background-color:#F2F5F8;background-image:radial-gradient(circle at 1px 1px,#D3DCE5 1px,transparent 1.3px);background-size:11px 11px;overflow:hidden;cursor:zoom-in;transition:border-color .15s,box-shadow .2s}
+.map-btn:hover{border-color:var(--blue-line);box-shadow:var(--sh-2)}
+.map-btn svg{display:block;width:100%;height:100%}
+@media(min-width:1000px){.map-btn{aspect-ratio:380/214}}
+.map-x{position:absolute;right:6px;bottom:6px;display:flex;align-items:center;justify-content:center;gap:6px;min-width:26px;height:26px;border-radius:8px;background:var(--surface);box-shadow:0 1px 3px rgb(21 34 46/.18);color:var(--ink-2)}
+.map-x .icon{width:16px;height:16px}
+.map-x .lbl{display:none}
+@media(min-width:1000px){.map-x{right:10px;bottom:10px;height:32px;padding:0 10px}.map-x .lbl{display:inline;font-size:.8125rem;font-weight:700}}
+.city{fill:#E1E8F2;stroke:#3A4855;stroke-width:1.3;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.pin{fill:var(--ink);stroke:#fff;stroke-width:1.6;vector-effect:non-scaling-stroke}
+.pin-c{fill:#fff}
+.pin-h{fill:rgb(21 34 46/.12)}
+.m-lab{font:800 15px var(--ui);fill:var(--ink-2);paint-order:stroke;stroke:#E1E8F2;stroke-width:4px;stroke-linejoin:round}
+.m-pin{font:800 13px var(--ui);fill:var(--ink);paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+.m-hood{font:600 12px var(--ui);fill:var(--muted);paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+
+dialog.mapdlg{width:min(600px,calc(100% - 24px));max-height:calc(100% - 24px);padding:0;border:0;border-radius:20px;background:var(--surface);color:var(--ink);box-shadow:var(--sh-2)}
+dialog.mapdlg::backdrop{background:rgb(21 34 46/.45)}
+dialog.mapdlg[open]{animation:pop .18s var(--ease)}
+.md-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 12px 8px 20px}
+.md-top h2{font-size:1.125rem;font-weight:800}
+.md-x{display:grid;place-items:center;width:44px;height:44px;flex:none;border:0;border-radius:12px;background:var(--wash);color:var(--ink)}
+.md-map{margin:0 12px;border:1px solid var(--line);border-radius:14px;background-color:#F2F5F8;background-image:radial-gradient(circle at 1px 1px,#D3DCE5 1px,transparent 1.3px);background-size:14px 14px;overflow:hidden}
+.md-map svg{display:block;width:100%;height:auto;max-height:56vh}
+.md-body{padding:14px 20px 20px}
+.md-body .cap{font-size:1rem;color:var(--ink)}
+.md-key{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:.875rem;color:var(--ink-2)}
+.md-key li{display:inline-flex;align-items:center;gap:7px}
+.k-pin{width:12px;height:12px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--line)}
+.k-city{width:16px;height:12px;border-radius:3px;background:#E1E8F2;border:1.5px solid #3A4855}
+.md-fine{margin-top:12px;font-size:.8125rem;color:var(--muted)}
+
+.trust{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:12px;font-size:.875rem;color:var(--ink-2)}
+.trust li{display:inline-flex;align-items:center;gap:7px}
+.trust .icon{width:18px;height:18px;color:var(--muted)}
+
+/* ---------- at a glance ---------- */
+.glance{background:var(--wash);border-radius:var(--r-lg);padding:14px}
+@media(min-width:640px){.glance{padding:18px 20px}}
+.glance-sum{color:var(--ink-2);font-size:.9375rem;line-height:1.45}
+.glance-h{display:inline;font-size:1rem;font-weight:800;color:var(--ink);letter-spacing:-.005em}
+.toks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+@media(min-width:600px){.toks{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.tok{display:flex;flex-direction:column;align-items:center;gap:8px;min-height:84px;padding:11px 4px 9px;border-radius:14px;background:var(--surface);border:1px solid var(--line-soft);color:var(--ink);text-decoration:none;transition:transform .18s var(--ease),box-shadow .18s,border-color .18s}
+@media(hover:hover){.tok:hover{transform:translateY(-2px);box-shadow:var(--sh-2);border-color:var(--s-line)}}
+.tok-w{position:relative;width:44px;height:44px;border-radius:13px;background:var(--s-tint);color:var(--s-ink);display:grid;place-items:center}
+.tok-w>.icon{width:24px;height:24px}
+.tok .mark{position:absolute;right:-7px;bottom:-7px;box-shadow:0 0 0 2.5px var(--surface)}
+.tok-l{font-size:.9375rem;font-weight:700;line-height:1.2;text-align:center}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;font-size:.8125rem;font-weight:600;color:var(--ink-2)}
+.legend li{display:inline-flex;align-items:center;gap:6px}
+.mark{width:20px;height:20px;flex:none;border-radius:50%;background:var(--s-ink);color:#fff;display:grid;place-items:center}
+.mark .icon{width:13px;height:13px;stroke-width:2.8}
+
+/* ---------- today + coming up ---------- */
+.sec-h{font-size:1.5rem;line-height:1.2;font-weight:800;letter-spacing:-.02em}
+.sec-sub{margin-top:4px;color:var(--muted);font-size:.9375rem}
+.grp{margin-top:26px}
+.grp-h{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:.9375rem;font-weight:700;color:var(--ink-2)}
+.grp-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.tiles{display:grid;gap:12px}
+
+/* tile = disclosure: summary button + region */
+.tile{border-radius:var(--r-lg);background:var(--s-soft);border:1px solid var(--s-line);scroll-margin-top:calc(var(--stick) + 12px);transition:box-shadow .25s var(--ease),border-color .2s}
+.tile.open{box-shadow:var(--sh-2)}
+.tile-h{font:inherit}
+.tile-btn{display:grid;grid-template-columns:48px minmax(0,1fr);grid-template-areas:"well title" "well tag" "line line" "notes notes" "foot foot";column-gap:14px;row-gap:6px;width:100%;margin:0;padding:16px 16px 0;border:0;background:none;text-align:left;border-radius:var(--r-lg);color:inherit}
+.tile-btn:focus-visible{outline-offset:-3px}
+.well{grid-area:well;align-self:start;width:48px;height:48px;border-radius:14px;background:var(--s-tint);color:var(--s-ink);display:grid;place-items:center}
+.well .icon{width:26px;height:26px;stroke-width:1.7}
+.t-title{grid-area:title;align-self:end;font-size:1.25rem;line-height:1.2;font-weight:800;letter-spacing:-.012em}
+.t-tag{grid-area:tag;align-self:start}
+.t-line{grid-area:line;margin-top:8px;font-size:1.0625rem;line-height:1.45;font-weight:500}
+.t-notes{grid-area:notes;display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.t-foot{grid-area:foot;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;margin-top:10px;border-top:1px solid var(--s-line)}
+.t-from{display:inline-flex;align-items:center;gap:6px;min-width:0;font-size:.875rem;color:var(--ink-2)}
+.t-from .icon{width:18px;height:18px;color:var(--muted)}
+.t-more{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.9375rem;color:var(--blue-ink);white-space:nowrap}
+.t-more .icon{transition:transform .3s var(--ease)}
+.tile.open .t-more .icon{transform:rotate(180deg)}
+@media(hover:hover){
+  .tile:hover{border-color:color-mix(in srgb,var(--s) 45%,var(--s-line))}
+  .tile-btn:hover .t-more-l{text-decoration:underline;text-underline-offset:3px}
+}
+@media(min-width:640px){
+  .tile-btn{grid-template-columns:52px minmax(0,1fr) auto;grid-template-areas:"well title tag" "well line line" ". notes notes" "foot foot foot";column-gap:16px;padding:18px 20px 0}
+  .well{width:52px;height:52px}
+  .t-title{align-self:center;font-size:1.375rem}
+  .t-tag{align-self:center;justify-self:end}
+  .t-line{margin-top:0}
+}
+.tag{display:inline-flex;align-items:center;gap:7px;padding:3px 11px 3px 4px;border-radius:999px;background:var(--s-tint);color:var(--s-ink);font-size:.875rem;font-weight:800;line-height:1.35}
+@media(min-width:640px){.tag{white-space:nowrap}}
+.note{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.8125rem;font-weight:700;color:var(--ink-2);line-height:1.3}
+.note .icon{width:16px;height:16px}
+.n-depends,.n-flag{color:var(--amber-ink);border-color:var(--amber-line);background:var(--amber-soft)}
+.n-date{color:var(--blue-ink);border-color:var(--blue-line);background:var(--blue-tint)}
+.n-proposed{border-style:dashed;border-color:var(--faint);color:var(--slate-ink)}
+.n-replaced{color:var(--slate-ink)}
+
+.t-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s var(--ease)}
+.tile.open .t-body{grid-template-rows:1fr}
+.t-body.snap{transition:none}
+.t-in{position:relative;min-height:0;overflow:hidden}
+.panel{margin:6px 8px 8px;padding:18px 14px 4px;background:var(--surface);border:1px solid var(--line-soft);border-radius:14px}
+@media(min-width:640px){.panel{margin:6px 10px 10px;padding:22px 22px 4px}}
+.d-q{font-size:1.0625rem;font-weight:800}
+.d-ex{margin-top:6px;max-width:64ch}
+.box{margin-top:16px;padding:14px;border-radius:var(--r-md);background:var(--amber-soft);border:1px solid var(--amber-line)}
+.box-h{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--amber-ink)}
+.box-h>.icon{width:20px;height:20px}
+.box ul{display:grid;gap:8px;margin-top:10px}
+.box li{position:relative;padding-left:22px}
+.box li::before{content:"";position:absolute;left:6px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--amber)}
+.box-p{margin-top:8px}
+.box .bq{border-left-color:var(--amber-line)}
+.d-h{margin:24px 0 10px;font-size:1rem;font-weight:800}
+.acts{display:grid;gap:8px}
+.act{display:flex;align-items:center;gap:12px;min-height:54px;padding:10px 14px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;font-weight:700;line-height:1.3}
+a.act:hover{border-color:var(--blue);background:var(--blue-tint);color:var(--blue-ink)}
+.act .lead{color:var(--blue)}
+.act .go{margin-left:auto;width:18px;height:18px;color:var(--blue)}
+.act.plain{border-style:dashed;font-weight:600;color:var(--ink-2)}
+.act.plain .lead{color:var(--muted)}
+.qnote{margin:-4px 0 4px;font-size:.8125rem;color:var(--muted)}
+.rule{padding:16px 0;border-top:1px solid var(--line-soft)}
+.rule:first-child{border-top:0;padding-top:8px}
+.r-top{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:.8125rem}
+.lvl{display:inline-flex;align-items:center;gap:5px;font-weight:700;color:var(--ink-2)}
+.lvl .icon{width:16px;height:16px;color:var(--muted)}
+.rst{display:inline-flex;align-items:center;gap:5px;font-weight:800}
+.rst .icon{width:16px;height:16px;stroke-width:2.3}
+.rst.applies{color:var(--green-ink)} .rst.depends{color:var(--amber-ink)} .rst.starts{color:var(--blue-ink)}
+.rst.replaced,.rst.proposed,.rst.struck{color:var(--slate-ink)}
+.chgd{display:inline-flex;padding:1px 8px;border-radius:999px;background:var(--blue);color:#fff;font-weight:800}
+.rule.changed{margin:0 -10px;padding-left:10px;padding-right:10px;border-radius:12px;background:var(--blue-tint)}
+.r-t{margin-top:6px;font-weight:700;line-height:1.35}
+.bq{margin-top:10px;padding:2px 0 2px 14px;border-left:3px solid var(--line);font-family:var(--law);font-size:1.0625rem;line-height:1.55;font-optical-sizing:auto;color:var(--ink);overflow-wrap:anywhere}
+.q-pend{margin-top:10px;padding:10px 12px;border:1.5px dashed var(--faint);border-radius:var(--r-sm);font-size:.9375rem;color:var(--ink-2)}
+.why{margin-top:8px;font-size:.9375rem;color:var(--ink-2)}
+.cite{display:flex;flex-wrap:wrap;align-items:center;column-gap:16px;margin-top:4px;font-size:.875rem;color:var(--ink-2)}
+.cite b{font-weight:700;color:var(--ink);padding:6px 0}
+.src{display:inline-flex;align-items:center;gap:5px;min-height:44px;font-weight:700}
+.src .icon{width:16px;height:16px}
+.meta{display:flex;flex-wrap:wrap;gap:2px 14px;font-size:.8125rem;color:var(--muted)}
+.d-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 16px;margin:12px -14px 0;padding:6px 14px 2px;border-top:1px solid var(--line-soft);font-size:.875rem;color:var(--muted)}
+@media(min-width:640px){.d-foot{margin:12px -22px 0;padding:6px 22px 2px}}
+.d-foot{display:block;padding-top:12px;padding-bottom:14px}
+/* human contact + helpers (first level) */
+.who{padding:14px;border-radius:var(--r-md);background:var(--blue-tint);border:1px solid var(--blue-line)}
+.who-h{display:flex;align-items:center;gap:7px;font-size:.8125rem;font-weight:800;color:var(--blue-ink)}
+.who-h .icon{width:17px;height:17px}
+.who-o{margin-top:4px;font-size:1.0625rem;font-weight:800;line-height:1.3}
+.who-r{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:2px}
+.who-ph{display:inline-flex;align-items:center;min-height:44px;font-size:1.25rem;font-weight:800;color:var(--blue-ink)}
+.free{padding:1px 9px;border-radius:999px;background:var(--surface);border:1px solid var(--blue-line);font-size:.8125rem;font-weight:800;color:var(--ink)}
+.demo-n{font-size:.8125rem;color:var(--muted)}
+.who-n{font-size:.9375rem;color:var(--ink-2)}
+.hlp{margin-top:10px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-md)}
+.hlp-h{display:flex;align-items:center;gap:8px;font-weight:800}
+.hlp-h .icon{color:var(--blue)}
+.ck{display:grid;gap:2px;margin-top:6px}
+.ck label{display:flex;align-items:flex-start;gap:10px;min-height:40px;padding:6px 0;line-height:1.4;cursor:pointer}
+.ck input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--blue)}
+.hlp.mail summary{display:flex;align-items:center;gap:10px;min-height:44px;font-weight:800;color:var(--blue-ink);cursor:pointer;list-style:none}
+.hlp.mail summary::-webkit-details-marker,.law summary::-webkit-details-marker{display:none}
+.hlp.mail summary .chev,.law summary .chev{margin-left:auto;transition:transform .25s var(--ease)}
+.hlp.mail[open] summary .chev,.law[open] summary .chev{transform:rotate(180deg)}
+.hlp-s{margin-top:4px;font-size:.875rem;color:var(--muted)}
+.hlp-t{display:block;width:100%;margin-top:8px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--wash);font:400 .9375rem/1.5 var(--ui);color:var(--ink);resize:vertical}
+.acts{margin-top:10px}
+/* second level: the law */
+.law{margin-top:18px;border-top:1px solid var(--line-soft)}
+.law summary{display:flex;align-items:center;gap:10px;min-height:52px;font-weight:800;color:var(--blue-ink);cursor:pointer;list-style:none}
+.law summary .icon:first-child{color:var(--muted)}
+.law-in{padding-bottom:6px}
+.law-notes{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.law .box{margin-top:0;margin-bottom:12px}
+.law .btn2{margin:0 0 14px}
+.law-foot a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
+
+/* coming up */
+.ahead{background:var(--wash);border-radius:var(--r-lg);padding:22px 16px 14px}
+@media(min-width:640px){.ahead{padding:24px 22px 16px}}
+@media(min-width:1000px) and (min-height:760px){.ahead{position:sticky;top:calc(var(--stick) + 20px)}}
+.tl{position:relative;margin-top:20px}
+.tl::before{content:"";position:absolute;left:11px;top:8px;bottom:10px;width:2px;border-radius:2px;background:var(--line)}
+.ev,.now,.tl-lab{position:relative;padding-left:38px}
+.ev{padding-bottom:22px}
+.ev::before{content:"";position:absolute;left:5px;top:3px;width:14px;height:14px;border-radius:50%}
+.ev.future::before{background:var(--surface);border:3px solid var(--blue)}
+.ev.past::before{left:7px;top:6px;width:10px;height:10px;background:var(--slate)}
+.ev.nodate::before{background:var(--wash);border:2px dashed var(--faint)}
+.now{display:flex;align-items:center;gap:8px;padding-bottom:20px}
+.now::before{content:"";position:absolute;left:2px;top:4px;width:20px;height:20px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px var(--wash),0 0 0 6px var(--blue-line)}
+.today-pill{display:inline-flex;align-items:center;padding:2px 10px;border-radius:999px;background:var(--blue);color:#fff;font-size:.8125rem;font-weight:800}
+.today-d{font-weight:700;font-size:.9375rem}
+.tl-lab{padding-bottom:12px;font-size:.8125rem;font-weight:700;color:var(--muted)}
+.ev-d{font-size:.9375rem;font-weight:800;line-height:1.3}
+.ev.future .ev-d{color:var(--blue-ink)}
+.ev-tp{display:flex;align-items:center;gap:6px;margin-top:3px;font-size:.8125rem;font-weight:600;color:var(--muted)}
+.ev-tp .icon{width:16px;height:16px}
+.ev-t{margin-top:4px;font-weight:700;line-height:1.35}
+.ev-b{margin-top:2px;font-size:.9375rem;color:var(--ink-2)}
+.chg{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:4px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--line);font-size:.875rem}
+.chg .old{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+.chg .new{font-weight:800}
+.chg .icon{width:16px;height:16px;color:var(--muted)}
+.ev-flag{display:flex;gap:8px;margin-top:8px;padding:8px 10px;border-radius:10px;background:var(--amber-soft);border:1px solid var(--amber-line);color:var(--amber-ink);font-size:.875rem;font-weight:700;line-height:1.4}
+.ev-flag .icon{width:18px;height:18px;margin-top:1px}
+.btn2{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:10px;padding:0 14px;border-radius:var(--r-md);border:1.5px solid var(--blue-line);background:var(--surface);color:var(--blue-ink);font-weight:700}
+.btn2:hover{background:var(--blue-tint)}
+.prop{margin-top:16px;padding:16px;border:1.5px dashed var(--faint);border-radius:16px;background:var(--surface)}
+.prop-h{display:flex;align-items:center;gap:8px;font-size:1rem;font-weight:800}
+.prop-h .icon{color:var(--slate-ink)}
+.prop-s{margin-top:2px;font-size:.875rem;color:var(--muted)}
+.prop li{margin-top:12px;padding-top:12px;border-top:1px solid var(--line-soft)}
+.prop-t{font-weight:700;line-height:1.35}
+.prop-w{margin-top:2px;font-size:.875rem;color:var(--ink-2)}
+.prop .j6{margin-top:6px}
+.ahead-foot{margin-top:14px;padding-top:6px;border-top:1px solid var(--line)}
+.linkbtn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0;border:0;background:none;color:var(--blue-ink);font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+
+/* empty state (no address yet) */
+.empty{display:grid;gap:36px;padding-top:28px;padding-bottom:64px}
+@media(min-width:1000px){.empty{grid-template-columns:minmax(0,1fr) 380px;column-gap:56px;padding-top:56px}}
+.empty h1{font-size:clamp(2rem,1.5rem + 2.4vw,3.1rem);line-height:1.06;letter-spacing:-.03em;font-weight:800;max-width:16ch}
+.intro{margin-top:12px;max-width:52ch;font-size:1.125rem;color:var(--ink-2)}
+.ex-h{margin-top:28px;font-size:.9375rem;font-weight:700;color:var(--ink-2)}
+.exs{display:grid;gap:10px;margin-top:10px;max-width:520px}
+.ex{display:flex;align-items:center;gap:14px;width:100%;min-height:66px;padding:10px 16px 10px 12px;border-radius:16px;border:1px solid var(--line);background:var(--surface);text-align:left;box-shadow:var(--sh-1);transition:border-color .15s,background .15s}
+.ex:hover{border-color:var(--blue-line);background:var(--blue-tint)}
+.ex .go{margin-left:auto;color:var(--blue)}
+.cover{margin-top:16px;font-size:.875rem;color:var(--muted)}
+.six{background:var(--wash);border-radius:var(--r-lg);padding:20px}
+.six h2{font-size:1.125rem;font-weight:800}
+.six ul{display:grid;gap:12px;margin-top:14px}
+.six li{display:flex;align-items:center;gap:12px;font-weight:600}
+.six .well{width:42px;height:42px;border-radius:12px;background:var(--surface);color:var(--ink-2);border:1px solid var(--line-soft)}
+.six .well .icon{width:22px;height:22px}
+
+/* footer */
+.foot{background:var(--wash);border-top:1px solid var(--line);padding:32px 0 44px;font-size:.9375rem;color:var(--ink-2)}
+.foot h2{font-size:1.0625rem;font-weight:800;color:var(--ink)}
+.foot p{margin-top:8px;max-width:72ch}
+.foot .fine{font-size:.8125rem;color:var(--muted)}
+
+.toast{position:fixed;left:50%;bottom:24px;z-index:60;max-width:min(520px,calc(100vw - 32px));padding:12px 16px;border-radius:12px;background:var(--ink);color:#fff;font-size:.9375rem;line-height:1.4;box-shadow:var(--sh-2);opacity:0;transform:translate(-50%,16px);pointer-events:none;transition:opacity .2s,transform .25s var(--ease)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* motion: one orchestrated moment (the glance marks), plus responses to actions */
+@media (prefers-reduced-motion:no-preference){
+  .glance.anim .tok .mark{animation:badge .45s var(--ease) both}
+  .glance.anim li:nth-child(2) .mark{animation-delay:.05s}
+  .glance.anim li:nth-child(3) .mark{animation-delay:.1s}
+  .glance.anim li:nth-child(4) .mark{animation-delay:.15s}
+  .glance.anim li:nth-child(5) .mark{animation-delay:.2s}
+  .glance.anim li:nth-child(6) .mark{animation-delay:.25s}
+  .tile.flash{animation:flash 1.3s var(--ease)}
+}
+@keyframes badge{from{transform:scale(.2);opacity:0}}
+@keyframes flash{0%,100%{box-shadow:0 0 0 0 rgb(39 71 196/0)}25%{box-shadow:0 0 0 4px rgb(39 71 196/.35)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-logo" viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v9h11v-9"/><path d="M9.5 15h5"/></symbol>
+  <symbol id="i-rent" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M12 17.5v-6"/><path d="m9.5 14 2.5-2.5 2.5 2.5"/></symbol>
+  <symbol id="i-door" viewBox="0 0 24 24"><path d="M13 4H6.5A1.5 1.5 0 0 0 5 5.5v13A1.5 1.5 0 0 0 6.5 20H13"/><path d="M10 12h10"/><path d="m16.5 8.5 3.5 3.5-3.5 3.5"/></symbol>
+  <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M10 10h4v4h-4z"/><path d="M9.5 2.5V6M14.5 2.5V6M9.5 18v3.5M14.5 18v3.5M2.5 9.5H6M2.5 14.5H6M18 9.5h3.5M18 14.5h3.5"/></symbol>
+  <symbol id="i-safe" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="14.5" rx="2.5"/><circle cx="12" cy="11.25" r="3.5"/><path d="M12 7.75v1.1M12 13.65v1.1M8.5 11.25h1.1M14.4 11.25h1.1"/><path d="M7 18.5v2M17 18.5v2"/></symbol>
+  <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3.5h12V21l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 11.5h6M9 15h3.5"/></symbol>
+  <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="10.8" r="2.2"/><path d="M5.8 16.2c.7-1.6 1.8-2.4 3.2-2.4s2.5.8 3.2 2.4"/><path d="M14.5 10h3.5M14.5 13.5h3.5"/></symbol>
+  <symbol id="g-check" viewBox="0 0 24 24"><path d="m6 12.5 4 4 8-9"/></symbol>
+  <symbol id="g-q" viewBox="0 0 24 24"><path d="M9.2 9.3a2.9 2.9 0 0 1 5.6 1c0 2-2.8 2.3-2.8 4.3"/><path d="M12 18.6v.01"/></symbol>
+  <symbol id="g-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.6" fill="currentColor"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5.5 21V4"/><path d="M5.5 4.5h11.5l-2.5 4 2.5 4H5.5"/></symbol>
+  <symbol id="i-dash" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke-dasharray="3.1 2.6"/></symbol>
+  <symbol id="i-turn" viewBox="0 0 24 24"><path d="M5 4.5v6a4 4 0 0 0 4 4h10"/><path d="m15 10.5 4 4-4 4"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4.5h5.5V10"/><path d="M19.5 4.5 11 13"/><path d="M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9.5a6 6 0 0 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15.5 6 9.5"/><path d="M10 20.5a2.3 2.3 0 0 0 4 0"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7.5 8 5.5 8-5.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24"><path d="M5 17.5c2.6-.8 4-2.9 4-6.2V7H5v4.3h4"/><path d="M14.5 17.5c2.6-.8 4-2.9 4-6.2V7h-4v4.3h4"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><path d="M12 7.9v.01"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4.5 20.5V5A1.5 1.5 0 0 1 6 3.5h7A1.5 1.5 0 0 1 14.5 5v15.5"/><path d="M14.5 9.5H18a1.5 1.5 0 0 1 1.5 1.5v9.5"/><path d="M3 20.5h18M8 7.5h3M8 11h3M8 14.5h3"/></symbol>
+  <symbol id="i-capitol" viewBox="0 0 24 24"><path d="M3 20.5h18"/><path d="M4.5 9.5h15"/><path d="M12 3.5 20 8H4z"/><path d="M6.5 9.5v8M10 9.5v8M14 9.5v8M17.5 9.5v8"/></symbol>
+  <symbol id="i-units" viewBox="0 0 24 24"><path d="M5 20.5V4.5h14v16"/><path d="M3 20.5h18M8.5 8h2M13.5 8h2M8.5 11.5h2M13.5 11.5h2M10.5 20.5v-4h3v4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4.5-2.2 1.4a11 11 0 0 0 5.8 5.8l1.4-2.2 4.5 1.5v3a2 2 0 0 1-2 2A16.5 16.5 0 0 1 4.5 5.5a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><path d="m3.5 6.5 1.2 1.2 2-2.2M3.5 12l1.2 1.2 2-2.2M3.5 17.5l1.2 1.2 2-2.2"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2"/><path d="M15.5 8.5V5.5a1.5 1.5 0 0 0-1.5-1.5H5.5A1.5 1.5 0 0 0 4 5.5V14a1.5 1.5 0 0 0 1.5 1.5h3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+</svg>
+
+<div class="brandrow wrap">
+  <a class="logo" href="#" data-act="home"><span class="logo-mark"><svg class="icon" aria-hidden="true"><use href="#i-logo"/></svg></span>HomeRule</a>
+  <span class="brand-r"><span class="nla">Not legal advice</span><span class="demo">Demo data</span></span>
+</div>
+
+<header class="bar" id="bar">
+  <div class="bar-in wrap">
+    <a class="logo" href="#" data-act="home"><span class="logo-mark"><svg class="icon" aria-hidden="true"><use href="#i-logo"/></svg></span>HomeRule</a>
+
+    <div class="look">
+      <label class="fld-l" for="addr" id="addr-l">Your address</label>
+      <div class="fld">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <input id="addr" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="sugg" autocomplete="off" spellcheck="false" placeholder="Type your address">
+        <button type="button" class="clear" id="clear" aria-label="Clear the address" hidden><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+      <ul class="sugg" id="sugg" role="listbox" aria-label="Addresses" hidden></ul>
+    </div>
+
+    <div class="alwrap">
+      <button type="button" class="bell" id="bell" aria-expanded="false" aria-controls="alert-bar" disabled><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg><span class="bell-l">Get alerts</span></button>
+      <form class="alert" id="alert-bar" novalidate hidden></form>
+    </div>
+
+    <div class="bar-trust"><span class="demo">Demo data</span><span class="nla2">Not legal advice</span></div>
+  </div>
+  <div class="pv" id="pv"></div>
+</header>
+
+
+<main id="main"></main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h2>How HomeRule works</h2>
+    <p>HomeRule reads housing laws once, turns them into dated rules, and checks each rule against this building’s facts. Every answer quotes the law and shows its date. When a fact is missing, it says so instead of guessing. When two rules may conflict, it shows both and flags it; it doesn’t decide.</p>
+    <p class="fine">Not legal advice: HomeRule shows what published rules say, not how they apply to your own case. Demo data: hand-prepared from the challenge brief; quotes are verbatim excerpts from the source documents. Building facts come from public property records. Mockup v3, static, nothing is sent or stored.</p>
+  </div>
+</footer>
+
+<dialog class="mapdlg" id="mapdlg" aria-labelledby="md-h"></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ic = (id, cls = "") => `<svg class="icon ${cls}" aria-hidden="true" focusable="false"><use href="#${id}"/></svg>`;
+const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+const TODAY = "Oct 1, 2026";
+const CHK = "Oct 1, 2026";
+const LEG = s => "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=" + s;
+const NJTIR = "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf";
+const MGL186 = s => "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section" + s;
+
+/* ---------- vocabulary ---------- */
+const TOPICS = [
+  {id:"rent",  g:"live", t:"Rent increases",        s:"Rent",      q:"What are the rules on rent increases?",          i:"i-rent"},
+  {id:"evict", g:"live", t:"Eviction",              s:"Eviction",  q:"When can they end my tenancy?",        i:"i-door"},
+  {id:"soft",  g:"live", t:"Software that sets rents", s:"Software",  q:"Can software be used to set my rent?", i:"i-chip"},
+  {id:"dep",   g:"move", t:"Security deposit",      s:"Deposit",   q:"How much deposit can they ask for?",   i:"i-safe"},
+  {id:"fee",   g:"move", t:"Application fees",      s:"Fees",      q:"What can they charge me to apply?",    i:"i-receipt"},
+  {id:"scr",   g:"move", t:"Tenant screening",      s:"Screening", q:"What can they check about me?",        i:"i-id"}
+];
+const TOPIC = Object.fromEntries(TOPICS.map(t => [t.id, t]));
+const GROUPS = [{id:"live", t:"While you live here"}, {id:"move", t:"Moving in or out"}];
+const ST = {
+  protect:{w:"There’s a rule",                    g:"g-check"},
+  depends:{w:"We’re missing one fact",            g:"g-q"},
+  none:   {w:"No local rule — state basics only", g:"g-dot"}
+};
+const RST = {
+  applies: {w:"Applies",           i:"g-check"},
+  replaced:{w:"Replaced here",     i:"i-turn"},
+  depends: {w:"Missing one fact",  i:"g-q"},
+  starts:  {w:"Starts",            i:"i-cal"},
+  proposed:{w:"Proposed, not law", i:"i-dash"},
+  struck:  {w:"Removed from the ballot", i:"i-dash"}
+};
+const NOTE_IC = {depends:"g-q", flag:"i-flag", date:"i-cal", proposed:"i-dash", replaced:"i-turn"};
+/* human contacts: every tile's first next step. Phone numbers are demo, not verified. */
+const CONTACT = {
+  sfrb: {o:"San Francisco Rent Board", ph:"415-252-4600", n:"Counselors answer renter questions by phone or walk-in."},
+  sfhrc:{o:"SF Human Rights Commission", ph:"415-252-2500", n:"Takes housing discrimination questions and complaints."},
+  hrl:  {o:"Hoboken Rent Leveling office", ph:"201-420-2372", n:"Can tell you whether your unit is rent-controlled."},
+  njdca:{o:"NJ Dept. of Community Affairs, landlord-tenant line", ph:"609-292-4174", n:"State office that answers renter questions."},
+  njdcr:{o:"NJ Division on Civil Rights", ph:"1-833-653-2748", n:"Takes housing discrimination questions and complaints."},
+  ohs:  {o:"Boston Office of Housing Stability", ph:"617-635-4200", n:"Helps Boston renters with notices, rent and moves."},
+  bfhc: {o:"Boston Fair Housing Commission", ph:"617-635-2500", n:"Takes housing discrimination questions and complaints."}
+};
+
+/* ---------- demo data (from web/data/demo: lookups on Oct 1, 2026; quotes verbatim from the corpus) ---------- */
+const A = {
+ sf: {
+  st:"CA", street:"3515 Fillmore St", city:"San Francisco, CA", optc:"San Francisco, CA · built 1926",
+  cap:"Inside San Francisco city limits — city and state rules apply.", crumb:["California","San Francisco"],
+  find:"3515 fillmore st street san francisco sf california ca",
+  nx:{d:"Feb 28, 2027", t:"this year’s city rent limit period ends"},
+  facts:[{i:"i-cal",t:"Built 1926"},{i:"i-units",t:"21 units"}],
+  factSrc:"Building facts from DataSF property records (2025 roll).",
+  tiles:{
+   rent:{st:"protect", line:"The city’s yearly limit for rent-controlled units is 1.6% (Mar 2026–Feb 2027). Some units and increases are exempt. The Rent Board can check your notice.",
+    from:"San Francisco law", fi:"i-building",
+    expl:"Records show this building was built in 1926. That is in the city rent-control program’s age range: buildings approved for living before June 13, 1979. Your unit may differ.",
+    call:"sfrb", help:[{k:"call", items:["Your rent increase notice","Your lease","Your move-in date"]}],
+    next:[{l:"SF Rent Board: this year’s limit", u:"https://www.sf.gov/reports--current-rates-including-rent-increase-relocation-sec-deposit"}],
+    law:["California’s state cap is replaced here by the city rule."],
+    rules:[
+     {lv:"city", w:"City of San Francisco", t:"San Francisco Rent Ordinance: annual allowable increase", st:"applies",
+      q:`For rent-controlled units, the annual allowable increase amount effective March 1, 2026 through February 28, 2027 is 1.6%.`,
+      cite:"S.F. Admin. Code ch. 37", src:"https://www.sf.gov/news--annual-rent-increase-3126-22827-announced", srcn:"SF.gov", chk:CHK, conf:"high"},
+     {lv:"state", w:"State of California", t:"California rent cap (Tenant Protection Act)", st:"replaced", stx:"Replaced here by the city rule",
+      q:`an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower`,
+      why:"The state cap doesn’t cover housing under stricter local rent control (§ 1947.12(d)(3)).",
+      cite:"Cal. Civ. Code § 1947.12", src:LEG("1947.12"), srcn:"California Legislature", chk:CHK, conf:"high"}
+    ]},
+   evict:{st:"protect", line:"In San Francisco, a landlord needs one of 17 reasons the law allows to evict.",
+    from:"San Francisco law", fi:"i-building",
+    expl:"The city’s eviction rules cover rent-controlled buildings. Records show this building is in the program’s age range (built 1926). Your unit may differ. If you have to move out for a reason that is not your fault, the law sets moving payments.",
+    call:"sfrb", help:[{k:"call", items:["Your notice to move out","Your lease","Your move-in date"]}],
+    next:[{l:"SF Rent Board: reasons the law allows for eviction", u:"https://sf.gov/information/overview-just-cause-evictions"}],
+    law:["California’s own eviction rule is replaced here by the city rule."],
+    rules:[
+     {lv:"city", w:"City of San Francisco", t:"San Francisco just-cause eviction (Rent Ordinance § 37.9)", st:"applies",
+      q:`In order to evict a tenant from a rental unit covered by the Rent Ordinance, a landlord must have a "just cause" reason that is the dominant motive for pursuing the eviction.`,
+      cite:"S.F. Admin. Code § 37.9", src:"https://sf.gov/information/overview-just-cause-evictions", srcn:"SF.gov", chk:CHK, conf:"high"},
+     {lv:"state", w:"State of California", t:"California just-cause eviction rule", st:"replaced", stx:"Replaced here by the city rule",
+      q:`after a tenant has continuously and lawfully occupied a residential real property for 12 months, the owner of the residential real property shall not terminate a tenancy without just cause, which shall be stated in the written notice to terminate tenancy.`,
+      why:"San Francisco’s just-cause ordinance applies instead (§ 1946.2(i)).",
+      cite:"Cal. Civ. Code § 1946.2", src:LEG("1946.2"), srcn:"California Legislature", chk:CHK, conf:"high"}
+    ]},
+   soft:{st:"protect", line:"San Francisco bans software that sets rents (since 2024). California adds its own ban (since 2026).",
+    from:"San Francisco and California law", fi:"i-building",
+    expl:"The city ban covers selling or using software that sets rents from other landlords’ private data. Since Jan 1, 2026, a California law also covers shared pricing software.",
+    call:"sfrb",
+    next:[{l:"SF.gov: the city’s ban on software that sets rents", u:"https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"}],
+    rules:[
+     {lv:"city", w:"City of San Francisco", t:"San Francisco ban on algorithmic rent-setting devices", st:"applies", since:"Oct 14, 2024",
+      q:`adding Section 37.10C to the Rent Ordinance went into effect on October 14, 2024. The law prohibits the sale or use of algorithmic devices to set rents or manage occupancy levels for residential units in San Francisco.`,
+      cite:"S.F. Admin. Code § 37.10C", src:"https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco", srcn:"SF.gov", chk:CHK, conf:"high"},
+     {lv:"state", w:"State of California", t:"California ban on common pricing algorithms (AB 325)", st:"applies", since:"Jan 1, 2026",
+      q:`It shall be unlawful for a person to use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of this chapter.`,
+      cite:"Cal. Bus. & Prof. Code § 16729 (AB 325)", src:"https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325", srcn:"California Legislature", chk:CHK, conf:"high"}
+    ]},
+   dep:{st:"protect", line:"California’s limit is one month’s rent.", from:"California law", fi:"i-capitol",
+    expl:"In effect since Jul 1, 2024. Public records list 21 units. The two-month exception is for small landlords with 4 units or fewer.",
+    call:"sfrb",
+    next:[{l:"Read § 1950.5 on the California Legislature site", u:LEG("1950.5")}],
+    rules:[
+     {lv:"state", w:"State of California", t:"California deposit limit (AB 12)", st:"applies", since:"Jul 1, 2024",
+      q:`a landlord shall not demand or receive security, however denominated, in an amount or value in excess of an amount equal to one month’s rent, in addition to any rent for the first month paid on or before initial occupancy.`,
+      cite:"Cal. Civ. Code § 1950.5(c)", src:LEG("1950.5"), srcn:"California Legislature", chk:CHK, conf:"high"}
+    ]},
+   fee:{st:"protect", line:"California caps application fees at $30 per person, raised each year for inflation.", from:"California law", fi:"i-capitol",
+    expl:"There is no single official figure for 2026. A landlord can’t charge the fee if no unit is available.",
+    call:"sfrb",
+    next:[{l:"Read § 1950.6 on the California Legislature site", u:LEG("1950.6")}],
+    rules:[
+     {lv:"state", w:"State of California", t:"California screening-fee cap", st:"applies",
+      q:`In no case shall the amount of the application screening fee charged by the landlord or their agent be greater than thirty dollars ($30) per applicant.`,
+      cite:"Cal. Civ. Code § 1950.6", src:LEG("1950.6"), srcn:"California Legislature", chk:CHK, conf:"high"}
+    ]},
+   scr:{st:"protect", line:"A landlord can’t turn you down because of how you pay rent (e.g. vouchers).",
+    from:"California and San Francisco law", fi:"i-capitol",
+    expl:"California protects how you pay rent, including housing vouchers such as Section 8. San Francisco also limits questions about arrest and conviction history, but only in affordable housing.",
+    miss:[{f:"Whether the building is affordable housing", w:"San Francisco’s Fair Chance Ordinance covers affordable housing only, and our data doesn’t say."}],
+    call:"sfhrc",
+    next:[{l:"SF Human Rights Commission: Fair Chance Ordinance", u:"https://sf-hrc.org/fair-chance-ordinance"},
+          {l:"California Civil Rights Department: housing", u:"https://calcivilrights.ca.gov/housing/"}],
+    rules:[
+     {lv:"state", w:"State of California", t:"California source-of-income protection (FEHA, SB 329)", st:"applies",
+      q:`“source of income” means lawful, verifiable income paid directly to a tenant, or to a representative of a tenant, or paid to a housing owner or landlord on behalf of a tenant, including federal, state, or local public assistance, and federal, state, or local housing subsidies, including, but not limited to, federal housing assistance vouchers issued under Section 8 of the United States Housing Act of 1937 (42 U.S.C. Sec. 1437f).`,
+      cite:"Cal. Gov. Code § 12955", src:"https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=12955", srcn:"California Legislature", chk:CHK, conf:"high"},
+     {lv:"city", w:"City of San Francisco", t:"San Francisco Fair Chance Ordinance (affordable housing)", st:"depends",
+      q:`San Francisco's Fair Chance Ordinance protects residents with arrest or conviction history in affordable housing decisions.`,
+      cite:"San Francisco Fair Chance Ordinance", src:"https://sf-hrc.org/fair-chance-ordinance", srcn:"SF Human Rights Commission", chk:CHK, conf:"medium"}
+    ]}
+  },
+  tl:{
+   future:[{d:"Feb 28, 2027", tp:"rent", t:"This year’s city rent limit period ends", b:"The city’s limit for rent-controlled units covers Mar 1, 2026 to Feb 28, 2027. The next one isn’t in our sources yet."}],
+   past:[{d:"Mar 1, 2026", tp:"rent", t:"The city set this year’s limit for rent-controlled units", chg:["1.4%","1.6%"]},
+         {d:"Jan 1, 2026", tp:"soft", t:"California’s ban on shared pricing software took effect", b:"It adds a state rule on top of San Francisco’s own ban."}]
+  }
+ },
+
+ hoboken: {
+  st:"NJ", street:"327 Jackson St", city:"Hoboken, NJ", optc:"Hoboken, NJ · year built unknown",
+  cap:"Inside Hoboken city limits — city and state rules apply.", crumb:["New Jersey","Hudson County","Hoboken"],
+  find:"327 jackson st street hoboken new jersey nj hudson",
+  nx:{d:"Jul 1, 2027", t:"New Jersey bans software that sets rents"},
+  facts:[{i:"g-q",t:"Year built: not in our data",c:"unk key"},{i:"i-units",t:"About 20 units"}],
+  factSrc:"Building facts from NJ parcel records (MOD-IV). Units read from the use code “5B-20U-H”.",
+  tiles:{
+   rent:{st:"depends", line:"Hoboken has its own rent control. Buildings newer than 30 years are exempt, and we don’t have this building’s year built.", from:"New Jersey and Hoboken law", fi:"i-capitol",
+    expl:"New Jersey has no state limit on rent increases; cities set their own. The Hoboken rent office can tell you if your unit is covered.",
+    miss:[{f:"Year built", w:"Buildings newer than 30 years are exempt. It isn’t in our data."},
+          {f:"Hoboken’s rent-control rules", w:"Their text isn’t in our sources yet."}],
+    call:"hrl", help:[{k:"call", items:["Your address and unit number","Your lease","Your move-in date"]},
+                      {k:"email", b:"Ask your landlord for the year built", text:"Hi,\n\nCould you tell me the year my building at 327 Jackson St was built, or the date the city approved it for living (certificate of occupancy)?\n\nThank you,\n[Your name], Unit [number]"}],
+    next:[{l:"City of Hoboken website", u:"https://www.hobokennj.gov"}],
+    rules:[
+     {lv:"state", w:"State of New Jersey", t:"No state rent cap in New Jersey; cities set rent control", st:"depends", stx:"Depends on Hoboken’s rules",
+      q:`The State of New Jersey has no laws that establish, govern or control rents. Municipalities may pass an ordinance establishing rent control or rent leveling.`,
+      cite:"NJ DCA, Truth in Renting", src:NJTIR, srcn:"NJ DCA guide (PDF)", chk:CHK, conf:"low"}
+    ]},
+   evict:{st:"protect", line:"A landlord needs a reason the law allows to evict, and a court must approve.", from:"New Jersey law", fi:"i-capitol",
+    expl:"New Jersey’s Anti-Eviction Act also covers refusing to renew a lease. Public records list about 20 units. The owner-occupied exception is for buildings with 2 or fewer rental units.",
+    call:"njdca", help:[{k:"call", items:["Your notice to move out","Your lease","Your move-in date"]}],
+    next:[{l:"NJ DCA: Truth in Renting guide (evictions)", u:NJTIR}],
+    rules:[
+     {lv:"state", w:"State of New Jersey", t:"New Jersey Anti-Eviction Act", st:"applies",
+      q:`No residential landlord may evict or fail to renew a lease, whether it is a written or an oral lease without good cause.`,
+      cite:"N.J.S.A. 2A:18-61.1", src:NJTIR, srcn:"NJ DCA guide (PDF)", chk:CHK, conf:"medium"}
+    ]},
+   soft:{st:"protect", line:"Hoboken bans software that sets rents (since July 2025).",
+    notes:[{k:"date",t:"New state rule from Jul 1, 2027"}], from:"Hoboken law", fi:"i-building",
+    expl:"From Jul 1, 2027, a New Jersey law also bans landlords from using software that sets rents.",
+    flag:{h:"Possible overlap, not decided", b:"The New Jersey law bars city rules that conflict with it. Whether Hoboken’s ban conflicts is a legal question. HomeRule shows both sources and flags it for review; it doesn’t decide which one governs.",
+          q:`A municipality shall be prohibited from enacting an ordinance that conflicts with this act.`, cite:"P.L.2026, c.43"},
+    pv:"Jul 2, 2027", call:"hrl",
+    next:[{l:"Read the New Jersey law (P.L.2026, c.43)", u:"https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM"}],
+    rules:[
+     {lv:"city", w:"City of Hoboken", t:"Hoboken ban on algorithmic rent-setting", st:"applies", since:"July 2025",
+      qp:"Quote pending: the ordinance text isn’t in our sources yet.", cite:"Hoboken Code ch. 158, Art. II", conf:"low"},
+     {lv:"state", w:"State of New Jersey", t:"New Jersey FAIR Act (algorithmic rent-setting)", st:"starts", since:"Jul 1, 2027", dm:"Signed Jul 20, 2026",
+      q:`a rental property owner, or any agent, representative, or subcontractor thereof, to receive, subscribe to, contract for, or otherwise exchange any form of consideration in return for the use of, the services of a coordinator;`,
+      cite:"P.L.2026, c.43 (N.J.S.A. 56:9-20 to 56:9-26)", src:"https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM", srcn:"NJ Legislature", chk:CHK, conf:"high"}
+    ]},
+   dep:{st:"protect", line:"New Jersey’s limit is 1.5 months’ rent.", from:"New Jersey law", fi:"i-capitol",
+    expl:"The deposit can go up by at most 10% a year. Public records list about 20 units. The exception is for owner-occupied homes with 2 or 3 units.",
+    call:"njdca",
+    next:[{l:"NJ DCA: Truth in Renting guide (security deposits)", u:NJTIR}],
+    rules:[
+     {lv:"state", w:"State of New Jersey", t:"New Jersey Security Deposit Law", st:"applies",
+      q:`The maximum-security deposit to be collected by the landlord cannot be more than one and one-half times one month’s rent ( N.J.S.A. 46:8-21.2 ).`,
+      cite:"N.J.S.A. 46:8-21.2", src:NJTIR, srcn:"NJ DCA guide (PDF)", chk:CHK, conf:"medium"}
+    ]},
+   fee:{st:"protect", line:"New Jersey caps application fees at $50, since May 1, 2026.", from:"New Jersey law", fi:"i-capitol",
+    expl:"The cap is adjusted for inflation each January. It doesn’t cover one- or two-family homes. Public records list about 20 units.",
+    call:"njdca",
+    next:[{l:"Read P.L.2025, c.405", u:"https://pub.njleg.gov/bills/2024/PL25/405_.HTM"}],
+    rules:[
+     {lv:"state", w:"State of New Jersey", t:"New Jersey $50 application-fee cap", st:"applies", since:"May 1, 2026",
+      q:`A landlord, or agent thereof, shall not require an application or other similar fee to apply to lease or sublease a residential rental property for dwelling purposes, which exceeds $50.`,
+      cite:"P.L.2025, c.405 (N.J.S.A. 46:8-18.1)", src:"https://pub.njleg.gov/bills/2024/PL25/405_.HTM", srcn:"NJ Legislature", chk:CHK, conf:"medium"}
+    ]},
+   scr:{st:"protect", line:"A landlord can’t ask about criminal records before a conditional offer.", from:"New Jersey law", fi:"i-capitol",
+    expl:"New Jersey’s Fair Chance in Housing Act, in effect since Jan 1, 2022. Public records list about 20 units. The owner-occupied exception is for 4 units or fewer.",
+    call:"njdcr",
+    next:[{l:"NJ Division on Civil Rights: know your rights in housing", u:"https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf"}],
+    rules:[
+     {lv:"state", w:"State of New Jersey", t:"New Jersey Fair Chance in Housing Act", st:"applies", since:"Jan 1, 2022",
+      q:`shall not make any oral or written inquiry regarding an applicant’s criminal record prior to making a conditional offer.`,
+      cite:"P.L.2021, c.110 (N.J.S.A. 46:8-52)", src:"https://pub.njleg.gov/bills/2020/PL21/110_.HTM", srcn:"NJ Legislature", chk:CHK, conf:"medium"}
+    ]}
+  },
+  tl:{
+   future:[{d:"Jul 1, 2027", tp:"soft", t:"From Jul 1, 2027: landlords can’t use software that sets rents in New Jersey."}],
+   past:[{d:"Jul 20, 2026", tp:"soft", t:"New Jersey signed the software law", b:"It takes effect on Jul 1, 2027."},
+         {d:"May 1, 2026", tp:"fee", t:"$50 cap on application fees took effect", b:"New Jersey state law, adjusted yearly for inflation."}]
+  },
+  preview:{
+   d:"Jul 2, 2027",
+   tiles:{
+    soft:{st:"protect", line:"Banned by Hoboken and, since Jul 1, 2027, by New Jersey law.",
+     from:"Hoboken and New Jersey law", fi:"i-building",
+     expl:"Since Jul 1, 2027, a New Jersey law also bans landlords from using software that sets rents.",
+     flag:{h:"Possible overlap, still not decided", b:"The state law is now in effect, and it bars city rules that conflict with it. Whether Hoboken’s ban conflicts is a legal question; HomeRule shows both sources and keeps the flag for human review.",
+           q:`A municipality shall be prohibited from enacting an ordinance that conflicts with this act.`, cite:"P.L.2026, c.43"},
+     call:"hrl",
+     next:[{l:"Read the New Jersey law (P.L.2026, c.43)", u:"https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM"}],
+     rules:[
+      {lv:"city", w:"City of Hoboken", t:"Hoboken ban on algorithmic rent-setting", st:"applies", since:"July 2025",
+       qp:"Quote pending: the ordinance text isn’t in our sources yet.", cite:"Hoboken Code ch. 158, Art. II", conf:"low"},
+      {lv:"state", w:"State of New Jersey", t:"New Jersey FAIR Act (algorithmic rent-setting)", st:"applies", since:"Jul 1, 2027", chg:true,
+       q:`a rental property owner, or any agent, representative, or subcontractor thereof, to receive, subscribe to, contract for, or otherwise exchange any form of consideration in return for the use of, the services of a coordinator;`,
+       cite:"P.L.2026, c.43 (N.J.S.A. 56:9-20 to 56:9-26)", src:"https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM", srcn:"NJ Legislature", chk:CHK, conf:"high"}
+     ]}
+   },
+   tl:{
+    future:[],
+    past:[{d:"Jul 1, 2027", tp:"soft", t:"Landlords can’t use software that sets rents in New Jersey"},
+          {d:"Jul 20, 2026", tp:"soft", t:"New Jersey signed the software law"},
+          {d:"May 1, 2026", tp:"fee", t:"$50 cap on application fees took effect"}]
+   }
+  }
+ },
+
+ boston: {
+  st:"MA", street:"471 Columbia Rd", city:"Boston, MA", optc:"Dorchester, Boston, MA · built 1930",
+  cap:"Inside Boston city limits — your mail says Dorchester.", capSub:"Dorchester is a Boston neighborhood, so Boston law applies.", crumb:["Massachusetts","Suffolk County","Boston"],
+  find:"471 columbia rd road dorchester boston massachusetts ma suffolk",
+  facts:[{i:"i-cal",t:"Built 1930"},{i:"g-q",t:"Units: not in our data",c:"unk"},{i:"i-building",t:"Listed as Section 8 housing"}],
+  factSrc:"Building facts from Boston Property Assessment FY2026.",
+  tiles:{
+   rent:{st:"none", line:"Massachusetts doesn’t allow rent control, so there’s no city limit on increases. Your landlord still has to give proper notice.", from:"Massachusetts law", fi:"i-capitol",
+    expl:"A 2026 ballot question to allow rent control was removed from the ballot by the state’s high court. It never became law.",
+    call:"ohs", help:[{k:"call", items:["Your rent increase notice","Your lease","Your move-in date"]}],
+    next:[{l:"Read M.G.L. c. 40P, § 4", u:"https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"}],
+    rules:[
+     {lv:"state", w:"State of Massachusetts", t:"No rent control in Massachusetts (state ban)", st:"applies",
+      q:`No city or town may enact, maintain or enforce rent control of any kind`,
+      cite:"M.G.L. c. 40P, § 4", src:"https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4", srcn:"malegislature.gov", chk:CHK, conf:"high"},
+     {lv:"state", w:"State of Massachusetts", t:"2026 ballot question on rent control", st:"struck", stx:"Removed from the ballot, never became law", dm:"Removed Jun 23, 2026",
+      qp:"No quote: our only source is a news report, not the law.",
+      cite:"Initiative Petition 25-21", src:"https://www.wbur.org/news/2026/06/23/massachusetts-high-court-rent-control-ballot-question-struck", srcn:"WBUR news report"}
+    ]},
+   evict:{st:"none", line:"Notice rules apply. Our sources have no rule requiring a reason the law allows.", from:"Massachusetts and Boston law", fi:"i-capitol",
+    expl:"Without a fixed-term lease, a landlord must give at least one rental period or 30 days’ notice, whichever is longer. For unpaid rent, a 14-day notice can end a lease. In Boston, every notice to move out must come with a Notice of Tenant’s Rights and Resources.",
+    call:"ohs", help:[{k:"check", items:["Did your notice include the Notice of Tenant’s Rights and Resources?","What date does your notice give?","Have ready when you call: your notice, your lease, your move-in date"]}],
+    next:[{l:"Boston: Housing Stability Notification Act", u:"https://www.boston.gov/housing-stability-notification-act"}],
+    rules:[
+     {lv:"state", w:"State of Massachusetts", t:"Massachusetts notice to end a tenancy at will", st:"applies",
+      q:`if the rent reserved is payable at periods of less than three months, the time of such notice shall be sufficient if it is equal to the interval between the days of payment or thirty days, whichever is longer.`,
+      cite:"M.G.L. c. 186, § 12", src:MGL186("12"), srcn:"malegislature.gov", chk:CHK, conf:"high"},
+     {lv:"state", w:"State of Massachusetts", t:"Massachusetts 14-day notice for non-payment", st:"applies",
+      q:`Upon the neglect or refusal to pay the rent due under a written lease, fourteen days' notice to quit, given in writing by the landlord to the tenant, shall be sufficient to determine the lease`,
+      cite:"M.G.L. c. 186, § 11", src:MGL186("11"), srcn:"malegislature.gov", chk:CHK, conf:"high"},
+     {lv:"city", w:"City of Boston", t:"Boston Housing Stability Notification Act", st:"applies",
+      q:`The Housing Stability Notification Act requires any landlord to provide renters with a Notice of Tenant’s Rights and Resources when planning to end a tenancy agreement.`,
+      cite:"Boston Housing Stability Notification Act (2020)", src:"https://www.boston.gov/housing-stability-notification-act", srcn:"Boston.gov", chk:CHK, conf:"medium"}
+    ]},
+   soft:{st:"none", line:"No rule on software that sets rents in Massachusetts yet. Two bills are proposed; a bill is not law.",
+    notes:[{k:"proposed",t:"2 bills proposed, not law"}], from:"Massachusetts law", fi:"i-capitol",
+    expl:"If either bill passes, it would cover every Massachusetts address.",
+    call:"ohs",
+    next:[{l:"Follow S.2983 on malegislature.gov", u:"https://malegislature.gov/Bills/194/S2983"}],
+    rules:[
+     {lv:"state", w:"State of Massachusetts", t:"S.2983: An Act prohibiting algorithmic rent setting (bill)", st:"proposed", dm:"In Senate Ways and Means since Mar 12, 2026",
+      q:`Senate, March 12, 2026 -- The committee on Housing, to whom was referred the petitions (accompanied by bill, Senate, No. 994) of Cindy F. Friedman and Julian Cyr for legislation to prohibit algorithmic rent setting`,
+      cite:"Mass. Senate Bill S.2983", src:"https://malegislature.gov/Bills/194/S2983", srcn:"malegislature.gov", chk:CHK, conf:"high"},
+     {lv:"state", w:"State of Massachusetts", t:"H.5222: preventing algorithmic rent fixing (bill)", st:"proposed", dm:"In House Ways and Means since Mar 12, 2026",
+      q:`An Act relative to preventing algorithmic rent fixing in the rental housing market`,
+      cite:"Mass. House Bill H.5222", src:"https://malegislature.gov/Bills/194/H5222", srcn:"malegislature.gov", chk:CHK, conf:"high"}
+    ]},
+   dep:{st:"protect", line:"Massachusetts’ limit is the first month’s rent.", from:"Massachusetts law", fi:"i-capitol",
+    expl:"The deposit must be kept in a separate bank account, and you get a receipt.",
+    call:"ohs",
+    next:[{l:"Read M.G.L. c. 186, § 15B", u:MGL186("15B")}],
+    rules:[
+     {lv:"state", w:"State of Massachusetts", t:"Massachusetts deposit limit", st:"applies",
+      q:`(iii) a security deposit equal to the first month's rent`,
+      cite:"M.G.L. c. 186, § 15B(1)(b)(iii)", src:MGL186("15B"), srcn:"malegislature.gov", chk:CHK, conf:"high"}
+    ]},
+   fee:{st:"protect", line:"Massachusetts doesn’t allow application fees.", from:"Massachusetts law", fi:"i-capitol",
+    expl:"Before you move in, a landlord may only ask for first and last month’s rent, a deposit and the cost of a lock and key. Since Aug 1, 2025, a broker’s fee is paid by whoever hired the broker.",
+    call:"ohs",
+    next:[{l:"Read M.G.L. c. 186, § 15B", u:MGL186("15B")}],
+    rules:[
+     {lv:"state", w:"State of Massachusetts", t:"Massachusetts limit on upfront charges", st:"applies",
+      q:`(b) At or prior to the commencement of any tenancy, no lessor or agent of the lessor may require a tenant or prospective tenant to pay, to the lessor or to an agent of the lessor, any amount in excess of the following:`,
+      cite:"M.G.L. c. 186, § 15B(1)(b)", src:MGL186("15B"), srcn:"malegislature.gov", chk:CHK, conf:"high"},
+     {lv:"state", w:"State of Massachusetts", t:"Massachusetts broker-fee rule", st:"applies", since:"Aug 1, 2025",
+      q:`Any fee shall only be paid by the party, lessor or tenant who originally engaged and entered into a contract with the licensed broker or salesperson.`,
+      cite:"M.G.L. c. 112, § 87DDD½", src:"https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2", srcn:"malegislature.gov", chk:CHK, conf:"high"}
+    ]},
+   scr:{st:"protect", line:"A landlord can’t turn you down for receiving public assistance or a housing subsidy.",
+    from:"Massachusetts and Boston law", fi:"i-capitol",
+    expl:"This includes vouchers. Records list this building as Section 8 housing. Boston’s Fair Chance policy covers only housing with City funding or income-restricted units.",
+    miss:[{f:"City funding or income-restricted units", w:"Boston’s Fair Chance Tenant Selection Policy covers only those buildings, and our data doesn’t say."}],
+    call:"bfhc",
+    next:[{l:"Read M.G.L. c. 151B, § 4", u:"https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"}],
+    rules:[
+     {lv:"state", w:"State of Massachusetts", t:"Massachusetts protection for public assistance and housing subsidies", st:"applies",
+      q:`For any person furnishing credit, services or rental accommodations to discriminate against any individual who is a recipient of federal, state, or local public assistance, including medical assistance, or who is a tenant receiving federal, state, or local housing subsidies, including rental assistance or rental supplements`,
+      cite:"M.G.L. c. 151B, § 4(10)", src:"https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4", srcn:"malegislature.gov", chk:CHK, conf:"medium"},
+     {lv:"city", w:"City of Boston", t:"Boston Fair Chance Tenant Selection Policy", st:"depends",
+      q:`will not impose a blanket policy that denies housing to anyone with arrests and or convictions.`,
+      cite:"Boston DND Fair Chance Tenant Selection Policy (2017)", src:"https://drive.google.com/file/d/1j4U3fDtmnYuwcUWhx5BMUcXc1bnKT8Ku/view?usp=sharing", srcn:"City policy (PDF)", chk:CHK, conf:"low"}
+    ]}
+  },
+  tl:{
+   future:[],
+   past:[{d:"Jun 23, 2026", tp:"rent", t:"Rent-control question removed from the ballot", b:"The state’s high court removed it, so it never became law."},
+         {d:"Aug 1, 2025", tp:"fee", t:"Broker fees: whoever hired the broker pays"}],
+   prop:{items:[
+     {id:"S.2983", t:"An Act prohibiting algorithmic rent setting", w:"In Senate Ways and Means since Mar 12, 2026", u:"https://malegislature.gov/Bills/194/S2983"},
+     {id:"H.5222", t:"Preventing algorithmic rent fixing", w:"In House Ways and Means since Mar 12, 2026", u:"https://malegislature.gov/Bills/194/H5222"}],
+    j6:"Rule pages aren’t part of this mockup. There, S.2983 lists all 110 Massachusetts sample addresses as pending, never in effect, with the bill text and a link to malegislature.gov."}
+  }
+ }
+};
+const KEYS = Object.keys(A);
+
+/* ---------- state ---------- */
+const S = {k:null, preview:false, open:null, sent:false};
+
+function cur(){
+  const a = A[S.k];
+  if (!a) return null;
+  if (S.preview && a.preview) return {...a, tiles:{...a.tiles, ...a.preview.tiles}, tl:a.preview.tl, asof:a.preview.d};
+  return {...a, asof:TODAY};
+}
+
+/* ---------- pieces ---------- */
+const mark = st => `<span class="mark">${ic(ST[st].g)}</span>`;
+function quote(s){
+  let t = s.replace(/\s+/g, " ").trim();
+  let lead = /^[a-z(]/.test(t) && !/^\(iii\)|^\(b\)/.test(t) ? "…" : "";
+  let tail = "";
+  if (/[;:,]$/.test(t)) { t = t.slice(0, -1); tail = "…"; }
+  else if (!/[.!?”"')]$/.test(t)) tail = "…";
+  return `“${lead}${esc(t)}${tail}”`;
+}
+
+function glance(d, anim){
+  const c = {protect:0, depends:0, none:0};
+  TOPICS.forEach(t => c[d.tiles[t.id].st]++);
+  const n = (k, one, many) => `${c[k]} ${c[k] > 1 ? many : one}`;
+  if (c.protect === 6) return `<section class="glance" aria-labelledby="h-glance"><div class="glance-sum"><h2 class="glance-h" id="h-glance">At a glance.</h2> There’s a rule for each of the 6 topics at this address. Open a topic to see what it says and who to call.</div></section>`;
+  const sum = [];
+  if (c.protect) sum.push(`There’s a rule for ${n("protect","topic","topics")}.`);
+  if (c.depends) sum.push(`For ${n("depends","topic","topics")}, we’re missing one fact.`);
+  if (c.none) sum.push(`For ${n("none","topic","topics")}, there’s no local rule, so state basics apply.`);
+  const same = Object.values(c).includes(6);
+  return `<section class="glance${anim ? " anim" : ""}" aria-labelledby="h-glance">
+    <div class="glance-sum"><h2 class="glance-h" id="h-glance">At a glance.</h2> ${sum.join(" ")}</div>
+    ${same ? "" : `<ul class="toks">${TOPICS.map(t => { const x = d.tiles[t.id]; return `<li><a class="tok s-${x.st}" href="#t-${t.id}" data-go="${t.id}" aria-label="${esc(t.t)}: ${ST[x.st].w}"><span class="tok-w">${ic(t.i)}${mark(x.st)}</span><span class="tok-l" aria-hidden="true">${esc(t.s)}</span></a></li>`; }).join("")}</ul>
+    <ul class="legend" aria-label="What the marks mean">${["protect","depends","none"].filter(k => c[k]).map(k => `<li class="s-${k}">${mark(k)}${ST[k].w}</li>`).join("")}</ul>`}
+  </section>`;
+}
+
+function dateMeta(r){
+  if (r.dm) return r.dm;
+  if (r.st === "applies") return r.since ? `In effect since ${r.since}` : "In effect";
+  if (r.st === "starts") return `Starts ${r.since}`;
+  return "In effect";
+}
+function rule(r){
+  const s = RST[r.st];
+  const stw = r.stx || (r.st === "starts" ? `Starts ${r.since}` : s.w);
+  const meta = [dateMeta(r), r.chk ? `Checked ${r.chk}` : (r.st === "struck" ? "" : "Not yet checked against a source"), r.conf ? `Confidence: ${r.conf}` : ""].filter(Boolean);
+  return `<li class="rule${r.chg ? " changed" : ""}">
+    <p class="r-top"><span class="lvl">${ic(r.lv === "city" ? "i-building" : "i-capitol")}${esc(r.w)}</span><span class="rst ${r.st}">${ic(s.i)}${esc(stw)}</span>${r.chg ? `<span class="chgd">Changed</span>` : ""}</p>
+    <p class="r-t">${esc(r.t)}</p>
+    ${r.q ? `<blockquote class="bq">${quote(r.q)}</blockquote>` : `<p class="q-pend">${esc(r.qp)}</p>`}
+    ${r.why ? `<p class="why">${esc(r.why)}</p>` : ""}
+    <p class="cite"><b>${esc(r.cite)}</b>${r.src ? `<a class="src" href="${esc(r.src)}" target="_blank" rel="noopener">${esc(r.srcn)}${ic("i-ext")}<span class="sr"> (opens in a new tab)</span></a>` : ""}</p>
+    <p class="meta">${meta.map(m => `<span>${esc(m)}</span>`).join("")}</p>
+  </li>`;
+}
+function contact(x){
+  const c = CONTACT[x.call]; if (!c) return "";
+  return `<div class="who"><p class="who-h">${ic("i-phone")}Talk to someone first</p>
+    <p class="who-o">${esc(c.o)}</p>
+    <p class="who-r"><a class="who-ph" href="tel:${c.ph.replace(/[^0-9+]/g, "")}">${esc(c.ph)}</a><span class="free">Free</span><span class="demo-n">Demo number, check before calling</span></p>
+    <p class="who-n">${esc(c.n)}</p></div>`;
+}
+function helpers(x){
+  return (x.help || []).map(h => h.k === "email"
+    ? `<details class="hlp mail"><summary>${ic("i-mail")}<span>${esc(h.b)}</span>${ic("i-chev","chev")}</summary>
+        <p class="hlp-s">A ready, neutral message. Copy it into your own email; HomeRule sends nothing.</p>
+        <textarea class="hlp-t" readonly rows="7" aria-label="Email text">${esc(h.text)}</textarea>
+        <button type="button" class="btn2" data-act="copy">${ic("i-copy")}Copy text</button></details>`
+    : `<div class="hlp"><p class="hlp-h">${ic("i-list")}${h.k === "call" ? "Before you call, have ready" : "Check your notice"}</p>
+        <ul class="ck">${h.items.map(it => `<li><label><input type="checkbox">${esc(it)}</label></li>`).join("")}</ul></div>`).join("");
+}
+function panel(t, x){
+  let h = `<div class="panel"><h5 class="d-q">${esc(t.q)}</h5><p class="d-ex">${esc(x.expl)}</p>`;
+  if (x.miss) h += `<div class="box s-depends"><p class="box-h">${mark("depends")}What we don’t know yet</p><ul>${x.miss.map(m => `<li><b>${esc(m.f)}.</b> ${esc(m.w)}</li>`).join("")}</ul></div>`;
+  h += `<h5 class="d-h">What you can do next</h5>${contact(x)}${helpers(x)}`;
+  if (x.next && x.next.length) h += `<ul class="acts">${x.next.map(a => `<li><a class="act" href="${esc(a.u)}" target="_blank" rel="noopener">${ic("i-arrow","lead")}<span>${esc(a.l)}</span>${ic("i-ext","go")}<span class="sr"> (opens in a new tab)</span></a></li>`).join("")}</ul>`;
+  h += `<details class="law"><summary>${ic("i-quote")}<span>Show the law</span>${ic("i-chev","chev")}</summary><div class="law-in">`;
+  if (x.law) h += `<ul class="law-notes">${x.law.map(n => `<li class="note n-replaced">${ic("i-turn")}${esc(n)}</li>`).join("")}</ul>`;
+  if (x.flag) h += `<div class="box"><p class="box-h">${ic("i-flag")}${esc(x.flag.h)}</p><p class="box-p">${esc(x.flag.b)}</p><blockquote class="bq">${quote(x.flag.q)}</blockquote><p class="cite"><b>${esc(x.flag.cite)}</b></p></div>`;
+  if (x.pv && !S.preview) h += `<button type="button" class="btn2" data-act="preview">${ic("i-eye")}Preview this page on ${esc(x.pv)}</button>`;
+  h += `<p class="qnote">Quotes are verbatim excerpts from the source documents (demo data).</p><ul class="rules">${x.rules.map(rule).join("")}</ul>`;
+  h += `<p class="law-foot"><a href="#" data-act="rulepage">See the full rule and every building it reaches</a></p></div></details>`;
+  h += `<p class="d-foot">Not legal advice: what published rules say, not a decision on your case.</p></div>`;
+  return h;
+}
+function tile(t, x){
+  const open = S.open === t.id;
+  return `<article class="tile s-${x.st}${open ? " open" : ""}" id="t-${t.id}">
+    <h4 class="tile-h"><button type="button" class="tile-btn" id="b-${t.id}" aria-expanded="${open}" aria-controls="p-${t.id}" data-tile="${t.id}">
+      <span class="well">${ic(t.i)}</span>
+      <span class="t-title" id="tt-${t.id}">${esc(t.t)}</span>
+      <span class="t-tag"><span class="tag">${mark(x.st)}${ST[x.st].w}</span></span>
+      <span class="t-line">${esc(x.line)}</span>
+      ${x.notes && x.notes.length ? `<span class="t-notes">${x.notes.map(n => `<span class="note n-${n.k}">${ic(NOTE_IC[n.k])}${esc(n.t)}</span>`).join("")}</span>` : ""}
+      <span class="t-foot"><span class="t-from">${ic(x.fi || "i-capitol")}${esc(x.from)}</span><span class="t-more"><span class="t-more-l">${open ? "Hide details" : "Show details"}</span>${ic("i-chev")}</span></span>
+    </button></h4>
+    <div class="t-body" id="p-${t.id}" role="region" aria-labelledby="tt-${t.id}"${open ? "" : " inert"}><div class="t-in">${panel(t, x)}</div></div>
+  </article>`;
+}
+function ev(e, cls){
+  const tp = TOPIC[e.tp];
+  return `<li class="ev ${cls}">
+    <p class="ev-d">${e.d}</p>
+    <p class="ev-tp">${ic(tp.i)}${tp.t}</p>
+    <p class="ev-t">${esc(e.t)}</p>
+    ${e.chg ? `<p class="chg"><span class="sr">from </span><span class="old">${e.chg[0]}</span>${ic("i-arrow")}<span class="sr"> to </span><span class="new">${e.chg[1]}</span></p>` : ""}
+    ${e.b ? `<p class="ev-b">${esc(e.b)}</p>` : ""}
+  </li>`;
+}
+function ahead(d){
+  const tl = d.tl;
+  let h = `<h2 class="sec-h" id="h-ahead">Coming up</h2><p class="sec-sub">Dated changes for this address, and what changed recently.</p>`;
+  if (tl.prop) h += `<div class="prop"><h3 class="prop-h">${ic("i-dash")}Proposed, not law</h3><p class="prop-s">Bills without a date. They change nothing unless they pass.</p><ul>${tl.prop.items.map(b => `<li><p class="prop-t">${esc(b.id)}: ${esc(b.t)}</p><p class="prop-w">${esc(b.w)}</p><a class="src" href="${esc(b.u)}" target="_blank" rel="noopener">Follow ${esc(b.id)}${ic("i-ext")}<span class="sr"> on malegislature.gov (opens in a new tab)</span></a></li>`).join("")}</ul><a class="src j6" href="#" data-act="rulepage" data-msg="${esc(tl.prop.j6)}">See which buildings these bills would reach</a></div>`;
+  h += `<ol class="tl">`;
+  h += tl.future.length ? tl.future.map(e => ev(e, "future")).join("")
+    : `<li class="ev nodate"><p class="ev-t">Nothing with a date yet</p><p class="ev-b">No change is scheduled for this address as of ${d.asof}.</p></li>`;
+  h += `<li class="now"><span class="today-pill">${S.preview ? "Preview" : "Today"}</span><span class="today-d">${d.asof}</span></li>`;
+  if (tl.past.length) h += `<li class="tl-lab">Recently changed</li>` + tl.past.map(e => ev(e, "past")).join("");
+  h += `</ol>`;
+  h += `<p class="ahead-foot"><button type="button" class="linkbtn" data-act="alerts">${ic("i-bell")}Get alerts when the law changes here</button></p>`;
+  return h;
+}
+
+/* ---------- map: hand-simplified city limits (lon, lat). Real build: map tiles + Census TIGER places. ---------- */
+const MAPS = {
+ sf:{city:"San Francisco", lab:[-122.452,37.752], pin:[-122.436685,37.801874], rings:[[
+  [-122.514,37.781],[-122.505,37.788],[-122.479,37.8105],[-122.447,37.806],[-122.430,37.8075],[-122.418,37.809],[-122.405,37.8085],
+  [-122.395,37.800],[-122.387,37.788],[-122.388,37.775],[-122.383,37.760],[-122.379,37.742],[-122.360,37.730],[-122.374,37.718],
+  [-122.387,37.709],[-122.420,37.7083],[-122.470,37.708],[-122.502,37.708],[-122.507,37.735],[-122.510,37.760],[-122.511,37.773]]]},
+ hoboken:{city:"Hoboken", lab:[-74.0322,40.7505], pin:[-74.040067,40.742101], rings:[[
+  [-74.0450,40.7370],[-74.0410,40.7356],[-74.0330,40.7358],[-74.0275,40.7355],[-74.0262,40.7420],[-74.0236,40.7470],[-74.0230,40.7520],
+  [-74.0222,40.7565],[-74.0270,40.7605],[-74.0340,40.7595],[-74.0370,40.7540],[-74.0400,40.7480],[-74.0425,40.7430],[-74.0445,40.7400]]]},
+ boston:{city:"Boston", hood:"Dorchester", lab:[-71.128,42.272], pin:[-71.0675,42.314021], rings:[
+  [[-71.1660,42.3630],[-71.1450,42.3680],[-71.1170,42.3700],[-71.0900,42.3560],[-71.0700,42.3620],[-71.0550,42.3680],[-71.0480,42.3650],
+   [-71.0430,42.3550],[-71.0250,42.3480],[-71.0130,42.3380],[-71.0300,42.3300],[-71.0420,42.3200],[-71.0350,42.3150],[-71.0400,42.3000],
+   [-71.0350,42.2860],[-71.0600,42.2700],[-71.0850,42.2560],[-71.1100,42.2430],[-71.1200,42.2280],[-71.1400,42.2350],[-71.1300,42.2600],
+   [-71.1600,42.2650],[-71.1900,42.2830],[-71.1800,42.2950],[-71.1600,42.3050],[-71.1300,42.3100],[-71.1080,42.3380],[-71.1400,42.3430],
+   [-71.1680,42.3400],[-71.1735,42.3530]],
+  [[-71.0420,42.3680],[-71.0330,42.3850],[-71.0060,42.3950],[-70.9900,42.3800],[-70.9950,42.3600],[-71.0150,42.3550],[-71.0300,42.3600]],
+  [[-71.0750,42.3700],[-71.0700,42.3830],[-71.0560,42.3850],[-71.0480,42.3730],[-71.0600,42.3680]]]}
+};
+function mapSVG(k, W, H, big){
+  const m = MAPS[k], all = m.rings.flat();
+  const lat0 = all.reduce((s, p) => s + p[1], 0) / all.length, kx = Math.cos(lat0 * Math.PI / 180);
+  const xs = all.map(p => p[0] * kx), ys = all.map(p => -p[1]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  const pad = big ? 34 : 12, sc = Math.min((W - 2 * pad) / (x1 - x0), (H - 2 * pad) / (y1 - y0));
+  const ox = (W - (x1 - x0) * sc) / 2, oy = (H - (y1 - y0) * sc) / 2;
+  const P = ([lon, lat]) => [ox + (lon * kx - x0) * sc, oy + (-lat - y0) * sc];
+  const d = m.rings.map(r => "M" + r.map(p => P(p).map(v => v.toFixed(1)).join(" ")).join("L") + "Z").join("");
+  const [px, py] = P(m.pin), [lx, ly] = P(m.lab), s = big ? 1.5 : (W > 150 ? 1.05 : .9);
+  const pin = `<circle class="pin-h" cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="${(9 * s).toFixed(1)}"/>
+    <g transform="translate(${px.toFixed(1)} ${py.toFixed(1)}) scale(${s})"><path class="pin" d="M0 0c-1.3-4.3-7-7.6-7-12.6a7 7 0 1 1 14 0c0 5-5.7 8.3-7 12.6z"/><circle class="pin-c" cx="0" cy="-12.6" r="2.6"/></g>`;
+  const labels = big ? `<text class="m-lab" x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle">${esc(m.city)}</text>
+    <text class="m-pin" x="${(px + 14).toFixed(1)}" y="${(py - 10).toFixed(1)}">${esc(A[k].street)}</text>
+    ${m.hood ? `<text class="m-hood" x="${(px + 14).toFixed(1)}" y="${(py + 6).toFixed(1)}">${esc(m.hood)}, as your mail says</text>` : ""}` : "";
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><path class="city" d="${d}"/>${pin}${labels}</svg>`;
+}
+function openMap(){
+  const d = cur(); if (!d) return;
+  const dlg = $("#mapdlg");
+  dlg.innerHTML = `<div class="md-top"><h2 id="md-h">Where ${esc(d.street)} is</h2><button type="button" class="md-x" data-act="mapclose" aria-label="Close the map">${ic("i-x")}</button></div>
+    <div class="md-map">${mapSVG(S.k, 520, 400, true)}</div>
+    <div class="md-body"><p class="cap">${esc(d.cap)}</p>${d.capSub ? `<p class="cap-sub">${esc(d.capSub)}</p>` : ""}
+      <ul class="md-key"><li><span class="k-pin" aria-hidden="true"></span>This building</li><li><span class="k-city" aria-hidden="true"></span>${esc(MAPS[S.k].city)} city limits (simplified)</li></ul>
+      <p class="md-fine">Mockup: hand-drawn, simplified outline. The real build draws Census TIGER city boundaries on map tiles.</p></div>`;
+  dlg.showModal();
+}
+
+function addrView(d, anim){
+  return `<div class="wrap page">
+  <section class="hero" aria-labelledby="h-addr">
+    <h1 class="addr" id="h-addr" tabindex="-1">${esc(d.street)}</h1>
+    <p class="nxt">${ic("i-cal")}<span>${S.preview ? `Preview of ${esc(d.asof)}` : d.nx ? `<b>Next change: ${esc(d.nx.d)}</b> — ${esc(d.nx.t)}` : "<b>No changes scheduled</b> for this address"}</span></p>
+    <button type="button" class="map-btn" data-act="map" aria-label="Enlarge the map: ${esc(d.cap)}">${mapSVG(S.k, 200, 200, false)}<span class="map-x">${ic("i-search")}<span class="lbl">Enlarge map</span></span></button>
+    <div class="where">
+      <p class="crumb"><span class="sr">Law from: </span>${ic("i-capitol")}${d.crumb.map(esc).join('<span class="sep" aria-hidden="true">›</span><span class="sr">, </span>')}</p>
+      <p class="cap">${esc(d.cap)}</p>
+      ${d.capSub ? `<p class="cap-sub">${esc(d.capSub)}</p>` : ""}
+    </div>
+    <ul class="facts" aria-label="Building facts">${d.facts.map(f => `<li class="fact ${f.c || ""}">${ic(f.i)}${esc(f.t)}</li>`).join("")}</ul>
+    <p class="fact-src">${esc(d.factSrc)}</p>
+  </section>
+  ${glance(d, anim)}
+  <section class="today" aria-labelledby="h-today">
+    <h2 class="sec-h" id="h-today">${S.preview ? `In effect on ${d.asof}` : "In effect today"}</h2>
+    ${S.preview ? `<p class="sec-sub">A preview of a future date. Laws can still change before then.</p>` : ""}
+    <ul class="trust" aria-label="About these answers">
+      <li>${ic("i-quote")}Quoted from the law</li>
+      <li>${ic("i-cal")}Law as of ${d.asof}${S.preview ? " (preview)" : ""}</li>
+      <li>${ic("i-info")}Not legal advice</li>
+    </ul>
+    ${GROUPS.map(g => `<div class="grp"><h3 class="grp-h">${g.t}</h3><ul class="tiles">${TOPICS.filter(t => t.g === g.id).map(t => `<li>${tile(t, d.tiles[t.id])}</li>`).join("")}</ul></div>`).join("")}
+  </section>
+  <section class="ahead" aria-labelledby="h-ahead">${ahead(d)}</section>
+  </div>`;
+}
+function emptyView(){
+  return `<div class="wrap"><div class="empty">
+    <section aria-labelledby="h-empty">
+      <h1 id="h-empty" tabindex="-1">Your rights as a renter, for your exact address.</h1>
+      <p class="intro">Type your address above to see which housing rules apply there today and what is about to change, quoted from the law and dated.</p>
+      <h2 class="ex-h">Or try an example</h2>
+      <ul class="exs">${KEYS.map(k => `<li><button type="button" class="ex" data-ex="${k}"><span class="opt-st" aria-hidden="true">${A[k].st}</span><span class="opt-t"><span class="opt-a">${esc(A[k].street)}</span><span class="opt-c">${esc(A[k].optc)}</span></span>${ic("i-arrow","go")}</button></li>`).join("")}</ul>
+      <ul class="trust" aria-label="About these answers">
+        <li>${ic("i-quote")}Quoted from the law</li><li>${ic("i-cal")}Law as of ${TODAY}</li><li>${ic("i-info")}Not legal advice</li>
+      </ul>
+      <p class="cover">Demo coverage: 500 sample addresses in California, New Jersey and Massachusetts. Three of them are wired up in this mockup.</p>
+    </section>
+    <aside class="six" aria-labelledby="h-six">
+      <h2 id="h-six">Six questions, answered for your address</h2>
+      <ul>${TOPICS.map(t => `<li><span class="well">${ic(t.i)}</span>${esc(t.q)}</li>`).join("")}</ul>
+    </aside>
+  </div></div>`;
+}
+
+/* ---------- sticky address area ---------- */
+const inp = $("#addr"), list = $("#sugg"), clearBtn = $("#clear"), bar = $("#bar"), bell = $("#bell");
+const label = k => `${A[k].street}, ${A[k].city}`;
+
+function renderAlerts(){
+  const a = A[S.k], f = $("#alert-bar");
+  bell.disabled = !a;
+  bell.title = a ? "" : "Pick your address first";
+  bell.setAttribute("aria-label", a ? `Get alerts for ${a.street}` : "Get alerts (pick your address first)");
+  $(".bell-l", bell).textContent = a && matchMedia("(min-width: 900px)").matches ? `Alerts for ${a.street}` : "Get alerts";
+  if (!a) setAlert(false);
+  f.classList.toggle("sent", !!(a && S.sent));
+  f.innerHTML = `<label class="fld-l" for="em">${ic("i-bell")}<span>${a ? `Alerts for ${esc(a.street)}` : "Email alerts"}</span></label>
+    <div class="al-row"><div class="fld">${ic("i-mail")}<input id="em" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com"></div>
+    <button type="submit" class="al-btn">${a && S.sent ? "Coming soon" : "Email me"}</button></div>
+    <p class="al-status" role="status"${a && S.sent ? "" : " hidden"}>${ic("i-clock")}Coming soon — launches with double opt-in</p>`;
+}
+function setAlert(open){
+  $("#alert-bar").hidden = !open;
+  bell.setAttribute("aria-expanded", String(open));
+  if (open) $("#em")?.focus();
+}
+function renderLook(){
+  inp.value = S.k ? label(S.k) : "";
+  clearBtn.hidden = !S.k;
+}
+function renderPv(d){
+  $("#pv").innerHTML = d && S.preview ? `<div class="wrap pv-in">${ic("i-eye")}<p class="pv-t">Preview: the law on ${d.asof}. Laws can still change before then.</p><button type="button" class="pv-btn" data-act="today">Back to today</button></div>` : "";
+  document.body.classList.toggle("is-preview", !!(d && S.preview));
+}
+function syncStick(){ document.documentElement.style.setProperty("--stick", bar.offsetHeight + "px"); }
+
+function render(anim){
+  const d = cur();
+  renderLook(); renderAlerts(); renderPv(d);
+  $("#main").innerHTML = d ? addrView(d, anim) : emptyView();
+  document.title = d ? `${d.street}: HomeRule` : "HomeRule: your rights as a renter";
+  syncStick();
+}
+
+/* combobox */
+let active = -1, shown = [];
+function build(q){
+  const terms = q.toLowerCase().replace(/[,.]/g, " ").split(/\s+/).filter(Boolean);
+  shown = KEYS.filter(k => terms.every(t => A[k].find.includes(t)));
+  let h = terms.length ? "" : `<li class="sugg-h" role="presentation">Example addresses</li>`;
+  h += shown.length
+    ? shown.map(k => `<li class="opt" role="option" id="o-${k}" data-k="${k}" aria-selected="false"><span class="opt-st" aria-hidden="true">${A[k].st}</span><span class="opt-t"><span class="opt-a">${esc(A[k].street)}</span><span class="opt-c">${esc(A[k].optc)}</span></span>${S.k === k ? ic("g-check","cur") : ""}</li>`).join("")
+    : `<li class="sugg-none" role="presentation"><b>No match among the example addresses.</b> Try “Fillmore”, “Hoboken” or “Dorchester”.</li>`;
+  h += `<li class="sugg-foot" role="presentation">The demo covers 500 sample addresses in 3 states; 3 are wired up here.</li>`;
+  list.innerHTML = h; active = -1; inp.removeAttribute("aria-activedescendant");
+}
+function openList(q){ build(q); list.hidden = false; inp.setAttribute("aria-expanded", "true"); }
+function closeList(){ list.hidden = true; inp.setAttribute("aria-expanded", "false"); inp.removeAttribute("aria-activedescendant"); active = -1; }
+function move(dir){
+  if (!shown.length) return;
+  active = (active + dir + shown.length) % shown.length;
+  $$(".opt", list).forEach((o, i) => o.setAttribute("aria-selected", i === active ? "true" : "false"));
+  inp.setAttribute("aria-activedescendant", "o-" + shown[active]);
+}
+function pick(k){
+  const changed = S.k !== k;
+  S.k = k; S.preview = false; if (changed) S.sent = false;
+  closeList(); setAlert(false);
+  render(true);
+  history.replaceState(null, "", "#" + k);
+  window.scrollTo({top:0});
+  const h1 = $("#h-addr"); if (h1) h1.focus({preventScroll:true});
+}
+function reset(){
+  S.k = null; S.preview = false; S.sent = false; S.open = null;
+  render(false); history.replaceState(null, "", location.pathname + location.search);
+}
+inp.addEventListener("focus", () => { inp.select(); openList(""); });
+inp.addEventListener("input", () => openList(inp.value));
+inp.addEventListener("keydown", e => {
+  if (e.key === "ArrowDown") { e.preventDefault(); if (list.hidden) openList(""); move(1); }
+  else if (e.key === "ArrowUp") { e.preventDefault(); move(-1); }
+  else if (e.key === "Enter") { e.preventDefault(); const k = active >= 0 ? shown[active] : shown[0]; if (k) pick(k); }
+  else if (e.key === "Escape") { closeList(); renderLook(); }
+});
+inp.addEventListener("blur", () => setTimeout(() => { if (document.activeElement !== inp) { closeList(); renderLook(); } }, 120));
+list.addEventListener("mousedown", e => e.preventDefault());
+list.addEventListener("click", e => { const o = e.target.closest(".opt"); if (o) pick(o.dataset.k); });
+clearBtn.addEventListener("click", () => { reset(); inp.focus(); });
+
+/* "Get alerts" sits right at the address in the sticky bar; it opens the email field in place */
+addEventListener("resize", () => { syncStick(); if (S.k) renderAlerts(); });
+bell.addEventListener("click", () => setAlert($("#alert-bar").hidden));
+$("#alert-bar").addEventListener("keydown", e => { if (e.key === "Escape") { setAlert(false); bell.focus(); } });
+function focusAlert(){
+  if (bell.disabled) { inp.focus(); return; }
+  setAlert(true);
+}
+document.addEventListener("submit", e => {
+  if (!e.target.matches("form.alert")) return;
+  e.preventDefault();
+  if (!S.k) { inp.focus(); return; }
+  S.sent = true;            /* mock: nothing is sent or stored */
+  const which = e.target.id;
+  renderAlerts();
+  const b = $(`#${which} .al-btn`); if (b) b.focus();
+  clearTimeout(window.__alT); window.__alT = setTimeout(() => { const st = $("#alert-bar .al-status"); if (st) st.hidden = true; }, 6000);
+});
+
+/* ---------- tiles ---------- */
+const stick = () => bar.offsetHeight;
+function setTile(el, open){
+  el.classList.toggle("open", open);
+  const b = $(".tile-btn", el), body = $(".t-body", el);
+  b.setAttribute("aria-expanded", String(open));
+  $(".t-more-l", el).textContent = open ? "Hide details" : "Show details";
+  if (open) body.removeAttribute("inert"); else body.setAttribute("inert", "");
+}
+function scrollToEl(el){
+  const y = el.getBoundingClientRect().top + scrollY - stick() - 12;
+  window.scrollTo({top:y, behavior: reduce.matches ? "auto" : "smooth"});
+}
+function flash(el){ el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); }
+function openTile(id, {scroll = false, glow = false} = {}){
+  const el = $("#t-" + id); if (!el) return;
+  const prev = S.open && S.open !== id ? $("#t-" + S.open) : null;
+  if (prev) {
+    const above = prev.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING;
+    if (above) {
+      /* close the one above instantly and keep the tapped tile where the finger is */
+      const before = el.getBoundingClientRect().top;
+      const pb = $(".t-body", prev); pb.classList.add("snap"); setTile(prev, false); void pb.offsetHeight; pb.classList.remove("snap");
+      const after = el.getBoundingClientRect().top;
+      if (!scroll && after !== before) window.scrollBy(0, after - before);
+    } else setTile(prev, false);
+  }
+  S.open = id; setTile(el, true);
+  if (scroll) scrollToEl(el);
+  else if (el.getBoundingClientRect().top < stick()) scrollToEl(el);
+  if (glow) flash(el);
+}
+function toggleTile(id){
+  if (S.open === id) { setTile($("#t-" + id), false); S.open = null; }
+  else openTile(id);
+}
+
+/* ---------- delegated actions ---------- */
+let tt;
+function toast(m){ const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("show"), 5200); }
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-tile],[data-go],[data-act],[data-ex]");
+  if (!e.target.closest(".look")) { if (!list.hidden) { closeList(); renderLook(); } }
+  if (!e.target.closest(".alwrap") && !t?.matches?.("[data-act=alerts]")) setAlert(false);
+  if (!t) return;
+  if (t.dataset.tile) { toggleTile(t.dataset.tile); return; }
+  if (t.dataset.go) { e.preventDefault(); openTile(t.dataset.go, {scroll:true, glow:true}); return; }
+  if (t.dataset.ex) { pick(t.dataset.ex); return; }
+  const act = t.dataset.act;
+  if (act === "home") { e.preventDefault(); reset(); window.scrollTo({top:0}); }
+  else if (act === "preview") { S.preview = true; S.open = "soft"; render(false); requestAnimationFrame(() => { const el = $("#t-soft"); scrollToEl(el); flash(el); }); }
+  else if (act === "today") { S.preview = false; render(false); }
+  else if (act === "rulepage") { e.preventDefault(); toast(t.dataset.msg || "Rule pages aren’t part of this mockup. There you’d see the source text, how HomeRule decided, and every sample building the rule reaches."); }
+  else if (act === "alerts") { focusAlert(); }
+  else if (act === "map") { openMap(); }
+  else if (act === "copy") {
+    const ta = t.closest(".hlp").querySelector("textarea"), done = () => toast("Copied. Paste it into your own email; nothing was sent.");
+    const old = () => { ta.select(); try { document.execCommand("copy"); } catch (_) {} done(); };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(ta.value).then(done, old); else old();
+  }
+  else if (act === "mapclose") { $("#mapdlg").close(); }
+});
+
+$("#mapdlg").addEventListener("click", e => { if (e.target.id === "mapdlg") e.target.close(); });
+
+/* ---------- start ---------- */
+const start = location.hash.slice(1);
+if (A[start]) S.k = start;
+render(true);
+})();
+</script>
+</body>
+</html>

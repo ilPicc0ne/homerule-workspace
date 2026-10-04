@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { icons } from "../../icons";
+import { icons } from "@/components/icons";
 import { changes } from "@/lib/changes/data.ts";
 import { addressChange, render } from "@/lib/changes/email.ts";
 import type { Change, Entry } from "@/lib/changes/types.ts";

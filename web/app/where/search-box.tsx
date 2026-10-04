@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useId, useState, type KeyboardEvent } from "react";
 import { suggest, type Suggestion } from "@/lib/resolve/match.ts";
-import { icons } from "../icons";
+import { icons } from "@/components/icons";
 
 /*
   The /where search box: a combobox over HomeRule's own sample addresses and places (the list comes

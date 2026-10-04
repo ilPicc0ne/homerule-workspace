@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HomeRule — one-view proposal</title>
+<style>
+:root{--ink:#16232b;--muted:#6b7a83;--line:#e8eef0;--bg:#fff;--teal:#0f8a83;
+--good:#1f9d6b;--good-bg:#eaf8f1;--mid:#d08a12;--mid-bg:#fdf4e3;--none:#8a97a0;--none-bg:#f3f6f7;}
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:880px;margin:0 auto;padding:20px 16px 48px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted)}
+.logo{font-weight:700;color:var(--ink);font-size:17px}.logo b{color:var(--teal)}
+.pill{border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 6px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:14px;cursor:pointer}
+.chip.on{border-color:var(--teal);color:var(--teal);font-weight:600}
+h1{font-size:28px;line-height:1.2;margin:18px 0 4px}
+.sub{color:var(--muted);font-size:15px}
+.score{display:flex;align-items:center;gap:14px;margin:22px 0 8px;padding:14px 16px;border-radius:16px;background:var(--good-bg)}
+.score .big{font-size:22px;font-weight:700}.score small{color:var(--muted);display:block}
+.bar{display:flex;gap:4px;margin-left:auto}.bar i{width:14px;height:28px;border-radius:4px;display:block}
+h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:30px 0 10px}
+.grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr 1fr}}
+details.tile{border-radius:16px;padding:14px 16px;border:1px solid transparent}
+details.tile summary{list-style:none;cursor:pointer}details.tile summary::-webkit-details-marker{display:none}
+.t-good{background:var(--good-bg)}.t-mid{background:var(--mid-bg)}.t-none{background:var(--none-bg)}
+.q{font-size:13px;color:var(--muted);display:flex;justify-content:space-between}
+.a{font-size:17px;font-weight:650;margin-top:4px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px}
+.d-good{background:var(--good)}.d-mid{background:var(--mid)}.d-none{background:var(--none)}
+.more{margin-top:10px;font-size:14px;color:#33444d;border-top:1px solid rgba(0,0,0,.06);padding-top:10px}
+.more blockquote{margin:6px 0;padding-left:10px;border-left:3px solid var(--teal);font-family:Georgia,serif}
+.more a{color:var(--teal)}.next{margin-top:6px;font-weight:600}
+.soon{border-left:2px solid var(--line);margin-left:6px;padding-left:16px}
+.ev{position:relative;margin:0 0 14px}.ev:before{content:"";position:absolute;left:-23px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--mid)}
+.ev.pend:before{background:#fff;border:2px dashed var(--none)}
+.ev .when{font-size:13px;color:var(--muted)}.ev .what{font-weight:600}
+.alert{margin-top:30px;padding:16px;border-radius:16px;border:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.alert input{flex:1;min-width:200px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit}
+.alert button{padding:10px 16px;border:0;border-radius:10px;background:var(--teal);color:#fff;font:inherit;font-weight:600}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:8px}
+footer{margin-top:36px;font-size:12px;color:var(--muted)}
+</style></head><body><div class="wrap">
+<div class="top"><span class="logo">Home<b>Rule</b></span><span><span class="pill">Demo data</span> · Not legal advice · as of 1 Oct 2026</span></div>
+<div class="chips" id="chips"></div>
+<h1 id="addr"></h1><div class="sub" id="sub"></div>
+<div class="score" id="score"></div>
+<h2>Now</h2>
+<div class="grid" id="grid"></div>
+<div class="legend"><span><i class="dot d-good"></i>Protection applies</span><span><i class="dot d-mid"></i>Depends on one fact</span><span><i class="dot d-none"></i>No extra protection here</span></div>
+<h2>Coming soon</h2><div class="soon" id="soon"></div>
+<div class="alert"><b style="width:100%">Email me when the law changes for this address</b><input placeholder="you@example.com"><button onclick="this.textContent='Coming soon'">Notify me</button></div>
+<footer>HomeRule shows published rules that may apply to a building, quoted from the law, with dates. Not legal advice. Tap a tile for the quote, the source and what you can do next.</footer>
+</div>
+<script>
+const D={
+ sf:{chip:"SF · 1926",addr:"3515 Fillmore St",sub:"San Francisco, CA · built 1926 · 21 units",
+  tiles:[
+   ["Rent increases","good","Capped by SF rent control","SF Rent Ordinance applies; it replaces the state cap.","“…landlord may impose annual rent increases…” (excerpt)","S.F. Admin. Code ch. 37","SF Rent Board: check this year’s allowed increase","https://www.sf.gov/departments/rent-board"],
+   ["Eviction","good","Only for listed reasons","Just-cause rules apply; relocation money for no-fault evictions.","“…a landlord shall not endeavor to recover possession…” (excerpt)","S.F. Admin. Code §37.9","SF Rent Board counseling","https://www.sf.gov/departments/rent-board"],
+   ["Deposit","good","Max. one month’s rent","State rule since 1 July 2024.","“…in an amount… equal to one month’s rent…” (excerpt)","Cal. Civ. Code §1950.5","Keep move-in photos and your receipt",""],
+   ["Application fee","good","Capped, refund if no unit","Screening fee limited by state law.","“…an application screening fee…” (excerpt)","Cal. Civ. Code §1950.6","Ask for an itemized receipt",""],
+   ["Screening","good","Limits on what they check","Source-of-income and criminal-history limits.","“…source of income…” (excerpt)","FEHA · SF Fair Chance","SF Human Rights Commission",""],
+   ["Rent software","good","Banned here","Local ban since 2024 plus state rules since 1 Jan 2026.","“…algorithmic device…” (excerpt)","S.F. Admin. Code §37.10C · AB 325",""," "]],
+  soon:[["pend","Pending","Nothing scheduled for this address","We’ll email you if that changes."]]},
+ hob:{chip:"Hoboken",addr:"327 Jackson St",sub:"Hoboken, NJ · ~20 units (from use code) · year unknown",
+  tiles:[
+   ["Rent increases","mid","Depends on year built","Hoboken rent control covers older buildings; we don’t know this building’s year.","","Hoboken Code ch. 155","Ask the landlord or the Hoboken Rent Leveling Office for the year",""],
+   ["Eviction","good","Only for listed reasons","NJ Anti-Eviction Act covers this building.","","N.J.S.A. 2A:18-61.1","NJ tenant hotline",""],
+   ["Deposit","good","Max. 1.5 months’ rent","State rule.","","N.J.S.A. 46:8-21.2","",""],
+   ["Application fee","good","Max. $50","New state cap since 1 May 2026.","","P.L.2025, c.405","",""],
+   ["Screening","good","Limits on criminal history","NJ Fair Chance in Housing Act.","","N.J.S.A. 46:8-52","",""],
+   ["Rent software","good","Banned here","Hoboken local ban since July 2025.","","Hoboken Code ch. 158","",""]],
+  soon:[["mid","1 Jul 2027","NJ FAIR Act takes effect","Statewide rule on rent-setting software. May overlap with Hoboken’s own ban: flagged for review, not decided."]]},
+ bos:{chip:"Dorchester",addr:"471 Columbia Rd",sub:"Boston, MA (mail says “Dorchester”) · built 1930",
+  tiles:[
+   ["Rent increases","none","No rent cap","State law bars local rent control; the 2026 ballot question was struck.","","M.G.L. c.40P","Boston Office of Housing Stability",""],
+   ["Eviction","mid","Notice rules only","No just-cause rule; notice and a tenant-rights form are required.","","M.G.L. c.186","Boston Office of Housing Stability",""],
+   ["Deposit","good","Max. first month’s rent","State rule.","","M.G.L. c.186 §15B","",""],
+   ["Application fee","good","No application fee","Only rent, deposit and lock fee may be charged upfront.","","M.G.L. c.186 §15B","",""],
+   ["Screening","mid","Some limits","Source-of-income protection under state law.","","M.G.L. c.151B","",""],
+   ["Rent software","none","No rule yet","Two bills are pending, not law.","","S.2983 · H.5222","",""]],
+  soon:[["pend","Pending","Two bills on rent-setting software","Proposed, not law. Would cover this building if passed."]]}
+};
+const label={good:"Protection applies",mid:"Depends",none:"No extra protection"};
+function show(k){const d=D[k];
+ document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.k===k));
+ addr.textContent=d.addr;sub.textContent=d.sub;
+ const n={good:0,mid:0,none:0};d.tiles.forEach(t=>n[t[1]]++);
+ const bg=n.good>=4?'var(--good-bg)':n.good>=2?'var(--mid-bg)':'var(--none-bg)';
+ score.style.background=bg;
+ score.innerHTML=`<div><div class="big">${n.good} of 6 protections apply</div><small>${n.mid} depend on a fact we don’t have · ${n.none} not covered here</small></div><div class="bar">${d.tiles.map(t=>`<i class="d-${t[1]}"></i>`).join('')}</div>`;
+ grid.innerHTML=d.tiles.map(t=>`<details class="tile t-${t[1]}"><summary><div class="q"><span>${t[0]}</span><span><i class="dot d-${t[1]}"></i></span></div><div class="a">${t[2]}</div></summary><div class="more">${t[3]}${t[4]?`<blockquote>${t[4]}</blockquote>`:''}<div>${t[5]} · <a href="#">source</a></div>${t[6]?`<div class="next">What you can do next: ${t[7]?`<a href="${t[7]}">${t[6]}</a>`:t[6]}</div>`:''}</div></details>`).join('');
+ soon.innerHTML=d.soon.map(s=>`<div class="ev ${s[0]==='pend'?'pend':''}"><div class="when">${s[1]}</div><div class="what">${s[2]}</div><div>${s[3]}</div></div>`).join('');
+}
+chips.innerHTML=Object.entries(D).map(([k,d])=>`<button class="chip" data-k="${k}" onclick="show('${k}')">${d.chip}</button>`).join('');
+show('sf');
+</script></body></html>

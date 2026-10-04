@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { icons } from "../icons";
+import { icons } from "@/components/icons";
 import { resolveQuery } from "@/lib/resolve/resolve.ts";
 import { sampleIndex } from "@/lib/resolve/samples.ts";
 import { SUGGESTIONS } from "@/lib/resolve/suggest.ts";

@@ -1,0 +1,408 @@
+{
+ "CA-ALG-16729": {
+  "doc_id": "D022",
+  "offset": 3789,
+  "before": "… that no reimbursement is required by this act for a specified reason.\nDigest Key\nVote:\nMAJORITY\nAppropriation:\nNO\nFiscal Committee:\nYES\nLocal Program:\nYES\nBill Text\nThe people of the State of California do enact as follows:\nSECTION 1.\nSection 16729 is added to the Business and Professions Code, to read:\n16729.\n(a) ",
+  "quote": "It shall be unlawful for a person to use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of this chapter.",
+  "after": "\n(b) It shall be unlawful for a person to use or distribute a common pricing algorithm if the person coerces another person to set or adopt a recommended price or commercial term recommended by the common pricing algorithm for the same or similar products or services in the jurisdiction of this state.\n(c) Nothing in…"
+ },
+ "CA-BERKELEY-ALG-13.63.030": {
+  "doc_id": "D001",
+  "offset": 5086,
+  "before": "… \n \nPage 2 of 4\nOrdinance No. 7,992-N.S. Page 3 of 4\nA. It shall be unlawful to sell, license, or otherwise provide to City of Berkeley \nlandlords any coordinated pricing algorithm that sets or recommends rents or occupancy \nlevels that may be achieved for residential dwelling units in the City of Berkeley. \nB. ",
+  "quote": "It shall be unlawful for a landlord to use a coordinated pricing algorithm described \nin subsection A when setting rents or occupancy levels for residential dwelling units in \nthe City of Berkeley.",
+  "after": " Each separate month that a violation exists or continues, and each \nseparate residential dwelling unit for which the landlord used the coordinated pricing \nalgorithm, shall constitute a separate and distinct violation. \n \n13.63.040   Remedies. \n \nA. The City Attorney may file a civil action for violations of section…"
+ },
+ "CA-BERKELEY-DEP-BerkeleyRent": {
+  "doc_id": "D009",
+  "offset": 1088,
+  "before": "… with current tenancies that began before 1996** Fully Covered Yes Yes Yes Yes \nRooming house: single-family homes with five or more rooms rented \nout individually with separate leases** \nFully Covered Yes Yes Yes Yes \nNew construction: units that were built and received a Certificate of \nOccupancy after June 1980** \n",
+  "quote": "Partially Covered Yes No Yes Yes",
+  "after": " \nSingle-family home with a tenancy that began on or after January 1, \n1996** \nPartially Covered Yes No Yes Yes \nMost condominiums** Partially Covered Yes No Yes Yes \nUnits with the following government subsidies regardless of unit type: \nSection 202 Supportive Housing for the Elderly, Section 811 \nSupportive Housing…"
+ },
+ "CA-BERKELEY-EVICT-BerkeleyMuni": {
+  "doc_id": "D006",
+  "offset": 6660,
+  "before": "… eliminated one just cause, added new requirements for eviction notices, and shortened the timeline for landlords to file copies of certain eviction-related documents with the Rent Board.\nEviction for nonpayment of rent is no longer allowed for rental debt less than one month of the Fair Market Rent for the unit\nNEW\n: ",
+  "quote": "For a landlord to evict a tenant for nonpayment of rent, the tenant must owe an amount of rental debt equal to or greater than one month of the Fair Market Rent (FMR) value for a unit of equivalent size in the metro area Oakland-Fremont, CA HUD Metro FMR as determined by the US Department of Housing and Urban Development for the fiscal year in which the rent is demanded.",
+  "after": " See our\nJust Cause & Other Local Requirements webpage\nfor a table summarizing the FMR for the current year.\nTenants can no longer be evicted for failing to sign a substantially similar lease\nNEW:\nA landlord cannot evict a tenant for failing to sign a substantially similar lease upon expiration of a fixed-term lease.…"
+ },
+ "CA-BERKELEY-EVICT-BerkeleyRent": {
+  "doc_id": "D004",
+  "offset": 520,
+  "before": "… Rent Board\nSkip to main content\nSkip to site search\nCity of Berkeley\nShare\nPrint\n2026 Adjustments of Relocation Assistance Payments\nAnnual increases for owner move-in and Ellis Act eviction relocation assistance payments go into effect January 1, 2026.\nPublished:\nOctober 27, 2025\nLast Updated:\nOctober 27, 2025\n",
+  "quote": "The Rent Stabilization and Good Cause for Eviction Ordinance requires owners to pay tenants relocation assistance in the event of an owner move-in eviction.",
+  "after": " The Ellis Implementation Ordinance requires the same relocation assistance payments for tenants evicted so the owner can remove a property from the rental housing market. Both ordinances index the relocation payments to inflation, and provide that the Rent Board shall publish the yearly inflationary increases.\nAt its…"
+ },
+ "CA-BERKELEY-FEE-13.78": {
+  "doc_id": "D005",
+  "offset": 459,
+  "before": "… 2026-10-01 22:35 UTC\n\nTenant Screening and Application Fees | Berkeley Rent Board\nSkip to main content\nSkip to site search\nCity of Berkeley\nShare\nPrint\nTenant Screening and Application Fees\nThere are limits on the amount of and uses for tenant screening and application fees under state and local law.\nScreening Fee\n",
+  "quote": "The maximum tenant screening fee for 2026 is\n$68.96",
+  "after": "\nLandlords may use screening fees to obtain information about a prospective tenant like a consumer credit report. Prospective tenants should expect to receive a copy of their credit report within 7 days of receipt by the landlord, a receipt for the fee paid and an itemized list of any out-of-pocket expenses and time…"
+ },
+ "CA-BERKELEY-RENT-13.76.110A": {
+  "doc_id": "D006",
+  "offset": 11884,
+  "before": "… registration billing cycle.\nCHANGES ANNUAL GENERAL ADJUSTMENT (AGA) CAP TO 5%\nThe AGA is the amount by which the landlord of a fully-covered rental unit may raise the rent each year. The elected Rent Board sets the AGA by following a formula in the Rent Ordinance that ties the AGA to the Consumer Price Index.\nNEW:\n",
+  "quote": "The maximum AGA is 5%.",
+  "after": " This means that, if the formula in the Rent Ordinance results in an AGA that is greater than 5%, the AGA approved by the Board for that year can be no more than 5%. This cap does not prevent a landlord who has “banked” (unused) AGAs from previous years from implementing a rent increase that is greater than 5% in…"
+ },
+ "CA-BERKELEY-SCREEN-13.106": {
+  "doc_id": "D003",
+  "offset": 895,
+  "before": "… Berkeley City Council passed the Fair Chance Access to Housing Ordinance (BMC 13.106). An overview of the ordinance is available below. Please review the Ordinance for more specific details related to your property or tenancy.\nIt is unlawful to do any of the following with regard to current or prospective tenants\n",
+  "quote": "Inquire about criminal history",
+  "after": "\nIndicate that persons with criminal backgrounds will not be considered for housing, including in rental advertisements, application materials, or verbally\nRefuse to rent or terminate a tenancy based on criminal history\nRequire disclosure or authorization for release of criminal history\nDemand a higher security…"
+ },
+ "CA-DEP-1950.5": {
+  "doc_id": "D025",
+  "offset": 2739,
+  "before": "… defaults by the tenant in any obligation under the rental agreement to restore, replace, or return personal property or appurtenances, exclusive of ordinary wear and tear, if the\nsecurity deposit is authorized to be applied thereto by the rental agreement.\n(c) (1) Except as provided in paragraph (2), (3), or (5), ",
+  "quote": "a landlord shall not demand or receive security, however denominated, in an amount or value in excess of an amount equal to one month’s rent",
+  "after": ", in addition to any rent for the first month paid on or before initial occupancy.\n(2) This subdivision does not prohibit an advance payment of not less than six months’ rent if the term of the lease is six months or longer.\n(3) This subdivision does not preclude a landlord and a tenant from entering into a mutual…"
+ },
+ "CA-EVICT-1946.2": {
+  "doc_id": "D023",
+  "offset": 1278,
+  "before": "… by Stats. 1988, Ch. 160, Sec. 14. )\nPART 4. OBLIGATIONS ARISING FROM PARTICULAR TRANSACTIONS [1738 - 3273.91]\n( Part 4 enacted 1872. )\nTITLE 5. HIRING [1925 - 1997.270]\n( Title 5 enacted 1872. )\nCHAPTER 2. Hiring of Real Property [1940 - 1954.071]\n( Chapter 2 enacted 1872. )\n1946.2.\n(a) Notwithstanding any other law, ",
+  "quote": "after a tenant has continuously and lawfully occupied a residential real property for 12 months, the owner of the residential real property shall not terminate a tenancy without just cause, which shall be stated in the written notice to terminate tenancy.",
+  "after": " If any additional adult tenants are added to the lease before an existing tenant has continuously and lawfully occupied the residential real property for 24 months, then this subdivision shall only apply if either of the following are satisfied:\n(1) All of the tenants have continuously and lawfully occupied the…"
+ },
+ "CA-FEE-1950.6": {
+  "doc_id": "D026",
+  "offset": 1926,
+  "before": "… or their agent may include, but is not limited to, personal reference checks and consumer credit reports produced by consumer credit reporting agencies as defined in Section 1785.3. A landlord or their agent may, but is not required to, accept and rely upon a consumer credit report presented by an applicant.\n(b) ",
+  "quote": "The amount of the application screening fee shall not be greater than the actual\nout-of-pocket costs of gathering information concerning the applicant, including, but not limited to, the cost of using a tenant screening service or a consumer credit reporting service, and the reasonable value of time spent by the landlord or their agent in obtaining information on the applicant. In no case shall the amount of the application screening fee charged by the landlord or their agent be greater than thirty dollars ($30) per applicant.",
+  "after": " The thirty dollar ($30) application screening fee may be adjusted annually by the landlord or their agent commensurate with an increase in the Consumer Price Index, beginning on January 1, 1998.\n(c) (1) A landlord or their agent shall not charge an applicant an application screening fee when they know or should have…"
+ },
+ "CA-LOS-ANGELES-EVICT-165.03": {
+  "doc_id": "D040",
+  "offset": 570,
+  "before": "…\nJust Cause For Eviction Ordinance (JCO)\nBack\nPrint\nSeptember 10th, 2026\n|\nClick\nhere\nfor FAQs and information about the JCO/Just Cause Enforcement fee exemptions\nJust Cause For Eviction Ordinance (JCO)\nIf you own rental property in the City of Los Angeles, it may be subject to the\nJust Cause Ordinance\n(JCO).  ",
+  "quote": "It prohibits terminations of tenancies without just cause",
+  "after": " and requires relocation assistance for no-fault evictions.\nRental Units Covered Under JCO\nThe JCO covers most residential properties in the City of Los Angeles that are not regulated by the City’s Rent Stabilization Ordinance (RSO).\nIn order to apply to a tenancy, it requires that the tenant either has lived in the…"
+ },
+ "CA-LOS-ANGELES-RENT-151.06": {
+  "doc_id": "D041",
+  "offset": 1934,
+  "before": "… LAHD approval\nRent may be increased to the market rate if the tenant:\nvoluntarily moves out;\ndoes not pay rent and is evicted;\nviolated the lease agreement and is evicted;\nis evicted for failure to comply with a Tenant Habitability Plan; or\nis evicted per a City Attorney order.\naccepts a\nTenant Buyout Agreement\n",
+  "quote": "Rent may be increased once every 12 months by the allowable rent increase percentage",
+  "after": " (click here to\nview the allowable rent increase PDF\n). Effective February 2, 2026, the landlord can no longer include an additional percentage increase for utilities.\nEffective March 30, 2020, through January 31, 2024, rent increases are prohibited for rental units subject to the Rent Stabilization Ordinance (RSO).…"
+ },
+ "CA-RENT-1947.12": {
+  "doc_id": "D024",
+  "offset": 1284,
+  "before": "… 1988, Ch. 160, Sec. 14. )\nPART 4. OBLIGATIONS ARISING FROM PARTICULAR TRANSACTIONS [1738 - 3273.91]\n( Part 4 enacted 1872. )\nTITLE 5. HIRING [1925 - 1997.270]\n( Title 5 enacted 1872. )\nCHAPTER 2. Hiring of Real Property [1940 - 1954.071]\n( Chapter 2 enacted 1872. )\n1947.12.\n(a) (1)   Subject to subdivision (b), ",
+  "quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
+  "after": ", of the lowest gross rental rate charged for that dwelling or unit at any time during the 12 months prior to the effective date of the increase. In determining the lowest gross rental amount pursuant to this section, any rent discounts, incentives, concessions, or credits offered by the owner of such unit of…"
+ },
+ "CA-SAN-DIEGO-ALG-98.1103": {
+  "doc_id": "D076",
+  "offset": 15628,
+  "before": "… Municipal\nCode section 98.0702, as may be amended.\nTenant has the same meaning as in San Diego Municipal Code section 98.0702,\nas may be amended.\n§98.1103  Use and Sale of Algorithmic Devices Prohibited\n(a) It is unlawful for a person to sell, license, or otherwise provide an\nalgorithmic device to a landlord.\n(b) ",
+  "quote": "It is unlawful for a landlord to use an algorithmic device to set rental rates\nor occupancy levels for residential rental property.",
+  "after": "\nFor each month a violation of section 98.1103(b) exists or continues, and\nfor each residential rental property a landlord uses an algorithmic device,\nit shall constitute a separate and distinct violation.\n(O-2025-107)\n-PAGE 5 OF 6-\n§98.1104  Remedies\n( a ) A tenant may seek injunctive relief, damages, or civil…"
+ },
+ "CA-SAN-DIEGO-EVICT-98.0704": {
+  "doc_id": "D073",
+  "offset": 10256,
+  "before": "… 2024, the notice required \nabove may be provided in the lease. For a tenancy commenced or \nrenewed on or after January 1, 2024, the notice required above shall be \nprovided in the lease. \n(“Exemptions” added 5-25-2023 by O-21647 N.S.; effective 6-24-2023.) \n \n§98.0704 Just Cause Required for Termination of Tenancy \n",
+  "quote": "A landlord shall not terminate a tenancy without just cause. For purposes of this \nDivision, just cause includes at-fault just cause and no-fault just cause.",
+  "after": " \n(a) At-Fault Just Cause. At-fault just cause is any of the following: \n(1) a default in the payment of rent; \n(2) a breach of a material term of the lease, as described in California \nCode of Civil Procedure section 1161(3), as may be amended, \nincluding violation of a provision of the lease after being issued a …"
+ },
+ "CA-SAN-FRANCISCO-ALG-37.10C": {
+  "doc_id": "D081",
+  "offset": 572,
+  "before": "… algorithmic devices used to set rents in San Francisco\nRent Board\nNew law prohibits the sale or use of algorithmic devices to set rents or manage occupancy levels for residential units in San Francisco.\nOctober 16, 2024\nLegislation\nadding Section 37.10C to the Rent Ordinance went into effect on October 14, 2024. ",
+  "quote": "The law prohibits the sale or use of algorithmic devices to set rents or manage occupancy levels for residential units in San Francisco.",
+  "after": "\nThe term “algorithmic device” means a device such as a software program that uses algorithms to analyze nonpublic competitor rental data for the purposes of providing a landlord recommendations on what rent to charge for a vacant unit. The law prohibits the sale or use of such algorithmic devices and allows a tenant…"
+ },
+ "CA-SAN-FRANCISCO-DEP-37.6": {
+  "doc_id": "D083",
+  "offset": 414,
+  "before": "…\nRETRIEVED: 2026-10-01 22:37 UTC\n\nCurrent Rates, including Rent Increase, Relocation, Sec. Deposit | SF.gov\nSkip to main content\nReport\nCurrent Rates, including Rent Increase, Relocation, Sec. Deposit\nRent Board\nFor March 1, 2026 - February 28, 2027\nAllowable Rent Increase:\n1.6% for March 1, 2026 – February 28, 2027\n",
+  "quote": "Security Deposit Interest:\n4.2% for March 1, 2026 – February 28, 2027",
+  "after": "\nAllowable rent increase\nAllowable rent increase\nEffective Period\nAmount of Increase\nMarch 1, 2026 – February 28, 2027\n1.6%\nMarch 1, 2025 – February 28, 2026\n1.4%\nMarch 1, 2024 – February 28, 2025\n1.7%\nLearn about rent increases in San Francisco.\nPrevious allowable rent increases:\n571 Allowable Annual Increases\n571…"
+ },
+ "CA-SAN-FRANCISCO-EVICT-37.9": {
+  "doc_id": "D079",
+  "offset": 204,
+  "before": "SOURCE: https://sf.gov/information/overview-just-cause-evictions\nRETRIEVED: 2026-10-01 22:37 UTC\n\nOverview of Just Cause Evictions | SF.gov\nSkip to main content\nInfo Page\nOverview of Just Cause Evictions\n",
+  "quote": "In order to evict a tenant from a rental unit covered by the Rent Ordinance, a landlord must have a \"just cause\" reason that is the dominant motive for pursuing the eviction.",
+  "after": "\nRent Board\nIn order to evict a tenant from a rental unit covered by the Rent Ordinance, a landlord must have a \"just cause\" reason that is the dominant motive for pursuing the eviction. Note that the mere expiration of a rental agreement or a change in ownership does not constitute \"just cause\" for eviction.\nThe 17…"
+ },
+ "CA-SAN-FRANCISCO-RENT-37.3": {
+  "doc_id": "D080",
+  "offset": 258,
+  "before": "SOURCE: https://www.sf.gov/news--annual-rent-increase-3126-22827-announced\nRETRIEVED: 2026-10-01 22:37 UTC\n\nAnnual Rent Increase for 3/1/26 - 2/28/27 Announced | SF.gov\nSkip to main content\nnews\nAnnual Rent Increase for 3/1/26 - 2/28/27 Announced\nRent Board\n",
+  "quote": "For rent-controlled units, the annual allowable increase amount effective March 1, 2026 through February 28, 2027 is 1.6%.",
+  "after": "\nJanuary 14, 2026\nFor\nrent-controlled units\n, the annual allowable increase amount effective March 1, 2026 through February 28, 2027 is 1.6%.\nTo calculate the dollar amount of the 1.6% annual rent increase, multiply the tenant's base rent by .016. For example, if the tenant's base rent is $2,000.00, the annual…"
+ },
+ "CA-SANTA-ANA-EVICT-SantaAnaJust": {
+  "doc_id": "D085",
+  "offset": 2701,
+  "before": "… 2021.\nProperty owners are required to provide written notice of the Ordinance and tenant’s rights at commencement of a lease or as part of any notice to increase rent. A template written notice will be available on the City’s webpage no later than November 19, 2021.\nKey provisions of the Just Cause Eviction Ordinance\n",
+  "quote": "After 30 days, an owner shall not terminate a tenancy without just cause",
+  "after": ", which shall be stated in a written notice.\n“Just cause” includes certain at-fault causes such as default in payment of rent, breach of a material term of the lease, committing a nuisance, criminal activity, and other actions.\n“Just cause” also includes certain no-fault causes such as the intent of the owner to…"
+ },
+ "CA-SANTA-ANA-RENT-SantaAnaRent": {
+  "doc_id": "D085",
+  "offset": 1208,
+  "before": "… stabilize our neighborhoods and prevent the trauma of being displaced by excessive rent hikes and unjustified evictions. Landlords and property owners will continue to have the ability to responsibly manage and generate a reasonable return on their investment.”\nKey requirements of the Rent Stabilization Ordinance\n",
+  "quote": "Increase in residential rents are limited to the lower of 3% per year, or 80% of the percent change in the Consumer Price Index over the most recent 12-month period. If the CPI is negative, no rent increase is permitted.",
+  "after": "\nThe City will publish the allowable rent increase effective for this year at santa-ana.gov/renterprotections no later than November 19, 2021.  Thereafter, the City will publish the allowable rent increase no later than June 30 of each year, which shall be effective as of September 1 of that year.\nThe rent cap does…"
+ },
+ "CA-SCREEN-12955": {
+  "doc_id": "D016",
+  "offset": 1722,
+  "before": "… and\nFact Sheets\nWhat Discrimination Looks Like\nCalifornia’s Fair Employment and Housing Act (also known as FEHA) applies to most providers of housing and services related to housing such as landlords, tenant screening companies, real estate agents, home sellers, builders, mortgage lenders, and housing authorities. ",
+  "quote": "This law prohibits people or entities that provide housing from discriminating against or harassing tenants, homeowners, residents, their guests, housing or mortgage applicants, home buyers, and others.",
+  "after": "\nExamples of actions that could be discriminatory if based on a person’s protected characteristic:\nRefusal to sell, rent, or lease rooms, apartments, mobile homes, condos, or houses\nRefusal to negotiate for the sale, rental, or lease of housing\nInforming someone that an apartment is not available for inspection, sale,…"
+ },
+ "MA-ALG-2983": {
+  "doc_id": "D046",
+  "offset": 192,
+  "before": "SOURCE: https://malegislature.gov/Bills/194/S2983\nRETRIEVED: 2026-10-01 22:36 UTC\n\nBill S.2983\nSkip to Content\nBill S.2983\n194th (Current)\nSearch the Legislature\nSearch the Legislature\nSearch\n",
+  "quote": "An Act prohibiting algorithmic rent setting",
+  "after": "\nSenate, March 12, 2026 -- The committee on Housing, to whom was referred the petitions (accompanied by bill, Senate, No. 994) of Cindy F. Friedman and Julian Cyr for legislation to prohibit algorithmic rent setting; and (accompanied by bill, Senate, No. 1016) of Michael O. Moore, Patricia D. Jehlen and James B.…"
+ },
+ "MA-ALG-5222": {
+  "doc_id": "D045",
+  "offset": 192,
+  "before": "SOURCE: https://malegislature.gov/Bills/194/H5222\nRETRIEVED: 2026-10-01 22:36 UTC\n\nBill H.5222\nSkip to Content\nBill H.5222\n194th (Current)\nSearch the Legislature\nSearch the Legislature\nSearch\n",
+  "quote": "An Act relative to preventing algorithmic rent fixing in the rental housing market",
+  "after": "\nView Text\nPrint Preview\nDownload PDF\nBill Information\nBill Information\nSponsor:\nJoint Committee on Housing\nStatus:\nReferred to\nHouse Committee on Ways and Means\nTabs\nBill History\nCosponsors\nCommittee Vote\nSimilar Bills\nBill History\nDisplaying  3 actions for Bill H.5222\nBill History\nDate\nBranch\nAction\n3/12/2026\nHouse…"
+ },
+ "MA-BOSTON-EVICT-10-11.7": {
+  "doc_id": "D014",
+  "offset": 758,
+  "before": "… tenancy\nagreement to provide the tenant with a Notice of Tenants’ Rights and Resources.\nThe HSNA requires that landlords give this Notice of Tenants’ Rights and Resources\nto tenants when the landlord starts the eviction process, or when the landlord\ndecides to not offer the tenant a renewal of their lease agreement. ",
+  "quote": "The Notice of\nTenants’ Rights and Resources must be delivered at the same time as the Notice to\nQuit.",
+  "after": "\nThe Notice of Tenants’ Rights and Resources must also be delivered to any tenant\nthat is asked to leave a property. For example, if someone is purchasing a property\nout of foreclosure, or from a bank or a mortgage lender, they must provide this\nNotice to the former owners of the property, or any tenants that live in…"
+ },
+ "MA-BOSTON-RENT-3744": {
+  "doc_id": "D011",
+  "offset": 196,
+  "before": "SOURCE: https://malegislature.gov/Bills/193/H3744\nRETRIEVED: 2026-10-01 22:35 UTC\n\nBill H.3744\nSkip to Content\nBill H.3744\n193rd (2023 - 2024)\nSearch the Legislature\nSearch the Legislature\nSearch\n",
+  "quote": "An Act petition for a special law authorizing the city of Boston to implement rent stabilization and tenant eviction protections",
+  "after": "\nBy Representative Montaño of Boston, a petition (accompanied by bill, House, No. 3744) of Samantha Montaño (with the approval of the mayor and city council) that the city of Boston be authorized to implement rent stabilization and tenant eviction protections.  Housing.  [Local Approval Received.]\nView Text\nPrint…"
+ },
+ "MA-BOSTON-SCREEN-BostonFairCh": {
+  "doc_id": "D010",
+  "offset": 589,
+  "before": "… SELECTION POLICY  \n \n \nUnder this policy, housing providers agree to the following: \n \nHousing providers receiving Department of Neighborhood Development (DND) funding and/or \nland, or that have income restricted units created under the Boston Planning and Development \nAgency (BPDA) Inclusionary Development Policy ",
+  "quote": "will not impose a blanket policy that denies \nhousing to anyone with arrests and or convictions. Housing providers will consider applicants on \na case-by-case basis.",
+  "after": " \n \n1. The Developer/Agent (Agent) agrees to not consider any of the following categories when \ndetermining housing eligibility and or considering eviction: \n \na) Arrests that did not result in conviction. This includes dismissed charges, diversion \nprograms, and similar non-convictions. \nb) Convictions that are…"
+ },
+ "MA-BOSTON-SCREEN-BostonFairHo": {
+  "doc_id": "D012",
+  "offset": 2038,
+  "before": "… through the\nUS Department of Housing and Urban Development.\nStill have questions? Contact:\nFair Housing and Equity\n617-635-2500\nsend an email\n1 City Hall Square\nRoom 966\nBoston\n,\nMA\n02201-2041\nUnited States\nLaws and discrimination\nOur commission makes sure property owners don't discriminate against tenants or buyers.\n",
+  "quote": "In the City of Boston, it’s illegal to discriminate when renting, buying, selling, or securing financing for any housing.",
+  "after": "\nYou can’t discriminate someone based on their:\nRace\nColor\nReligion\nDisability\nNational Origin\nAncestry\nSex\nGender Identity\nGender Expression\nAge\nSexual Orientation\nMarital Status\nRental Assistance\n*\nFamily Status\n**\nMilitary Status\n*\nFor example renters using Section 8 voucher\n**\nFor example, a landlord can’t…"
+ },
+ "MA-CAMBRIDGE-EVICT-8.71": {
+  "doc_id": "D031",
+  "offset": 1545,
+  "before": "… Questions\nWhat is the timing of when I must provide the information?\nIt is required to provide this Guide at the inception and termination of tenancies. For new tenancies, the Guide must be provided when a tenant signs a lease or enters into a tenancy agreement for the first time or tenders the first month’s rent. ",
+  "quote": "The Ordinance also requires that a landlord provide the Guide to tenants when legal steps to terminate a tenancy are taken (ex. Notice to Quit or Summary Process).",
+  "after": "\nIf I am renewing a lease with an existing tenant do I need to do anything?\nIt is good practice to provide the this Guide during renewals, but you are not required to offer materials at each renewal.\nDo I need to supply the informational material to a tenant at will?\nYes, all tenants and lawful occupants must be…"
+ },
+ "MA-CAMBRIDGE-SCREEN-14.04": {
+  "doc_id": "D029",
+  "offset": 6660,
+  "before": "… accommodate a person with a  disability if the accommodation would not cause an undue hardship to the landlord\nviewing or purchasing a home\napplying for or obtaining a mortgage\npurchasing homeowners' or renters' insurance\nprinting, publicizing or advertising housing in a discriminatory manner\nUnder the law, ",
+  "quote": "landlords, sellers and rental agents may use any reasonable standard to determine which applicants are selected, as long as that standard is applied equally and uniformly to all applicants.",
+  "after": " Tenant selection may be based on:\nan applicant's ability to pay the rent\nan applicant's ability to take care of the apartment and to respect the rights of others\nNOTE: there is an exemption for 2-family dwellings, when the owner lives there\nA person who believes he or she has been discriminated against in housing…"
+ },
+ "MA-DEP-186": {
+  "doc_id": "D052",
+  "offset": 1808,
+  "before": "… of any tenancy, no lessor may require a tenant or prospective tenant to pay any amount in excess of the following:\n[ Introductory paragraph of clause (b) of subsection (1) as amended by 2025, 9, Secs. 54 and 55 effective August 1, 2025.  See 2025, 9, Sec. 136.  For text effective until August 1, 2025, see above.]\n(b) ",
+  "quote": "At or prior to the commencement of any tenancy, no lessor or agent of the lessor may require a tenant or prospective tenant to pay, to the lessor or to an agent of the lessor, any amount in excess of the following:",
+  "after": "\n(i) rent for the first full month of occupancy;  and,\n(ii) rent for the last full month of occupancy calculated at the same rate as the first month;  and,\n(iii) a security deposit equal to the first month's rent provided that such security deposit is deposited as required by subsection (3) and that the tenant is…"
+ },
+ "MA-EVICT-186": {
+  "doc_id": "D050",
+  "offset": 514,
+  "before": "… 11\nSearch the Legislature\nSearch the Legislature\nSearch\nGeneral Laws\nGo Directly to a General Law\nChapter\nSection\nGo\nto General Law\nSkip to Content\nPrint Page\nPrev\nious\nNext\nSection 11:\nDetermination of lease for nonpayment of rent\nSection 11. Upon the neglect or refusal to pay the rent due under a written lease, ",
+  "quote": "fourteen days' notice to quit, given in writing by the landlord to the tenant, shall be sufficient to determine the lease",
+  "after": ", unless the tenant, on or before the day the answer is due, in an action by the landlord to recover possession of the premises, pays or tenders to the landlord or to his attorney all rent then due, with interest and costs of suit. If the neglect or refusal to pay the rent due was caused by a failure or delay of the…"
+ },
+ "MA-FEE-112": {
+  "doc_id": "D057",
+  "offset": 1726,
+  "before": "… broker or salesperson may solely contract with a prospective tenant to find rental residential real property for a tenant and present an offer to lease to the landlord or landlord's agent and negotiate on behalf of the tenant or may solely contract with a landlord or landlord's agent to find a tenant for a property.  ",
+  "quote": "Any fee shall only be paid by the party, lessor or tenant who originally engaged and entered into a contract with the licensed broker or salesperson.",
+  "after": "\n×\nRegister for MyLegislature\nRegister With An Existing Account\nSign in\nwith Facebook\nSign in\nwith Google\nRegister With Your Email Address\nEmail Address\nPassword\nConfirm Password\nRegister\nRegistering...\nAlready have an account? Sign in here.\nForgot Password?\n×\nSign in to MyLegislature\nSign In With Your Facebook or…"
+ },
+ "MA-FEE-186": {
+  "doc_id": "D052",
+  "offset": 1808,
+  "before": "… of any tenancy, no lessor may require a tenant or prospective tenant to pay any amount in excess of the following:\n[ Introductory paragraph of clause (b) of subsection (1) as amended by 2025, 9, Secs. 54 and 55 effective August 1, 2025.  See 2025, 9, Sec. 136.  For text effective until August 1, 2025, see above.]\n(b) ",
+  "quote": "At or prior to the commencement of any tenancy, no lessor or agent of the lessor may require a tenant or prospective tenant to pay, to the lessor or to an agent of the lessor, any amount in excess of the following:",
+  "after": "\n(i) rent for the first full month of occupancy;  and,\n(ii) rent for the last full month of occupancy calculated at the same rate as the first month;  and,\n(iii) a security deposit equal to the first month's rent provided that such security deposit is deposited as required by subsection (3) and that the tenant is…"
+ },
+ "MA-RENT-40P": {
+  "doc_id": "D048",
+  "offset": 425,
+  "before": "… 22:36 UTC\n\nGeneral Law - Part I, Title VII, Chapter 40P, Section 4\nSkip to Content\nSection 4\nSearch the Legislature\nSearch the Legislature\nSearch\nGeneral Laws\nGo Directly to a General Law\nChapter\nSection\nGo\nto General Law\nSkip to Content\nPrint Page\nPrev\nious\nNext\nSection 4:\nGeneral prohibition; exception\nSection 4. ",
+  "quote": "No city or town may enact, maintain or enforce rent control of any kind, except that any city or town that accepts this chapter may adopt rent control regulation that provides:",
+  "after": "\n(a) after six months from the date of the initial adoption of rent control regulation by a particular city or town, compliance on the part of property owners as to the rent control regulation or any subsequently adopted rent control regulation shall be entirely voluntary and uncoerced, and the property of a person or…"
+ },
+ "MA-SCREEN-151B": {
+  "doc_id": "D049",
+  "offset": 18878,
+  "before": "… or contiguously located housing accommodations or other person having the right of ownership or possession or right to rent or lease, or sell or negotiate for the sale of such accommodations, or any agent or employee of such a person, or any organization of unit owners in a condominium or housing cooperative: ",
+  "quote": "(a) to refuse to rent or lease or sell or negotiate for sale or otherwise to deny to or withhold from any person or group of persons such accommodations because of the race, religious creed, color, national origin, sex, gender identity, sexual orientation, which shall not include persons whose sexual orientation involves minor children as the sex object, age, genetic information, ancestry, or marital status of such person or persons or because such person is a veteran or member of the armed forces, or because such person is blind, or hearing impaired or has any other handicap;",
+  "after": " (b) to discriminate against any person because of his race, religious creed, color, national origin, sex, gender identity, sexual orientation, which shall not include persons whose sexual orientation involves minor children as the sex object, age, ancestry, or marital status or because such person is a veteran or…"
+ },
+ "NJ-ALG-56:9-23": {
+  "doc_id": "D069",
+  "offset": 8862,
+  "before": "… respect\nto residential dwelling units, including by performing a coordinating\nfunction;\nc.     two or more persons to engage in\n1\nor\notherwise facilitate\n1\nparallel pricing coordination;\nd.    any agent or representative of a coordinator or\nsubcontractor thereof to engage in parallel pricing coordination; or\ne.     ",
+  "quote": "any person to perform a coordinating function.",
+  "after": "\n5.    The provisions of this act shall not be construed\nin any manner that limits the application of sections 6 through 17 of P.L.1970,\nc.73 (C.56:9-6 through 9-17) to a violation of section 4 of this act.\n6.    a.  This act shall not authorize or permit any\nconduct already unlawful pursuant to the “New Jersey…"
+ },
+ "NJ-DEP-46:8-21.2": {
+  "doc_id": "D067",
+  "offset": 42181,
+  "before": "…  after sending a  written  request  to the landlord  that  the landlord  fulfill  the \nrequirements of the Security Deposit Law. In New Jersey, the landlord is not required to collect a \nsecurity deposit from  the tenant,  however, if they do, they must  follow prescribed rules and \nregulations (N.J.S.A. 46:8-26).  \n",
+  "quote": "The maximum-security deposit to be collected by the landlord cannot be more than \none and one-half times one month’s rent",
+  "after": " ( N.J.S.A. 46:8-21.2 ). It can be less. Any additional \nyearly security deposit increase may not exceed 10% of the current security deposit. A landlord \nmay not charge a pet security deposit if it exceeds one and one-half times one month’s rent when \ncombined with the regular security deposit. In the case of…"
+ },
+ "NJ-EVICT-2A:18-61.1": {
+  "doc_id": "D067",
+  "offset": 110983,
+  "before": "… a “Notice to Quit,” on the tenant, the landlord may file suit for an eviction. \nIf a suit for eviction is filed and the landlord wins his case, he may be granted a Judgment for \nPossession. A Judgment for Possession terminates the tenancy and allows the landlord to have \nthe tenant evicted from the rental premises. ",
+  "quote": "No residential landlord may evict or fail to renew a \nlease, whether it is a written or an oral lease without good cause. The landlord must be able to \nprove in court that he has grounds for an eviction.",
+  "after": "  \n \n \n \n33 \n \n \n \nApplicability \n The Anti-Eviction Act applies to most residential rental properties including single-family \nhomes, mobile homes and land in a mobile home park, apartment buildings, and complexes. This \nlaw also applies to rooming and boarding homes (N.J.S.A. 2A:18-53 to -84). \nExceptions \n This law…"
+ },
+ "NJ-FEE-46:8-18.1": {
+  "doc_id": "D066",
+  "offset": 427,
+  "before": "… 4R)\nCHAPTER 405\nAn Act\nlimiting the\namount of residential rental property application fees and supplementing\nchapter 8 of Title 46 of the Revised Statutes.\nBe It Enacted\nby the Senate and General Assembly of the State of New\nJersey:\nC.46:8-18.1  Residential rental property application fee not\nto exceed $50.\n1. a. ",
+  "quote": "A landlord, or\nagent thereof, shall not require an application or other similar fee to apply\nto lease or sublease a residential rental property for dwelling purposes, which\nexceeds $50.",
+  "after": "\nb.  A landlord, or agent thereof, who violates\nsubsection a. of this section shall be liable for a penalty of up to $500 for a\nfirst offense, up to $750 for a second offense, and up to $1,000 for each\nsubsequent offense, which shall be collected and enforced by summary\nproceedings pursuant to the \"Penalty Enforcement…"
+ },
+ "NJ-HOBOKEN-ALG-Hobokenordin": {
+  "doc_id": "S008",
+  "offset": 1886,
+  "before": "… use of algorithmic rent-setting software in the rental housing market, following the adoption of the Administration’s legislation by the City Council during its July 9 meeting. It will now be illegal for landlords renting residential units in Hoboken to engage in price-fixing through algorithmic rent-fixing, meaning ",
+  "quote": "they can no longer use software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental prices, lease terms, or occupancy levels among competing landlords.",
+  "after": "\n“Every Hoboken resident deserves access to a fair and competitive housing market, free from manipulation by secret algorithms or corporate collusion,” said Mayor Bhalla. “This new law sends a clear message: we will not tolerate artificial rent inflation that puts profit over people. By protecting transparency and…"
+ },
+ "NJ-HOBOKEN-RENT-10:54": {
+  "doc_id": "S012",
+  "offset": 2641,
+  "before": "… 981, and August 23, 1984 are hereby rescinded and\n     repealed. In their place and stead the Council of the Mayor and Council of the City of Hoboken,\n     hereby adopts the following:\n\n\f\nRegulation 10:54(A)\n\n01 -\n\n02 -\n\nAdopted:\n\nThe Rent Board Administrator shall have the jurisdiction to calculate\nlegal rents, ",
+  "quote": "A tenant may request a legal rent calculation where the\ntenant's rent is believed to be in excess of the legal rent as established\npursuant to the ordinance.",
+  "after": " Section 18:56(B). The tenant shall provide\nthe Administrator with a statement explaining the reason for the\ncalculation request and shall supply any supporting materials deemed\nnecessary to the resolution of the matter. Likewise, a landlord may\nrequest a legal rent calculation where it has insufficient information…"
+ },
+ "NJ-HOBOKEN-RENT-18:66": {
+  "doc_id": "S012",
+  "offset": 17145,
+  "before": "… to the Rent Leveling and\nStabilization Office.\nIn no event shall the Rent Leveling and Stabilization Office grant more than three adjournments\nto the same party.\n\n\f\nRegulations to Chapter 155 as amended by the Board between 2022 and 2025\n\nREG. 18:66 FILING OF CERTIFICATE FOR DECONTROLLED UNITS (4/22/2009)\n\n",
+  "quote": "A Landlord of any dwelling subject to the provisions of this chapter may file a Certificate\npursuant to Section 155-33 for any year where the landlord legally owned the dwelling, provided\nthe Certificate is filed no later than the latter of either one (1) year from when the vacancy\noccurred or one (1) year from when the apartment was first rented to a replacement Tenant after\na vacancy",
+  "after": ", and the dwelling must have been registered at the time of the filing in compliance\nwith Section 155-31. Such filing shall be considered timely under Article VII of this Chapter and\nmay be utilized in any legal rent determination conducted by the Rent Control Office and the\nRent Leveling and Stabilization Board,…"
+ },
+ "NJ-HOBOKEN-RENT-3": {
+  "doc_id": "S012",
+  "offset": 14001,
+  "before": "…                       Repealed by 155:23\n\n\f\nRegulations to Chapter 155 as amended by the Board between 2022 and 2025\n\nREGULATION #3 VACANCY DECONTROL AS TO MULTIPLE TENANTS (2/12/2025)\n\nFor purposes of establishing a vacancy decontrol for an apartment unit in accordance with\nArticle VII of the Rent Control Ordinance, ",
+  "quote": "a landlord who rents a residential apartment unit to\nmultiple tenants may designate an original tenant category which shall consist of all the members\nof the original group of tenants to which the unit is rented.",
+  "after": "\nThe designation under this regulation shall stipulate that a vacancy will be deemed to have\noccurred at the time that the last original tenant vacates the apartment unit and that the landlord\nwill be fully entitled at such time to obtain whatever vacancy decontrol relief is available under\nthe Ordinance in the same…"
+ },
+ "NJ-JERSEY-CITY-ALG-218-12": {
+  "doc_id": "S001",
+  "offset": 5313,
+  "before": "… but not limited to prices, supply levels,\nsecurity deposits, ideal occupancy levels, lease contract termination, renewal dates of residential dwelling units or\nany other material lease terms that is less than 365 days old and is not widely and readily available to the public at\nno cost.\n\n2.Unlawful Conduct\n\na.",
+  "quote": "It is unlawful for any real estate lessor, agent, or subcontractor thereof, to subscribe to, contract with, or otherwise\nexchange anything of value in return for the services of a Service Provider.",
+  "after": "\n\nb.No service provider shall facilitate an agreement not to compete among real estate lessors with respect to any\naspect of residential dwelling units, including rental pricing, fees, or any other rental terms.\n\n3.Enforcement\n\na.Public Enforcement. The Attorney General or any municipal or county attorney may bring a…"
+ },
+ "NJ-JERSEY-CITY-ALG-218-12.3": {
+  "doc_id": "S017",
+  "offset": 3416,
+  "before": "…     ☐ Certification Required\n\f\nOrd. 25-098\n\nAn Ordinance amending Chapter 218 (Multiple Dwellings) of the Code of Ordinances of the City of\nJersey City by adding Subsection 3 “Mandatory Disclosure for Rent Increases” to Section 12 and\ncorrecting language in Section 1.\n\n\n3. Mandatory Disclosure for Rent Increases:\n\na. ",
+  "quote": "Any landlord must include, with any lease or written notice of rent increase for a residential dwelling unit, a sworn\ndisclosure statement, executed under penalty of perjury, in substantially the following form:",
+  "after": "\n\n        MANDATORY ALGORITHMIC RENT-SETTING DISCLOSURE\n\n        Pursuant to Jersey City Code § 218-12\n\nI, the undersigned, being the landlord or an authorized agent of the landlord for the property located at\n____________________, for dwelling unit ______, hereby certify under the penalty of perjury that:\n\n        …"
+ },
+ "NJ-JERSEY-CITY-RENT-JerseyCityLa": {
+  "doc_id": "D036",
+  "offset": 6390,
+  "before": "… Application Affidavit\nContact Info\nphone\n(201) 547-4821\nOffice of Landlord/Tenant Relations\n3 Jackson Square\n(aka 342 Martin Luther King Drive)\nJersey City, New Jersey, 07305\nOffice Hours:\nMonday - Friday : 8:30 AM - 4:30 PM\nLast Walk-In:\nMonday - Friday : 3:30 PM\nDirections\n[email protected]\nTENANT PETITIONS\n",
+  "quote": "A tenant claiming the rent they are being charged is illegal may file an Illegal Rent Petition:",
+  "after": "\nIllegal Rent Petition\nA tenant seeking a rent reduction due to the conditions of the building and/or apartment may file a Failure to Maintain Service Petition:\nFailure to Maintain Service Petition\nThe Landlord must be provided with a copy of the Petition and all documents. A completed Proof of Service form, Petition,…"
+ },
+ "NJ-NEWARK-EVICT-19:2-14": {
+  "doc_id": "S018",
+  "offset": 59901,
+  "before": "… are so great that the Board could not hear them all itself within the time limits prescribed for such action by this chapter. The findings of the hearings conducted by him/her shall be submitted to the Board which, after review, shall make the final ruling. \n      \n      19:2-14.\tRETALIATORY EVICTION.\n      \n      \t",
+  "quote": "No landlord shall bring any action to recover possession of a dwelling unit as a reprisal for the tenant's efforts to secure or enforce any right under this chapter.",
+  "after": " \n       \n      19:2-15.\tAPPEAL JUDICIAL REVIEW.\n      \n      A landlord or tenant aggrieved by any action, regulation or determination of the Board may appeal that action, regulation or determination of the Rent Control Board to the Law Division of the Superior Court in accordance with New Jersey Court Rules within…"
+ },
+ "NJ-NEWARK-RENT-19:2-18.3": {
+  "doc_id": "S019",
+  "offset": 18374,
+  "before": "… normal maintenance, those costs shall be disallowed in computing the cost of rehabilitation. \nThe determination of the Board shall also take into account an inspection conducted by a representative from the Department of Engineering after the date of the application. \n\n§ 19:2-18.3. Substantial Rehabilitation. \n",
+  "quote": "Substantially reconstructed or rehabilitated dwellings shall not be restricted in initial rent charged, if the Rent Control Board has made the following determinations: \na. The Board shall determine that the cost of reconstruction or rehabilitation during a twelve-month period exceeds 50% of the fair market value of the property.",
+  "after": " The fair market value shall be established by an appraisal issued by a member of an appraisal institute such as the American Institute of Real Estate Appraisers, The Society of Real Estate Appraisers, The American Society of Appraisers, or the Independent Order of Fee Appraisers. The appraisal is to be completed…"
+ },
+ "NJ-NEWARK-RENT-19:2-22": {
+  "doc_id": "S018",
+  "offset": 85309,
+  "before": "… This chapter shall continue in full force and effect from October 19, 1988. \n      \n      19:2-22.\tLIMITATION ON INCREASES.\n      \n      \ta.\tSince an immediate rent increase of more than twenty-five (25%) percent above the prior monthly rent may be considered unconscionable and imposes a hardship on a tenant, ",
+  "quote": "the Rent Control Board shall not grant increases exceeding twenty-five (25%) percent in any one (1) year for any tenant.",
+  "after": "\n      \n      \tb.\tFor the purpose of determining whether the rent increase exceeds twenty-five (25%) percent of the monthly rent, all increases pursuant to Section 19:2-3, Rent Increases, 19:2-7, Major New Improvements and 19:2-8, Landlord Hardships, occurring within twelve (12) months prior to the effective date of…"
+ },
+ "NJ-RENT-2A:18-61.1": {
+  "doc_id": "D067",
+  "offset": 67087,
+  "before": "… that before an owner can evict a tenant for nonpayment of \nan increased rent, they must first serve the tenant with a valid notice to quit and notice of rent \nincrease. This notice does not mean that the tenant must actually leave; the tenant has the right to \nremain as long as they pay any legal increase in rent. ",
+  "quote": "The increase in rent must not be \nunconscionable; it must not be so unreasonable as to shock the conscience of a fair and honest \nperson and must comply with any municipal ordinances governing rent increases.",
+  "after": "  \n The definition of unconscionable is fact sensitive. Factors used in defining unconscionable \nare the amount of the increase; the landlord’s expenses and profitability; how the existing and \nproposed rent compared to rents charged at similar rental properties in the same ge ographic area; \nthe relative bargaining…"
+ },
+ "NJ-RENT-2A:42-84.5": {
+  "doc_id": "D067",
+  "offset": 65297,
+  "before": "… \npolice power where there is a housing shortage (Iganamort v. Borough of Fort Lee , 120 N.J. \nSuper. 286 (1973); Helmsley v. Borough of Fort Lee, 78 N.J. 200 (1978); Orange Taxpayers \nCouncil, Inc. v. City of Orange, 83 N.J. 246 (1980)) \n Under the Newly Constructed Multiple Dwellings Law ( N.J.S.A. 2A:42 -84.5), ",
+  "quote": "newly \nconstructed multiple dwellings shall be exempt from any local rent control ordinances for a period \nof 30 years following completion of construction of the building.",
+  "after": " Rent s that are subsidized by \ngovernmental funding may also be exempt from local rent control ordinances. A tenant may \ncontact the Rent Control Board or municipal clerk in their town to find out if their rental unit is \ncovered by a rent control or rent leveling ordinance.  \nAlthough the State of New Jersey does…"
+ },
+ "NJ-SCREEN-10:5-12": {
+  "doc_id": "D068",
+  "offset": 2940,
+  "before": "… The Division\ninvestigator serves the complaint to the individual and/or\nentity (respondent) alleged to have discriminated against\n1. What does the Division on Civil Rights enforce?\nThe Division on Civil Rights enforces the New Jersey\nLaw Against Discrimination.\n2. What does the NJ Law Against Discrimination\nprohibit?\n",
+  "quote": "The NJ Law Against Discrimination (LAD) prohibits\ndiscrimination on the bases of race, creed (religion),\ncolor, national origin, sex, gender identity or expression,\nmarital status, civil union status, ancestry, actual or\nperceived physical or mental disability, nationality,\naffectional or sexual orientation, familial status, and\ndomestic partner status.",
+  "after": " “ Familial status ” means\nfamilies with a child or children under 18 years old and/\nor pregnant women, and “ disability” is used to include\npersons afflicted with AIDS or HIV or thought to be\nafflicted with AIDS.\nThe LAD also prohibits housing discrimination  based\non the source of lawful income or source of lawful…"
+ },
+ "NJ-SCREEN-46:8-55": {
+  "doc_id": "D065",
+  "offset": 3676,
+  "before": "… through an indictment, information, complaint, or other\nformal charge.\n“Rental dwelling unit” means a dwelling unit offered\nfor rent by a housing provider for residential purposes,\nother than a dwelling unit in an\nowner-occupied premises of not more than four dwelling units.\nC.46:8-55  Application process.\n4.\na.  (1)\n",
+  "quote": "A\nhousing provider\nshall not require an applicant to\ncomplete any housing application that includes any inquiries regarding an\napplicant’s criminal record prior to the provision of a conditional offer",
+  "after": ",\nexcept that a housing provider may consider whether an applicant has ever been\nconvicted of drug-related criminal activity for the manufacture or production\nof methamphetamine on the premises of federally assisted housing, and whether\nthe applicant is subject to a lifetime registration requirement under a State\nsex…"
+ },
+ "NJ-SCREEN-46:8-56": {
+  "doc_id": "D065",
+  "offset": 5221,
+  "before": "… inaccuracies\nwithin the applicant's criminal record or evidence of rehabilitation or other\nmitigating factors.\nc.     A housing provider\nshall apply the standards established by this section to each applicant in a\nnondiscriminatory manner.\nC.46:8-56  Housing provider’s consideration of applicant’s\nrecord.\n5.    a.  ",
+  "quote": "A housing provider shall not, either before\nor after the issuance of a conditional offer, evaluate an applicant based on\nany of the following types of criminal records:\n(1)   arrests or charges that have not resulted in a\ncriminal conviction;\n(2)   expunged convictions;",
+  "after": "\n(3)   convictions erased through executive pardon;\n(4)   vacated and otherwise legally nullified\nconvictions;\n(5)   juvenile adjudications of delinquency; and\n(6)   records that have been sealed.\nb.    After the issuance of a conditional offer to an\napplicant, a housing provider may only consider a criminal record in…"
+ },
+ "NJ-SCREEN-46:8-58": {
+  "doc_id": "D065",
+  "offset": 10926,
+  "before": "… appropriate.\nb.\nThe model documents prepared pursuant to this section shall\nbe made available on the division’s Internet website, at no cost, and shall be\nin English, Spanish, and in any other language the director deems appropriate.\nC.46:8-58  Discriminatory advertisement by house provider,\nprohibited.\n7.    a.  ",
+  "quote": "A housing provider shall not knowingly or\npurposefully publish, or cause to be published, any housing advertisement that\nexplicitly provides that the housing provider will not consider any applicant\nwho has been arrested or convicted of one or more crimes or offenses",
+  "after": ", except\nfor\ndrug-related criminal activity for the\nmanufacture or production of methamphetamine on the premises of federally\nassisted housing, and whether the applicant is subject to a lifetime\nregistration requirement under a State sex offender registration program.\nb.    A housing provider\nshall not print, publish,…"
+ },
+ "NJ-SCREEN-46:8-60": {
+  "doc_id": "D065",
+  "offset": 13902,
+  "before": "… sexual act or in the simulation of such an act in violation of\nparagraph (3) of subsection b. of N.J.S.2C:24-4, or any crime that resulted in\nlifetime registration in a state sex offender registry.\nC.46:8-60  Drug, alcohol test, drug abuse treatment\ninformation; requirement by housing provider, prohibited.\n9.    ",
+  "quote": "A housing provider shall not require an applicant\nto submit to a drug or alcohol test, or request the applicant’s consent to\nobtain information from a drug abuse treatment facility.",
+  "after": "\nC.46:8-61  Unlawful acts by housing provider.\n10.  A person shall not interfere with, restrain, or\ndeny the exercise of, or the attempt to exercise, any right protected under\nthis act.  If the division determines that a housing provider has engaged in\none or more unlawful actions against a person with the intent of…"
+ }
+}
