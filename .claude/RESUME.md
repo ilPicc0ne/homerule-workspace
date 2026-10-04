@@ -1,17 +1,21 @@
 # Resume
 
-**Updated:** 2026-10-04T00:16Z
+**Updated:** 2026-10-04T00:23Z
 **Branch:** main
-**Last commit:** fdd8921 — Merge pull request #42 from ilPicc0ne/s/subscription-store
+**Last commit:** c7e6965 — Merge pull request #44 (PRD: renter-protection map)
 **Working tree:** clean except `.claude/worktrees/` (untracked, likely from the address session; not touched)
 
 ## Pick up next
 
-1. Review mockup v3 (`/Users/silvan/claude/code/personal/homerule-demo/lab/ui-proposal/v3/index.html#sf`, compare v2). Then rebuild the demo site's address page to the v3 design on `s/demo-site`, **locally first** (`cd web && npm run dev`), deploy only when ready. Iterate: medium agent, ~15 min, two variants, then renter critique.
-2. Address session in `.worktrees/address` (branch `s/address-lookup`, issues #7 #10): check its PR/progress; the real map (MapLibre + OpenFreeMap Positron + TIGER outline) comes after it.
-3. Engine (#8) reads I2 `out/rules.json` + I8 `out/findings.json` (Dimitar's outputs on main); grey/amber tiles take text from findings.
-4. Dimitar: #4 extraction, #5 eval, #32 contacts data (`contracts/contacts.json`).
-5. Housekeeping: `pkill -f "disable-field-trial-config"` once the address session is done; stop dev servers (3100 demo, 3210 address); move `../homerule-demo` to `.worktrees/demo` when no one works in it.
+State 04.10. 02:20: Dimitar closed extraction (#4) and eval (#5). Open PRs: **#29** address resolver + search (`s/address-lookup`, worktree `.worktrees/address`), **#36** engine `make build` → lookups/changes (`s/engine`). Issue **#41** (rules, findings, source texts into web/) unassigned. Freeze 12:00, submission 15:00.
+
+1. Review #29 then #36 (tests green, conflicts), merge; on `main` run `make resolve` + `make build`, commit `outputs/lookups.json` + `changes.json` from main. (35 scored points)
+2. `make eval` on main with all three files → fix list before the freeze.
+3. #41 (take it): data into web/, flip the demo site's toggle Demo data → Live.
+4. Rebuild the address page to mockup v3 (`/Users/silvan/claude/code/personal/homerule-demo/lab/ui-proposal/v3/index.html#sf`) on real data, locally first (#9, #26, #11).
+5. Hour-16 watch (~07:00–11:00): `make ingest`. Agree a sleep split with Dimitar so someone fresh catches it.
+6. 12:00–15:00 submission (#13).
+7. Housekeeping: `pkill -f "disable-field-trial-config"`; stop dev servers 3100/3210; move `../homerule-demo` to `.worktrees/demo`.
 
 ## Open questions
 
