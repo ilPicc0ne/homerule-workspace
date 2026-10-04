@@ -23,6 +23,9 @@ const SAY: Record<Status, string> = {
 /**
  * The alert signup in the sticky bar: email + this address → POST /api/subscribe (double opt-in, closed test).
  * After a submit, "See the email" shows the confirmation email in the overlay.
+ * A popover, not a modal: × and Escape close it and hand focus back to the trigger (`onClose(true)`);
+ * a click outside closes it without moving focus (`onClose(false)`). Closing never submits; the typed
+ * email stays for the next open.
  */
 export default function AlertForm({
   addressId,
@@ -34,7 +37,7 @@ export default function AlertForm({
   addressId: string;
   street: string;
   open: boolean;
-  onClose: () => void;
+  onClose: (refocus: boolean) => void;
   icon: (id: string) => ReactNode;
 }) {
   const [email, setEmail] = useState("");
@@ -42,9 +45,28 @@ export default function AlertForm({
   const [res, setRes] = useState<Result | null>(null);
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   useEffect(() => {
     if (open) ref.current?.focus();
   }, [open]);
+  // Escape anywhere and a click outside the bar's alert area close it. While the email overlay is up,
+  // the dialog owns Escape and its clicks sit inside the wrapper, so the form stays open behind it.
+  useEffect(() => {
+    if (!open || show) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose(true);
+    };
+    const onDown = (e: PointerEvent) => {
+      const wrap = formRef.current?.parentElement;
+      if (wrap && e.target instanceof Node && !wrap.contains(e.target)) onClose(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onDown);
+    };
+  }, [open, show, onClose]);
 
   async function submit() {
     setBusy(true);
@@ -68,20 +90,23 @@ export default function AlertForm({
     <>
       {open && (
         <form
+          ref={formRef}
           className={`alert${done ? " sent" : ""}`}
           noValidate
           onSubmit={(e) => {
             e.preventDefault();
             if (!busy) submit();
           }}
-          onKeyDown={(e) => {
-            if (e.key === "Escape") onClose();
-          }}
         >
-          <label className="fld-l" htmlFor="em">
-            {icon("i-bell")}
-            <span>Alerts for {street}</span>
-          </label>
+          <div className="al-top">
+            <label className="fld-l" htmlFor="em">
+              {icon("i-bell")}
+              <span>Alerts for {street}</span>
+            </label>
+            <button type="button" className="clear al-x" aria-label="Close" onClick={() => onClose(true)}>
+              {icon("i-x")}
+            </button>
+          </div>
           <div className="al-row">
             <div className="fld">
               {icon("i-mail")}

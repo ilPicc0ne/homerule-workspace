@@ -14,6 +14,7 @@ inputs and words its outputs.
 """
 import argparse
 import datetime as dt
+import copy
 import json
 import sys
 from collections import Counter, defaultdict
@@ -50,6 +51,38 @@ def gate(rule, res, as_of):
     return res, {}
 
 
+def _trials(as_of):
+    """Values to try for a missing building fact: one per way the law tends to split on it."""
+    y = int(as_of[:4])
+    return {"owner_occupied": [True, False], "subsidised": [True, False],
+            "owner_type": ["individual", "corporation", "reit", "public"],
+            "use_class": ["apartment", "condo", "co_op", "two_family", "single_family", "mixed_use"],
+            "built": [{"from": f"{v}-01-01", "to": f"{v}-12-31"} for v in (1900, 1975, 1990, 2005, y - 1)],
+            "units": [{"min": v, "max": v} for v in (1, 2, 3, 4, 5, 20, 100)]}
+
+
+def deciding_facts(rules, rec, as_of, rows):
+    """For each unknown row: the missing building facts that, answered alone, could change its result (the engine
+    re-run with that fact set to each value it can take). `missing` keeps every unknown fact the evaluator met,
+    including ones an and/or around them already settles (e.g. owner-occupied in a duplex-only exemption of a
+    16-unit building); the page asks only about these."""
+    unknown = [r for r in rows if r["result"] == "unknown"]
+    trials = _trials(as_of)
+    wanted = {m for r in unknown for m in r["missing"] if m in trials}
+    results = {}
+    for f in sorted(wanted):
+        for v in trials[f]:
+            r2 = copy.deepcopy(rec)
+            r2["facts"][f] = v
+            raw = E.evaluate(rules, F.address_facts(r2), as_of)
+            results[(f, json.dumps(v))] = {rid: x["result"] for rid, x in raw.items()}
+    for r in unknown:
+        r["missing_deciding"] = sorted(
+            m for m in r["missing"] if m in trials
+            and any(results[(m, json.dumps(v))].get(r["team_rule_id"], "unknown") != "unknown" for v in trials[m]))
+    return rows
+
+
 def evaluate_address(rules, rec, as_of, rules_by_id):
     facts = F.address_facts(rec)
     raw = E.evaluate(rules, facts, as_of)
@@ -83,7 +116,7 @@ def evaluate_address(rules, rec, as_of, rules_by_id):
             "governed_by": res["governed_by"], "conflict_with": sorted(res["conflict_with"]),
             "value": res["value"], "flags": row["flags"], "invalid": res["invalid"],
         })
-    return out
+    return deciding_facts(rules, rec, as_of, out)
 
 
 def _uses(rule, key):

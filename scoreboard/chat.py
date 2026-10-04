@@ -31,10 +31,14 @@ SYSTEM = (
     "(in force, not yet effective with its start date, pending bill, struck or failed measure); when a rule "
     "depends on the building (age, size, type), say what it depends on instead of guessing; when a higher law "
     "may override a local one, say so; cite each rule you use by its citation; if the records don't cover the "
-    "question, say HomeRule doesn't have that law, never fill in from memory. Plain language, at most 120 words. "
+    "question, say HomeRule doesn't have that law, never fill in from memory. Start with the direct answer for that "
+    "date in one sentence (what is in force: e.g. that a ban or limit applies, or that none is in force), then the "
+    "conditions and exceptions; never open with a hedge. Plain language, at most 120 words. "
     "This is information, not legal advice.\n\n"
-    "Record format: rules[].status_on_date is computed for the asked date: in_force, not_yet_effective (starts "
-    "on effective_from), pending (a bill, not law), repealed, failed. relation_to_local_rules: yields_to_local = "
+    "Record format: rules[] are the rules in force on the asked date. not_in_force_on_date[] are rules that are NOT "
+    "law on that date (not_yet_effective: starts on effective_from; repealed: ended on effective_until; pending: a "
+    "bill; failed): never describe them as applying on the date, only say when they start or ended, or that they "
+    "are not law. relation_to_local_rules: yields_to_local = "
     "gives way where a local rule covers the unit; may_preempt_local = a state law that bars or may override "
     "local rules. findings[].kind: barred_by_law = state law bars local rules on this topic; measure_failed = a "
     "ballot question or bill on this topic failed or was struck (its citation link says which); open_question = "
@@ -118,15 +122,22 @@ def records(city, category, date):
     by_id = {j["id"]: j for j in _jurisdictions()}
     comps = json.load(open(config.OUT / "rules.compiled.json"))
     texts = {r["team_rule_id"]: r for r in json.load(open(config.OUT / "rules.json"))["rules"]}
-    rules = []
+    rules, later = [], []
     for c in comps:
         if c["jurisdiction"] not in ids or c["category"] != category:
             continue
         t = texts.get(c["team_rule_id"], {})
+        st = status_on(c, date)
+        if st != "in_force":     # not law on the date: no details the model could read as applying
+            later.append({"level": c["level"], "jurisdiction": by_id[c["jurisdiction"]].get("schema_name", c["jurisdiction"]),
+                          "citation": c["x_source"].get("citation") or t.get("citation"), "status_on_date": st,
+                          "effective_from": c["effective"].get("from"), "effective_until": c["effective"].get("until"),
+                          "requirement": t.get("requirement"), "key_value": c.get("key_value")})
+            continue
         rules.append({
             "level": c["level"], "jurisdiction": by_id[c["jurisdiction"]].get("schema_name", c["jurisdiction"]),
             "citation": c["x_source"].get("citation") or t.get("citation"),
-            "status_on_date": status_on(c, date), "effective_from": c["effective"].get("from"),
+            "status_on_date": st, "effective_from": c["effective"].get("from"),
             "effective_until": c["effective"].get("until"),
             "requirement": t.get("requirement"), "key_value": c.get("key_value"),
             "who_it_covers": t.get("coverage_conditions"), "exemptions": t.get("exemptions"),
@@ -143,7 +154,32 @@ def records(city, category, date):
         if f["jurisdiction"] in ids and f["category"] == category:
             finds.append({k: f.get(k) for k in ("jurisdiction", "kind", "note", "citation", "quote", "claims")
                           if f.get(k) is not None})
-    return {"city": city, "date": date, "jurisdictions": ids, "topic": category, "rules": rules, "findings": finds}
+    return {"city": city, "date": date, "jurisdictions": ids, "topic": category, "rules": rules,
+            "not_in_force_on_date": later, "findings": finds}
+
+
+STATUS_WORDS = {"not_yet_effective": "not in force yet", "repealed": "no longer in force", "pending": "a bill, not law",
+                "failed": "failed, not law"}
+
+
+def status_lines(recs):
+    """Written by code, not the model: what is and isn't law on the date, so a status is never misstated."""
+    d = recs["date"]
+    lines = []
+    if recs["rules"]:
+        lines.append("In force: " + "; ".join(sorted({r["citation"] for r in recs["rules"] if r["citation"]})) + ".")
+    else:
+        lines.append("In force: no rule on this topic in HomeRule's records.")
+    for r in sorted(recs["not_in_force_on_date"], key=lambda r: (r["status_on_date"], r["citation"] or "")):
+        when = (f" (starts {r['effective_from']})" if r["status_on_date"] == "not_yet_effective" and r["effective_from"]
+                else f" (ended {r['effective_until']})" if r["status_on_date"] == "repealed" and r["effective_until"] else "")
+        lines.append(f"{r['citation']}: {STATUS_WORDS[r['status_on_date']]}{when}.")
+    for f in recs["findings"]:
+        if f["kind"] == "measure_failed":
+            lines.append(f"A ballot question or bill on this topic failed or was struck ({f.get('citation')}).")
+        elif f["kind"] == "barred_by_law":
+            lines.append(f"{f.get('citation')} bars or limits local rules on this topic.")
+    return f"Status on {d} (HomeRule records): " + " ".join(lines)
 
 
 def _chat(messages, stage, ref, model=MODEL):
@@ -161,7 +197,7 @@ def ask_homerule(city, date, card, ref="adhoc"):
     msgs = [{"role": "system", "content": SYSTEM + "\n\n=== RECORDS ===\n" + json.dumps(recs, ensure_ascii=False, indent=1)},
             {"role": "user", "content": question_text(city, date, card)}]
     answer, model = _chat(msgs, "scoreboard_homerule", ref)
-    return answer, model, recs
+    return answer + "\n\n" + status_lines(recs), model, recs
 
 
 def ask_plain(city, date, card, ref="adhoc", model=MODEL):
@@ -172,4 +208,5 @@ def ask_plain(city, date, card, ref="adhoc", model=MODEL):
 if __name__ == "__main__":
     city, date, card = sys.argv[1:4]
     ans, model, recs = ask_homerule(city, date, card)
-    print(f"[{len(recs['rules'])} rules, {len(recs['findings'])} findings for {recs['jurisdictions']}]\n{ans}")
+    print(f"[{len(recs['rules'])} rules in force, {len(recs['not_in_force_on_date'])} not, {len(recs['findings'])} "
+          f"findings for {recs['jurisdictions']}]\n{ans}")

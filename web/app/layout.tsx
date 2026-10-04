@@ -15,7 +15,7 @@ const description =
   "Your rights as a renter, for your exact address: which housing rules apply to your home, today and next, quoted and dated. Not legal advice.";
 
 export const metadata: Metadata = {
-  title: { default: "HomeRule", template: "%s · HomeRule" },
+  title: { default: "HomeRule", template: "HomeRule · %s" },
   description,
   applicationName: "HomeRule",
   openGraph: {

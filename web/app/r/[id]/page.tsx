@@ -8,9 +8,8 @@ import { datesLine } from "@/components/question-card";
 import { ancestry, getDataset, jurisdictionById } from "@/lib/data";
 import { formatDate, formatRetrieved, percent } from "@/lib/format";
 import { PANELS, projectPanel } from "@/lib/geo";
-import { conflictOn, impactClass, type ImpactClass } from "@/lib/impact";
+import { ruleImpact } from "@/lib/impact";
 import { CATEGORY_SHORT, LEVEL_WORDS, QUESTION, STATUS_WORDS } from "@/lib/law";
-import type { Result } from "@/lib/types";
 import Impact, { type ImpactPanel } from "./impact";
 
 export function generateStaticParams() {
@@ -63,40 +62,15 @@ export default async function RulePage(props: PageProps<"/r/[id]">) {
   const chain = ancestry(rule.jurisdiction_id);
   const state = chain[0];
   const excerpt = data.excerpts[rule.rule_id];
-  const dates = data.meta.as_of_dates.map((d) => d.date);
   const titles = Object.fromEntries(data.rules.map((r) => [r.rule_id, r.title]));
 
-  // Impact over every sample address in the rule's state, per date.
-  const inState = data.addresses.filter((a) => a.jurisdictions.state === state.id);
-  const classes: Record<string, Record<string, ImpactClass>> = {};
-  const conflicts: Record<string, string[]> = {};
-  for (const d of dates) {
-    classes[d] = {};
-    conflicts[d] = [];
-    for (const a of inState) {
-      classes[d][a.address_id] = impactClass(rule, a, d, data.lookups);
-      if (conflictOn(rule, a, d, data.lookups, data.rules)) conflicts[d].push(a.address_id);
-    }
-  }
+  // Impact over every sample address in the rule's state, per date (lib/impact.ts, shared with the MCP get_rule).
+  const { classes, conflicts, noCoords, demo } = ruleImpact(data, rule, state.id);
   const panels: ImpactPanel[] = PANELS.filter((p) => p.state === state.id).map((p) => {
     const f = projectPanel(p, data.addresses, 320);
     const demoIds = new Set(data.meta.demo_address_ids);
     return { id: p.id, label: p.label, width: f.width, height: f.height, points: f.points.map((pt) => ({ ...pt, demo: demoIds.has(pt.id) })) };
   });
-  const noCoords = inState.filter((a) => !a.coords).length;
-
-  const demo = data.meta.demo_address_ids
-    .map((aid) => data.addresses.find((a) => a.address_id === aid)!)
-    .filter((a) => a.jurisdictions.state === state.id)
-    .map((a) => ({
-      id: a.address_id,
-      street: a.street,
-      city: a.postal_city,
-      results: Object.fromEntries(
-        dates.map((d) => [d, (data.lookups[d]?.[a.address_id]?.find((x) => x.rule_id === rule.rule_id) ?? null) as Result | null]),
-      ),
-    }))
-    .filter((d) => Object.values(d.results).some(Boolean));
 
   const extracted = rule.audit.model_extracted;
   const evSource = rule.eviction_source;

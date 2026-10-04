@@ -1,3 +1,4 @@
+import { formatDate } from "./format.ts";
 import type { Category, Result, ResultValue, Rule, RuleStatus } from "./types";
 
 /* Plain-language vocabulary and the small pieces of logic the pages share. */
@@ -56,6 +57,18 @@ export function ruleStatusOn(rule: Rule, asOf: string): RuleStatus | null {
     if (h.from === null || h.from <= asOf) current = h.status;
   }
   return current;
+}
+
+/** The rule's dates in words on a date (rule page "Dates", question cards, MCP get_rule). */
+export function datesLine(rule: Rule, asOf: string): string {
+  if (rule.effective_dates_disputed?.length) {
+    return `Effective date disputed: ${rule.effective_dates_disputed.map((d) => formatDate(d.date)).join(" or ")}`;
+  }
+  const st = ruleStatusOn(rule, asOf);
+  if (st === "pending") return "Proposed, not law";
+  if (st === "failed") return "Failed, never became law";
+  if (rule.effective_date) return `${st === "not_yet_effective" ? "Takes effect" : "In force since"} ${formatDate(rule.effective_date)}`;
+  return st ? STATUS_WORDS[st] : "";
 }
 
 /** Next status change strictly after a date, if any. */

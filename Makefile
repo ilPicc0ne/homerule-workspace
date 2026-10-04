@@ -2,14 +2,21 @@
 AS_OF ?= 2026-10-01
 PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
-.PHONY: notify alert alerts-run alerts-approve all extract resolve resolve-live build test eval freeze ingest rehearse demo-change rerun web
+.PHONY: notify alert alerts-run alerts-approve all extract resolve resolve-live build score test eval check freeze ingest rehearse demo-change rerun web
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
-extract:                                 ## A · corpus -> out/rules.json, out/rules.compiled.json, out/findings.json (Dimitar)
+SAMPLES ?= s0 s1 s2
+
+extract:                                 ## A · corpus -> out/rules.json, out/rules.compiled.json, out/findings.json (Dimitar); $(SAMPLES) extracted in parallel, majority vote
 	$(PY) -m extract.corpus
-	$(PY) -m extract.luna_pass $$(ls out/index | grep "^[DS]" | sed "s/.json//")
-	$(PY) -m extract.gate
+	@for s in $(SAMPLES); do \
+	  run=$$( [ $$s = s0 ] || echo $$s ); \
+	  ( EXTRACT_DIR=$$s EXTRACT_RUN=$$run $(PY) -m extract.luna_pass $$(ls out/index | grep "^[DSX]" | sed "s/.json//") > out/extracted_$$s.log 2>&1 \
+	    && EXTRACT_DIR=$$s EXTRACT_RUN=$$run $(PY) -m extract.gate >> out/extracted_$$s.log 2>&1 \
+	    || echo "sample $$s failed: see out/extracted_$$s.log" ) & \
+	done; wait
+	$(PY) -m extract.vote $(SAMPLES)
 	$(PY) -m extract.links
 	$(PY) -m extract.open_questions
 	$(PY) -m extract.compile
@@ -23,11 +30,24 @@ resolve-live:                            ## B · same, calling Census for reques
 build:                                   ## C+D · engine -> outputs/lookups.json, outputs/changes.json, out/lookups.full.json, out/changes.full.json (Silvan)
 	$(PY) -m engine.build --as-of $(AS_OF)
 
+score:                                   ## renter-protection score per address, city and state, per date, and change verdicts -> out/scores.json (contracts/impact.json)
+	$(PY) -m engine.score
+
 test:                                    ## engine unit tests, guards and the PRD journeys (python -m unittest)
 	$(PY) -m unittest discover -s tests -p "test_*.py" -t .
 
 eval:                                    ## assertion suite, T1-T6, trap addresses, quote check, disclaimer crawl
 	$(PY) -m tests.eval_suite --supplemental
+
+check:                                   ## full suite after any change to extract/, engine/ or tests/: re-extract (samples + vote, cached), build, engine tests, eval, parity, hour-16 rehearsal
+	$(MAKE) extract
+	$(MAKE) build
+	$(MAKE) score
+	$(MAKE) test
+	$(PY) -m tests.eval_suite --supplemental > /dev/null
+	$(PY) -m tests.parity
+	$(MAKE) rehearse
+	@grep -E "^\*\*|^## (Assert|questions)|^\| T[1-6] \| [0-9]+ \|" out/eval/report_supplemental.md
 
 freeze:                                  ## before the hour-16 drop: lock the prompt digest (extract/PROMPTS.lock); make eval checks it
 	$(PY) -m extract.prompts --freeze
@@ -36,10 +56,11 @@ ingest:                                  ## hour-16: make ingest DOC=<path> JUR=
 	$(PY) -m extract.ingest $(DOC) --jurisdiction "$(JUR)" --id $(or $(ID),X002)
 	$(PY) -m tests.eval_suite --supplemental
 
-rehearse:                                ## hour-16 dry run on the fictional tests/fixtures/synthetic/X001.txt; removed afterwards
+rehearse:                                ## hour-16 dry run on the fictional tests/fixtures/synthetic/X001.txt (incl. the question an address would ask); removed afterwards
 	$(PY) -m extract.ingest tests/fixtures/synthetic/X001.txt --jurisdiction "Cambridge, MA" --id X001
 	$(PY) -m tests.eval_suite --supplemental
-	rm -f out/index/X001.json out/extracted/X001.json
+	$(PY) -m tests.hour16_question X001
+	rm -f out/index/X001.json out/extracted*/X001.json
 	$(PY) -m extract.compile
 	$(PY) -m tests.eval_suite --supplemental > /dev/null
 
@@ -58,7 +79,7 @@ rerun:                                   ## live re-extraction of one doc, fresh
 web:                                     ## local dev server
 	cd web && npm run dev
 
-notify:                                  ## change alerts, local: dry run lists who would get which email; SEND=1 sends (allowed subscribers only during the closed test; no DEMO_TOKEN needed)
+notify:                                  ## change alerts, local: dry run lists who would get which email; SEND=1 SOURCE=<id> sends one source (allowed subscribers only during the closed test; no DEMO_TOKEN needed)
 	cd web && node --env-file-if-exists=.env.local scripts/alerts.ts notify --changes $(or $(CHANGES),../out/changes.full.json) $(if $(SOURCE),--source $(SOURCE)) $(if $(SEND),--send)
 
 alert:                                   ## demo hook, the last step once the production deploy is Ready: make alert SOURCE=<id> [RESET=1] [URL=https://yourhomerule.com]

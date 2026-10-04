@@ -8,7 +8,7 @@
 2. Branch from `main`: `d/<topic>` (Dimitar) or `s/<topic>` (Silvan), e.g. `d/extract-classify`, `s/address-lookup`.
 3. Small commits; open a PR early. The PR description says `Closes #<issue>`.
 4. In the same PR, update the feature's **Status** in the PRD table (planned → WIP → partial → built).
-5. Merge yourself once `make eval` is green. Ask the other person to review only PRs that touch `contracts/` or change the scored files' shape.
+5. Any change to `extract/`, `engine/`, `tests/` or the contracts runs the full suite, `make check` (re-extraction from the model-call cache, eval, engine parity, hour-16 rehearsal), and the PR states its result. Merge yourself once it is green. Ask the other person to review only PRs that touch `contracts/` or change the scored files' shape.
 6. Interfaces in `contracts/` (I1–I6 in ARCHITECTURE) change only via PR with the other person tagged.
 
 ## Rules that protect the score

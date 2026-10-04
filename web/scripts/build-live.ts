@@ -214,6 +214,8 @@ export function buildLive(root: string): Record<string, unknown> {
       title: p.title ?? fr.title ?? fr.citation ?? id,
       status,
       effective_date: from,
+      // effective.until: the day the rule stops applying (sunset or repeal), null when the text gives none.
+      effective_until: until,
       status_history: history,
       citation: fr.citation ?? p.citation ?? id,
       source_doc_id: docId,
@@ -315,7 +317,8 @@ export function buildLive(root: string): Record<string, unknown> {
       .filter((r) => ruleIds.has(r.team_rule_id))
       .map((r) => {
         const rule = rules.find((x) => x.rule_id === r.team_rule_id)!;
-        const missing = (r.missing as string[]).filter((m) => !m.startsWith("unparsed")).map((m) => FACT_WORDS[m] ?? m);
+        // only the facts that could change this result (engine: missing_deciding); older builds: every unknown fact
+        const missing = ((r.missing_deciding ?? r.missing) as string[]).filter((m) => !m.startsWith("unparsed")).map((m) => FACT_WORDS[m] ?? m);
         const out: J = {
           rule_id: r.team_rule_id,
           category: r.category,

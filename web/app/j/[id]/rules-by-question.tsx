@@ -6,7 +6,8 @@ import { Dot, type DotKind } from "@/components/status";
 import { useAsOf, useUrlParam } from "@/lib/as-of";
 import { formatDate } from "@/lib/format";
 import { withAsOf } from "@/lib/links";
-import { CATEGORIES, LEVEL_WORDS, QUESTION, STATUS_WORDS, ruleStatusOn } from "@/lib/law";
+import { rulesByQuestion } from "@/lib/jurisdiction-view.ts";
+import { LEVEL_WORDS, QUESTION, STATUS_WORDS } from "@/lib/law";
 import type { Rule, RuleStatus } from "@/lib/types";
 
 /* The six questions at one level: rules from this level and above, with what they depend on. */
@@ -47,11 +48,7 @@ export default function RulesByQuestion({
       )}
       <AsOfTimeline stops={stops} fallback={fallback} retrieved={retrieved} />
       <div className="questions">
-        {CATEGORIES.map((c) => {
-          const list = rules
-            .filter((r) => r.category === c)
-            .map((r) => ({ r, st: ruleStatusOn(r, asOf) }))
-            .filter((x) => x.st !== null);
+        {rulesByQuestion(rules, asOf).map(({ category: c, list }) => {
           return (
             <section key={c} className="q" aria-labelledby={`jq-${c}`}>
               <h2 id={`jq-${c}`}>{QUESTION[c]}</h2>
@@ -62,12 +59,12 @@ export default function RulesByQuestion({
                   {list.map(({ r, st }) => (
                     <li key={r.rule_id} className="rule-item">
                       <span className="rule-item-title">
-                        <Dot kind={r.kind === "no_rule" ? "none" : STATUS_DOT[st!]} />
+                        <Dot kind={r.kind === "no_rule" ? "none" : STATUS_DOT[st]} />
                         <Link href={withAsOf(`/r/${r.rule_id}`, asOf, fallback)}>{r.title}</Link>
                         <span className="tag">{LEVEL_WORDS[r.level]}</span>
                       </span>
                       <span className="muted small">
-                        {STATUS_WORDS[st!]}
+                        {STATUS_WORDS[st]}
                         {r.effective_date && st === "not_yet_effective" ? `, from ${formatDate(r.effective_date)}` : ""}
                         {r.quoted_span ? "" : ". Quote pending extraction"}
                       </span>

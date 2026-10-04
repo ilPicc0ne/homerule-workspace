@@ -57,7 +57,7 @@ def build(rules, comps, findings, open_questions):
     for r, c in zip(rules, comps):
         unit = r["unit"]
         if unit not in units:
-            units[unit] = json.load(open(config.OUT / "extracted" / f"{unit}.json"))
+            units[unit] = json.load(open(config.EXTRACTED / f"{unit}.json"))
         rec = units[unit]
         n = int(r["id"].split(":")[1])
         o = rec["luna"]["obligations"][n]
@@ -85,12 +85,20 @@ def build(rules, comps, findings, open_questions):
                        "parse_status": c["parse_status"]},
             "code": {"status": c["status"], "effective": c["effective"],
                      "status_evidence": c["x_source"].get("status_evidence"), "interaction": c["interaction"],
-                     "open_questions": [q for q in open_questions.get((r["jurisdiction"], r["category"]), [])]},
+                     "open_questions": [q for q in open_questions.get((r["jurisdiction"], r["category"]), [])],
+                     "renter_impact": c.get("renter_impact"),
+                     "exemption_fixes": [x for x in r.get("checks", []) if x.startswith("exempt_if: '")]},
             "calls": sorted(({k: x.get(k) for k in ("stage", "ref", "model", "request_hash", "seconds", "cost", "ts")}
                              for x in mine), key=lambda x: x["ts"]),
             "boundary": BOUNDARY,
         }
     return out
+
+
+def one_per_line(d):
+    """A JSON object with one key per line (sorted), so a rebuild diffs by changed entries, not reshuffled lines."""
+    return "{\n" + ",\n".join(f"{json.dumps(k, ensure_ascii=False)}: {json.dumps(d[k], ensure_ascii=False, sort_keys=True)}"
+                              for k in sorted(d)) + "\n}\n"
 
 
 def log_build(n_rules, n_findings):

@@ -25,27 +25,27 @@ test("J3: Hoboken FAIR Act email is one plain sentence and a link to the address
     assert.match(part, /Jul 1, 2027/);                              // effective date
     assert.match(part, /https:\/\/yourhomerule\.com\/a\/A0256/);   // the button goes to the address page
     assert.match(part, /\/changes\/A0256/);                       // secondary link to the change log
-    assert.match(part, /See what this means for 327 Jackson St/);
+    assert.match(part, /See the details/);
+    assert.match(part, /\/a\/A0256#h-ahead/);                     // "See the details" -> the address page history
     // no legal title, status jargon, citations or quotes
     assert.doesNotMatch(part, /coordinating function|Enacted, not yet in effect|56:9-23|→|&rarr;|Citation|blockquote/);
   }
 });
 
-test("impact badge: shown from impact or renter_impact, hidden when neutral or absent", () => {
+test("renter-impact badge: from #59's renter_impact.verdict only; old impact strings are ignored", () => {
   const base = j3();
   const withImpact = (extra: object): AddressChange => ({
     ...base, entry: { ...base.entry, changes: base.entry.changes.map((c) => ({ ...c, ...extra })) },
   });
   const absent = render(base);
-  for (const part of [absent.text, absent.html]) assert.doesNotMatch(part, /protection for renters/);
-  const more = render(withImpact({ impact: "more_protection" }));
-  assert.match(more.html, /More protection for renters/);
-  assert.match(more.text, /More protection for renters/);
-  assert.match(render(withImpact({ renter_impact: "less_protection" })).html, /Less protection for renters/);
-  assert.doesNotMatch(render(withImpact({ impact: "neutral" })).html, /protection for renters/);
-  assert.doesNotMatch(render(withImpact({ impact: "good" })).html, /protection for renters/);   // unknown values ignored
-  const rules = new Map([["NJ-ALG-56:9-23", { rule_id: "NJ-ALG-56:9-23", renter_impact: "more_protection" }]]);
-  assert.equal(plainChange(base.entry.changes[0], base.as_of, rules).impact, "more_protection");  // from the rule record
+  for (const part of [absent.text, absent.html]) assert.doesNotMatch(part, /renter protection|protection for renters/);
+  const better = render(withImpact({ renter_impact: { verdict: "better", topic: "algorithmic_rent_setting" } }));
+  assert.match(better.text, /↑ This change adds renter protection\. Your unit may differ\./);
+  assert.match(better.html, /↑<\/span> This change adds renter protection/);
+  assert.match(render(withImpact({ renter_impact: { verdict: "worse" } })).html, /↓<\/span> This change narrows renter protection/);
+  // the classifier strings the old impactOf read are not #59's shape: no badge
+  assert.doesNotMatch(render(withImpact({ impact: "more_protection", renter_impact: "more_protection" })).html, /renter protection/);
+  assert.equal(plainChange(base.entry.changes[0], base.as_of).badge, null);
 });
 
 test("unsubscribe link and List-Unsubscribe header", () => {

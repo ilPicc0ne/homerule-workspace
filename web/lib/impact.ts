@@ -1,5 +1,5 @@
-import { ruleStatusOn } from "./law";
-import type { Address, LookupsByDate, Rule } from "./types";
+import { ruleStatusOn } from "./law.ts";
+import type { Address, Dataset, LookupsByDate, Result, Rule } from "./types";
 
 /*
   Impact colouring for a rule across all sample addresses on one date.
@@ -62,4 +62,52 @@ export function conflictOn(rule: Rule, a: Address, date: string, lookups: Lookup
     );
   }
   return false;
+}
+
+export type RuleImpact = {
+  /** date → address id → class; the sample addresses in the rule's state only */
+  classes: Record<string, Record<string, ImpactClass>>;
+  /** date → address ids with a conflict flag */
+  conflicts: Record<string, string[]>;
+  /** addresses in the rule's state without coordinates (counted, not drawn) */
+  noCoords: number;
+  /** the featured example addresses in the state and their engine result per date (left out if never listed) */
+  demo: { id: string; street: string; city: string; results: Record<string, Result | null> }[];
+};
+
+/** Which sample buildings a rule reaches, per as-of date: the rule page's impact section (/r/[id]) and the MCP get_rule. */
+export function ruleImpact(data: Dataset, rule: Rule, stateId: string): RuleImpact {
+  const dates = data.meta.as_of_dates.map((d) => d.date);
+  const inState = data.addresses.filter((a) => a.jurisdictions.state === stateId);
+  const classes: Record<string, Record<string, ImpactClass>> = {};
+  const conflicts: Record<string, string[]> = {};
+  for (const d of dates) {
+    classes[d] = {};
+    conflicts[d] = [];
+    for (const a of inState) {
+      classes[d][a.address_id] = impactClass(rule, a, d, data.lookups);
+      if (conflictOn(rule, a, d, data.lookups, data.rules)) conflicts[d].push(a.address_id);
+    }
+  }
+  const noCoords = inState.filter((a) => !a.coords).length;
+  const demo = data.meta.demo_address_ids
+    .map((aid) => data.addresses.find((a) => a.address_id === aid)!)
+    .filter((a) => a.jurisdictions.state === stateId)
+    .map((a) => ({
+      id: a.address_id,
+      street: a.street,
+      city: a.postal_city,
+      results: Object.fromEntries(
+        dates.map((d) => [d, (data.lookups[d]?.[a.address_id]?.find((x) => x.rule_id === rule.rule_id) ?? null) as Result | null]),
+      ),
+    }))
+    .filter((d) => Object.values(d.results).some(Boolean));
+  return { classes, conflicts, noCoords, demo };
+}
+
+/** Count per class, in IMPACT_ORDER, zeros left out (the legend on the rule page). */
+export function impactCounts(cls: Record<string, ImpactClass>): { cls: ImpactClass; count: number }[] {
+  const counts = new Map<ImpactClass, number>();
+  for (const c of Object.values(cls)) counts.set(c, (counts.get(c) ?? 0) + 1);
+  return IMPACT_ORDER.filter((c) => counts.get(c)).map((c) => ({ cls: c, count: counts.get(c)! }));
 }

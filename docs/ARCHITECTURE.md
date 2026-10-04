@@ -27,7 +27,7 @@ corpus (87 docs, manifest)          sample addresses (500, CSV)
           jurisdiction pages, JSON API, alerts (Upstash Redis + Resend)
 ```
 
-The engine is Python (`engine/`, `extract/`); the website and the address resolver are TypeScript (`web/`). No MCP server is built.
+The engine is Python (`engine/`, `extract/`); the website and the address resolver are TypeScript (`web/`). A read-only MCP server (`/api/mcp`) wraps the same resolver and data for chatbots.
 
 Everything between the corpus and the outputs is one command: `make all`. Extraction results are cached, so a rebuild without new documents takes minutes.
 
@@ -119,8 +119,16 @@ type Compiled = { team_rule_id: string; jurisdiction: string; level: "state"|"ci
              effect: "protection_or_duty"|"bars_or_limits_local_rules";
              cap_pct_low: number|null; cap_pct_high: number|null;   // rent caps: the evaluator compares them to
                                                                     // decide whether a local cap supersedes the state's
-             status_evidence: object|null; origin: "starter"|"supplemental"|"ingested"; stub: boolean} };
+             status_evidence: object|null; origin: "starter"|"supplemental"|"ingested"; stub: boolean};
+  renter_impact: {direction: "protects"|"limits"|"neutral";            // extract/impact.py: code from effect,
+                  how: string; confidence: number;                      // a Jev review overrides at p >= 0.9
+                  strength: {value: number; unit: string; lower_is_better: boolean}|null;  // rent %, months, $
+                  kind: "grounds"|"procedure"|"ban"|"disclosure"|null; kind_confidence: number|null} };
 ```
+
+### Renter-protection score (`engine/score.py`, `out/scores.json`)
+
+One aggregated score per address, city and state on each date in `contracts/impact.json`, broken down per topic. A topic's level (strong 1.0 / basic 0.5 / none 0 / unknown) comes from the strongest protecting rule that applies (its `renter_impact` strength against the thresholds; eviction and algorithmic rules by kind: grounds or ban = strong, procedure or disclosure = basic); a limiting rule that applies caps the topic. Score = 100 × weighted mean of the topic levels (weights in the contract: rent and eviction 25% each, the other four 12.5%) with unknown topics at their lowest: the protection a renter can count on (`score` = `low`); `high` is the same with unknown topics at their highest ("up to"), and `unknown_topics` are listed apart. Cities: median of their sample addresses; states: the statewide floor (state rules only). Each change in the per-address diff (I6) gets `renter_impact`: `verdict` better / worse / unchanged / unclear from the topic level before and after (unclear when unknowns move or a conflict flag changes); `why`, one plain sentence built by code from the same fields (the numbers before and after, the leading rule's citation, the missing facts; at most 25 words, no advice); `decided_by` (the verdict is always `code`; each rule's direction is `code` or `model_override`) and the `inputs` it used. Each unknown topic of an address also gets `open`: the building facts that would settle it, where to check each, and the topic level and score for each possible answer (the engine re-run with that one fact set), the exemptions only the law's text states, and the tenant notes of its rules. Display: S. Tests: `tests/test_impact.py` against `tests/fixtures/impact.yaml`.
 
 ## B · Address resolution
 
@@ -224,7 +232,7 @@ A change is either a new document (ingest) or a second date (as-of query).
 **Built (#45, issue #11; restyled in #56):**
 
 - `engine/diff.py` is the one diff (I6). It compares two engine evaluations (the same rows as `lookups.json`) per address by `team_rule_id`: added, removed, or changed (result or conflict flag). Each change carries old → new result and explanation, both conflict flags, and the rule's title, citation, verbatim quote, effective date and official source.
-- `make build` writes `out/changes.full.json` with the change sources it can compute from the committed files: the brief's as_of tests (`asof:2025-12-31..2026-01-02` for T1, `asof:2026-10-01..2027-07-02` for T3/J3), plus `ingest:<doc>@<as_of>` for each ingested document already in I2 (`origin: ingested`). Deterministic. Only addresses with a change are listed:
+- `make build` writes `out/changes.full.json` with the change sources it can compute from the committed files: the brief's as_of tests (`asof:2025-12-31..2026-01-02` for T1, `asof:2026-10-01..2027-07-02` for T3/J3), each rule end date `effective.until` ±1 day (`asof:2029-12-31..2030-01-02` for the CA sunsets; the source carries `ending_rule_ids`, each change `effective_until`), plus `ingest:<doc>@<as_of>` for each ingested document already in I2 (`origin: ingested`). Deterministic. Only addresses with a change are listed:
 
   ```
   {as_of, not_legal_advice: true,
@@ -238,6 +246,7 @@ A change is either a new document (ingest) or a second date (as-of query).
                                                   requirement_quote, source_url, effective_from, jurisdiction_id,
                                                   category, document_status, origin}]}]}}}
   ```
+- History column ends (`web/lib/changes/ends.ts`, `s/ends-history`): "Ends: …" events only for rules in some source's `ending_rule_ids` that apply or may apply at the address (upcoming from today's results, past from the address's own removed change, last year only); a successor in the same jurisdiction and category starting on the end date makes it a version swap, not an end. `endsIn` / `changeDate` / `endBadge` in `lib/changes/impact.ts` keep the end change apart from the start event and give the email its "Ends on <date>" line.
 - `changes.json` is still computed by `extract/changes.py` (Dimitar's, also used by `make eval`); `tests/test_diff.py` asserts that both agree: T1 and T3 affected and conflict-flag sets are equal, T2 equals the diff's before side, T4 rules never flip by date, T5 has no MA rent-cap change, and the T6 ingest mechanics agree on a test-only in-memory rule. Sharing one function was left out: not small enough before the freeze.
 - Change log + email: `/changes/[id]` reads `web/data/changes.full.json` (synced) and shows every entry old → new, dated, then the alert email preview from `web/lib/changes/email.ts` (`render(addressChange)` → `{from, subject, html, text, headers: List-Unsubscribe, List-Unsubscribe-Post}`; HTML in a sandboxed iframe). Nothing is sent.
 - `make demo-change [DOC=… JUR=… ID=…]` (default the fictional `tests/fixtures/synthetic/X001.txt`): ingest (extraction, cached by request hash) → the new rules compiled to I2 in memory → engine before/after at `AS_OF` → diff → `out/changes.full.json` → web sync → prints the changed addresses and the preview URL. It never writes `outputs/` or the committed I2 files and removes the document's index and extraction records afterwards; anything from a fictional document is labelled "Demo: fictional ordinance" in the log and the email. `make build` drops the demo source again. It needs `OPENROUTER_API_KEY` or a warm `build/cache`; without either it stops and says so (no faked extraction).
@@ -269,8 +278,27 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 - `/api/resolve?q=`: free text → `{kind: address | place | ambiguous | not_found | unavailable, tree, coverage, notes, …}`; 404 not found, 503 when Census is down.
 - `/api/address/[id]`: I5.
 - Alerts: `POST /api/subscribe`, `/confirm` (page with a POST button) + `POST /api/confirm`, `/unsubscribe` (page) + `POST /api/unsubscribe` (RFC 8058 one-click), `/alerts/confirmed|unsubscribed|invalid`, `POST /api/alerts/dispatch`, `GET /api/alerts/cron` (daily lifecycle run, below).
-- Not built: `/api/mcp`, an as-of picker.
+- `/api/mcp`: the MCP server (below). `/connect`: how to add it to Claude, ChatGPT, Claude Code, Cursor, VS Code.
+- Not built: an as-of picker.
 - **Contacts:** `contracts/contacts.json` (36 entries with source and retrieval date) synced to `web/contracts/contacts.json`; each tile picks the entry for its jurisdiction and topic.
+
+### MCP server (`/api/mcp`, issue #23)
+
+- **Transport:** `mcp-handler` 2.2.0 (`@modelcontextprotocol/server` 2.3.0, `zod` 4.6.5, exact pins), Streamable HTTP, stateless: no Redis session store, no SSE stream (GET answers 405). Route `web/app/api/mcp/route.ts` (GET, POST, DELETE). URL: `https://yourhomerule.com/api/mcp`. No auth: public data only.
+- **Tools** (`web/lib/mcp/tools.ts`, pure functions, all `readOnlyHint: true`; no new legal logic). **Parity by construction:** each tool calls the same builder its page renders, then only reshapes it; where a page computed inline, the computation moved into a shared pure function the page now calls too (`lib/address-page-data.ts`, `lib/typed-address.ts`, `lib/jurisdiction-tree.ts`, `lib/jurisdiction-view.ts`, `ruleImpact()`/`impactCounts()` in `lib/impact.ts`, `datesLine()` in `lib/law.ts`, `TILE_STATUS_WORDS`/`glanceSummary()` in `lib/address-view.ts`). `web/tests/mcp-parity.test.ts` compares each tool's fields to the builder's output.
+  - `find_place(query ≤ 200 chars)` → `resolveQuery` (`lib/resolve`), as `/where`: jurisdiction tree with per-level status, coverage, legal vs postal city, notes, the place lead and covered cities below a place, building-fact rows for a sample address, sample `address_id`, the next tool to call, and a site link (`/a/<id>`, `/a/at?q=`, `/j/<id>` or `/where?q=`).
+  - `get_address(address_id | query, as_of?)` → `addressPageData()` (the `/a/[id]` and `/a/at` builder): jurisdiction crumb, legal vs postal city, building facts with source; the six topics with status label, plain answer, explanation, notes, missing facts, conflict flag (not decided), next steps, contact (name, phone marked not yet checked, URL, source URL, retrieval date), helpers (call checklist, ask-your-landlord email), and each rule row (status words, verbatim quote, citation, official source, effective dates incl. `effective_until` when the data has it, missing facts, governed by); at-a-glance lines; coming up and recently changed (each linked to its `/changes/<id>` entry); proposed bills marked not law; links. A typed address outside the 500 uses `typedAddress()` + `flagGap()` (the `/a/at` path) and is labelled provisional (no property record, building facts unknown, no precedence step).
+  - `get_changes(address_id | jurisdiction_id | query, from?, to?)` → the per-address diff (I6, `lib/changes/data.ts`) in the change log's words (`lib/changes/wording.ts`): each entry with date heading, source (date comparison or ingested document; demo/fictional labelled), and per change old → new, rule, explanation, conflict flag, verbatim quote, citation, in-effect date, official link, rule page and `/changes/<id>#c-<rule>` link. For a city or state: `changesForPlace()` (`lib/changes/aggregate.ts`) groups the sample addresses' changes there by rule with transitions and affected count (of N sample addresses), capped at 25 rules and 10 example ids. A typed non-sample address answers with its city's (or state's) aggregate and says so. **Renter-impact verdict (↑/↓):** not in `changes.full.json` (it exists per rule in `out/rules.compiled.json` only), so every answer says none is given; a change that carries `renter_impact` would pass it through unchanged.
+  - `get_rule(rule_id, as_of?)` → the `/r/[id]` page: title, crumb, level, topic, summary, verbatim quote with excerpt context, citation, official vs secondary source, document id and retrieval, `datesLine()`, disputed dates, status on as_of and status history, coverage in words and the building facts it reads, key value, exemptions, interaction with other levels (flagged, not decided), eviction details, open question and `findings.json` entries for the same jurisdiction and topic, what next, the model-vs-code audit trail, and impact over the state's sample addresses per date (`ruleImpact()` + `impactCounts()`, conflict count, example addresses with result and explanation).
+  - `get_jurisdiction(jurisdiction_id, as_of?)` → `jurisdictionPageData()` + `rulesByQuestion()` (the `/j/[id]` page): crumb, the six questions with each rule's status on as_of, its date if not yet in force, citation, whether a quote exists, what it depends on and its rule page; cities below, sample-address count and example addresses, contacts, findings; county note. Capped at 60 rules.
+  - `get_rules(address_id | jurisdiction_id, as_of?)` → kept for compatibility (earlier connectors): for an address `addressPayload()` (`/api/address/[id]`), for a jurisdiction every non-fictional rule of its `chain()`. Prefer `get_address` / `get_jurisdiction`.
+  - `coverage()` → states, cities, topics, example addresses, data as-of, what is not covered (the landing page's coverage line).
+- **Sizes:** every list that can grow is capped (`CAPS` in `tools.ts`) and a truncated list says how many it left out and links the page; tests keep every sample answer under 60k characters (SF address ≈ 17k).
+- **as_of:** jurisdiction rules are evaluated on any date from their status history. Address results exist only for the engine's dates (`meta.as_of_dates`, today 2026-10-01); another date snaps as in `/api/address` and the answer adds `as_of_note` and each rule's status on the asked date.
+- **Every result:** `not_legal_advice: true`, disclaimer, `as_of`, `retrieved` (data date + engine dates), `how_to_present`, `link`. The server `instructions` say which tool to use when and repeat the presentation rules (quote + date, not legal advice, never "compliant"/"illegal", name unknowns, conflicts flagged not decided, bills and demo sources are not law, typed addresses provisional, never compare a renter's numbers to a cap). Content = a one-paragraph summary + compact JSON. Bad input or unknown ids are tool errors (`isError`), never 500s.
+- **Audit:** one `console.log` JSON line per call (tool, resolved address/jurisdiction id, as_of, error flag; no IP, no query text) in the Vercel runtime logs.
+- **Rate limit:** 300 POSTs per IP per minute via the Upstash store's `hit()` (`mcp:rl:<ip>:<minute>`), fails open if Redis is down. Generous because claude.ai and ChatGPT call from shared cloud IPs. Follow-up if abused: a Vercel Firewall rule on `/api/mcp`.
+- **Reachability:** previews are behind Vercel login, so cloud chatbots can only use production. Local test: `next dev` + JSON-RPC via curl (initialize → tools/list → tools/call).
 
 ### Email and alerts
 
@@ -339,8 +367,20 @@ Built 04.10.2026 for the prototype (owner decision; the demand test in `notes/pl
 | `ALERTS_CRON_SEND` | Vercel production (**not set**; `1` = send) | `web/lib/alerts/cron.ts`: anything else keeps the daily run a dry run |
 | `NEXT_PUBLIC_DATA_SOURCE` | optional | `live` (default) or `demo` |
 | `OPENROUTER_API_KEY` | `.env.local` only | Extraction and `make demo-change` (not needed on Vercel) |
+| `NEXT_PUBLIC_DEFAULT_MAP_VIEW` | Vercel preview `3d` (set 04.10.2026); production decided `3d`, not yet set (unset → `map`) | `web/lib/map-view.ts`: the first-time view on the address page (`map` or `3d`); a visitor's own switch choice and `?map=` win. With `3d`, every address page view is a Google map load (quota 500/day, then the MapLibre fallback) |
+| `NEXT_PUBLIC_GOOGLE_MAPS_KEY` | Vercel production, preview, development; `vercel env pull` → `.env.local` | `web/components/address-map-3d.tsx` (3D map view, loaded only after the visitor picks 3D). Browser key `homerule-maps-browser`: Maps JavaScript API only; referrers `yourhomerule.com/*`, `*.yourhomerule.com/*`, `*.vercel.app/*`, `localhost:*/*`, `127.0.0.1:*/*` (explicit entries since 04.10.2026: `https://yourhomerule.com/*`, `https://www.yourhomerule.com/*`, `https://*.yourhomerule.com/*`, `https://*.vercel.app/*`, `http://localhost:3000/*`, `http://localhost:3064/*`, `http://localhost/*`, `http://127.0.0.1:3000/*`, `http://127.0.0.1:3064/*`; the earlier `localhost:*/*` wildcard was rejected); quota 500 map loads/day for 3D and 500 for 2D. Billed as Dynamic Maps (Essentials, US$7 per 1,000 loads after 10,000 free per month) [assumed: Google's usage page says 3D map loads count under Dynamic Maps; the price list has no separate 3D SKU] |
 
-There is no `DEMO_RECIPIENTS` variable. `scripts/alerts-env.sh` is meant to set `DEMO_TOKEN` and `ALERTS_SITE_URL` for preview too; on 04.10.2026 ~05:00 Vercel listed them for production only, so dispatch works only on production. `NEXT_PUBLIC_GOOGLE_MAPS_KEY` is also set in Vercel but no code on `main` reads it.
+### Map data (build time, committed)
+
+| File | Source | Script | Used by |
+|---|---|---|---|
+| `web/data/city-outlines.geojson` | Census TIGER/Line 2025 places | `scripts/build-city-outlines.sh` | Both maps: legal-city outline |
+| `web/data/building-footprints.json` | OpenStreetMap via Overpass API (ODbL) | `scripts/build-building-footprints.ts` | Both maps: building highlight (sure matches only) |
+| `web/data/elevations.json` | Open-Meteo Elevation API (Copernicus GLO-90 DEM, free, no key), retrieved 04.10.2026 | `scripts/build-elevations.ts` (≤ 100 points per request, cached) | 3D view only: ground elevation at the camera target (building centroid for sure matches, else the Census geocode), 492/500 |
+
+Why elevation: `Map3DElement`'s camera centre altitude is metres above sea level. A centre at altitude 0 on a hill lies under the street, and at the 50° final tilt the view shifts by ≈ elevation × tan 50° (140 Portola Dr, SF, 210 m → ~250 m off). With the stored elevation the final shot and the orbit are centred on the ground. A typed address outside the sample has no stored elevation and nothing is fetched at runtime: its final shot is straight down (tilt 0), where the altitude cannot shift the view. The opening city shot is tilt 0 at altitude 0 for the same reason.
+
+There is no `DEMO_RECIPIENTS` variable. `scripts/alerts-env.sh` is meant to set `DEMO_TOKEN` and `ALERTS_SITE_URL` for preview too; on 04.10.2026 ~05:00 Vercel listed them for production only, so dispatch works only on production.
 
 ## Audit and evaluation
 
