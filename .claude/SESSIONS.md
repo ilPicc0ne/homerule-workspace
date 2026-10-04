@@ -85,3 +85,23 @@
 
 **Next:**
 - Merge #30 → #29 → #36 → #45, build outputs on main, `make eval`, demo-site on real data.
+
+## 2026-10-04T06:00Z — Night: integration, production, alerts, demo package
+
+**Decisions:**
+- Vercel production only via branch `production`; previews per PR and `main` — *why:* nothing goes live by accident.
+- No Neon: law data stay files in git; only subscriptions in Upstash — *why:* deterministic builds.
+- Alerts middle way (double opt-in, closed test, manual trigger), recipients as subscriber flags, per-subscription unsubscribe token — *why:* no automatic legal claims in strangers' inboxes; fewer secrets.
+- Option A navy UI, green/clay/grey only as status colours; roof-scales icon; plain alert email — *why:* green is the renter signal; the legal-style mail was unreadable.
+- `outputs/rules.json` as placeholder copy (#74) until Dimitar's final build — *why:* the brief requires three files.
+- Alert lifecycle engine built for the prototype despite the critic's "don't build yet"; Step 0 (partners, renters with a letter in hand) before a real launch — *why:* owner decision.
+
+**Surprises:**
+- Auto mode blocks secret writes, production branch creation and unreviewed merges; Silvan ran the env script himself.
+- `vercel env add … preview` silently skipped when piped (#66).
+- Subagents died on ECONNREFUSED; resumed, now push each deliverable early.
+- Dimitar's #53 keeps eval green but worsens scored lookups (owner_occupied 245→301, rules dropped).
+- `/goal` stop hook looped while waiting for the user's approval.
+
+**Next:**
+- Alert engine PR (deep-work), Dimitar's PR decisions + #81, style clip → full film, postal address, final scored build after hour 16.
