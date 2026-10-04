@@ -1,0 +1,1683 @@
+{
+ "as_of": "2026-10-01",
+ "method": "per rule: Luna picks the provision that answers the card question (or marks the rule related); see extract/cards.py",
+ "cards": {
+  "CA-BERKELEY": {
+   "algorithmic_rent_setting": {
+    "question": "Can rent-setting software be used on my rent?",
+    "rules": [
+     {
+      "team_rule_id": "CA-BERKELEY-ALG-13.63.030",
+      "citation": "Berkeley Mun. Code § 13.63.030(B)",
+      "effective": {
+       "from": "2026-03-01",
+       "until": null,
+       "precision": "day",
+       "derived": "the later of the published dates (open question)"
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This is the ordinary rule directly addressing whether a landlord may use coordinated pricing software when setting a renter’s rent.",
+       "source": "main",
+       "provision": "Berkeley Mun. Code § 13.63.030(B)",
+       "requirement": "A landlord may not use a coordinated pricing algorithm described in subsection A when setting rents or occupancy levels for residential dwelling units in Berkeley.",
+       "key_value": null,
+       "quote": "It shall be unlawful for a landlord to use a coordinated pricing algorithm described \nin subsection A when setting rents or occupancy levels for residential dwelling units in \nthe City of Berkeley.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "screening_restrictions": {
+    "question": "What can they check about me?",
+    "rules": [
+     {
+      "team_rule_id": "CA-BERKELEY-SCREEN-13.106",
+      "citation": "Berkeley Municipal Code § 13.106",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "The ordinary rule directly answers what a housing provider may check: they may not inquire about a current or prospective tenant’s criminal history.",
+       "source": "main",
+       "provision": "Berkeley Municipal Code § 13.106",
+       "requirement": "A housing provider may not inquire about a current or prospective tenant’s criminal history.",
+       "key_value": null,
+       "quote": "Inquire about criminal history",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "application_screening_fees": {
+    "question": "What can they charge me to apply?",
+    "rules": [
+     {
+      "team_rule_id": "CA-BERKELEY-FEE-13.78",
+      "citation": "Berkeley Municipal Code § 13.78; Cal. Civ. Code § 1950.6",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "The 2026 maximum screening fee directly answers what a landlord may charge to apply.",
+       "source": "main",
+       "provision": "Berkeley Municipal Code § 13.78; Cal. Civ. Code § 1950.6",
+       "requirement": "A landlord may charge no more than the stated maximum screening fee for 2026.",
+       "key_value": "$68.96 for 2026",
+       "quote": "The maximum tenant screening fee for 2026 is\n$68.96",
+       "value_valid_until": "2026-12-31",
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "just_cause_eviction": {
+    "question": "When can they end my tenancy?",
+    "rules": [
+     {
+      "team_rule_id": "CA-BERKELEY-EVICT-BerkeleyMuni",
+      "citation": "Berkeley Municipal Code, Rent Stabilization and Good Cause for Eviction Ordinance",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It gives a direct condition for when a landlord may evict for nonpayment, though it is not a general list of all permitted reasons to end a tenancy.",
+       "source": "main",
+       "provision": "Berkeley Municipal Code, Rent Stabilization and Good Cause for Eviction Ordinance",
+       "requirement": "A landlord may not evict for nonpayment unless the tenant’s rental debt equals or exceeds one month of the applicable fair market rent.",
+       "key_value": "At least one month of the applicable HUD Fair Market Rent",
+       "quote": "For a landlord to evict a tenant for nonpayment of rent, the tenant must owe an amount of rental debt equal to or greater than one month of the Fair Market Rent (FMR) value for a unit of equivalent size in the metro area Oakland-Fremont, CA HUD Metro FMR as determined by the US Department of Housing and Urban Development for the fiscal year in which the rent is demanded.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "CA-BERKELEY-EVICT-BerkeleyRent",
+      "citation": "Berkeley Rent Stabilization and Good Cause for Eviction Ordinance; Berkeley Ellis Implementation Ordinance",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It concerns just-cause eviction coverage, which is relevant to when a tenancy can be ended. The relocation payment amount is not the ordinary rule for ending a tenancy.",
+       "source": "detail",
+       "provision": "p3",
+       "requirement": "The guide indicates that listed fully and partially covered unit types are covered for just cause for eviction.",
+       "key_value": null,
+       "quote": "Partially Covered Yes No Yes Yes",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "rent_increase_limits": {
+    "question": "How much can my rent go up?",
+    "rules": [
+     {
+      "team_rule_id": "CA-BERKELEY-RENT-13.76.110A",
+      "citation": "Berkeley Municipal Code § 13.76.110A",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "The Annual General Adjustment is the ordinary annual limit for a normal tenancy; the 1.0% figure applies only to eligible landlords under a special regulation.",
+       "source": "main",
+       "provision": "Berkeley Municipal Code § 13.76.110A",
+       "requirement": "The Annual General Adjustment may not exceed 5%.",
+       "key_value": "5%",
+       "quote": "The maximum AGA is 5%.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "security_deposits": {
+    "question": "How much deposit can they ask?",
+    "rules": [
+     {
+      "team_rule_id": "CA-BERKELEY-DEP-BerkeleyRent",
+      "citation": "Berkeley Rent Stabilization and Eviction for Just Cause Ordinance",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "related",
+       "reason": "This provision concerns which units are covered for security-deposit interest; it does not state how much deposit a landlord may ask for.",
+       "source": "main",
+       "provision": "Berkeley Rent Stabilization and Eviction for Just Cause Ordinance",
+       "requirement": "The guide indicates that listed fully and partially covered unit types are covered for security deposit interest.",
+       "key_value": null,
+       "quote": "Partially Covered Yes No Yes Yes",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   }
+  },
+  "MA-BOSTON": {
+   "screening_restrictions": {
+    "question": "What can they check about me?",
+    "rules": [
+     {
+      "team_rule_id": "MA-BOSTON-SCREEN-BostonFairCh",
+      "citation": "Boston Fair Chance Tenant Selection Policy",
+      "effective": {
+       "from": "2020-11-06",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It specifies which criminal records the housing provider must not consider, directly addressing what they can check about an applicant.",
+       "source": "detail",
+       "provision": "p6-p8",
+       "requirement": "The Agent must not consider arrests that did not result in conviction, convictions subject to judicial relief, juvenile records, or convictions more than five years old when determining housing eligibility or considering eviction.",
+       "key_value": null,
+       "quote": "The Developer/Agent (Agent) agrees to not consider any of the following categories when \ndetermining housing eligibility and or considering eviction:",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "MA-BOSTON-SCREEN-BostonFairHo",
+      "citation": "Boston Fair Housing Regulations",
+      "effective": {
+       "from": "2020-11-06",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "related",
+       "reason": "This provision concerns discrimination in housing, not what a landlord may check about a renter.",
+       "source": "main",
+       "provision": "Boston Fair Housing Regulations",
+       "requirement": "Discrimination is illegal in Boston when renting, buying, selling, or securing financing for housing based on the listed protected characteristics.",
+       "key_value": null,
+       "quote": "In the City of Boston, it’s illegal to discriminate when renting, buying, selling, or securing financing for any housing.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "just_cause_eviction": {
+    "question": "When can they end my tenancy?",
+    "rules": [
+     {
+      "team_rule_id": "MA-BOSTON-EVICT-10-11.7",
+      "citation": "Boston City Ordinances § 10-11.7",
+      "effective": {
+       "from": "2020-11-06",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This provision is about the process landlords must follow when ending a tenancy, though it does not specify when termination is permitted.",
+       "source": "main",
+       "provision": "Boston City Ordinances § 10-11.7",
+       "requirement": "When planning to end a tenancy or post-foreclosure occupancy, landlords and applicable foreclosing owners must provide the Notice of Tenants’ Rights and Resources to the tenant or former owner at the same time as the Notice to Quit or notice of non-renewal.",
+       "key_value": null,
+       "quote": "The Notice of\nTenants’ Rights and Resources must be delivered at the same time as the Notice to\nQuit.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "rent_increase_limits": {
+    "question": "How much can my rent go up?",
+    "rules": [
+     {
+      "team_rule_id": "MA-BOSTON-RENT-3744",
+      "citation": "Mass. H.3744",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "pending",
+      "answer": {
+       "status": "related",
+       "reason": "The listing is only the title of a pending bill seeking to authorize Boston to implement rent stabilization; it gives no rent-increase rule or amount.",
+       "source": "main",
+       "provision": "Mass. H.3744",
+       "requirement": "Pending bill: An Act petition for a special law authorizing the city of Boston to implement rent stabilization and tenant eviction protections",
+       "key_value": null,
+       "quote": "An Act petition for a special law authorizing the city of Boston to implement rent stabilization and tenant eviction protections",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   }
+  },
+  "CA": {
+   "screening_restrictions": {
+    "question": "What can they check about me?",
+    "rules": [
+     {
+      "team_rule_id": "CA-SCREEN-12955",
+      "citation": "Cal. Gov. Code § 12955",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It directly identifies criminal-history records a housing provider may not consider: arrests without convictions, sealed or expunged records, and juvenile records or matters.",
+       "source": "detail",
+       "provision": "p3",
+       "requirement": "Housing providers must not consider arrests that did not lead to conviction, sealed or expunged records, or juvenile justice records or matters.",
+       "key_value": null,
+       "quote": "Housing  providers cannot consider some types of criminal history including arrests that did not lead to a conviction, records that are sealed or expunged, or records or matters processed in the juvenile justice system.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "algorithmic_rent_setting": {
+    "question": "Can rent-setting software be used on my rent?",
+    "rules": [
+     {
+      "team_rule_id": "CA-ALG-16729",
+      "citation": "Cal. Bus. & Prof. Code § 16729(a)",
+      "effective": {
+       "from": "2026-01-01",
+       "until": null,
+       "precision": "day",
+       "derived": "California default: January 1 after enactment 2025-10-06 (Cal. Const. art. IV § 8(c))"
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This is the broader rule governing use or distribution of a common pricing algorithm in a restraint-of-trade violation. The other provision is a narrower ban requiring coercion.",
+       "source": "main",
+       "provision": "Cal. Bus. & Prof. Code § 16729(a)",
+       "requirement": "A person must not use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of the chapter.",
+       "key_value": null,
+       "quote": "It shall be unlawful for a person to use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of this chapter.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "just_cause_eviction": {
+    "question": "When can they end my tenancy?",
+    "rules": [
+     {
+      "team_rule_id": "CA-EVICT-1946.2",
+      "citation": "Cal. Civil Code § 1946.2",
+      "effective": {
+       "from": "2024-04-01",
+       "until": "2030-01-01",
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This gives the ordinary rule: after the applicable occupancy period, the owner generally needs a listed just cause and must state it in the written termination notice.",
+       "source": "main",
+       "provision": "Cal. Civil Code § 1946.2",
+       "requirement": "After the applicable continuous-occupancy period, an owner may not terminate a tenancy without just cause, and must state the cause in the written termination notice. Just cause includes the listed at-fault and no-fault grounds.",
+       "key_value": null,
+       "quote": "after a tenant has continuously and lawfully occupied a residential real property for 12 months, the owner of the residential real property shall not terminate a tenancy without just cause, which shall be stated in the written notice to terminate tenancy.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "rent_increase_limits": {
+    "question": "How much can my rent go up?",
+    "rules": [
+     {
+      "team_rule_id": "CA-RENT-1947.12",
+      "citation": "Cal. Civ. Code § 1947.12",
+      "effective": {
+       "from": "2024-04-01",
+       "until": "2030-01-01",
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It states the ordinary rent-increase limit: 5% plus the change in cost of living, capped at 10%, whichever is lower.",
+       "source": "main",
+       "provision": "Cal. Civ. Code § 1947.12",
+       "requirement": "An owner may not increase the gross rental rate during any 12-month period by more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower, calculated from the lowest gross rental rate charged during the prior 12 months. Accepted rent discounts, incentives, concessions, or credits are excluded from that lowest rate.",
+       "key_value": "5% plus the percentage change in the cost of living, capped at 10%, whichever is lower",
+       "quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "security_deposits": {
+    "question": "How much deposit can they ask?",
+    "rules": [
+     {
+      "team_rule_id": "CA-DEP-1950.5",
+      "citation": "Cal. Civ. Code § 1950.5(c)(1)",
+      "effective": {
+       "from": "2024-07-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This states the ordinary limit: one month’s rent, in addition to first month’s rent paid on or before initial occupancy.",
+       "source": "main",
+       "provision": "Cal. Civ. Code § 1950.5(c)(1)",
+       "requirement": "Except for the stated statutory exceptions, a landlord may not demand or receive security exceeding one month’s rent, in addition to first month’s rent paid on or before initial occupancy.",
+       "key_value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
+       "quote": "a landlord shall not demand or receive security, however denominated, in an amount or value in excess of an amount equal to one month’s rent",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "application_screening_fees": {
+    "question": "What can they charge me to apply?",
+    "rules": [
+     {
+      "team_rule_id": "CA-FEE-1950.6",
+      "citation": "Cal. Civ. Code § 1950.6",
+      "effective": {
+       "from": "2026-01-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This states the ordinary limit on a rental application screening fee: actual costs and reasonable time, capped at $30 per applicant subject to annual CPI adjustment.",
+       "source": "main",
+       "provision": "Cal. Civ. Code § 1950.6",
+       "requirement": "A landlord may not charge an application screening fee above the actual out-of-pocket costs and reasonable value of time spent obtaining applicant information, and the fee may not exceed $30 per applicant, subject to the stated annual CPI adjustment.",
+       "key_value": "$30 per applicant; adjusted annually commensurate with an increase in the Consumer Price Index beginning January 1, 1998",
+       "quote": "The amount of the application screening fee shall not be greater than the actual\nout-of-pocket costs of gathering information concerning the applicant, including, but not limited to, the cost of using a tenant screening service or a consumer credit reporting service, and the reasonable value of time spent by the landlord or their agent in obtaining information on the applicant. In no case shall the amount of the application screening fee charged by the landlord or their agent be greater than thirty dollars ($30) per applicant.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   }
+  },
+  "MA-CAMBRIDGE": {
+   "screening_restrictions": {
+    "question": "What can they check about me?",
+    "rules": [
+     {
+      "team_rule_id": "MA-CAMBRIDGE-SCREEN-14.04",
+      "citation": "Cambridge Code of Ordinances ch. 14.04",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It directly states the ordinary rule for applicant screening: landlords may use reasonable standards, applied equally and uniformly to all applicants.",
+       "source": "main",
+       "provision": "Cambridge Code of Ordinances ch. 14.04",
+       "requirement": "Landlords, sellers, and rental agents may use reasonable standards to select applicants only if they apply the standards equally and uniformly to all applicants.",
+       "key_value": null,
+       "quote": "landlords, sellers and rental agents may use any reasonable standard to determine which applicants are selected, as long as that standard is applied equally and uniformly to all applicants.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "just_cause_eviction": {
+    "question": "When can they end my tenancy?",
+    "rules": [
+     {
+      "team_rule_id": "MA-CAMBRIDGE-EVICT-8.71",
+      "citation": "Cambridge Municipal Code ch. 8.71",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "related",
+       "reason": "The main provision concerns notice of the Guide when legal steps to terminate a tenancy are taken, but neither provision states when a tenancy may be ended.",
+       "source": "main",
+       "provision": "Cambridge Municipal Code ch. 8.71",
+       "requirement": "Owners, landlords, and management companies must offer the Guide to tenants when legal steps to terminate a tenancy are taken.",
+       "key_value": null,
+       "quote": "The Ordinance also requires that a landlord provide the Guide to tenants when legal steps to terminate a tenancy are taken (ex. Notice to Quit or Summary Process).",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   }
+  },
+  "NJ-JERSEY-CITY": {
+   "rent_increase_limits": {
+    "question": "How much can my rent go up?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-JERSEY-CITY-RENT-JerseyCityLa",
+      "citation": "Jersey City Landlord/Tenant Relations webpage",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "related",
+       "reason": "The illegal-rent petition is more relevant than the service-reduction petition, but neither provision states the ordinary limit or rule for rent increases.",
+       "source": "main",
+       "provision": "Jersey City Landlord/Tenant Relations webpage",
+       "requirement": "A tenant who claims they are being charged illegal rent may file an Illegal Rent Petition.",
+       "key_value": null,
+       "quote": "A tenant claiming the rent they are being charged is illegal may file an Illegal Rent Petition:",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": [
+     {
+      "kind": "local_text_partial",
+      "held": [
+       "S014 Jersey City Chapter 260: complete publisher DOCX export (excluded_current_ai_restriction)"
+      ],
+      "links": [],
+      "text": "HomeRule doesn't have the full text of Jersey City's local law on this topic, so this card may be incomplete (e.g. a local cap may apply). Check with the city."
+     }
+    ]
+   },
+   "algorithmic_rent_setting": {
+    "question": "Can rent-setting software be used on my rent?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-JERSEY-CITY-ALG-218-12",
+      "citation": "Jersey City Code § 218-12(2)(a)",
+      "effective": {
+       "from": "2025-06-10",
+       "until": null,
+       "precision": "day",
+       "derived": "New Jersey municipal default: 20 days after final passage 2025-05-21 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It directly prohibits a lessor from subscribing to or contracting for a service provider’s services, addressing whether rent-setting software may be used.",
+       "source": "main",
+       "provision": "Jersey City Code § 218-12(2)(a)",
+       "requirement": "A real estate lessor, its agent, or its subcontractor may not subscribe to, contract with, or exchange anything of value for a service provider’s services.",
+       "key_value": null,
+       "quote": "It is unlawful for any real estate lessor, agent, or subcontractor thereof, to subscribe to, contract with, or otherwise\nexchange anything of value in return for the services of a Service Provider.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-JERSEY-CITY-ALG-218-12.3",
+      "citation": "Jersey City Code § 218-12.3(a)",
+      "effective": {
+       "from": "2025-10-15",
+       "until": null,
+       "precision": "day",
+       "derived": "New Jersey municipal default: 20 days after final passage 2025-09-25 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This provision concerns rent-setting software by requiring a disclosure about a service provider’s use of it, but it states a disclosure procedure rather than the ordinary rule on whether such software may be used.",
+       "source": "main",
+       "provision": "Jersey City Code § 218-12.3(a)",
+       "requirement": "With any lease or written notice of rent increase for a residential dwelling unit, the landlord must provide a sworn disclosure statement, executed under penalty of perjury and substantially in the prescribed form. The form certifies that no entity exchanged anything of value for a Service Provider’s services in connection with the proposed rent, that the rent-increase methodology did not use shared non-public competitor data, and includes the stated acknowledgment concerning illegal deception, fraud, misrepresentation, or knowing failure or refusal to provide important information.",
+       "key_value": null,
+       "quote": "Any landlord must include, with any lease or written notice of rent increase for a residential dwelling unit, a sworn\ndisclosure statement, executed under penalty of perjury, in substantially the following form:",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   }
+  },
+  "CA-LOS-ANGELES": {
+   "just_cause_eviction": {
+    "question": "When can they end my tenancy?",
+    "rules": [
+     {
+      "team_rule_id": "CA-LOS-ANGELES-EVICT-165.03",
+      "citation": "LAMC § 165.03",
+      "effective": {
+       "from": "2025-08-20",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It states the ordinary rule: a covered tenancy can be terminated only for just cause, once the JCO applies after six months in the unit or expiration of the original lease, whichever comes first.",
+       "source": "main",
+       "provision": "LAMC § 165.03",
+       "requirement": "A landlord may not terminate a covered tenancy without just cause; the JCO applies after the tenant has lived in the unit for at least six months or the original lease has expired, whichever comes first.",
+       "key_value": null,
+       "quote": "It prohibits terminations of tenancies without just cause",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "rent_increase_limits": {
+    "question": "How much can my rent go up?",
+    "rules": [
+     {
+      "team_rule_id": "CA-LOS-ANGELES-RENT-151.06",
+      "citation": "LAMC § 151.06",
+      "effective": {
+       "from": "2026-02-02",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This gives the ordinary annual rent-increase limit for covered RSO units and the rate in effect for the stated period.",
+       "source": "main",
+       "provision": "LAMC § 151.06",
+       "requirement": "For covered RSO units, rent may be increased once every 12 months by the allowable rent-increase percentage; the reported rate for July 1, 2025 through June 30, 2026 is 3%.",
+       "key_value": "3% for July 1, 2025 through June 30, 2026",
+       "quote": "Rent may be increased once every 12 months by the allowable rent increase percentage",
+       "value_valid_until": "2026-06-30",
+       "value_current": false,
+       "note": "3% for July 1, 2025 through June 30, 2026 applied until 2026-06-30; HomeRule's sources have no value for 2026-10-01."
+      }
+     }
+    ],
+    "notes": []
+   }
+  },
+  "MA": {
+   "algorithmic_rent_setting": {
+    "question": "Can rent-setting software be used on my rent?",
+    "rules": [
+     {
+      "team_rule_id": "MA-ALG-5222",
+      "citation": "Mass. H.5222",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "pending",
+      "answer": {
+       "status": "related",
+       "reason": "Only the pending bill’s title is provided, not an operative provision stating whether rent-setting software may be used.",
+       "source": "main",
+       "provision": "Mass. H.5222",
+       "requirement": "Pending bill: An Act relative to preventing algorithmic rent fixing in the rental housing market",
+       "key_value": null,
+       "quote": "An Act relative to preventing algorithmic rent fixing in the rental housing market",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "MA-ALG-2983",
+      "citation": "Mass. S.2983",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "pending",
+      "answer": {
+       "status": "answered",
+       "reason": "It states the general prohibition on algorithmic rent setting, which directly answers whether the software can be used to set the renter’s rent.",
+       "source": "main",
+       "provision": "Mass. S.2983",
+       "requirement": "Prohibits algorithmic rent setting.",
+       "key_value": null,
+       "quote": "An Act prohibiting algorithmic rent setting",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "screening_restrictions": {
+    "question": "What can they check about me?",
+    "rules": [
+     {
+      "team_rule_id": "MA-SCREEN-151B",
+      "citation": "Mass. Gen. Laws ch. 151B, § 4(6)(a)",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This provision directly addresses inquiries or records about a person seeking housing, prohibiting inquiries about listed protected characteristics.",
+       "source": "detail",
+       "provision": "4/6/c",
+       "requirement": "Covered housing providers may not cause a written or oral inquiry or record concerning the listed protected characteristics of a person seeking housing to be made.",
+       "key_value": null,
+       "quote": "(c) to cause to be made any written or oral inquiry or record concerning the race, religious creed, color, national origin, sex, gender identity, sexual orientation, which shall not include persons whose sexual orientation involves minor children as the sex object, age, genetic information, ancestry or marital status of the person seeking to rent or lease or buy any such accommodation, or concerning the fact that such person is a veteran or a member of the armed forces or because such person is blind or hearing impaired or has any other handicap.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "just_cause_eviction": {
+    "question": "When can they end my tenancy?",
+    "rules": [
+     {
+      "team_rule_id": "MA-EVICT-186",
+      "citation": "Mass. Gen. Laws ch. 186, § 11",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "For a written lease, the provision gives the ordinary notice period for termination for nonpayment of rent: at least 14 days.",
+       "source": "main",
+       "provision": "Mass. Gen. Laws ch. 186, § 11",
+       "requirement": "To determine a written lease for nonpayment of rent, the landlord must give the tenant written notice to quit at least 14 days before termination.",
+       "key_value": "14 days",
+       "quote": "fourteen days' notice to quit, given in writing by the landlord to the tenant, shall be sufficient to determine the lease",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "security_deposits": {
+    "question": "How much deposit can they ask?",
+    "rules": [
+     {
+      "team_rule_id": "MA-DEP-186",
+      "citation": "Mass. Gen. Laws ch. 186, § 15B",
+      "effective": {
+       "from": "2025-08-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "The general rule limits a security deposit to the first month’s rent.",
+       "source": "main",
+       "provision": "Mass. Gen. Laws ch. 186, § 15B",
+       "requirement": "At or before the start of a tenancy, a lessor may not require payment of amounts beyond the listed first month's rent, last month's rent at the same rate, a compliant security deposit equal to the first month's rent, and the purchase and installation cost of a key and lock. A fee in lieu of a deposit may be authorized by regulation subject to the stated requirements.",
+       "key_value": "Security deposit may not exceed the first month's rent",
+       "quote": "At or prior to the commencement of any tenancy, no lessor or agent of the lessor may require a tenant or prospective tenant to pay, to the lessor or to an agent of the lessor, any amount in excess of the following:",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "application_screening_fees": {
+    "question": "What can they charge me to apply?",
+    "rules": [
+     {
+      "team_rule_id": "MA-FEE-186",
+      "citation": "Mass. Gen. Laws ch. 186, § 15B(1)(b)",
+      "effective": {
+       "from": "2025-08-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This provision directly limits what a landlord or agent may require a prospective tenant to pay at the start of a tenancy.",
+       "source": "main",
+       "provision": "Mass. Gen. Laws ch. 186, § 15B(1)(b)",
+       "requirement": "At or before the start of a tenancy, a lessor or the lessor’s agent may not require a tenant or prospective tenant to pay an amount beyond the charges permitted by this subsection.",
+       "key_value": null,
+       "quote": "At or prior to the commencement of any tenancy, no lessor or agent of the lessor may require a tenant or prospective tenant to pay, to the lessor or to an agent of the lessor, any amount in excess of the following:",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "MA-FEE-112",
+      "citation": "Mass. Gen. Laws ch. 112, § 87DDD½",
+      "effective": {
+       "from": "2025-08-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It directly states who may be charged a broker’s fee: only the party who originally engaged and contracted with the broker.",
+       "source": "main",
+       "provision": "Mass. Gen. Laws ch. 112, § 87DDD½",
+       "requirement": "A broker's fee may be paid only by the lessor or tenant who originally engaged and entered into a contract with the broker.",
+       "key_value": "Only the party who originally engaged and contracted with the broker may pay the fee.",
+       "quote": "Any fee shall only be paid by the party, lessor or tenant who originally engaged and entered into a contract with the licensed broker or salesperson.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   }
+  },
+  "NJ": {
+   "screening_restrictions": {
+    "question": "What can they check about me?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-SCREEN-46:8-55",
+      "citation": "N.J. Stat. Ann. § 46:8-55(a)(1)",
+      "effective": {
+       "from": "2022-01-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It states the ordinary rule: a housing provider generally cannot require criminal-record inquiries before making a conditional offer, subject to the specified exceptions.",
+       "source": "main",
+       "provision": "N.J. Stat. Ann. § 46:8-55(a)(1)",
+       "requirement": "A housing provider may not require an applicant to complete an application that includes criminal-record inquiries before making a conditional offer, except for the specified methamphetamine-related conviction and lifetime sex-offender registration inquiries.",
+       "key_value": null,
+       "quote": "A\nhousing provider\nshall not require an applicant to\ncomplete any housing application that includes any inquiries regarding an\napplicant’s criminal record prior to the provision of a conditional offer",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-SCREEN-46:8-56",
+      "citation": "N.J. Stat. Ann. § 46:8-56(a)",
+      "effective": {
+       "from": "2022-01-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It states the general rule about what a housing provider may not check when evaluating an applicant; d0 is a narrower exception after a conditional offer.",
+       "source": "main",
+       "provision": "N.J. Stat. Ann. § 46:8-56(a)",
+       "requirement": "A housing provider may not evaluate an applicant based on arrests or charges without conviction, expunged or pardoned convictions, legally nullified convictions, juvenile delinquency adjudications, or sealed records, before or after a conditional offer.",
+       "key_value": null,
+       "quote": "A housing provider shall not, either before\nor after the issuance of a conditional offer, evaluate an applicant based on\nany of the following types of criminal records:\n(1)   arrests or charges that have not resulted in a\ncriminal conviction;\n(2)   expunged convictions;",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-SCREEN-46:8-58",
+      "citation": "N.J. Stat. Ann. § 46:8-58(a)",
+      "effective": {
+       "from": "2022-01-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This provision concerns how a housing provider may describe considering applicants’ criminal histories, so it is relevant to what they may check. It does not, however, set out a complete list of permissible background checks.",
+       "source": "main",
+       "provision": "N.J. Stat. Ann. § 46:8-58(a)",
+       "requirement": "A housing provider may not knowingly or purposefully publish an advertisement explicitly stating that applicants arrested or convicted of crimes will not be considered, except for the two specified criminal-history categories.",
+       "key_value": null,
+       "quote": "A housing provider shall not knowingly or\npurposefully publish, or cause to be published, any housing advertisement that\nexplicitly provides that the housing provider will not consider any applicant\nwho has been arrested or convicted of one or more crimes or offenses",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-SCREEN-46:8-60",
+      "citation": "N.J. Stat. Ann. § 46:8-60",
+      "effective": {
+       "from": "2022-01-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It directly states what a housing provider may not check: they cannot require a drug or alcohol test or seek consent to obtain information from a drug treatment facility.",
+       "source": "main",
+       "provision": "N.J. Stat. Ann. § 46:8-60",
+       "requirement": "A housing provider may not require an applicant to submit to a drug or alcohol test or request the applicant’s consent to obtain information from a drug abuse treatment facility.",
+       "key_value": null,
+       "quote": "A housing provider shall not require an applicant\nto submit to a drug or alcohol test, or request the applicant’s consent to\nobtain information from a drug abuse treatment facility.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-SCREEN-10:5-12",
+      "citation": "N.J.S.A. 10:5-12",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "related",
+       "reason": "These provisions address housing discrimination, not what a landlord may check during tenant screening. The main provision is the closest because it states the general ban on discrimination, but it does not answer what checks are permitted.",
+       "source": "main",
+       "provision": "N.J.S.A. 10:5-12",
+       "requirement": "A landlord may not discriminate in housing on the bases of race, creed (religion), color, national origin, sex, gender identity or expression, marital status, civil union status, ancestry, actual or perceived physical or mental disability, nationality, affectional or sexual orientation, familial status, or domestic partner status.",
+       "key_value": null,
+       "quote": "The NJ Law Against Discrimination (LAD) prohibits\ndiscrimination on the bases of race, creed (religion),\ncolor, national origin, sex, gender identity or expression,\nmarital status, civil union status, ancestry, actual or\nperceived physical or mental disability, nationality,\naffectional or sexual orientation, familial status, and\ndomestic partner status.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "application_screening_fees": {
+    "question": "What can they charge me to apply?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-FEE-46:8-18.1",
+      "citation": "N.J. Stat. § 46:8-18.1(a)",
+      "effective": {
+       "from": "2026-05-01",
+       "until": null,
+       "precision": "day",
+       "derived": "first day of month 4 after enactment 2026-01-20"
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This gives the ordinary cap on an application fee; the other provision concerns repayment after penalty proceedings.",
+       "source": "main",
+       "provision": "N.J. Stat. § 46:8-18.1(a)",
+       "requirement": "A landlord or agent may not require an application or similar fee exceeding the statutory limit to apply to lease or sublease a residential rental property for dwelling purposes.",
+       "key_value": "$50",
+       "quote": "A landlord, or\nagent thereof, shall not require an application or other similar fee to apply\nto lease or sublease a residential rental property for dwelling purposes, which\nexceeds $50.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "security_deposits": {
+    "question": "How much deposit can they ask?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-DEP-46:8-21.2",
+      "citation": "N.J.S.A. 46:8-21.2",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "The ordinary rule limits the security deposit to one and one-half times one month’s rent.",
+       "source": "main",
+       "provision": "N.J.S.A. 46:8-21.2",
+       "requirement": "A landlord who collects a security deposit may not collect more than one and one-half times one month’s rent.",
+       "key_value": "1.5 times one month’s rent",
+       "quote": "The maximum-security deposit to be collected by the landlord cannot be more than \none and one-half times one month’s rent",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "rent_increase_limits": {
+    "question": "How much can my rent go up?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-RENT-2A:18-61.1",
+      "citation": "N.J.S.A. 2A:18-61.1 et seq.",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This is the ordinary rule for rent increases: they must not be unconscionable and must comply with applicable municipal ordinances. The law does not state a single statewide annual limit.",
+       "source": "main",
+       "provision": "N.J.S.A. 2A:18-61.1 et seq.",
+       "requirement": "A rent increase must not be unconscionable and must comply with municipal ordinances governing rent increases.",
+       "key_value": "Must not be unconscionable",
+       "quote": "The increase in rent must not be \nunconscionable; it must not be so unreasonable as to shock the conscience of a fair and honest \nperson and must comply with any municipal ordinances governing rent increases.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "just_cause_eviction": {
+    "question": "When can they end my tenancy?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-EVICT-2A:18-61.1",
+      "citation": "N.J.S.A. 2A:18-61.1",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This states the ordinary rule: a residential landlord may evict or decline to renew only for good cause that can be proved in court.",
+       "source": "main",
+       "provision": "N.J.S.A. 2A:18-61.1",
+       "requirement": "A residential landlord may not evict a tenant or fail to renew a lease without good cause, and must be able to prove the grounds in court.",
+       "key_value": null,
+       "quote": "No residential landlord may evict or fail to renew a \nlease, whether it is a written or an oral lease without good cause. The landlord must be able to \nprove in court that he has grounds for an eviction.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "algorithmic_rent_setting": {
+    "question": "Can rent-setting software be used on my rent?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-ALG-56:9-23",
+      "citation": "N.J. Stat. Ann. § 56:9-23(e)",
+      "effective": {
+       "from": "2027-07-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "enacted_not_effective",
+      "answer": {
+       "status": "answered",
+       "reason": "It states the general prohibition on performing a coordinating function, which directly addresses whether rent-setting software may be used.",
+       "source": "main",
+       "provision": "N.J. Stat. Ann. § 56:9-23(e)",
+       "requirement": "A person may not perform a coordinating function.",
+       "key_value": null,
+       "quote": "any person to perform a coordinating function.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   }
+  },
+  "CA-SAN-DIEGO": {
+   "just_cause_eviction": {
+    "question": "When can they end my tenancy?",
+    "rules": [
+     {
+      "team_rule_id": "CA-SAN-DIEGO-EVICT-98.0704",
+      "citation": "San Diego Municipal Code § 98.0704",
+      "effective": {
+       "from": "2023-06-24",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This is the ordinary rule: a landlord may end a tenancy only for just cause, as defined by the listed at-fault and good-faith no-fault grounds.",
+       "source": "main",
+       "provision": "San Diego Municipal Code § 98.0704",
+       "requirement": "A landlord may not terminate a tenancy without just cause. The listed at-fault and good-faith no-fault reasons define the just cause grounds; additional stated conditions apply to particular no-fault grounds.",
+       "key_value": null,
+       "quote": "A landlord shall not terminate a tenancy without just cause. For purposes of this \nDivision, just cause includes at-fault just cause and no-fault just cause.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "algorithmic_rent_setting": {
+    "question": "Can rent-setting software be used on my rent?",
+    "rules": [
+     {
+      "team_rule_id": "CA-SAN-DIEGO-ALG-98.1103",
+      "citation": "San Diego Municipal Code § 98.1103(b)",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It states the ordinary rule: landlords may not use algorithmic devices to set rental rates or occupancy levels, subject to the stated exclusions.",
+       "source": "main",
+       "provision": "San Diego Municipal Code § 98.1103(b)",
+       "requirement": "A landlord may not use an algorithmic device to set rental rates or occupancy levels for residential rental property. The defined term excludes the specified reporting software and software used in accordance with affordable housing program guidelines.",
+       "key_value": null,
+       "quote": "It is unlawful for a landlord to use an algorithmic device to set rental rates\nor occupancy levels for residential rental property.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   }
+  },
+  "CA-SAN-FRANCISCO": {
+   "just_cause_eviction": {
+    "question": "When can they end my tenancy?",
+    "rules": [
+     {
+      "team_rule_id": "CA-SAN-FRANCISCO-EVICT-37.9",
+      "citation": "San Francisco Rent Ordinance § 37.9(a)",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This gives the ordinary rule: a landlord needs a just-cause reason to evict, with the listed grounds providing examples. The other provisions concern relocation payments or covered services.",
+       "source": "main",
+       "provision": "San Francisco Rent Ordinance § 37.9(a)",
+       "requirement": "A landlord must have a just-cause reason that is the dominant motive to evict a tenant. The listed reasons include nonpayment or habitual late payment, substantial breach, nuisance, illegal use, refusal of lawful access, specified owner or family occupancy, sale after an approved condominium conversion, demolition or rehabilitation, Ellis Act withdrawal, lead remediation, and specified development or temporary-tenancy circumstances. Mere expiration of a rental agreement or a change in ownership is not just cause.",
+       "key_value": null,
+       "quote": "In order to evict a tenant from a rental unit covered by the Rent Ordinance, a landlord must have a \"just cause\" reason that is the dominant motive for pursuing the eviction.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "rent_increase_limits": {
+    "question": "How much can my rent go up?",
+    "rules": [
+     {
+      "team_rule_id": "CA-SAN-FRANCISCO-RENT-37.3",
+      "citation": "San Francisco Rent Ordinance § 37.3",
+      "effective": {
+       "from": "2026-03-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This is the annual allowable rent increase in effect for the stated period, the ordinary rule a renter is asking about.",
+       "source": "main",
+       "provision": "San Francisco Rent Ordinance § 37.3",
+       "requirement": "For rent-controlled units, the annual allowable rent increase for March 1, 2026 through February 28, 2027 is 1.6%.",
+       "key_value": "1.6%",
+       "quote": "For rent-controlled units, the annual allowable increase amount effective March 1, 2026 through February 28, 2027 is 1.6%.",
+       "value_valid_until": "2027-02-28",
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "algorithmic_rent_setting": {
+    "question": "Can rent-setting software be used on my rent?",
+    "rules": [
+     {
+      "team_rule_id": "CA-SAN-FRANCISCO-ALG-37.10C",
+      "citation": "San Francisco Rent Ordinance § 37.10C",
+      "effective": {
+       "from": "2024-10-14",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It states the ordinary rule directly: the described algorithmic device may not be used to set rents or manage occupancy in San Francisco.",
+       "source": "main",
+       "provision": "San Francisco Rent Ordinance § 37.10C",
+       "requirement": "A person may not use an algorithmic device to set rents or manage occupancy levels for residential units in San Francisco. The described device analyzes nonpublic competitor rental data to recommend a rent for a vacant unit.",
+       "key_value": null,
+       "quote": "The law prohibits the sale or use of algorithmic devices to set rents or manage occupancy levels for residential units in San Francisco.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "security_deposits": {
+    "question": "How much deposit can they ask?",
+    "rules": [
+     {
+      "team_rule_id": "CA-SAN-FRANCISCO-DEP-37.6",
+      "citation": "San Francisco Rent Ordinance § 37.6",
+      "effective": {
+       "from": "2026-03-01",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "related",
+       "reason": "The provision gives the interest rate owed on a security deposit, not how much deposit a landlord may ask for.",
+       "source": "main",
+       "provision": "San Francisco Rent Ordinance § 37.6",
+       "requirement": "The security deposit interest rate for March 1, 2026 through February 28, 2027 is 4.2%.",
+       "key_value": "4.2%",
+       "quote": "Security Deposit Interest:\n4.2% for March 1, 2026 – February 28, 2027",
+       "value_valid_until": "2027-02-28",
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   }
+  },
+  "CA-SANTA-ANA": {
+   "rent_increase_limits": {
+    "question": "How much can my rent go up?",
+    "rules": [
+     {
+      "team_rule_id": "CA-SANTA-ANA-RENT-SantaAnaRent",
+      "citation": "Santa Ana Rent Stabilization Ordinance",
+      "effective": {
+       "from": "2021-11-19",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This is the ordinary annual rent-increase limit and gives the figure currently in effect for the stated period.",
+       "source": "main",
+       "provision": "Santa Ana Rent Stabilization Ordinance",
+       "requirement": "Limit annual rent increases to the lower of 3% or 80% of the percent change in the Consumer Price Index over the most recent 12-month period; if the CPI is negative, no increase is permitted.",
+       "key_value": "Lower of 3% per year or 80% of the CPI change; 2.87% for September 1, 2026 through August 31, 2027",
+       "quote": "Increase in residential rents are limited to the lower of 3% per year, or 80% of the percent change in the Consumer Price Index over the most recent 12-month period. If the CPI is negative, no rent increase is permitted.",
+       "value_valid_until": "2027-08-31",
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "just_cause_eviction": {
+    "question": "When can they end my tenancy?",
+    "rules": [
+     {
+      "team_rule_id": "CA-SANTA-ANA-EVICT-SantaAnaJust",
+      "citation": "Santa Ana Just Cause Eviction Ordinance",
+      "effective": {
+       "from": "2021-11-19",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This is the ordinance’s ordinary rule: after 30 days, the owner may terminate only for just cause.",
+       "source": "main",
+       "provision": "Santa Ana Just Cause Eviction Ordinance",
+       "requirement": "After 30 days, an owner may not terminate a tenancy without just cause.",
+       "key_value": "30 days",
+       "quote": "After 30 days, an owner shall not terminate a tenancy without just cause",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   }
+  },
+  "NJ-HOBOKEN": {
+   "algorithmic_rent_setting": {
+    "question": "Can rent-setting software be used on my rent?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-HOBOKEN-ALG-Hobokenordin",
+      "citation": "Hoboken ordinance (citation not stated)",
+      "effective": {
+       "from": "2025-07-29",
+       "until": null,
+       "precision": "day",
+       "derived": "New Jersey municipal default: 20 days after final passage 2025-07-09 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "The provision directly prohibits landlords from using rent-setting software to coordinate, recommend, or implement rental prices.",
+       "source": "main",
+       "provision": "Hoboken ordinance (citation not stated)",
+       "requirement": "Landlords may not use software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental prices, lease terms, or occupancy levels among competing landlords.",
+       "key_value": null,
+       "quote": "they can no longer use software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental prices, lease terms, or occupancy levels among competing landlords.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "rent_increase_limits": {
+    "question": "How much can my rent go up?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-HOBOKEN-RENT-10:54",
+      "citation": "Hoboken Rent Control Regulations § 10:54(A)",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "related",
+       "reason": "None of the provisions states the ordinary rent-increase limit or other general rule for how much rent may go up. The main provision only gives a tenant the right to request a legal rent calculation.",
+       "source": "main",
+       "provision": "Hoboken Rent Control Regulations § 10:54(A)",
+       "requirement": "A tenant may request a legal rent calculation when the tenant believes the rent exceeds the legal rent.",
+       "key_value": "Right to request a legal rent calculation",
+       "quote": "A tenant may request a legal rent calculation where the\ntenant's rent is believed to be in excess of the legal rent as established\npursuant to the ordinance.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-HOBOKEN-RENT-18:54",
+      "citation": "Hoboken Rent Control Regulations § 18:54(H)",
+      "effective": {
+       "from": null,
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "related",
+       "reason": "This provision concerns the value of deteriorated services, not the ordinary limit or rule for rent increases.",
+       "source": "main",
+       "provision": "Hoboken Rent Control Regulations § 18:54(H)",
+       "requirement": null,
+       "key_value": "An amount equal to the value of the deteriorated services",
+       "quote": null,
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-HOBOKEN-RENT-3",
+      "citation": "Hoboken Rent Control Regulations, Regulation #3: Vacancy Decontrol as to Multiple Tenants",
+      "effective": {
+       "from": "2025-02-12",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "related",
+       "reason": "This provision explains when a landlord may seek vacancy-decontrol relief, but it does not state the ordinary rent-increase limit or how much rent may go up.",
+       "source": "main",
+       "provision": "Hoboken Rent Control Regulations, Regulation #3: Vacancy Decontrol as to Multiple Tenants",
+       "requirement": "A landlord renting an apartment to multiple tenants may designate all members of the original tenant group as original tenants; vacancy is deemed to occur when the last original tenant leaves, allowing the landlord to seek available vacancy-decontrol relief.",
+       "key_value": "Vacancy is deemed to occur when the last original tenant vacates",
+       "quote": "a landlord who rents a residential apartment unit to\nmultiple tenants may designate an original tenant category which shall consist of all the members\nof the original group of tenants to which the unit is rented.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-HOBOKEN-RENT-18:66",
+      "citation": "Hoboken Rent Control Regulations § 18:66",
+      "effective": {
+       "from": "2009-04-22",
+       "until": null,
+       "precision": "day",
+       "derived": null
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "related",
+       "reason": "This provision concerns the deadline for filing a decontrol certificate, not how much rent may go up.",
+       "source": "main",
+       "provision": "Hoboken Rent Control Regulations § 18:66",
+       "requirement": "A landlord may file a decontrol certificate for a year it legally owned the dwelling, no later than one year after the later of the vacancy or first rental to a replacement tenant; the dwelling must be registered, and filing must precede a legal-rent-calculation request for the certificate to be used in a legal rent determination.",
+       "key_value": "No later than one year after the later of vacancy or first rental to a replacement tenant",
+       "quote": "A Landlord of any dwelling subject to the provisions of this chapter may file a Certificate\npursuant to Section 155-33 for any year where the landlord legally owned the dwelling, provided\nthe Certificate is filed no later than the latter of either one (1) year from when the vacancy\noccurred or one (1) year from when the apartment was first rented to a replacement Tenant after\na vacancy",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": [
+     {
+      "kind": "local_text_partial",
+      "held": [
+       "S004 Hoboken Chapter 155 regulations: older city-linked collection (reviewed_download_robot_conflict)"
+      ],
+      "links": [
+       "D032 https://ecode360.com/15252438",
+       "D033 https://ecode360.com/15252470",
+       "D034 https://ecode360.com/46833413"
+      ],
+      "text": "HomeRule doesn't have the full text of Hoboken's local law on this topic, so this card may be incomplete (e.g. a local cap may apply). Check with the city."
+     }
+    ]
+   }
+  },
+  "NJ-NEWARK": {
+   "rent_increase_limits": {
+    "question": "How much can my rent go up?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3",
+      "citation": "Newark Code § 19:2-18.3",
+      "effective": {
+       "from": "2026-06-09",
+       "until": null,
+       "precision": "day",
+       "derived": "New Jersey municipal default: 20 days after final passage 2026-05-20 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It directly addresses the rent amount, though only for substantially reconstructed or rehabilitated dwellings; the other provision is a petition procedure.",
+       "source": "main",
+       "provision": "Newark Code § 19:2-18.3",
+       "requirement": "Substantially reconstructed or rehabilitated dwellings are not restricted in the initial rent charged if the Rent Control Board makes the required determinations, including that rehabilitation costs during a twelve-month period exceed 50% of fair market value.",
+       "key_value": "not restricted in initial rent charged",
+       "quote": "Substantially reconstructed or rehabilitated dwellings shall not be restricted in initial rent charged, if the Rent Control Board has made the following determinations: \na. The Board shall determine that the cost of reconstruction or rehabilitation during a twelve-month period exceeds 50% of the fair market value of the property.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-NEWARK-RENT-19:2-22",
+      "citation": "Newark Code § 19:2-22(a)",
+      "effective": {
+       "from": "2024-10-08",
+       "until": null,
+       "precision": "day",
+       "derived": "New Jersey municipal default: 20 days after final passage 2024-09-18 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "This states the ordinary rent-increase limit at lease expiration: the CPI-based increase, capped at 4%. The 25% figure is only a ceiling on increases the Rent Control Board may grant.",
+       "source": "detail",
+       "provision": "19:2-3.1",
+       "requirement": "At lease expiration or termination of a periodic tenant's lease, a landlord may not request or receive an increase above the stated CPI calculation, and the increase may never exceed 4%.",
+       "key_value": "CPI increase, capped at 4%",
+       "quote": "At the expiration of a lease or at the termination of the lease of a periodic tenant, no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-NEWARK-RENT-19:2-2",
+      "citation": "Newark Code § 19:2-2",
+      "effective": {
+       "from": "2023-08-22",
+       "until": "2024-10-08",
+       "precision": "day",
+       "derived": "New Jersey municipal default: 20 days after final passage 2023-08-02 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+      },
+      "status": "repealed",
+      "answer": {
+       "status": "answered",
+       "reason": "It is the provision tied directly to rent amounts. The other provision concerns which dwellings are covered, not how much rent may increase.",
+       "source": "main",
+       "provision": "Newark Code § 19:2-2",
+       "requirement": null,
+       "key_value": "Fair market rents as established by the United States Department of Housing and Urban Development",
+       "quote": null,
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-NEWARK-RENT-19:2-22-2",
+      "citation": "Newark, N.J., Rev. Gen. Ordinances § 19:2-22(a)",
+      "effective": {
+       "from": "2017-09-25",
+       "until": "2024-10-08",
+       "precision": "day",
+       "derived": "New Jersey municipal default: 20 days after final passage 2017-09-05 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+      },
+      "status": "repealed",
+      "answer": {
+       "status": "answered",
+       "reason": "This provision directly concerns how much rent may increase in a year, so it is relevant to the renter’s question.",
+       "source": "main",
+       "provision": "Newark, N.J., Rev. Gen. Ordinances § 19:2-22(a)",
+       "requirement": null,
+       "key_value": "25% in any one year",
+       "quote": null,
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-NEWARK-RENT-19:2-18.4",
+      "citation": "Newark, N.J., Code § 19:2-18.4(a)",
+      "effective": {
+       "from": "2017-03-27",
+       "until": "2017-09-25",
+       "precision": "day",
+       "derived": "New Jersey municipal default: 20 days after final passage 2017-03-07 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+      },
+      "status": "repealed",
+      "answer": {
+       "status": "answered",
+       "reason": "This is the only provision that states an amount for a rent increase. It is a special rehabilitation-increase limit, not the ordinary annual rule for a normal tenancy.",
+       "source": "main",
+       "provision": "Newark, N.J., Code § 19:2-18.4(a)",
+       "requirement": null,
+       "key_value": "Up to 20%",
+       "quote": null,
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   },
+   "just_cause_eviction": {
+    "question": "When can they end my tenancy?",
+    "rules": [
+     {
+      "team_rule_id": "NJ-NEWARK-EVICT-19:2-14",
+      "citation": "Newark Code § 19:2-14",
+      "effective": {
+       "from": "2024-10-08",
+       "until": null,
+       "precision": "day",
+       "derived": "New Jersey municipal default: 20 days after final passage 2024-09-18 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+      },
+      "status": "in_force",
+      "answer": {
+       "status": "answered",
+       "reason": "It directly addresses when a landlord may not bring an action to recover possession. It is only a specific prohibition, not the ordinary rule listing when a tenancy may be ended.",
+       "source": "main",
+       "provision": "Newark Code § 19:2-14",
+       "requirement": "A landlord may not bring an action to recover possession of a dwelling unit in reprisal for a tenant's efforts to secure or enforce rights under the chapter.",
+       "key_value": null,
+       "quote": "No landlord shall bring any action to recover possession of a dwelling unit as a reprisal for the tenant's efforts to secure or enforce any right under this chapter.",
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-NEWARK-EVICT-19:2-14-2",
+      "citation": "Newark, N.J., Rev. Gen. Ordinances § 19:2-14",
+      "effective": {
+       "from": "2017-09-25",
+       "until": "2024-10-08",
+       "precision": "day",
+       "derived": "New Jersey municipal default: 20 days after final passage 2017-09-05 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+      },
+      "status": "repealed",
+      "answer": {
+       "status": "answered",
+       "reason": "This provision addresses when a landlord may end a tenancy, so it is the relevant ordinary rule for the renter’s question.",
+       "source": "main",
+       "provision": "Newark, N.J., Rev. Gen. Ordinances § 19:2-14",
+       "requirement": null,
+       "key_value": null,
+       "quote": null,
+       "value_valid_until": null,
+       "value_current": true
+      }
+     },
+     {
+      "team_rule_id": "NJ-NEWARK-EVICT-19:2-18.4",
+      "citation": "Newark, N.J., Code § 19:2-18.4(h)",
+      "effective": {
+       "from": "2017-03-27",
+       "until": "2017-09-25",
+       "precision": "day",
+       "derived": "New Jersey municipal default: 20 days after final passage 2017-03-07 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
+      },
+      "status": "repealed",
+      "answer": {
+       "status": "related",
+       "reason": "This provision concerns rent-control rules, not when or on what grounds a landlord may end a tenancy.",
+       "source": "main",
+       "provision": "Newark, N.J., Code § 19:2-18.4(h)",
+       "requirement": null,
+       "key_value": null,
+       "quote": null,
+       "value_valid_until": null,
+       "value_current": true
+      }
+     }
+    ],
+    "notes": []
+   }
+  }
+ }
+}
