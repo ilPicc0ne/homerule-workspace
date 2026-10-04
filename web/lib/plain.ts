@@ -139,7 +139,7 @@ export const PLAIN: Record<string, Plain> = {
   "NJ-HOBOKEN-RENT-3": { line: "Hoboken sets rules for when a unit leaves rent control after a move-out.", weak: true },
   "NJ-JERSEY-CITY-ALG-218-12": { line: "Jersey City bans landlords from paying for rent-setting services." },
   "NJ-JERSEY-CITY-ALG-218-12.3": { line: "In Jersey City, a rent increase must come with a sworn statement that no rent-setting software was used." },
-  "NJ-JERSEY-CITY-RENT-JerseyCityLa": { line: "Jersey City has rent control. You can file a petition if you think your rent is illegal." },
+  "NJ-JERSEY-CITY-RENT-JerseyCityLa": { line: "Jersey City has rent control, and tenants can file a rent petition with the city." },
 };
 
 /** The six topics, in the v3 order and groups. */
