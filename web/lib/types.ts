@@ -87,6 +87,8 @@ export type Rule = {
   /** Status as of the default query date. */
   status: Exclude<RuleStatus, "effective_date_disputed">;
   effective_date: string | null;
+  /** First day the rule no longer applies (sunset or repeal, `effective.until`); null when the text gives none. */
+  effective_until?: string | null;
   effective_dates_disputed?: { date: string; source: string }[];
   /** Status over time; the entry with the latest `from` on or before a date wins. */
   status_history?: { from: string | null; status: RuleStatus }[];

@@ -18,6 +18,8 @@ export type Change = {
   requirement_quote: string | null;
   source_url: string | null;
   effective_from: string | null;
+  /** The rule's end date (sunset or repeal), null when none. */
+  effective_until?: string | null;
   jurisdiction_id: string;
   category: string;
   document_status: string;
@@ -50,6 +52,8 @@ export type Source = {
   demo_label: string | null;
   affected_address_ids: string[];
   rule_ids: string[];
+  /** Sources across a rule end date (engine/diff.py until_sources): the rules whose effective.until is that day. */
+  ending_rule_ids?: string[];
 };
 
 export type ChangesFile = {
