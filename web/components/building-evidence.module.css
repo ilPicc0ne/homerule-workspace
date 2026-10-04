@@ -1,0 +1,25 @@
+.panel { margin: 28px 0; padding: 24px; border: 1px solid #ccd9de; border-radius: 14px; background: #f7fafb; color: #183747; font-size: 15px; line-height: 1.65; scroll-margin-top: 100px; }
+.panel h2 { font-size: 25px; line-height: 1.2; margin: 5px 0 10px; }
+.panel h3 { font-size: 19px; margin: 0 0 10px; }
+.panel p { margin: 8px 0; }
+.panel a { color: #175b72; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #496b76; }
+.confirm { margin-top: 18px; }
+.panel .button { display: inline-block; border: 1px solid #174d60; border-radius: 8px; padding: 10px 16px; min-height: 44px; background: #174d60; color: #fff; cursor: pointer; font: inherit; font-weight: 600; margin-top: 8px; }
+.panel .button:hover { background: #103b4b; color: #fff; }
+.panel .button:active { background: #0b2d3a; color: #fff; }
+.panel .button:focus-visible { color: #fff; outline: 3px solid #287c86; outline-offset: 3px; }
+.button:focus-visible, .panel summary:focus-visible { outline: 3px solid #449ba6; outline-offset: 3px; }
+.question { margin: 22px 0; padding: 20px; border-left: 3px solid #287c86; background: white; border-radius: 6px; }
+.notice { background: #fff4df; border-radius: 6px; padding: 12px 15px; font-size: 14px; }
+.panel details { margin: 14px 0; }
+.panel summary { cursor: pointer; font-weight: 650; padding: 8px 0; min-height: 40px; }
+.record { border-top: 1px solid #d6e1e5; padding: 14px 0; }
+.recordTitle { font-size: 16px; }
+.label { color: #785416; font-size: 13px; font-weight: 650; }
+.meta { color: #52666f; font-size: 12px; }
+.request { white-space: pre-wrap; padding: 12px; background: #f3f6f7; border-radius: 6px; }
+.topics { font-size: 14px; }
+.panel blockquote { border-left: 2px solid #adc4ce; padding-left: 14px; margin: 14px 0; font-size: 14px; }
+.panel ul { padding-left: 22px; }
+@media (max-width: 600px) { .panel { padding: 17px; margin: 22px 0; } .panel h2 { font-size: 22px; } .question { padding: 14px; } .button { width: 100%; } }
