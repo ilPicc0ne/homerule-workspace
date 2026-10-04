@@ -1,63 +1,54 @@
 # HomeRule tech video ("Teach"), 60 seconds
 
 Script for the visual pipeline. The video follows one law from text to answers, so a viewer understands each
-technical decision from the story itself. The scoring criteria are served quietly: each scene carries a small
-corner tag naming the criterion it earns. Every number and
-record below is real: from `make check` on `main` (04.10.2026) and from the committed files in the source table.
-Do not add numbers that aren't here.
+technical decision from the story itself. It is a product video for outsiders: it shows what the system does and
+why it is built that way, not our internal test results. Every record below is real (see the source table). Do
+not add numbers that aren't here.
 
 ## Global direction
 
-- **Length:** 60 s hard limit. Narration is 143 words, ~59 s at ~146 words per minute. Keep pauses short.
+- **Length:** 60 s hard limit, end card included. Narration is 107 words, about 50 s spoken with the years read
+  out, which leaves room for pauses and a 6 s end card.
 - **Tone:** plain words, one idea per scene, one visual per idea. No jargon on screen beyond what the voice says.
 - **Look:** the website's own look: navy background, green accents, the site font, the drawn HomeRule logo. The
-  law's own words always in a serif font; code and data in monospace.
+  law's own words always in a serif font; code and data in monospace. Icons are drawn line icons, not emoji.
 - **Persistent label** (top corner, every frame): `Prototype · not legal advice`.
-- **Criterion tag** (opposite top corner): a small, quiet pill naming the scoring criterion the scene serves,
-  e.g. `Extraction`. It fades in a beat after the scene starts. It is never narrated and shows no points.
 - **Captions:** always on, matching the narration.
-- **Music:** newly generated, calm and rhythmic, low under the voice. No stock audio.
+- **Music:** track a, low under the voice.
 - **Pronunciation:** spoken "Home Rule", captioned "HomeRule". Spoken "Jeff", captioned "Jev" (the model
   `typesafe/jev-1.13`). "Luna" is the model `openai/gpt-6-luna`.
 - **One diagram, built up through the video:** it starts as two halves and gains one box per scene.
   - Left half, a dashed area labelled **"Model: reads"**, holding the Luna and Jev boxes.
-  - Right half, a solid area labelled **"Code: decides"**, holding the boxes for dates, addresses, the engine,
-    change tracking and the outputs.
+  - Right half, a solid area labelled **"Code: decides"**, holding the boxes for dates, addresses, the engine and
+    change over time.
 
 ## Scenes
 
-### 1 · 0:00–0:08 · The problem, and the split
+### 1 · 0:00–0:07 · The problem, and the split
 
-**Narration (20 words):** "A housing law's reach depends on address, building and date. A model reads each law once; code
-decides every answer."
+**Narration (19 words):** "A law's reach depends on address, building and date. A model reads each law once; code decides
+every answer."
 
 **Visual:**
-1. Three chips drop in one by one, joined by "×": `📍 address` × `🏢 building` × `📅 date`.
+1. Three drawn icons drop in one by one, joined by "×": pin `address` × building `building` × calendar `date`.
 2. The screen splits in two: left, dashed, **"Model: reads"**, with a law page icon; right, solid,
    **"Code: decides"**, with a gear icon.
 3. A thin arrow runs from left to right. This split is the diagram's skeleton.
 
-**Tag:** `Responsible design`
+### 2 · 0:07–0:16 · Reading one law
 
-### 2 · 0:08–0:19 · Reading one law
-
-**Narration (21 words):** "Take New Jersey's rent-software ban. Luna turns it into a rule with a word-for-word quote; Jeff
-double-checks it; three runs vote."
+**Narration (18 words):** "Take New Jersey's rent-software ban. Luna turns it into a rule with an exact quote; Jeff checks
+it."
 
 **Visual:** a page titled "New Jersey FAIR Act (2026)" slides into the **Model: reads** side.
 1. **Luna** highlights one line in the page, in serif: *"any person to perform a coordinating function."* The line
    lifts off and becomes a clean rule card: `Rule: may not perform a coordinating function` · quote ✓ · `starts:
    "the first day of the twelfth month next following the date of enactment"`.
-2. **Jev** stamps four small ticks on the card, each with a confidence:
-   - quote supports the rule `0.81`
-   - start date `0.84`
-   - adopted `0.98`
-   - state law `1.00`
-3. Three faint copies of the card shuffle and merge into one: "3 runs → keep what agrees".
+2. **Jev** stamps small ticks on the card, one per check: `quote supports the rule` · `start date` · `adopted` ·
+   `state law`.
+3. On screen only: three faint copies of the card merge into one, "3 runs → keep what agrees".
 
-**Tag:** `Extraction`
-
-### 3 · 0:19–0:24 · Dates are computed, not guessed
+### 3 · 0:16–0:21 · Dates are computed, not guessed
 
 **Narration (11 words):** "Code turns 'the twelfth month after enactment' into July first, 2027."
 
@@ -65,29 +56,24 @@ double-checks it; three runs vote."
 months on a small strip → lands on **`Jul 1, 2027`**. The card's start-date field turns from serif "as written" text
 into the date.
 
-**Tag:** `Extraction`
+### 4 · 0:21–0:33 · From a law to one building
 
-### 4 · 0:24–0:37 · From a law to one building
-
-**Narration (28 words):** "The Census finds each address's legal city; records give the building's age. Built 1927: covered.
-Built 1978, against a 1978 cutoff: unknown, and we say what settles it."
+**Narration (23 words):** "The Census finds each address's legal city. Built 1927: covered. Built 1978, on a 1978 cutoff:
+unknown, and we say what settles it."
 
 **Visual:** switch to a Los Angeles example, with the LA rent ordinance's cutoff of Oct 1, 1978.
-1. A pin drops on `6238 De Longpre Ave`. The Census stamps **"Los Angeles"**, a small reminder that the legal city
-   can differ from the mailing city (38 of 500 do). Its year, `1927`, appears as a short bar on a timeline, well
-   before a vertical line marked **Oct 1, 1978**, so the result reads **✓ covered**.
+1. A pin drops on `6238 De Longpre Ave`. The Census stamps **"Los Angeles"**, with a small note: "legal city, not
+   mailing city". A chip on screen only: `building records → year built`. The year, `1927`, appears as a short bar on
+   a timeline, well before a vertical line marked **Oct 1, 1978**, so the result reads **✓ covered**.
 2. Second pin: `10635 Sherman Grove Ave`, built `1978`. Its bar covers the whole of 1978, and the cutoff line cuts
    through it, so the bar turns amber and the result reads **? unknown**. Beneath it, the page's real line: "Check the
    certificate-of-occupancy date."
 
 The idea to land visually: a year is a range, and the law's date can fall inside it.
 
-**Tag:** `Address coverage`
+### 5 · 0:33–0:41 · Change is just a later date
 
-### 5 · 0:37–0:45 · Change is just a later date
-
-**Narration (20 words):** "Change is the same engine on a later date. All five test cases match; state-city clashes are
-flagged, never decided."
+**Narration (15 words):** "Change is the same engine on a later date; state-city clashes are flagged, never decided."
 
 **Visual:**
 1. A date slider moves from `Oct 1, 2026` to `Jul 2, 2027`. A Hoboken building (`1031-1035 Clinton St`) flips the
@@ -95,68 +81,47 @@ flagged, never decided."
 2. A small flag pops up on the building: "may clash with Hoboken's own ban: flagged for review". The law's sentence
    appears beside it, in serif: *"A municipality shall be prohibited from enacting an ordinance that conflicts with
    this act."*
-3. Along the bottom, five small tiles tick green: `T1 · T2 · T3 · T4 · T5`.
 
-**Tag:** `Change tracking`
+### 6 · 0:41–0:54 · Decide once, answer instantly
 
-### 6 · 0:45–0:51 · Why you can trust it
-
-**Narration (16 words):** "Quotes are checked against their sources, every model call is logged, held-out questions: sixteen of
-sixteen."
-
-**Visual:** three quick cards, about 2 s each:
-- the FAIR Act quote highlighted inside its source page, with a ✓ and `54/54 quotes found word for word`;
-- a scrolling log, one line legible: `luna_extract · D069 · openai/gpt-6-luna · request ca265022…`;
-- `16/16` large, with the line "questions we never tuned on".
-
-**Tag:** `Citations · Responsible design`
-
-### 7 · 0:51–1:00 · Why it scales: decide once, answer instantly
-
-**Narration (27 words):** "All the model work happens once, when a law is indexed. Answering is plain code: under a millisecond
-per address. So more places only need more data."
+**Narration (21 words):** "Models run once, when a law is indexed; answering is plain code, under a millisecond. A new city
+is just data."
 
 **Visual:**
 1. A horizontal split, two lanes:
-   - top lane, **"Index time · once per law"**: the Luna and Jev boxes run, with a counter "13 model calls for this
-     rule";
-   - bottom lane, **"Answer time · every request"**: only the engine gear, with three numbers in monospace:
-     `0 model calls` · `< 1 ms per address` · `all 500 addresses in 0.3 s`.
-2. The bottom lane fans out into three small icons: **website** · **API** · **AI assistant (MCP)**.
-3. On "more data", a US map: CA, NJ and MA lit, with the ten cities as bright dots. The rest is dim, and a label
-   points at it: "needs: law texts + building records". No code icon appears anywhere: adding places is data, not
-   code.
-4. **End card:** the HomeRule logo · "Housing law, quoted and dated, for your exact address." · `yourhomerule.com` ·
-   "Not legal advice".
+   - top lane, **"Index time · once per law"**: the Luna and Jev boxes run;
+   - bottom lane, **"Answer time · engine"**: only the engine gear, with two numbers in monospace:
+     `0 model calls` · `< 1 ms per address`.
+2. On "a new city", a US map: CA, NJ and MA lit, with the ten cities as bright dots. One dim city inside a lit state
+   gets a label: "a new city: its law texts + building records".
 
-**Tag:** `Scalability`
+### End card · 0:54–1:00
 
-**If the live engine API is deployed before the render** (in progress: typed addresses answered live by the same
-engine): swap sentence 2 for "Answers are computed live, in under a millisecond per address." (11 words, same
-length) and add a small `live` badge on the bottom lane. Until it is deployed, keep the default line: it is true of
-the engine today.
+The HomeRule logo · "Housing law, quoted and dated, for your exact address." · `yourhomerule.com` · "Not legal
+advice".
 
 ## Word count
 
-143 spoken words (scenes: 20 · 21 · 11 · 28 · 20 · 16 · 27).
+107 spoken words (scenes: 19 · 18 · 11 · 23 · 15 · 21).
 
 ## Facts used, and where they come from
 
 | Claim | Source |
 |---|---|
-| FAIR Act quote, start date as written, enacted 2026-07-20, effective 2027-07-01; Jev 0.81 / 0.84 / 0.98 / 1.00; log line `ca265022…` | `out/audit.json` → `NJ-ALG-56:9-23` |
+| FAIR Act quote, start date as written, enacted 2026-07-20, effective 2027-07-01; Jev's four checks | `out/audit.json` → `NJ-ALG-56:9-23` |
 | Conflict sentence | same, `code.interaction.quote` |
 | 6238 De Longpre Ave built 1927, applies; 10635 Sherman Grove Ave built 1978, unknown | `out/lookups.full.json`, `out/addresses.resolved.json` |
-| 38 of 500 mailing city ≠ legal city; 500/500 resolved | `out/addresses.resolved.json` |
+| Legal city can differ from mailing city | `out/addresses.resolved.json` |
 | Hoboken 1031-1035 Clinton St: not yet effective → applies, conflict flagged | `out/changes.full.json` |
-| T1–T5 match; 26/27 named rules; 54/54 quotes; held-out 16/16 | `make check` |
-| Website, API, MCP | `web/app/a/[id]`, `web/app/api/address`, `web/app/api/mcp` |
-| 0 model calls at answer time; 0.6 ms per address on average (all 500 in 0.32 s), 0.8 ms for one address including the what-if reruns | `engine.build.build_lookups` / `evaluate_address`, timed on Dimitar's laptop, 04.10.2026 |
+| 0 model calls and under 1 ms per address in the engine | `engine.build.evaluate_address`, timed on Dimitar's laptop and Silvan's (0.39 ms per address), 04.10.2026 |
 
 ## Don'ts
 
-- No point values; criterion tags are names only. No summary row of criteria.
+- No internal test results: no test cases, held-out scores, quote counts, eval runs or `make check`. This is a product
+  video for outsiders.
+- Don't say the website, API or chatbot run the engine on each request: they serve its precomputed output.
+- Don't say adding a state is data only: a new state also needs code for its default start dates and a building-data
+  source. A new city in a covered state is data.
 - Don't say or show "compliant", "illegal" or "guarantee", and don't compare a renter's rent to a cap.
-- No chatbot comparisons. No `score.py` (not shared with participants). No T6 or "hour 16".
+- No chatbot comparisons. No `score.py`. No T6 or "hour 16".
 - Don't present parcel lookups as built: today, building-level answers exist for the 500 sample addresses.
-- Quotes: "checked against its source". Don't claim all are from the supplied corpus (47 of 54 are).
