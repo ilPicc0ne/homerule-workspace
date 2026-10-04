@@ -5,6 +5,7 @@ import { changes } from "../../lib/changes/data.ts";
 import { addressChange, esc, FROM, plainChange, render } from "../../lib/changes/email.ts";
 import type { AddressChange } from "../../lib/changes/email.ts";
 import type { Change } from "../../lib/changes/types.ts";
+import { confirmEmail } from "../../lib/alerts/confirm-email.ts";
 
 const j3 = () => {
   const ac = addressChange(changes, "A0256", "asof:2026-10-01..2027-07-02");
@@ -16,8 +17,9 @@ test("J3: Hoboken FAIR Act email is one plain sentence and a link to the address
   const ac = j3();
   const m = render(ac);
   assert.equal(m.from, FROM);
-  assert.equal(m.from, "HomeRule <alerts@yourhomerule.com>");
-  assert.equal(m.subject, "Something changes for your rent rules at 327 Jackson St");
+  assert.equal(m.from, "HomeRule Alerts <alerts@yourhomerule.com>");
+  assert.equal(m.subject, "327 Jackson St: Rent-setting software rule changes on Jul 1, 2027");
+  assert.equal(m.preheader, "Rules change from Jul 1, 2027 · 327 Jackson St");   // no verdict in the data yet: neutral
   for (const part of [m.text, m.html]) {
     assert.match(part, /Not legal advice/);
     assert.match(part, /October 1, 2026/);                          // the as-of date
@@ -25,8 +27,8 @@ test("J3: Hoboken FAIR Act email is one plain sentence and a link to the address
     assert.match(part, /Jul 1, 2027/);                              // effective date
     assert.match(part, /https:\/\/yourhomerule\.com\/a\/A0256/);   // the button goes to the address page
     assert.match(part, /\/changes\/A0256/);                       // secondary link to the change log
-    assert.match(part, /See the details/);
-    assert.match(part, /\/a\/A0256#h-ahead/);                     // "See the details" -> the address page history
+    assert.match(part, /See what this means for 327 Jackson St/);
+    assert.match(part, /\/a\/A0256#h-ahead/);                     // the button -> the address page history
     // no legal title, status jargon, citations or quotes
     assert.doesNotMatch(part, /coordinating function|Enacted, not yet in effect|56:9-23|→|&rarr;|Citation|blockquote/);
   }
@@ -41,8 +43,8 @@ test("renter-impact badge: from #59's renter_impact.verdict only; old impact str
   for (const part of [absent.text, absent.html]) assert.doesNotMatch(part, /renter protection|protection for renters/);
   const better = render(withImpact({ renter_impact: { verdict: "better", topic: "algorithmic_rent_setting" } }));
   assert.match(better.text, /↑ This change adds renter protection\. Your unit may differ\./);
-  assert.match(better.html, /↑<\/span> This change adds renter protection/);
-  assert.match(render(withImpact({ renter_impact: { verdict: "worse" } })).html, /↓<\/span> This change narrows renter protection/);
+  assert.match(better.html, />↑<\/span><\/td>[\s\S]*?>This change adds renter protection</);
+  assert.match(render(withImpact({ renter_impact: { verdict: "worse" } })).html, />↓<\/span><\/td>[\s\S]*?>This change narrows renter protection</);
   // the classifier strings the old impactOf read are not #59's shape: no badge
   assert.doesNotMatch(render(withImpact({ impact: "more_protection", renter_impact: "more_protection" })).html, /renter protection/);
   assert.equal(plainChange(base.entry.changes[0], base.as_of).badge, null);
@@ -93,7 +95,8 @@ test("a demo source is labelled in subject, text and html", () => {
   assert.match(m.subject, /^\[Demo: fictional ordinance\]/);
   assert.match(m.text, /DEMO: FICTIONAL ORDINANCE/);
   assert.match(m.html, /Demo: fictional ordinance/);
-  assert.match(m.text, /Application fees — From Mar 1, 2027: Takes effect later|Application fees — /);
+  assert.match(m.text, /1\. Application fees\n/);
+  assert.match(m.preheader, /^Demo, not real law · /);
   assert.doesNotMatch(m.html, /<script>/);
 });
 
@@ -113,4 +116,88 @@ test("every changed address renders, as-of on every payload", () => {
     if (ac) assert.match(render(ac).text, new RegExp(`as of`));
   }
   assert.equal(addressChange(changes, "NOPE"), null);
+});
+
+// ── Inbox view and rules over every case (subject, preheader, banned words, footer) ──────────────────────────────
+const verdicts = (ac: AddressChange, v: string): AddressChange => ({
+  ...ac, entry: { ...ac.entry, changes: ac.entry.changes.map((c) => ({ ...c, renter_impact: { verdict: v } })) },
+});
+const need = (ac: AddressChange | null) => { assert.ok(ac); return ac; };
+const CASES: Record<string, { ac: AddressChange; subject: string; preheader: string }> = {
+  up: {
+    ac: verdicts(j3(), "better"),
+    subject: "327 Jackson St: Rent-setting software rule changes on Jul 1, 2027",
+    preheader: "Adds renter protection from Jul 1, 2027 · 327 Jackson St",
+  },
+  down: {
+    ac: verdicts(need(addressChange(changes, "A0019", "asof:2029-12-31..2030-01-02")), "worse"),
+    subject: "3820 Haines St: Eviction and rent increase rules end on Jan 1, 2030",
+    preheader: "Narrows renter protection from Jan 1, 2030 · 3820 Haines St",
+  },
+  mixed: {
+    ac: { ...demo, entry: { ...demo.entry, demo_label: null, kind: "as_of", changes: [
+      { ...demoChange, renter_impact: { verdict: "better" } },
+      { ...demoChange, team_rule_id: "TEST-2", category: "security_deposits", effective_from: "2027-05-01", renter_impact: { verdict: "worse" } },
+    ] } },
+    subject: "134 Oxford St: Application fee and security deposit rules change from Mar 1, 2027",
+    preheader: "Adds and narrows renter protection from Mar 1, 2027 · 134 Oxford St",
+  },
+  demo: {
+    ac: verdicts(demo, "better"),
+    subject: "[Demo: fictional ordinance] 134 Oxford St: Application fee rule changes on Mar 1, 2027",
+    preheader: "Demo, not real law · Adds renter protection from Mar 1, 2027 · 134 Oxford St",
+  },
+  past: {
+    ac: verdicts(need(addressChange(changes, "A0019", "asof:2025-12-31..2026-01-02")), "better"),
+    subject: "3820 Haines St: Rent-setting software and application fee rules changed on Jan 1, 2026",
+    preheader: "Added renter protection on Jan 1, 2026 · 3820 Haines St",
+  },
+};
+
+for (const [name, c] of Object.entries(CASES)) {
+  test(`inbox view (${name}): sender, factual subject (where, what, when), preheader (direction, when, where)`, () => {
+    const m = render(c.ac);
+    assert.equal(m.from, "HomeRule Alerts <alerts@yourhomerule.com>");
+    assert.equal(m.subject, c.subject);
+    assert.equal(m.preheader, c.preheader);
+    assert.ok(m.html.includes(`${esc(c.preheader)}&#847;`), "preheader is the first hidden text in the body");
+    assert.doesNotMatch(m.subject, /protection|!|urgent|warning/i);          // the subject stays factual, no direction, no alarm
+  });
+}
+
+test("every case and the confirmation: no verdict or advice words, not legal advice + as-of + unsubscribe in html and text", () => {
+  const confirm = confirmEmail({
+    to: "r@example.com", label: "134 Oxford St, Cambridge, MA", addressId: "A0010", site: "https://yourhomerule.com",
+    token: "t", unsubToken: "u", asOfText: "October 1, 2026",
+  });
+  const all = [...Object.values(CASES).map((c) => render(c.ac, { token: "u" })), confirm];
+  for (const m of all) {
+    for (const part of [m.subject, m.text, m.html]) {
+      assert.doesNotMatch(part, /\b(compliant|non-compliant|noncompliant|illegal|unlawful|violat\w*|you should|we recommend|we advise)\b/i, m.subject);
+    }
+    for (const part of [m.text, m.html]) {
+      assert.match(part, /Not legal advice/);
+      assert.match(part, /data as of October 1, 2026/);
+      assert.match(part, /unsubscribe\?a=A\d+&(amp;)?t=u/);
+      assert.match(part, /Prototype built at a hackathon/);
+    }
+    assert.equal(m.headers["List-Unsubscribe-Post"], "List-Unsubscribe=One-Click");
+    assert.match(m.headers["List-Unsubscribe"], /^<https:\/\/yourhomerule\.com\/api\/unsubscribe\?a=A\d+&t=u>$/);
+    assert.match(m.html, /<meta name="color-scheme" content="light dark">/);
+    assert.doesNotMatch(m.html, /<img|<svg/i);
+  }
+  assert.match(confirm.html, /Example, not about this address/);
+  assert.match(confirm.text, /Example of an alert \(not about this address\)/);
+});
+
+test("the text part mirrors the cards: every plain line and badge appears in both parts", () => {
+  for (const c of Object.values(CASES)) {
+    const m = render(c.ac);
+    const flat = m.html.replace(/<[^>]+>/g, "").replace(/&#39;/g, "'").replace(/&amp;/g, "&");
+    for (const ch of c.ac.entry.changes) {
+      const p = plainChange(ch, c.ac.as_of, undefined, c.ac.entry);
+      assert.ok(m.text.includes(p.sentence) && flat.includes(p.sentence), p.sentence);
+      if (p.badge) assert.ok(m.text.includes(`${p.badge.arrow} ${p.badge.text}`) && flat.includes(p.badge.text));
+    }
+  }
 });

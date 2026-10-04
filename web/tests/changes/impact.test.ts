@@ -84,7 +84,8 @@ test("superseded rule: badge only from its own diff change, never from 'takes ef
 
 test("mixed email (↑ + ↓ + grey + a pending bill): neutral subject, 'some add, some narrow', one badge per item, none on the bill", () => {
   const m = render(mail(FX.mixed));
-  assert.equal(m.subject, "Something changes for your rent rules at 3 Test St");
+  assert.equal(m.subject, "3 Test St: 3 housing rules change from Mar 1, 2027");   // the pending bill is not counted
+  assert.equal(m.preheader, "Adds and narrows renter protection from Mar 1, 2027 · 3 Test St");
   const lead = "Rules change at 3 Test St from Mar 1, 2027: some add protection, some narrow it.";
   for (const part of [m.text, m.html]) {
     assert.ok(part.includes(lead), "first line");
@@ -93,10 +94,11 @@ test("mixed email (↑ + ↓ + grey + a pending bill): neutral subject, 'some ad
     assert.match(part, /May conflict with another rule, not decided/);
   }
   assert.equal(m.text.match(/This change (adds|narrows) renter protection/g)?.length, 2);   // the bill (also "better") has none
-  assert.match(m.text, /• Rent increases — [^\n]*\n/);
-  assert.doesNotMatch(m.text.split("\n").find((l) => l.startsWith("• Rent increases"))!, /protection\)/);
-  assert.match(m.html, /aria-label="This change adds renter protection\. Your unit may differ\."/);
-  assert.match(m.html, /\/a\/A9999#h-ahead" class="btn"[^>]*>See the details/);
+  const bill = m.text.split("\n\n").find((b) => /^\d+\. Rent increases/.test(b))!;
+  assert.ok(bill, "the bill has its own item");
+  assert.doesNotMatch(bill, /renter protection/);
+  assert.match(m.html, /title="This change adds renter protection\. Your unit may differ\."/);
+  assert.match(m.html, /\/a\/A9999#h-ahead" class="btn-a"[^>]*>See what this means for 3 Test St/);
 });
 
 test("past-only email: 'has changed … since <date>', with the why and a link to the law text", () => {
@@ -137,15 +139,15 @@ test("banned words: none in any rendered email (fixtures and the live diff) or a
   }
 });
 
-test("badge colours: AA contrast (4.5:1) on their tint", () => {
+test("badge colours: AA contrast (4.5:1): words on the card, white arrow on the circle, light and dark", () => {
   const lum = (hex: string) => {
     const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   };
   const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
   const pairs: [string, string][] = [
-    ...Object.values(BADGE_STYLE).map((s) => [s.color, s.bg] as [string, string]),
-    ["#9BDDB7", "#173D2A"], ["#F6B5AE", "#45201F"], ["#C7CDD4", "#2A3036"],   // email dark mode (lib/alerts/layout.ts)
+    ...Object.values(BADGE_STYLE).flatMap((s) => [[s.color, "#ffffff"], ["#ffffff", s.dot]] as [string, string][]),
+    ["#8FD9AF", "#1A222B"], ["#F6B5AE", "#1A222B"], ["#C7CDD4", "#1A222B"], ["#ffffff", "#5C6268"],   // email dark mode (lib/alerts/layout.ts)
     ["#11643D", "#E2F2E8"], ["#9B2C2C", "#FBE9E7"], ["#4D5256", "#ECEDEE"],   // page tokens (v3.css --*-ink on --*-tint)
   ];
   for (const [fg, bg] of pairs) assert.ok(ratio(fg, bg) >= 4.5, `${fg} on ${bg}: ${ratio(fg, bg).toFixed(2)}`);
