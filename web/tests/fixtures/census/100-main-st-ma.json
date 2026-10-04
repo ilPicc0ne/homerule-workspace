@@ -1,0 +1,5479 @@
+{
+ "query": "100 Main St, MA",
+ "status": 200,
+ "body": {
+  "result": {
+   "input": {
+    "address": {
+     "address": "100 Main St, MA"
+    },
+    "vintage": {
+     "isDefault": true,
+     "id": "4",
+     "vintageName": "Current_Current",
+     "vintageDescription": "Current Vintage - Current Benchmark"
+    },
+    "benchmark": {
+     "isDefault": true,
+     "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+     "id": "4",
+     "benchmarkName": "Public_AR_Current"
+    }
+   },
+   "addressMatches": [
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "86842533"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "00380",
+        "GEOID": "2501700380",
+        "CENTLAT": "+42.4842967",
+        "AREAWATER": 1114902,
+        "STATE": "25",
+        "BASENAME": "Acton",
+        "OID": "27690260070061",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.4839530",
+        "NAME": "Acton town",
+        "OBJECTID": 35425,
+        "CENTLON": "-071.4377853",
+        "COUSUBCC": "T1",
+        "AREALAND": 51454858,
+        "INTPTLON": "-071.4384947",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618213",
+        "COUNTY": "017"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25017",
+        "CENTLAT": "+42.4853699",
+        "AREAWATER": 75219794,
+        "STATE": "25",
+        "BASENAME": "Middlesex",
+        "OID": "27590260056194",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.4817215",
+        "NAME": "Middlesex County",
+        "OBJECTID": 2897,
+        "CENTLON": "-071.3915833",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606935",
+        "AREALAND": 2118363230,
+        "INTPTLON": "-071.3949160",
+        "MTFCC": "G4020",
+        "COUNTY": "017"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.454384614635,
+      "y": 42.457807995915
+     },
+     "addressComponents": {
+      "zip": "01720",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "ACTON",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "112",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "64",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, ACTON, MA, 01720"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "46799857"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "00520",
+        "GEOID": "2500500520",
+        "CENTLAT": "+41.7138520",
+        "AREAWATER": 1350796,
+        "STATE": "25",
+        "BASENAME": "Acushnet",
+        "OID": "27690406240847",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7182175",
+        "NAME": "Acushnet town",
+        "OBJECTID": 1408,
+        "CENTLON": "-070.9012160",
+        "COUSUBCC": "T1",
+        "AREALAND": 47725793,
+        "INTPTLON": "-070.9011509",
+        "MTFCC": "G4040",
+        "COUSUBNS": "01729673",
+        "COUNTY": "005"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 2,
+        "STGEOMETRY_Area": 6713470.448885575,
+        "NECTAPCI": "N",
+        "GEOID": "2500530",
+        "CENTLAT": "+41.6850108",
+        "AREAWATER": 75869,
+        "BASENAME": "Acushnet Center",
+        "STATE": "25",
+        "OID": "28090406245346",
+        "LSADC": "57",
+        "PLACE": "00530",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+41.6851717",
+        "NAME": "Acushnet Center CDP",
+        "OBJECTID": 14854,
+        "PLACECC": "U2",
+        "CENTLON": "-070.9064825",
+        "STGEOMETRY_Length": 11452.305678457491,
+        "CBSAPCI": "N",
+        "AREALAND": 3665476,
+        "INTPTLON": "-070.9063935",
+        "PLACENS": "02377976",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25005",
+        "CENTLAT": "+41.7567465",
+        "AREAWATER": 357437743,
+        "STATE": "25",
+        "BASENAME": "Bristol",
+        "OID": "27590264619750",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7488299",
+        "NAME": "Bristol County",
+        "OBJECTID": 2097,
+        "CENTLON": "-071.0880857",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606929",
+        "AREALAND": 1432568156,
+        "INTPTLON": "-071.0888191",
+        "MTFCC": "G4020",
+        "COUNTY": "005"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.911563441646,
+      "y": 41.682643753583
+     },
+     "addressComponents": {
+      "zip": "02743",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "ACUSHNET",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "90",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, ACUSHNET, MA, 02743"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "657804046"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "00840",
+        "GEOID": "2501300840",
+        "CENTLAT": "+42.0657284",
+        "AREAWATER": 2622626,
+        "STATE": "25",
+        "BASENAME": "Agawam Town",
+        "OID": "27690249177275",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.0635814",
+        "NAME": "Agawam Town city",
+        "OBJECTID": 36137,
+        "CENTLON": "-072.6525524",
+        "COUSUBCC": "C5",
+        "AREALAND": 60403409,
+        "INTPTLON": "-072.6535865",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618180",
+        "COUNTY": "013"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 5,
+        "STGEOMETRY_Area": 114439233.51869209,
+        "NECTAPCI": "N",
+        "GEOID": "2500840",
+        "CENTLAT": "+42.0657284",
+        "AREAWATER": 2622626,
+        "BASENAME": "Agawam Town",
+        "STATE": "25",
+        "OID": "27890249188585",
+        "LSADC": "25",
+        "PLACE": "00840",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.0635814",
+        "NAME": "Agawam Town city",
+        "OBJECTID": 30642,
+        "PLACECC": "C5",
+        "CENTLON": "-072.6525524",
+        "STGEOMETRY_Length": 51293.64326094773,
+        "CBSAPCI": "N",
+        "AREALAND": 60403409,
+        "INTPTLON": "-072.6535865",
+        "PLACENS": "00618180",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25013",
+        "CENTLAT": "+42.1353421",
+        "AREAWATER": 44414591,
+        "STATE": "25",
+        "BASENAME": "Hampden",
+        "OID": "27590249163642",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.1361961",
+        "NAME": "Hampden County",
+        "OBJECTID": 1286,
+        "CENTLON": "-072.6315157",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606933",
+        "AREALAND": 1598038032,
+        "INTPTLON": "-072.6356452",
+        "MTFCC": "G4020",
+        "COUNTY": "013"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.623776169152,
+      "y": 42.087840958723
+     },
+     "addressComponents": {
+      "zip": "01001",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "AGAWAM",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "136",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, AGAWAM, MA, 01001"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "86619409"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "01185",
+        "GEOID": "2500901185",
+        "CENTLAT": "+42.8529466",
+        "AREAWATER": 3729190,
+        "STATE": "25",
+        "BASENAME": "Amesbury",
+        "OID": "27690206485190",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.8512764",
+        "NAME": "Amesbury city",
+        "OBJECTID": 26882,
+        "CENTLON": "-070.9446339",
+        "COUSUBCC": "C5",
+        "AREALAND": 31836414,
+        "INTPTLON": "-070.9557903",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618292",
+        "COUNTY": "009"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 4,
+        "STGEOMETRY_Area": 66210230.626331516,
+        "NECTAPCI": "N",
+        "GEOID": "2501185",
+        "CENTLAT": "+42.8529466",
+        "AREAWATER": 3729190,
+        "BASENAME": "Amesbury",
+        "STATE": "25",
+        "OID": "278903709995703",
+        "LSADC": "25",
+        "PLACE": "01185",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.8512764",
+        "NAME": "Amesbury city",
+        "OBJECTID": 29605,
+        "PLACECC": "C5",
+        "CENTLON": "-070.9446339",
+        "STGEOMETRY_Length": 36198.652392363874,
+        "CBSAPCI": "N",
+        "AREALAND": 31836414,
+        "INTPTLON": "-070.9557903",
+        "PLACENS": "00618292",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25009",
+        "CENTLAT": "+42.6388128",
+        "AREAWATER": 870172222,
+        "STATE": "25",
+        "BASENAME": "Essex",
+        "OID": "27590206454990",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.6427082",
+        "NAME": "Essex County",
+        "OBJECTID": 2550,
+        "CENTLON": "-070.8677682",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606931",
+        "AREALAND": 1275605848,
+        "INTPTLON": "-070.8649085",
+        "MTFCC": "G4020",
+        "COUNTY": "009"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.931335323524,
+      "y": 42.856141377387
+     },
+     "addressComponents": {
+      "zip": "01913",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "AMESBURY",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "108",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, AMESBURY, MA, 01913"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "39844337"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "01370",
+        "GEOID": "2501501370",
+        "CENTLAT": "+42.3644540",
+        "AREAWATER": 340031,
+        "STATE": "25",
+        "BASENAME": "Amherst Town",
+        "OID": "2769019627156258",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.3635343",
+        "NAME": "Amherst Town city",
+        "OBJECTID": 29703,
+        "CENTLON": "-072.5068594",
+        "COUSUBCC": "C5",
+        "AREALAND": 71546037,
+        "INTPTLON": "-072.5072913",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618195",
+        "COUNTY": "015"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 131758265.94812939,
+        "NECTAPCI": "N",
+        "GEOID": "2501370",
+        "CENTLAT": "+42.3644540",
+        "AREAWATER": 340031,
+        "BASENAME": "Amherst Town",
+        "STATE": "25",
+        "OID": "2789019627110887",
+        "LSADC": "25",
+        "PLACE": "01370",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.3635343",
+        "NAME": "Amherst Town city",
+        "OBJECTID": 31934,
+        "PLACECC": "C5",
+        "CENTLON": "-072.5068594",
+        "STGEOMETRY_Length": 55235.41815730922,
+        "CBSAPCI": "Y",
+        "AREALAND": 71546037,
+        "INTPTLON": "-072.5072913",
+        "PLACENS": "00618195",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25015",
+        "CENTLAT": "+42.3402637",
+        "AREAWATER": 46625896,
+        "STATE": "25",
+        "BASENAME": "Hampshire",
+        "OID": "27590401060345",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3394600",
+        "NAME": "Hampshire County",
+        "OBJECTID": 1275,
+        "CENTLON": "-072.6635428",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606934",
+        "AREALAND": 1365533871,
+        "INTPTLON": "-072.6636919",
+        "MTFCC": "G4020",
+        "COUNTY": "015"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.518669662398,
+      "y": 42.375797884495
+     },
+     "addressComponents": {
+      "zip": "01002",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "AMHERST",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "136",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "100",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, AMHERST, MA, 01002"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "86630000"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "01465",
+        "GEOID": "2500901465",
+        "CENTLAT": "+42.6465531",
+        "AREAWATER": 3466620,
+        "STATE": "25",
+        "BASENAME": "Andover",
+        "OID": "27690206485191",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.6480405",
+        "NAME": "Andover town",
+        "OBJECTID": 27325,
+        "CENTLON": "-071.1650478",
+        "COUSUBCC": "T1",
+        "AREALAND": 79811573,
+        "INTPTLON": "-071.1617485",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619444",
+        "COUNTY": "009"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 5,
+        "STGEOMETRY_Area": 18054307.047789592,
+        "NECTAPCI": "N",
+        "GEOID": "2501430",
+        "CENTLAT": "+42.6553893",
+        "AREAWATER": 208637,
+        "BASENAME": "Andover",
+        "STATE": "25",
+        "OID": "28090206494305",
+        "LSADC": "57",
+        "PLACE": "01430",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+42.6556720",
+        "NAME": "Andover CDP",
+        "OBJECTID": 22787,
+        "PLACECC": "U1",
+        "CENTLON": "-071.1418338",
+        "STGEOMETRY_Length": 23214.001834468272,
+        "CBSAPCI": "N",
+        "AREALAND": 9551029,
+        "INTPTLON": "-071.1422439",
+        "PLACENS": "02377980",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25009",
+        "CENTLAT": "+42.6388128",
+        "AREAWATER": 870172222,
+        "STATE": "25",
+        "BASENAME": "Essex",
+        "OID": "27590206454990",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.6427082",
+        "NAME": "Essex County",
+        "OBJECTID": 2550,
+        "CENTLON": "-070.8677682",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606931",
+        "AREALAND": 1275605848,
+        "INTPTLON": "-070.8649085",
+        "MTFCC": "G4020",
+        "COUNTY": "009"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.13849627448,
+      "y": 42.653622802402
+     },
+     "addressComponents": {
+      "zip": "01810",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "ANDOVER",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "98",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "104",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, ANDOVER, MA, 01810"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "637081528"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "01885",
+        "GEOID": "2502701885",
+        "CENTLAT": "+42.6589780",
+        "AREAWATER": 6768397,
+        "STATE": "25",
+        "BASENAME": "Ashburnham",
+        "OID": "27690515417211",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.6486969",
+        "NAME": "Ashburnham town",
+        "OBJECTID": 32797,
+        "CENTLON": "-071.9252124",
+        "COUSUBCC": "T1",
+        "AREALAND": 99284826,
+        "INTPTLON": "-071.9198962",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618356",
+        "COUNTY": "027"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25027",
+        "CENTLAT": "+42.3510193",
+        "AREAWATER": 177364099,
+        "STATE": "25",
+        "BASENAME": "Worcester",
+        "OID": "27590260056196",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3116934",
+        "NAME": "Worcester County",
+        "OBJECTID": 2620,
+        "CENTLON": "-071.9073662",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606940",
+        "AREALAND": 3912622788,
+        "INTPTLON": "-071.9402820",
+        "MTFCC": "G4020",
+        "COUNTY": "027"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.914730106074,
+      "y": 42.636500632073
+     },
+     "addressComponents": {
+      "zip": "01430",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "ASHBURNHAM",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "104",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "100",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, ASHBURNHAM, MA, 01430"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "87089684"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "01955",
+        "GEOID": "2501701955",
+        "CENTLAT": "+42.6765103",
+        "AREAWATER": 1000254,
+        "STATE": "25",
+        "BASENAME": "Ashby",
+        "OID": "27690260070063",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.6762927",
+        "NAME": "Ashby town",
+        "OBJECTID": 24430,
+        "CENTLON": "-071.8231788",
+        "COUSUBCC": "T1",
+        "AREALAND": 61290671,
+        "INTPTLON": "-071.8325227",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618214",
+        "COUNTY": "017"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25017",
+        "CENTLAT": "+42.4853699",
+        "AREAWATER": 75219794,
+        "STATE": "25",
+        "BASENAME": "Middlesex",
+        "OID": "27590260056194",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.4817215",
+        "NAME": "Middlesex County",
+        "OBJECTID": 2897,
+        "CENTLON": "-071.3915833",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606935",
+        "AREALAND": 2118363230,
+        "INTPTLON": "-071.3949160",
+        "MTFCC": "G4020",
+        "COUNTY": "017"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.80072006962,
+      "y": 42.665138752813
+     },
+     "addressComponents": {
+      "zip": "01431",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "ASHBY",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "420",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "2",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, ASHBY, MA, 01431"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "39935432"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "02095",
+        "GEOID": "2501102095",
+        "CENTLAT": "+42.5201684",
+        "AREAWATER": 649906,
+        "STATE": "25",
+        "BASENAME": "Ashfield",
+        "OID": "27690244979305",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.5191278",
+        "NAME": "Ashfield town",
+        "OBJECTID": 1202,
+        "CENTLON": "-072.8065737",
+        "COUSUBCC": "T1",
+        "AREALAND": 103584077,
+        "INTPTLON": "-072.8057910",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619377",
+        "COUNTY": "011"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25011",
+        "CENTLAT": "+42.5831541",
+        "AREAWATER": 65594676,
+        "STATE": "25",
+        "BASENAME": "Franklin",
+        "OID": "27590244937618",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.5845038",
+        "NAME": "Franklin County",
+        "OBJECTID": 3217,
+        "CENTLON": "-072.5917075",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606932",
+        "AREALAND": 1810943446,
+        "INTPTLON": "-072.5917921",
+        "MTFCC": "G4020",
+        "COUNTY": "011"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.802527926019,
+      "y": 42.529046134268
+     },
+     "addressComponents": {
+      "zip": "01330",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "ASHFIELD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "144",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "100",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, ASHFIELD, MA, 01330"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "86849066"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "02130",
+        "GEOID": "2501702130",
+        "CENTLAT": "+42.2572580",
+        "AREAWATER": 1389649,
+        "STATE": "25",
+        "BASENAME": "Ashland",
+        "OID": "27690260070064",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.2580297",
+        "NAME": "Ashland town",
+        "OBJECTID": 24431,
+        "CENTLON": "-071.4686497",
+        "COUSUBCC": "T1",
+        "AREALAND": 31954437,
+        "INTPTLON": "-071.4753293",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619394",
+        "COUNTY": "017"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25017",
+        "CENTLAT": "+42.4853699",
+        "AREAWATER": 75219794,
+        "STATE": "25",
+        "BASENAME": "Middlesex",
+        "OID": "27590260056194",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.4817215",
+        "NAME": "Middlesex County",
+        "OBJECTID": 2897,
+        "CENTLON": "-071.3915833",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606935",
+        "AREALAND": 2118363230,
+        "INTPTLON": "-071.3949160",
+        "MTFCC": "G4020",
+        "COUNTY": "017"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.465998486013,
+      "y": 42.261576529423
+     },
+     "addressComponents": {
+      "zip": "01721",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "ASHLAND",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "52",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "198",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, ASHLAND, MA, 01721"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "39989898"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "02480",
+        "GEOID": "2502702480",
+        "CENTLAT": "+42.5841160",
+        "AREAWATER": 2762839,
+        "STATE": "25",
+        "BASENAME": "Athol",
+        "OID": "27690515417212",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.5759261",
+        "NAME": "Athol town",
+        "OBJECTID": 19161,
+        "CENTLON": "-072.2177046",
+        "COUSUBCC": "T1",
+        "AREALAND": 83649107,
+        "INTPTLON": "-072.2295887",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619473",
+        "COUNTY": "027"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 4,
+        "STGEOMETRY_Area": 40484517.41505,
+        "NECTAPCI": "N",
+        "GEOID": "2502515",
+        "CENTLAT": "+42.5936410",
+        "AREAWATER": 724052,
+        "BASENAME": "Athol",
+        "STATE": "25",
+        "OID": "28090515417276",
+        "LSADC": "57",
+        "PLACE": "02515",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+42.5933842",
+        "NAME": "Athol CDP",
+        "OBJECTID": 28147,
+        "PLACECC": "U1",
+        "CENTLON": "-072.2302362",
+        "STGEOMETRY_Length": 45228.67887152316,
+        "CBSAPCI": "N",
+        "AREALAND": 21203903,
+        "INTPTLON": "-072.2302278",
+        "PLACENS": "02377982",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25027",
+        "CENTLAT": "+42.3510193",
+        "AREAWATER": 177364099,
+        "STATE": "25",
+        "BASENAME": "Worcester",
+        "OID": "27590260056196",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3116934",
+        "NAME": "Worcester County",
+        "OBJECTID": 2620,
+        "CENTLON": "-071.9073662",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606940",
+        "AREALAND": 3912622788,
+        "INTPTLON": "-071.9402820",
+        "MTFCC": "G4020",
+        "COUNTY": "027"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.237381582772,
+      "y": 42.593247219787
+     },
+     "addressComponents": {
+      "zip": "01331",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "ATHOL",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "128",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, ATHOL, MA, 01331"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "87263532"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "02935",
+        "GEOID": "2502102935",
+        "CENTLAT": "+42.1266608",
+        "AREAWATER": 639905,
+        "STATE": "25",
+        "BASENAME": "Avon",
+        "OID": "27690264670657",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1324590",
+        "NAME": "Avon town",
+        "OBJECTID": 34075,
+        "CENTLON": "-071.0492417",
+        "COUSUBCC": "T1",
+        "AREALAND": 11114827,
+        "INTPTLON": "-071.0540130",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618314",
+        "COUNTY": "021"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25021",
+        "CENTLAT": "+42.1710164",
+        "AREAWATER": 124943462,
+        "STATE": "25",
+        "BASENAME": "Norfolk",
+        "OID": "27590264619752",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1717410",
+        "NAME": "Norfolk County",
+        "OBJECTID": 375,
+        "CENTLON": "-071.1841232",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606937",
+        "AREALAND": 1025913117,
+        "INTPTLON": "-071.1811109",
+        "MTFCC": "G4020",
+        "COUNTY": "021"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.039914703232,
+      "y": 42.132628897724
+     },
+     "addressComponents": {
+      "zip": "02322",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "AVON",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "2",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "198",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, AVON, MA, 02322"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "40056683"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "69275",
+        "GEOID": "2502769275",
+        "CENTLAT": "+42.5686136",
+        "AREAWATER": 1313332,
+        "STATE": "25",
+        "BASENAME": "Templeton",
+        "OID": "27690515417259",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.5634822",
+        "NAME": "Templeton town",
+        "OBJECTID": 2019,
+        "CENTLON": "-072.0735644",
+        "COUSUBCC": "T1",
+        "AREALAND": 82558323,
+        "INTPTLON": "-072.0754719",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619492",
+        "COUNTY": "027"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25027",
+        "CENTLAT": "+42.3510193",
+        "AREAWATER": 177364099,
+        "STATE": "25",
+        "BASENAME": "Worcester",
+        "OID": "27590260056196",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3116934",
+        "NAME": "Worcester County",
+        "OBJECTID": 2620,
+        "CENTLON": "-071.9073662",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606940",
+        "AREALAND": 3912622788,
+        "INTPTLON": "-071.9402820",
+        "MTFCC": "G4020",
+        "COUNTY": "027"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.050352078538,
+      "y": 42.592511777855
+     },
+     "addressComponents": {
+      "zip": "01436",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "BALDWINVILLE",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "114",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "84",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, BALDWINVILLE, MA, 01436"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "3962037"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "04545",
+        "GEOID": "2500304545",
+        "CENTLAT": "+42.2849731",
+        "AREAWATER": 4479512,
+        "STATE": "25",
+        "BASENAME": "Becket",
+        "OID": "27690225518907",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.2864593",
+        "NAME": "Becket town",
+        "OBJECTID": 23100,
+        "CENTLON": "-073.0832551",
+        "COUSUBCC": "T1",
+        "AREALAND": 119307772,
+        "INTPTLON": "-073.0848128",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619416",
+        "COUNTY": "003"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25003",
+        "CENTLAT": "+42.3701333",
+        "AREAWATER": 50709123,
+        "STATE": "25",
+        "BASENAME": "Berkshire",
+        "OID": "27590225504147",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3714930",
+        "NAME": "Berkshire County",
+        "OBJECTID": 1500,
+        "CENTLON": "-073.2067158",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606928",
+        "AREALAND": 2400592126,
+        "INTPTLON": "-073.2179276",
+        "MTFCC": "G4020",
+        "COUNTY": "003"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -73.051362152238,
+      "y": 42.266684231014
+     },
+     "addressComponents": {
+      "zip": "01223",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "BECKET",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "2",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "132",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, BECKET, MA, 01223"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "40040937"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "06015",
+        "GEOID": "2502706015",
+        "CENTLAT": "+42.0399153",
+        "AREAWATER": 825566,
+        "STATE": "25",
+        "BASENAME": "Blackstone",
+        "OID": "27690515417216",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.0399909",
+        "NAME": "Blackstone town",
+        "OBJECTID": 3430,
+        "CENTLON": "-071.5312511",
+        "COUSUBCC": "T1",
+        "AREALAND": 28778370,
+        "INTPTLON": "-071.5324059",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619477",
+        "COUNTY": "027"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25027",
+        "CENTLAT": "+42.3510193",
+        "AREAWATER": 177364099,
+        "STATE": "25",
+        "BASENAME": "Worcester",
+        "OID": "27590260056196",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3116934",
+        "NAME": "Worcester County",
+        "OBJECTID": 2620,
+        "CENTLON": "-071.9073662",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606940",
+        "AREALAND": 3912622788,
+        "INTPTLON": "-071.9402820",
+        "MTFCC": "G4020",
+        "COUNTY": "027"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.53662748212,
+      "y": 42.018871708415
+     },
+     "addressComponents": {
+      "zip": "01504",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "BLACKSTONE",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "88",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "110",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, BLACKSTONE, MA, 01504"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "4013078"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "06085",
+        "GEOID": "2501306085",
+        "CENTLAT": "+42.1868586",
+        "AREAWATER": 4837702,
+        "STATE": "25",
+        "BASENAME": "Blandford",
+        "OID": "27690249177276",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1901905",
+        "NAME": "Blandford town",
+        "OBJECTID": 27384,
+        "CENTLON": "-072.9522106",
+        "COUSUBCC": "T1",
+        "AREALAND": 133580387,
+        "INTPTLON": "-072.9542627",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619383",
+        "COUNTY": "013"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 5438662.60912743,
+        "NECTAPCI": "N",
+        "GEOID": "2506050",
+        "CENTLAT": "+42.1780673",
+        "AREAWATER": 5519,
+        "BASENAME": "Blandford",
+        "STATE": "25",
+        "OID": "280903940364382",
+        "LSADC": "57",
+        "PLACE": "06050",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+42.1750062",
+        "NAME": "Blandford CDP",
+        "OBJECTID": 13204,
+        "PLACECC": "U1",
+        "CENTLON": "-072.9241327",
+        "STGEOMETRY_Length": 12074.2659120473,
+        "CBSAPCI": "N",
+        "AREALAND": 2979218,
+        "INTPTLON": "-072.9238623",
+        "PLACENS": "02630522",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25013",
+        "CENTLAT": "+42.1353421",
+        "AREAWATER": 44414591,
+        "STATE": "25",
+        "BASENAME": "Hampden",
+        "OID": "27590249163642",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.1361961",
+        "NAME": "Hampden County",
+        "OBJECTID": 1286,
+        "CENTLON": "-072.6315157",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606933",
+        "AREALAND": 1598038032,
+        "INTPTLON": "-072.6356452",
+        "MTFCC": "G4020",
+        "COUNTY": "013"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.925257499722,
+      "y": 42.179821290749
+     },
+     "addressComponents": {
+      "zip": "01008",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "BLANDFORD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "108",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, BLANDFORD, MA, 01008"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "40038951"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "06365",
+        "GEOID": "2502706365",
+        "CENTLAT": "+42.4361599",
+        "AREAWATER": 345877,
+        "STATE": "25",
+        "BASENAME": "Bolton",
+        "OID": "27690515417217",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.4399342",
+        "NAME": "Bolton town",
+        "OBJECTID": 34347,
+        "CENTLON": "-071.6072812",
+        "COUSUBCC": "T1",
+        "AREALAND": 51659942,
+        "INTPTLON": "-071.6018849",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618357",
+        "COUNTY": "027"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25027",
+        "CENTLAT": "+42.3510193",
+        "AREAWATER": 177364099,
+        "STATE": "25",
+        "BASENAME": "Worcester",
+        "OID": "27590260056196",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3116934",
+        "NAME": "Worcester County",
+        "OBJECTID": 2620,
+        "CENTLON": "-071.9073662",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606940",
+        "AREALAND": 3912622788,
+        "INTPTLON": "-071.9402820",
+        "MTFCC": "G4020",
+        "COUNTY": "027"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.560671457763,
+      "y": 42.442172933777
+     },
+     "addressComponents": {
+      "zip": "01740",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "BOLTON",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "298",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "100",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, BOLTON, MA, 01740"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "86705463"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "07420",
+        "GEOID": "2500907420",
+        "CENTLAT": "+42.6814992",
+        "AREAWATER": 2199596,
+        "STATE": "25",
+        "BASENAME": "Boxford",
+        "OID": "27690206485193",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.6855326",
+        "NAME": "Boxford town",
+        "OBJECTID": 27326,
+        "CENTLON": "-071.0189347",
+        "COUSUBCC": "T1",
+        "AREALAND": 61019179,
+        "INTPTLON": "-071.0308942",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618294",
+        "COUNTY": "009"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25009",
+        "CENTLAT": "+42.6388128",
+        "AREAWATER": 870172222,
+        "STATE": "25",
+        "BASENAME": "Essex",
+        "OID": "27590206454990",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.6427082",
+        "NAME": "Essex County",
+        "OBJECTID": 2550,
+        "CENTLON": "-070.8677682",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606931",
+        "AREALAND": 1275605848,
+        "INTPTLON": "-070.8649085",
+        "MTFCC": "G4020",
+        "COUNTY": "009"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.009754248812,
+      "y": 42.661826876467
+     },
+     "addressComponents": {
+      "zip": "01921",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "BOXFORD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "108",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, BOXFORD, MA, 01921"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "640051268"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "07980",
+        "GEOID": "2500107980",
+        "CENTLAT": "+41.7464014",
+        "AREAWATER": 6646461,
+        "STATE": "25",
+        "BASENAME": "Brewster",
+        "OID": "27690203618724",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7450183",
+        "NAME": "Brewster town",
+        "OBJECTID": 17758,
+        "CENTLON": "-070.0676138",
+        "COUSUBCC": "T1",
+        "AREALAND": 59415919,
+        "INTPTLON": "-070.0635100",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618249",
+        "COUNTY": "001"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25001",
+        "CENTLAT": "+41.7732559",
+        "AREAWATER": 2360402331,
+        "STATE": "25",
+        "BASENAME": "Barnstable",
+        "OID": "27590203617241",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7061233",
+        "NAME": "Barnstable County",
+        "OBJECTID": 2183,
+        "CENTLON": "-070.2384278",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606927",
+        "AREALAND": 1020933632,
+        "INTPTLON": "-070.1648227",
+        "MTFCC": "G4020",
+        "COUNTY": "001"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.141275326976,
+      "y": 41.745108713735
+     },
+     "addressComponents": {
+      "zip": "02631",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "BREWSTER",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "328",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, BREWSTER, MA, 02631"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "87419226"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "08130",
+        "GEOID": "2502308130",
+        "CENTLAT": "+41.9728240",
+        "AREAWATER": 2901620,
+        "STATE": "25",
+        "BASENAME": "Bridgewater Town",
+        "OID": "2769012033831912",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+41.9723761",
+        "NAME": "Bridgewater Town city",
+        "OBJECTID": 17027,
+        "CENTLON": "-070.9748919",
+        "COUSUBCC": "C5",
+        "AREALAND": 70553936,
+        "INTPTLON": "-070.9787727",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619466",
+        "COUNTY": "023"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 4,
+        "STGEOMETRY_Area": 132990081.55109812,
+        "NECTAPCI": "N",
+        "GEOID": "2508130",
+        "CENTLAT": "+41.9728240",
+        "AREAWATER": 2901620,
+        "BASENAME": "Bridgewater Town",
+        "STATE": "25",
+        "OID": "2789012033831917",
+        "LSADC": "25",
+        "PLACE": "08130",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.9723761",
+        "NAME": "Bridgewater Town city",
+        "OBJECTID": 31889,
+        "PLACECC": "C5",
+        "CENTLON": "-070.9748919",
+        "STGEOMETRY_Length": 52723.053173010725,
+        "CBSAPCI": "N",
+        "AREALAND": 70553936,
+        "INTPTLON": "-070.9787727",
+        "PLACENS": "00619466",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25023",
+        "CENTLAT": "+41.9871064",
+        "AREAWATER": 1126064105,
+        "STATE": "25",
+        "BASENAME": "Plymouth",
+        "OID": "27590213599826",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.9871959",
+        "NAME": "Plymouth County",
+        "OBJECTID": 1061,
+        "CENTLON": "-070.7370657",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606938",
+        "AREALAND": 1705563481,
+        "INTPTLON": "-070.7419417",
+        "MTFCC": "G4020",
+        "COUNTY": "023"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.978088967204,
+      "y": 41.992250759534
+     },
+     "addressComponents": {
+      "zip": "02324",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "BRIDGEWATER",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "150",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, BRIDGEWATER, MA, 02324"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "87482683"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "09000",
+        "GEOID": "2502309000",
+        "CENTLAT": "+42.0820573",
+        "AREAWATER": 475809,
+        "STATE": "25",
+        "BASENAME": "Brockton",
+        "OID": "27690213618260",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.0829249",
+        "NAME": "Brockton city",
+        "OBJECTID": 24459,
+        "CENTLON": "-071.0241918",
+        "COUSUBCC": "C5",
+        "AREALAND": 55252261,
+        "INTPTLON": "-071.0253486",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619467",
+        "COUNTY": "023"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 3,
+        "STGEOMETRY_Area": 101239629.32509248,
+        "NECTAPCI": "N",
+        "GEOID": "2509000",
+        "CENTLAT": "+42.0820573",
+        "AREAWATER": 475809,
+        "BASENAME": "Brockton",
+        "STATE": "25",
+        "OID": "27890213631076",
+        "LSADC": "25",
+        "PLACE": "09000",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.0829249",
+        "NAME": "Brockton city",
+        "OBJECTID": 30630,
+        "PLACECC": "C5",
+        "CENTLON": "-071.0241918",
+        "STGEOMETRY_Length": 43960.62013473828,
+        "CBSAPCI": "N",
+        "AREALAND": 55252261,
+        "INTPTLON": "-071.0253486",
+        "PLACENS": "00619467",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25023",
+        "CENTLAT": "+41.9871064",
+        "AREAWATER": 1126064105,
+        "STATE": "25",
+        "BASENAME": "Plymouth",
+        "OID": "27590213599826",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.9871959",
+        "NAME": "Plymouth County",
+        "OBJECTID": 1061,
+        "CENTLON": "-070.7370657",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606938",
+        "AREALAND": 1705563481,
+        "INTPTLON": "-070.7419417",
+        "MTFCC": "G4020",
+        "COUNTY": "023"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.019810138587,
+      "y": 42.083177156996
+     },
+     "addressComponents": {
+      "zip": "02301",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "BROCKTON",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "130",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, BROCKTON, MA, 02301"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "121548136"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "07175",
+        "GEOID": "2500107175",
+        "CENTLAT": "+41.7180457",
+        "AREAWATER": 31619897,
+        "STATE": "25",
+        "BASENAME": "Bourne",
+        "OID": "27690203618723",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7174595",
+        "NAME": "Bourne town",
+        "OBJECTID": 8578,
+        "CENTLON": "-070.5915488",
+        "COUSUBCC": "T1",
+        "AREALAND": 105299541,
+        "INTPTLON": "-070.5918241",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619412",
+        "COUNTY": "001"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 5,
+        "STGEOMETRY_Area": 13776413.661347201,
+        "NECTAPCI": "N",
+        "GEOID": "2510015",
+        "CENTLAT": "+41.7549626",
+        "AREAWATER": 2727576,
+        "BASENAME": "Buzzards Bay",
+        "STATE": "25",
+        "OID": "28090203620662",
+        "LSADC": "57",
+        "PLACE": "10015",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+41.7536898",
+        "NAME": "Buzzards Bay CDP",
+        "OBJECTID": 16941,
+        "PLACECC": "U1",
+        "CENTLON": "-070.6127806",
+        "STGEOMETRY_Length": 19262.463544538496,
+        "CBSAPCI": "N",
+        "AREALAND": 4933312,
+        "INTPTLON": "-070.6166814",
+        "PLACENS": "02377998",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25001",
+        "CENTLAT": "+41.7732559",
+        "AREAWATER": 2360402331,
+        "STATE": "25",
+        "BASENAME": "Barnstable",
+        "OID": "27590203617241",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7061233",
+        "NAME": "Barnstable County",
+        "OBJECTID": 2183,
+        "CENTLON": "-070.2384278",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606927",
+        "AREALAND": 1020933632,
+        "INTPTLON": "-070.1648227",
+        "MTFCC": "G4020",
+        "COUNTY": "001"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.615045956738,
+      "y": 41.745088081258
+     },
+     "addressComponents": {
+      "zip": "02532",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "BUZZARDS BAY",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "128",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, BUZZARDS BAY, MA, 02532"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "86687410"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "45175",
+        "GEOID": "2500945175",
+        "CENTLAT": "+42.7708019",
+        "AREAWATER": 7582531,
+        "STATE": "25",
+        "BASENAME": "Newbury",
+        "OID": "27690206485211",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.7704060",
+        "NAME": "Newbury town",
+        "OBJECTID": 11221,
+        "CENTLON": "-070.8729589",
+        "COUSUBCC": "T1",
+        "AREALAND": 60534390,
+        "INTPTLON": "-070.8724166",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619452",
+        "COUNTY": "009"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25009",
+        "CENTLAT": "+42.6388128",
+        "AREAWATER": 870172222,
+        "STATE": "25",
+        "BASENAME": "Essex",
+        "OID": "27590206454990",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.6427082",
+        "NAME": "Essex County",
+        "OBJECTID": 2550,
+        "CENTLON": "-070.8677682",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606931",
+        "AREALAND": 1275605848,
+        "INTPTLON": "-070.8649085",
+        "MTFCC": "G4020",
+        "COUNTY": "009"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.943876576318,
+      "y": 42.764493914401
+     },
+     "addressComponents": {
+      "zip": "01922",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "BYFIELD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "70",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "106",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, BYFIELD, MA, 01922"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "657778536"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "11000",
+        "GEOID": "2501711000",
+        "CENTLAT": "+42.3758513",
+        "AREAWATER": 1831964,
+        "STATE": "25",
+        "BASENAME": "Cambridge",
+        "OID": "27690260070071",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.3760428",
+        "NAME": "Cambridge city",
+        "OBJECTID": 23971,
+        "CENTLON": "-071.1185017",
+        "COUSUBCC": "C5",
+        "AREALAND": 16567875,
+        "INTPTLON": "-071.1186798",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619396",
+        "COUNTY": "017"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 2,
+        "STGEOMETRY_Area": 33736729.201956116,
+        "NECTAPCI": "N",
+        "GEOID": "2511000",
+        "CENTLAT": "+42.3758513",
+        "AREAWATER": 1831964,
+        "BASENAME": "Cambridge",
+        "STATE": "25",
+        "OID": "27890260079915",
+        "LSADC": "25",
+        "PLACE": "11000",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.3760428",
+        "NAME": "Cambridge city",
+        "OBJECTID": 26515,
+        "PLACECC": "C5",
+        "CENTLON": "-071.1185017",
+        "STGEOMETRY_Length": 35847.8206625421,
+        "CBSAPCI": "Y",
+        "AREALAND": 16567875,
+        "INTPTLON": "-071.1186798",
+        "PLACENS": "00619396",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25017",
+        "CENTLAT": "+42.4853699",
+        "AREAWATER": 75219794,
+        "STATE": "25",
+        "BASENAME": "Middlesex",
+        "OID": "27590260056194",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.4817215",
+        "NAME": "Middlesex County",
+        "OBJECTID": 2897,
+        "CENTLON": "-071.3915833",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606935",
+        "AREALAND": 2118363230,
+        "INTPTLON": "-071.3949160",
+        "MTFCC": "G4020",
+        "COUNTY": "017"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.082568707669,
+      "y": 42.361920536443
+     },
+     "addressComponents": {
+      "zip": "02142",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "CAMBRIDGE",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "198",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, CAMBRIDGE, MA, 02142"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "647354816"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "11665",
+        "GEOID": "2502311665",
+        "CENTLAT": "+41.8738686",
+        "AREAWATER": 6261081,
+        "STATE": "25",
+        "BASENAME": "Carver",
+        "OID": "27690213618261",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.8751790",
+        "NAME": "Carver town",
+        "OBJECTID": 24460,
+        "CENTLON": "-070.7562814",
+        "COUSUBCC": "T1",
+        "AREALAND": 96623672,
+        "INTPTLON": "-070.7467151",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618337",
+        "COUNTY": "023"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25023",
+        "CENTLAT": "+41.9871064",
+        "AREAWATER": 1126064105,
+        "STATE": "25",
+        "BASENAME": "Plymouth",
+        "OID": "27590213599826",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.9871959",
+        "NAME": "Plymouth County",
+        "OBJECTID": 1061,
+        "CENTLON": "-070.7370657",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606938",
+        "AREALAND": 1705563481,
+        "INTPTLON": "-070.7419417",
+        "MTFCC": "G4020",
+        "COUNTY": "023"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.770420082894,
+      "y": 41.890100666525
+     },
+     "addressComponents": {
+      "zip": "02330",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "CARVER",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "90",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "100",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, CARVER, MA, 02330"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "121593690"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "03690",
+        "GEOID": "2500103690",
+        "CENTLAT": "+41.6679425",
+        "AREAWATER": 42830768,
+        "STATE": "25",
+        "BASENAME": "Barnstable Town",
+        "OID": "27690203618722",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+41.6610963",
+        "NAME": "Barnstable Town city",
+        "OBJECTID": 17757,
+        "CENTLON": "-070.3573426",
+        "COUSUBCC": "C5",
+        "AREALAND": 155215099,
+        "INTPTLON": "-070.3564546",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618248",
+        "COUNTY": "001"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 5,
+        "STGEOMETRY_Area": 355187209.09687006,
+        "NECTAPCI": "N",
+        "GEOID": "2503690",
+        "CENTLAT": "+41.6679425",
+        "AREAWATER": 42830768,
+        "BASENAME": "Barnstable Town",
+        "STATE": "25",
+        "OID": "27890203620659",
+        "LSADC": "25",
+        "PLACE": "03690",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.6610963",
+        "NAME": "Barnstable Town city",
+        "OBJECTID": 32210,
+        "PLACECC": "C5",
+        "CENTLON": "-070.3573426",
+        "STGEOMETRY_Length": 87787.83861197274,
+        "CBSAPCI": "Y",
+        "AREALAND": 155215099,
+        "INTPTLON": "-070.3564546",
+        "PLACENS": "00618248",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25001",
+        "CENTLAT": "+41.7732559",
+        "AREAWATER": 2360402331,
+        "STATE": "25",
+        "BASENAME": "Barnstable",
+        "OID": "27590203617241",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7061233",
+        "NAME": "Barnstable County",
+        "OBJECTID": 2183,
+        "CENTLON": "-070.2384278",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606927",
+        "AREALAND": 1020933632,
+        "INTPTLON": "-070.1648227",
+        "MTFCC": "G4020",
+        "COUNTY": "001"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.340364345239,
+      "y": 41.651510323643
+     },
+     "addressComponents": {
+      "zip": "02632",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "CENTERVILLE",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "46",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "198",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, CENTERVILLE, MA, 02632"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "39932997"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "12505",
+        "GEOID": "2501112505",
+        "CENTLAT": "+42.6402123",
+        "AREAWATER": 1027158,
+        "STATE": "25",
+        "BASENAME": "Charlemont",
+        "OID": "27690244979308",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.6331304",
+        "NAME": "Charlemont town",
+        "OBJECTID": 17614,
+        "CENTLON": "-072.8648741",
+        "COUSUBCC": "T1",
+        "AREALAND": 67988991,
+        "INTPTLON": "-072.8547116",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619379",
+        "COUNTY": "011"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25011",
+        "CENTLAT": "+42.5831541",
+        "AREAWATER": 65594676,
+        "STATE": "25",
+        "BASENAME": "Franklin",
+        "OID": "27590244937618",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.5845038",
+        "NAME": "Franklin County",
+        "OBJECTID": 3217,
+        "CENTLON": "-072.5917075",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606932",
+        "AREALAND": 1810943446,
+        "INTPTLON": "-072.5917921",
+        "MTFCC": "G4020",
+        "COUNTY": "011"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.87596494885,
+      "y": 42.62765250436
+     },
+     "addressComponents": {
+      "zip": "01339",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "CHARLEMONT",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "108",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, CHARLEMONT, MA, 01339"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "85709183"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "07000",
+        "GEOID": "2502507000",
+        "CENTLAT": "+42.3322591",
+        "AREAWATER": 106896378,
+        "STATE": "25",
+        "BASENAME": "Boston",
+        "OID": "27690210186993",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.3327346",
+        "NAME": "Boston city",
+        "OBJECTID": 21283,
+        "CENTLON": "-071.0164764",
+        "COUSUBCC": "C5",
+        "AREALAND": 125204346,
+        "INTPTLON": "-071.0135134",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619463",
+        "COUNTY": "025"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 424977068.0984699,
+        "NECTAPCI": "N",
+        "GEOID": "2507000",
+        "CENTLAT": "+42.3322591",
+        "AREAWATER": 106896378,
+        "BASENAME": "Boston",
+        "STATE": "25",
+        "OID": "27890210203331",
+        "LSADC": "25",
+        "PLACE": "07000",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.3327346",
+        "NAME": "Boston city",
+        "OBJECTID": 32396,
+        "PLACECC": "C5",
+        "CENTLON": "-071.0164764",
+        "STGEOMETRY_Length": 185861.14764265937,
+        "CBSAPCI": "Y",
+        "AREALAND": 125204346,
+        "INTPTLON": "-071.0135134",
+        "PLACENS": "00619463",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25025",
+        "CENTLAT": "+42.3487288",
+        "AREAWATER": 160489722,
+        "STATE": "25",
+        "BASENAME": "Suffolk",
+        "OID": "27590210166934",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3327346",
+        "NAME": "Suffolk County",
+        "OBJECTID": 2775,
+        "CENTLON": "-070.9857079",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606939",
+        "AREALAND": 150886864,
+        "INTPTLON": "-071.0135134",
+        "MTFCC": "G4020",
+        "COUNTY": "025"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.063305624479,
+      "y": 42.373956716507
+     },
+     "addressComponents": {
+      "zip": "02129",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "CHARLESTOWN",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "110",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, CHARLESTOWN, MA, 02129"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "121602936"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "12995",
+        "GEOID": "2500112995",
+        "CENTLAT": "+41.6532045",
+        "AREAWATER": 43630057,
+        "STATE": "25",
+        "BASENAME": "Chatham",
+        "OID": "27690203618725",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.6008868",
+        "NAME": "Chatham town",
+        "OBJECTID": 10463,
+        "CENTLON": "-069.9767321",
+        "COUSUBCC": "T1",
+        "AREALAND": 41881398,
+        "INTPTLON": "-069.9876468",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618250",
+        "COUNTY": "001"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 5,
+        "STGEOMETRY_Area": 16199829.739969373,
+        "NECTAPCI": "N",
+        "GEOID": "2512960",
+        "CENTLAT": "+41.6763318",
+        "AREAWATER": 2199764,
+        "BASENAME": "Chatham",
+        "STATE": "25",
+        "OID": "28090203620663",
+        "LSADC": "57",
+        "PLACE": "12960",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+41.6739203",
+        "NAME": "Chatham CDP",
+        "OBJECTID": 19751,
+        "PLACECC": "U1",
+        "CENTLON": "-069.9632105",
+        "STGEOMETRY_Length": 21131.772274632436,
+        "CBSAPCI": "N",
+        "AREALAND": 6830650,
+        "INTPTLON": "-069.9629078",
+        "PLACENS": "02377999",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25001",
+        "CENTLAT": "+41.7732559",
+        "AREAWATER": 2360402331,
+        "STATE": "25",
+        "BASENAME": "Barnstable",
+        "OID": "27590203617241",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7061233",
+        "NAME": "Barnstable County",
+        "OBJECTID": 2183,
+        "CENTLON": "-070.2384278",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606927",
+        "AREALAND": 1020933632,
+        "INTPTLON": "-070.1648227",
+        "MTFCC": "G4020",
+        "COUNTY": "001"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -69.94884263781,
+      "y": 41.672906957762
+     },
+     "addressComponents": {
+      "zip": "02633",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "CHATHAM",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "94",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "118",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, CHATHAM, MA, 02633"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "657930189"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "34795",
+        "GEOID": "2502734795",
+        "CENTLAT": "+42.2399782",
+        "AREAWATER": 3559190,
+        "STATE": "25",
+        "BASENAME": "Leicester",
+        "OID": "27690515417234",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.2384267",
+        "NAME": "Leicester town",
+        "OBJECTID": 17955,
+        "CENTLON": "-071.9120138",
+        "COUSUBCC": "T1",
+        "AREALAND": 60248051,
+        "INTPTLON": "-071.9123398",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619483",
+        "COUNTY": "027"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25027",
+        "CENTLAT": "+42.3510193",
+        "AREAWATER": 177364099,
+        "STATE": "25",
+        "BASENAME": "Worcester",
+        "OID": "27590260056196",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3116934",
+        "NAME": "Worcester County",
+        "OBJECTID": 2620,
+        "CENTLON": "-071.9073662",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606940",
+        "AREALAND": 3912622788,
+        "INTPTLON": "-071.9402820",
+        "MTFCC": "G4020",
+        "COUNTY": "027"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.866657725235,
+      "y": 42.241951079632
+     },
+     "addressComponents": {
+      "zip": "01611",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "CHERRY VALLEY",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "134",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, CHERRY VALLEY, MA, 01611"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "655916188"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "13345",
+        "GEOID": "2500313345",
+        "CENTLAT": "+42.5638476",
+        "AREAWATER": 1833958,
+        "STATE": "25",
+        "BASENAME": "Cheshire",
+        "OID": "27690225518908",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.5683905",
+        "NAME": "Cheshire town",
+        "OBJECTID": 23153,
+        "CENTLON": "-073.1512096",
+        "COUSUBCC": "T1",
+        "AREALAND": 69442565,
+        "INTPTLON": "-073.1473995",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618264",
+        "COUNTY": "003"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25003",
+        "CENTLAT": "+42.3701333",
+        "AREAWATER": 50709123,
+        "STATE": "25",
+        "BASENAME": "Berkshire",
+        "OID": "27590225504147",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3714930",
+        "NAME": "Berkshire County",
+        "OBJECTID": 1500,
+        "CENTLON": "-073.2067158",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606928",
+        "AREALAND": 2400592126,
+        "INTPTLON": "-073.2179276",
+        "MTFCC": "G4020",
+        "COUNTY": "003"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -73.154029253132,
+      "y": 42.562221114998
+     },
+     "addressComponents": {
+      "zip": "01225",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "CHESHIRE",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "198",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "36",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, CHESHIRE, MA, 01225"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "657805105"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "13660",
+        "GEOID": "2501313660",
+        "CENTLAT": "+42.1763809",
+        "AREAWATER": 2503173,
+        "STATE": "25",
+        "BASENAME": "Chicopee",
+        "OID": "27690249177279",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.1756784",
+        "NAME": "Chicopee city",
+        "OBJECTID": 28240,
+        "CENTLON": "-072.5718626",
+        "COUSUBCC": "C5",
+        "AREALAND": 59325156,
+        "INTPTLON": "-072.5717774",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618181",
+        "COUNTY": "013"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 112654275.21868953,
+        "NECTAPCI": "N",
+        "GEOID": "2513660",
+        "CENTLAT": "+42.1763809",
+        "AREAWATER": 2503173,
+        "BASENAME": "Chicopee",
+        "STATE": "25",
+        "OID": "27890249188589",
+        "LSADC": "25",
+        "PLACE": "13660",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1756784",
+        "NAME": "Chicopee city",
+        "OBJECTID": 30483,
+        "PLACECC": "C5",
+        "CENTLON": "-072.5718626",
+        "STGEOMETRY_Length": 46776.91505356307,
+        "CBSAPCI": "N",
+        "AREALAND": 59325156,
+        "INTPTLON": "-072.5717774",
+        "PLACENS": "00618181",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25013",
+        "CENTLAT": "+42.1353421",
+        "AREAWATER": 44414591,
+        "STATE": "25",
+        "BASENAME": "Hampden",
+        "OID": "27590249163642",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.1361961",
+        "NAME": "Hampden County",
+        "OBJECTID": 1286,
+        "CENTLON": "-072.6315157",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606933",
+        "AREALAND": 1598038032,
+        "INTPTLON": "-072.6356452",
+        "MTFCC": "G4020",
+        "COUNTY": "013"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.583000381429,
+      "y": 42.158421152091
+     },
+     "addressComponents": {
+      "zip": "01020",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "CHICOPEE",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "46",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "122",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, CHICOPEE, MA, 01020"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "40035464"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "14395",
+        "GEOID": "2502714395",
+        "CENTLAT": "+42.4119065",
+        "AREAWATER": 4164487,
+        "STATE": "25",
+        "BASENAME": "Clinton",
+        "OID": "27690515417221",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.4121256",
+        "NAME": "Clinton town",
+        "OBJECTID": 34464,
+        "CENTLON": "-071.6888278",
+        "COUSUBCC": "T1",
+        "AREALAND": 14640554,
+        "INTPTLON": "-071.6906378",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618360",
+        "COUNTY": "027"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25027",
+        "CENTLAT": "+42.3510193",
+        "AREAWATER": 177364099,
+        "STATE": "25",
+        "BASENAME": "Worcester",
+        "OID": "27590260056196",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3116934",
+        "NAME": "Worcester County",
+        "OBJECTID": 2620,
+        "CENTLON": "-071.9073662",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606940",
+        "AREALAND": 3912622788,
+        "INTPTLON": "-071.9402820",
+        "MTFCC": "G4020",
+        "COUNTY": "027"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.696875275086,
+      "y": 42.410548576895
+     },
+     "addressComponents": {
+      "zip": "01510",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "CLINTON",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "182",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, CLINTON, MA, 01510"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "657795387"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "15060",
+        "GEOID": "2501715060",
+        "CENTLAT": "+42.4619675",
+        "AREAWATER": 3416643,
+        "STATE": "25",
+        "BASENAME": "Concord",
+        "OID": "27690260070074",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.4629107",
+        "NAME": "Concord town",
+        "OBJECTID": 30534,
+        "CENTLON": "-071.3638691",
+        "COUSUBCC": "T1",
+        "AREALAND": 63493115,
+        "INTPTLON": "-071.3644962",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619398",
+        "COUNTY": "017"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25017",
+        "CENTLAT": "+42.4853699",
+        "AREAWATER": 75219794,
+        "STATE": "25",
+        "BASENAME": "Middlesex",
+        "OID": "27590260056194",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.4817215",
+        "NAME": "Middlesex County",
+        "OBJECTID": 2897,
+        "CENTLON": "-071.3915833",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606935",
+        "AREALAND": 2118363230,
+        "INTPTLON": "-071.3949160",
+        "MTFCC": "G4020",
+        "COUNTY": "017"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.352239426296,
+      "y": 42.459421388035
+     },
+     "addressComponents": {
+      "zip": "01742",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "CONCORD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "166",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, CONCORD, MA, 01742"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "121611403"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "03690",
+        "GEOID": "2500103690",
+        "CENTLAT": "+41.6679425",
+        "AREAWATER": 42830768,
+        "STATE": "25",
+        "BASENAME": "Barnstable Town",
+        "OID": "27690203618722",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+41.6610963",
+        "NAME": "Barnstable Town city",
+        "OBJECTID": 17757,
+        "CENTLON": "-070.3573426",
+        "COUSUBCC": "C5",
+        "AREALAND": 155215099,
+        "INTPTLON": "-070.3564546",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618248",
+        "COUNTY": "001"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 5,
+        "STGEOMETRY_Area": 355187209.09687006,
+        "NECTAPCI": "N",
+        "GEOID": "2503690",
+        "CENTLAT": "+41.6679425",
+        "AREAWATER": 42830768,
+        "BASENAME": "Barnstable Town",
+        "STATE": "25",
+        "OID": "27890203620659",
+        "LSADC": "25",
+        "PLACE": "03690",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.6610963",
+        "NAME": "Barnstable Town city",
+        "OBJECTID": 32210,
+        "PLACECC": "C5",
+        "CENTLON": "-070.3573426",
+        "STGEOMETRY_Length": 87787.83861197274,
+        "CBSAPCI": "Y",
+        "AREALAND": 155215099,
+        "INTPTLON": "-070.3564546",
+        "PLACENS": "00618248",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25001",
+        "CENTLAT": "+41.7732559",
+        "AREAWATER": 2360402331,
+        "STATE": "25",
+        "BASENAME": "Barnstable",
+        "OID": "27590203617241",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7061233",
+        "NAME": "Barnstable County",
+        "OBJECTID": 2183,
+        "CENTLON": "-070.2384278",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606927",
+        "AREALAND": 1020933632,
+        "INTPTLON": "-070.1648227",
+        "MTFCC": "G4020",
+        "COUNTY": "001"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.449412517882,
+      "y": 41.635030250566
+     },
+     "addressComponents": {
+      "zip": "02635",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "COTUIT",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "198",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "100",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, COTUIT, MA, 02635"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "3962304"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "16180",
+        "GEOID": "2500316180",
+        "CENTLAT": "+42.4795139",
+        "AREAWATER": 256364,
+        "STATE": "25",
+        "BASENAME": "Dalton",
+        "OID": "27690225518910",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.4784273",
+        "NAME": "Dalton town",
+        "OBJECTID": 22932,
+        "CENTLON": "-073.1533254",
+        "COUSUBCC": "T1",
+        "AREALAND": 56384679,
+        "INTPTLON": "-073.1551262",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619418",
+        "COUNTY": "003"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25003",
+        "CENTLAT": "+42.3701333",
+        "AREAWATER": 50709123,
+        "STATE": "25",
+        "BASENAME": "Berkshire",
+        "OID": "27590225504147",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3714930",
+        "NAME": "Berkshire County",
+        "OBJECTID": 1500,
+        "CENTLON": "-073.2067158",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606928",
+        "AREALAND": 2400592126,
+        "INTPTLON": "-073.2179276",
+        "MTFCC": "G4020",
+        "COUNTY": "003"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -73.181642269327,
+      "y": 42.470777708023
+     },
+     "addressComponents": {
+      "zip": "01226",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "DALTON",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "170",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, DALTON, MA, 01226"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "121563035"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "16775",
+        "GEOID": "2500116775",
+        "CENTLAT": "+41.7062691",
+        "AREAWATER": 4563551,
+        "STATE": "25",
+        "BASENAME": "Dennis",
+        "OID": "27690203618726",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7061233",
+        "NAME": "Dennis town",
+        "OBJECTID": 10478,
+        "CENTLON": "-070.1647944",
+        "COUSUBCC": "T1",
+        "AREALAND": 53342890,
+        "INTPTLON": "-070.1648227",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618252",
+        "COUNTY": "001"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 5,
+        "STGEOMETRY_Area": 23857550.347526036,
+        "NECTAPCI": "N",
+        "GEOID": "2516740",
+        "CENTLAT": "+41.7330086",
+        "AREAWATER": 556274,
+        "BASENAME": "Dennis",
+        "STATE": "25",
+        "OID": "28090203620664",
+        "LSADC": "57",
+        "PLACE": "16740",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+41.7302548",
+        "NAME": "Dennis CDP",
+        "OBJECTID": 24821,
+        "PLACECC": "U1",
+        "CENTLON": "-070.1994617",
+        "STGEOMETRY_Length": 29749.1592785633,
+        "CBSAPCI": "N",
+        "AREALAND": 12719606,
+        "INTPTLON": "-070.1973884",
+        "PLACENS": "02378005",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25001",
+        "CENTLAT": "+41.7732559",
+        "AREAWATER": 2360402331,
+        "STATE": "25",
+        "BASENAME": "Barnstable",
+        "OID": "27590203617241",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7061233",
+        "NAME": "Barnstable County",
+        "OBJECTID": 2183,
+        "CENTLON": "-070.2384278",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606927",
+        "AREALAND": 1020933632,
+        "INTPTLON": "-070.1648227",
+        "MTFCC": "G4020",
+        "COUNTY": "001"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.197507923047,
+      "y": 41.719851966627
+     },
+     "addressComponents": {
+      "zip": "02638",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "DENNIS",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "128",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, DENNIS, MA, 02638"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "46801131"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "16950",
+        "GEOID": "2500516950",
+        "CENTLAT": "+41.8359704",
+        "AREAWATER": 1496278,
+        "STATE": "25",
+        "BASENAME": "Dighton",
+        "OID": "27690406240851",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.8292730",
+        "NAME": "Dighton town",
+        "OBJECTID": 21971,
+        "CENTLON": "-071.1552527",
+        "COUSUBCC": "T1",
+        "AREALAND": 57059612,
+        "INTPTLON": "-071.1520870",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618280",
+        "COUNTY": "005"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25005",
+        "CENTLAT": "+41.7567465",
+        "AREAWATER": 357437743,
+        "STATE": "25",
+        "BASENAME": "Bristol",
+        "OID": "27590264619750",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7488299",
+        "NAME": "Bristol County",
+        "OBJECTID": 2097,
+        "CENTLON": "-071.0880857",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606929",
+        "AREALAND": 1432568156,
+        "INTPTLON": "-071.0888191",
+        "MTFCC": "G4020",
+        "COUNTY": "005"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.118135508557,
+      "y": 41.814383370045
+     },
+     "addressComponents": {
+      "zip": "02715",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "DIGHTON",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "2",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "184",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, DIGHTON, MA, 02715"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "655891596"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "17300",
+        "GEOID": "2502717300",
+        "CENTLAT": "+42.0523972",
+        "AREAWATER": 3768235,
+        "STATE": "25",
+        "BASENAME": "Douglas",
+        "OID": "27690515417222",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.0530722",
+        "NAME": "Douglas town",
+        "OBJECTID": 34474,
+        "CENTLON": "-071.7514863",
+        "COUSUBCC": "T1",
+        "AREALAND": 94395192,
+        "INTPTLON": "-071.7522414",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619479",
+        "COUNTY": "027"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25027",
+        "CENTLAT": "+42.3510193",
+        "AREAWATER": 177364099,
+        "STATE": "25",
+        "BASENAME": "Worcester",
+        "OID": "27590260056196",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3116934",
+        "NAME": "Worcester County",
+        "OBJECTID": 2620,
+        "CENTLON": "-071.9073662",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606940",
+        "AREALAND": 3912622788,
+        "INTPTLON": "-071.9402820",
+        "MTFCC": "G4020",
+        "COUNTY": "027"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.727813786123,
+      "y": 42.062954396308
+     },
+     "addressComponents": {
+      "zip": "01516",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "DOUGLAS",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "96",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "136",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, DOUGLAS, MA, 01516"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "87096845"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "17825",
+        "GEOID": "2501717825",
+        "CENTLAT": "+42.6764152",
+        "AREAWATER": 771419,
+        "STATE": "25",
+        "BASENAME": "Dunstable",
+        "OID": "27690260070076",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.6761491",
+        "NAME": "Dunstable town",
+        "OBJECTID": 29660,
+        "CENTLON": "-071.5005238",
+        "COUSUBCC": "T1",
+        "AREALAND": 42620847,
+        "INTPTLON": "-071.4997715",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618222",
+        "COUNTY": "017"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25017",
+        "CENTLAT": "+42.4853699",
+        "AREAWATER": 75219794,
+        "STATE": "25",
+        "BASENAME": "Middlesex",
+        "OID": "27590260056194",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.4817215",
+        "NAME": "Middlesex County",
+        "OBJECTID": 2897,
+        "CENTLON": "-071.3915833",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606935",
+        "AREALAND": 2118363230,
+        "INTPTLON": "-071.3949160",
+        "MTFCC": "G4020",
+        "COUNTY": "017"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.458748388222,
+      "y": 42.681922989514
+     },
+     "addressComponents": {
+      "zip": "01827",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "DUNSTABLE",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "192",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "2",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, DUNSTABLE, MA, 01827"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "39850435"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "19365",
+        "GEOID": "2501519365",
+        "CENTLAT": "+42.2651349",
+        "AREAWATER": 727241,
+        "STATE": "25",
+        "BASENAME": "Easthampton",
+        "OID": "27690401117005",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.2654347",
+        "NAME": "Easthampton city",
+        "OBJECTID": 23382,
+        "CENTLON": "-072.6720514",
+        "COUSUBCC": "C5",
+        "AREALAND": 34507654,
+        "INTPTLON": "-072.6708131",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618199",
+        "COUNTY": "015"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 64379342.36311743,
+        "NECTAPCI": "N",
+        "GEOID": "2519365",
+        "CENTLAT": "+42.2651349",
+        "AREAWATER": 727241,
+        "BASENAME": "Easthampton",
+        "STATE": "25",
+        "OID": "27890401181914",
+        "LSADC": "25",
+        "PLACE": "19365",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.2654347",
+        "NAME": "Easthampton city",
+        "OBJECTID": 29271,
+        "PLACECC": "C5",
+        "CENTLON": "-072.6720514",
+        "STGEOMETRY_Length": 45876.95299944363,
+        "CBSAPCI": "N",
+        "AREALAND": 34507654,
+        "INTPTLON": "-072.6708131",
+        "PLACENS": "00618199",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25015",
+        "CENTLAT": "+42.3402637",
+        "AREAWATER": 46625896,
+        "STATE": "25",
+        "BASENAME": "Hampshire",
+        "OID": "27590401060345",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3394600",
+        "NAME": "Hampshire County",
+        "OBJECTID": 1275,
+        "CENTLON": "-072.6635428",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606934",
+        "AREALAND": 1365533871,
+        "INTPTLON": "-072.6636919",
+        "MTFCC": "G4020",
+        "COUNTY": "015"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.672392086282,
+      "y": 42.270314629333
+     },
+     "addressComponents": {
+      "zip": "01027",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "EASTHAMPTON",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "144",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, EASTHAMPTON, MA, 01027"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "655890213"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "21150",
+        "GEOID": "2500721150",
+        "CENTLAT": "+41.3732803",
+        "AREAWATER": 248596077,
+        "STATE": "25",
+        "BASENAME": "Edgartown",
+        "OID": "27690518181722",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.3759343",
+        "NAME": "Edgartown town",
+        "OBJECTID": 1266,
+        "CENTLON": "-070.4814865",
+        "COUSUBCC": "T1",
+        "AREALAND": 69445846,
+        "INTPTLON": "-070.4807597",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619441",
+        "COUNTY": "007"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 5530109.320775041,
+        "NECTAPCI": "N",
+        "GEOID": "2521115",
+        "CENTLAT": "+41.3902482",
+        "AREAWATER": 14533,
+        "BASENAME": "Edgartown",
+        "STATE": "25",
+        "OID": "280904785258200",
+        "LSADC": "57",
+        "PLACE": "21115",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+41.3899125",
+        "NAME": "Edgartown CDP",
+        "OBJECTID": 12658,
+        "PLACECC": "U1",
+        "CENTLON": "-070.5193417",
+        "STGEOMETRY_Length": 13695.625616008881,
+        "CBSAPCI": "N",
+        "AREALAND": 3095347,
+        "INTPTLON": "-070.5196723",
+        "PLACENS": "02631319",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25007",
+        "CENTLAT": "+41.3888126",
+        "AREAWATER": 1004291291,
+        "STATE": "25",
+        "BASENAME": "Dukes",
+        "OID": "27590518157321",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.3809696",
+        "NAME": "Dukes County",
+        "OBJECTID": 2269,
+        "CENTLON": "-070.6987832",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606930",
+        "AREALAND": 267293159,
+        "INTPTLON": "-070.7014995",
+        "MTFCC": "G4020",
+        "COUNTY": "007"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.5164996206,
+      "y": 41.390782915855
+     },
+     "addressComponents": {
+      "zip": "02539",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "EDGARTOWN",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "72",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "100",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, EDGARTOWN, MA, 02539"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "86654914"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "21850",
+        "GEOID": "2500921850",
+        "CENTLAT": "+42.6347314",
+        "AREAWATER": 5384305,
+        "STATE": "25",
+        "BASENAME": "Essex",
+        "OID": "27690206485195",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.6404526",
+        "NAME": "Essex town",
+        "OBJECTID": 27327,
+        "CENTLON": "-070.7769056",
+        "COUSUBCC": "T1",
+        "AREALAND": 36161203,
+        "INTPTLON": "-070.7711634",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618296",
+        "COUNTY": "009"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 2,
+        "STGEOMETRY_Area": 10704332.357586248,
+        "NECTAPCI": "N",
+        "GEOID": "2521815",
+        "CENTLAT": "+42.6332954",
+        "AREAWATER": 458424,
+        "BASENAME": "Essex",
+        "STATE": "25",
+        "OID": "28090206494314",
+        "LSADC": "57",
+        "PLACE": "21815",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+42.6404526",
+        "NAME": "Essex CDP",
+        "OBJECTID": 18274,
+        "PLACECC": "U1",
+        "CENTLON": "-070.7743124",
+        "STGEOMETRY_Length": 18942.753416234267,
+        "CBSAPCI": "N",
+        "AREALAND": 5332126,
+        "INTPTLON": "-070.7711634",
+        "PLACENS": "02378016",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25009",
+        "CENTLAT": "+42.6388128",
+        "AREAWATER": 870172222,
+        "STATE": "25",
+        "BASENAME": "Essex",
+        "OID": "27590206454990",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.6427082",
+        "NAME": "Essex County",
+        "OBJECTID": 2550,
+        "CENTLON": "-070.8677682",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606931",
+        "AREALAND": 1275605848,
+        "INTPTLON": "-070.8649085",
+        "MTFCC": "G4020",
+        "COUNTY": "009"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.776469521392,
+      "y": 42.631375889971
+     },
+     "addressComponents": {
+      "zip": "01929",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "ESSEX",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "80",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "122",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, ESSEX, MA, 01929"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "640151128"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "21990",
+        "GEOID": "2501721990",
+        "CENTLAT": "+42.4064375",
+        "AREAWATER": 636006,
+        "STATE": "25",
+        "BASENAME": "Everett",
+        "OID": "27690260070077",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.4059375",
+        "NAME": "Everett city",
+        "OBJECTID": 23985,
+        "CENTLON": "-071.0544769",
+        "COUSUBCC": "C5",
+        "AREALAND": 8849106,
+        "INTPTLON": "-071.0546487",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618223",
+        "COUNTY": "017"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 5,
+        "STGEOMETRY_Area": 17408122.23387712,
+        "NECTAPCI": "N",
+        "GEOID": "2521990",
+        "CENTLAT": "+42.4064375",
+        "AREAWATER": 636006,
+        "BASENAME": "Everett",
+        "STATE": "25",
+        "OID": "27890260079918",
+        "LSADC": "25",
+        "PLACE": "21990",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.4059375",
+        "NAME": "Everett city",
+        "OBJECTID": 21946,
+        "PLACECC": "C5",
+        "CENTLON": "-071.0544769",
+        "STGEOMETRY_Length": 20780.08065485281,
+        "CBSAPCI": "N",
+        "AREALAND": 8849106,
+        "INTPTLON": "-071.0546487",
+        "PLACENS": "00618223",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25017",
+        "CENTLAT": "+42.4853699",
+        "AREAWATER": 75219794,
+        "STATE": "25",
+        "BASENAME": "Middlesex",
+        "OID": "27590260056194",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.4817215",
+        "NAME": "Middlesex County",
+        "OBJECTID": 2897,
+        "CENTLON": "-071.3915833",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606935",
+        "AREALAND": 2118363230,
+        "INTPTLON": "-071.3949160",
+        "MTFCC": "G4020",
+        "COUNTY": "017"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.061443299011,
+      "y": 42.404323119681
+     },
+     "addressComponents": {
+      "zip": "02149",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "EVERETT",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "116",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, EVERETT, MA, 02149"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "46755429"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "22130",
+        "GEOID": "2500522130",
+        "CENTLAT": "+41.6375489",
+        "AREAWATER": 4599873,
+        "STATE": "25",
+        "BASENAME": "Fairhaven",
+        "OID": "27690406240853",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.6337581",
+        "NAME": "Fairhaven town",
+        "OBJECTID": 29871,
+        "CENTLON": "-070.8714338",
+        "COUSUBCC": "T1",
+        "AREALAND": 32068599,
+        "INTPTLON": "-070.8713410",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618281",
+        "COUNTY": "005"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25005",
+        "CENTLAT": "+41.7567465",
+        "AREAWATER": 357437743,
+        "STATE": "25",
+        "BASENAME": "Bristol",
+        "OID": "27590264619750",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7488299",
+        "NAME": "Bristol County",
+        "OBJECTID": 2097,
+        "CENTLON": "-071.0880857",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606929",
+        "AREALAND": 1432568156,
+        "INTPTLON": "-071.0888191",
+        "MTFCC": "G4020",
+        "COUNTY": "005"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.90564354099,
+      "y": 41.639851997153
+     },
+     "addressComponents": {
+      "zip": "02719",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "FAIRHAVEN",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "104",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "94",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, FAIRHAVEN, MA, 02719"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "121573687"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "23105",
+        "GEOID": "2500123105",
+        "CENTLAT": "+41.5921082",
+        "AREAWATER": 26902985,
+        "STATE": "25",
+        "BASENAME": "Falmouth",
+        "OID": "27690203618728",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.5949460",
+        "NAME": "Falmouth town",
+        "OBJECTID": 17759,
+        "CENTLON": "-070.5972743",
+        "COUSUBCC": "T1",
+        "AREALAND": 114115235,
+        "INTPTLON": "-070.5992694",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618253",
+        "COUNTY": "001"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 4,
+        "STGEOMETRY_Area": 10428330.654073581,
+        "NECTAPCI": "N",
+        "GEOID": "2523070",
+        "CENTLAT": "+41.5516984",
+        "AREAWATER": 427784,
+        "BASENAME": "Falmouth",
+        "STATE": "25",
+        "OID": "28090203620670",
+        "LSADC": "57",
+        "PLACE": "23070",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+41.5512153",
+        "NAME": "Falmouth CDP",
+        "OBJECTID": 18076,
+        "PLACECC": "U1",
+        "CENTLON": "-070.6088881",
+        "STGEOMETRY_Length": 14236.274794612882,
+        "CBSAPCI": "N",
+        "AREALAND": 5407718,
+        "INTPTLON": "-070.6087094",
+        "PLACENS": "02378017",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25001",
+        "CENTLAT": "+41.7732559",
+        "AREAWATER": 2360402331,
+        "STATE": "25",
+        "BASENAME": "Barnstable",
+        "OID": "27590203617241",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.7061233",
+        "NAME": "Barnstable County",
+        "OBJECTID": 2183,
+        "CENTLON": "-070.2384278",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606927",
+        "AREALAND": 1020933632,
+        "INTPTLON": "-070.1648227",
+        "MTFCC": "G4020",
+        "COUNTY": "001"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -70.618171398176,
+      "y": 41.553441726989
+     },
+     "addressComponents": {
+      "zip": "02540",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "FALMOUTH",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "120",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "90",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, FALMOUTH, MA, 02540"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "40095423"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "23875",
+        "GEOID": "2502723875",
+        "CENTLAT": "+42.5912330",
+        "AREAWATER": 759963,
+        "STATE": "25",
+        "BASENAME": "Fitchburg",
+        "OID": "27690515417225",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.6018984",
+        "NAME": "Fitchburg city",
+        "OBJECTID": 8987,
+        "CENTLON": "-071.8156015",
+        "COUSUBCC": "C5",
+        "AREALAND": 72063643,
+        "INTPTLON": "-071.8157053",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618363",
+        "COUNTY": "027"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 134440165.94213012,
+        "NECTAPCI": "N",
+        "GEOID": "2523875",
+        "CENTLAT": "+42.5912330",
+        "AREAWATER": 759963,
+        "BASENAME": "Fitchburg",
+        "STATE": "25",
+        "OID": "27890515417284",
+        "LSADC": "25",
+        "PLACE": "23875",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.6018984",
+        "NAME": "Fitchburg city",
+        "OBJECTID": 31613,
+        "PLACECC": "C5",
+        "CENTLON": "-071.8156015",
+        "STGEOMETRY_Length": 55537.92642993257,
+        "CBSAPCI": "N",
+        "AREALAND": 72063643,
+        "INTPTLON": "-071.8157053",
+        "PLACENS": "00618363",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25027",
+        "CENTLAT": "+42.3510193",
+        "AREAWATER": 177364099,
+        "STATE": "25",
+        "BASENAME": "Worcester",
+        "OID": "27590260056196",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3116934",
+        "NAME": "Worcester County",
+        "OBJECTID": 2620,
+        "CENTLON": "-071.9073662",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606940",
+        "AREALAND": 3912622788,
+        "INTPTLON": "-071.9402820",
+        "MTFCC": "G4020",
+        "COUNTY": "027"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.792789830528,
+      "y": 42.581693930545
+     },
+     "addressComponents": {
+      "zip": "01420",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "FITCHBURG",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "198",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "66",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, FITCHBURG, MA, 01420"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "646648524"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "46330",
+        "GEOID": "2501546330",
+        "CENTLAT": "+42.3266340",
+        "AREAWATER": 3896266,
+        "STATE": "25",
+        "BASENAME": "Northampton",
+        "OID": "27690401117014",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.3270445",
+        "NAME": "Northampton city",
+        "OBJECTID": 34984,
+        "CENTLON": "-072.6745316",
+        "COUSUBCC": "C5",
+        "AREALAND": 88695045,
+        "INTPTLON": "-072.6746304",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619392",
+        "COUNTY": "015"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 3,
+        "STGEOMETRY_Area": 169505682.21211585,
+        "NECTAPCI": "N",
+        "GEOID": "2546330",
+        "CENTLAT": "+42.3266340",
+        "AREAWATER": 3896266,
+        "BASENAME": "Northampton",
+        "STATE": "25",
+        "OID": "27890401181918",
+        "LSADC": "25",
+        "PLACE": "46330",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.3270445",
+        "NAME": "Northampton city",
+        "OBJECTID": 31517,
+        "PLACECC": "C5",
+        "CENTLON": "-072.6745316",
+        "STGEOMETRY_Length": 57441.14156955303,
+        "CBSAPCI": "Y",
+        "AREALAND": 88695045,
+        "INTPTLON": "-072.6746304",
+        "PLACENS": "00619392",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25015",
+        "CENTLAT": "+42.3402637",
+        "AREAWATER": 46625896,
+        "STATE": "25",
+        "BASENAME": "Hampshire",
+        "OID": "27590401060345",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.3394600",
+        "NAME": "Hampshire County",
+        "OBJECTID": 1275,
+        "CENTLON": "-072.6635428",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606934",
+        "AREALAND": 1365533871,
+        "INTPTLON": "-072.6636919",
+        "MTFCC": "G4020",
+        "COUNTY": "015"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.670942701122,
+      "y": 42.335266284952
+     },
+     "addressComponents": {
+      "zip": "01062",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "FLORENCE",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "70",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "198",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, FLORENCE, MA, 01062"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "636134340"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "24820",
+        "GEOID": "2502124820",
+        "CENTLAT": "+42.0626590",
+        "AREAWATER": 2574940,
+        "STATE": "25",
+        "BASENAME": "Foxborough",
+        "OID": "27690264670665",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.0615095",
+        "NAME": "Foxborough town",
+        "OBJECTID": 25146,
+        "CENTLON": "-071.2461325",
+        "COUSUBCC": "T1",
+        "AREALAND": 51426195,
+        "INTPTLON": "-071.2458497",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618320",
+        "COUNTY": "021"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 3,
+        "STGEOMETRY_Area": 13743232.097380452,
+        "NECTAPCI": "N",
+        "GEOID": "2524855",
+        "CENTLAT": "+42.0644226",
+        "AREAWATER": 114938,
+        "BASENAME": "Foxborough",
+        "STATE": "25",
+        "OID": "28090264681788",
+        "LSADC": "57",
+        "PLACE": "24855",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+42.0640242",
+        "NAME": "Foxborough CDP",
+        "OBJECTID": 20581,
+        "PLACECC": "U2",
+        "CENTLON": "-071.2482658",
+        "STGEOMETRY_Length": 22516.52615697449,
+        "CBSAPCI": "N",
+        "AREALAND": 7454290,
+        "INTPTLON": "-071.2484011",
+        "PLACENS": "02378021",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25021",
+        "CENTLAT": "+42.1710164",
+        "AREAWATER": 124943462,
+        "STATE": "25",
+        "BASENAME": "Norfolk",
+        "OID": "27590264619752",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1717410",
+        "NAME": "Norfolk County",
+        "OBJECTID": 375,
+        "CENTLON": "-071.1841232",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606937",
+        "AREALAND": 1025913117,
+        "INTPTLON": "-071.1811109",
+        "MTFCC": "G4020",
+        "COUNTY": "021"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.257758860322,
+      "y": 42.071947521419
+     },
+     "addressComponents": {
+      "zip": "02035",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "FOXBORO",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "120",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "100",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, FOXBORO, MA, 02035"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "639003867"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "25172",
+        "GEOID": "2502125172",
+        "CENTLAT": "+42.0862040",
+        "AREAWATER": 1008454,
+        "STATE": "25",
+        "BASENAME": "Franklin Town",
+        "OID": "27690264670666",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.0845799",
+        "NAME": "Franklin Town city",
+        "OBJECTID": 25676,
+        "CENTLON": "-071.4112833",
+        "COUSUBCC": "C5",
+        "AREALAND": 68995653,
+        "INTPTLON": "-071.4105027",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00618321",
+        "COUNTY": "021"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 5,
+        "STGEOMETRY_Area": 127191036.1924971,
+        "NECTAPCI": "N",
+        "GEOID": "2525172",
+        "CENTLAT": "+42.0862040",
+        "AREAWATER": 1008454,
+        "BASENAME": "Franklin Town",
+        "STATE": "25",
+        "OID": "27890264681789",
+        "LSADC": "25",
+        "PLACE": "25172",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.0845799",
+        "NAME": "Franklin Town city",
+        "OBJECTID": 31713,
+        "PLACECC": "C5",
+        "CENTLON": "-071.4112833",
+        "STGEOMETRY_Length": 49601.322656194316,
+        "CBSAPCI": "N",
+        "AREALAND": 68995653,
+        "INTPTLON": "-071.4105027",
+        "PLACENS": "00618321",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25021",
+        "CENTLAT": "+42.1710164",
+        "AREAWATER": 124943462,
+        "STATE": "25",
+        "BASENAME": "Norfolk",
+        "OID": "27590264619752",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1717410",
+        "NAME": "Norfolk County",
+        "OBJECTID": 375,
+        "CENTLON": "-071.1841232",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606937",
+        "AREALAND": 1025913117,
+        "INTPTLON": "-071.1811109",
+        "MTFCC": "G4020",
+        "COUNTY": "021"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.399801417429,
+      "y": 42.085859993952
+     },
+     "addressComponents": {
+      "zip": "02038",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "FRANKLIN",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "116",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, FRANKLIN, MA, 02038"
+    }
+   ]
+  }
+ }
+}

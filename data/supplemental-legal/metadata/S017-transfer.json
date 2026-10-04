@@ -1,0 +1,10 @@
+{
+  "source_id": "S017",
+  "method": "agent_assisted_browser_public_download",
+  "human_manual_download": false,
+  "discovery_page": "https://cityofjerseycity.civicweb.net/document/437951/",
+  "observed_link_href": "/document/436629/Ordinance%20Amending%20Chapter%20218%20Section%2012.pd?handleBA65167715D64D65AB58827857A89651",
+  "downloaded_at": "2026-10-03T23:25:58.281553+00:00",
+  "time_basis": "downloaded file modification time",
+  "raw_sha256": "37e9bbb0ca07f50e1d969b47d86e0f6976838ac7397dc60d31db5b1a902581ae"
+}

@@ -1,0 +1,16 @@
+{
+  "source_id": "S010",
+  "raw_path": "raw/S010-newark-rent-control-office.html",
+  "text_path": "text/S010.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "e0d0e71877d9a5d9119468b241145dbbe903fd3bee1755164f2aa160b7a50c0a",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 6460,
+      "method": "htmlparser-visible-text",
+      "navigation_retained": true
+    }
+  ]
+}

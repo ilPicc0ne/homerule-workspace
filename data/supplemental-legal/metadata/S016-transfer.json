@@ -1,0 +1,10 @@
+{
+  "source_id": "S016",
+  "method": "agent_assisted_browser_public_download",
+  "human_manual_download": false,
+  "discovery_page": "https://cityofjerseycity.civicweb.net/document/435240/",
+  "observed_link_href": "/document/433505/Amending%20218-12%20to%20clarify%20language.pd?handle3F11119129CC46B2BFCB4CCFFFBBE8D6",
+  "downloaded_at": "2026-10-03T23:22:05.497068+00:00",
+  "time_basis": "downloaded file modification time",
+  "raw_sha256": "a97cb90af2ada60daf611fbc1227d02ad8c6a0dca8cf0d2c2ef83f02f0f222ac"
+}

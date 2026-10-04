@@ -1,0 +1,14 @@
+{
+  "source_id": "S001",
+  "method": "agent_assisted_browser_public_download",
+  "observed_download_url": "https://cityofjerseycity.civicweb.net/filepro/document/429156/Ord.%2025-057%20-%20Pdf.pdf",
+  "discovery_page": "https://cityofjerseycity.civicweb.net/filepro/documents/414231/",
+  "checked_on": "2026-10-04",
+  "downloaded_at": "2026-10-03T23:21:34.351918+00:00",
+  "time_basis": "downloaded file modification time",
+  "sha256": "f8ebbec4d617326b85dee29ced0dec2667fce8735095d5977365000476e1a272",
+  "matches_existing_artifact": true,
+  "original_acquisition_record_preserved": true,
+  "human_manual_download": false,
+  "decision": "Targeted agent-assisted browser download from official public portal, which explicitly offers downloads. No applicable prohibition on this limited download/AI use was identified in the reviewed portal policies. Robots disallows default crawlers (named search engines have exceptions); no crawling permission inferred. This is a limited project decision, not blanket legal clearance or organizer approval."
+}

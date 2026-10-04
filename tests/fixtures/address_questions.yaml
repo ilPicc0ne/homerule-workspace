@@ -1,0 +1,28 @@
+# TEST FIXTURE: expected answers for real sample addresses, from the brief, the participant guide,
+# change_tests.json and the PRD demo table. `rule` keys match records by jurisdiction, topic and citation.
+# result: applies | unknown | superseded | not_yet_effective | pending | none (not listed / no protection)
+
+- {id: Q1-rent-state,  address: A0016, as_of: "2026-10-01", rule: CA-RENT, expect: superseded, source: "brief p.3; PRD Q1 (1926, 21 units)"}
+- {id: Q1-rent-local,  address: A0016, as_of: "2026-10-01", rule: SF-RENT, expect: applies,    source: "brief p.3; PRD Q1"}
+- {id: Q1-deposit,     address: A0016, as_of: "2026-10-01", rule: CA-DEP,  expect: applies, value: one_month, source: "brief p.3 (20+ units: small-landlord exception can't apply)"}
+- {id: Q2-rent-state,  address: A0081, as_of: "2026-10-01", rule: CA-RENT, expect: applies,    source: "PRD Q1 (2005, 69 units)"}
+- {id: Q2-rent-local,  address: A0081, as_of: "2026-10-01", rule: SF-RENT, expect: none,       source: "PRD Q1: built after 1979"}
+- {id: Q3-rent-state,  address: A0105, as_of: "2026-10-01", rule: CA-RENT, expect: none,       source: "PRD Q1 (2019): certificate within 15 years"}
+- {id: Q3-rent-local,  address: A0105, as_of: "2026-10-01", rule: SF-RENT, expect: none,       source: "PRD Q1"}
+- {id: Q4-rent-local,  address: A0107, as_of: "2026-10-01", rule: LA-RENT, expect: unknown,    source: "guide §4.1 cutoff year; PRD Q1 (1978)"}
+- {id: Q4-rent-state,  address: A0107, as_of: "2026-10-01", rule: CA-RENT, expect: unknown,    source: "depends on whether the local rule covers it"}
+- {id: Q5-rent-local,  address: A0001, as_of: "2026-10-01", rule: LA-RENT, expect: applies,    source: "built 1927, LA"}
+- {id: Q5-rent-state,  address: A0001, as_of: "2026-10-01", rule: CA-RENT, expect: superseded, source: "stricter local rule governs"}
+- {id: Q6-boston-cap,  address: A0258, as_of: "2026-10-01", rule: MA-RENT-CAP, expect: none,   source: "PRD Q1 Dorchester; CT T5"}
+- {id: Q7-camb-cap,    address: A0010, as_of: "2026-10-01", rule: MA-RENT-CAP, expect: none,   source: "CT T5"}
+- {id: Q7-camb-s2983,  address: A0010, as_of: "2026-10-01", rule: MA-ALG-S2983, expect: pending, source: "CT T4"}
+- {id: Q7-camb-h5222,  address: A0010, as_of: "2026-10-01", rule: MA-ALG-H5222, expect: pending, source: "CT T4"}
+- {id: Q8-T1-before,   address: A0001, as_of: "2025-12-31", rule: CA-ALG,  expect: not_yet_effective, source: "CT T1"}
+- {id: Q8-T1-after,    address: A0001, as_of: "2026-01-02", rule: CA-ALG,  expect: applies,    source: "CT T1"}
+- {id: Q9-T3-today,    address: A0256, as_of: "2026-10-01", rule: NJ-ALG,  expect: not_yet_effective, source: "CT T3"}
+- {id: Q9-T3-later,    address: A0256, as_of: "2027-07-02", rule: NJ-ALG,  expect: applies,    source: "CT T3"}
+- {id: Q10-newark,     address: A0003, as_of: "2026-10-01", rule: NJ-ALG,  expect: not_yet_effective, source: "CT T3"}
+- {id: Q11-tic-deposit, address: A0398, as_of: "2026-10-01", rule: CA-DEP, expect: applies, value: conditional, source: "TIC parcel, units conflict: owner portfolio unknown"}
+- {id: Q12-berk-deposit, address: A0005, as_of: "2026-10-01", rule: CA-DEP, expect: applies, value: one_month, source: "5+ units whole building"}
+- {id: Q13-repealed,   address: A0081, as_of: "2030-01-02", rule: CA-RENT, expect: none,       source: "D024 (o): repealed as of Jan 1, 2030"}
+- {id: Q14-tic-rent,   address: A0398, as_of: "2026-10-01", rule: SF-RENT, expect: applies,    source: "built 1908"}

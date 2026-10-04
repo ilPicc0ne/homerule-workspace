@@ -1,0 +1,149 @@
+{
+ "query": "333 Washington St, Brookline, MA",
+ "status": 200,
+ "body": {
+  "result": {
+   "input": {
+    "address": {
+     "address": "333 Washington St, Brookline, MA"
+    },
+    "vintage": {
+     "isDefault": true,
+     "id": "4",
+     "vintageName": "Current_Current",
+     "vintageDescription": "Current Vintage - Current Benchmark"
+    },
+    "benchmark": {
+     "isDefault": true,
+     "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+     "id": "4",
+     "benchmarkName": "Public_AR_Current"
+    }
+   },
+   "addressMatches": [
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "87245335"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "09175",
+        "GEOID": "2502109175",
+        "CENTLAT": "+42.3242763",
+        "AREAWATER": 183413,
+        "STATE": "25",
+        "BASENAME": "Brookline",
+        "OID": "27690264670660",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.3238534",
+        "NAME": "Brookline town",
+        "OBJECTID": 35084,
+        "CENTLON": "-071.1407879",
+        "COUSUBCC": "T1",
+        "AREALAND": 17504719,
+        "INTPTLON": "-071.1420033",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619456",
+        "COUNTY": "021"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 3,
+        "STGEOMETRY_Area": 32378989.097468875,
+        "NECTAPCI": "N",
+        "GEOID": "2509210",
+        "CENTLAT": "+42.3242763",
+        "AREAWATER": 183413,
+        "BASENAME": "Brookline",
+        "STATE": "25",
+        "OID": "28090264681785",
+        "LSADC": "57",
+        "PLACE": "09210",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+42.3238534",
+        "NAME": "Brookline CDP",
+        "OBJECTID": 27083,
+        "PLACECC": "U1",
+        "CENTLON": "-071.1407879",
+        "STGEOMETRY_Length": 26112.93301707535,
+        "CBSAPCI": "N",
+        "AREALAND": 17504719,
+        "INTPTLON": "-071.1420033",
+        "PLACENS": "02377996",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25021",
+        "CENTLAT": "+42.1710164",
+        "AREAWATER": 124943462,
+        "STATE": "25",
+        "BASENAME": "Norfolk",
+        "OID": "27590264619752",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1717410",
+        "NAME": "Norfolk County",
+        "OBJECTID": 375,
+        "CENTLON": "-071.1841232",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00606937",
+        "AREALAND": 1025913117,
+        "INTPTLON": "-071.1811109",
+        "MTFCC": "G4020",
+        "COUNTY": "021"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -71.120783119691,
+      "y": 42.333678049851
+     },
+     "addressComponents": {
+      "zip": "02445",
+      "streetName": "WASHINGTON",
+      "preType": "",
+      "city": "BROOKLINE",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "319",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "333",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "333 WASHINGTON ST, BROOKLINE, MA, 02445"
+    }
+   ]
+  }
+ }
+}

@@ -2,12 +2,18 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "sync": "node scripts/sync-contracts.ts",
+    "predev": "npm run sync",
     "dev": "next dev",
+    "prebuild": "npm run sync",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "check:quotes": "node scripts/check-quotes.mjs"
+    "check:quotes": "node scripts/check-quotes.mjs",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "resolve": "npm run sync && node scripts/resolve-batch.ts && npm run sync"
   },
   "dependencies": {
     "next": "16.3.8",
