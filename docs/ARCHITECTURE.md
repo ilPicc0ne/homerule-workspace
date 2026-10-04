@@ -1,6 +1,6 @@
 # HomeRule architecture
 
-How HomeRule is built. What it must do, and why, is in [PRD.md](PRD.md); this file is the how. Status: draft, Sun 04.10.2026.
+How HomeRule is built. What it must do, and why, is in [PRD.md](PRD.md); this file is the how. Status: Sun 04.10.2026, checked against `origin/main` (043672e) and the live site; describes what is built, with planned parts marked.
 
 > **Not legal advice.** HomeRule shows which published housing rules may apply to an address, with quotes and dates.
 
@@ -21,8 +21,13 @@ corpus (87 docs, manifest)          sample addresses (500, CSV)
                  D Change: run C twice → diff per address
                  → changes.json · change log · alert email
                        │
-          Web (Vercel): address dashboard + JSON API (+ MCP later)
+          npm run sync: out/ + contracts/ → web/ (web/data/live/)
+                       │
+          Web (Vercel, root web/): address page, change log, rule and
+          jurisdiction pages, JSON API, alerts (Upstash Redis + Resend)
 ```
+
+The engine is Python (`engine/`, `extract/`); the website and the address resolver are TypeScript (`web/`). No MCP server is built.
 
 Everything between the corpus and the outputs is one command: `make all`. Extraction results are cached, so a rebuild without new documents takes minutes.
 
@@ -36,10 +41,28 @@ Frozen before parallel work; changed only via PR with the other person tagged.
 | I2 | `out/rules.json` + `out/rules.compiled.json` | D → S | Schema-valid; `jurisdiction` = the list's `schema_name`; status mapped to the schema values (`enacted_not_effective` → `not_yet_effective`; repealed rules are left out of `rules.json`, since `failed` means a measure that never became law); effective date or null (two dates kept when sources disagree); verbatim quote |
 | I3 | `out/addresses.resolved.json` (type `ResolvedFile` in `web/lib/resolve/types.ts`) | S → engine, D eval | All 500; jurisdiction IDs + `stack`, tree, coords, facts as ranges, source + confidence per field, `review` flags |
 | I4 | Engine CLI `make build AS_OF=<date>` (`python -m engine.build --as-of <date>`) | S → eval, web | Deterministic (byte-identical reruns); reads only I2, I3, I8; writes `outputs/lookups.json` and `outputs/changes.json` in the guide's shapes plus `out/lookups.full.json` for the web (shape in C) |
-| I5 | `/api/address/<id>?as_of=` | S → page, email, MCP | Same data as `lookups.json`; `as_of`, retrieval dates, `not_legal_advice: true` |
+| I5 | `/api/address/<id>` (built, `web/app/api/address/[id]/route.ts`) | S → external readers | Same results as the page (from `web/data/live/`): `not_legal_advice: true`, `disclaimer`, `data_source`, `as_of`, `as_of_dates` (one today), `address` (jurisdictions, facts, coords), `results` [{`rule_id`, category, result, confidence, explanation, `what_next`, `rule`}]. Not the `lookups.json` shape |
 | I6 | Per-address diff | S → changes, change log, email | One computation feeds all three |
 | I8 | `out/findings.json`: what is not a rule — `barred_by_law` (e.g. MA c.40P), `measure_failed` (e.g. IP 25-21), `not_in_corpus` (e.g. Hoboken ch. 158: manifest link, no text) per jurisdiction × category, with quote where one exists; `open_question` (the guide's known open questions, e.g. Berkeley's two published effective dates: our rule and its source next to each competing claim and its source) | D → S | Never emitted as rules; the page shows them ("No rent cap: barred by …") and they fill the 13 × 6 grid |
 | I7 | `contracts/facts.json`: building-fact names, types, operators, three-valued semantics, special nodes (`age_years`, `ref`, `unparsed`) | S → D | Coverage conditions use only these names; anything else becomes `unparsed` (unknown) or a tenant condition |
+
+## Data flow and folders
+
+```
+make extract   corpus → out/rules.json, out/rules.compiled.json, out/findings.json, out/audit.json   (Python, D)
+make resolve   data/sample_addresses.csv → out/addresses.resolved.json (offline from engine/cache/census) (TS, S)
+make build     out/* → outputs/lookups.json, outputs/changes.json                                     (Python, S)
+                     + out/lookups.full.json, out/changes.full.json, out/build_summary.json
+npm run sync   contracts/*.json, out/addresses.resolved.json, out/changes.full.json → web/contracts/, web/data/
+               out/{lookups.full,rules,rules.compiled,audit}.json → web/data/live/ (rules, findings, addresses,
+               lookups, excerpts, meta)                                                               (web/scripts/sync-contracts.ts, build-live.ts)
+next build     web/ only; reads web/data/live/ and web/data/changes.full.json at build time
+```
+
+- **`out/`** = everything the pipeline produces, including the web's richer files (`*.full.json`, `audit.json`). **`outputs/`** = the scored files only, committed from a build on `main`. Today `outputs/` holds `lookups.json` and `changes.json`; `rules.json` is still only in `out/`.
+- **`web/data/live/`** is generated, never hand-edited; `web/tests/contracts-sync.test.ts` fails when a copy drifts. `excerpts.json` keeps only ~320 characters around each quote (the corpus licence is unclear, so no full source texts in `web/`). `web/data/demo/` is the older hand-prepared data set, served only when `NEXT_PUBLIC_DATA_SOURCE=demo`; the live site serves `live`.
+- `npm run sync` runs before `next dev` and `next build`. On Vercel only `web/` is uploaded, so the committed copies in `web/` are what ships: **a pipeline change reaches the site only after `npm run sync` and a commit of the synced files.**
+- `web/data/live/meta.json` carries one as-of date (2026-10-01). There is no multi-date build yet, so no date picker or slider.
 
 ## Shared vocabulary: the jurisdiction list
 
@@ -195,10 +218,10 @@ A change is either a new document (ingest) or a second date (as-of query).
 - One diff feeds three outputs, so they can't disagree:
   - `changes.json` (`{test_id: {affected_address_ids, conflict_flag_address_ids, notes}}`), with the before/after rule set per address summarised in `notes` (the brief asks for it);
   - the change log on the address page;
-  - the alert email (preview in P0, sending in P1).
+  - the alert email (preview on the change log; sending via the alerts dispatch below).
 - Change tests T1–T5 come from `dev/change_tests.json`; T6 is the hour-16 ordinance, run through the same ingest.
 
-**Built (`s/changes`, issue #11):**
+**Built (#45, issue #11; restyled in #56):**
 
 - `engine/diff.py` is the one diff (I6). It compares two engine evaluations (the same rows as `lookups.json`) per address by `team_rule_id`: added, removed, or changed (result or conflict flag). Each change carries old → new result and explanation, both conflict flags, and the rule's title, citation, verbatim quote, effective date and official source.
 - `make build` writes `out/changes.full.json` with the change sources it can compute from the committed files: the brief's as_of tests (`asof:2025-12-31..2026-01-02` for T1, `asof:2026-10-01..2027-07-02` for T3/J3), plus `ingest:<doc>@<as_of>` for each ingested document already in I2 (`origin: ingested`). Deterministic. Only addresses with a change are listed:
@@ -223,30 +246,67 @@ A change is either a new document (ingest) or a second date (as-of query).
 
 Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [priorities](PRD.md#priorities-and-feature-status), [user journeys](PRD.md#user-journeys).
 
-- **Hosting:** Vercel (Next.js 16), Pro plan, project `homerule`, domains `yourhomerule.com` and `www.yourhomerule.com`, phone-first.
-- **Data store: files in git, no database.** Rules, resolved addresses and engine results are a few MB of JSON, committed and reproducible with `make all`; the page reads them at build time, so the page and the scored files show the same results. Address resolution runs once offline and is committed as a cache. The only mutable data is subscriptions (Redis, below).
-- **Hour-16 update:** the ingest rebuilds the outputs and triggers a production redeploy (~1 min). Fallback if a redeploy is too slow: upload the outputs to Vercel Blob and let the page read from there.
-- **Contacts for "what you can do next":** a small table per jurisdiction (rent board, housing department, legal-aid line) in `contracts/contacts.json`, with source links; cards pick the entry for the rule's jurisdiction and category.
-- **Routes:**
-  - `/`: search over the 500 addresses, with example addresses.
-  - `/a/[id]`: the address dashboard, in this order:
-    - "not legal advice" banner and as-of picker;
-    - the subscribe box;
-    - map;
-    - the jurisdiction stack;
-    - building facts;
-    - summary chips;
-    - six question cards;
-    - coming up and the change log.
-  - `/j/[id]`: jurisdiction page for any level, rules with their conditions; `/api/jurisdiction/[id]?as_of=` read-only JSON.
-  - `/where?q=`: the jurisdiction tree for any US address or place (server-rendered, plain GET form; client-side autocomplete over the sample addresses and places from `lib/resolve/suggest.ts`, nothing fetched while typing).
-  - `/api/resolve?q=`: free text (address, city, neighbourhood, county, state, ZIP) → `{kind: address | place | ambiguous | not_found | unavailable, tree, coverage, notes, …}`; sample addresses carry `sample.address_id` and facts. 404 for not found, 503 when Census is down.
-  - `/api/address/[id]?as_of=`: read-only JSON with `as_of`, retrieval dates and `not_legal_advice: true`.
-  - Later `/api/mcp`, the same functions behind `mcp-handler`.
-- **As-of dates:** the engine runs at build time for a fixed list: 2025-12-31 and 2026-01-02 (T1), 2026-10-01 (default), and each effective date in the rules ±1 day. The picker snaps to this list.
-- **Email (P1):** Resend (EU region), domain `yourhomerule.com` verified (DKIM on `resend._domainkey`, SPF and bounce MX on `send.`, DMARC `p=none`); sender `HomeRule <alerts@yourhomerule.com>`. Subscriptions per address ID with double opt-in; sent after a rebuild from the diff. Deliverability: HTML + text part, unsubscribe link and `List-Unsubscribe` header, a warm-up of a few mails to our own inboxes. The first test landed in Outlook spam (new domain, no reputation yet). Use a dedicated sending-only API key for the app, not the account-wide one.
-- **Alert sending (Tier A of the email journey, issues #11/#14):** `dispatchAlerts(file, source)` (`web/lib/alerts/dispatch.ts`) walks the addresses that have an entry for that source in the per-address diff (I6, the change log's own data, nothing recomputed), then each confirmed subscriber in `sub:<address_id>`, renders the one alert template with that subscriber's unsubscribe link (its stored token) and sends it. Trigger: `POST /api/alerts/dispatch {source}` with `Authorization: Bearer $DEMO_TOKEN`, called by `make alert SOURCE=…` as the last step after the production deploy is Ready (the diff is imported at build time; the script retries a 404 `unknown_source` every 10 s until the new deploy serves it). Recipient rule, data not env: demo-labelled sources go only to subscribers flagged `demo`, always; while the postal address in `disclaimer.ts` is a placeholder (closed test), real sources go only to subscribers flagged `allowed`. `make alert SOURCE=… RESET=1` clears that source's `sent:` keys for demo-flagged subscribers before triggering, so rehearsals don't use up the live take. `make notify [SEND=1]` runs the same function locally against Redis and Resend, no token. Env: `RESEND_API_KEY` (sending-only), `DEMO_TOKEN`, `ALERTS_SITE_URL`, plus the `KV_*` vars. Fallback when sending fails on stage: the simulated preview on `/changes/[id]` and the address page.
-- **Subscription store (Silvan):** Upstash Redis `homerule-subscriptions` (Vercel Marketplace, free plan, created 04.10.2026), connected to project `homerule` for production, preview and development; credentials only as Vercel env vars (`KV_REST_API_URL`, `KV_REST_API_TOKEN`, `KV_REST_API_READ_ONLY_TOKEN`, `KV_URL`, `REDIS_URL`), pulled locally with `vercel env pull` into git-ignored `.env.local`. No database for law or address data: Dimitar pushes output files to git, we deploy from here. Keys (`web/lib/alerts/store.ts`, all under `alerts:`): `pending:<token>` = JSON {email, address_id, label, created_at}, expires after 48 h; `sub:<address_id>` = hash email → JSON {email, address_id, label, confirmed_at, token, allowed, demo} (confirmed only; `token` is the random unsubscribe token, carried over from the confirm token; `allowed` = may get mail during the closed test; `demo` = the demo inbox, sole recipient of fictional sources); `allowed` = set of emails the seed script allowed (gates confirmation mails during the closed test); `sent:<source>:<address_id>:<sha256(email)[:16]>` = "1" once Resend accepted that alert (idempotency, 90 days); `rl:<ip>:<10-min window>` = signup counter (5 per window). Who may get mail is this data, set by `npm run seed-subscriber -- [--demo] <email> <ids>` (email from the argument or `DEMO_INBOX` in `.env.local`, never the repo), not an env var. Nothing else is stored. Swap for Neon Postgres if we ever need queries beyond "who follows this address".
+### Deploy model
+
+- **Hosting:** Vercel (Next.js 16), project `homerule`, Root Directory `web/`, domains `yourhomerule.com` and `www.yourhomerule.com`, phone-first.
+- **Previews:** every PR branch and `main` get a preview deployment. Pushing to `main` does **not** change the live site.
+- **Production only via the `production` branch** (Vercel production branch = `production`): going live means pushing (fast-forwarding) `production` to the commit wanted. Today `production` = 8d4b6d5 (#63).
+- **Hour-16 update:** ingest → `make build` → `npm run sync` → commit → merge to `main` → push `production` → wait for Ready (~1 min) → `make alert SOURCE=…`. The change data is imported at build time, so only a deploy that contains the new source can show or send it. (Vercel Blob as a fallback store was considered, not built.)
+
+### Data: files in git, no database for law
+
+**Decision: no Neon (or any database) for law or address data.** Rules, resolved addresses and engine results are a few MB of JSON, committed and reproducible with `make all`; the page reads them at build time, so the page and the scored files show the same results. Dimitar pushes output files to git; we deploy from here. **The only mutable data is subscriptions** (Upstash Redis, below).
+
+### Routes (all built unless marked)
+
+- `/`: landing page, search box (addresses, cities, neighbourhoods, counties, states via `lib/demo-search.ts`), eight example addresses.
+- `/a/[id]`: the address page (v3, one view), top to bottom: prototype banner, site header (data source, as-of date), sticky bar (search + "Get alerts"), next change, "Law from" State › County › City with the map and building facts, at a glance, six accordion tiles (contact, checklist, landlord email, "Show the law"), coming up, alerts + "See an example alert" overlay, how it works.
+- `/a/at?q=`: the same page for a typed address outside the 500, resolved via Census; building facts unknown.
+- `/changes/[id]`: change log old → new from `web/data/changes.full.json`, with the alert email preview (sandboxed iframe, "nothing is sent").
+- `/r/[id]`: rule page: quote in a source excerpt, official link, dates, conditions, audit trail (model extracted vs code decided), impact dot map + address list for one as-of date.
+- `/j/[id]`: jurisdiction page for any level, rules by question with their conditions, sample addresses. (`/api/jurisdiction/[id]` is not built.)
+- `/where?q=`: the jurisdiction tree for any US address or place (server-rendered GET form; client-side autocomplete over sample addresses and places).
+- `/api/resolve?q=`: free text → `{kind: address | place | ambiguous | not_found | unavailable, tree, coverage, notes, …}`; 404 not found, 503 when Census is down.
+- `/api/address/[id]`: I5.
+- Alerts: `POST /api/subscribe`, `/confirm` (page with a POST button) + `POST /api/confirm`, `/unsubscribe` (page) + `POST /api/unsubscribe` (RFC 8058 one-click), `/alerts/confirmed|unsubscribed|invalid`, `POST /api/alerts/dispatch`.
+- Not built: `/api/mcp`, an as-of picker.
+- **Contacts:** `contracts/contacts.json` (36 entries with source and retrieval date) synced to `web/contracts/contacts.json`; each tile picks the entry for its jurisdiction and topic.
+
+### Email and alerts
+
+- **Resend** (EU region), domain `yourhomerule.com` verified (DKIM on `resend._domainkey`, SPF and bounce MX on `send.`, DMARC `p=none`); sender `HomeRule <alerts@yourhomerule.com>`. HTML + text part, `List-Unsubscribe` + `List-Unsubscribe-Post` headers, one shared layout (`web/lib/alerts/layout.ts`), prototype notice + postal address in every footer. The first test landed in Outlook spam (new domain, no reputation) [verified once]; warm-up not documented as done.
+- **Signup (double opt-in):** form → `POST /api/subscribe` (5 per IP per 10 min, same answer whether or not the address is already subscribed) → `alerts:pending:<token>` (48 h) → confirmation email → `/confirm` POST → `alerts:sub:<address_id>`. Scanners only prefetch GET, so nothing confirms on GET.
+- **Closed test:** while `POSTAL_ADDRESS` in `web/lib/alerts/disclaimer.ts` contains "PLACEHOLDER", confirmation mails go only to emails in `alerts:allowed` and real alerts only to subscribers flagged `allowed`.
+- **Dispatch path:** `make alert SOURCE=<id> [RESET=1] [URL=…]` → `web/scripts/alerts.ts trigger` → `POST https://yourhomerule.com/api/alerts/dispatch {source}` with `Authorization: Bearer $DEMO_TOKEN` (constant-time compare; 401 without it) → `dispatchAlerts(changes, source)` (`web/lib/alerts/dispatch.ts`) walks the addresses with an entry for that source in the per-address diff (I6; nothing recomputed), then each subscriber in `alerts:sub:<address_id>`, renders the one alert template (`web/lib/changes/email.ts`) with that subscriber's unsubscribe token and sends via Resend. A 404 `unknown_source` means the deploy doesn't have the source yet; the script retries every 10 s. Idempotent: `alerts:sent:<source>:<address_id>:<sha256(email)[:16]>` is written only after Resend accepts. Demo-labelled (fictional) sources go only to subscribers flagged `demo`. `RESET=1` clears those `sent:` keys for demo subscribers first, so rehearsals don't use up the live take. `make notify [SEND=1]` runs the same function locally without a token. Fallback on stage: the simulated preview on `/changes/[id]` and the address page overlay.
+
+### Subscription store (Upstash Redis)
+
+`homerule-subscriptions` (Vercel Marketplace, free plan, created 04.10.2026), connected to project `homerule`. Plain REST calls (`web/lib/alerts/store.ts`); an in-memory store for tests. Keys, all under `alerts:`:
+
+| Key | Value | Lifetime |
+|---|---|---|
+| `pending:<token>` | JSON {email, address_id, label, created_at} | 48 h |
+| `sub:<address_id>` | hash email → JSON {email, address_id, label, confirmed_at, token, allowed, demo}; confirmed only | until unsubscribed |
+| `allowed` | set of emails the seed script allowed (gates confirmation mails in the closed test) | — |
+| `sent:<source>:<address_id>:<hash>` | "1" once Resend accepted that alert | 90 days |
+| `rl:<ip>:<window>` | signup counter | its 10-min window |
+
+- `token` = a random per-subscription unsubscribe token (the confirm token carries over). No HMAC and no server secret for unsubscribe links.
+- Flags `allowed` (may get mail during the closed test) and `demo` (the demo inbox, sole recipient of fictional sources): who may get mail is data, set by `npm run seed-subscriber -- [--demo] <email> <ids>` (email from the argument or `DEMO_INBOX` in `.env.local`, never the repo), not an env var.
+- Nothing else is stored. Swap for Postgres only if we ever need queries beyond "who follows this address".
+
+### Environment variables
+
+| Var | Where | Used by |
+|---|---|---|
+| `RESEND_API_KEY` | Vercel production + preview, `.env.local` | `web/lib/alerts/mail.ts`; without it nothing can be sent |
+| `DEMO_TOKEN` | Vercel production, `.env.local` (`scripts/alerts-env.sh`) | `POST /api/alerts/dispatch`, `make alert` |
+| `ALERTS_SITE_URL` | Vercel production, `.env.local` | Links in emails (`web/lib/alerts/server.ts`); falls back to the request origin |
+| `KV_REST_API_URL`, `KV_REST_API_TOKEN` (+ `KV_REST_API_READ_ONLY_TOKEN`, `KV_URL`, `REDIS_URL` from the integration) | Vercel production, preview, development; `vercel env pull` → `.env.local` | `storeFromEnv()` |
+| `NEXT_PUBLIC_DATA_SOURCE` | optional | `live` (default) or `demo` |
+| `OPENROUTER_API_KEY` | `.env.local` only | Extraction and `make demo-change` (not needed on Vercel) |
+
+There is no `DEMO_RECIPIENTS` variable. `scripts/alerts-env.sh` is meant to set `DEMO_TOKEN` and `ALERTS_SITE_URL` for preview too; on 04.10.2026 ~05:00 Vercel listed them for production only, so dispatch works only on production. `NEXT_PUBLIC_GOOGLE_MAPS_KEY` is also set in Vercel but no code on `main` reads it.
 
 ## Audit and evaluation
 
@@ -276,7 +336,7 @@ The Census geocoder is national, precedence is extracted rather than hand-coded,
 
 ## Non-functional rules
 
-- One command rebuilds everything (`make all`), under 15 min with cached extraction.
+- One command rebuilds everything (`make all`), under 15 min with cached extraction [assumed, not timed in this check].
 - A single document re-extracts live in under 3 min; prompts frozen before hour 16 (hash checked).
 - "Not legal advice" and the as-of date in every view, email and API payload.
 - Page usable on a phone; address view loads in under 2 s.
