@@ -245,14 +245,17 @@ test("every alert: not legal advice, as-of date, unsubscribe link + List-Unsubsc
     assert.match(part, /Prototype built at a hackathon/);
     assert.doesNotMatch(part, /\b(compliant|illegal)\b/i);
   }
-  // shared layout: warm white, ink buttons (not teal), Figtree, dark mode, preheader, 560 px
-  assert.match(m.html, /#fdfcfa/);
+  // shared layout: v3 wash, slate navy buttons (not teal), Figtree, dark mode, preheader, 600 px, Outlook ghost table
+  assert.match(m.html, /#F4F6F9/);
   assert.match(m.html, /background:#2B3B4E/);
   assert.doesNotMatch(m.html, /#0f766e/i);
   assert.match(m.html, /family=Figtree/);
   assert.match(m.html, /prefers-color-scheme:dark/);
-  assert.match(m.html, /max-width:560px/);
+  assert.match(m.html, /name="supported-color-schemes"/);
+  assert.match(m.html, /max-width:600px/);
+  assert.match(m.html, /<!--\[if mso\]><table role="presentation" width="600"/);
   assert.match(m.html, />HomeRule</);
+  assert.doesNotMatch(m.html, /<img|<svg/i);                                  // no images: nothing breaks when blocked
 });
 
 test("closed test: real sources reach only subscribers flagged allowed", async () => {

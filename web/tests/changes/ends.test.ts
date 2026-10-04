@@ -92,7 +92,8 @@ test("email: a removed rule at its end date reads 'Ends on <date>', the first li
   const ac = addressChange(changes, "A0019", SUNSET);
   assert.ok(ac, "A0019 has the sunset entry");
   const m = render(ac);
-  for (const part of [m.text, m.html]) {
+  assert.equal(m.subject, "3820 Haines St: Eviction and rent increase rules end on Jan 1, 2030");
+  for (const part of [m.text, m.html.replace(/<[^>]+>/g, "")]) {
     assert.match(part, /Ends on Jan 1, 2030: California limits yearly rent increases/);
     assert.match(part, /Ends on Jan 1, 2030: After a year, a landlord needs a reason/);
     assert.match(part, /Rules change at 3820 Haines St from Jan 1, 2030\./);

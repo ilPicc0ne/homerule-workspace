@@ -1,18 +1,21 @@
 // The alert email for one address and one change source, rendered from the same diff as the change log
-// (I6). Plain on purpose: one sentence per change (the same words as the address page) and a link to the page.
+// (I6). Inbox: sender "HomeRule Alerts", a factual subject (where, what, when), a preheader with the direction and when.
+// Body: the address, the first line, one card per change (verdict, topic, the address page's plain line), one button
+// to the address page. Frame and styles: web/lib/alerts/layout.ts.
 // Rendering only: sending is dispatchAlerts (web/lib/alerts/dispatch.ts), triggered after a deploy, never on its own.
 import type { AddressChanges, ChangesFile, Change, Entry } from "./types.ts";
 import { esc } from "../alerts/html.ts";
 import { footerHtml, footerText } from "../alerts/disclaimer.ts";
-import { button, C, layout, link } from "../alerts/layout.ts";
+import { BADGE_STYLE, button, C, card, layout, link, para } from "../alerts/layout.ts";
 import { featuredEntry, longDate } from "./wording.ts";
 import { PLAIN, TOPICS } from "../plain.ts";
 import { formatDate } from "../format.ts";
 import rulesData from "../../data/live/rules.json" with { type: "json" };
-import { badgeFor, endsIn, firstLine } from "./impact.ts";
+import { badgeFor, changeDate, endsIn, firstLine, isPending } from "./impact.ts";
 import type { Badge, BadgeKind } from "./impact.ts";
 
-export const FROM = "HomeRule <alerts@yourhomerule.com>";
+/** The sender as the inbox shows it: who, and that it is an alert. */
+export const FROM = "HomeRule Alerts <alerts@yourhomerule.com>";
 export const SITE = "https://yourhomerule.com";
 /** Filled in per subscriber by the sender (P1); the preview shows the placeholder. */
 export const UNSUBSCRIBE_TOKEN = "{{unsubscribe_token}}";
@@ -28,6 +31,8 @@ export type AddressChange = {
 export type RenderedEmail = {
   from: string;
   subject: string;
+  /** The inbox preview line after the subject (hidden at the top of the html). */
+  preheader: string;
   html: string;
   text: string;
   headers: { "List-Unsubscribe": string; "List-Unsubscribe-Post": string };
@@ -67,12 +72,7 @@ export function unsubscribeHeaders(site: string, addressId: string, token: strin
   return { "List-Unsubscribe": `<${oneClickUrl(site, addressId, token)}>`, "List-Unsubscribe-Post": "List-Unsubscribe=One-Click" };
 }
 
-/** Badge colours (light; dark mode via the layout's vb-* classes). Arrow + text always, never colour alone. AA on their tint. */
-export const BADGE_STYLE: Record<BadgeKind, { cls: string; color: string; bg: string }> = {
-  adds: { cls: "vb-up", color: "#11643D", bg: "#E2F2E8" },
-  narrows: { cls: "vb-dn", color: "#9B2C2C", bg: "#FBE9E7" },
-  unclear: { cls: "vb-un", color: "#4D5256", bg: "#ECEDEE" },
-};
+export { BADGE_STYLE };
 
 type RuleRec = { rule_id: string; category?: string; summary?: string; title?: string };
 const RULES = new Map((rulesData as unknown as RuleRec[]).map((r) => [r.rule_id, r]));
@@ -80,6 +80,11 @@ const RULES = new Map((rulesData as unknown as RuleRec[]).map((r) => [r.rule_id,
 /** The short address for subject and button: the part before the first comma. */
 export function shortAddress(label: string): string {
   return label.split(",")[0].trim();
+}
+
+/** The rest of the label after the street ("Hoboken, NJ"), for the small line under the street. */
+export function cityOf(label: string): string {
+  return label.split(",").slice(1).join(",").trim();
 }
 
 export type PlainChange = { rule_id: string; topic: string; sentence: string; badge: Badge | null };
@@ -103,6 +108,71 @@ export function plainChange(
   return { rule_id: c.team_rule_id, topic, sentence: line, badge: badgeFor(c) };
 }
 
+type Win = { before_as_of: string; after_as_of: string };
+
+/** The dates a set of changes is about (end date for an ending rule), ignoring pending bills when anything else is there. */
+function timing(changes: Change[], asOf: string, win: Win | null, fallback?: string | null) {
+  const live = changes.filter((c) => !isPending(c));
+  const dates = [...new Set((live.length ? live : changes).map((c) => changeDate(c, win)).filter((d): d is string => !!d))].sort();
+  const earliest = dates[0] ?? fallback ?? null;
+  const past = dates.length > 0 ? dates.every((d) => d <= asOf) : !!earliest && earliest <= asOf;
+  return { earliest, past, single: dates.length <= 1 };
+}
+
+/** Topic nouns for the subject line ("Rent-setting software rule changes on …"). */
+const SUBJECT_NOUN: Record<string, string> = {
+  rent: "rent increase",
+  evict: "eviction",
+  soft: "rent-setting software",
+  dep: "security deposit",
+  fee: "application fee",
+  scr: "tenant screening",
+};
+
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+/**
+ * The subject: where, what and when, no direction and no alarm ("327 Jackson St: Rent-setting software rule changes on
+ * Jul 1, 2027"). A demo-labelled source is prefixed "[Demo: …]".
+ */
+export function subjectLine(ac: AddressChange): string {
+  // a pending bill is not law: it doesn't count as a rule that changes, unless it is all there is
+  const live = ac.entry.changes.filter((c) => !isPending(c));
+  const changes = live.length ? live : ac.entry.changes;
+  const cats = [...new Set(changes.map((c) => c.category))];
+  const noun = (cat: string) => SUBJECT_NOUN[TOPICS.find((t) => t.cat === cat)?.id ?? ""] ?? "housing";
+  const n = changes.length;
+  const what =
+    cats.length === 1 ? (n === 1 ? `${noun(cats[0])} rule` : `${n} ${noun(cats[0])} rules`)
+    : cats.length === 2 ? `${noun(cats[0])} and ${noun(cats[1])} rules`
+    : `${n} housing rules`;
+  const t = timing(changes, ac.as_of, ac.entry, ac.entry.after_as_of);
+  const ending = n > 0 && changes.every((c) => endsIn(c, ac.entry));
+  const verb = ending ? (t.past ? "ended" : n > 1 ? "end" : "ends") : t.past ? "changed" : n > 1 ? "change" : "changes";
+  const date = t.earliest ? ` ${t.single ? "on" : t.past ? "since" : "from"} ${formatDate(t.earliest)}` : "";
+  const demo = ac.entry.demo_label;
+  return `${demo ? `[${demo}] ` : ""}${shortAddress(ac.label)}: ${cap(what)} ${verb}${date}`;
+}
+
+/**
+ * The preheader (inbox preview after the subject): the direction and when, then where. Same rule as the first line
+ * (impact.ts firstLine): a direction only when every badged change agrees, or "adds and narrows" when both show;
+ * grey or no badges -> neutral. "Adds renter protection from Jul 1, 2027 · 134 Oxford St".
+ */
+export function preheaderLine(ac: AddressChange): string {
+  const { changes } = ac.entry;
+  const kinds = new Set(changes.filter((c) => !isPending(c)).map(badgeFor).filter((b): b is Badge => !!b).map((b) => b.kind));
+  const t = timing(changes, ac.as_of, ac.entry, ac.entry.after_as_of);
+  const d = t.earliest ? formatDate(t.earliest) : "";
+  const at = d ? (t.past ? (t.single ? ` on ${d}` : ` since ${d}`) : ` from ${d}`) : "";
+  const only = (k: BadgeKind) => kinds.size === 1 && kinds.has(k);
+  const what = only("adds") ? (t.past ? "Added renter protection" : "Adds renter protection")
+    : only("narrows") ? (t.past ? "Narrowed renter protection" : "Narrows renter protection")
+    : kinds.has("adds") && kinds.has("narrows") ? (t.past ? "Added and narrowed renter protection" : "Adds and narrows renter protection")
+    : t.past ? "Rules changed" : "Rules change";
+  return `${ac.entry.demo_label ? "Demo, not real law · " : ""}${what}${at} · ${shortAddress(ac.label)}`;
+}
+
 export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEmail {
   const site = (opts.site ?? SITE).replace(/\/$/, "");
   const token = opts.token ?? UNSUBSCRIBE_TOKEN;
@@ -112,63 +182,68 @@ export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEma
   const demo = ac.entry.demo_label;
   const banner = opts.banner ?? (demo ? `${demo}: built from a fictional test document, not real law.` : null);
   const short = shortAddress(ac.label);
-  const subject = `${demo ? `[${demo}] ` : ""}Something changes for your rent rules at ${short}`;
+  const city = cityOf(ac.label);
+  const subject = subjectLine(ac);
+  const preheader = preheaderLine(ac);
   const items = ac.entry.changes.map((c) => plainChange(c, ac.as_of, RULES, ac.entry));
   const asOf = longDate(ac.as_of);
   const lead = firstLine(ac.entry.changes, short, ac.as_of, ac.entry.after_as_of, ac.entry);
-  const intro = "Here is what's new:";
-  const cta = "See the details";
+  const cta = `See what this means for ${short}`;
   const history = `${page}#h-ahead`;
   const quote = (i: PlainChange) => `${log}#c-${encodeURIComponent(i.rule_id)}`;
+  const count = items.length === 1 ? "1 change" : `${items.length} changes`;
 
   const text = [
     ...(banner ? [banner.toUpperCase(), ""] : []),
+    `HomeRule · Rule alert · ${count}`,
+    "",
+    short,
+    ...(city ? [city] : []),
+    "",
     lead,
-    intro,
     "",
-    ...items.flatMap((i) => [
-      `• ${i.topic} — ${i.sentence}${i.badge ? ` (${i.badge.arrow} ${i.badge.text}. Your unit may differ.)` : ""}`,
-      ...(i.badge?.why ? [`  Summary: ${i.badge.why} · see the law text: ${quote(i)}`] : []),
+    ...items.flatMap((i, k) => [
+      `${k + 1}. ${i.topic}`,
+      ...(i.badge ? [`   ${i.badge.arrow} ${i.badge.text}. Your unit may differ.`] : []),
+      `   ${i.sentence}`,
+      ...(i.badge?.why ? [`   Summary: ${i.badge.why} · see the law text: ${quote(i)}`] : []),
+      "",
     ]),
-    "",
     `${cta}: ${history}`,
-    `Change log: ${log}`,
+    `Full change log: ${log}`,
     "",
-    `You get this because you asked for alerts on ${ac.label}. Unsubscribe: ${unsubscribe}`,
+    "--",
+    `Why you get this: you asked for alerts on ${ac.label}.`,
+    `Unsubscribe in one click: ${unsubscribe}`,
     `HomeRule · Not legal advice · data as of ${asOf}`,
     ...footerText(),
   ].join("\n");
 
-  const badge = (i: PlainChange) => {
-    if (!i.badge) return "";
-    const st = BADGE_STYLE[i.badge.kind];
-    return `<span class="${st.cls}" title="${esc(i.badge.label)}" aria-label="${esc(i.badge.label)}" style="display:inline-block;margin:0 0 6px;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:600;color:${st.color};background:${st.bg}"><span aria-hidden="true">${i.badge.arrow}</span> ${esc(i.badge.text)}</span><br>`;
-  };
   const why = (i: PlainChange) =>
     i.badge?.why
-      ? `<br><span class="mu" style="font-size:14px;color:${C.muted}">Summary: ${esc(i.badge.why)} &middot; ${link(quote(i), "see the law text", C.muted)}</span>`
+      ? `<div class="mu" style="margin-top:10px;font-size:14px;line-height:21px;color:${C.muted}">Summary: ${esc(i.badge.why)} &middot; ${link(quote(i), "see the law text", C.muted, false)}</div>`
       : "";
-  const htmlItems = items
-    .map(
-      (i) => `<tr><td class="tx ln" style="padding:12px 0;border-top:1px solid ${C.line};font-size:16px;line-height:1.5;color:${C.text}">${badge(i)}<strong>${esc(i.topic)}</strong> &mdash; ${esc(i.sentence)}${why(i)}</td></tr>`,
-    )
-    .join("\n");
 
   const html = layout({
     title: subject,
-    preheader: lead,
+    preheader,
+    kind: `Data as of ${formatDate(ac.as_of)}`,
     banner,
     site,
-    rows: `<tr><td class="tx" style="padding:16px 0 8px;font-size:16px;line-height:1.5;color:${C.text}"><strong>${esc(lead)}</strong><br>${esc(intro)}</td></tr>
-${htmlItems}
-<tr><td style="padding:20px 0 10px">${button(history, cta)}</td></tr>
-<tr><td style="padding:0 0 24px;font-size:14px">${link(log, "See the full change log")}</td></tr>`,
-    footer: `You get this because you asked for alerts on ${esc(ac.label)}. ${link(unsubscribe, "Unsubscribe", C.faint)} in one click.<br>Not legal advice &middot; data as of ${esc(asOf)}<br>${footerHtml()}`,
+    hero: { eyebrow: `Rule alert · ${count}`, street: short, city },
+    rows: [
+      para(esc(lead), "font-size:18px;line-height:27px;font-weight:700;padding-bottom:16px"),
+      ...items.map((i) => card({ badge: i.badge, topic: i.topic, sentence: i.sentence, extra: why(i) })),
+      `<tr><td style="padding:8px 0 0">${button(history, cta)}</td></tr>`,
+      `<tr><td style="padding:2px 0 8px;font-size:15px">${link(log, "See the full change log")}</td></tr>`,
+    ].join("\n"),
+    footer: `Why you get this: you asked for alerts on ${esc(ac.label)}.<br>${link(unsubscribe, "Unsubscribe in one click", C.muted)}<br><strong>Not legal advice</strong> &middot; data as of ${esc(asOf)}<br>${footerHtml()}`,
   });
 
   return {
     from: FROM,
     subject,
+    preheader,
     html,
     text,
     headers: unsubscribeHeaders(site, ac.address_id, token),
