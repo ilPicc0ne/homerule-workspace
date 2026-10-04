@@ -174,8 +174,7 @@ function Alerts({ id, street, open, setOpen }: { id: string; street: string; ope
     <div className="alwrap">
       <button type="button" className="bell" aria-expanded={open} aria-label={`Get alerts for ${street}`} onClick={() => setOpen(!open)}>
         <Ic id="i-bell" />
-        <span className="bell-l bell-s">Get alerts</span>
-        <span className="bell-l bell-w">Alerts for {street}</span>
+        <span className="bell-l">Get alerts</span>
       </button>
       <AlertForm addressId={id} street={street} open={open} onClose={() => setOpen(false)} icon={icon} />
     </div>
@@ -583,7 +582,6 @@ export default function AddressPageView(p: PageProps) {
               {v.street}
             </h1>
             <p className="nxt">
-              <Ic id="i-cal" />
               <span>
                 {v.next ? (
                   <>
@@ -602,7 +600,6 @@ export default function AddressPageView(p: PageProps) {
             <div className="where">
               <p className="crumb">
                 <span className="sr">Law from: </span>
-                <Ic id="i-capitol" />
                 {hero.crumb.map((c, i) => (
                   <span key={c}>
                     {i > 0 && (
@@ -620,7 +617,11 @@ export default function AddressPageView(p: PageProps) {
             <ul className="facts" aria-label="Building facts">
               {hero.facts.map((f) => (
                 <li key={f.text} className={`fact ${f.cls ?? ""}`}>
-                  <Ic id={f.icon} />
+                  {f.cls?.includes("unk") && (
+                    <span className="fq" aria-hidden="true">
+                      ?
+                    </span>
+                  )}
                   {f.text}
                 </li>
               ))}
