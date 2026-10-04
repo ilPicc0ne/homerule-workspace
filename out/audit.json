@@ -5,6 +5,7 @@
   "jurisdiction": "CA-BERKELEY",
   "category": "algorithmic_rent_setting",
   "citation": "Berkeley Mun. Code § 13.63.030(B)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D001",
    "url": "https://berkeleyca.gov/sites/default/files/documents/2025-12-02%20Item%2001%20Ordinance%207992.pdf",
@@ -75,6 +76,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.49
+    },
+    "g5_1": {
+     "choice": "city",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -146,7 +151,7 @@
         "from": "2026-03-01",
         "until": null,
         "precision": "day",
-        "derived": null
+        "derived": "the later of the published dates (open question)"
        },
        "key_value": null,
        "quote": "It shall be unlawful for a landlord to use a coordinated pricing algorithm described \nin subsection A when setting rents or occupancy levels for residential dwelling units in \nthe City of Berkeley."
@@ -263,6 +268,15 @@
     "seconds": 0.29,
     "cost": 3.9732e-05,
     "ts": "2026-10-03T23:33:18Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D001:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "4a185d061571500357b0378af80c2d0e88309f039cde9045df77254e9f49dd0f",
+    "seconds": 0.79,
+    "cost": 0.000104454,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -273,6 +287,7 @@
   "jurisdiction": "CA-BERKELEY",
   "category": "screening_restrictions",
   "citation": "Berkeley Municipal Code § 13.106",
+  "refiled_from": null,
   "source": {
    "doc_id": "D003",
    "url": "https://rentboard.berkeleyca.gov/Fair_Chance",
@@ -476,6 +491,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_0": {
+     "choice": "city",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -839,6 +858,15 @@
     "seconds": 0.72,
     "cost": 0.000462798,
     "ts": "2026-10-03T23:22:59Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D003+D004+D005+D006+D007+D008:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "92bf9cde0f11af77e69a403cdf8f56f12f5cd608efdec76402792da3d34f5e8a",
+    "seconds": 0.85,
+    "cost": 0.000155568,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -849,6 +877,7 @@
   "jurisdiction": "CA-BERKELEY",
   "category": "application_screening_fees",
   "citation": "Berkeley Municipal Code § 13.78; Cal. Civ. Code § 1950.6",
+  "refiled_from": null,
   "source": {
    "doc_id": "D005",
    "url": "https://rentboard.berkeleyca.gov/laws-regulations/city-berkeley-ordinances-affecting-rental-properties/tenant-screening-and",
@@ -989,6 +1018,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_10": {
+     "choice": "unclear",
+     "confidence": 0.3
     }
    },
    "gate_flags": [],
@@ -1352,6 +1385,15 @@
     "seconds": 0.72,
     "cost": 0.000462798,
     "ts": "2026-10-03T23:22:59Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D003+D004+D005+D006+D007+D008:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "92bf9cde0f11af77e69a403cdf8f56f12f5cd608efdec76402792da3d34f5e8a",
+    "seconds": 0.85,
+    "cost": 0.000155568,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -1362,6 +1404,7 @@
   "jurisdiction": "CA-BERKELEY",
   "category": "just_cause_eviction",
   "citation": "Berkeley Municipal Code, Rent Stabilization and Good Cause for Eviction Ordinance",
+  "refiled_from": null,
   "source": {
    "doc_id": "D006",
    "url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance",
@@ -1511,6 +1554,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_18": {
+     "choice": "city",
+     "confidence": 0.52
     }
    },
    "gate_flags": [],
@@ -1874,6 +1921,15 @@
     "seconds": 0.72,
     "cost": 0.000462798,
     "ts": "2026-10-03T23:22:59Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D003+D004+D005+D006+D007+D008:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "92bf9cde0f11af77e69a403cdf8f56f12f5cd608efdec76402792da3d34f5e8a",
+    "seconds": 0.85,
+    "cost": 0.000155568,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -1884,6 +1940,7 @@
   "jurisdiction": "CA-BERKELEY",
   "category": "rent_increase_limits",
   "citation": "Berkeley Municipal Code § 13.76.110A",
+  "refiled_from": null,
   "source": {
    "doc_id": "D006",
    "url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance",
@@ -2033,6 +2090,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_31": {
+     "choice": "city",
+     "confidence": 0.89
     }
    },
    "gate_flags": [],
@@ -2396,6 +2457,15 @@
     "seconds": 0.72,
     "cost": 0.000462798,
     "ts": "2026-10-03T23:22:59Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D003+D004+D005+D006+D007+D008:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "92bf9cde0f11af77e69a403cdf8f56f12f5cd608efdec76402792da3d34f5e8a",
+    "seconds": 0.85,
+    "cost": 0.000155568,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -2406,6 +2476,7 @@
   "jurisdiction": "CA-BERKELEY",
   "category": "just_cause_eviction",
   "citation": "Berkeley Rent Stabilization and Good Cause for Eviction Ordinance; Berkeley Ellis Implementation Ordinance",
+  "refiled_from": null,
   "source": {
    "doc_id": "D004",
    "url": "https://rentboard.berkeleyca.gov/elected-rent-board/news/2026-adjustments-relocation-assistance-payments",
@@ -2550,6 +2621,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_36": {
+     "choice": "city",
+     "confidence": 0.91
     }
    },
    "gate_flags": [],
@@ -2913,641 +2988,15 @@
     "seconds": 0.72,
     "cost": 0.000462798,
     "ts": "2026-10-03T23:22:59Z"
-   }
-  ],
-  "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
- },
- "CA-BERKELEY-DEP-1950.5": {
-  "team_rule_id": "CA-BERKELEY-DEP-1950.5",
-  "internal_id": "D003+D004+D005+D006+D007+D008:38:security-deposit-one-month-cap",
-  "jurisdiction": "CA-BERKELEY",
-  "category": "security_deposits",
-  "citation": "Cal. Civ. Code § 1950.5",
-  "source": {
-   "doc_id": "D007",
-   "url": "https://rentboard.berkeleyca.gov/rights-responsibilities/security-deposits",
-   "retrieved": "2026-10-01 22:35 UTC",
-   "version_id": "sha256:2ba3028382b89ee70810a45e25dd9707297bd65512e2723f4f9bda514af57203",
-   "quote": "Starting July 1, 2024, many landlords may only charge one month's rent for unfurnished and furnished units",
-   "quote_verbatim": true,
-   "origin": "starter"
-  },
-  "model": {
-   "requirement": "Starting July 1, 2024, the usual maximum security deposit is one month’s rent for furnished and unfurnished units, subject to the qualifying small-landlord alternative.",
-   "key_value": "One month’s rent",
-   "key_value_quote": "may only charge one month's rent",
-   "category": "security_deposits",
-   "effect": "protection_or_duty",
-   "applies_if": {
-    "kind": "always",
-    "children": [],
-    "fact": null,
-    "op": null,
-    "value": null,
-    "values": null,
-    "years": null,
-    "ref": null,
-    "quote": null
-   },
-   "exempt_if": {
-    "kind": "never",
-    "children": [],
-    "fact": null,
-    "op": null,
-    "value": null,
-    "values": null,
-    "years": null,
-    "ref": null,
-    "quote": null
-   },
-   "key_value_conditions": [
-    {
-     "value": "Two months’ rent",
-     "when": {
-      "kind": "all",
-      "children": [
-       {
-        "kind": "fact",
-        "children": [],
-        "fact": "units",
-        "op": "le",
-        "value": 4,
-        "values": null,
-        "years": null,
-        "ref": null,
-        "quote": null
-       },
-       {
-        "kind": "unparsed",
-        "children": [],
-        "fact": null,
-        "op": null,
-        "value": null,
-        "values": null,
-        "years": null,
-        "ref": null,
-        "quote": "landlords who own only two rental properties",
-        "triaged": {
-         "jev": [
-          "no",
-          "no"
-         ],
-         "confidence": [
-          0.52,
-          0.26
-         ],
-         "kept_unparsed": true
-        }
-       },
-       {
-        "kind": "any",
-        "children": [
-         {
-          "kind": "fact",
-          "children": [],
-          "fact": "owner_type",
-          "op": "eq",
-          "value": "individual",
-          "values": null,
-          "years": null,
-          "ref": null,
-          "quote": null
-         },
-         {
-          "kind": "unparsed",
-          "children": [],
-          "fact": null,
-          "op": null,
-          "value": null,
-          "values": null,
-          "years": null,
-          "ref": null,
-          "quote": "family trust",
-          "triaged": {
-           "jev": [
-            "no",
-            "depends"
-           ],
-           "confidence": [
-            0.26,
-            0.73
-           ],
-           "kept_unparsed": true
-          }
-         },
-         {
-          "kind": "unparsed",
-          "children": [],
-          "fact": null,
-          "op": null,
-          "value": null,
-          "values": null,
-          "years": null,
-          "ref": null,
-          "quote": "limited liability company (LLC) where all members are natural persons",
-          "triaged": {
-           "jev": [
-            "depends",
-            "depends"
-           ],
-           "confidence": [
-            0.41,
-            0.69
-           ],
-           "kept_unparsed": true
-          }
-         }
-        ],
-        "fact": null,
-        "op": null,
-        "value": null,
-        "values": null,
-        "years": null,
-        "ref": null,
-        "quote": null
-       }
-      ],
-      "fact": null,
-      "op": null,
-      "value": null,
-      "values": null,
-      "years": null,
-      "ref": null,
-      "quote": null
-     },
-     "tenant_note": "The owner must own only two rental properties with no more than four residential units total, and ownership must be held by a natural person, family trust, or LLC whose members are all natural persons.",
-     "quote": "landlords who own only two rental properties with no more than four residential units total can charge up to two months' rent for furnished and unfurnished units if ownership is held by a natural person, family trust, or limited liability company (LLC) where all members are natural persons"
-    }
-   ],
-   "tenant_conditions": [],
-   "dates_as_stated": [
-    {
-     "kind": "enacted",
-     "date": "2020-04-14",
-     "relative_rule": "none",
-     "applies_to": "13.106",
-     "quote": "On April 14, 2020, Berkeley City Council passed the Fair Chance Access to Housing Ordinance (BMC 13.106)."
-    },
-    {
-     "kind": "effective",
-     "date": null,
-     "relative_rule": "no_date_in_text",
-     "applies_to": "13.106",
-     "quote": "On April 14, 2020, Berkeley City Council passed the Fair Chance Access to Housing Ordinance (BMC 13.106)."
-    },
-    {
-     "kind": "effective",
-     "date": null,
-     "relative_rule": "no_date_in_text",
-     "applies_to": "13.78",
-     "quote": "Chapter 13.78 applies to all residential rental agreements regardless of any contractual language in any rental agreement or lease to the contrary."
-    },
-    {
-     "kind": "effective",
-     "date": "2024-02-06",
-     "relative_rule": "none",
-     "applies_to": "Measure BB/utilities",
-     "quote": "For tenancies starting on or after February 6, 2024, a landlord may charge a tenant in a fully covered unit for utilities only if either: the cost of the utilities are part of the base rent, or the utility service is separately-metered and the lease requires the tenant to place the utility in the tenant’s name."
-    },
-    {
-     "kind": "effective",
-     "date": "2024-12-20",
-     "relative_rule": "none",
-     "applies_to": "Measure BB/Notice of Tenant Rights",
-     "quote": "For tenancies started on or after December 20, 2024, landlords must, within fifteen days of the start of the tenancy, give the tenant written notice"
-    },
-    {
-     "kind": "effective",
-     "date": "2025-01-01",
-     "relative_rule": "none",
-     "applies_to": "Security deposits/repair proof",
-     "quote": "Starting January 1, 2025, landlords must provide proof that necessary repairs were completed."
-    },
-    {
-     "kind": "effective",
-     "date": "2025-04-01",
-     "relative_rule": "none",
-     "applies_to": "Security deposits/post-possession photographs",
-     "quote": "Starting April 1, 2025, landlords must take photographs of a unit after regaining possession, but before any repairs or cleaning for which the landlord intends to make a deduction from the security deposit."
-    },
-    {
-     "kind": "effective",
-     "date": "2025-07-01",
-     "relative_rule": "none",
-     "applies_to": "Security deposits/tenancy-start photographs",
-     "quote": "For tenancies that begin on or after July 1, 2025, a landlord must photograph the unit immediately before or at the start of a new tenancy to document the condition of the unit."
-    },
-    {
-     "kind": "enacted",
-     "date": "2025-10-16",
-     "relative_rule": "none",
-     "applies_to": "2026 AGA Order",
-     "quote": "At its regular meeting on October 16, 2025, the Berkeley Rent Stabilization Board adopted the Annual General Adjustment (AGA) Order for Year 2026"
-    },
-    {
-     "kind": "effective",
-     "date": "2026-01-01",
-     "relative_rule": "none",
-     "applies_to": "2026 AGA Order",
-     "quote": "which will allow eligible landlords to increase the 2025 permanent rent ceilings by 1.0% no earlier than January 1, 2026."
-    },
-    {
-     "kind": "effective",
-     "date": "2026-01-01",
-     "relative_rule": "none",
-     "applies_to": "2026 relocation assistance adjustments",
-     "quote": "Annual increases for owner move-in and Ellis Act eviction relocation assistance payments go into effect January 1, 2026."
-    },
-    {
-     "kind": "operative",
-     "date": "2024-07-01",
-     "relative_rule": "none",
-     "applies_to": "Civil Code § 1950.5/security deposit cap",
-     "quote": "verification gate G2"
-    }
-   ]
-  },
-  "checks": {
-   "code_checks": [],
-   "gate": {
-    "g1_req_38": {
-     "choice": "supported",
-     "confidence": 0.37
-    },
-    "g1_key_38": {
-     "choice": "supported",
-     "confidence": 0.72
-    },
-    "g2_38": {
-     "choice": "date_2024-07-01",
-     "confidence": 1
-    },
-    "g4": {
-     "choice": "adopted",
-     "confidence": 1
-    }
-   },
-   "gate_flags": [],
-   "jev_overrides": [],
-   "triaged_conditions": [],
-   "parse_status": "ok"
-  },
-  "code": {
-   "status": "in_force",
-   "effective": {
-    "from": "2024-07-01",
-    "until": null,
-    "precision": "day",
-    "derived": null
-   },
-   "status_evidence": null,
-   "interaction": {
-    "type": "none"
-   },
-   "open_questions": []
-  },
-  "calls": [
-   {
-    "stage": "jev_J4",
-    "ref": "D003",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "bbb42e38b17f188550a1eb3bb97e52b047846201f7364704822980443cf73131",
-    "seconds": 0.42,
-    "cost": 7.9086e-05,
-    "ts": "2026-10-03T22:48:01Z"
-   },
-   {
-    "stage": "jev_J3",
-    "ref": "D003",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "463cdf253ef24bf3e7ea1a74ba4e0f5a053fe439ea0a4969017b250e7ecedecc",
-    "seconds": 0.42,
-    "cost": 0.000169218,
-    "ts": "2026-10-03T22:48:01Z"
-   },
-   {
-    "stage": "jev_J2",
-    "ref": "D003",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "313fdc60d17958efe4cf0221ce6d95ee84da69d5fdbb23843e3deef51d6cd32a",
-    "seconds": 0.43,
-    "cost": 0.000168546,
-    "ts": "2026-10-03T22:48:01Z"
-   },
-   {
-    "stage": "jev_J1",
-    "ref": "D003",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "f15e2e421f7a803ebd0c648087b75669ff04bc9d12faae7a07fb2342df941f34",
-    "seconds": 0.43,
-    "cost": 9.03e-05,
-    "ts": "2026-10-03T22:48:01Z"
-   },
-   {
-    "stage": "jev_J1",
-    "ref": "D004",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "eb60461712e492e965e40dc6421549e90a26813d0e9163906be41d7a08468c15",
-    "seconds": 0.39,
-    "cost": 5.8632e-05,
-    "ts": "2026-10-03T22:48:01Z"
-   },
-   {
-    "stage": "jev_J4",
-    "ref": "D004",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "b591d3feafbf9e880649a4f3a805edc6b351b9153aa0c453b290295783433b75",
-    "seconds": 0.41,
-    "cost": 0.000104454,
-    "ts": "2026-10-03T22:48:01Z"
-   },
-   {
-    "stage": "jev_J3",
-    "ref": "D004",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "5c657771aa37b2ac8dc9edfcbad4bab951522f0e3e83a3b101663fc17d3ade97",
-    "seconds": 0.42,
-    "cost": 7.2996e-05,
-    "ts": "2026-10-03T22:48:01Z"
-   },
-   {
-    "stage": "jev_J2",
-    "ref": "D004",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "70d68b3a43df456ea11adc52c2e46f99c86f852cb15ec54e2934007303a3e24f",
-    "seconds": 0.42,
-    "cost": 7.2744e-05,
-    "ts": "2026-10-03T22:48:01Z"
-   },
-   {
-    "stage": "jev_J2",
-    "ref": "D005",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "d81c2ad745cfa2f73a56b952c117914aaad4868bfacdfc0c68d9d9c3cbbd0c5c",
-    "seconds": 0.34,
-    "cost": 0.00010899,
-    "ts": "2026-10-03T22:48:01Z"
-   },
-   {
-    "stage": "jev_J3",
-    "ref": "D005",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "b99fa0bae14c817b8fffd15a0d8057abe636f3e5e7f886c7c62e2ddc38d0872a",
-    "seconds": 0.34,
-    "cost": 0.00010941,
-    "ts": "2026-10-03T22:48:01Z"
-   },
-   {
-    "stage": "jev_J1",
-    "ref": "D005",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "7c4390a9cc4d3389f290f1dcf005d62eebcfaf670f0c02fd9ca420f1c3188e33",
-    "seconds": 0.37,
-    "cost": 6.9972e-05,
-    "ts": "2026-10-03T22:48:01Z"
-   },
-   {
-    "stage": "jev_J1",
-    "ref": "D006",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "3a53014ea93b561df1c076f7e55bbcbe6edf062d92a7166e06cf503bb87c00d1",
-    "seconds": 0.39,
-    "cost": 0.000162918,
-    "ts": "2026-10-03T22:48:02Z"
-   },
-   {
-    "stage": "jev_J2",
-    "ref": "D006",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "d92f36770dd94963758df754037aa30ef505b2176f873c52f15a27154c1971be",
-    "seconds": 0.41,
-    "cost": 0.000265356,
-    "ts": "2026-10-03T22:48:02Z"
-   },
-   {
-    "stage": "jev_J4",
-    "ref": "D006",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "55d9c6cfd7867a93735b2f3f78d2d0b6919fc19119d2aed50a586b1f436f9af2",
-    "seconds": 0.41,
-    "cost": 0.00019341,
-    "ts": "2026-10-03T22:48:02Z"
-   },
-   {
-    "stage": "jev_J3",
-    "ref": "D006",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "0cf4820b1853c29dd5ddbd8a94ced524d4f1314be96a86da1a836da7e3292245",
-    "seconds": 0.46,
-    "cost": 0.000266196,
-    "ts": "2026-10-03T22:48:02Z"
-   },
-   {
-    "stage": "jev_J1",
-    "ref": "D007",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "4ecc6cd26e7cb8910c03e23f40591857ae7af2928a08cf92141d767d46ea08d9",
-    "seconds": 0.4,
-    "cost": 7.9884e-05,
-    "ts": "2026-10-03T22:48:02Z"
-   },
-   {
-    "stage": "jev_J3",
-    "ref": "D007",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "8898e3bd22dab8624b5f3a998559bc0676b4804ef86a3bca75e02439025af804",
-    "seconds": 0.43,
-    "cost": 0.000132594,
-    "ts": "2026-10-03T22:48:02Z"
-   },
-   {
-    "stage": "jev_J2",
-    "ref": "D007",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "4390c08e2896c8cf10f4259c85b92873a02c23611b07189886837863b96ee16c",
-    "seconds": 0.43,
-    "cost": 0.00013209,
-    "ts": "2026-10-03T22:48:02Z"
-   },
-   {
-    "stage": "jev_J4",
-    "ref": "D007",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "0adb7c81f099be55cf8bcf03b857f063ec2238b7e800cbbf81944aa041430cf4",
-    "seconds": 0.7,
-    "cost": 0.000166026,
-    "ts": "2026-10-03T22:48:03Z"
-   },
-   {
-    "stage": "jev_J4",
-    "ref": "D008",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "d7bd92c317655173a790a625dc91559bf63c845f00c074c0534732742a7c9e9c",
-    "seconds": 0.38,
-    "cost": 0.00013713,
-    "ts": "2026-10-03T22:48:03Z"
-   },
-   {
-    "stage": "jev_J3",
-    "ref": "D008",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "2aea7837121e124503fc9047a0dac465a350e620d5d7ad848a5ad462457a0944",
-    "seconds": 0.39,
-    "cost": 0.000100716,
-    "ts": "2026-10-03T22:48:03Z"
-   },
-   {
-    "stage": "jev_J2",
-    "ref": "D008",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "6389c08e12357f55059db9ab97080c515c26adbdc3532e215b679cca9c00a8b7",
-    "seconds": 0.39,
-    "cost": 0.000100296,
-    "ts": "2026-10-03T22:48:03Z"
-   },
-   {
-    "stage": "jev_J1",
-    "ref": "D008",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "594e31634869e6130db3b7e6073c95b82a4d58c1a9b2b941e1917b8f431e3082",
-    "seconds": 0.44,
-    "cost": 5.985e-05,
-    "ts": "2026-10-03T22:48:03Z"
-   },
-   {
-    "stage": "luna_extract",
-    "ref": "D003+D004+D005+D006+D007+D008",
-    "model": "openai/gpt-6-luna",
-    "request_hash": "2c9448bb2985e5fbcf62ef28e8e4ea0600d4ff004774abb2aab78ccbaa1356e3",
-    "seconds": 147.4,
-    "cost": 0.01371938,
-    "ts": "2026-10-03T22:50:30Z"
-   },
-   {
-    "stage": "jev_J5",
-    "ref": "D003+D004+D005+D006+D007+D008",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "d141346bace6dd7b9492f9e3151868b132d4a40bcdaf6ad0add66bc25dd2aaf8",
-    "seconds": 0.45,
-    "cost": 0.000782292,
-    "ts": "2026-10-03T22:50:31Z"
-   },
-   {
-    "stage": "jev_J6",
-    "ref": "D003+D004+D005+D006+D007+D008",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "9c927cfbf65f401d40c36e9d492fc179e1e94c9e62765f09cbf9e7fe89e942fc",
-    "seconds": 0.53,
-    "cost": 0.000402528,
-    "ts": "2026-10-03T22:53:22Z"
-   },
-   {
-    "stage": "luna_repair",
-    "ref": "D003+D004+D005+D006+D007+D008",
-    "model": "openai/gpt-6-luna",
-    "request_hash": "6d4fa61405d5732099174ec5193cd32fc6263fc4bb9e62cccea955bbd4ef5e6d",
-    "seconds": 110.77,
-    "cost": 0.015139115,
-    "ts": "2026-10-03T22:55:13Z"
    },
    {
     "stage": "gate",
-    "ref": "D003+D004+D005+D006+D007+D008:19",
+    "ref": "D003+D004+D005+D006+D007+D008:g5",
     "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "6f50ce0b0c1cf5987661031f4e8675c7e8400294e12a7b5d12e05a9b029ce28f",
-    "seconds": 2.16,
-    "cost": 0.000179172,
-    "ts": "2026-10-03T23:04:46Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D003+D004+D005+D006+D007+D008:33",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "5db0f15eeaa1507e85cb92a94acec9579aa8e70d61270bc829c52721cb94724b",
-    "seconds": 2.16,
-    "cost": 0.000180096,
-    "ts": "2026-10-03T23:04:46Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D003+D004+D005+D006+D007+D008:10",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "1ffe74b978c54fcf6631a96378dec3f2ff974578ee3722ec29c0307093388b14",
-    "seconds": 2.16,
-    "cost": 8.0682e-05,
-    "ts": "2026-10-03T23:04:46Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D003+D004+D005+D006+D007+D008:20",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "fb7d15f0e94d895c93224076be78fff452bf3267266e1587220ef14fe44a37ec",
-    "seconds": 2.17,
-    "cost": 0.000176484,
-    "ts": "2026-10-03T23:04:46Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D003+D004+D005+D006+D007+D008:36",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "261cc6396721e97aa353119bc7ad33fd6f00bf519287e444108946d9472671b0",
-    "seconds": 2.19,
-    "cost": 8.8494e-05,
-    "ts": "2026-10-03T23:04:46Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D003+D004+D005+D006+D007+D008:0",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "3ae287d90f3b36895f98536e0f75272585f030b736a3e578ff1dec67e26cb705",
-    "seconds": 2.21,
-    "cost": 9.6978e-05,
-    "ts": "2026-10-03T23:04:46Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D003+D004+D005+D006+D007+D008:31",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "16340b100f964eae53ef80371184b37cd816e6e2bb5cc5a8ad096cf5ba8d3b25",
-    "seconds": 2.21,
-    "cost": 0.000180558,
-    "ts": "2026-10-03T23:04:46Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D003+D004+D005+D006+D007+D008:18",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "783bb3eb51a57f9a1b68142b766ba5bd3e521831693a0772a2ab4d07da3ee20c",
-    "seconds": 2.25,
-    "cost": 0.000202734,
-    "ts": "2026-10-03T23:04:46Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D003+D004+D005+D006+D007+D008:38",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "334c456b9fae9055677397bb9e6a63f0a94c11bba92de72e405618fb1ee97f37",
-    "seconds": 0.34,
-    "cost": 0.000114072,
-    "ts": "2026-10-03T23:04:47Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D003+D004+D005+D006+D007+D008:g4",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "cb469ad0e8a42c65a586f738454a29a143cc5e5166144a2339cbe626f9eacf27",
-    "seconds": 0.43,
-    "cost": 7.3332e-05,
-    "ts": "2026-10-03T23:04:47Z"
-   },
-   {
-    "stage": "jev_triage",
-    "ref": "D003+D004+D005+D006+D007+D008",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "c3517ed343d6906a30211187d05d083fb1b480a087804045da7e68c878629698",
-    "seconds": 0.72,
-    "cost": 0.000462798,
-    "ts": "2026-10-03T23:22:59Z"
+    "request_hash": "92bf9cde0f11af77e69a403cdf8f56f12f5cd608efdec76402792da3d34f5e8a",
+    "seconds": 0.85,
+    "cost": 0.000155568,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -3558,6 +3007,7 @@
   "jurisdiction": "CA-BERKELEY",
   "category": "security_deposits",
   "citation": "Berkeley Rent Stabilization and Eviction for Just Cause Ordinance",
+  "refiled_from": null,
   "source": {
    "doc_id": "D009",
    "url": "https://rentboard.berkeleyca.gov/sites/default/files/documents/Rent%20Ordinance%20Coverage%20by%20Unit%20Type.pdf",
@@ -3833,6 +3283,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.98
+    },
+    "g5_2": {
+     "choice": "city",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -3998,6 +3452,15 @@
     "seconds": 0.5,
     "cost": 0.000148974,
     "ts": "2026-10-03T23:22:56Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D009:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "f791df6d5be179c23ca8a2d31dcb1bbd34278f58af1d19fe976783da6329b373",
+    "seconds": 0.77,
+    "cost": 5.943e-05,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -4008,6 +3471,7 @@
   "jurisdiction": "MA-BOSTON",
   "category": "screening_restrictions",
   "citation": "Boston Fair Chance Tenant Selection Policy",
+  "refiled_from": null,
   "source": {
    "doc_id": "D010",
    "url": "https://drive.google.com/file/d/1j4U3fDtmnYuwcUWhx5BMUcXc1bnKT8Ku/view?usp=sharing",
@@ -4115,6 +3579,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.71
+    },
+    "g5_0": {
+     "choice": "city",
+     "confidence": 0.97
     }
    },
    "gate_flags": [],
@@ -4376,6 +3844,15 @@
     "seconds": 0.6,
     "cost": 0.000447804,
     "ts": "2026-10-03T23:22:58Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D010+D012+D013+D014:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "3bfbb0ef46dc64d67eda88661deb22feac6731e8483e66f22d3f0cf2acd091c6",
+    "seconds": 0.78,
+    "cost": 0.000114744,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -4386,6 +3863,7 @@
   "jurisdiction": "MA-BOSTON",
   "category": "screening_restrictions",
   "citation": "Boston Fair Housing Regulations",
+  "refiled_from": null,
   "source": {
    "doc_id": "D012",
    "url": "https://www.boston.gov/departments/fair-housing-and-equity/boston-fair-housing-regulations",
@@ -4464,6 +3942,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.71
+    },
+    "g5_12": {
+     "choice": "unclear",
+     "confidence": 0.45
     }
    },
    "gate_flags": [],
@@ -4710,6 +4192,15 @@
     "seconds": 0.6,
     "cost": 0.000447804,
     "ts": "2026-10-03T23:22:58Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D010+D012+D013+D014:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "3bfbb0ef46dc64d67eda88661deb22feac6731e8483e66f22d3f0cf2acd091c6",
+    "seconds": 0.78,
+    "cost": 0.000114744,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -4720,6 +4211,7 @@
   "jurisdiction": "MA-BOSTON",
   "category": "just_cause_eviction",
   "citation": "Boston City Ordinances § 10-11.7",
+  "refiled_from": null,
   "source": {
    "doc_id": "D014",
    "url": "https://www.boston.gov/sites/default/files/file/2020/11/Housing%20Stability%20Notification%20Act%20Tenant%20FAQs.pdf",
@@ -4979,6 +4471,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.71
+    },
+    "g5_13": {
+     "choice": "city",
+     "confidence": 0.63
     }
    },
    "gate_flags": [],
@@ -5240,6 +4736,15 @@
     "seconds": 0.6,
     "cost": 0.000447804,
     "ts": "2026-10-03T23:22:58Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D010+D012+D013+D014:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "3bfbb0ef46dc64d67eda88661deb22feac6731e8483e66f22d3f0cf2acd091c6",
+    "seconds": 0.78,
+    "cost": 0.000114744,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -5250,6 +4755,7 @@
   "jurisdiction": "MA-BOSTON",
   "category": "rent_increase_limits",
   "citation": "Mass. H.3744",
+  "refiled_from": null,
   "source": {
    "doc_id": "D011",
    "url": "https://malegislature.gov/Bills/193/H3744",
@@ -5399,6 +4905,7 @@
   "jurisdiction": "CA",
   "category": "screening_restrictions",
   "citation": "Cal. Gov. Code § 12955",
+  "refiled_from": null,
   "source": {
    "doc_id": "D016",
    "url": "https://calcivilrights.ca.gov/housing/",
@@ -5466,6 +4973,10 @@
     },
     "g4": {
      "choice": "adopted",
+     "confidence": 1
+    },
+    "g5_0": {
+     "choice": "state_statewide",
      "confidence": 1
     }
    },
@@ -5578,6 +5089,15 @@
     "seconds": 2.25,
     "cost": 0.00024843,
     "ts": "2026-10-03T23:04:46Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D016:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "f43490efb5a95b2d42d02112287bffb3b682d05b51abc9ffac2b9bd3a1fffebe",
+    "seconds": 0.86,
+    "cost": 0.00020034,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -5588,6 +5108,7 @@
   "jurisdiction": "CA",
   "category": "algorithmic_rent_setting",
   "citation": "Cal. Bus. & Prof. Code § 16729(a)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D022",
    "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325",
@@ -5664,6 +5185,10 @@
     },
     "g4": {
      "choice": "adopted",
+     "confidence": 1
+    },
+    "g5_0": {
+     "choice": "state_statewide",
      "confidence": 1
     }
    },
@@ -5794,6 +5319,15 @@
     "seconds": 0.32,
     "cost": 0.000171402,
     "ts": "2026-10-03T23:20:24Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D022:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "7abc1984ad84c7fb9fe387b029bb69af7a32b51e8559545ac2a9acae008c6b1b",
+    "seconds": 0.77,
+    "cost": 0.000100884,
+    "ts": "2026-10-04T00:26:40Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -5804,6 +5338,7 @@
   "jurisdiction": "CA",
   "category": "just_cause_eviction",
   "citation": "Cal. Civil Code § 1946.2",
+  "refiled_from": null,
   "source": {
    "doc_id": "D023",
    "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2",
@@ -6066,6 +5601,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_0": {
+     "choice": "state_statewide",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -6188,6 +5727,15 @@
     "seconds": 0.41,
     "cost": 0.000268464,
     "ts": "2026-10-03T23:04:47Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D023:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "450587e53e2f8d751c28520510eac01c43fbddd329f15ffa6150be8be9822c60",
+    "seconds": 0.54,
+    "cost": 0.000221424,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -6198,6 +5746,7 @@
   "jurisdiction": "CA",
   "category": "rent_increase_limits",
   "citation": "Cal. Civ. Code § 1947.12",
+  "refiled_from": null,
   "source": {
    "doc_id": "D024",
    "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12",
@@ -6601,6 +6150,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_0": {
+     "choice": "state_statewide",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -6784,6 +6337,15 @@
     "seconds": 0.42,
     "cost": 0.000541926,
     "ts": "2026-10-03T23:22:56Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D024:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "f9e8e1fb63725db2bbc146f4443cfd975d7c99ec3c28b07889b808bc1a72f9c9",
+    "seconds": 0.57,
+    "cost": 0.000189252,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -6794,6 +6356,7 @@
   "jurisdiction": "CA",
   "category": "security_deposits",
   "citation": "Cal. Civ. Code § 1950.5(c)(1)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D025",
    "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5",
@@ -6901,6 +6464,10 @@
     },
     "g4": {
      "choice": "adopted",
+     "confidence": 1
+    },
+    "g5_0": {
+     "choice": "state_statewide",
      "confidence": 1
     }
    },
@@ -7049,6 +6616,15 @@
     "seconds": 0.41,
     "cost": 0.000297234,
     "ts": "2026-10-03T23:22:56Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D025:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "f27c368b05b09f71f72ddb12b022256313febf4eee69c857d5b4473c39b29757",
+    "seconds": 0.55,
+    "cost": 0.000227976,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -7059,6 +6635,7 @@
   "jurisdiction": "CA",
   "category": "application_screening_fees",
   "citation": "Cal. Civ. Code § 1950.6",
+  "refiled_from": null,
   "source": {
    "doc_id": "D026",
    "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6",
@@ -7132,6 +6709,10 @@
     },
     "g4": {
      "choice": "adopted",
+     "confidence": 1
+    },
+    "g5_0": {
+     "choice": "state_statewide",
      "confidence": 1
     }
    },
@@ -7292,6 +6873,15 @@
     "seconds": 0.47,
     "cost": 0.000144144,
     "ts": "2026-10-03T23:04:47Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D026:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "048df18754c0f73a6207d46a152cff85c0b2dc9f8d071bcfe49b502bbc807f72",
+    "seconds": 0.54,
+    "cost": 9.5466e-05,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -7302,6 +6892,7 @@
   "jurisdiction": "MA-CAMBRIDGE",
   "category": "screening_restrictions",
   "citation": "Cambridge Code of Ordinances ch. 14.04",
+  "refiled_from": null,
   "source": {
    "doc_id": "D029",
    "url": "https://www.cambridgema.gov/departments/humanrightscommission",
@@ -7390,6 +6981,10 @@
     },
     "g4": {
      "choice": "adopted",
+     "confidence": 1
+    },
+    "g5_2": {
+     "choice": "city",
      "confidence": 1
     }
    },
@@ -7556,6 +7151,15 @@
     "seconds": 0.63,
     "cost": 0.00024444,
     "ts": "2026-10-03T23:22:57Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D029+D031:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "c464835528b02d6485da5442a4067702a583378cfc34b7abde97e2397af6997b",
+    "seconds": 0.43,
+    "cost": 0.000135072,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -7566,6 +7170,7 @@
   "jurisdiction": "MA-CAMBRIDGE",
   "category": "just_cause_eviction",
   "citation": "Cambridge Municipal Code ch. 8.71",
+  "refiled_from": null,
   "source": {
    "doc_id": "D031",
    "url": "https://www.cambridgema.gov/tenantrights",
@@ -7818,6 +7423,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_4": {
+     "choice": "city",
+     "confidence": 0.94
     }
    },
    "gate_flags": [],
@@ -7998,6 +7607,15 @@
     "seconds": 0.63,
     "cost": 0.00024444,
     "ts": "2026-10-03T23:22:57Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D029+D031:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "c464835528b02d6485da5442a4067702a583378cfc34b7abde97e2397af6997b",
+    "seconds": 0.43,
+    "cost": 0.000135072,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -8008,6 +7626,7 @@
   "jurisdiction": "NJ-JERSEY-CITY",
   "category": "rent_increase_limits",
   "citation": "Jersey City Landlord/Tenant Relations webpage",
+  "refiled_from": null,
   "source": {
    "doc_id": "D036",
    "url": "https://www.jerseycitynj.gov/landlordtenant",
@@ -8085,6 +7704,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_1": {
+     "choice": "city",
+     "confidence": 0.99
     }
    },
    "gate_flags": [],
@@ -8268,6 +7891,15 @@
     "seconds": 0.58,
     "cost": 0.000134064,
     "ts": "2026-10-03T23:04:48Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D036+S009:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "f6fa6f3dfaaa4925d165564c590bb6b2acb49f7554f97a2ba0896069b3f33cfb",
+    "seconds": 0.35,
+    "cost": 0.000101136,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -8278,6 +7910,7 @@
   "jurisdiction": "CA-LOS-ANGELES",
   "category": "just_cause_eviction",
   "citation": "LAMC § 165.03",
+  "refiled_from": null,
   "source": {
    "doc_id": "D040",
    "url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco",
@@ -8381,6 +8014,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_0": {
+     "choice": "city",
+     "confidence": 0.99
     }
    },
    "gate_flags": [],
@@ -8663,508 +8300,15 @@
     "seconds": 0.62,
     "cost": 0.00080262,
     "ts": "2026-10-03T23:23:00Z"
-   }
-  ],
-  "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
- },
- "CA-LOS-ANGELES-RENT-1947.12": {
-  "team_rule_id": "CA-LOS-ANGELES-RENT-1947.12",
-  "internal_id": "D040+D041+D042+D043:9:state-rent-cap",
-  "jurisdiction": "CA-LOS-ANGELES",
-  "category": "rent_increase_limits",
-  "citation": "Cal. Civ. Code § 1947.12",
-  "source": {
-   "doc_id": "D040",
-   "url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco",
-   "retrieved": "2026-10-01 22:36 UTC",
-   "version_id": "sha256:13f9d54597199b73e23ad12dcc38626d53bb30bd53d89a63b6a7f55ecc570425",
-   "quote": "A\nnnual rent increases are limited to no more than 5% plus the percentage change in the cost of living for the region in which the property is located, or 10% whichever is lower).",
-   "quote_verbatim": true,
-   "origin": "starter"
-  },
-  "model": {
-   "requirement": "For covered units, annual rent increases are limited to 5% plus regional cost-of-living change, or 10%, whichever is lower.",
-   "key_value": "5% plus the percentage change in cost of living, capped at 10%",
-   "key_value_quote": "5% plus the percentage change in the cost of living for the region in which the property is located, or 10% whichever is lower",
-   "category": "rent_increase_limits",
-   "effect": "protection_or_duty",
-   "applies_if": {
-    "kind": "age_years",
-    "children": [],
-    "fact": null,
-    "op": "gt",
-    "value": null,
-    "values": null,
-    "years": 15,
-    "ref": null,
-    "quote": "buildings that are older than 15 years old"
-   },
-   "exempt_if": {
-    "kind": "any",
-    "children": [
-     {
-      "kind": "age_years",
-      "children": [],
-      "fact": null,
-      "op": "lt",
-      "value": null,
-      "values": null,
-      "years": 15,
-      "ref": null,
-      "quote": "Units that were constructed within the last 15 years"
-     },
-     {
-      "kind": "ref",
-      "children": [],
-      "fact": null,
-      "op": null,
-      "value": null,
-      "values": null,
-      "years": null,
-      "ref": "local_rent_control",
-      "quote": "Units that are already subject to the City’s RSO."
-     },
-     {
-      "kind": "fact",
-      "children": [],
-      "fact": "subsidised",
-      "op": "eq",
-      "value": true,
-      "values": null,
-      "years": null,
-      "ref": null,
-      "quote": "Units restricted by a deed, regulatory restrictions, or other recorded document limiting the affordability to low or moderate-income households."
-     }
-    ],
-    "fact": null,
-    "op": null,
-    "value": null,
-    "values": null,
-    "years": null,
-    "ref": null,
-    "quote": null
-   },
-   "key_value_conditions": [],
-   "tenant_conditions": [
-    {
-     "text": "A two-unit property is exempt only if the second unit was occupied by an owner throughout the tenancy.",
-     "quote": "A two-unit property, provided the second unit was occupied by an owner of the property for the entire period of the tenancy."
-    },
-    {
-     "text": "The described single-family home and condominium exemption also requires written notice to the tenant and specified ownership circumstances.",
-     "quote": "The landlord notified the tenant in writing that the tenancy is not subject to the “just cause” and rent increase limitations"
-    }
-   ],
-   "dates_as_stated": [
-    {
-     "kind": "effective",
-     "date": "2025-08-20",
-     "relative_rule": "none",
-     "applies_to": "JCO right-to-counsel notice",
-     "quote": "Beginning August 20, 2025, landlords must post a Notice of Right to Counsel"
-    },
-    {
-     "kind": "effective",
-     "date": "2023-01-27",
-     "relative_rule": "none",
-     "applies_to": "Notice of Renters’ Protections",
-     "quote": "All landlords of residential properties must provide a Notice of Renters’ Protections to tenants who begin or renew their tenancy on or after January 27, 2023."
-    },
-    {
-     "kind": "effective",
-     "date": "2023-03-27",
-     "relative_rule": "none",
-     "applies_to": "nonpayment eviction restriction",
-     "quote": "Effective March 27, 2023, landlords may not evict a tenant who falls behind in rent unless the tenant owes an amount higher than the Fair Market Rent (FMR)."
-    },
-    {
-     "kind": "effective",
-     "date": "2024-08-01",
-     "relative_rule": "none",
-     "applies_to": "AB 1482 rent cap rate",
-     "quote": "Effective August 1, 2024 to July 31, 2025, the maximum allowable increase is 8.9%."
-    },
-    {
-     "kind": "effective",
-     "date": "2026-02-02",
-     "relative_rule": "none",
-     "applies_to": "RSO utility rent-increase component",
-     "quote": "Effective February 2, 2026, the landlord can no longer include an additional percentage increase for utilities."
-    },
-    {
-     "kind": "effective",
-     "date": "2026-07-01",
-     "relative_rule": "none",
-     "applies_to": "relocation assistance amounts",
-     "quote": "Effective July 1, 2026 through June 30, 2027"
-    }
-   ]
-  },
-  "checks": {
-   "code_checks": [
-    "a city ordinance's coverage uses ref (circular): write which buildings it covers"
-   ],
-   "gate": {
-    "g1_req_9": {
-     "choice": "supported",
-     "confidence": 0.99
-    },
-    "g1_key_9": {
-     "choice": "supported",
-     "confidence": 0.99
-    },
-    "g2_9": {
-     "choice": "none",
-     "confidence": 0.47
-    },
-    "g4": {
-     "choice": "adopted",
-     "confidence": 1
-    }
-   },
-   "gate_flags": [],
-   "jev_overrides": [],
-   "triaged_conditions": [],
-   "parse_status": "failed"
-  },
-  "code": {
-   "status": "in_force",
-   "effective": {
-    "from": "2024-08-01",
-    "until": null,
-    "precision": "day",
-    "derived": null
-   },
-   "status_evidence": null,
-   "interaction": {
-    "type": "none"
-   },
-   "open_questions": [
-    {
-     "jurisdiction": "CA-LOS-ANGELES",
-     "category": "rent_increase_limits",
-     "kind": "open_question",
-     "question_kind": "dates_disagree",
-     "note": "Published sources give different effective dates for Los Angeles’s new RSO rent-increase formula.",
-     "claims": [
-      {
-       "value": "2026-02-02",
-       "iso_date": "2026-02-02",
-       "source": "Los Angeles Housing Department (LAHD)",
-       "source_doc_id": "D041",
-       "url": "https://housing.lacity.gov/residents/rso-overview",
-       "matched_by": "same date as our rule",
-       "match_confidence": 0.38
-      },
-      {
-       "value": "2026-01-24",
-       "iso_date": "2026-01-24",
-       "source": "Landlord association",
-       "source_doc_id": "D044",
-       "url": "https://members.aagla.org/news/city-of-la-security-deposit-interest-requirement",
-       "matched_by": "jev",
-       "match_confidence": 0.75
-      }
-     ],
-     "citation": "guide: known open questions in the law",
-     "quote": null,
-     "source_doc_ids": [
-      "D040",
-      "D041",
-      "D044"
-     ],
-     "our_rules": [
-      {
-       "id": "D040+D041+D042+D043:9:state-rent-cap",
-       "citation": "Cal. Civ. Code § 1947.12",
-       "source_doc_id": "D040",
-       "effective": {
-        "from": "2024-08-01",
-        "until": null,
-        "precision": "day",
-        "derived": null
-       },
-       "key_value": "5% plus the percentage change in cost of living, capped at 10%",
-       "quote": "A\nnnual rent increases are limited to no more than 5% plus the percentage change in the cost of living for the region in which the property is located, or 10% whichever is lower)."
-      },
-      {
-       "id": "D040+D041+D042+D043:10:rso-rent-increase-frequency",
-       "citation": "LAMC § 151.06",
-       "source_doc_id": "D041",
-       "effective": {
-        "from": "2026-02-02",
-        "until": null,
-        "precision": "day",
-        "derived": null
-       },
-       "key_value": "3% for July 1, 2025 through June 30, 2026",
-       "quote": "Rent may be increased once every 12 months by the allowable rent increase percentage"
-      }
-     ]
-    }
-   ]
-  },
-  "calls": [
-   {
-    "stage": "luna_extract",
-    "ref": "D042",
-    "model": "openai/gpt-6-luna",
-    "request_hash": "bf091f38ac35281307a5230bd6ec642bad06425a70a2c33508d3ce1a508ab353",
-    "seconds": 32.21,
-    "cost": 0.00249093,
-    "ts": "2026-10-03T21:39:36Z"
-   },
-   {
-    "stage": "luna_extract",
-    "ref": "D041",
-    "model": "openai/gpt-6-luna",
-    "request_hash": "87f13f276dbf1cb1d0c264563c44c3a8757b3a83a1c79a90afb4301b0ee53fcc",
-    "seconds": 80.42,
-    "cost": 0.007481305,
-    "ts": "2026-10-03T21:40:24Z"
-   },
-   {
-    "stage": "jev_J1",
-    "ref": "D041",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "8e72be2a9c3658797fa6e615126345bcf2632b1b944d6b62c63800023f892572",
-    "seconds": 0.74,
-    "cost": 0.000142296,
-    "ts": "2026-10-03T22:29:28Z"
-   },
-   {
-    "stage": "jev_J4",
-    "ref": "D041",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "96b55f2f9ea8dce23cbd3c67c005a1531607d96a2a1cf9e4d46ccfb2182dbc59",
-    "seconds": 0.8,
-    "cost": 0.000343014,
-    "ts": "2026-10-03T22:29:28Z"
-   },
-   {
-    "stage": "jev_J3",
-    "ref": "D041",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "a1ba2db6a91d28e4ef46c89419b6fa83ee33d3e5b9a63366766679115c216701",
-    "seconds": 0.82,
-    "cost": 0.000302358,
-    "ts": "2026-10-03T22:29:28Z"
-   },
-   {
-    "stage": "jev_J2",
-    "ref": "D041",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "cff60e68714795af65e3ff16f3ba9ce2d1cff0d81f771e919b01d644899a0700",
-    "seconds": 0.83,
-    "cost": 0.000301182,
-    "ts": "2026-10-03T22:29:28Z"
-   },
-   {
-    "stage": "jev_J1",
-    "ref": "D042",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "75753afe181468cdf43bfc39b9193db1a6b363551d7945a603133312ede64f16",
-    "seconds": 0.38,
-    "cost": 8.8578e-05,
-    "ts": "2026-10-03T22:29:28Z"
-   },
-   {
-    "stage": "jev_J3",
-    "ref": "D042",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "92b1a6b0b1d64cfcfada690fa5ba4e03993b3a29e635de6689c6c9f0bd71951c",
-    "seconds": 0.39,
-    "cost": 0.000155862,
-    "ts": "2026-10-03T22:29:28Z"
-   },
-   {
-    "stage": "jev_J2",
-    "ref": "D042",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "1d6eccf21bda69bd10dff4dacb9b2879d2e49258a7287f51bdfe5f1cfb455eff",
-    "seconds": 0.39,
-    "cost": 0.000155274,
-    "ts": "2026-10-03T22:29:28Z"
-   },
-   {
-    "stage": "jev_J4",
-    "ref": "D042",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "0e8db62ebbbbf545a58b90a864c5e06ce4cba9f7c2e17b80ba146b0a23ffd212",
-    "seconds": 0.41,
-    "cost": 0.000136248,
-    "ts": "2026-10-03T22:29:28Z"
-   },
-   {
-    "stage": "jev_merge_headline",
-    "ref": "D043",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "6b96a65cf404d8f0d80f55f5cf732a6f0043f53ae8dc8134ffde7c6cc33a38e6",
-    "seconds": 0.31,
-    "cost": 3.57e-05,
-    "ts": "2026-10-03T22:43:02Z"
-   },
-   {
-    "stage": "jev_J3",
-    "ref": "D043",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "d0913192b2f8c585eb492a5462dcc4dd6d017645a7e9de6c1106a13c4b40ebe1",
-    "seconds": 0.49,
-    "cost": 0.000534618,
-    "ts": "2026-10-03T22:48:37Z"
-   },
-   {
-    "stage": "jev_J1",
-    "ref": "D043",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "4685dbf3b1acd2ca1f224e2dea2bbf684adc5b16ebbf12fe2621eaab9bd634af",
-    "seconds": 0.46,
-    "cost": 0.00040908,
-    "ts": "2026-10-03T22:48:37Z"
-   },
-   {
-    "stage": "jev_J2",
-    "ref": "D043",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "42354b15e4981d1ac610bd60d2e37e83c0088de91b7dce3dfd39040b8ac025f8",
-    "seconds": 0.51,
-    "cost": 0.000533694,
-    "ts": "2026-10-03T22:48:37Z"
-   },
-   {
-    "stage": "jev_J1",
-    "ref": "D040",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "d61745d9ed2b1d286b9654bc251256b0324c024e007be0698232de6874b62a25",
-    "seconds": 0.4,
-    "cost": 0.000132804,
-    "ts": "2026-10-03T22:48:37Z"
-   },
-   {
-    "stage": "jev_J4",
-    "ref": "D040",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "e4b9777b223db7d2f2807e1f953e284f4093c5e7d9974ec652d97fa84144520a",
-    "seconds": 0.44,
-    "cost": 0.000266784,
-    "ts": "2026-10-03T22:48:37Z"
-   },
-   {
-    "stage": "jev_J3",
-    "ref": "D040",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "85dc9179368f9679696a99304efc45d3fcd2c32f0965222e7fe4ee967bdce346",
-    "seconds": 0.46,
-    "cost": 0.000237468,
-    "ts": "2026-10-03T22:48:37Z"
-   },
-   {
-    "stage": "jev_J2",
-    "ref": "D040",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "956255796884feb47d73d7256cc92e81762cb4754853d4a4383f1b92465f17b9",
-    "seconds": 0.54,
-    "cost": 0.000236628,
-    "ts": "2026-10-03T22:48:37Z"
-   },
-   {
-    "stage": "jev_J4",
-    "ref": "D043",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "957193b98ece6865ffdd629fb6491d2d4fa2e1b7830bf21cc7c7ff142fc140e4",
-    "seconds": 0.81,
-    "cost": 0.000601104,
-    "ts": "2026-10-03T22:48:38Z"
-   },
-   {
-    "stage": "luna_extract",
-    "ref": "D040+D041+D042+D043",
-    "model": "openai/gpt-6-luna",
-    "request_hash": "2e352b639ca4a32de30ec823997041551ecf1dbb384b00897cd111a7fd99b541",
-    "seconds": 74.62,
-    "cost": 0.00767338,
-    "ts": "2026-10-03T22:49:52Z"
-   },
-   {
-    "stage": "jev_J8",
-    "ref": "D040+D041+D042+D043",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "4f6974ca792e4317e496a7775f92baf0b042a8bf1bb6aa4d37cac24225d12ec3",
-    "seconds": 0.49,
-    "cost": 0.000684012,
-    "ts": "2026-10-03T22:49:53Z"
-   },
-   {
-    "stage": "jev_J5",
-    "ref": "D040+D041+D042+D043",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "99b172159e8573a03c757f62393e6dd2dffc978d8ea0f4102300f18582a7abde",
-    "seconds": 0.52,
-    "cost": 0.000896574,
-    "ts": "2026-10-03T22:49:53Z"
-   },
-   {
-    "stage": "luna_repair",
-    "ref": "D040+D041+D042+D043",
-    "model": "openai/gpt-6-luna",
-    "request_hash": "f0716cc4ee128875e39f9bedade688ac2112e432fba74eb3f2469bf892be699b",
-    "seconds": 51.2,
-    "cost": 0.00810099,
-    "ts": "2026-10-03T22:50:44Z"
-   },
-   {
-    "stage": "jev_J6",
-    "ref": "D040+D041+D042+D043",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "871a2cf95e6f983b8bc132d193d987fb87dfa9878fee6493345c5a0e0b8517c8",
-    "seconds": 0.95,
-    "cost": 0.000692538,
-    "ts": "2026-10-03T22:54:14Z"
    },
    {
     "stage": "gate",
-    "ref": "D040+D041+D042+D043:0",
+    "ref": "D040+D041+D042+D043:g5",
     "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "a8001957abfc4b7a0fd8deb6625d80d7e532474a81fe3716d0ef12a151ff2c2d",
-    "seconds": 0.42,
-    "cost": 0.000179004,
-    "ts": "2026-10-03T23:04:48Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D040+D041+D042+D043:10",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "55f5830a3a21e90eb788c3b6bd548e56de04ba5a8e228f3c65a1e0787ba4c3e2",
-    "seconds": 0.43,
-    "cost": 0.000196686,
-    "ts": "2026-10-03T23:04:48Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D040+D041+D042+D043:9",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "dc194c3fd32a984b0ce79b0a592765819508fda16eb0de44ed178ac599ad0d87",
-    "seconds": 0.44,
-    "cost": 0.000194838,
-    "ts": "2026-10-03T23:04:48Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D040+D041+D042+D043:g4",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "b8f5fb8586c6ee305f393e70453c00fbdfe8ce813073db7a51751f0dbbce85f6",
-    "seconds": 0.47,
-    "cost": 0.000116256,
-    "ts": "2026-10-03T23:04:48Z"
-   },
-   {
-    "stage": "jev_triage",
-    "ref": "D040+D041+D042+D043",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "357bdd7caf90e97d8985b9fa5782b4e3b76365af691b986eb8d9e6ef5bed1a18",
-    "seconds": 0.62,
-    "cost": 0.00080262,
-    "ts": "2026-10-03T23:23:00Z"
+    "request_hash": "f0b231a5c9e92589dba1c47712deff634af824590a31f0601f27c4e6c9d872ba",
+    "seconds": 0.35,
+    "cost": 0.000138348,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -9175,6 +8319,7 @@
   "jurisdiction": "CA-LOS-ANGELES",
   "category": "rent_increase_limits",
   "citation": "LAMC § 151.06",
+  "refiled_from": null,
   "source": {
    "doc_id": "D041",
    "url": "https://housing.lacity.gov/residents/rso-overview",
@@ -9282,6 +8427,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_10": {
+     "choice": "city",
+     "confidence": 0.71
     }
    },
    "gate_flags": [
@@ -9629,6 +8778,15 @@
     "seconds": 0.62,
     "cost": 0.00080262,
     "ts": "2026-10-03T23:23:00Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D040+D041+D042+D043:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "f0b231a5c9e92589dba1c47712deff634af824590a31f0601f27c4e6c9d872ba",
+    "seconds": 0.35,
+    "cost": 0.000138348,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -9639,6 +8797,7 @@
   "jurisdiction": "MA",
   "category": "algorithmic_rent_setting",
   "citation": "Mass. H.5222",
+  "refiled_from": null,
   "source": {
    "doc_id": "D045",
    "url": "https://malegislature.gov/Bills/194/H5222",
@@ -9788,6 +8947,7 @@
   "jurisdiction": "MA",
   "category": "algorithmic_rent_setting",
   "citation": "Mass. S.2983",
+  "refiled_from": null,
   "source": {
    "doc_id": "D046",
    "url": "https://malegislature.gov/Bills/194/S2983",
@@ -9851,6 +9011,10 @@
     "g4": {
      "choice": "pending",
      "confidence": 0.97
+    },
+    "g5_0": {
+     "choice": "state_statewide",
+     "confidence": 0.99
     }
    },
    "gate_flags": [],
@@ -9962,6 +9126,15 @@
     "seconds": 0.36,
     "cost": 5.2206e-05,
     "ts": "2026-10-03T23:04:48Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D046:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "954ebd0f8c3f4ecf7dd139c083534ead8c3f18b85eb135735f71e88ac81427ff",
+    "seconds": 0.44,
+    "cost": 5.4642e-05,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -9972,6 +9145,7 @@
   "jurisdiction": "MA",
   "category": "rent_increase_limits",
   "citation": "Mass. Gen. Laws ch. 40P, § 4",
+  "refiled_from": null,
   "source": {
    "doc_id": "D048",
    "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4",
@@ -10141,6 +9315,7 @@
   "jurisdiction": "MA",
   "category": "screening_restrictions",
   "citation": "Mass. Gen. Laws ch. 151B, § 4(6)(a)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D049",
    "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4",
@@ -10225,6 +9400,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_2": {
+     "choice": "state_statewide",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -10300,6 +9479,15 @@
     "seconds": 0.37,
     "cost": 0.000259602,
     "ts": "2026-10-03T23:04:48Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D049:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "60226e438936c14f4fd35defabb19bdf49c53e97fe18a64b3a4b79f095e524d6",
+    "seconds": 0.44,
+    "cost": 0.000184716,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -10310,6 +9498,7 @@
   "jurisdiction": "MA",
   "category": "just_cause_eviction",
   "citation": "Mass. Gen. Laws ch. 186, § 11",
+  "refiled_from": null,
   "source": {
    "doc_id": "D050",
    "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11",
@@ -10377,6 +9566,10 @@
     },
     "g4": {
      "choice": "adopted",
+     "confidence": 1
+    },
+    "g5_0": {
+     "choice": "state_statewide",
      "confidence": 1
     }
    },
@@ -10480,6 +9673,15 @@
     "seconds": 0.43,
     "cost": 7.0644e-05,
     "ts": "2026-10-03T23:04:48Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D050:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "1d05187d923214c68cc1abe982cd302e68f2c5c99b89254833fe640b27f4a9f1",
+    "seconds": 0.41,
+    "cost": 4.5024e-05,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -10490,6 +9692,7 @@
   "jurisdiction": "MA",
   "category": "security_deposits",
   "citation": "Mass. Gen. Laws ch. 186, § 15B",
+  "refiled_from": null,
   "source": {
    "doc_id": "D052",
    "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B",
@@ -10569,6 +9772,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.99
+    },
+    "g5_0": {
+     "choice": "state_statewide",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -10689,6 +9896,15 @@
     "seconds": 9.84,
     "cost": 0.00106974,
     "ts": "2026-10-03T23:06:16Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D052:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "1cf21f2cac199c3f60051b05c58f620b94f013d42a5058e4108469bb90d54d78",
+    "seconds": 0.34,
+    "cost": 0.00019803,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -10699,6 +9915,7 @@
   "jurisdiction": "MA",
   "category": "application_screening_fees",
   "citation": "Mass. Gen. Laws ch. 186, § 15B(1)(b)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D052",
    "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B",
@@ -10881,6 +10098,15 @@
     "seconds": 9.84,
     "cost": 0.00106974,
     "ts": "2026-10-03T23:06:16Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D052:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "1cf21f2cac199c3f60051b05c58f620b94f013d42a5058e4108469bb90d54d78",
+    "seconds": 0.34,
+    "cost": 0.00019803,
+    "ts": "2026-10-04T00:26:41Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -10891,6 +10117,7 @@
   "jurisdiction": "MA",
   "category": "application_screening_fees",
   "citation": "Mass. Gen. Laws ch. 112, § 87DDD½",
+  "refiled_from": null,
   "source": {
    "doc_id": "D057",
    "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2",
@@ -10965,6 +10192,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.99
+    },
+    "g5_2": {
+     "choice": "state_statewide",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -11076,6 +10307,15 @@
     "seconds": 0.31,
     "cost": 4.6998e-05,
     "ts": "2026-10-03T23:04:48Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D057:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "0bf6b8b0cd62c128f256ae9bab1e53053b649605c2391b0f3f6c6ffc4873295b",
+    "seconds": 0.34,
+    "cost": 5.0694e-05,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -11086,6 +10326,7 @@
   "jurisdiction": "NJ",
   "category": "screening_restrictions",
   "citation": "N.J. Stat. Ann. § 46:8-55(a)(1)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D065",
    "url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM",
@@ -11219,6 +10460,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_0": {
+     "choice": "state_statewide",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -11366,6 +10611,15 @@
     "seconds": 1.9,
     "cost": 0.0002163,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D065:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "79655a82267bddadf872634bf6b17d9c7913a1583f660ff9f674f0fb25e1d365",
+    "seconds": 0.42,
+    "cost": 0.000250194,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -11376,6 +10630,7 @@
   "jurisdiction": "NJ",
   "category": "screening_restrictions",
   "citation": "N.J. Stat. Ann. § 46:8-56(a)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D065",
    "url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM",
@@ -11509,6 +10764,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_6": {
+     "choice": "state_statewide",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -11656,6 +10915,15 @@
     "seconds": 1.9,
     "cost": 0.0002163,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D065:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "79655a82267bddadf872634bf6b17d9c7913a1583f660ff9f674f0fb25e1d365",
+    "seconds": 0.42,
+    "cost": 0.000250194,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -11666,6 +10934,7 @@
   "jurisdiction": "NJ",
   "category": "screening_restrictions",
   "citation": "N.J. Stat. Ann. § 46:8-58(a)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D065",
    "url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM",
@@ -11799,6 +11068,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_15": {
+     "choice": "state_statewide",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -11946,6 +11219,15 @@
     "seconds": 1.9,
     "cost": 0.0002163,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D065:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "79655a82267bddadf872634bf6b17d9c7913a1583f660ff9f674f0fb25e1d365",
+    "seconds": 0.42,
+    "cost": 0.000250194,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -11956,6 +11238,7 @@
   "jurisdiction": "NJ",
   "category": "screening_restrictions",
   "citation": "N.J. Stat. Ann. § 46:8-60",
+  "refiled_from": null,
   "source": {
    "doc_id": "D065",
    "url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM",
@@ -12084,6 +11367,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_20": {
+     "choice": "state_statewide",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -12231,6 +11518,15 @@
     "seconds": 1.9,
     "cost": 0.0002163,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D065:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "79655a82267bddadf872634bf6b17d9c7913a1583f660ff9f674f0fb25e1d365",
+    "seconds": 0.42,
+    "cost": 0.000250194,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -12241,6 +11537,7 @@
   "jurisdiction": "NJ",
   "category": "application_screening_fees",
   "citation": "N.J. Stat. § 46:8-18.1(a)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D066",
    "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM",
@@ -12341,6 +11638,10 @@
     },
     "g4": {
      "choice": "adopted",
+     "confidence": 1
+    },
+    "g5_0": {
+     "choice": "state_statewide",
      "confidence": 1
     }
    },
@@ -12462,6 +11763,15 @@
     "seconds": 1.24,
     "cost": 6.3168e-05,
     "ts": "2026-10-03T23:04:49Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D066:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "8fa5f3d2c353a189c4ac20d514f00c481d074e1316c7670f48163b7a699b3a1e",
+    "seconds": 0.33,
+    "cost": 6.7116e-05,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -12472,6 +11782,7 @@
   "jurisdiction": "NJ",
   "category": "security_deposits",
   "citation": "N.J.S.A. 46:8-21.2",
+  "refiled_from": null,
   "source": {
    "doc_id": "D067",
    "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf",
@@ -12586,182 +11897,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
-    }
-   },
-   "gate_flags": [],
-   "jev_overrides": [],
-   "triaged_conditions": [],
-   "parse_status": "ok"
-  },
-  "code": {
-   "status": "in_force",
-   "effective": {
-    "from": null,
-    "until": null,
-    "precision": "day",
-    "derived": null
-   },
-   "status_evidence": null,
-   "interaction": {
-    "type": "none"
-   },
-   "open_questions": []
-  },
-  "calls": [
-   {
-    "stage": "jev_J3",
-    "ref": "D067",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "311624cb6fbb53c742834dd1f6254cfd7ad204154b03057cff81fad4ade306b4",
-    "seconds": 3.45,
-    "cost": 0.000323148,
-    "ts": "2026-10-03T22:41:15Z"
-   },
-   {
-    "stage": "jev_J2",
-    "ref": "D067",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "33f43af9057ad29a6e79e6124a92c7c606fc3f51bbb10f461695584f643315c2",
-    "seconds": 0.78,
-    "cost": 0.000751338,
-    "ts": "2026-10-03T22:41:15Z"
-   },
-   {
-    "stage": "jev_J1",
-    "ref": "D067",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "ef60709a4e0c70cd05de05e6bb1733d00b8b84da5e8edb5b63427c0f7c107b25",
-    "seconds": 3.2,
-    "cost": 0.000173334,
-    "ts": "2026-10-03T22:41:15Z"
-   },
-   {
-    "stage": "jev_merge_headline",
-    "ref": "D067",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "ae2f29d1174c063ce74bd9214343e21b209f585aaa258e22a02c3a8f9b7cb330",
-    "seconds": 0.34,
-    "cost": 0.000232596,
-    "ts": "2026-10-03T22:53:57Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D067:28",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "43e23e1b0f762e7368cf874c436a5fc93d164ed8c9138e3937182e2842d7c948",
-    "seconds": 1.27,
-    "cost": 0.00044604,
-    "ts": "2026-10-03T23:04:50Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D067:g4",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "30f7cf7ab6aeeea36fc76f1cdb84fcf714c97bb95ce8c620d1b5610abd6c5e54",
-    "seconds": 1.29,
-    "cost": 0.000385602,
-    "ts": "2026-10-03T23:04:50Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D067:33",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "5dc8d89482514391629bfc7b52a227dca1234c1d2bbe395ef32a658076805ca8",
-    "seconds": 1.33,
-    "cost": 0.000458556,
-    "ts": "2026-10-03T23:04:50Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D067:46",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "87d45606317c781ff1ed2f3723939c1972759b1fdd714be59481fa4029d2d17f",
-    "seconds": 2.09,
-    "cost": 0.000439824,
-    "ts": "2026-10-03T23:04:50Z"
-   },
-   {
-    "stage": "gate",
-    "ref": "D067:9",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "3b6ae43b32f31a7bccd1bd2fe4550d01ad0274481575b65f5c5695b3ec1081de",
-    "seconds": 2.16,
-    "cost": 0.000435498,
-    "ts": "2026-10-03T23:04:50Z"
-   }
-  ],
-  "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
- },
- "NJ-SCREEN-15": {
-  "team_rule_id": "NJ-SCREEN-15",
-  "internal_id": "D067:28:adverse-screening-report-disclosure",
-  "jurisdiction": "NJ",
-  "category": "screening_restrictions",
-  "citation": "15 U.S.C.A. § 1681m",
-  "source": {
-   "doc_id": "D067",
-   "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf",
-   "retrieved": "2026-10-01 22:37 UTC",
-   "version_id": "sha256:a61f61a51b513b48a41cce48326e28861838a95e5e5a29cdedc41470d44ed505",
-   "quote": "If a tenant’s  application is denied due their credit report, the landlord must \nprovide the tenant with the name, address, and telephone number of the credit reporting or \nscreening agency that supplied the negative report",
-   "quote_verbatim": true,
-   "origin": "starter"
-  },
-  "model": {
-   "requirement": "If an application is denied because of the applicant’s credit report, the landlord must provide the applicant with the name, address, and telephone number of the credit reporting or screening agency that supplied the negative report.",
-   "key_value": null,
-   "key_value_quote": null,
-   "category": "screening_restrictions",
-   "effect": "protection_or_duty",
-   "applies_if": {
-    "kind": "always",
-    "children": [],
-    "fact": null,
-    "op": null,
-    "value": null,
-    "values": null,
-    "years": null,
-    "ref": null,
-    "quote": null
-   },
-   "exempt_if": {
-    "kind": "never",
-    "children": [],
-    "fact": null,
-    "op": null,
-    "value": null,
-    "values": null,
-    "years": null,
-    "ref": null,
-    "quote": null
-   },
-   "key_value_conditions": [],
-   "tenant_conditions": [
-    {
-     "text": "The disclosure duty applies when the rental application is denied due to the applicant’s credit report.",
-     "quote": "If a tenant’s application is denied due their credit report"
-    }
-   ],
-   "dates_as_stated": [
-    {
-     "kind": "effective",
-     "date": null,
-     "relative_rule": "no_date_in_text",
-     "applies_to": "act",
-     "quote": "The only reason a landlord can terminate a lease is if they offer a new lease to the tenant with different terms, i.e. higher rent or new rules and regulations, and the tenant does not agree."
-    }
-   ]
-  },
-  "checks": {
-   "code_checks": [],
-   "gate": {
-    "g1_req_28": {
-     "choice": "supported",
-     "confidence": 1
     },
-    "g4": {
-     "choice": "adopted",
-     "confidence": 1
+    "g5_9": {
+     "choice": "state_statewide",
+     "confidence": 0.97
     }
    },
    "gate_flags": [],
@@ -12864,6 +12003,15 @@
     "seconds": 2.16,
     "cost": 0.000435498,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D067:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "a0de784c014d0db7156abbb284e80af2ed52ede1b410955d92e2b9bd620bcf38",
+    "seconds": 0.35,
+    "cost": 0.00025998,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -12874,6 +12022,7 @@
   "jurisdiction": "NJ",
   "category": "rent_increase_limits",
   "citation": "N.J.S.A. 2A:42-84.5",
+  "refiled_from": null,
   "source": {
    "doc_id": "D067",
    "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf",
@@ -13056,6 +12205,15 @@
     "seconds": 2.16,
     "cost": 0.000435498,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D067:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "a0de784c014d0db7156abbb284e80af2ed52ede1b410955d92e2b9bd620bcf38",
+    "seconds": 0.35,
+    "cost": 0.00025998,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -13066,6 +12224,7 @@
   "jurisdiction": "NJ",
   "category": "rent_increase_limits",
   "citation": "N.J.S.A. 2A:18-61.1 et seq.",
+  "refiled_from": null,
   "source": {
    "doc_id": "D067",
    "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf",
@@ -13129,6 +12288,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_33": {
+     "choice": "state_statewide",
+     "confidence": 0.95
     }
    },
    "gate_flags": [],
@@ -13233,6 +12396,15 @@
     "seconds": 2.16,
     "cost": 0.000435498,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D067:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "a0de784c014d0db7156abbb284e80af2ed52ede1b410955d92e2b9bd620bcf38",
+    "seconds": 0.35,
+    "cost": 0.00025998,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -13243,6 +12415,7 @@
   "jurisdiction": "NJ",
   "category": "just_cause_eviction",
   "citation": "N.J.S.A. 2A:18-61.1",
+  "refiled_from": null,
   "source": {
    "doc_id": "D067",
    "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf",
@@ -13311,6 +12484,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_46": {
+     "choice": "state_statewide",
+     "confidence": 0.99
     }
    },
    "gate_flags": [],
@@ -13413,6 +12590,15 @@
     "seconds": 2.16,
     "cost": 0.000435498,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D067:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "a0de784c014d0db7156abbb284e80af2ed52ede1b410955d92e2b9bd620bcf38",
+    "seconds": 0.35,
+    "cost": 0.00025998,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -13423,6 +12609,7 @@
   "jurisdiction": "NJ",
   "category": "screening_restrictions",
   "citation": "N.J.S.A. 10:5-12",
+  "refiled_from": null,
   "source": {
    "doc_id": "D068",
    "url": "https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf",
@@ -13560,6 +12747,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_0": {
+     "choice": "state_statewide",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -13680,6 +12871,15 @@
     "seconds": 1.91,
     "cost": 0.000122178,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D068:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "4fe49daa6fa59dba67e5e40731792cfb85f9498b2f2c9c79741213b901379e7b",
+    "seconds": 0.27,
+    "cost": 0.000102858,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -13690,6 +12890,7 @@
   "jurisdiction": "NJ",
   "category": "algorithmic_rent_setting",
   "citation": "N.J. Stat. Ann. § 56:9-23(e)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D069",
    "url": "https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM",
@@ -13767,6 +12968,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.98
+    },
+    "g5_4": {
+     "choice": "state_statewide",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -13889,6 +13094,15 @@
     "seconds": 1.17,
     "cost": 0.00015078,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D069:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "78bc51bb16938ce43c61ef589a244f8ad355db098f3ca04c4693d7f5f3709ef8",
+    "seconds": 0.29,
+    "cost": 0.000125538,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -13899,6 +13113,7 @@
   "jurisdiction": "CA-SAN-DIEGO",
   "category": "just_cause_eviction",
   "citation": "San Diego Municipal Code § 98.0704",
+  "refiled_from": null,
   "source": {
    "doc_id": "D073",
    "url": "https://docs.sandiego.gov/municode/municodechapter09/ch09art08division07.pdf",
@@ -14121,6 +13336,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_0": {
+     "choice": "city",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -14213,6 +13432,15 @@
     "seconds": 0.42,
     "cost": 0.00046242,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D073:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "0a9b47f58de96200bcea15ec841269a1054e13c353c1f31c3e255265fe888ffc",
+    "seconds": 0.33,
+    "cost": 0.000228732,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -14223,6 +13451,7 @@
   "jurisdiction": "CA-SAN-DIEGO",
   "category": "algorithmic_rent_setting",
   "citation": "San Diego Municipal Code § 98.1103(b)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D076",
    "url": "https://sandiego.gov/sites/default/files/2025-04/automated-rent-price-fixing-prohibition-ordinance-materials.pdf",
@@ -14286,6 +13515,10 @@
     "g4": {
      "choice": "draft",
      "confidence": 0.88
+    },
+    "g5_1": {
+     "choice": "city",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -14415,6 +13648,15 @@
     "seconds": 0.3,
     "cost": 3.0954e-05,
     "ts": "2026-10-03T23:29:09Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D076:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "06156e996842cd63a48cf03cde6537dd14f79d90a199174c5e5b89aec8467200",
+    "seconds": 0.32,
+    "cost": 0.000238854,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -14425,6 +13667,7 @@
   "jurisdiction": "CA-SAN-FRANCISCO",
   "category": "just_cause_eviction",
   "citation": "San Francisco Rent Ordinance § 37.9(a)",
+  "refiled_from": null,
   "source": {
    "doc_id": "D079",
    "url": "https://sf.gov/information/overview-just-cause-evictions",
@@ -14546,6 +13789,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.97
+    },
+    "g5_0": {
+     "choice": "city",
+     "confidence": 0.91
     }
    },
    "gate_flags": [],
@@ -14891,6 +14138,15 @@
     "seconds": 0.96,
     "cost": 8.9712e-05,
     "ts": "2026-10-03T23:04:51Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D078+D079+D080+D081+D082+D083:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "82bda1daf4efb8d098823236e8dbf190ef7505c45dbaca416b92887cf42f9e2e",
+    "seconds": 0.31,
+    "cost": 0.000121548,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -14901,6 +14157,7 @@
   "jurisdiction": "CA-SAN-FRANCISCO",
   "category": "rent_increase_limits",
   "citation": "San Francisco Rent Ordinance § 37.3",
+  "refiled_from": null,
   "source": {
    "doc_id": "D080",
    "url": "https://www.sf.gov/news--annual-rent-increase-3126-22827-announced",
@@ -15024,6 +14281,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.97
+    },
+    "g5_2": {
+     "choice": "city",
+     "confidence": 0.8
     }
    },
    "gate_flags": [],
@@ -15369,6 +14630,15 @@
     "seconds": 0.96,
     "cost": 8.9712e-05,
     "ts": "2026-10-03T23:04:51Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D078+D079+D080+D081+D082+D083:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "82bda1daf4efb8d098823236e8dbf190ef7505c45dbaca416b92887cf42f9e2e",
+    "seconds": 0.31,
+    "cost": 0.000121548,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -15379,6 +14649,7 @@
   "jurisdiction": "CA-SAN-FRANCISCO",
   "category": "algorithmic_rent_setting",
   "citation": "San Francisco Rent Ordinance § 37.10C",
+  "refiled_from": null,
   "source": {
    "doc_id": "D081",
    "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco",
@@ -15491,6 +14762,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.97
+    },
+    "g5_3": {
+     "choice": "city",
+     "confidence": 0.78
     }
    },
    "gate_flags": [],
@@ -15836,6 +15111,15 @@
     "seconds": 0.96,
     "cost": 8.9712e-05,
     "ts": "2026-10-03T23:04:51Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D078+D079+D080+D081+D082+D083:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "82bda1daf4efb8d098823236e8dbf190ef7505c45dbaca416b92887cf42f9e2e",
+    "seconds": 0.31,
+    "cost": 0.000121548,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -15846,6 +15130,7 @@
   "jurisdiction": "CA-SAN-FRANCISCO",
   "category": "security_deposits",
   "citation": "San Francisco Rent Ordinance § 37.6",
+  "refiled_from": null,
   "source": {
    "doc_id": "D083",
    "url": "https://www.sf.gov/reports--current-rates-including-rent-increase-relocation-sec-deposit",
@@ -15967,6 +15252,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.97
+    },
+    "g5_10": {
+     "choice": "city",
+     "confidence": 0.63
     }
    },
    "gate_flags": [],
@@ -16312,6 +15601,15 @@
     "seconds": 0.96,
     "cost": 8.9712e-05,
     "ts": "2026-10-03T23:04:51Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D078+D079+D080+D081+D082+D083:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "82bda1daf4efb8d098823236e8dbf190ef7505c45dbaca416b92887cf42f9e2e",
+    "seconds": 0.31,
+    "cost": 0.000121548,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -16322,6 +15620,7 @@
   "jurisdiction": "CA-SANTA-ANA",
   "category": "rent_increase_limits",
   "citation": "Santa Ana Rent Stabilization Ordinance",
+  "refiled_from": null,
   "source": {
    "doc_id": "D085",
    "url": "https://santa-ana.gov/santa-ana-city-council-adopts-rent-stabilization-and-just-cause-eviction-ordinances-effective-nov-19",
@@ -16527,6 +15826,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_0": {
+     "choice": "city",
+     "confidence": 0.94
     }
    },
    "gate_flags": [],
@@ -16709,6 +16012,15 @@
     "seconds": 0.48,
     "cost": 0.000412146,
     "ts": "2026-10-03T23:23:00Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D084+D085:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "103446eda8e7d6bb52a5cafaf2d49bf7a86abcd92065e20b8796876040bdd42e",
+    "seconds": 0.32,
+    "cost": 7.3752e-05,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -16719,6 +16031,7 @@
   "jurisdiction": "CA-SANTA-ANA",
   "category": "just_cause_eviction",
   "citation": "Santa Ana Just Cause Eviction Ordinance",
+  "refiled_from": null,
   "source": {
    "doc_id": "D085",
    "url": "https://santa-ana.gov/santa-ana-city-council-adopts-rent-stabilization-and-just-cause-eviction-ordinances-effective-nov-19",
@@ -17187,6 +16500,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 1
+    },
+    "g5_9": {
+     "choice": "city",
+     "confidence": 0.93
     }
    },
    "gate_flags": [],
@@ -17390,6 +16707,15 @@
     "seconds": 0.48,
     "cost": 0.000412146,
     "ts": "2026-10-03T23:23:00Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "D084+D085:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "103446eda8e7d6bb52a5cafaf2d49bf7a86abcd92065e20b8796876040bdd42e",
+    "seconds": 0.32,
+    "cost": 7.3752e-05,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -17400,6 +16726,7 @@
   "jurisdiction": "NJ-JERSEY-CITY",
   "category": "algorithmic_rent_setting",
   "citation": "Jersey City Code § 218-12(2)(a)",
+  "refiled_from": null,
   "source": {
    "doc_id": "S001",
    "url": "https://cityofjerseycity.civicweb.net/document/429156/Ordinance%20Amending%20Chapter%20218%20creating%20section.pdf",
@@ -17470,8 +16797,16 @@
      "choice": "supported",
      "confidence": 1
     },
+    "g2_0": {
+     "choice": "none",
+     "confidence": 0.44
+    },
     "g4": {
      "choice": "adopted",
+     "confidence": 1
+    },
+    "g5_0": {
+     "choice": "city",
      "confidence": 1
     }
    },
@@ -17541,10 +16876,10 @@
        "citation": "Jersey City Code § 218-12(2)(a)",
        "source_doc_id": "S001",
        "effective": {
-        "from": null,
+        "from": "2025-06-10",
         "until": null,
         "precision": "day",
-        "derived": null
+        "derived": "New Jersey municipal default: 20 days after final passage 2025-05-21 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
        },
        "key_value": null,
        "quote": "It is unlawful for any real estate lessor, agent, or subcontractor thereof, to subscribe to, contract with, or otherwise\nexchange anything of value in return for the services of a Service Provider."
@@ -17554,10 +16889,10 @@
        "citation": "Jersey City Code § 218-12.3(a)",
        "source_doc_id": "S017",
        "effective": {
-        "from": null,
+        "from": "2025-10-15",
         "until": null,
         "precision": "day",
-        "derived": null
+        "derived": "New Jersey municipal default: 20 days after final passage 2025-09-25 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
        },
        "key_value": null,
        "quote": "Any landlord must include, with any lease or written notice of rent increase for a residential dwelling unit, a sworn\ndisclosure statement, executed under penalty of perjury, in substantially the following form:"
@@ -17645,21 +16980,30 @@
    },
    {
     "stage": "gate",
-    "ref": "S001:0",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "ed44978db89cac414bccc56cff638395bc1c462b884f611f66110f551d27aa5f",
-    "seconds": 0.58,
-    "cost": 0.000174258,
-    "ts": "2026-10-03T23:33:06Z"
-   },
-   {
-    "stage": "gate",
     "ref": "S001:g4",
     "model": "typesafe/jev-1.13-20260917",
     "request_hash": "f1bc956816b3f5cfb6d8a3dbb20ca9b33c1ae74dbc7cc1cc66d85fdcdb11fd6d",
     "seconds": 0.6,
     "cost": 0.000147756,
     "ts": "2026-10-03T23:33:06Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "S001:0",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "6d2d4e7d3b4e3fabd219a485b98a0ee54ee233cc6ddcf76c077e79cdb2993315",
+    "seconds": 0.37,
+    "cost": 0.000183708,
+    "ts": "2026-10-04T00:26:42Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "S001:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "6763fbae665989422a31a5a7dc6ed2a7da1082e232e46f541167a19bc2fe8fae",
+    "seconds": 0.5,
+    "cost": 0.000151956,
+    "ts": "2026-10-04T00:26:42Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -17670,6 +17014,7 @@
   "jurisdiction": "NJ-HOBOKEN",
   "category": "algorithmic_rent_setting",
   "citation": "Hoboken ordinance (citation not stated)",
+  "refiled_from": null,
   "source": {
    "doc_id": "S008",
    "url": "https://www.hobokennj.gov/news/city-of-hoboken-outlaws-algorithmic-rent-fixing",
@@ -17735,10 +17080,14 @@
     },
     "g2_0": {
      "choice": "none",
-     "confidence": 0.43
+     "confidence": 0.51
     },
     "g4": {
      "choice": "adopted",
+     "confidence": 1
+    },
+    "g5_0": {
+     "choice": "city",
      "confidence": 1
     }
    },
@@ -17807,10 +17156,10 @@
        "citation": "Hoboken ordinance (citation not stated)",
        "source_doc_id": "S008",
        "effective": {
-        "from": null,
+        "from": "2025-07-29",
         "until": null,
         "precision": "day",
-        "derived": null
+        "derived": "New Jersey municipal default: 20 days after final passage 2025-07-09 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
        },
        "key_value": null,
        "quote": "they can no longer use software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental prices, lease terms, or occupancy levels among competing landlords."
@@ -17916,21 +17265,30 @@
    },
    {
     "stage": "gate",
-    "ref": "S008+S011:0",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "4639bcf3d91bd5e16d129a4fab9bef179af81b50ebaa797dae4f64c63ef59bf1",
-    "seconds": 0.44,
-    "cost": 0.000106764,
-    "ts": "2026-10-03T23:04:50Z"
-   },
-   {
-    "stage": "gate",
     "ref": "S008+S011:g4",
     "model": "typesafe/jev-1.13-20260917",
     "request_hash": "cc524d4fee907cbc25730fee44189d9655e11008e881017d47118803d0b85fae",
     "seconds": 0.44,
     "cost": 6.2706e-05,
     "ts": "2026-10-03T23:04:50Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "S008+S011:0",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "7aa0f909de0bb1032aa9ee1ae23ea38b4172a31f227d72081de1dd36425553e2",
+    "seconds": 0.78,
+    "cost": 0.000110712,
+    "ts": "2026-10-04T00:26:43Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "S008+S011:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "605d31d047db7d978feabb2321d20b281bd020b9ab1fc30c73634370a85fa143",
+    "seconds": 0.69,
+    "cost": 6.6192e-05,
+    "ts": "2026-10-04T00:26:43Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -17941,6 +17299,7 @@
   "jurisdiction": "NJ-HOBOKEN",
   "category": "rent_increase_limits",
   "citation": "Hoboken Rent Control Regulations § 10:54(A)",
+  "refiled_from": null,
   "source": {
    "doc_id": "S012",
    "url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf",
@@ -18078,15 +17437,19 @@
     },
     "g1_key_0": {
      "choice": "supported",
-     "confidence": 0.59
+     "confidence": 0.61
     },
     "g2_0": {
-     "choice": "date_1987-11-11",
-     "confidence": 0.21
+     "choice": "date_2015-05-28",
+     "confidence": 0.23
     },
     "g4": {
      "choice": "adopted",
      "confidence": 0.93
+    },
+    "g5_0": {
+     "choice": "city",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -18183,15 +17546,6 @@
    },
    {
     "stage": "gate",
-    "ref": "S012:0",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "66d1c2b8de70adf029c6b6cb6a82e76df2927f35d80a2e16c398332ba62175ad",
-    "seconds": 0.39,
-    "cost": 0.0003276,
-    "ts": "2026-10-03T23:04:51Z"
-   },
-   {
-    "stage": "gate",
     "ref": "S012:g4",
     "model": "typesafe/jev-1.13-20260917",
     "request_hash": "112ca1c0af6150adab75e56f86ff5f7c952c60b88ea664bb6f9fa495fb7d5b62",
@@ -18201,21 +17555,39 @@
    },
    {
     "stage": "gate",
+    "ref": "S012:0",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "970f5fa081b9f194a0078f664d459e991ad3e92791b21fb3f4be6f44a42e34f2",
+    "seconds": 1.04,
+    "cost": 0.000331548,
+    "ts": "2026-10-04T00:26:43Z"
+   },
+   {
+    "stage": "gate",
     "ref": "S012:19",
     "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "35ee67d23b35618cd3cc33c4d83b11b1d6a021a1af912d069f581f27eebd8db0",
-    "seconds": 0.42,
-    "cost": 0.000331548,
-    "ts": "2026-10-03T23:04:51Z"
+    "request_hash": "a41e084c73a99a156c4465dfdc8705a655b4ad2f0f317ad0c0ce39fc172a2948",
+    "seconds": 1.06,
+    "cost": 0.000335496,
+    "ts": "2026-10-04T00:26:43Z"
    },
    {
     "stage": "gate",
     "ref": "S012:25",
     "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "18028434a801b2f5f5f852dcce572951cfe87033851db3e81b428061fdcfcd45",
-    "seconds": 0.94,
-    "cost": 0.000343266,
-    "ts": "2026-10-03T23:04:51Z"
+    "request_hash": "3f0a57a0ce8e549d4d3d8b7b301194513424a04b1ecca466fc1048bee0549a29",
+    "seconds": 1.17,
+    "cost": 0.000347214,
+    "ts": "2026-10-04T00:26:43Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "S012:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "b2d9481f5e4f339152dba5de2c37ef1ec802bbbb1ea568c63f437d4f8981a243",
+    "seconds": 1.09,
+    "cost": 0.000253344,
+    "ts": "2026-10-04T00:26:43Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -18226,6 +17598,7 @@
   "jurisdiction": "NJ-HOBOKEN",
   "category": "rent_increase_limits",
   "citation": "Hoboken Rent Control Regulations § 18:54(H)",
+  "refiled_from": null,
   "source": {
    "doc_id": "S012",
    "url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf",
@@ -18362,6 +17735,10 @@
     "g4": {
      "choice": "adopted",
      "confidence": 0.93
+    },
+    "g5_10": {
+     "choice": "city",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -18458,15 +17835,6 @@
    },
    {
     "stage": "gate",
-    "ref": "S012:0",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "66d1c2b8de70adf029c6b6cb6a82e76df2927f35d80a2e16c398332ba62175ad",
-    "seconds": 0.39,
-    "cost": 0.0003276,
-    "ts": "2026-10-03T23:04:51Z"
-   },
-   {
-    "stage": "gate",
     "ref": "S012:g4",
     "model": "typesafe/jev-1.13-20260917",
     "request_hash": "112ca1c0af6150adab75e56f86ff5f7c952c60b88ea664bb6f9fa495fb7d5b62",
@@ -18476,21 +17844,39 @@
    },
    {
     "stage": "gate",
+    "ref": "S012:0",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "970f5fa081b9f194a0078f664d459e991ad3e92791b21fb3f4be6f44a42e34f2",
+    "seconds": 1.04,
+    "cost": 0.000331548,
+    "ts": "2026-10-04T00:26:43Z"
+   },
+   {
+    "stage": "gate",
     "ref": "S012:19",
     "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "35ee67d23b35618cd3cc33c4d83b11b1d6a021a1af912d069f581f27eebd8db0",
-    "seconds": 0.42,
-    "cost": 0.000331548,
-    "ts": "2026-10-03T23:04:51Z"
+    "request_hash": "a41e084c73a99a156c4465dfdc8705a655b4ad2f0f317ad0c0ce39fc172a2948",
+    "seconds": 1.06,
+    "cost": 0.000335496,
+    "ts": "2026-10-04T00:26:43Z"
    },
    {
     "stage": "gate",
     "ref": "S012:25",
     "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "18028434a801b2f5f5f852dcce572951cfe87033851db3e81b428061fdcfcd45",
-    "seconds": 0.94,
-    "cost": 0.000343266,
-    "ts": "2026-10-03T23:04:51Z"
+    "request_hash": "3f0a57a0ce8e549d4d3d8b7b301194513424a04b1ecca466fc1048bee0549a29",
+    "seconds": 1.17,
+    "cost": 0.000347214,
+    "ts": "2026-10-04T00:26:43Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "S012:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "b2d9481f5e4f339152dba5de2c37ef1ec802bbbb1ea568c63f437d4f8981a243",
+    "seconds": 1.09,
+    "cost": 0.000253344,
+    "ts": "2026-10-04T00:26:43Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -18501,6 +17887,7 @@
   "jurisdiction": "NJ-HOBOKEN",
   "category": "rent_increase_limits",
   "citation": "Hoboken Rent Control Regulations, Regulation #3: Vacancy Decontrol as to Multiple Tenants",
+  "refiled_from": null,
   "source": {
    "doc_id": "S012",
    "url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf",
@@ -18629,20 +18016,24 @@
    "code_checks": [],
    "gate": {
     "g1_req_19": {
-     "choice": "supported",
-     "confidence": 0.26
+     "choice": "partial",
+     "confidence": 0.36
     },
     "g1_key_19": {
      "choice": "supported",
-     "confidence": 0.67
+     "confidence": 0.64
     },
     "g2_19": {
      "choice": "date_2025-02-12",
-     "confidence": 0.93
+     "confidence": 0.95
     },
     "g4": {
      "choice": "adopted",
      "confidence": 0.93
+    },
+    "g5_19": {
+     "choice": "city",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -18739,15 +18130,6 @@
    },
    {
     "stage": "gate",
-    "ref": "S012:0",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "66d1c2b8de70adf029c6b6cb6a82e76df2927f35d80a2e16c398332ba62175ad",
-    "seconds": 0.39,
-    "cost": 0.0003276,
-    "ts": "2026-10-03T23:04:51Z"
-   },
-   {
-    "stage": "gate",
     "ref": "S012:g4",
     "model": "typesafe/jev-1.13-20260917",
     "request_hash": "112ca1c0af6150adab75e56f86ff5f7c952c60b88ea664bb6f9fa495fb7d5b62",
@@ -18757,21 +18139,39 @@
    },
    {
     "stage": "gate",
+    "ref": "S012:0",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "970f5fa081b9f194a0078f664d459e991ad3e92791b21fb3f4be6f44a42e34f2",
+    "seconds": 1.04,
+    "cost": 0.000331548,
+    "ts": "2026-10-04T00:26:43Z"
+   },
+   {
+    "stage": "gate",
     "ref": "S012:19",
     "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "35ee67d23b35618cd3cc33c4d83b11b1d6a021a1af912d069f581f27eebd8db0",
-    "seconds": 0.42,
-    "cost": 0.000331548,
-    "ts": "2026-10-03T23:04:51Z"
+    "request_hash": "a41e084c73a99a156c4465dfdc8705a655b4ad2f0f317ad0c0ce39fc172a2948",
+    "seconds": 1.06,
+    "cost": 0.000335496,
+    "ts": "2026-10-04T00:26:43Z"
    },
    {
     "stage": "gate",
     "ref": "S012:25",
     "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "18028434a801b2f5f5f852dcce572951cfe87033851db3e81b428061fdcfcd45",
-    "seconds": 0.94,
-    "cost": 0.000343266,
-    "ts": "2026-10-03T23:04:51Z"
+    "request_hash": "3f0a57a0ce8e549d4d3d8b7b301194513424a04b1ecca466fc1048bee0549a29",
+    "seconds": 1.17,
+    "cost": 0.000347214,
+    "ts": "2026-10-04T00:26:43Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "S012:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "b2d9481f5e4f339152dba5de2c37ef1ec802bbbb1ea568c63f437d4f8981a243",
+    "seconds": 1.09,
+    "cost": 0.000253344,
+    "ts": "2026-10-04T00:26:43Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -18782,6 +18182,7 @@
   "jurisdiction": "NJ-HOBOKEN",
   "category": "rent_increase_limits",
   "citation": "Hoboken Rent Control Regulations § 18:66",
+  "refiled_from": null,
   "source": {
    "doc_id": "S012",
    "url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf",
@@ -18915,19 +18316,23 @@
    "gate": {
     "g1_req_25": {
      "choice": "partial",
-     "confidence": 0.32
+     "confidence": 0.39
     },
     "g1_key_25": {
      "choice": "supported",
-     "confidence": 0.83
+     "confidence": 0.81
     },
     "g2_25": {
      "choice": "date_2009-04-22",
-     "confidence": 0.86
+     "confidence": 0.8
     },
     "g4": {
      "choice": "adopted",
      "confidence": 0.93
+    },
+    "g5_25": {
+     "choice": "city",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -19024,15 +18429,6 @@
    },
    {
     "stage": "gate",
-    "ref": "S012:0",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "66d1c2b8de70adf029c6b6cb6a82e76df2927f35d80a2e16c398332ba62175ad",
-    "seconds": 0.39,
-    "cost": 0.0003276,
-    "ts": "2026-10-03T23:04:51Z"
-   },
-   {
-    "stage": "gate",
     "ref": "S012:g4",
     "model": "typesafe/jev-1.13-20260917",
     "request_hash": "112ca1c0af6150adab75e56f86ff5f7c952c60b88ea664bb6f9fa495fb7d5b62",
@@ -19042,21 +18438,39 @@
    },
    {
     "stage": "gate",
+    "ref": "S012:0",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "970f5fa081b9f194a0078f664d459e991ad3e92791b21fb3f4be6f44a42e34f2",
+    "seconds": 1.04,
+    "cost": 0.000331548,
+    "ts": "2026-10-04T00:26:43Z"
+   },
+   {
+    "stage": "gate",
     "ref": "S012:19",
     "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "35ee67d23b35618cd3cc33c4d83b11b1d6a021a1af912d069f581f27eebd8db0",
-    "seconds": 0.42,
-    "cost": 0.000331548,
-    "ts": "2026-10-03T23:04:51Z"
+    "request_hash": "a41e084c73a99a156c4465dfdc8705a655b4ad2f0f317ad0c0ce39fc172a2948",
+    "seconds": 1.06,
+    "cost": 0.000335496,
+    "ts": "2026-10-04T00:26:43Z"
    },
    {
     "stage": "gate",
     "ref": "S012:25",
     "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "18028434a801b2f5f5f852dcce572951cfe87033851db3e81b428061fdcfcd45",
-    "seconds": 0.94,
-    "cost": 0.000343266,
-    "ts": "2026-10-03T23:04:51Z"
+    "request_hash": "3f0a57a0ce8e549d4d3d8b7b301194513424a04b1ecca466fc1048bee0549a29",
+    "seconds": 1.17,
+    "cost": 0.000347214,
+    "ts": "2026-10-04T00:26:43Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "S012:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "b2d9481f5e4f339152dba5de2c37ef1ec802bbbb1ea568c63f437d4f8981a243",
+    "seconds": 1.09,
+    "cost": 0.000253344,
+    "ts": "2026-10-04T00:26:43Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
@@ -19067,6 +18481,7 @@
   "jurisdiction": "NJ-JERSEY-CITY",
   "category": "algorithmic_rent_setting",
   "citation": "Jersey City Code § 218-12.3(a)",
+  "refiled_from": null,
   "source": {
    "doc_id": "S017",
    "url": "https://cityofjerseycity.civicweb.net/document/436629/Ordinance%20Amending%20Chapter%20218%20Section%2012.pd?handleBA65167715D64D65AB58827857A89651",
@@ -19140,11 +18555,19 @@
    "gate": {
     "g1_req_0": {
      "choice": "supported",
-     "confidence": 0.32
+     "confidence": 0.26
+    },
+    "g2_0": {
+     "choice": "none",
+     "confidence": 0.76
     },
     "g4": {
      "choice": "adopted",
      "confidence": 0.99
+    },
+    "g5_0": {
+     "choice": "city",
+     "confidence": 1
     }
    },
    "gate_flags": [],
@@ -19213,10 +18636,10 @@
        "citation": "Jersey City Code § 218-12(2)(a)",
        "source_doc_id": "S001",
        "effective": {
-        "from": null,
+        "from": "2025-06-10",
         "until": null,
         "precision": "day",
-        "derived": null
+        "derived": "New Jersey municipal default: 20 days after final passage 2025-05-21 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
        },
        "key_value": null,
        "quote": "It is unlawful for any real estate lessor, agent, or subcontractor thereof, to subscribe to, contract with, or otherwise\nexchange anything of value in return for the services of a Service Provider."
@@ -19226,10 +18649,10 @@
        "citation": "Jersey City Code § 218-12.3(a)",
        "source_doc_id": "S017",
        "effective": {
-        "from": null,
+        "from": "2025-10-15",
         "until": null,
         "precision": "day",
-        "derived": null
+        "derived": "New Jersey municipal default: 20 days after final passage 2025-09-25 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
        },
        "key_value": null,
        "quote": "Any landlord must include, with any lease or written notice of rent increase for a residential dwelling unit, a sworn\ndisclosure statement, executed under penalty of perjury, in substantially the following form:"
@@ -19299,21 +18722,30 @@
    },
    {
     "stage": "gate",
-    "ref": "S017:0",
-    "model": "typesafe/jev-1.13-20260917",
-    "request_hash": "3521b6c4a74e70a4d4a905ab2346129e414fc7f71ee2cf326e64953f8549c35c",
-    "seconds": 0.65,
-    "cost": 0.000135198,
-    "ts": "2026-10-03T23:33:06Z"
-   },
-   {
-    "stage": "gate",
     "ref": "S017:g4",
     "model": "typesafe/jev-1.13-20260917",
     "request_hash": "8ce0f9bafe3c3718e36200f9319bc21e533ea23db285a1f7c42e7118b5a6ec94",
     "seconds": 0.68,
     "cost": 0.00010647,
     "ts": "2026-10-03T23:33:06Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "S017:0",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "40a9de6993779d3b3e605d8df9dbb493d4834b0de2e578f490c153e05ccd735f",
+    "seconds": 0.94,
+    "cost": 0.000144522,
+    "ts": "2026-10-04T00:26:43Z"
+   },
+   {
+    "stage": "gate",
+    "ref": "S017:g5",
+    "model": "typesafe/jev-1.13-20260917",
+    "request_hash": "30569f0a443501936bea8e4bfb4f257fa4b9f4f05017c82798f83421e64ef373",
+    "seconds": 0.97,
+    "cost": 0.000110502,
+    "ts": "2026-10-04T00:26:43Z"
    }
   ],
   "boundary": "The model (Luna) read the law and wrote the requirement, key value, conditions and dates as stated; Jev checked the closed fields and the gate checked each claim against its quote. Code decided the status, the effective dates and, per address, whether the rule applies from the building's facts."
