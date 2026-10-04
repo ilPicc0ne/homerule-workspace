@@ -1,0 +1,17 @@
+{
+  "source_id": "S015",
+  "raw_path": "raw/S015-nj-2a18-611-legislature.web.txt",
+  "raw_representation": "research-tool extracted webpage text, not original HTML",
+  "text_path": "text/S015.txt",
+  "text_sha256": "30cfa020a25fe7ce93bbe760da29eefcc11527a04ddd24a58762ff3c1393c68e",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 15623,
+      "method": "web-tool-visible-text-line-labels-removed",
+      "ocr_review_required": false
+    }
+  ]
+}

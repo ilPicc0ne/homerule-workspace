@@ -4,6 +4,8 @@ G1 claim support: does the quote state the requirement and the key value?
 G2 start date:    which date (among dates code found in the text, plus derived ones) does the rule start?
 G3 topic coverage: does the provision also regulate other topics, which then need their own rule?
 G4 status:        does the text show the law adopted, pending, failed, or only a draft?
+G5 enacting level: which government made the rule - the city, the state (statewide or only for this city), federal?
+                  A city page that restates state law must not become a city rule (compile acts on the answer).
 
 All questions are Jev choices with the document text around the quote as state. Results are written into
 out/extracted/<unit>.json under "gate"; G2 adds a provision-scoped start event, G3 triggers one targeted Luna
@@ -31,6 +33,13 @@ STATUS = {"adopted": "The text shows the law was enacted or adopted (signed, cha
           "draft": "The text is an ordinance or bill version whose adoption is not shown (blank signature or "
                    "adoption date, first reading only)."}
 TOPIC_YES = {"yes": "Yes, the provision itself regulates this topic.", "no": "No."}
+LEVEL = {"city": "A law of the city or town the document is about (its municipal code, ordinance or regulations).",
+         "state_statewide": "A state law that applies across the whole state (a state statute, code section or act); "
+                            "the document only describes or restates it.",
+         "state_local_only": "A state law or bill that applies only to this city (a special act or home-rule petition "
+                             "for it).",
+         "federal": "A federal (United States) law.",
+         "unclear": "The text does not show which government made it."}
 
 
 def _unit_text(r):
@@ -105,6 +114,15 @@ def gate_unit(path):
         state, d, q = questions_for_rule(i, obs[i], r, entries, texts)
         if q:
             calls.append((state, q, f"{r['doc_id']}:{i}"))
+    # G5 once per unit: which government made each main rule (the document's opening gives the publisher)
+    g5 = {}
+    for i in heads:
+        quote = " ".join((obs[i].get("requirement_quote") or obs[i]["requirement"]).split())[:300]
+        g5[f"g5_{i}"] = {"type": "choice", "criteria": LEVEL,
+                         "instructions": f'The rule "{quote}" is cited as "{obs[i]["citation"]}" in a document about '
+                                         f'{r["jurisdiction"]}. Which government made this rule?'}
+    if g5:
+        calls.append((texts[0][:20000], g5, f"{r['doc_id']}:g5"))
     # G4 once per unit, on the start and end of the main document (signatures, certifications)
     t0 = texts[0]
     g4_state = t0[:15000] + "\n...\n" + t0[-15000:] if len(t0) > 30000 else t0
@@ -141,6 +159,12 @@ def gate_unit(path):
         for c in new_topics:
             added = extract_topic(r, texts, o, c)
             log["actions"].append({"rule": o["slug"], "action": "added_topic", "category": c, "added": added})
+        a = answers.get(f"g5_{i}")
+        if a and a["confidence"] >= CONF:
+            o["enacting_level"] = a["choice"]
+            if a["choice"] in ("state_statewide", "federal") and ", " in r["jurisdiction"] or a["choice"] == "federal":
+                log["actions"].append({"rule": o["slug"], "action": "enacting_level", "level": a["choice"],
+                                       "confidence": a["confidence"]})
         o["gate_flags"] = flags
     g4 = answers.get("g4")
     if g4 and g4["confidence"] >= CONF:

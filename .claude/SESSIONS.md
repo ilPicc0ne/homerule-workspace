@@ -42,3 +42,46 @@
 
 **Next:**
 - Fresh session in .worktrees/address with the kickoff prompt; review demo site; Dimitar on #27.
+
+## 2026-10-04T00:08Z — Renter page redesign loop, PRD J7, real map
+
+**Decisions:**
+- Full demo site judged too heavy → one-view renter page; mockups v1 (lean), v2 (deep-work, UX patterns), v3 (renter-critique fixes) in lab/ui-proposal on s/demo-site — *why:* renter-friendly, actionable.
+- Labels, plain words, "Show the law" second level, no cap comparisons, facts not conclusions — *why:* critique found legal-advice risk.
+- PRD: J7 Take action, contacts (P0, Dimitar data), action helpers (P1), legal-aid finder (P2), map = MapLibre + OpenFreeMap + TIGER (P1); PRs #37, #38.
+- Contacts data → Dimitar (#32); I8 findings into engine (#8) and page (#9).
+
+**Surprises:**
+- Dimitar ahead: #2, #3, #6, #21, #27 closed; rules.json 58 records + findings.json committed.
+- deep-work v2 took ~45 min; iterative loops better for design.
+
+**Next:**
+- Review v3 → rebuild address page locally; address session results; engine with I2 + I8.
+
+## 2026-10-04T00:16Z — Subscription store
+
+**Decisions:**
+- Upstash Redis `homerule-subscriptions` (free) for email alerts, env vars only in Vercel; no Neon — *why:* law/address data stay files in git, Dimitar pushes, we deploy.
+
+**Surprises:**
+- Vercel CLI marketplace install added two Upstash agent skills without asking; vetted after the fact (Markdown only), PR #42.
+
+**Next:**
+- Unchanged: review v3 → rebuild address page locally; address session; engine with I2 + I8.
+
+## 2026-10-04T01:15Z — Address resolver, engine, change log (#7, #10, #8, #11)
+
+**Decisions:**
+- Resolver in TypeScript (`web/lib/resolve/`) for batch and web; Census cache committed; `/where` + `/api/resolve`; autocomplete over own data — *why:* one implementation, offline determinism.
+- Three level states + `county_law` in I1; federal note "applies everywhere" — *why:* honest "no rules" vs "not covered".
+- I3 aligned with the extraction's APT5 guard (subsidised false / Boston A 7+, tagged) — *why:* 0 → 468 rows decidable.
+- Engine = adapter + CLI around Dimitar's evaluator (#36); change log + email from one diff (#45); `out/` intermediates published, `data/` not (licence TBD).
+- No feature without asking first.
+
+**Surprises:**
+- Census silently matches other cities; range normalisation alone fixed A0009.
+- Pressure test found the subsidy blocker before the engine was built.
+- Parallel subagents in isolated worktrees merged fast-forward without conflicts.
+
+**Next:**
+- Merge #30 → #29 → #36 → #45, build outputs on main, `make eval`, demo-site on real data.

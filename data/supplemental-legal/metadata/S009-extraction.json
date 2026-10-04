@@ -1,0 +1,16 @@
+{
+  "source_id": "S009",
+  "raw_path": "raw/S009-jersey-city-landlord-tenant.html",
+  "text_path": "text/S009.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "d789ffbc55d42b7ab5b3a67e8f97001c208f0da2bf037d1306a716ce6b68f3ac",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 10265,
+      "method": "htmlparser-visible-text",
+      "navigation_retained": true
+    }
+  ]
+}
