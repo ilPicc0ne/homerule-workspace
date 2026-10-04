@@ -118,6 +118,30 @@ const handler = createMcpHandler(
       },
       async () => run("coverage", (d) => coverage(d)),
     );
+
+    // Legacy names from v1 (PRs #98/#108). Chat clients cache a connector's tool list, so a chat set up before the
+    // switch to v2 still calls these; each is a thin alias of get_place, never a second computation.
+    const legacy = (name: string, title: string, shape: z.ZodRawShape, toPlace: (a: Record<string, string | undefined>) => string | undefined) =>
+      server.registerTool(
+        name,
+        {
+          title: `${title} (older name; prefer get_place)`,
+          description: `Older tool name kept so existing chats keep working. Same answer as get_place: prefer get_place, compare_places or get_changes. ${PRESENT}`,
+          inputSchema: z.object({ ...shape, as_of: z.string().max(10).optional().describe("Date to answer for, YYYY-MM-DD") }),
+          annotations: { ...readOnly, openWorldHint: true },
+        },
+        async (args) =>
+          run(name, (d) => {
+            const a = args as Record<string, string | undefined>;
+            const place = toPlace(a);
+            if (!place) throw new Error("Give an address, place or id.");
+            return getPlace(d, { place, as_of: a.as_of });
+          }),
+      );
+    legacy("find_place", "Find a place or address", { query: z.string().min(1).max(MAX_QUERY) }, (a) => a.query);
+    legacy("get_address", "Rules at an address", { address_id: z.string().max(16).optional(), query: z.string().max(MAX_QUERY).optional() }, (a) => a.address_id ?? a.query);
+    legacy("get_jurisdiction", "A city's or state's rules by topic", { jurisdiction_id: z.string().min(1).max(40) }, (a) => a.jurisdiction_id);
+    legacy("get_rules", "Rules for an address or place", { address_id: z.string().max(16).optional(), jurisdiction_id: z.string().max(40).optional() }, (a) => a.address_id ?? a.jurisdiction_id);
   },
   { serverInfo: { name: "homerule", version: "2.0.0" }, instructions: INSTRUCTIONS },
 );
