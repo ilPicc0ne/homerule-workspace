@@ -10,10 +10,10 @@
   },
   "CA-LOS-ANGELES": {
    "addresses": 80,
-   "applies": 413,
+   "applies": 392,
    "conflict_flag": 0,
    "superseded": 68,
-   "unknown": 79
+   "unknown": 100
   },
   "CA-SAN-DIEGO": {
    "addresses": 50,
@@ -23,17 +23,17 @@
   },
   "CA-SAN-FRANCISCO": {
    "addresses": 80,
-   "applies": 637,
+   "applies": 631,
    "conflict_flag": 0,
    "superseded": 150,
-   "unknown": 4
+   "unknown": 10
   },
   "MA-BOSTON": {
    "addresses": 60,
-   "applies": 420,
+   "applies": 386,
    "conflict_flag": 0,
    "pending": 180,
-   "unknown": 60
+   "unknown": 94
   },
   "MA-CAMBRIDGE": {
    "addresses": 50,

@@ -2,11 +2,8 @@
 // A missing or contradictory fact stays null ("unknown"). Where a fact is filled in by a rule of thumb
 // rather than read from the record, it is named in `assumptions` and its source says so.
 //
-// The named assumptions mirror the extraction's APT5 guard (use_class in [apartment, mixed_use] ∧
-// units ≥ 5 ∧ subsidised = false, extract/luna_pass.py) and its test stand-in lab/schema_experiment/facts.py:
-//   no_recorded_affordability_restriction  no affordability code in the record → subsidised false
-//   boston_land_use_A_is_7_plus            Boston land use "A" = apartment building of 7+ units
-//   boston_elderly_home_is_apartment       Boston A/118 "ELDERLY HOME" counted as an apartment building
+// Remaining named assumptions describe Boston use-code interpretations only.
+// A missing affordability code does not establish that a property is unsubsidised.
 import type { FactSourceDetail, FactSources, Facts, IntRange, SampleRow, UseClass } from "./types.ts";
 
 export type FactOptions = {
@@ -15,7 +12,6 @@ export type FactOptions = {
 };
 
 export const ASSUMPTIONS = {
-  noAffordability: "no_recorded_affordability_restriction",
   bostonA7: "boston_land_use_A_is_7_plus",
   elderlyApartment: "boston_elderly_home_is_apartment",
 } as const;
@@ -191,16 +187,10 @@ export function buildFacts(row: SampleRow, opts: FactOptions = {}): BuiltFacts {
   const useClassSource: FactSources["use_class"] = !use_class ? "none" : info?.useClassAssumptions.length ? "assumption" : "use_code";
   if (use_class) info?.useClassAssumptions.forEach((a) => assumptions.add(a));
 
-  // A record with a use code but no affordability code: assumed not subsidised (the extraction's APT5 guard).
-  let subsidised: boolean | null = info?.subsidised ?? null;
-  let subsidisedSource: FactSources["subsidised"] = subsidised === null ? "none" : "use_code";
-  let subsidisedDetail: string | null = subsidised === null ? null : info!.subsidisedDetail;
-  if (subsidised === null && (row.use_code.trim() || row.use_description.trim())) {
-    subsidised = false;
-    subsidisedSource = "assumption";
-    subsidisedDetail = "no affordability code in the record (assumed)";
-    assumptions.add(ASSUMPTIONS.noAffordability);
-  }
+  // Only an explicit affordability indicator establishes subsidy status.
+  const subsidised: boolean | null = info?.subsidised ?? null;
+  const subsidisedSource: FactSources["subsidised"] = subsidised === null ? "none" : "use_code";
+  const subsidisedDetail: string | null = subsidised === null ? null : info!.subsidisedDetail;
 
   return {
     facts: {
