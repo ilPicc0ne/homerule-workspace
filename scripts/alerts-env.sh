@@ -28,7 +28,9 @@ set_local() {
 # set_vercel KEY VALUE ENV [--sensitive]: remove old value, add new one from stdin
 set_vercel() {
   $VERCEL env rm "$1" "$3" --yes >/dev/null 2>&1 || true
-  printf '%s' "$2" | $VERCEL env add "$1" "$3" ${4:-} >/dev/null
+  # --yes: for preview, apply to all preview branches instead of prompting (a prompt silently skipped it)
+  printf '%s' "$2" | $VERCEL env add "$1" "$3" --yes --force ${4:-} >/dev/null
+  $VERCEL env ls "$3" 2>/dev/null | grep -qE "^ *$1 " || { echo "  FAILED: $1 missing in vercel $3"; exit 1; }
   echo "  vercel $3: $1 set"
 }
 
