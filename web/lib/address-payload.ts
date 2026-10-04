@@ -65,6 +65,7 @@ export function addressPayload(data: Dataset | null, id: string, requested: stri
         citation: rule.citation,
         status: rule.status,
         effective_date: rule.effective_date,
+        effective_until: rule.effective_until ?? null,
         effective_dates_disputed: rule.effective_dates_disputed,
         source_doc_id: rule.source_doc_id,
         source_url: rule.source_url,
