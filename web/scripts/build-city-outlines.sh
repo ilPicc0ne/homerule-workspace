@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 # Regenerates web/data/city-outlines.geojson: legal city limits of the 10 covered cities.
 #
-# Source: US Census Bureau, TIGER/Line Shapefiles 2025, Places (incorporated places),
-#   https://www2.census.gov/geo/tiger/TIGER2025/PLACE/tl_2025_{06,34,25}_place.zip
+# Source: US Census Bureau, Cartographic Boundary Files 2024, Places 1:500k (derived from TIGER,
+#   clipped to the shoreline, so no box over the bay),
+#   https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_{06,34,25}_place_500k.zip
 #   Retrieved 04.10.2026. GEOIDs from contracts/jurisdictions.json (`census_geoid`).
-# TIGER/Line legal boundaries include water inside the city limits (e.g. SF Bay).
+# Parts smaller than 5% of a city's largest piece are dropped (SF: Farallon Islands, Treasure
+# Island), so the outline shows the mainland city the renter knows.
 #
 # Needs curl, unzip and npx (mapshaper is fetched at a pinned version, not a dependency).
 # Usage: bash web/scripts/build-city-outlines.sh   (from anywhere)
 set -euo pipefail
 
-YEAR=2025
+YEAR=2024
 MAPSHAPER="mapshaper@0.7.72"
 HERE="$(cd "$(dirname "$0")" && pwd)"
 WEB="$(dirname "$HERE")"
@@ -30,10 +32,10 @@ GEOIDS="$(node -e 'console.log(Object.keys(JSON.parse(process.argv[1])).map(g=>J
 
 SHPS=()
 for ST in 06 34 25; do
-  ZIP="$CACHE/tl_${YEAR}_${ST}_place.zip"
-  [ -s "$ZIP" ] || curl -fsSL -o "$ZIP" "https://www2.census.gov/geo/tiger/TIGER$YEAR/PLACE/tl_${YEAR}_${ST}_place.zip"
-  [ -s "$CACHE/tl_${YEAR}_${ST}_place.shp" ] || unzip -oq "$ZIP" -d "$CACHE"
-  SHPS+=("$CACHE/tl_${YEAR}_${ST}_place.shp")
+  ZIP="$CACHE/cb_${YEAR}_${ST}_place_500k.zip"
+  [ -s "$ZIP" ] || curl -fsSL -o "$ZIP" "https://www2.census.gov/geo/tiger/GENZ$YEAR/shp/cb_${YEAR}_${ST}_place_500k.zip"
+  [ -s "$CACHE/cb_${YEAR}_${ST}_place_500k.shp" ] || unzip -oq "$ZIP" -d "$CACHE"
+  SHPS+=("$CACHE/cb_${YEAR}_${ST}_place_500k.shp")
 done
 
 npx --yes "$MAPSHAPER" -i "${SHPS[@]}" combine-files \
@@ -41,15 +43,22 @@ npx --yes "$MAPSHAPER" -i "${SHPS[@]}" combine-files \
   -filter "[$GEOIDS].indexOf(GEOID) > -1" \
   -each "id = ($MAP_JSON)[GEOID], name = NAME, geoid = GEOID" \
   -filter-fields id,name,geoid \
-  -simplify 15% weighted keep-shapes \
-  -filter-islands min-area=50000 \
+  -simplify 90% weighted keep-shapes \
   -o "$OUT" format=geojson precision=0.00001 force
 
 node -e '
   const fs = require("fs");
   const f = process.argv[1];
   const g = JSON.parse(fs.readFileSync(f, "utf8"));
-  g.source = "US Census Bureau, TIGER/Line Shapefiles 2025, Places; https://www2.census.gov/geo/tiger/TIGER2025/PLACE/; retrieved 2026-10-04; simplified with mapshaper";
+  // Keep the main land body: drop parts under 5% of the largest piece (offshore islands).
+  const area = (ring) => Math.abs(ring.reduce((s, [x1, y1], i) => { const [x2, y2] = ring[(i + 1) % ring.length]; return s + x1 * y2 - x2 * y1; }, 0) / 2);
+  for (const f of g.features) {
+    if (f.geometry.type !== "MultiPolygon") continue;
+    const big = Math.max(...f.geometry.coordinates.map((p) => area(p[0])));
+    const keep = f.geometry.coordinates.filter((p) => area(p[0]) >= 0.05 * big);
+    f.geometry = keep.length === 1 ? { type: "Polygon", coordinates: keep[0] } : { type: "MultiPolygon", coordinates: keep };
+  }
+  g.source = "US Census Bureau, Cartographic Boundary Files 2024, Places 1:500k (shoreline-clipped); https://www2.census.gov/geo/tiger/GENZ2024/shp/; retrieved 2026-10-04; simplified with mapshaper; parts under 5% of the largest dropped";
   fs.writeFileSync(f, JSON.stringify(g));
   console.log(f, g.features.length, "features,", fs.statSync(f).size, "bytes");
 ' "$OUT"

@@ -35,13 +35,12 @@ export function viewProps(data: Dataset, address: Address, results: Result[], ex
     : `Outside any city: unincorporated ${county?.legal_name ?? "county"} — state rules apply.`;
   const capSub = extra?.legalNote ?? address.legal_city_note ?? (cityName && address.postal_city && address.postal_city !== cityName ? `Your mail says ${address.postal_city}; ${cityName} law applies.` : undefined);
 
-  // Building facts: shown plainly, "not in our data" when unknown; amber when a tile waits on it.
-  const waiting = new Set(view.tiles.flatMap((t) => (t.status === "depends" ? t.rules.filter((r) => r.st === "depends").flatMap((r) => rules[r.rule_id]?.coverage_facts ?? []) : [])));
+  // Building facts: shown plainly; an unknown fact is the dashed amber "not in our data" pill.
   const year = builtYear(address.facts.built);
   const units = unitsText(address.facts.units);
   const facts: { icon: string; text: string; cls?: string }[] = [
-    year ? { icon: "i-cal", text: `Built ${year}` } : { icon: "g-q", text: "Year built: not in our data", cls: waiting.has("built") ? "unk key" : "unk" },
-    units ? { icon: "i-units", text: `${units} units` } : { icon: "g-q", text: "Units: not in our data", cls: waiting.has("units") ? "unk key" : "unk" },
+    year ? { icon: "i-cal", text: `Built ${year}` } : { icon: "g-q", text: "Year built: not in our data", cls: "unk key" },
+    units ? { icon: "i-units", text: `${units} units` } : { icon: "g-q", text: "Units: not in our data", cls: "unk key" },
   ];
   if (address.facts.subsidised) facts.push({ icon: "i-building", text: "Listed as subsidised housing" });
   const factSrc = extra?.typed

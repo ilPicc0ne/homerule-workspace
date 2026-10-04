@@ -66,12 +66,16 @@ function useMap(
     });
     if (coords) new maplibregl.Marker({ color: TEAL }).setLngLat([coords.lon, coords.lat]).addTo(map);
 
-    // Frame: the whole city with the pin in it; without a city, the street around the pin.
-    if (outline) {
-      const b = outlineBounds(outline);
-      if (coords) b.extend([coords.lon, coords.lat]);
-      map.fitBounds(b, { padding: interactive ? 40 : 16, animate: false });
+    // Frame: the building at neighbourhood zoom, so a part of the city line shows nearby.
+    // Without a pin, the whole (land-only) city outline.
+    if (coords) {
+      map.jumpTo({ center: [coords.lon, coords.lat], zoom: interactive ? 12.5 : 11.8 });
+    } else if (outline) {
+      map.fitBounds(outlineBounds(outline), { padding: interactive ? 40 : 16, animate: false });
     }
+    // Light loading state until the first tiles have drawn.
+    el.setAttribute("data-loading", "true");
+    map.once("idle", () => el.removeAttribute("data-loading"));
     // Containers can change size after mount (lazy layout, dialog opening): keep the canvas in step.
     const ro = new ResizeObserver(() => map.resize());
     ro.observe(el);

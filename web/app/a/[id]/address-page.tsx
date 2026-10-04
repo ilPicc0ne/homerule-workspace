@@ -539,12 +539,11 @@ export default function AddressPageView(p: PageProps) {
   const [alerts, setAlerts] = useState(false);
   const counts = { protect: 0, depends: 0, none: 0 } as Record<TileStatus, number>;
   v.tiles.forEach((t) => counts[t.status]++);
-  const same = Object.values(counts).includes(6);
   const n = (k: TileStatus, one: string, many: string) => `${counts[k]} ${counts[k] === 1 ? one : many}`;
   const sum: string[] = [];
-  if (counts.protect === 6) sum.push("There’s a rule for each of the 6 topics at this address. Open a topic to see what it says and who to call.");
-  else {
-    if (counts.protect) sum.push(`There’s a rule for ${n("protect", "topic", "topics")}.`);
+  {
+    if (counts.protect === 6) sum.push("There’s a rule for each of the 6 topics at this address.");
+    else if (counts.protect) sum.push(`There’s a rule for ${n("protect", "topic", "topics")}.`);
     if (counts.depends) sum.push(`For ${n("depends", "topic", "topics")}, we’re missing one fact.`);
     if (counts.none) sum.push(`For ${n("none", "topic", "topics")}, there’s no local rule, so state basics apply.`);
   }
@@ -649,7 +648,7 @@ export default function AddressPageView(p: PageProps) {
               </h2>{" "}
               {sum.join(" ")}
             </div>
-            {!same && (
+            {(
               <>
                 <ul className="toks">
                   {v.tiles.map((t) => (
