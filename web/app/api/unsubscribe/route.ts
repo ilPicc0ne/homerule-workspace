@@ -3,7 +3,7 @@ import { unsubscribe } from "@/lib/alerts/service";
 import { storeFromEnv } from "@/lib/alerts/store";
 
 /*
-  POST /api/unsubscribe?a=<address_id>&t=<hmac>
+  POST /api/unsubscribe?a=<address_id>&t=<token>
     - from a mail app's one-click unsubscribe (RFC 8058, List-Unsubscribe-Post): 200, no page;
     - from the button on /unsubscribe (form field from=page): then shows /alerts/unsubscribed.
   GET  goes to the /unsubscribe page; a GET never unsubscribes (link scanners).
@@ -13,8 +13,7 @@ export async function POST(req: NextRequest) {
   const q = req.nextUrl.searchParams;
   const form = await req.formData().catch(() => null);
   const store = storeFromEnv();
-  const secret = process.env.ALERTS_HMAC_SECRET ?? "";
-  if (store) await unsubscribe(q.get("a"), q.get("t"), { store, secret }).catch(() => null);
+  if (store) await unsubscribe(q.get("a"), q.get("t"), { store }).catch(() => null);
   if (form?.get("from") === "page") return NextResponse.redirect(new URL("/alerts/unsubscribed", req.url), 303);
   return new Response(null, { status: 200 });
 }

@@ -51,7 +51,7 @@ export { esc };
 
 const q = (addressId: string, token: string) => `a=${encodeURIComponent(addressId)}&t=${encodeURIComponent(token)}`;
 
-/** The unsubscribe page for one address (one button that POSTs). `token` is the HMAC from alerts/unsub.ts. */
+/** The unsubscribe page for one address (one button that POSTs). `token` is the subscription's own token. */
 export function unsubscribeUrl(site: string, addressId: string, token: string): string {
   return `${site.replace(/\/$/, "")}/unsubscribe?${q(addressId, token)}`;
 }

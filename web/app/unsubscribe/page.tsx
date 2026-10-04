@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { addressLabel } from "@/lib/alerts/server";
 
-/* /unsubscribe?a=<address_id>&t=<hmac>: the unsubscribe link in every email. One button that POSTs (link scanners
+/* /unsubscribe?a=<address_id>&t=<token>: the unsubscribe link in every email. One button that POSTs (link scanners
    open GET links); mail apps use the one-click POST in the List-Unsubscribe header instead. */
 
 export const metadata: Metadata = { title: "Unsubscribe", robots: { index: false } };

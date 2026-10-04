@@ -1,18 +1,14 @@
 // Subscribe / confirm / unsubscribe, independent of Next.js so the tests can run them with a fake store and mailer.
-import { randomBytes } from "node:crypto";
 import { confirmEmail, PENDING_HOURS } from "./confirm-email.ts";
 import { isEmail, normEmail, type Mailer, type Message } from "./mail.ts";
 import { K, type Store, type Subscriber } from "./store.ts";
-import { unsubToken, verifyUnsub } from "./unsub.ts";
+import { newToken, safeEqual } from "./unsub.ts";
 
 export type Deps = {
   store: Store;
   mailer: Mailer | null;
-  /** DEMO_RECIPIENTS: while `closed`, the only addresses that get mail. */
-  allow: Set<string>;
+  /** Closed test: only emails the seed script allowed get mail. */
   closed: boolean;
-  /** ALERTS_HMAC_SECRET (unsubscribe tokens). */
-  secret: string;
   site: string;
   asOfText: string;
   now?: () => Date;
@@ -35,7 +31,6 @@ export const PREVIEW_TOKEN = "preview-only";
 
 export const RATE = { max: 5, windowSec: 600 };
 
-const newToken = () => randomBytes(24).toString("base64url");
 const nowOf = (d: Pick<Deps, "now">) => d.now?.() ?? new Date();
 
 export async function subscribe(input: { email: string; addressId: string; label: string; ip?: string }, d: Deps): Promise<SubscribeResult> {
@@ -53,7 +48,8 @@ export async function subscribe(input: { email: string; addressId: string; label
       addressId: input.addressId,
       site: d.site,
       token,
-      unsubToken: token === PREVIEW_TOKEN ? PREVIEW_TOKEN : unsubToken(d.secret, email, input.addressId),
+      // the confirm token becomes the subscription's unsubscribe token, so this link works once confirmed
+      unsubToken: token,
       asOfText: d.asOfText,
     });
   const preview = (): Preview => {
@@ -67,7 +63,7 @@ export async function subscribe(input: { email: string; addressId: string; label
   const token = (d.newToken ?? newToken)();
   await d.store.putPending(token, { email, address_id: input.addressId, label: input.label, created_at: now.toISOString() }, PENDING_HOURS * 3600);
 
-  if (d.closed && !d.allow.has(email)) return { status: "closed_test", preview: preview() };
+  if (d.closed && !(await d.store.isAllowed(email))) return { status: "closed_test", preview: preview() };
   if (!d.mailer) return { status: "not_configured", preview: preview() };
   const r = await d.mailer.send(mail(token));
   return r.ok ? { status: "sent", preview: preview() } : { status: "failed", preview: preview(), error: r.error };
@@ -78,15 +74,23 @@ export async function confirm(t: string | null, d: Pick<Deps, "store" | "now">):
   if (!t || t === PREVIEW_TOKEN) return null;
   const p = await d.store.takePending(t);
   if (!p) return null;
-  const sub: Subscriber = { email: p.email, address_id: p.address_id, label: p.label, confirmed_at: nowOf(d).toISOString() };
+  const sub: Subscriber = {
+    email: p.email,
+    address_id: p.address_id,
+    label: p.label,
+    confirmed_at: nowOf(d).toISOString(),
+    token: t,
+    allowed: await d.store.isAllowed(p.email),
+    demo: false,
+  };
   await d.store.addSubscriber(sub);
   return sub;
 }
 
-/** Removes the subscriber at this address whose HMAC token matches. Null when none does. */
-export async function unsubscribe(addressId: string | null, t: string | null, d: Pick<Deps, "store" | "secret">): Promise<Subscriber | null> {
-  if (!addressId || !t || t === PREVIEW_TOKEN || !d.secret) return null;
-  const sub = (await d.store.subscribers(addressId)).find((s) => verifyUnsub(d.secret, s.email, addressId, t));
+/** Removes the subscriber at this address whose token matches (constant-time). Null when none does. */
+export async function unsubscribe(addressId: string | null, t: string | null, d: Pick<Deps, "store">): Promise<Subscriber | null> {
+  if (!addressId || !t || t === PREVIEW_TOKEN) return null;
+  const sub = (await d.store.subscribers(addressId)).find((s) => !!s.token && safeEqual(s.token, t));
   if (!sub) return null;
   await d.store.removeSubscriber(addressId, sub.email);
   return sub;

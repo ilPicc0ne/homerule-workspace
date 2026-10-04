@@ -3,20 +3,19 @@
 // unsubscribe link, sent through Resend.
 //   - Idempotent: alerts:sent:<source>:<address>:<hash(email)> is written only after Resend accepts the mail,
 //     so a failed send is retried on the next run and a sent one never goes twice.
-//   - Demo-labelled sources (fictional law) go only to DEMO_RECIPIENTS. While the closed test is on, so does everything.
-//   - resetSent clears a source's keys for DEMO_RECIPIENTS only, so rehearsals don't eat the live take.
+//   - Demo-labelled sources (fictional law) go only to subscribers flagged `demo`. While the closed test is on, only
+//     subscribers flagged `allowed` get anything. Both flags are data on the record, set by the seed script.
+//   - resetSent clears a source's keys for the demo-flagged subscribers only, so rehearsals don't eat the live take.
 import { addressChange, render } from "../changes/email.ts";
 import type { ChangesFile } from "../changes/types.ts";
 import type { Mailer } from "./mail.ts";
 import { K, type Store } from "./store.ts";
-import { emailHash, maskEmail, unsubToken } from "./unsub.ts";
+import { emailHash, maskEmail } from "./unsub.ts";
 
 export type DispatchDeps = {
   store: Store;
   mailer: Mailer | null;
-  allow: Set<string>;
   closed: boolean;
-  secret: string;
   site: string;
   /** List who would get what, send nothing, write nothing. */
   dryRun?: boolean;
@@ -60,7 +59,7 @@ export async function dispatchAlerts(file: ChangesFile, source: string, d: Dispa
     for (const sub of await d.store.subscribers(id)) {
       const to = maskEmail(sub.email);
       const line = (outcome: Outcome, detail?: string, subject?: string) => lines.push({ address_id: id, to, outcome, detail, subject });
-      if (!d.allow.has(sub.email) && (demo || d.closed)) {
+      if (demo ? !sub.demo : d.closed && !sub.allowed) {
         line(demo ? "skipped_demo" : "skipped_closed_test");
         continue;
       }
@@ -69,7 +68,7 @@ export async function dispatchAlerts(file: ChangesFile, source: string, d: Dispa
         line("already");
         continue;
       }
-      const m = render(ac, { site: d.site, token: unsubToken(d.secret, sub.email, id) });
+      const m = render(ac, { site: d.site, token: sub.token });
       if (d.dryRun) {
         line("would_send", undefined, m.subject);
         continue;
@@ -86,15 +85,16 @@ export async function dispatchAlerts(file: ChangesFile, source: string, d: Dispa
   return { source, title: src.title, demo, addresses: ids.length, lines, counts };
 }
 
-/** Clears this source's sent: keys for the DEMO_RECIPIENTS only. Returns how many existed. */
-export async function resetSent(file: ChangesFile, source: string, store: Store, recipients: Set<string>): Promise<number> {
+/** Clears this source's sent: keys for demo-flagged subscribers only. Returns how many existed. */
+export async function resetSent(file: ChangesFile, source: string, store: Store): Promise<number> {
   const ids = file.sources[source] ? sourceAddresses(file, source) : [];
-  const keys = ids.flatMap((id) => [...recipients].map((e) => K.sent(source, id, emailHash(e))));
+  const keys: string[] = [];
+  for (const id of ids) for (const s of await store.subscribers(id)) if (s.demo) keys.push(K.sent(source, id, emailHash(s.email)));
   return store.clear(keys);
 }
 
 export function describe(r: DispatchReport): string {
-  const head = `${r.source} · ${r.title}${r.demo ? " · DEMO (DEMO_RECIPIENTS only)" : ""} · ${r.addresses} address(es)`;
+  const head = `${r.source} · ${r.title}${r.demo ? " · DEMO (demo inbox only)" : ""} · ${r.addresses} address(es)`;
   if (!r.lines.length) return `${head}\nNo confirmed subscriber at these addresses. Nothing to send.`;
   const body = r.lines.map((l) => `  ${l.outcome.padEnd(20)} ${l.address_id} ${l.to}${l.detail ? ` (${l.detail})` : ""}`).join("\n");
   const sum = Object.entries(r.counts)

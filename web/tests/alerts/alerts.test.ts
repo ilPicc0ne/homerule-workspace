@@ -6,14 +6,13 @@ import { changes } from "../../lib/changes/data.ts";
 import type { ChangesFile } from "../../lib/changes/types.ts";
 import { confirmEmail } from "../../lib/alerts/confirm-email.ts";
 import { describe, DispatchError, dispatchAlerts, resetSent, sourceAddresses, type DispatchDeps } from "../../lib/alerts/dispatch.ts";
-import { closedTest, demoRecipients, resendMailer, type Mailer, type Message } from "../../lib/alerts/mail.ts";
+import { closedTest, resendMailer, type Mailer, type Message } from "../../lib/alerts/mail.ts";
 import { alertPreview } from "../../lib/alerts/preview.ts";
 import { confirm, PREVIEW_TOKEN, RATE, subscribe, unsubscribe, type Deps } from "../../lib/alerts/service.ts";
-import { memoryStore, redisStore } from "../../lib/alerts/store.ts";
-import { safeEqual, unsubToken, verifyUnsub } from "../../lib/alerts/unsub.ts";
+import { memoryStore, redisStore, type Subscriber } from "../../lib/alerts/store.ts";
+import { safeEqual } from "../../lib/alerts/unsub.ts";
 
 const SITE = "https://example.test";
-const SECRET = "test-secret";
 const DEMO = "demo-inbox@example.test";
 const REAL = "real-renter@example.test";
 const ADDR = "A0256";
@@ -51,17 +50,21 @@ function withDemo(): ChangesFile {
   return f;
 }
 
+/** A confirmed subscriber record; token "tok-<email>", flags as given. */
+const rec = (email: string, address_id = ADDR, f: Partial<Subscriber> = {}): Subscriber => ({
+  email, address_id, label: LABEL, confirmed_at: "x", token: `tok-${email}`, allowed: true, demo: false, ...f,
+});
+
 let clock = Date.parse("2026-10-04T10:00:00Z");
 function deps(o: { allow?: string[]; mailer?: Mailer | null; closed?: boolean } = {}) {
   const store = memoryStore(() => clock);
   const mailer = o.mailer === undefined ? fakeMailer() : o.mailer;
   let n = 0;
+  for (const e of o.allow ?? [DEMO, "renter@example.com"]) void store.allow(e);
   const d: Deps = {
     store,
     mailer,
-    allow: new Set(o.allow ?? [DEMO, "renter@example.com"]),
     closed: o.closed ?? true,
-    secret: SECRET,
     site: SITE,
     asOfText: "October 1, 2026",
     now: () => new Date(clock),
@@ -92,7 +95,8 @@ test("subscribe → pending (48 h) → confirm (POST page link) → sub:<address
   assert.ok(r.preview && !r.preview.html.includes("tok%2B"));                  // the on-page preview never has the real token
   const sub = await confirm("tok+/1", d);
   assert.equal(sub?.email, "renter@example.com");
-  assert.deepEqual(store.all().map((s) => [s.address_id, s.email]), [[ADDR, "renter@example.com"]]);
+  assert.deepEqual(store.all().map((s) => [s.address_id, s.email, s.token, s.allowed, s.demo]), [[ADDR, "renter@example.com", "tok+/1", true, false]]);
+  assert.equal(msg.headers["List-Unsubscribe"], `<${SITE}/api/unsubscribe?a=${ADDR}&t=tok%2B%2F1>`);   // works once confirmed
   assert.equal(await confirm("tok+/1", d), null);                               // used once
   assert.equal(await confirm(PREVIEW_TOKEN, d), null);
   // already subscribed: same answer, nothing sent (no enumeration)
@@ -109,7 +113,7 @@ test("expired pending token (> 48 h) does not confirm", async () => {
   assert.equal(store.all().length, 0);
 });
 
-test("closed test: not on DEMO_RECIPIENTS → saved, nothing sent; no Resend key → not_configured; bad email → invalid", async () => {
+test("closed test: email not allowed in the store → saved, nothing sent; no Resend key → not_configured; bad email → invalid", async () => {
   const a = deps({ allow: [DEMO] });
   assert.equal((await subscribe(input, a.d)).status, "closed_test");
   assert.equal(a.mailer.sent.length, 0);
@@ -131,23 +135,19 @@ test("rate limit per IP: the 6th signup in 10 minutes is refused, another IP is 
   assert.notEqual((await subscribe(input, d)).status, "rate_limited");
 });
 
-// ── Unsubscribe: HMAC, nothing stored ─────────────────────────────────────────────────────────────────────────
+// ── Unsubscribe: the subscription token ─────────────────────────────────────────────────────────────────────────
 
-test("HMAC unsubscribe: valid token removes exactly that subscriber; wrong token, address or secret does nothing", async () => {
+test("token unsubscribe: the stored token removes exactly that subscriber; wrong token or address does nothing", async () => {
   const { d, store } = deps();
-  await store.addSubscriber({ email: "renter@example.com", address_id: ADDR, label: LABEL, confirmed_at: "x" });
-  await store.addSubscriber({ email: "other@example.com", address_id: ADDR, label: LABEL, confirmed_at: "x" });
-  const t = unsubToken(SECRET, "renter@example.com", ADDR);
-  assert.ok(verifyUnsub(SECRET, "Renter@Example.com", ADDR, t));
-  assert.ok(!verifyUnsub(SECRET, "renter@example.com", "A0001", t));
-  assert.ok(!verifyUnsub("other-secret", "renter@example.com", ADDR, t));
+  await store.addSubscriber(rec("renter@example.com"));
+  await store.addSubscriber(rec("other@example.com"));
+  const t = "tok-renter@example.com";
   assert.equal(await unsubscribe(ADDR, "forged", d), null);
   assert.equal(await unsubscribe("A0001", t, d), null);
-  assert.equal(await unsubscribe(ADDR, t, { ...d, secret: "" }), null);
+  assert.equal(await unsubscribe(ADDR, PREVIEW_TOKEN, d), null);
   assert.equal((await unsubscribe(ADDR, t, d))?.email, "renter@example.com");
   assert.deepEqual(store.all().map((s) => s.email), ["other@example.com"]);
   assert.equal(await unsubscribe(ADDR, t, d), null);                            // twice is fine
-  assert.ok(!store.keys().some((k) => k.includes("unsub")));                   // no unsub: key
   assert.ok(safeEqual("abc", "abc") && !safeEqual("abc", "abcd"));
 });
 
@@ -155,13 +155,13 @@ test("HMAC unsubscribe: valid token removes exactly that subscriber; wrong token
 
 test("dispatch sends once per subscriber; a second run sends nothing (sent: idempotency)", async () => {
   const { d, store, mailer } = deps();
-  await store.addSubscriber({ email: DEMO, address_id: ADDR, label: LABEL, confirmed_at: "x" });
+  await store.addSubscriber(rec(DEMO, ADDR, { demo: true }));
   const r1 = await dispatchAlerts(changes, REAL_SRC, dd(d));
   assert.equal(r1.counts.sent, 1);
   assert.equal(mailer.sent.length, 1);
   const m = mailer.sent[0];
   assert.equal(m.to, DEMO);
-  const tok = unsubToken(SECRET, DEMO, ADDR);
+  const tok = `tok-${DEMO}`;
   assert.equal(m.headers["List-Unsubscribe"], `<${SITE}/api/unsubscribe?a=${ADDR}&t=${encodeURIComponent(tok)}>`);
   assert.ok(m.text.includes(`${SITE}/unsubscribe?a=${ADDR}&t=${encodeURIComponent(tok)}`));
   const r2 = await dispatchAlerts(changes, REAL_SRC, dd(d));
@@ -174,14 +174,14 @@ test("dispatch sends once per subscriber; a second run sends nothing (sent: idem
 test("rehearse → reset → live sends exactly 1 again; reset only touches the demo inbox", async () => {
   const file = withDemo();
   const { d, store, mailer } = deps({ closed: false });
-  await store.addSubscriber({ email: DEMO, address_id: ADDR, label: LABEL, confirmed_at: "x" });
-  await store.addSubscriber({ email: REAL, address_id: ADDR, label: LABEL, confirmed_at: "x" });
+  await store.addSubscriber(rec(DEMO, ADDR, { demo: true }));
+  await store.addSubscriber(rec(REAL, ADDR, { allowed: false }));
   await dispatchAlerts(file, REAL_SRC, dd(d));                                  // a real source reached both
   assert.equal(mailer.sent.length, 2);
   await dispatchAlerts(file, DEMO_SRC, dd(d));                                  // rehearsal
   assert.equal(mailer.sent.length, 3);
   assert.equal((await dispatchAlerts(file, DEMO_SRC, dd(d))).counts.already, 1);
-  const n = await resetSent(file, DEMO_SRC, store, new Set([DEMO]));
+  const n = await resetSent(file, DEMO_SRC, store);
   assert.equal(n, 1);
   const live = await dispatchAlerts(file, DEMO_SRC, dd(d));                     // the live take
   assert.equal(live.counts.sent, 1);
@@ -192,7 +192,7 @@ test("rehearse → reset → live sends exactly 1 again; reset only touches the 
 test("a failed send writes no sent: key and is retried on the next run", async () => {
   const { d, store } = deps();
   const mailer = fakeMailer(1);
-  await store.addSubscriber({ email: DEMO, address_id: ADDR, label: LABEL, confirmed_at: "x" });
+  await store.addSubscriber(rec(DEMO, ADDR, { demo: true }));
   const r1 = await dispatchAlerts(changes, REAL_SRC, dd(d, { mailer }));
   assert.equal(r1.counts.failed, 1);
   assert.equal(r1.lines[0].detail, "Resend 500");
@@ -202,26 +202,26 @@ test("a failed send writes no sent: key and is retried on the next run", async (
   assert.equal(mailer.sent.length, 1);
 });
 
-test("a demo-labelled source never mails outside DEMO_RECIPIENTS, even after the closed test", async () => {
+test("a demo-labelled source only mails subscribers flagged demo, even allowed ones are skipped, even after the closed test", async () => {
   const file = withDemo();
   for (const closed of [true, false]) {
     const { d, store, mailer } = deps({ closed, allow: [DEMO] });
-    for (const id of sourceAddresses(file, DEMO_SRC).slice(0, 5)) await store.addSubscriber({ email: REAL, address_id: id, label: "L", confirmed_at: "x" });
-    await store.addSubscriber({ email: DEMO, address_id: ADDR, label: LABEL, confirmed_at: "x" });
+    for (const id of sourceAddresses(file, DEMO_SRC).slice(0, 5)) await store.addSubscriber(rec(REAL, id, { allowed: true }));   // allowed, but not the demo inbox
+    await store.addSubscriber(rec(DEMO, ADDR, { demo: true }));
     const r = await dispatchAlerts(file, DEMO_SRC, dd(d));
     assert.deepEqual(mailer.sent.map((m) => m.to), [DEMO]);
     assert.ok((r.counts.skipped_demo ?? 0) >= 1);
     assert.match(mailer.sent[0].subject, /^\[Demo: fictional ordinance\]/);
     assert.match(mailer.sent[0].html, /fictional test document, not real law/);
-    // a real source during the closed test: also DEMO_RECIPIENTS only; after it, real subscribers get it
+    // a real source: allowed subscribers get it (and after the closed test, everyone)
     const real = await dispatchAlerts(file, REAL_SRC, dd(d));
-    assert.ok((real.counts[closed ? "skipped_closed_test" : "sent"] ?? 0) >= 1);
+    assert.ok((real.counts.sent ?? 0) >= 2);
   }
 });
 
 test("dispatch: unknown source and missing Resend key are errors; dry run sends and writes nothing", async () => {
   const { d, store, mailer } = deps();
-  await store.addSubscriber({ email: DEMO, address_id: ADDR, label: LABEL, confirmed_at: "x" });
+  await store.addSubscriber(rec(DEMO, ADDR, { demo: true }));
   await assert.rejects(dispatchAlerts(changes, "nope", dd(d)), (e: DispatchError) => e.code === "unknown_source");
   await assert.rejects(dispatchAlerts(changes, REAL_SRC, dd(d, { mailer: null })), (e: DispatchError) => e.code === "not_configured");
   const dry = await dispatchAlerts(changes, REAL_SRC, dd(d, { mailer: null, dryRun: true }));
@@ -232,7 +232,7 @@ test("dispatch: unknown source and missing Resend key are errors; dry run sends 
 
 test("every alert: not legal advice, as-of date, unsubscribe link + List-Unsubscribe/-Post, text part, prototype notice", async () => {
   const { d, store, mailer } = deps();
-  await store.addSubscriber({ email: DEMO, address_id: ADDR, label: LABEL, confirmed_at: "x" });
+  await store.addSubscriber(rec(DEMO, ADDR, { demo: true }));
   await dispatchAlerts(changes, REAL_SRC, dd(d));
   const m = mailer.sent[0];
   assert.equal(m.headers["List-Unsubscribe-Post"], "List-Unsubscribe=One-Click");
@@ -255,14 +255,18 @@ test("every alert: not legal advice, as-of date, unsubscribe link + List-Unsubsc
   assert.match(m.html, />HomeRule</);
 });
 
-// ── Plumbing ──────────────────────────────────────────────────────────────────────────────────────────────────
-
-test("DEMO_RECIPIENTS env: comma-separated, trimmed, case-insensitive", () => {
-  assert.deepEqual([...demoRecipients({ DEMO_RECIPIENTS: " A@x.com, b@y.org ,," } as unknown as NodeJS.ProcessEnv)], ["a@x.com", "b@y.org"]);
-  assert.equal(demoRecipients({} as unknown as NodeJS.ProcessEnv).size, 0);
+test("closed test: real sources reach only subscribers flagged allowed", async () => {
+  const { d, store, mailer } = deps({ closed: true });
+  await store.addSubscriber(rec(DEMO, ADDR, { demo: true }));
+  await store.addSubscriber(rec(REAL, ADDR, { allowed: false }));
+  const r = await dispatchAlerts(changes, REAL_SRC, dd(d));
+  assert.deepEqual(mailer.sent.map((m) => m.to), [DEMO]);
+  assert.equal(r.counts.skipped_closed_test, 1);
 });
 
-test("Redis store speaks the Upstash REST API (fake endpoint): pending TTL, hash per address, sent keys, rate counter", async () => {
+// ── Plumbing ──────────────────────────────────────────────────────────────────────────────────────────────────
+
+test("Redis store speaks the Upstash REST API (fake endpoint): pending TTL, hash per address, allowed set, sent keys, rate counter", async () => {
   const db = new Map<string, string>();
   const ttl = new Map<string, number>();
   const hashes = new Map<string, Map<string, string>>();
@@ -284,6 +288,8 @@ test("Redis store speaks the Upstash REST API (fake endpoint): pending TTL, hash
       case "HSET": h().set(rest[0], rest[1]); return 1;
       case "HGETALL": return [...h().entries()].flat();
       case "HDEL": return h().delete(rest[0]) ? 1 : 0;
+      case "SADD": h().set(rest[0], "1"); return 1;
+      case "SISMEMBER": return h().has(rest[0]) ? 1 : 0;
     }
     throw new Error(op);
   };
@@ -298,7 +304,10 @@ test("Redis store speaks the Upstash REST API (fake endpoint): pending TTL, hash
   assert.equal(ttl.get("alerts:pending:p1"), 172800);
   assert.equal((await s.takePending("p1"))?.email, "a@x.com");
   assert.equal(await s.takePending("p1"), null);
-  await s.addSubscriber({ email: "a@x.com", address_id: ADDR, label: "L", confirmed_at: "t" });
+  await s.addSubscriber(rec("a@x.com"));
+  assert.equal(await s.isAllowed("a@x.com"), false);
+  await s.allow("a@x.com");
+  assert.equal(await s.isAllowed("a@x.com"), true);
   assert.deepEqual((await s.subscribers(ADDR)).map((x) => x.email), ["a@x.com"]);
   assert.deepEqual(await s.subscribers("A0001"), []);
   assert.equal(await s.removeSubscriber(ADDR, "a@x.com"), true);

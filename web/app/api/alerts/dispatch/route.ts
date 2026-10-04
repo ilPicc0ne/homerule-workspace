@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   const body = (await req.json().catch(() => ({}))) as { source?: unknown; dry_run?: unknown };
   if (typeof body.source !== "string" || !body.source) return Response.json({ error: "Send {source}." }, { status: 400 });
   const deps = depsFor(req);
-  if (!deps) return Response.json({ error: "not_configured", detail: "Redis or ALERTS_HMAC_SECRET missing." }, { status: 503 });
+  if (!deps) return Response.json({ error: "not_configured", detail: "Redis is not configured." }, { status: 503 });
   try {
     const r = await dispatchAlerts(changes, body.source, { ...deps, dryRun: body.dry_run === true });
     return Response.json(r);

@@ -4,7 +4,7 @@ import { subscribe } from "@/lib/alerts/service";
 /*
   POST /api/subscribe  {email, address_id}
   Saves a pending request (Upstash Redis, 48 h) and sends the double opt-in email; during the closed test only to
-  DEMO_RECIPIENTS. Rate-limited per IP. Never says whether the email is already subscribed. Returns {status, preview}:
+  emails the seed script allowed. Rate-limited per IP. Never says whether the email is already subscribed. Returns {status, preview}:
   the preview is the confirmation email with a non-working link, for the simulated view on the page.
 */
 export async function POST(req: Request) {

@@ -1,13 +1,27 @@
 // Alert subscriptions in Upstash Redis (store `homerule-subscriptions`), over its REST API with plain fetch.
 // Keys (all under "alerts:"):
 //   alerts:pending:<token>                     JSON Pending, expires after 48 h (double opt-in not finished)
-//   alerts:sub:<address_id>                    hash: email -> JSON Subscriber (confirmed only)
+//   alerts:sub:<address_id>                    hash: email -> JSON Subscriber (confirmed only; carries its unsubscribe
+//                                              token and the flags `allowed` / `demo` that decide who may get mail)
+//   alerts:allowed                             set of emails the seed script marked allowed (gates confirmation mails
+//                                              during the closed test; the per-record flag gates alerts)
 //   alerts:sent:<source>:<address_id>:<hash>   "1" once Resend accepted that alert (idempotency; hash = sha256(email)[:16]), 90 days
 //   alerts:rl:<ip>:<window>                    signup counter per IP, expires with its window
-// Nothing else is stored. Unsubscribe tokens are HMACs (unsub.ts), not keys.
+// Nothing else is stored. Who may receive mail is data here, set by `npm run seed-subscriber`, never an env var.
 
 export type Pending = { email: string; address_id: string; label: string; created_at: string };
-export type Subscriber = { email: string; address_id: string; label: string; confirmed_at: string };
+export type Subscriber = {
+  email: string;
+  address_id: string;
+  label: string;
+  confirmed_at: string;
+  /** Unsubscribe token (random, per subscription; the confirm token carries over). */
+  token: string;
+  /** May get mail during the closed test (set by the seed script). */
+  allowed: boolean;
+  /** The demo inbox: the only recipients of demo-labelled (fictional) sources. */
+  demo: boolean;
+};
 
 export interface Store {
   putPending(token: string, p: Pending, ttlSec: number): Promise<void>;
@@ -20,6 +34,8 @@ export interface Store {
   markSent(key: string): Promise<void>;
   /** Deletes the given keys; returns how many existed. */
   clear(keys: string[]): Promise<number>;
+  isAllowed(email: string): Promise<boolean>;
+  allow(email: string): Promise<void>;
   /** Increments a counter that expires ttlSec after its first hit; returns the new count. */
   hit(key: string, ttlSec: number): Promise<number>;
 }
@@ -29,6 +45,7 @@ export const K = {
   sub: (addressId: string) => `alerts:sub:${addressId}`,
   sent: (source: string, addressId: string, hash: string) => `alerts:sent:${source}:${addressId}:${hash}`,
   rl: (ip: string, window: number) => `alerts:rl:${ip}:${window}`,
+  allowed: "alerts:allowed",
 };
 
 /** How long an idempotency key lives: long enough for any rehearsal or rerun, short enough to clean itself up. */
@@ -80,6 +97,8 @@ export function redisStore(url: string, token: string, f: Fetch = fetch): Store 
     isSent: async (k) => ((await one<number>(["EXISTS", k])) ?? 0) > 0,
     markSent: async (k) => void (await one(["SET", k, "1", "EX", SENT_TTL])),
     clear: async (keys) => (keys.length ? ((await one<number>(["DEL", ...keys])) ?? 0) : 0),
+    isAllowed: async (e) => ((await one<number>(["SISMEMBER", K.allowed, e])) ?? 0) > 0,
+    allow: async (e) => void (await one(["SADD", K.allowed, e])),
     async hit(k, ttl) {
       // SET NX starts the window with its expiry; INCR keeps that expiry.
       const [, n] = await pipe([["SET", k, "0", "EX", ttl, "NX"], ["INCR", k]]);
@@ -92,6 +111,7 @@ export function redisStore(url: string, token: string, f: Fetch = fetch): Store 
 export function memoryStore(now: () => number = Date.now) {
   const kv = new Map<string, { v: string; exp: number }>();
   const subs = new Map<string, Map<string, Subscriber>>();
+  const allowed = new Set<string>();
   const get = (k: string) => {
     const e = kv.get(k);
     if (!e) return null;
@@ -117,6 +137,8 @@ export function memoryStore(now: () => number = Date.now) {
     isSent: async (k) => get(k) !== null,
     markSent: async (k) => void kv.set(k, { v: "1", exp: now() + SENT_TTL * 1000 }),
     clear: async (keys) => keys.filter((k) => get(k) !== null && kv.delete(k)).length,
+    isAllowed: async (e) => allowed.has(e),
+    allow: async (e) => void allowed.add(e),
     async hit(k, ttl) {
       const cur = get(k);
       const n = Number(cur ?? 0) + 1;

@@ -1,18 +1,21 @@
-// Change alerts from the command line. Reads KV_* / RESEND_API_KEY / DEMO_RECIPIENTS / ALERTS_HMAC_SECRET / DEMO_TOKEN
-// from env (.env.local via `npx vercel env pull web/.env.local`). Emails are masked in all output.
+// Change alerts from the command line. Reads KV_* / RESEND_API_KEY / DEMO_TOKEN / DEMO_INBOX from env
+// (.env.local via `npx vercel env pull web/.env.local`). Emails are masked in all output; no address is ever in the repo.
 //
-//   seed <address_id...>                       confirmed subscriber for every DEMO_RECIPIENTS address at these IDs (demo inbox only)
+//   seed [--demo] [<email>] <address_id...>    confirmed, allowed subscriber at these IDs; --demo also flags it as the
+//                                              demo inbox (the only recipient of fictional sources). Email from the
+//                                              argument or DEMO_INBOX in .env.local
 //   notify [--source S] [--send] [--changes P]  local run of dispatchAlerts on a changes file; dry run unless --send
-//   reset <source> [--changes P]                clear the source's sent: keys for DEMO_RECIPIENTS (between rehearsals)
+//                                              (no DEMO_TOKEN needed: talks to Redis and Resend directly)
+//   reset <source> [--changes P]                clear the source's sent: keys for demo-flagged subscribers (between rehearsals)
 //   trigger <source> [--url U] [--wait S]      POST /api/alerts/dispatch on the deployed site (default ALERTS_SITE_URL or
 //                                              https://yourhomerule.com), retrying until that deploy has the source
 import { readFileSync } from "node:fs";
 import { SITE } from "../lib/changes/email.ts";
 import type { ChangesFile } from "../lib/changes/types.ts";
-import { closedTest, demoRecipients, mailerFromEnv } from "../lib/alerts/mail.ts";
+import { closedTest, isEmail, mailerFromEnv, normEmail } from "../lib/alerts/mail.ts";
 import { describe, dispatchAlerts, resetSent, sourceAddresses, type DispatchReport } from "../lib/alerts/dispatch.ts";
 import { storeFromEnv } from "../lib/alerts/store.ts";
-import { maskEmail } from "../lib/alerts/unsub.ts";
+import { maskEmail, newToken } from "../lib/alerts/unsub.ts";
 
 const [cmd, ...args] = process.argv.slice(2);
 const flag = (name: string) => {
@@ -28,42 +31,39 @@ const die = (msg: string): never => {
 const site = process.env.ALERTS_SITE_URL || SITE;
 const loadChanges = () => JSON.parse(readFileSync(flag("--changes") ?? "data/changes.full.json", "utf8")) as ChangesFile;
 const needStore = () => storeFromEnv() ?? die("No KV_REST_API_URL / KV_REST_API_TOKEN. Run `npx vercel env pull web/.env.local` from the repo root.");
-const recipients = () => {
-  const r = demoRecipients();
-  return r.size ? r : die("DEMO_RECIPIENTS is empty: set it in web/.env.local (never in the repo).");
-};
 
 if (cmd === "seed") {
-  const ids = positional;
-  if (!ids.length) die("Usage: npm run seed-subscriber -- <address_id> [...]");
+  const demo = args.includes("--demo");
+  const email = normEmail(positional.find((x) => x.includes("@")) ?? process.env.DEMO_INBOX ?? "");
+  const ids = positional.filter((x) => !x.includes("@"));
+  if (!isEmail(email) || !ids.length) die("Usage: npm run seed-subscriber -- [--demo] [<email>] <address_id> [...]  (email from the argument or DEMO_INBOX in .env.local)");
   const store = needStore();
-  const known = (JSON.parse(readFileSync("data/live/addresses.json", "utf8")) as { address_id: string; street: string; postal_city: string; state_code: string }[]);
+  const known = JSON.parse(readFileSync("data/live/addresses.json", "utf8")) as { address_id: string; street: string; postal_city: string; state_code: string }[];
+  await store.allow(email);
   for (const id of ids) {
     const a = known.find((x) => x.address_id === id) ?? die(`Unknown address ${id}.`);
     const label = `${a.street}, ${a.postal_city}, ${a.state_code}`;
-    for (const email of recipients()) {
-      await store.addSubscriber({ email, address_id: id, label, confirmed_at: new Date().toISOString() });
-      console.log(`subscribed ${maskEmail(email)} to ${id} (${label})`);
-    }
+    const old = (await store.subscribers(id)).find((s) => s.email === email);
+    await store.addSubscriber({ email, address_id: id, label, confirmed_at: new Date().toISOString(), token: old?.token ?? newToken(), allowed: true, demo });
+    console.log(`subscribed ${maskEmail(email)} to ${id} (${label})${demo ? " [demo inbox]" : ""}`);
   }
 } else if (cmd === "notify") {
   const file = loadChanges();
   const send = args.includes("--send");
   const sources = flag("--source") ? [flag("--source")!] : Object.keys(file.sources);
-  const secret = process.env.ALERTS_HMAC_SECRET || (send ? die("No ALERTS_HMAC_SECRET.") : "dry-run-secret");
   const mailer = send ? (mailerFromEnv() ?? die("No RESEND_API_KEY: nothing sent.")) : null;
   const store = needStore();
   console.log(`Change alerts from ${flag("--changes") ?? "data/changes.full.json"} (as of ${file.as_of}). ${send ? "SENDING." : "Dry run: nothing is sent."}\n`);
   for (const s of sources) {
-    const r = await dispatchAlerts(file, s, { store, mailer, allow: demoRecipients(), closed: closedTest(), secret, site, dryRun: !send });
+    const r = await dispatchAlerts(file, s, { store, mailer, closed: closedTest(), site, dryRun: !send });
     console.log(describe(r) + "\n");
   }
 } else if (cmd === "reset") {
   const source = positional[0] ?? die("Usage: npm run alerts -- reset <source>");
   const file = loadChanges();
   if (!file.sources[source]) die(`Unknown source ${source}. Known: ${Object.keys(file.sources).join(", ")}`);
-  const n = await resetSent(file, source, needStore(), recipients());
-  console.log(`cleared ${n} sent: key(s) for ${source} (${sourceAddresses(file, source).length} address(es), DEMO_RECIPIENTS only)`);
+  const n = await resetSent(file, source, needStore());
+  console.log(`cleared ${n} sent: key(s) for ${source} (${sourceAddresses(file, source).length} address(es), demo inbox only)`);
 } else if (cmd === "trigger") {
   const source = positional[0] ?? die("Usage: npm run alerts -- trigger <source> [--url https://yourhomerule.com]");
   const url = `${(flag("--url") ?? site).replace(/\/$/, "")}/api/alerts/dispatch`;

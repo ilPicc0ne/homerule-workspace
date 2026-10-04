@@ -1,8 +1,8 @@
-// Sending through Resend (REST, plain fetch) and the one recipient allowlist, DEMO_RECIPIENTS.
-// DEMO_RECIPIENTS (comma-separated, Vercel env and .env.local only, never in the repo) is the only list of who may get mail:
-//   - demo-labelled sources (fictional law) go only to these addresses, always;
-//   - while the closed test is on (the postal-address footer is still a placeholder), every mail does:
-//     confirmation emails and real alerts to anyone else are saved, not sent.
+// Sending through Resend (REST, plain fetch). Who may get mail is data in the store (flags on the subscriber record,
+// set by the seed script), not env:
+//   - demo-labelled sources (fictional law) go only to subscribers flagged `demo`, always;
+//   - while the closed test is on (the postal-address footer is still a placeholder), only `allowed` subscribers get
+//     alerts and only allowed emails get a confirmation mail; everyone else is saved, not mailed.
 import { POSTAL_ADDRESS } from "./disclaimer.ts";
 
 export type Message = {
@@ -46,12 +46,7 @@ export function mailerFromEnv(env: NodeJS.ProcessEnv = process.env): Mailer | nu
 
 export const normEmail = (e: string) => e.trim().toLowerCase();
 
-/** DEMO_RECIPIENTS: comma-separated, trimmed, case-insensitive. */
-export function demoRecipients(env: NodeJS.ProcessEnv = process.env): Set<string> {
-  return new Set((env.DEMO_RECIPIENTS ?? "").split(",").map(normEmail).filter(Boolean));
-}
-
-/** The closed test lasts until the owner fills in the postal address (CAN-SPAM); until then only DEMO_RECIPIENTS get mail. */
+/** The closed test lasts until the owner fills in the postal address (CAN-SPAM); until then only allowed subscribers get mail. */
 export const closedTest = (postal: string = POSTAL_ADDRESS) => postal.includes("PLACEHOLDER");
 
 export const isEmail = (e: string) => e.length <= 254 && /^[^\s@<>"',;]+@[^\s@<>"',;]+\.[a-z]{2,}$/i.test(e);
