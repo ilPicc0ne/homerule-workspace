@@ -1255,6 +1255,43 @@ a:hover {
   max-width: 38rem;
 }
 
+/* ---------- Map · 3D switch (Google 3D view, loaded on first switch) ---------- */
+
+.addr-map-views {
+  position: relative;
+}
+
+.addr-map-views .map-seg {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 4;
+  padding: 2px;
+  font-size: 0.75rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.12);
+}
+
+.addr-map-views .map-seg .seg-item {
+  padding: 0.12rem 0.6rem;
+  cursor: pointer;
+}
+
+.addr-map-views .map-seg .seg-item:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 1px;
+}
+
+.addr-map-3d {
+  position: relative;
+  background: #dfe5e8;
+}
+
+.addr-map-3d .addr-map-3d-el {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 /* ---------- address map (MapLibre) ---------- */
 
 .addr-map-wrap {

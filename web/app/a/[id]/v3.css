@@ -433,6 +433,9 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .map-card .map-caption{margin-top:4px;font-size:.75rem;line-height:1.3;color:var(--muted)}
 @media(min-width:640px){.v3 .map-card .addr-map,.v3 .map-card .addr-map-loading{height:132px}}
 @media(min-width:1000px){.v3 .map-card .addr-map,.v3 .map-card .addr-map-loading{height:214px}.v3 .map-card .addr-map-hint{display:inline-block}.v3 .map-card .map-caption{font-size:.8125rem}}
+.v3 .map-card .addr-map.addr-map-3d{height:200px}
+@media(min-width:640px){.v3 .map-card .addr-map.addr-map-3d{height:240px}}
+@media(min-width:1000px){.v3 .map-card .addr-map.addr-map-3d{height:260px}}
 .v3 .rule .law-foot{margin-top:2px;font-size:.875rem}
 /* neutralise same-named classes from globals.css (landing page) */
 .v3 .tiles{margin:0;max-width:none;grid-template-columns:minmax(0,1fr);border:0}
