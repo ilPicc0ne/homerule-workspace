@@ -47,7 +47,7 @@ make test       # engine unit tests
 cd web && npm ci && npm run dev   # the website and MCP route on localhost:3000
 ```
 
-The RealPage starter pack is not included (its licence is set by the organizers). `make build`, `make eval` and the website run without it, using the committed intermediates in `out/`. Only `make extract` and `make resolve` need the pack at `data/realpage-starter/`.
+The RealPage starter pack is not included (its licence is set by the organizers). The website (`web/`) builds and runs without it. The engine targets (`make build`, `make test`, `make eval`) read the corpus manifest and need the pack placed at `data/realpage-starter/`, plus Python 3 with PyYAML.
 
 ## Repository layout
 
