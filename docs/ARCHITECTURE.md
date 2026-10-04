@@ -268,7 +268,7 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 - `/where?q=`: the jurisdiction tree for any US address or place (server-rendered GET form; client-side autocomplete over sample addresses and places).
 - `/api/resolve?q=`: free text → `{kind: address | place | ambiguous | not_found | unavailable, tree, coverage, notes, …}`; 404 not found, 503 when Census is down.
 - `/api/address/[id]`: I5.
-- Alerts: `POST /api/subscribe`, `/confirm` (page with a POST button) + `POST /api/confirm`, `/unsubscribe` (page) + `POST /api/unsubscribe` (RFC 8058 one-click), `/alerts/confirmed|unsubscribed|invalid`, `POST /api/alerts/dispatch`.
+- Alerts: `POST /api/subscribe`, `/confirm` (page with a POST button) + `POST /api/confirm`, `/unsubscribe` (page) + `POST /api/unsubscribe` (RFC 8058 one-click), `/alerts/confirmed|unsubscribed|invalid`, `POST /api/alerts/dispatch`, `GET /api/alerts/cron` (daily lifecycle run, below).
 - Not built: `/api/mcp`, an as-of picker.
 - **Contacts:** `contracts/contacts.json` (36 entries with source and retrieval date) synced to `web/contracts/contacts.json`; each tile picks the entry for its jurisdiction and topic.
 
@@ -278,6 +278,29 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 - **Signup (double opt-in):** form → `POST /api/subscribe` (5 per IP per 10 min, same answer whether or not the address is already subscribed) → `alerts:pending:<token>` (48 h) → confirmation email → `/confirm` POST → `alerts:sub:<address_id>`. Scanners only prefetch GET, so nothing confirms on GET.
 - **Closed test:** while `POSTAL_ADDRESS` in `web/lib/alerts/disclaimer.ts` contains "PLACEHOLDER", confirmation mails go only to emails in `alerts:allowed` and real alerts only to subscribers flagged `allowed`.
 - **Dispatch path:** `make alert SOURCE=<id> [RESET=1] [URL=…]` → `web/scripts/alerts.ts trigger` → `POST https://yourhomerule.com/api/alerts/dispatch {source}` with `Authorization: Bearer $DEMO_TOKEN` (constant-time compare; 401 without it) → `dispatchAlerts(changes, source)` (`web/lib/alerts/dispatch.ts`) walks the addresses with an entry for that source in the per-address diff (I6; nothing recomputed), then each subscriber in `alerts:sub:<address_id>`, renders the one alert template (`web/lib/changes/email.ts`) with that subscriber's unsubscribe token and sends via Resend. A 404 `unknown_source` means the deploy doesn't have the source yet; the script retries every 10 s. Idempotent: `alerts:sent:<source>:<address_id>:<sha256(email)[:16]>` is written only after Resend accepts. Demo-labelled (fictional) sources go only to subscribers flagged `demo`. `RESET=1` clears those `sent:` keys for demo subscribers first, so rehearsals don't use up the live take. `make notify [SEND=1]` runs the same function locally without a token. Fallback on stage: the simulated preview on `/changes/[id]` and the address page overlay.
+
+### Lifecycle alert engine (daily digest)
+
+Built 04.10.2026 for the prototype (owner decision; the demand test in `notes/plan/alert-engine.md` Step 0 comes before a real launch). Code: `web/lib/alerts/lifecycle.ts` (events), `daily.ts` (gates, digest, idempotency), `digest.ts` (email), `cron.ts` + `web/app/api/alerts/cron/route.ts`; tests `web/tests/alerts/lifecycle.test.ts`.
+
+- **Input, nothing recomputed:** the build-time data the page shows: `web/data/live/rules.json` (dates), the listing at `meta.default_as_of` (`lookups.json`: which rules are listed at the address and their result, `conflict_with`) and the per-address diff (`changes.full.json`: ingest sources, `renter_impact` verdicts, after-results). No Python, no engine call at run time.
+- **Events per rule × subscribed address**, only when the result there changes:
+
+| Trigger | Fires (jurisdiction's local date) | Condition |
+|---|---|---|
+| `discovered` (A) | next run after the rule is approved | a change in an `ingest` source (a newly found document), enacted, result applies / unknown / not yet effective; never a pending bill; only for subscribers confirmed before the approval |
+| `upcoming_30d` (B) | effective date − 30 days (window start for month/year precision, earliest date when dates conflict) | rule listed as `not_yet_effective` |
+| `in_force` (B) | the effective date; day precision only | as above |
+| `ending_30d` / `ended` (C) | `effective_until` − 30 days / on the day | rule listed as applies / unknown / not yet effective; no event when a rule of the same jurisdiction and topic starts that day (successor). Reads `effective_until`, which PR #71 adds to the live rules; until it is merged no end events fire on real data |
+| `correction` | next run | something this email was told (start or end date, enacted status) changed: date moved, end date gone, now a pending bill, rule left the data |
+
+- **Dates:** "today" is `America/Los_Angeles` for CA and `America/New_York` for NJ/MA (`localDate`). Month/year precision (`effective_precision`, written by `build-live.ts` only when not `day`) and conflicting dates (`effective_dates_disputed`) get no day-exact reminder: one notice before the window, worded "in July 2027" or "on a date sources disagree on (…)". A missed or failed run is caught up for 3 days, then dropped. Wording is relative to the send day ("In 29 days", "In effect since …").
+- **Event id** `<rule_id>|<address_id>|<trigger>|<date>`; a moved date gives a new id plus a correction.
+- **Gates per event:** demo events (fictional rules, demo-labelled sources) only to `demo` subscribers, everything else only to `allowed` ones during the closed test (as in dispatch) → `sent:` key exists → "already" → rule approved (`alerts:approved:<rule_id>`, set once with `make alerts-approve RULE=<id>`), else "queued" (listed in every dry run).
+- **Digest:** one email per subscriber per local day across all their addresses: one plain sentence per event (the address page's plain line, `+`/`−` badge when the diff has a better/worse `renter_impact` verdict (#59), "may apply" for unknown, "may conflict … we don't decide that" when flagged), a button to each address page, the per-address unsubscribe links in the body; `List-Unsubscribe` names the first address's subscription (there is no person-level token yet). A correction always shows; other events of one rule on one day collapse into the most urgent line.
+- **Idempotency:** `sent:<event_id>:<hash>` and the `told:` record are written only after Resend answers 2xx; a failure is retried on the next run. `digest:<hash>:<date>` keeps it to one digest a day (a second run that day defers to tomorrow). A dry run sends and writes nothing.
+- **Runs:** Vercel Cron (`web/vercel.json`, `0 14 * * *` = after local midnight in both zones) → `GET /api/alerts/cron` with `Authorization: Bearer $CRON_SECRET` (Vercel adds it when the variable is set; `DEMO_TOKEN` also works for manual calls; 401 otherwise). **Dry run unless `ALERTS_CRON_SEND=1`**; `?date=YYYY-MM-DD` (simulated day) and `?dry=1` are always dry. Locally: `make alerts-run [SEND=1] [AS_OF=YYYY-MM-DD] [SIM=all|ids] [APPROVE_ALL=1]` (SIM: one fake subscriber per address in a memory store, never sends).
+- **Not built:** person-level unsubscribe and preferences, an approval queue key and operator mail (the dry run is the queue), a Resend `Idempotency-Key`, the yearly allowed-increase announcements, bills opt-in, .ics feed.
 
 ### Subscription store (Upstash Redis)
 
@@ -289,11 +312,15 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 | `sub:<address_id>` | hash email → JSON {email, address_id, label, confirmed_at, token, allowed, demo}; confirmed only | until unsubscribed |
 | `allowed` | set of emails the seed script allowed (gates confirmation mails in the closed test) | — |
 | `sent:<source>:<address_id>:<hash>` | "1" once Resend accepted that alert | 90 days |
+| `sent:<event_id>:<hash>` | "1" once Resend accepted the digest holding that lifecycle event | 2 years |
+| `approved:<rule_id>` | JSON {at, by}: the rule's lifecycle alerts may go out | until `make alerts-approve RULE=… UNDO=1` |
+| `told:<hash>` | hash `<address_id>\|<rule_id>\|start\|end` → JSON {date, status, trigger, event_id, sent_on}: what this email was told, for corrections | — |
+| `digest:<hash>:<local_date>` | Resend id of that day's digest (one per email per day) | 7 days |
 | `rl:<ip>:<window>` | signup counter | its 10-min window |
 
 - `token` = a random per-subscription unsubscribe token (the confirm token carries over). No HMAC and no server secret for unsubscribe links.
 - Flags `allowed` (may get mail during the closed test) and `demo` (the demo inbox, sole recipient of fictional sources): who may get mail is data, set by `npm run seed-subscriber -- [--demo] <email> <ids>` (email from the argument or `DEMO_INBOX` in `.env.local`, never the repo), not an env var.
-- Nothing else is stored. Swap for Postgres only if we ever need queries beyond "who follows this address".
+- Nothing else is stored. Swap for Postgres only if we ever need queries beyond "who follows this address" (the daily run SCANs `sub:*`).
 
 ### Environment variables
 
@@ -303,6 +330,8 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 | `DEMO_TOKEN` | Vercel production, `.env.local` (`scripts/alerts-env.sh`) | `POST /api/alerts/dispatch`, `make alert` |
 | `ALERTS_SITE_URL` | Vercel production, `.env.local` | Links in emails (`web/lib/alerts/server.ts`); falls back to the request origin |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` (+ `KV_REST_API_READ_ONLY_TOKEN`, `KV_URL`, `REDIS_URL` from the integration) | Vercel production, preview, development; `vercel env pull` → `.env.local` | `storeFromEnv()` |
+| `CRON_SECRET` | Vercel production (**not set yet**) | Vercel Cron sends it as Bearer to `GET /api/alerts/cron`; without it the daily cron gets 401 and does nothing |
+| `ALERTS_CRON_SEND` | Vercel production (**not set**; `1` = send) | `web/lib/alerts/cron.ts`: anything else keeps the daily run a dry run |
 | `NEXT_PUBLIC_DATA_SOURCE` | optional | `live` (default) or `demo` |
 | `OPENROUTER_API_KEY` | `.env.local` only | Extraction and `make demo-change` (not needed on Vercel) |
 
