@@ -6,13 +6,14 @@ PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
-extract:                                 ## A · corpus -> out/rules.json, out/rules.compiled.json, out/findings.json (Dimitar)
+extract:                                 ## A · corpus -> out/rules.json, out/rules.compiled.json, out/findings.json, out/cards.json (Dimitar)
 	$(PY) -m extract.corpus
 	$(PY) -m extract.luna_pass $$(ls out/index | grep "^[DS]" | sed "s/.json//")
 	$(PY) -m extract.gate
 	$(PY) -m extract.links
 	$(PY) -m extract.open_questions
 	$(PY) -m extract.compile
+	$(PY) -m extract.cards
 
 resolve:                                 ## B · sample addresses -> out/addresses.resolved.json, offline from engine/cache/census (Silvan)
 	cd web && npm run resolve
@@ -34,6 +35,7 @@ freeze:                                  ## before the hour-16 drop: lock the pr
 
 ingest:                                  ## hour-16: make ingest DOC=<path> JUR="Cambridge, MA" [ID=X002]
 	$(PY) -m extract.ingest $(DOC) --jurisdiction "$(JUR)" --id $(or $(ID),X002)
+	$(PY) -m extract.cards
 	$(PY) -m tests.eval_suite --supplemental
 
 rehearse:                                ## hour-16 dry run on the fictional tests/fixtures/synthetic/X001.txt; removed afterwards
@@ -41,6 +43,7 @@ rehearse:                                ## hour-16 dry run on the fictional tes
 	$(PY) -m tests.eval_suite --supplemental
 	rm -f out/index/X001.json out/extracted/X001.json
 	$(PY) -m extract.compile
+	$(PY) -m extract.cards
 	$(PY) -m tests.eval_suite --supplemental > /dev/null
 
 DEMO_JUR = $(if $(JUR),$(JUR),Cambridge$(COMMA) MA)
