@@ -1,0 +1,106 @@
+{
+  "_note": "Hand-made fixtures shaped like PR #59's output (engine/score.py annotate_changes adds renter_impact to each change of out/changes.full.json). Not engine output; rule IDs are made up. Verdicts are the engine's, the web only maps them.",
+  "as_of": "2026-10-01",
+  "preemption": {
+    "label": "1 Test St, Testcity, NJ",
+    "jurisdictions": { "state": "NJ", "city": "NJ-TESTCITY" },
+    "entries": [{
+      "source": "asof:2026-10-01..2027-07-02", "kind": "as_of", "title": "Between two dates",
+      "before_as_of": "2026-10-01", "after_as_of": "2027-07-02", "demo_label": null,
+      "changes": [
+        { "team_rule_id": "TEST-CITY-CAP", "change": "removed",
+          "before": { "result": "applies", "conflict_flag": false, "explanation": "City cap applies." }, "after": null,
+          "result_changed": true, "conflict_flag_changed": false, "scored": true, "title": "City rent cap", "citation": "City § 1",
+          "requirement_quote": "Rent may not rise more than 2%.", "source_url": "https://example.org/city", "effective_from": "2027-07-01",
+          "jurisdiction_id": "NJ-TESTCITY", "category": "rent_increase_limits", "document_status": "enacted", "origin": "starter",
+          "renter_impact": { "verdict": "worse", "topic": "rent_increase_limits", "level_before": "strong", "level_after": "basic" } },
+        { "team_rule_id": "TEST-STATE-CAP", "change": "changed",
+          "before": { "result": "not_yet_effective", "conflict_flag": false, "explanation": "Takes effect later." },
+          "after": { "result": "applies", "conflict_flag": false, "explanation": "State cap applies; it preempts local caps." },
+          "result_changed": true, "conflict_flag_changed": false, "scored": true, "title": "State rent cap", "citation": "State § 9",
+          "requirement_quote": "Rent may not rise more than 7%.", "source_url": "https://example.org/state", "effective_from": "2027-07-01",
+          "jurisdiction_id": "NJ", "category": "rent_increase_limits", "document_status": "enacted", "origin": "starter",
+          "renter_impact": { "verdict": "worse", "topic": "rent_increase_limits", "level_before": "strong", "level_after": "basic",
+            "why": "A statewide 7% cap replaces the city's 2% cap." } }
+      ]
+    }]
+  },
+  "superseded": {
+    "label": "2 Test St, Testcity, CA",
+    "jurisdictions": { "state": "CA", "city": "CA-TESTCITY" },
+    "entries": [{
+      "source": "asof:2026-10-01..2027-07-02", "kind": "as_of", "title": "Between two dates",
+      "before_as_of": "2026-10-01", "after_as_of": "2027-07-02", "demo_label": null,
+      "changes": [
+        { "team_rule_id": "TEST-STATE-OLD", "change": "changed",
+          "before": { "result": "applies", "conflict_flag": false, "explanation": "State rule applies." },
+          "after": { "result": "superseded", "conflict_flag": false, "explanation": "Replaced here by a stricter city rule." },
+          "result_changed": true, "conflict_flag_changed": false, "scored": true, "title": "Old state rule", "citation": "State § 2",
+          "requirement_quote": "Old state text.", "source_url": "https://example.org/old", "effective_from": "2020-01-01",
+          "jurisdiction_id": "CA", "category": "just_cause_eviction", "document_status": "enacted", "origin": "starter",
+          "renter_impact": { "verdict": "better", "topic": "just_cause_eviction", "level_before": "basic", "level_after": "strong" } },
+        { "team_rule_id": "TEST-CITY-NEW", "change": "changed",
+          "before": { "result": "not_yet_effective", "conflict_flag": false, "explanation": "Takes effect later." },
+          "after": { "result": "applies", "conflict_flag": false, "explanation": "City rule applies." },
+          "result_changed": true, "conflict_flag_changed": false, "scored": true, "title": "New city rule", "citation": "City § 5",
+          "requirement_quote": "New city text.", "source_url": "https://example.org/new", "effective_from": "2027-01-01",
+          "jurisdiction_id": "CA-TESTCITY", "category": "just_cause_eviction", "document_status": "enacted", "origin": "starter",
+          "renter_impact": { "verdict": "better", "topic": "just_cause_eviction", "level_before": "basic", "level_after": "strong",
+            "why": "You must get a reason the law accepts before an eviction." } }
+      ]
+    }]
+  },
+  "mixed": {
+    "label": "3 Test St, Testcity, MA",
+    "jurisdictions": { "state": "MA", "city": "MA-TESTCITY" },
+    "entries": [{
+      "source": "asof:2026-10-01..2027-07-02", "kind": "as_of", "title": "Between two dates",
+      "before_as_of": "2026-10-01", "after_as_of": "2027-07-02", "demo_label": null,
+      "changes": [
+        { "team_rule_id": "TEST-UP", "change": "added", "before": null,
+          "after": { "result": "applies", "conflict_flag": false, "explanation": "Applies." },
+          "result_changed": true, "conflict_flag_changed": false, "scored": true, "title": "Fee cap", "citation": "A § 1",
+          "requirement_quote": "Fee cap text.", "source_url": "https://example.org/a", "effective_from": "2027-03-01",
+          "jurisdiction_id": "MA", "category": "application_screening_fees", "document_status": "enacted", "origin": "starter",
+          "renter_impact": { "verdict": "better", "topic": "application_screening_fees", "level_before": "none", "level_after": "strong" } },
+        { "team_rule_id": "TEST-DOWN", "change": "removed",
+          "before": { "result": "applies", "conflict_flag": false, "explanation": "Applies." }, "after": null,
+          "result_changed": true, "conflict_flag_changed": false, "scored": true, "title": "Deposit cap", "citation": "B § 2",
+          "requirement_quote": "Deposit cap text.", "source_url": "https://example.org/b", "effective_from": "2027-05-01",
+          "jurisdiction_id": "MA", "category": "security_deposits", "document_status": "enacted", "origin": "starter",
+          "renter_impact": { "verdict": "worse", "topic": "security_deposits", "level_before": "strong", "level_after": "none" } },
+        { "team_rule_id": "TEST-GREY", "change": "changed",
+          "before": { "result": "applies", "conflict_flag": false, "explanation": "Applies." },
+          "after": { "result": "applies", "conflict_flag": true, "explanation": "May conflict with a state rule." },
+          "result_changed": false, "conflict_flag_changed": true, "scored": true, "title": "Software rule", "citation": "C § 3",
+          "requirement_quote": "Software text.", "source_url": "https://example.org/c", "effective_from": "2027-07-01",
+          "jurisdiction_id": "MA-TESTCITY", "category": "algorithmic_rent_setting", "document_status": "enacted", "origin": "starter",
+          "renter_impact": { "verdict": "unclear", "topic": "algorithmic_rent_setting", "level_before": "strong", "level_after": "strong" } },
+        { "team_rule_id": "TEST-BILL", "change": "added", "before": null,
+          "after": { "result": "pending", "conflict_flag": false, "explanation": "Proposed, not law." },
+          "result_changed": true, "conflict_flag_changed": false, "scored": true, "title": "A bill", "citation": "S.1",
+          "requirement_quote": "Bill text.", "source_url": "https://example.org/bill", "effective_from": "2026-11-01",
+          "jurisdiction_id": "MA", "category": "rent_increase_limits", "document_status": "pending", "origin": "starter",
+          "renter_impact": { "verdict": "better", "topic": "rent_increase_limits", "level_before": "none", "level_after": "strong" } }
+      ]
+    }]
+  },
+  "past_only": {
+    "label": "4 Test St, Testcity, CA",
+    "jurisdictions": { "state": "CA", "city": "CA-TESTCITY" },
+    "entries": [{
+      "source": "asof:2025-12-31..2026-01-02", "kind": "as_of", "title": "Between two dates",
+      "before_as_of": "2025-12-31", "after_as_of": "2026-01-02", "demo_label": null,
+      "changes": [
+        { "team_rule_id": "TEST-PAST", "change": "changed",
+          "before": { "result": "not_yet_effective", "conflict_flag": false, "explanation": "Takes effect later." },
+          "after": { "result": "applies", "conflict_flag": false, "explanation": "Applies." },
+          "result_changed": true, "conflict_flag_changed": false, "scored": true, "title": "Screening rule", "citation": "D § 4",
+          "requirement_quote": "Screening text.", "source_url": "https://example.org/d", "effective_from": "2026-01-01",
+          "jurisdiction_id": "CA", "category": "screening_restrictions", "document_status": "enacted", "origin": "starter",
+          "renter_impact": { "verdict": "better", "topic": "screening_restrictions", "level_before": "none", "level_after": "strong",
+            "why": "Landlords may no longer ask about past evictions on the application." } }
+      ]
+    }]
+  }
+}

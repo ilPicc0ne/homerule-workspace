@@ -1,7 +1,13 @@
-import contactsFile from "@/contracts/contacts.json";
-import { formatDate } from "./format";
-import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain";
+import type { Badge } from "./changes/impact.ts";
+import { ruleEnds } from "./changes/ends.ts";
+import type { AddressChanges, Source } from "./changes/types.ts";
+import { contactFor, type Contact } from "./contacts.ts";
+import { formatDate } from "./format.ts";
+import { missingFacts } from "./missing.ts";
+import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain.ts";
 import type { Address, Finding, Result, Rule } from "./types";
+
+export { contactFor, type Contact };
 
 /*
   View model for the one-view address page (mockup v3). Pure: the server page feeds it the
@@ -10,6 +16,26 @@ import type { Address, Finding, Result, Rule } from "./types";
 */
 
 export type TileStatus = "protect" | "depends" | "none";
+
+/** The tile status in words, as the address page shows it. */
+export const TILE_STATUS_WORDS: Record<TileStatus, string> = {
+  protect: "There’s a rule",
+  depends: "We’re missing one fact",
+  none: "No local rule — state basics only",
+};
+
+/** The page's "at a glance" sentences, from the tile statuses. */
+export function glanceSummary(tiles: { status: TileStatus }[]): string[] {
+  const counts = { protect: 0, depends: 0, none: 0 } as Record<TileStatus, number>;
+  tiles.forEach((t) => counts[t.status]++);
+  const n = (k: TileStatus, one: string, many: string) => `${counts[k]} ${counts[k] === 1 ? one : many}`;
+  const sum: string[] = [];
+  if (counts.protect === 6) sum.push("There’s a rule for each of the 6 topics at this address.");
+  else if (counts.protect) sum.push(`There’s a rule for ${n("protect", "topic", "topics")}.`);
+  if (counts.depends) sum.push(`For ${n("depends", "topic", "topics")}, we’re missing one fact.`);
+  if (counts.none) sum.push(`For ${n("none", "topic", "topics")}, there’s no local rule, so state basics apply.`);
+  return sum;
+}
 
 export type RuleRow = {
   rule_id: string;
@@ -27,17 +53,6 @@ export type RuleRow = {
   meta: string[];
 };
 
-export type Contact = {
-  name: string;
-  phone: string | null;
-  tel: string | null;
-  url: string;
-  whatFor: string;
-  free: boolean;
-  eligibility: string | null;
-  sourceUrl: string;
-};
-
 export type Helper =
   | { kind: "call" | "check"; title: string; items: string[] }
   | { kind: "email"; title: string; text: string };
@@ -51,7 +66,7 @@ export type Tile = {
   short: string;
   status: TileStatus;
   line: string;
-  notes: { kind: "depends" | "date" | "proposed" | "flag"; text: string }[];
+  notes: { kind: "depends" | "date" | "proposed" | "failed" | "flag"; text: string }[];
   from: string;
   fromCity: boolean;
   expl: string;
@@ -64,7 +79,19 @@ export type Tile = {
   rules: RuleRow[];
 };
 
-export type TimelineEvent = { date: string; dateText: string; topic: TopicId; title: string; body?: string; ruleId: string };
+/** `badge`: the renter-impact badge of this rule's diff change at this address (lib/changes/impact.ts eventBadge), set by
+ *  view-props only when PAGE_BADGES is on; never derived from the event itself. */
+export type TimelineEvent = {
+  date: string;
+  dateText: string;
+  topic: TopicId;
+  title: string;
+  body?: string;
+  ruleId: string;
+  /** "end": the rule's own end date (sunset or repeal, lib/changes/ends.ts); its badge comes from endBadge. */
+  kind?: "start" | "end";
+  badge?: Badge | null;
+};
 
 export type AddressView = {
   street: string;
@@ -79,37 +106,6 @@ export type AddressView = {
 };
 
 const STATE_NAME: Record<string, string> = { CA: "California", MA: "Massachusetts", NJ: "New Jersey" };
-
-type ContactEntry = { jurisdiction: string; category: string; contacts: Record<string, string | null>[] };
-const CONTACTS = (contactsFile as unknown as { entries: ContactEntry[] }).entries;
-
-/** Lookup order from contracts/contacts.json: city+topic, city+*, state+topic, state+*. */
-export function contactFor(city: string | null, state: string, category: string): Contact | null {
-  const keys: [string | null, string][] = [
-    [city, category],
-    [city, "*"],
-    [state, category],
-    [state, "*"],
-  ];
-  for (const [j, c] of keys) {
-    if (!j) continue;
-    const e = CONTACTS.find((x) => x.jurisdiction === j && x.category === c);
-    const k = e?.contacts[0];
-    if (k) {
-      return {
-        name: String(k.name),
-        phone: k.phone_display ?? null,
-        tel: k.phone ?? null,
-        url: String(k.url),
-        whatFor: String(k.what_for ?? ""),
-        free: /\bfree\b/i.test(String(k.what_for ?? "")),
-        eligibility: k.eligibility ?? null,
-        sourceUrl: String(k.source_url),
-      };
-    }
-  }
-  return null;
-}
 
 function hostName(url: string | null): string | null {
   if (!url) return null;
@@ -145,6 +141,8 @@ export function buildAddressView(args: {
   asOf: string;
   cityName: string;
   findings: Record<string, Finding[]>;
+  /** The diff's change sources (for `ending_rule_ids`) and this address's diff record (null for a typed address). */
+  changes?: { sources: Record<string, Source>; rec: AddressChanges | null };
 }): AddressView {
   const { address, results, rules, asOf, cityName } = args;
   const state = address.jurisdictions.state;
@@ -196,6 +194,10 @@ export function buildAddressView(args: {
       notes.push({ kind: "date", text: `New ${rule.level} rule from ${formatDate(rule.effective_date)}` });
     }
     if (pending.length) notes.push({ kind: "proposed", text: `${pending.length === 1 ? "1 bill" : `${pending.length} bills`} proposed, not law` });
+    // A ballot question, bill or measure the sources report as failed or struck (findings.json, from a news link):
+    // shown so "no rule" reads as checked, not missing. Its text is not in our sources, so no quote.
+    const failed = (args.findings[state] ?? []).filter((f) => f.kind === "measure_failed" && f.category === t.cat);
+    if (failed.length) notes.push({ kind: "failed", text: `${failed.length === 1 ? "1 measure" : `${failed.length} measures`} failed or struck, not law` });
     const conflict = inCat.find((r) => r.conflict_with?.length);
     if (conflict) notes.push({ kind: "flag", text: "Possible overlap between state and city, flagged" });
 
@@ -216,20 +218,19 @@ export function buildAddressView(args: {
     if (!lead && pending.length) expl = "If a bill passes, HomeRule shows it here with its date.";
     if (!lead && !pending.length) expl = `HomeRule found no ${cityName ? "city or " : ""}state rule on this topic for this address. That doesn't mean there are no rules at all: federal law and your lease still apply.`;
 
-    // What we don't know yet: the engine's missing facts, or its explanation when the open
-    // condition is in the text, not in the building data.
-    const missing: Tile["missing"] = [];
-    for (const r of unknown) {
-      const rule = rules[r.rule_id];
-      const facts = r.missing_facts?.length ? r.missing_facts : null;
-      if (facts) for (const f of facts) missing.push({ fact: f.charAt(0).toUpperCase() + f.slice(1), why: `${rule.title} depends on it, and our data doesn't say.` });
-      else missing.push({ fact: "An exception in the law’s text", why: `${rule.title}: the rule has an exception our building records can’t check. The office below can tell you.` });
-    }
+    // What we don't know yet: the engine's missing facts (lead rule first, one line per fact), the
+    // approval date when the build year can't settle a cutoff, or an exception in the text.
+    const contact = contactFor(city, state, t.cat);
+    const missing: Tile["missing"] = missingFacts(unknown, rules, contact?.name ?? null);
 
     const lawNotes = replaced.map((r) => {
       const rule = rules[r.rule_id];
       return `${whereName(rule, cityName)}'s rule (${rule.citation}) is replaced here by the ${rules[r.governed_by ?? ""]?.level ?? "local"} rule.`;
     });
+    if (failed.length)
+      lawNotes.push(
+        `Our sources report ${failed.length === 1 ? "a ballot question, bill or measure" : `${failed.length} ballot questions, bills or measures`} on this that failed or was struck. It never became law, so it adds no rule here. Its text is not in our sources; the report is the only source.`,
+      );
 
     const flag = conflict
       ? {
@@ -299,6 +300,7 @@ export function buildAddressView(args: {
         rule.retrieved_at ? `Checked ${formatDate(rule.retrieved_at)}` : "Not yet checked against a source",
         `Confidence: ${confWord(r.confidence)}`,
       ];
+      if (rule.effective_until && rule.effective_until > asOf && st !== "proposed") meta.splice(1, 0, `Ends ${formatDate(rule.effective_until)}`);
       return {
         rule_id: rule.rule_id,
         level: rule.level,
@@ -330,7 +332,7 @@ export function buildAddressView(args: {
       expl,
       missing,
       flag,
-      contact: contactFor(city, state, t.cat),
+      contact,
       helpers,
       next,
       lawNotes,
@@ -353,9 +355,34 @@ export function buildAddressView(args: {
       topic: topicOf(rule.category),
       title: PLAIN[rule.rule_id]?.line ?? rule.title,
       ruleId: rule.rule_id,
+      kind: "start",
     };
     if (rule.effective_date > asOf) future.push({ ...ev, title: `Takes effect: ${ev.title}` });
     else if (rule.effective_date >= yearAgo && r.result !== "superseded") past.push({ ...ev, body: `Took effect. ${whereName(rule, cityName)} · ${rule.citation}` });
+  }
+  // Rules ending at this address (sunset or repeal). A version swap (a successor starting that day) is not an end:
+  // the successor's start event says it replaces the earlier version instead.
+  if (args.changes) {
+    const { ends, swaps } = ruleEnds({ asOf, results, rules, sources: args.changes.sources, rec: args.changes.rec });
+    for (const e of ends) {
+      const rule = rules[e.ruleId];
+      if (!rule) continue;
+      const ev: TimelineEvent = {
+        date: e.date,
+        dateText: formatDate(e.date),
+        topic: topicOf(rule.category),
+        title: `Ends: ${PLAIN[rule.rule_id]?.line ?? rule.title}`,
+        ruleId: rule.rule_id,
+        kind: "end",
+      };
+      if (e.when === "future") future.push(ev);
+      else past.push({ ...ev, body: `Ended. ${whereName(rule, cityName)} · ${rule.citation}` });
+    }
+    for (const sw of swaps) {
+      const old = rules[sw.from];
+      const ev = [...future, ...past].find((x) => x.ruleId === sw.to && x.date === sw.date);
+      if (ev && old) ev.body = `${ev.body ? `${ev.body} · ` : ""}Replaces the earlier version (${old.citation})`;
+    }
   }
   future.sort((a, b) => a.date.localeCompare(b.date));
   past.sort((a, b) => b.date.localeCompare(a.date));

@@ -18,10 +18,15 @@ export type Change = {
   requirement_quote: string | null;
   source_url: string | null;
   effective_from: string | null;
+  /** The rule's end date (sunset or repeal), null when none. */
+  effective_until?: string | null;
   jurisdiction_id: string;
   category: string;
   document_status: string;
   origin: string;
+  /** PR #59 (engine/score.py annotate_changes): better / worse / unchanged / unclear for this topic at this address.
+   *  Optional until #59 is on main; the web app only maps it (lib/changes/impact.ts), never recomputes it. */
+  renter_impact?: { verdict: string; topic?: string; level_before?: string; level_after?: string; why?: string | null } | null;
 };
 
 export type Entry = {
@@ -50,6 +55,8 @@ export type Source = {
   demo_label: string | null;
   affected_address_ids: string[];
   rule_ids: string[];
+  /** Sources across a rule end date (engine/diff.py until_sources): the rules whose effective.until is that day. */
+  ending_rule_ids?: string[];
 };
 
 export type ChangesFile = {

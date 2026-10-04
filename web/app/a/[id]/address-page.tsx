@@ -2,16 +2,18 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useId, useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import AddressMap from "@/components/address-map";
 import BrandMark from "@/components/brand-mark";
 import AlertForm from "@/components/alerts/alert-form";
+import AskChatbot from "@/components/ask-chatbot";
 import ExampleAlert from "@/components/alerts/example-alert";
 import type { MapProps } from "@/components/address-map-gl";
-import type { AddressView, Helper, RuleRow, Tile, TileStatus, TimelineEvent } from "@/lib/address-view";
+import { glanceSummary, TILE_STATUS_WORDS, type AddressView, type Helper, type RuleRow, type Tile, type TileStatus, type TimelineEvent } from "@/lib/address-view";
 import { DATA_SOURCE } from "@/lib/config";
 import { GROUPS, TOPICS } from "@/lib/plain";
 import { Ic, Sprite } from "./sprite";
+import { VerdictBadge } from "./verdict-badge";
 
 /*
   The one-view address page, built to mockup v3 (lab/ui-proposal/v3): sticky address bar with
@@ -31,13 +33,13 @@ export type PageProps = {
 };
 
 const ST: Record<TileStatus, { w: string; g: string }> = {
-  protect: { w: "There’s a rule", g: "g-check" },
-  depends: { w: "We’re missing one fact", g: "g-q" },
-  none: { w: "No local rule — state basics only", g: "g-dot" },
+  protect: { w: TILE_STATUS_WORDS.protect, g: "g-check" },
+  depends: { w: TILE_STATUS_WORDS.depends, g: "g-q" },
+  none: { w: TILE_STATUS_WORDS.none, g: "g-dot" },
 };
 
 const RST_ICON: Record<RuleRow["st"], string> = { applies: "g-check", replaced: "i-turn", depends: "g-q", starts: "i-cal", proposed: "i-dash" };
-const NOTE_ICON = { depends: "g-q", flag: "i-flag", date: "i-cal", proposed: "i-dash" } as const;
+const NOTE_ICON = { depends: "g-q", flag: "i-flag", date: "i-cal", proposed: "i-dash", failed: "i-dash" } as const;
 
 const Mark = ({ st }: { st: TileStatus }) => (
   <span className="mark">
@@ -156,11 +158,12 @@ function SearchField({ current, index }: { current: string; index: PageProps["in
           ))}
           {matches.length === 0 && (
             <li className="sugg-none" role="presentation">
-              <b>Not one of our 500 sample addresses.</b> Press Enter to look it up with the US Census.
+              <b>Not one of our 500 sample addresses.</b> Press Enter for a provisional answer: we look it up with the US Census, without
+              building facts.
             </li>
           )}
           <li className="sugg-foot" role="presentation">
-            HomeRule covers 3 states and 10 cities; 500 sample addresses have building records.
+            Hackathon prototype: full answers for 500 sample addresses in 3 states (10 cities). Other addresses are provisional.
           </li>
         </ul>
       )}
@@ -171,13 +174,21 @@ function SearchField({ current, index }: { current: string; index: PageProps["in
 const icon = (id: string) => <Ic id={id} />;
 
 function Alerts({ id, street, open, setOpen }: { id: string; street: string; open: boolean; setOpen: (o: boolean) => void }) {
+  const bell = useRef<HTMLButtonElement>(null);
+  const close = useCallback(
+    (refocus: boolean) => {
+      setOpen(false);
+      if (refocus) bell.current?.focus();
+    },
+    [setOpen],
+  );
   return (
     <div className="alwrap">
-      <button type="button" className="bell" aria-expanded={open} aria-label={`Get alerts for ${street}`} onClick={() => setOpen(!open)}>
+      <button ref={bell} type="button" className="bell" aria-expanded={open} aria-label={`Get alerts for ${street}`} onClick={() => setOpen(!open)}>
         <Ic id="i-bell" />
         <span className="bell-l">Get alerts</span>
       </button>
-      <AlertForm addressId={id} street={street} open={open} onClose={() => setOpen(false)} icon={icon} />
+      <AlertForm addressId={id} street={street} open={open} onClose={close} icon={icon} />
     </div>
   );
 }
@@ -437,6 +448,7 @@ function Ev({ e, cls, log }: { e: TimelineEvent; cls: string; log: PageProps["ch
       </p>
       <p className="ev-t">{e.title}</p>
       {e.body && <p className="ev-b">{e.body}</p>}
+      {e.badge && <VerdictBadge b={e.badge} lawHref={linked ? `${log!.href}#c-${encodeURIComponent(e.ruleId)}` : null} />}
       {linked && (
         <Link className="ev-lk" href={`${log!.href}#c-${encodeURIComponent(e.ruleId)}`}>
           What changed, old → new
@@ -528,14 +540,7 @@ export default function AddressPageView(p: PageProps) {
   const [alerts, setAlerts] = useState(false);
   const counts = { protect: 0, depends: 0, none: 0 } as Record<TileStatus, number>;
   v.tiles.forEach((t) => counts[t.status]++);
-  const n = (k: TileStatus, one: string, many: string) => `${counts[k]} ${counts[k] === 1 ? one : many}`;
-  const sum: string[] = [];
-  {
-    if (counts.protect === 6) sum.push("There’s a rule for each of the 6 topics at this address.");
-    else if (counts.protect) sum.push(`There’s a rule for ${n("protect", "topic", "topics")}.`);
-    if (counts.depends) sum.push(`For ${n("depends", "topic", "topics")}, we’re missing one fact.`);
-    if (counts.none) sum.push(`For ${n("none", "topic", "topics")}, there’s no local rule, so state basics apply.`);
-  }
+  const sum = glanceSummary(v.tiles);
 
   const goTile = (id: string) => {
     setOpenTile(id);
@@ -579,6 +584,17 @@ export default function AddressPageView(p: PageProps) {
       </header>
 
       <main id="main">
+        {p.typed && (
+          <div className="wrap">
+            <p className="typed-note" role="note">
+              <Ic id="i-info" />
+              <span>
+                <b>Provisional answer.</b> Not one of our 500 sample addresses: we found its jurisdiction with the US Census, but have
+                no building facts for it.
+              </span>
+            </p>
+          </div>
+        )}
         <div className="wrap page">
           <section className="hero" aria-labelledby="h-addr">
             <h1 className="addr" id="h-addr">
@@ -726,6 +742,7 @@ export default function AddressPageView(p: PageProps) {
             quotes the law and shows its date. When a fact is missing, it says so instead of guessing. When two rules may conflict, it shows
             both and flags it; it doesn’t decide.
           </p>
+          <AskChatbot place={[v.street, v.postal].filter(Boolean).join(", ")} />
           <p className="fine">
             Not legal advice: HomeRule shows what published rules say, not how they apply to your own case.{" "}
             {DATA_SOURCE === "demo"

@@ -8,7 +8,7 @@ import SourceTag from "@/components/source-tag";
 import { DATA_SOURCE } from "@/lib/config";
 import { useAsOf, useUrlParam } from "@/lib/as-of";
 import { formatDate } from "@/lib/format";
-import { IMPACT_ORDER, IMPACT_WORDS, type ImpactClass } from "@/lib/impact";
+import { IMPACT_WORDS, impactCounts, type ImpactClass } from "@/lib/impact";
 import { RESULT_WORDS } from "@/lib/law";
 import type { Result } from "@/lib/types";
 
@@ -59,8 +59,7 @@ export default function Impact({ ruleId, stops, fallback, retrieved, stateName, 
   const cls = classes[asOf] ?? {};
   const conflictSet = new Set(conflicts[asOf] ?? []);
 
-  const counts = new Map<ImpactClass, number>();
-  for (const c of Object.values(cls)) counts.set(c, (counts.get(c) ?? 0) + 1);
+  const counts = impactCounts(cls);
   const total = Object.keys(cls).length;
 
   return (
@@ -75,10 +74,10 @@ export default function Impact({ ruleId, stops, fallback, retrieved, stateName, 
           All {total} sample addresses in {stateName} on {formatDate(asOf)}.
         </p>
         <ul className="legend" aria-label="Counts">
-          {IMPACT_ORDER.filter((c) => counts.get(c)).map((c) => (
+          {counts.map(({ cls: c, count }) => (
             <li key={c}>
               <Dot kind={c} />
-              <b>{counts.get(c)}</b> {IMPACT_WORDS[c].toLowerCase()}
+              <b>{count}</b> {IMPACT_WORDS[c].toLowerCase()}
             </li>
           ))}
           {conflictSet.size > 0 && (

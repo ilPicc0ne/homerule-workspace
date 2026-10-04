@@ -28,6 +28,8 @@ export default function SearchBox({ index }: { index: SearchIndex }) {
 
   const matches = useMemo(() => suggest(query, index), [query, index]);
   const showList = open && matches.length > 0;
+  // A street address (starts with a house number) that matches none of the samples: say so while typing.
+  const noSample = open && !miss && matches.length === 0 && /^\d+\s+\S{2,}/.test(query.trim());
   const cityName = (cityId: string) => index.places.find((p) => p.id === cityId)?.label ?? cityId;
 
   function go(target: Suggestion) {
@@ -136,7 +138,17 @@ export default function SearchBox({ index }: { index: SearchIndex }) {
             </span>
           </li>
         ))}
+        {matches.some((m) => m.kind === "address") && (
+          <li className="suggest-foot" role="presentation">
+            Full answers for our 500 sample addresses only.
+          </li>
+        )}
       </ul>
+      {noSample && (
+        <p className="suggest suggest-none">
+          Not one of our 500 sample addresses. Press Enter and we&rsquo;ll point you to its city&rsquo;s rules where we have them.
+        </p>
+      )}
 
       <p className="search-status" role="status">
         {miss?.kind === "not_covered" && (

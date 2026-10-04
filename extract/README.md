@@ -6,14 +6,15 @@ A · Extraction: corpus → `out/rules.json` + `out/rules.compiled.json` + `out/
 
 | Command | Does |
 |---|---|
-| `make extract` | Index the corpus and the cleared supplemental sources, extract every document, gate, link findings, open questions, compile |
+| `make extract` | Index the corpus and the cleared supplemental sources; extract every document three times in parallel (samples `s0`-`s2`, each with the gate), majority vote into `out/extracted`; link findings, open questions, compile |
+| `make check` | The full suite, run after any change to `extract/`, `engine/`, `tests/` or the contracts: extract, build, engine tests, eval, parity, hour-16 rehearsal |
 | `make eval` | Assertions, coverage matrix, T1-T6, `out/changes.json`, address questions → `out/eval/report_supplemental.md` |
 | `make ingest DOC=<path> JUR="Cambridge, MA" [ID=X002]` | Hour 16: one new text file → rules, findings, the affected addresses (no code or prompt change) |
 | `make rehearse` | The hour-16 run on the fictional `tests/fixtures/synthetic/X001.txt`; removes it afterwards so it never reaches the outputs |
 | `make freeze` | Before the hour-16 drop: lock the prompt digest (`extract/PROMPTS.lock`); `make eval` reports a mismatch |
 | `make rerun DOC=D0xx` | Live re-extraction of one document with fresh model calls (cache bypassed via `EXTRACT_RUN`) |
 
-Model calls are cached by request hash (`build/cache/`), so a rerun of `make extract` is free and deterministic. Every call is logged to `audit/calls.jsonl`. Key: `OPENROUTER_API_KEY` in `.env.local`. Models: Luna `openai/gpt-6-luna` (free-form extraction), Jev `typesafe/jev-1.13` (choice questions with calibrated confidence).
+Model calls are cached by request hash (`build/cache/`), so a rerun of `make extract` replays the same samples for free. A single run is not stable (the model words conditions and citations differently each time), which is why the pipeline extracts three samples and votes: a rule found in fewer than half the samples is dropped, and the kept version is the one whose results on the sample addresses agree with the others (`extract/vote.py`, report in `out/vote.json`). Luna's prompt renders the building facts from a pinned snapshot (`extract/facts.prompt.json`), so an edit to `contracts/facts.json` descriptions doesn't silently re-extract; eval fails if the vocabulary drifts. Every call is logged to `audit/calls.jsonl`. Key: `OPENROUTER_API_KEY` in `.env.local`. Models: Luna `openai/gpt-6-luna` (free-form extraction), Jev `typesafe/jev-1.13` (choice questions with calibrated confidence).
 
 ## Pipeline per document
 
@@ -24,8 +25,9 @@ Model calls are cached by request hash (`build/cache/`), so a rerun of `make ext
 5. **Jev J5-J8:** cross-check Luna's closed fields (effect, headline, interaction type, fact/operator); a confident disagreement overrides.
 6. **Luna L2:** one targeted repair call for whatever the checks flagged.
 7. **Jev J9:** triage of conditions left `unparsed`, asked in two wordings; a guard for 5+ unit apartments is added only when one answer is confident and the other doesn't disagree.
-8. **Gate G1-G4 (`gate.py`):** is each claim and key value supported by its quote, which date the rule starts, does the provision also regulate another topic (then one targeted Luna call), what status the text shows.
-9. **Compile (`compile.py`):** effective dates (provision-scoped events, relative rules such as "first day of the sixth month after adoption"), status, I2 records with `source_span` materialised from the pinned text, I8 findings.
+8. **Gate G1-G6 (`gate.py`):** is each claim and key value supported by its quote, which date the rule starts, does the provision also regulate another topic (then one targeted Luna call), what status the text shows, which government made the rule (a city page restating state law, or a federal law, is not a city or state rule), and does the provision regulate the topic it is filed under (p(no) >= 0.9 demotes it from main rule).
+9. **Vote (`vote.py`):** the three samples merged as above.
+10. **Compile (`compile.py`):** effective dates (provision-scoped events, relative rules such as "first day of the sixth month after adoption"), status, I2 records with `source_span` materialised from the pinned text, I8 findings.
 
 ## Modules
 
@@ -37,7 +39,11 @@ Model calls are cached by request hash (`build/cache/`), so a rerun of `make ext
 | `jev_pass.py`, `jev_check.py` | Jev labels (J1-J4) and cross-checks (J5-J8) |
 | `luna_pass.py` | Extraction, quote location, checks, repair, triage, pending-bill record |
 | `status.py` | Corroborates a "draft" reading against the manifest's code-publisher links |
-| `gate.py` | Verification gate G1-G4 |
+| `gate.py` | Verification gate G1-G6 |
+| `vote.py` | Majority vote over the extraction samples |
+| `exemptions.py` | After the vote (in compile): text-only exemptions left standing alone. Parts of one exemption (a numbered item that requires its sub-items together, e.g. "provided that both of the following apply") are joined by code from the document's structure; Jev answers whether an exemption holds only when the owner lives there (code adds `owner_occupied`, p >= 0.9) and triages joined exemptions for 5+ unit apartments. One Jev call per source document, only for these nodes; each fix is in the rule's checks and `audit.json` |
+| `rate_dates.py` | After the vote (in `compile.build`): a rule's start date that only starts a new amount, rate, formula or wording of a rule already in force (a rent board's yearly allowable increase, a new formula for an old ordinance). Jev answers with the whole document as context; at p >= 0.9 code marks the date `amendment_only`, so the rule counts as in force before it |
+| `impact.py` | Renter impact per rule (`renter_impact` in `rules.compiled.json`): protects / limits (code from the effect, one batched Jev review at p >= 0.9), strength (rent %, deposit months, fee $; code only), kind for eviction (grounds / procedure) and algorithmic rules (ban / disclosure) |
 | `open_questions.py` | The guide's known open questions (starter README) → `open_question` findings: our rule and source next to each competing claim, the claim's source matched to a manifest row by Jev. A law that two sources give effective dates for counts as adopted (the later date applies) |
 | `links.py` | One Jev call over link-only manifest rows → `out/link_findings.json` (failed measures, bans with no corpus text) |
 | `compile.py` | `out/rules.compiled.json` (all rules; other headline provisions under the same citation as `details`), `out/rules.json` (the scored file: every rule with a verbatim quote, from the starter corpus, cleared supplemental sources or an ingested document), `out/findings.json`. Effective dates with no date in the text use the statutory default: California statutes January 1 after enactment, New Jersey municipal ordinances 20 days after final passage |

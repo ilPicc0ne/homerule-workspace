@@ -27,7 +27,7 @@ corpus (87 docs, manifest)          sample addresses (500, CSV)
           jurisdiction pages, JSON API, alerts (Upstash Redis + Resend)
 ```
 
-The engine is Python (`engine/`, `extract/`); the website and the address resolver are TypeScript (`web/`). No MCP server is built.
+The engine is Python (`engine/`, `extract/`); the website and the address resolver are TypeScript (`web/`). A read-only MCP server (`/api/mcp`) wraps the same resolver and data for chatbots.
 
 Everything between the corpus and the outputs is one command: `make all`. Extraction results are cached, so a rebuild without new documents takes minutes.
 
@@ -119,8 +119,42 @@ type Compiled = { team_rule_id: string; jurisdiction: string; level: "state"|"ci
              effect: "protection_or_duty"|"bars_or_limits_local_rules";
              cap_pct_low: number|null; cap_pct_high: number|null;   // rent caps: the evaluator compares them to
                                                                     // decide whether a local cap supersedes the state's
-             status_evidence: object|null; origin: "starter"|"supplemental"|"ingested"; stub: boolean} };
+             status_evidence: object|null; origin: "starter"|"supplemental"|"ingested"; stub: boolean};
+  renter_impact: {direction: "protects"|"limits"|"neutral";            // extract/impact.py: code from effect,
+                  how: string; confidence: number;                      // a Jev review overrides at p >= 0.9
+                  strength: {value: number; unit: string; lower_is_better: boolean}|null;  // rent %, months, $
+                  kind: "grounds"|"procedure"|"ban"|"disclosure"|null; kind_confidence: number|null} };
 ```
+
+### Renter-protection score and change rating (`engine/score.py`, `out/scores.json`)
+
+The renter-facing change rating is **positive / neutral / negative**. It describes how protection changes between two dates, not whether an address or city is absolutely renter-friendly. The internal numeric score is kept for analysis only. The display choice is the three-way rating with an explanation, not a 0–100 number or topic weights.
+
+**Topic levels first.** At each address and date, the engine evaluates each topic as `none`, `basic`, `strong` or `unknown`, with `at_least` / `at_most` bounds. Protecting rules determine the strongest level; numeric protections use `contracts/impact.json` thresholds, while eviction/algorithmic protections use their extracted kind. Limiting rules can lower the guaranteed level or cap the possible level. These level definitions still apply; removing topic weights from the change rating does not remove the thresholds used to classify protection.
+
+**Compare topics, then assign the rating.** `verdict()` compares each topic before and after. Known levels moving up/down become `better`/`worse`. If either level is unknown, equal bounds mean `unchanged`; changed bounds mean `unclear`. The overall result considers the directions of definite changes without weighting or counting topics:
+
+| Definite topic changes | Internal `overall` | Display `rating` |
+|---|---|---|
+| At least one improves, none worsen | `better` | `positive` |
+| At least one worsens, none improve | `worse` | `negative` |
+| Some improve and some worsen | `mixed` | `neutral` |
+| No definite movement, but uncertain bounds change | `unclear` | `neutral` |
+| No topic moves | `unchanged` | `neutral` |
+
+Unclear topics do not cancel a definite direction: one improvement plus an unclear topic is positive; one worsening plus an unclear topic is negative. They remain explicitly listed in `unclear_topics`. Mixed directions stay neutral even if more topics improve than worsen. **Neutral does not mean nothing changed or nothing is uncertain**: consumers must retain the internal verdict, topic breakdown and explanation. An unknown topic whose bounds did not change stays `unchanged` in this comparison but remains in the date's `unknown_topics`.
+
+**Where the fields live:**
+
+- Each address/date after the first in `out/scores.json` has `change_from_previous`: `from`, `overall`, `rating`, per-topic `topics`, `unclear_topics` and the retained diagnostic `score_delta`. The rating is computed from topic directions, never from the sign of `score_delta`.
+- Each individual change in I6 has `renter_impact.verdict` and `renter_impact.rating`. This is that change's topic, not the overall address rating. `rating()` maps `better` → positive, `worse` → negative, and everything else → neutral. A changed conflict flag forces the individual change verdict to `unclear`, hence neutral; the code does not resolve the legal conflict. The overall date-comparison rating above is based on topic levels and has no separate conflict-flag override.
+- Per-change `why`, `decided_by` and `inputs` remain. `why` is a short code-generated explanation grounded in the before/after values, rules, citations or missing facts. The verdict is decided by code; each rule's extracted direction can be `code` or `model_override`. Unknown topics also retain `open` investigations: missing building facts, where to check them, hypothetical outcomes, stated exemptions and tenant notes.
+
+**Example:** for Newark sample A0003, the transition to 2026-10-01 has a definite improvement from the NJ application-fee cap while the rent topic is unclear. It is `overall: better`, `rating: positive`, with `rent_increase_limits` in `unclear_topics`; this does not assert that its rent protection is settled.
+
+**Internal numeric score retained.** `aggregate()` still maps strong/basic/none to 1/0.5/0 and uses the contract weights (rent and eviction 25% each, the other four 12.5%). `score = low` uses the guaranteed levels; `high` uses the possible levels. Cities aggregate sample-address medians; states aggregate the state-only floor. These numbers, ranges and `score_delta` remain in the dataset for analysis but do not decide the three-way change rating.
+
+Validation lives in `tests/test_impact.py`: the `Ratings` cases cover definite movement with uncertainty, mixed directions, uncertainty alone, unchanged topics and the Newark example; existing fixtures in `tests/fixtures/impact.yaml` cover topic/score behavior. Adding the data fields does not by itself verify that every page, email or MCP consumer has switched to the new display labels.
 
 ## B · Address resolution
 
@@ -224,7 +258,7 @@ A change is either a new document (ingest) or a second date (as-of query).
 **Built (#45, issue #11; restyled in #56):**
 
 - `engine/diff.py` is the one diff (I6). It compares two engine evaluations (the same rows as `lookups.json`) per address by `team_rule_id`: added, removed, or changed (result or conflict flag). Each change carries old → new result and explanation, both conflict flags, and the rule's title, citation, verbatim quote, effective date and official source.
-- `make build` writes `out/changes.full.json` with the change sources it can compute from the committed files: the brief's as_of tests (`asof:2025-12-31..2026-01-02` for T1, `asof:2026-10-01..2027-07-02` for T3/J3), plus `ingest:<doc>@<as_of>` for each ingested document already in I2 (`origin: ingested`). Deterministic. Only addresses with a change are listed:
+- `make build` writes `out/changes.full.json` with the change sources it can compute from the committed files: the brief's as_of tests (`asof:2025-12-31..2026-01-02` for T1, `asof:2026-10-01..2027-07-02` for T3/J3), each rule end date `effective.until` ±1 day (`asof:2029-12-31..2030-01-02` for the CA sunsets; the source carries `ending_rule_ids`, each change `effective_until`), each rule start date `effective.from` ±1 day from a year before as-of unless an earlier window already spans it (`asof:2026-02-28..2026-03-02` for Berkeley's ban; the source carries `starting_rule_ids`; #117), plus `ingest:<doc>@<as_of>` for each ingested document already in I2 (`origin: ingested`). Deterministic. Only addresses with a change are listed:
 
   ```
   {as_of, not_legal_advice: true,
@@ -238,6 +272,7 @@ A change is either a new document (ingest) or a second date (as-of query).
                                                   requirement_quote, source_url, effective_from, jurisdiction_id,
                                                   category, document_status, origin}]}]}}}
   ```
+- History column ends (`web/lib/changes/ends.ts`, `s/ends-history`): "Ends: …" events only for rules in some source's `ending_rule_ids` that apply or may apply at the address (upcoming from today's results, past from the address's own removed change, last year only); a successor in the same jurisdiction and category starting on the end date makes it a version swap, not an end. `endsIn` / `changeDate` / `endBadge` in `lib/changes/impact.ts` keep the end change apart from the start event and give the email its "Ends on <date>" line.
 - `changes.json` is still computed by `extract/changes.py` (Dimitar's, also used by `make eval`); `tests/test_diff.py` asserts that both agree: T1 and T3 affected and conflict-flag sets are equal, T2 equals the diff's before side, T4 rules never flip by date, T5 has no MA rent-cap change, and the T6 ingest mechanics agree on a test-only in-memory rule. Sharing one function was left out: not small enough before the freeze.
 - Change log + email: `/changes/[id]` reads `web/data/changes.full.json` (synced) and shows every entry old → new, dated, then the alert email preview from `web/lib/changes/email.ts` (`render(addressChange)` → `{from, subject, html, text, headers: List-Unsubscribe, List-Unsubscribe-Post}`; HTML in a sandboxed iframe). Nothing is sent.
 - `make demo-change [DOC=… JUR=… ID=…]` (default the fictional `tests/fixtures/synthetic/X001.txt`): ingest (extraction, cached by request hash) → the new rules compiled to I2 in memory → engine before/after at `AS_OF` → diff → `out/changes.full.json` → web sync → prints the changed addresses and the preview URL. It never writes `outputs/` or the committed I2 files and removes the document's index and extraction records afterwards; anything from a fictional document is labelled "Demo: fictional ordinance" in the log and the email. `make build` drops the demo source again. It needs `OPENROUTER_API_KEY` or a warm `build/cache`; without either it stops and says so (no faked extraction).
@@ -269,8 +304,28 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 - `/api/resolve?q=`: free text → `{kind: address | place | ambiguous | not_found | unavailable, tree, coverage, notes, …}`; 404 not found, 503 when Census is down.
 - `/api/address/[id]`: I5.
 - Alerts: `POST /api/subscribe`, `/confirm` (page with a POST button) + `POST /api/confirm`, `/unsubscribe` (page) + `POST /api/unsubscribe` (RFC 8058 one-click), `/alerts/confirmed|unsubscribed|invalid`, `POST /api/alerts/dispatch`.
-- Not built: `/api/mcp`, an as-of picker.
+- `/api/mcp`: the MCP server (below). `/connect`: how to add it to Claude, ChatGPT, Claude Code, Cursor, VS Code.
+- Not built: an as-of picker.
 - **Contacts:** `contracts/contacts.json` (36 entries with source and retrieval date) synced to `web/contracts/contacts.json`; each tile picks the entry for its jurisdiction and topic.
+
+### MCP server (`/api/mcp`, issue #23)
+
+- **Transport:** `mcp-handler` 2.2.0 (`@modelcontextprotocol/server` 2.3.0, `zod` 4.6.5, exact pins), Streamable HTTP, stateless: no Redis session store, no SSE stream (GET answers 405). Route `web/app/api/mcp/route.ts` (GET, POST, DELETE). URL: `https://yourhomerule.com/api/mcp`. No auth: public data only.
+- **Tools** (`web/lib/mcp/tools.ts`, pure functions, all `readOnlyHint: true`; no new legal logic). **Task-shaped since 04.10.2026** (PR "MCP: fewer, task-shaped tools (measured)"): five registered tools, each a whole question in one call, no mandatory lookup step. Measured with `scoreboard/mcp_eval.py` (26 renter questions, `web/tests/mcp-cases.json`, headless Claude Code + Sonnet): before median 2 calls (mean 2.8, max 7, Boston→SF 7), after 1 call for every case. **Parity by construction:** each tool routes to the same builder its page renders, then only reshapes it; where a page computed inline, the computation moved into a shared pure function the page now calls too (`lib/address-page-data.ts`, `lib/typed-address.ts`, `lib/jurisdiction-tree.ts`, `lib/jurisdiction-view.ts`, `ruleImpact()`/`impactCounts()` in `lib/impact.ts`, `datesLine()` in `lib/law.ts`, `TILE_STATUS_WORDS`/`glanceSummary()` in `lib/address-view.ts`, `badgeFor()` in `lib/changes/impact.ts`). `web/tests/mcp-parity.test.ts` compares each tool's fields to the builder's output.
+  - `get_place(place, as_of?)`: any address, city, neighbourhood, ZIP, state or HomeRule id. Resolves with `resolveQuery` (`lib/resolve`, as `/where`) and routes: a street address → the address answer (below, `get_address`), a covered place → the jurisdiction answer (below, `get_jurisdiction`) with the place lead ("Dorchester is part of Boston") and a state-only note when the city has no local law, anything else → the `find_place` answer (not covered, ambiguous with candidates, not found). `answer_kind` says which.
+  - `compare_places(a, b, as_of?)`: `get_place` for both, then per topic side by side (address: tile status, plain answer, rules; place: rules with status, dates, key value, quote excerpt). No ranking; a not-covered side says so.
+  - `get_changes(place | address_id | jurisdiction_id | query, from?, to?)` → the per-address diff (I6, `lib/changes/data.ts`) in the change log's words (`lib/changes/wording.ts`): each entry with date heading, source (date comparison or ingested document; demo/fictional labelled), and per change old → new, rule, explanation, conflict flag, verbatim quote, citation, in-effect date, official link, rule page, `/changes/<id>#c-<rule>` link and the **renter-impact badge** (`badgeFor()`, the page's ↑/↓/? badge from the engine's `renter_impact`; none for pending bills or missing verdicts). For a city or state: `changesForPlace()` (`lib/changes/aggregate.ts`) groups the sample addresses' changes there by rule with transitions, affected count (of N sample addresses) and badge counts, capped at 25 rules and 10 example ids. A typed non-sample address answers with its city's (or state's) aggregate and says so.
+  - `get_rule(rule_id, as_of?)` → the `/r/[id]` page, for depth only: title, crumb, level, topic, summary, verbatim quote with excerpt context, citation, official vs secondary source, document id and retrieval, `datesLine()`, disputed dates, status on as_of and status history, coverage in words and the building facts it reads, key value, exemptions, interaction with other levels (flagged, not decided), eviction details, open question and `findings.json` entries for the same jurisdiction and topic, what next, the model-vs-code audit trail, and impact over the state's sample addresses per date (`ruleImpact()` + `impactCounts()`, conflict count, example addresses with result and explanation).
+  - `coverage()` → states, cities, topics, example addresses, data as-of, what is not covered (the landing page's coverage line).
+  - **Builders behind `get_place`, kept as functions, no longer registered** (fewer tools for the model to choose from): `getAddress()` → `addressPageData()` (the `/a/[id]` and `/a/at` builder): jurisdiction crumb, legal vs postal city, building facts with source; the six topics with category, status label, plain answer, explanation, notes, missing facts, conflict flag (not decided), next steps, contact (name, phone marked not yet checked, URL, source URL, retrieval date), helpers, and each rule row (status words, verbatim quote, citation, official source, effective dates, missing facts, governed by); at-a-glance lines; coming up and recently changed (with the event's badge when the page has one); proposed bills marked not law; links. A typed address outside the 500 uses `typedAddress()` + `flagGap()` (the `/a/at` path) and is labelled provisional. `getJurisdiction()` → `jurisdictionPageData()` + `rulesByQuestion()` (the `/j/[id]` page): crumb, the six questions with each rule's status on as_of, `datesLine()`, key value, summary (≤ 400 chars), the verbatim quote clipped at 450 chars (`quote_clipped`, full text on the rule page), citation, official source, what it depends on, the building facts it needs, other-levels note and rule page, so no per-rule drill-down is needed; cities below, sample addresses, contacts, findings. `findPlace()` and `getRules()` stay for tests and old callers.
+- **Results are data only.** No `how_to_present` (or any other instruction) inside a result: instructions in tool output read as prompt injection to the model (observed in claude.ai: "Weighing how to treat embedded tool-result instructions"). Presentation rules live where clients expect guidance: the server `instructions` (which tool when, plus the rules below) and a one-line rule at the end of each tool description.
+- **Sizes:** every list that can grow is capped (`CAPS` in `tools.ts`) and a truncated list says how many it left out and links the page; tests keep every sample answer under 60k characters (SF address ≈ 17k).
+- **as_of:** jurisdiction rules are evaluated on any date from their status history. Address results exist only for the engine's dates (`meta.as_of_dates`, today 2026-10-01); another date snaps as in `/api/address` and the answer adds `as_of_note` and each rule's status on the asked date.
+- **Every result:** `not_legal_advice: true`, disclaimer, `as_of`, `retrieved` (data date + engine dates), `link`. The server `instructions` say which tool to use when and carry the presentation rules (quote + date, not legal advice, never "compliant"/"illegal", name unknowns, conflicts flagged not decided, bills and demo sources are not law, typed addresses provisional, never compare a renter's numbers to a cap). Content = a one-paragraph summary + compact JSON. Bad input or unknown ids are tool errors (`isError`), never 500s.
+- **Audit:** one `console.log` JSON line per call (tool, resolved address/jurisdiction id, as_of, error flag; no IP, no query text) in the Vercel runtime logs.
+- **Rate limit:** 300 POSTs per IP per minute via the Upstash store's `hit()` (`mcp:rl:<ip>:<minute>`), fails open if Redis is down. Generous because claude.ai and ChatGPT call from shared cloud IPs. Follow-up if abused: a Vercel Firewall rule on `/api/mcp`.
+- **Reachability:** previews are behind Vercel login, so cloud chatbots can only use production. Local test: `next dev` + JSON-RPC via curl (initialize → tools/list → tools/call).
+- **Eval:** `python3 -m scoreboard.mcp_eval --url <mcp url> --label <name>` asks the 26 cases in `web/tests/mcp-cases.json` (the scoreboard questions, PRD journeys J1–J3, J6, J7, and the move, address, changes, date, uncovered and typed-address cases) through headless Claude Code with only HomeRule connected, and records per case tool calls, tool-result bytes, tokens, expected-fact hits, quote/date/"Not legal advice" and distrust wording. Results: `scoreboard/results/mcp-<label>.json`. Claude Code shows no thinking, so the distrust check only sees the answer text.
 
 ### Email and alerts
 
@@ -305,8 +360,20 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` (+ `KV_REST_API_READ_ONLY_TOKEN`, `KV_URL`, `REDIS_URL` from the integration) | Vercel production, preview, development; `vercel env pull` → `.env.local` | `storeFromEnv()` |
 | `NEXT_PUBLIC_DATA_SOURCE` | optional | `live` (default) or `demo` |
 | `OPENROUTER_API_KEY` | `.env.local` only | Extraction and `make demo-change` (not needed on Vercel) |
+| `NEXT_PUBLIC_DEFAULT_MAP_VIEW` | Vercel preview `3d` (set 04.10.2026); production decided `3d`, not yet set (unset → `map`) | `web/lib/map-view.ts`: the first-time view on the address page (`map` or `3d`); a visitor's own switch choice and `?map=` win. With `3d`, every address page view is a Google map load (quota 500/day, then the MapLibre fallback) |
+| `NEXT_PUBLIC_GOOGLE_MAPS_KEY` | Vercel production, preview, development; `vercel env pull` → `.env.local` | `web/components/address-map-3d.tsx` (3D map view, loaded only after the visitor picks 3D). Browser key `homerule-maps-browser`: Maps JavaScript API only; referrers `yourhomerule.com/*`, `*.yourhomerule.com/*`, `*.vercel.app/*`, `localhost:*/*`, `127.0.0.1:*/*` (explicit entries since 04.10.2026: `https://yourhomerule.com/*`, `https://www.yourhomerule.com/*`, `https://*.yourhomerule.com/*`, `https://*.vercel.app/*`, `http://localhost:3000/*`, `http://localhost:3064/*`, `http://localhost/*`, `http://127.0.0.1:3000/*`, `http://127.0.0.1:3064/*`; the earlier `localhost:*/*` wildcard was rejected); quota 500 map loads/day for 3D and 500 for 2D. Billed as Dynamic Maps (Essentials, US$7 per 1,000 loads after 10,000 free per month) [assumed: Google's usage page says 3D map loads count under Dynamic Maps; the price list has no separate 3D SKU] |
 
-There is no `DEMO_RECIPIENTS` variable. `scripts/alerts-env.sh` is meant to set `DEMO_TOKEN` and `ALERTS_SITE_URL` for preview too; on 04.10.2026 ~05:00 Vercel listed them for production only, so dispatch works only on production. `NEXT_PUBLIC_GOOGLE_MAPS_KEY` is also set in Vercel but no code on `main` reads it.
+### Map data (build time, committed)
+
+| File | Source | Script | Used by |
+|---|---|---|---|
+| `web/data/city-outlines.geojson` | Census TIGER/Line 2025 places | `scripts/build-city-outlines.sh` | Both maps: legal-city outline |
+| `web/data/building-footprints.json` | OpenStreetMap via Overpass API (ODbL) | `scripts/build-building-footprints.ts` | Both maps: building highlight (sure matches only) |
+| `web/data/elevations.json` | Open-Meteo Elevation API (Copernicus GLO-90 DEM, free, no key), retrieved 04.10.2026 | `scripts/build-elevations.ts` (≤ 100 points per request, cached) | 3D view only: ground elevation at the camera target (building centroid for sure matches, else the Census geocode), 492/500 |
+
+Why elevation: `Map3DElement`'s camera centre altitude is metres above sea level. A centre at altitude 0 on a hill lies under the street, and at the 50° final tilt the view shifts by ≈ elevation × tan 50° (140 Portola Dr, SF, 210 m → ~250 m off). With the stored elevation the final shot and the orbit are centred on the ground. A typed address outside the sample has no stored elevation and nothing is fetched at runtime: its final shot is straight down (tilt 0), where the altitude cannot shift the view. The opening city shot is tilt 0 at altitude 0 for the same reason.
+
+There is no `DEMO_RECIPIENTS` variable. `scripts/alerts-env.sh` is meant to set `DEMO_TOKEN` and `ALERTS_SITE_URL` for preview too; on 04.10.2026 ~05:00 Vercel listed them for production only, so dispatch works only on production.
 
 ## Audit and evaluation
 

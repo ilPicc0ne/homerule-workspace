@@ -1,0 +1,52 @@
+# TEST FIXTURE: renter impact (layer 1: per rule; layer 2: per change). Expected answers from the law texts and
+# the brief, written before extract/impact.py and engine/impact.py. Never shown to a prompt.
+# direction: protects | limits (takes away or limits a protection) | neutral
+# strength: the topic's number, compared "lower is better" for rent %, deposit months and fee dollars.
+
+rules:
+  - {id: CA-RENT-1947.12, direction: protects, strength: 10, unit: "%/year", why: "5% + CPI, at most 10%"}
+  - {id: CA-LOS-ANGELES-RENT-151.06, direction: protects, strength: 3, unit: "%/year", why: "RSO 3% for 2025-26"}
+  - {id: CA-SAN-FRANCISCO-RENT-37.3, direction: protects, strength: 1.6, unit: "%/year", why: "SF allowable increase 1.6%"}
+  - {id: NJ-NEWARK-RENT-19:2-3.1, direction: protects, strength: 4, unit: "%/year", why: "CPI, capped at 4% (2024 chapter)"}
+  - {id: NJ-NEWARK-RENT-19:2-22, direction: protects, strength: 25, unit: "%/year", why: "Board may not grant more than 25% a year (2017 chapter)"}
+  - {id: NJ-NEWARK-RENT-19:2-18.3, direction: limits, why: "reconstructed dwellings: initial rent not restricted (an exemption from the cap)"}
+  - {id: MA-RENT-40P, direction: limits, why: "G.L. c.40P bars local rent control"}
+  - {id: NJ-RENT-2A:42-84.5, direction: limits, why: "new construction exempt from local rent control for 30 years"}
+  - {id: CA-DEP-1950.5, direction: protects, strength: 1, unit: "months of rent", why: "AB 12: one month"}
+  - {id: NJ-DEP-46:8-21.2, direction: protects, strength: 1.5, unit: "months of rent", why: "1.5 times one month's rent"}
+  - {id: MA-DEP-186, direction: protects, strength: 1, unit: "months of rent", why: "first month's rent"}
+  - {id: NJ-FEE-46:8-18.1, direction: protects, strength: 50, unit: "$", kind: cap, why: "$50 application fee cap"}
+  - {id: CA-FEE-1950.6, direction: protects, strength: 30, unit: "$", kind: cap, why: "$30 base (CPI-adjusted)"}
+  - {id: CA-BERKELEY-FEE-13.78, direction: protects, kind: cap, why: "Berkeley: a fee limit with a yearly dollar figure"}
+  - {id: MA-FEE-186, direction: protects, kind: ban, strength: 0, unit: "$", why: "G.L. c.186 §15B(1)(b): at or before the tenancy only first and last month's rent, a deposit and a lock fee may be required, so no application fee"}
+  - {id: MA-FEE-112, direction: protects, kind: other, why: "G.L. c.112 §87DDD½: only the party who hired the broker pays the broker's fee (who pays, not a limit on a screening fee)"}
+  - {id: CA-ALG-16729, direction: protects, why: "common pricing algorithm ban (AB 325)"}
+  - {id: CA-EVICT-1946.2, direction: protects, kind: grounds, why: "just cause after 12 months (AB 1482)"}
+  - {id: NJ-EVICT-2A:18-61.1, direction: protects, kind: grounds, why: "Anti-Eviction Act: removal only for listed causes"}
+  - {id: MA-EVICT-186, direction: protects, kind: procedure, why: "G.L. c.186 §11: notice before ending a lease for nonpayment, not just cause"}
+  - {id: NJ-JERSEY-CITY-ALG-218-12, direction: protects, kind: ban, why: "Jersey City ban on algorithmic rent-setting services"}
+  - {id: NJ-JERSEY-CITY-ALG-218-12.3, direction: protects, kind: disclosure, why: "sworn disclosure with the lease or increase notice"}
+
+changes:   # address, two as-of dates, the rule(s) that change, expected verdict for the renter and its sentence (expect_why,
+           # from the law and the citations as extracted)
+  - {id: C1, address: A0001, before: "2025-12-31", after: "2026-01-02", rule: CA-ALG-16729, expect: better, expect_why: "A ban on rent-setting software now covers this home (Cal. Bus. & Prof. Code § 16729(a)).", why: "LA: CA ban starts (T1)"}
+  - {id: C2, address: A0003, before: "2027-06-30", after: "2027-07-02", rule: NJ-ALG-56:9-23, expect: better, expect_why: "A ban on rent-setting software now covers this home (N.J. Stat. Ann. § 56:9-23(e)).", why: "Newark: FAIR Act starts, no local ban before (T3)"}
+  - {id: C3, address: A0008, before: "2027-06-30", after: "2027-07-02", rule: NJ-ALG-56:9-23, expect: unchanged, expect_why: "No change in rent-setting software protection: Jersey City Code § 218-12(2)(a) already gives this protection.", why: "Jersey City: FAIR Act starts; protection stays a ban either way (local ban before, state ban after, even if the state law overrides). The conflict flag stays on the entry. Corrected from 'unclear' after the first run: the level, not the flag, decides better/worse"}
+  - {id: C4, address: A0081, before: "2029-12-31", after: "2030-01-02", rule: CA-RENT-1947.12, expect: worse, expect_why: "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12).", why: "SF 2005 building: state cap sunsets, no local rent control"}
+  - {id: C5, address: A0002, before: "2026-04-30", after: "2026-05-02", rule: NJ-FEE-46:8-18.1, expect: better, expect_why: "A $50 application fee cap now covers this home (N.J. Stat. § 46:8-18.1(a)).", why: "Hoboken: NJ $50 fee cap starts"}
+  - {id: C6, address: A0003, before: "2024-10-07", after: "2024-10-09", category: rent_increase_limits, expect: better, expect_why: "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1).", why: "Newark: 2017 chapter (25%) replaced by 2024 chapter (CPI, max 4%)"}
+
+scores:    # aggregated score: what a renter can count on (unknown topics at their lowest), "up to" in high
+  - {address: A0001, date: "2026-10-01", score: 75, high: 100, unknown: [just_cause_eviction], why: "LA RSO unit: rent, deposit, fee, screening and the algorithm ban all strong; state just cause (§1946.2) is unknown: it depends on whether the owner lives there and on exemptions the data can't check, so it counts as none in the score and strong in high. Before the fix the score was 100, above its own range"}
+
+open_questions:   # what answering one building fact does to an unknown topic (Cal. Civ. Code §1946.2(e))
+  - {address: A0001, date: "2026-10-01", topic: just_cause_eviction, fact: owner_occupied, answer: false, level: strong, score: 100, why: "32-unit 1927 LA apartment, not subsidised: with the owner not living there, no §1946.2(e) exemption can hold (shared kitchen/bath, owner-occupied duplex or single-family home, new construction, separately sold unit), so just cause applies"}
+  - {address: A0001, date: "2026-10-01", topic: just_cause_eviction, fact: owner_occupied, answer: true, level: unknown, score: 75, why: "an owner living there can still exempt the unit only if the tenant shares a kitchen or bath with them, which the data can't say"}
+
+in_force_before_rate_date:   # a yearly rate or new formula is not the start of the rule (written from the laws' dates)
+  - {rule: CA-SAN-FRANCISCO-RENT-37.3, date: "2025-12-31", why: "SF Rent Ordinance since 1979; 2026-03-01 starts the 1.6% allowable increase"}
+  - {rule: CA-LOS-ANGELES-RENT-151.06, date: "2025-12-31", why: "LA Rent Stabilization Ordinance since 1979; 2026-02-02 starts a new formula"}
+  - {rule: CA-FEE-1950.6, date: "2025-12-31", why: "Cal. Civ. Code 1950.6 since 1998; 2026-01-01 starts an update"}
+
+owner_scope:   # owner-occupancy exemptions cover small buildings (written from the ordinance text)
+  - {address: A0019, date: "2026-10-01", rule: CA-SAN-DIEGO-EVICT-98.0704, why: "16-unit San Diego apartment: §98.0703(i) owner-occupied single-family home and (j) owner-occupied duplex can't hold, so whether the owner lives there must not change the result"}
