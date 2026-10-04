@@ -180,6 +180,7 @@ test("C ends: 30 days before and on the day; minus badge from renter_impact, no 
   assert.match(toA[0].html, /− This change narrows renter protection/);
   assert.match(toA[1].text, /Ended · Rent increases · − This change narrows/);
   assert.ok(!toB[0].text.includes("renter protection"));
+  assert.match(toB[0].text, /Whether it applies here depends on a building fact we don't have\./);   // listed as "may apply" there
 });
 
 test("today is the jurisdiction's local date: 05:00 UTC on July 1 is July 1 in New York, still June 30 in Los Angeles", async () => {

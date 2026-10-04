@@ -54,13 +54,14 @@ export function eventText(ev: LifeEvent, d: LifeData, today: string): ItemText {
       return { lead: "Now in effect", topic, sentence: `${dated && plain.includes(dated) ? "Takes effect today" : `Takes effect today, ${longDate(ev.anchor)}`}: ${plain}${may}`, badge };
     case "ending_30d": {
       const n = daysBetween(today, ev.anchor);
-      return { lead: n === 1 ? "Ends tomorrow" : `Ends in ${n} days`, topic, sentence: `On ${longDate(ev.anchor)} this rule stops applying at this address: ${plain}`, badge };
+      const unsure = ev.result === "unknown" ? " Whether it applies here depends on a building fact we don't have." : "";
+      return { lead: n === 1 ? "Ends tomorrow" : `Ends in ${n} days`, topic, sentence: `On ${longDate(ev.anchor)} this rule stops applying at this address: ${plain}${unsure}`, badge };
     }
     case "ended":
       return {
         lead: "Ended",
         topic,
-        sentence: `${today === ev.anchor ? `From today, ${longDate(ev.anchor)},` : `Since ${longDate(ev.anchor)}`} this rule no longer applies at this address: ${plain}`,
+        sentence: `${today === ev.anchor ? `From today, ${longDate(ev.anchor)},` : `Since ${longDate(ev.anchor)}`} this rule no longer applies at this address: ${plain}${ev.result === "unknown" ? " Whether it applied here depended on a building fact we don't have." : ""}`,
         badge,
       };
     case "correction": {
