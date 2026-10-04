@@ -386,6 +386,57 @@ a:hover {
   color: var(--muted);
 }
 
+.suggest-foot {
+  margin-top: 0.25rem;
+  padding: 0.5rem 0.8rem 0.3rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.suggest-none {
+  margin: 0;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+
+.scope-note {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 36rem;
+  margin: 1.75rem auto 0;
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.scope-note strong {
+  font-weight: 650;
+  color: var(--accent-ink);
+}
+
+.scope-note-icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.scope-note-icon .dot {
+  fill: var(--accent);
+}
+
 .search-status {
   min-height: 1.5rem;
   margin-top: 1rem;

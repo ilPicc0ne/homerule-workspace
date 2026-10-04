@@ -1,0 +1,824 @@
+{
+ "label": "branch",
+ "url": "http://localhost:3075/api/mcp",
+ "model": "sonnet",
+ "run_at": "2026-10-04 10:20",
+ "summary": {
+  "cases": 26,
+  "answered": 26,
+  "median_calls": 1.0,
+  "mean_calls": 1,
+  "max_calls": 1,
+  "median_result_kb": 19.7,
+  "total_result_kb": 470.8,
+  "median_input_tokens": 20150.0,
+  "fact_hit_rate": 0.981,
+  "all_facts_cases": 25,
+  "not_legal_advice": 26,
+  "quote": 25,
+  "dated": 25,
+  "distrust": 0
+ },
+ "rows": [
+  {
+   "id": "R1-boston-rent",
+   "question": "I rent in Boston, MA. How much can my rent go up? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Boston, MA",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 19079,
+   "input_tokens": 19922,
+   "output_tokens": 752,
+   "turns": 2,
+   "seconds": 12.1,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "HomeRule's data for Boston, as of 2026-10-01, doesn't show any in-force cap on how much a rent increase can be.\n\n**What's in force**\n- **State ban on local rent control.** Mass. Gen. Laws ch. 40P, § 4 says: *\"No city or town may enact, maintain or enforce rent control of any kind, except that any city or town that accepts this chapter may adopt rent control regulation that provides:\"*. HomeRule lists it as in force and gives no effective date. HomeRule flags the interaction with local rules for review and doesn't decide it.\n\n**What's not law**\n- **Boston rent stabilization bill (Mass. H.3744).** It is titled *\"An Act petition for a special law authorizing the city of Boston to implement rent stabilization and tenant eviction protections\"*. HomeRule lists it as **proposed, not law** as of 2026-10-01. Bill page: https://malegislature.gov/Bills/193/H3744\n- **Failed ballot measure.** HomeRule links a WBUR report dated 2026-06-23 that says the Massachusetts high court struck a rent-control ballot question. HomeRule has only the link and no text, so I can't say more about it. https://www.wbur.org/news/2026/06/23/massachusetts-high-court-rent-control-ballot-question-struck\n\n**What I can't tell you**\n- HomeRule has no rule on notice periods or timing for rent increases in this data. Your lease terms and building type (for example, subsidized or not) could matter, and I don't have those facts.\n- If your tenancy is subsidized or has a lease with specific rent terms, those may work differently. That's unknown here.\n\n**To confirm:** Boston Office of Housing Stability, 617-635-4200, https://www.boston.gov/departments/housing/office-housing-stability. HomeRule marks this number as not yet checked, so confirm it before calling.\n\nMore detail: https://yourhomerule.com/j/MA-BOSTON\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "R3-sf-rent",
+   "question": "I rent in San Francisco. How much can my rent go up? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "San Francisco, CA",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 20479,
+   "input_tokens": 20394,
+   "output_tokens": 845,
+   "turns": 2,
+   "seconds": 9.6,
+   "facts_hit": 3,
+   "facts_total": 3,
+   "facts_detail": [
+    true,
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "As of 2026-10-01, two rent-increase rules apply in San Francisco. Which one covers your home depends on facts about your building that I don't have.\n\n**San Francisco Rent Ordinance § 37.3 (city law, in force)**\n- Quote: \"For rent-controlled units, the annual allowable increase amount effective March 1, 2026 through February 28, 2027 is 1.6%.\"\n- It applies to rent-controlled units.\n- Newly constructed units that first got a Certificate of Occupancy after June 13, 1979 are exempt from the city's rent-increase limits.\n- The year your building was built is unknown here, so I can't say whether this rule covers you.\n- Source: https://www.sf.gov/news--annual-rent-increase-3126-22827-announced\n\n**Cal. Civ. Code § 1947.12 (state law, in force since April 1, 2024, through January 1, 2030)**\n- Quote: an owner \"shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower.\"\n- The percentage is calculated from the lowest gross rent charged in the prior 12 months. Accepted discounts, incentives, concessions and credits aren't counted in that lowest rate.\n- The state rule has statutory exceptions. Whether one applies to you is unknown without these facts:\n  - whether the owner lives in the building\n  - whether the building is subsidized\n  - the number of units\n  - the type of building\n- HomeRule says this rule \"steps back where a stricter local rule covers the building.\"\n- Source: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12\n\nHomeRule doesn't say which rule governs your building. A street address would let it decide per building. Several San Francisco sample addresses are listed at https://yourhomerule.com/j/CA-SAN-FRANCISCO.\n\nTo confirm what applies to you, contact the San Francisco Rent Board at 415-252-4600 (https://sf.gov/speak-rent-board-counselor). HomeRule hasn't yet checked that number, so verify it before calling.\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "R4-sd-rent",
+   "question": "I rent in San Diego, CA. How much can my rent go up? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "San Diego, CA",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 19561,
+   "input_tokens": 20013,
+   "output_tokens": 760,
+   "turns": 2,
+   "seconds": 8.8,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "**Rent increases in San Diego, as of 2026-10-01**\n\nThe rule in HomeRule's data is California's statewide cap, Cal. Civ. Code § 1947.12. It has been in force since April 1, 2024, and runs until 2030-01-01. The law says an owner \"shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower.\"\n\n- **The limit:** 5% plus the change in the cost of living, and never more than 10%, over any 12-month period.\n- **How it's measured:** The increase is calculated from the lowest gross rental rate charged in the prior 12 months. Accepted discounts, incentives, concessions or credits are left out of that lowest rate.\n- **Local rules:** HomeRule lists no San Diego city rent-cap rule. It says the state rule \"steps back where a stricter local rule covers the building.\"\n\n**What I can't tell without more facts about your building**\n\nThe cap is subject to statutory exceptions. HomeRule lists these as unknown:\n- whether the owner lives there\n- whether the building is subsidised\n- the number of units\n- the type of building\n\nI also don't have the actual cost-of-living percentage for your area, so I can't give you a single figure.\n\n**Related protection:** San Diego Municipal Code § 98.0704 (in force since June 24, 2023) says \"A landlord shall not terminate a tenancy without just cause.\" It applies unless an exemption in § 98.0703 covers your building.\n\n**To confirm:** Legal Aid Society of San Diego, 1-877-534-2524, https://www.lassd.org/resources/. HomeRule marks this number as not yet checked, so verify it before calling. Eligibility is limited to low-income and vulnerable county residents.\n\nSources: https://yourhomerule.com/r/CA-RENT-1947.12 and https://yourhomerule.com/j/CA-SAN-DIEGO\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "E1-sf-eviction",
+   "question": "I rent in San Francisco. When can my landlord end my tenancy? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "San Francisco, CA",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 20479,
+   "input_tokens": 20402,
+   "output_tokens": 899,
+   "turns": 2,
+   "seconds": 11.1,
+   "facts_hit": 1,
+   "facts_total": 1,
+   "facts_detail": [
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "As of 2026-10-01, two just-cause rules were in force in San Francisco. One is city law and one is state law. This is a city-level answer, not one for your specific building.\n\n**City rule: San Francisco Rent Ordinance § 37.9(a)** (in force)\n> \"In order to evict a tenant from a rental unit covered by the Rent Ordinance, a landlord must have a \"just cause\" reason that is the dominant motive for pursuing the eviction.\"\n\nThe listed reasons include:\n- nonpayment or habitual late payment\n- substantial breach\n- nuisance\n- illegal use\n- refusal of lawful access\n- specified owner or family occupancy\n- sale after an approved condominium conversion\n- demolition or rehabilitation\n- Ellis Act withdrawal\n- lead remediation\n\nHomeRule's summary of the list is cut off, and it says the list includes \"specified …\" further reasons. Its source is https://sf.gov/information/overview-just-cause-evictions.\n\n**State rule: Cal. Civil Code § 1946.2** (in force since Apr 1, 2024, through 2030-01-01)\n> \"after a tenant has continuously and lawfully occupied a residential real property for 12 months, the owner of the residential real property shall not terminate a tenancy without just cause\"\n\n- **Occupancy time:** the 12 months of continuous, lawful occupancy is the usual threshold. If additional adult tenants were added before an existing tenant reached 24 months, then either all tenants must have occupied for 12 months or more, or at least one must have occupied for 24 months or more.\n- **Relationship to the city rule:** HomeRule says the state rule \"steps back where a stricter local rule covers the building.\"\n\n**Facts I don't have**\nHomeRule doesn't know which rule governs your building without these:\n- whether the owner lives in the building\n- whether the building is subsidized\n- the number of units\n- the type of building\n- the year built (relevant to rent control)\n- how long you've lived there\n\nHomeRule also notes that some tenancies exempt from rent-increase limits are still subject to eviction protections.\n\nFull rule pages are linked from https://yourhomerule.com/j/CA-SAN-FRANCISCO.\n\n**To confirm for your situation:** call the San Francisco Rent Board at 415-252-4600 (https://sf.gov/speak-rent-board-counselor). HomeRule has not yet checked this number, so confirm it before you call.\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "E2-newark-eviction",
+   "question": "I rent in Newark, NJ. When can my landlord end my tenancy? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Newark, NJ",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 25900,
+   "input_tokens": 23019,
+   "output_tokens": 767,
+   "turns": 2,
+   "seconds": 9.7,
+   "facts_hit": 1,
+   "facts_total": 1,
+   "facts_detail": [
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "As of 2026-10-01, HomeRule shows three rules for Newark on ending a tenancy. The first is the main one, and the other two are narrower.\n\n**1. Good cause is required (state law).** N.J.S.A. 2A:18-61.1 is in force. It says: \"No residential landlord may evict or fail to renew a lease, whether it is a written or an oral lease without good cause. The landlord must be able to prove in court that he has grounds for an eviction.\"\n- This covers both eviction and non-renewal. It applies to written and oral leases.\n- The landlord has to prove the grounds in court.\n- HomeRule doesn't list the specific \"good cause\" grounds, so I can't tell you which reasons qualify.\n\n**2. No retaliation (Newark city law).** Newark Code § 19:2-14 has been in force since Oct 8, 2024. It says: \"No landlord shall bring any action to recover possession of a dwelling unit as a reprisal for the tenant's efforts to secure or enforce any right under this chapter.\"\n\n**3. A related rent rule.** Under N.J.S.A. 2A:18-61.1, a rent increase \"must not be unconscionable\" and \"must comply with any municipal ordinances governing rent increases.\" Newark's rent-increase cap is in § 19:2-3.1.\n\n**Facts I don't have.** HomeRule says the state good-cause rule's application depends on whether the owner lives in the building and how many units it has. That is why this answer is for Newark generally and not for your building. I also don't know your lease type or the reason your landlord might give. A decision for your own building would need those facts.\n\nFor next steps, you can contact Legal Services of New Jersey's LSNJLAW Hotline at 1-888-576-5529 (https://lsnjlawhotline.org/). It offers free help to low-income New Jersey residents, and financial eligibility is required. HomeRule marks this number as not yet checked, so confirm it before calling.\n\nFull Newark rules: https://yourhomerule.com/j/NJ-NEWARK\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "D1-sd-deposit",
+   "question": "I'm renting in San Diego. How much deposit can the landlord ask for? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "San Diego, CA",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 19561,
+   "input_tokens": 20021,
+   "output_tokens": 601,
+   "turns": 2,
+   "seconds": 6.9,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "For San Diego as of 2026-10-01, the rule that applies is a California state law. HomeRule shows no separate San Diego city rule on deposits.\n\n**Rule:** Cal. Civ. Code § 1950.5(c)(1). It has been in force since July 1, 2024.\n\n**Quote:** \"a landlord shall not demand or receive security, however denominated, in an amount or value in excess of an amount equal to one month's rent\"\n\n**Key value:** One month's rent, in addition to any rent for the first month paid on or before initial occupancy.\n\n**What's unknown:** HomeRule says the conditions and exceptions for this rule are \"not extracted yet.\" The statute has stated exceptions, but I can't tell you from this data whether any apply to your building. I don't have the full statute text, so I haven't filled that gap from memory.\n\n**Source:** [Cal. Civ. Code § 1950.5](https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5)\n**HomeRule pages:** [rule page](https://yourhomerule.com/r/CA-DEP-1950.5) and [San Diego overview](https://yourhomerule.com/j/CA-SAN-DIEGO)\n\n**To confirm:** Legal Aid Society of San Diego, 1-877-534-2524, https://www.lassd.org/resources/. HomeRule marks this number as not yet checked, so confirm it before calling. The service has eligibility limits.\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "D2-newark-deposit",
+   "question": "I'm renting in Newark, NJ. How much deposit can the landlord ask for? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Newark, NJ",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 25900,
+   "input_tokens": 23025,
+   "output_tokens": 549,
+   "turns": 2,
+   "seconds": 8.8,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "**Short answer:** As of 2026-10-01, New Jersey state law caps a security deposit at 1.5 times one month's rent. HomeRule found no separate Newark deposit rule.\n\n**The rule:** N.J.S.A. 46:8-21.2 is in force. It says: \"The maximum-security deposit to be collected by the landlord cannot be more than one and one-half times one month's rent.\" HomeRule gives no effective date for it. Its summary is that a landlord who collects a security deposit may not collect more than that amount.\n\n**Facts HomeRule doesn't know:** It doesn't know whether the owner lives in the building or how many units the building has. Both facts are marked as unknown for this rule, and I can't say whether either one changes how it applies to your building.\n\n**Related rule:** The application fee cap is $50 under N.J. Stat. § 46:8-18.1(a), in force since May 1, 2026. It's a separate charge from the deposit.\n\n**To confirm:** Contact Legal Services of New Jersey's LSNJLAW Hotline at 1-888-576-5529 (https://lsnjlawhotline.org/). It's free, but financial eligibility is required. HomeRule hasn't yet checked that number, so confirm it before you call.\n\nMore detail is on the HomeRule Newark page: https://yourhomerule.com/j/NJ-NEWARK\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "F1-jc-fee-before",
+   "question": "On 2026-04-30, what could a landlord in Jersey City, NJ charge me to apply for an apartment?",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Jersey City, NJ",
+      "as_of": "2026-04-30"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 22558,
+   "input_tokens": 21535,
+   "output_tokens": 580,
+   "turns": 2,
+   "seconds": 7.5,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "On 2026-04-30, the day before New Jersey's application fee cap took effect, HomeRule shows no cap in force for Jersey City. The state law that sets the cap was enacted but did not yet apply.\n\n**The law:** N.J. Stat. § 46:8-18.1(a) says: \"A landlord, or agent thereof, shall not require an application or other similar fee to apply to lease or sublease a residential rental property for dwelling purposes, which exceeds $50.\"\n\n- **Status on 2026-04-30:** \"Enacted, not yet in force.\" HomeRule lists it as taking effect **May 1, 2026**.\n- **Source:** https://pub.njleg.gov/bills/2024/PL25/405_.HTM\n- **Jersey City:** HomeRule lists no separate city application-fee rule.\n- **Unknown:** HomeRule says the type of building could matter. It doesn't say how.\n- **What I can't say:** HomeRule doesn't show what other rules, if any, limited application fees on that date. I won't fill that gap from memory.\n\nIf you're asking about an application you filed around that date, the fee cap rule would be the one to check. To confirm, you can call the Legal Services of New Jersey LSNJLAW Hotline at 1-888-576-5529. It's free but income-eligibility applies, and HomeRule hasn't yet checked the number.\n\nMore detail: https://yourhomerule.com/j/NJ-JERSEY-CITY\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "F2-hoboken-fee",
+   "question": "What can a landlord in Hoboken, NJ charge me to apply? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Hoboken, NJ",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 23016,
+   "input_tokens": 21724,
+   "output_tokens": 648,
+   "turns": 2,
+   "seconds": 8.4,
+   "facts_hit": 1,
+   "facts_total": 1,
+   "facts_detail": [
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "**Application fee in Hoboken, NJ (as of 2026-10-01)**\n\nHoboken has no separate application-fee rule in HomeRule's data. The New Jersey state cap applies:\n\n- **Cap: $50.**\n- **Law:** N.J. Stat. § 46:8-18.1(a), in force since May 1, 2026. It says: \"A landlord, or agent thereof, shall not require an application or other similar fee to apply to lease or sublease a residential rental property for dwelling purposes, which exceeds $50.\"\n- **Source:** https://pub.njleg.gov/bills/2024/PL25/405_.HTM\n\n**Unknown:** HomeRule lists \"type of building\" as a missing fact for this rule. It hasn't extracted what conditions or exemptions might depend on that, so I can't say whether the cap applies to a particular building.\n\n**Related limits on screening:** The $50 cap covers the fee. Separate state rules limit what a landlord can ask about in an application. For example, N.J. Stat. Ann. § 46:8-55(a)(1) says a housing provider \"shall not require an applicant to complete any housing application that includes any inquiries regarding an applicant's criminal record prior to the provision of a conditional offer.\"\n\n**To confirm:** Legal Services of New Jersey's LSNJLAW Hotline, 1-888-576-5529, https://lsnjlawhotline.org/. HomeRule marks this number as not yet checked, so confirm it before you call. The hotline is for low-income NJ residents and requires financial eligibility.\n\nHomeRule page: https://yourhomerule.com/j/NJ-HOBOKEN\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "S1-jc-screening",
+   "question": "I'm applying for an apartment in Jersey City. What can the landlord check about me? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Jersey City, NJ",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 22480,
+   "input_tokens": 21500,
+   "output_tokens": 1222,
+   "turns": 2,
+   "seconds": 11.9,
+   "facts_hit": 1,
+   "facts_total": 2,
+   "facts_detail": [
+    false,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "As of 2026-10-01, HomeRule lists these New Jersey rules on tenant screening that apply in Jersey City. I found no Jersey City ordinance on screening itself. Which rules apply to your building also depends on facts I don't have: whether the owner lives there, the number of units and the type of building.\n\n**What the landlord can't do**\n- **Criminal history on the application.** The landlord can't put criminal-record questions on the application before a conditional offer. The law says: \"A housing provider shall not require an applicant to complete any housing application that includes any inquiries regarding an applicant's criminal record prior to the provision of a conditional offer\" (N.J. Stat. Ann. § 46:8-55(a)(1), in force since Jan 1, 2022). The summary notes exceptions for a specified methamphetamine-related conviction and for lifetime sex-offender registration.\n- **Certain records at any stage.** The landlord can't evaluate you based on certain records, \"either before or after the issuance of a conditional offer.\" The list includes \"(1) arrests or charges that have not resulted in a criminal conviction; (2) expunged convictions;\". HomeRule's summary also lists pardoned or legally nullified convictions, juvenile adjudications and sealed records (§ 46:8-56(a), in force since Jan 1, 2022). The quoted text cuts off after item (2), so I can't give you the full list verbatim.\n- **Blanket exclusion ads.** The landlord can't publish an ad saying applicants with arrests or convictions won't be considered. There are exceptions for two specified categories (§ 46:8-58(a)).\n- **Drug and alcohol tests.** The landlord can't \"require an applicant to submit to a drug or alcohol test, or request the applicant's consent to obtain information from a drug abuse treatment facility\" (§ 46:8-60, in force since Jan 1, 2022).\n- **Income source.** The landlord can't discriminate based on \"the source of lawful income or source of lawful rent or mortgage payment a tenant or purchaser uses.\" That includes denying a lawful Section 8 voucher holder solely for that reason (N.J.S.A. 10:5-12).\n\n**What this data doesn't say**\n- HomeRule doesn't address credit checks, rental history, employment or income verification. I can't tell you from this data whether those are allowed or limited.\n- After a conditional offer, the landlord may be able to look at criminal history that isn't in the protected categories above. This is my reading of the rules, and HomeRule doesn't state it directly.\n\n**Application fee:** The cap is $50. The law says a landlord \"shall not require an application or other similar fee to apply to lease or sublease a residential rental property for dwelling purposes, which exceeds $50\" (N.J. Stat. § 46:8-18.1(a), in force since May 1, 2026). Whether it applies to your building depends on the type of building, which is unknown here.\n\n**Who to confirm with:** The NJ Division on Civil Rights handles criminal-history screening questions and complaints, at 833-653-2748. HomeRule hasn't checked that number yet, so confirm it before calling. For application fees, the contact is Legal Services of New Jersey's hotline at 1-888-576-5529 (also not yet checked, and it requires financial eligibility).\n\nMore detail: https://yourhomerule.com/j/NJ-JERSEY-CITY\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "A1-la-alg-before",
+   "question": "On 2025-12-31, could rent-setting software be used on my rent in Los Angeles?",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Los Angeles, CA",
+      "as_of": "2025-12-31"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 18941,
+   "input_tokens": 19757,
+   "output_tokens": 797,
+   "turns": 2,
+   "seconds": 9.4,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "**On 2025-12-31, California's rent-setting software law was enacted but not yet in force.** It took effect the next day, 2026-01-01. HomeRule lists no Los Angeles-specific software rule, so only the state law applies.\n\n**The rule:** Cal. Bus. & Prof. Code § 16729(a), status \"Enacted, not yet in force; Takes effect Jan 1, 2026.\" It says:\n\n> \"It shall be unlawful for a person to use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of this chapter.\"\n\nSource: [AB 325 on leginfo](https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325). HomeRule's rule page is [CA-ALG-16729](https://yourhomerule.com/r/CA-ALG-16729).\n\n**Caveats:**\n- The law bars using or distributing a \"common pricing algorithm\" as part of a restraint of trade. It doesn't ban all software. HomeRule hasn't extracted the conditions for when it applies, so I can't say whether it would reach your landlord's tools.\n- HomeRule has no specific facts about your building or landlord. It also has only a news link for this law, with no analysis text.\n- This answers a single date, 2025-12-31. The law is in force now (today is 2026-10-04).\n- Your rent increases are governed by separate rules. These include LA's rent stabilization ordinance, which depends on the year your building was built, and the state cap.\n\nTo confirm, contact the California Attorney General's Public Inquiry Unit at (800) 952-5225 or https://oag.ca.gov/contact. HomeRule hasn't yet checked that number.\n\nFull Los Angeles page: https://yourhomerule.com/j/CA-LOS-ANGELES\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "A2-la-alg-after",
+   "question": "On 2026-01-02, could rent-setting software be used on my rent in Los Angeles?",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Los Angeles, CA",
+      "as_of": "2026-01-02"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 18863,
+   "input_tokens": 19714,
+   "output_tokens": 711,
+   "turns": 2,
+   "seconds": 9.7,
+   "facts_hit": 1,
+   "facts_total": 1,
+   "facts_detail": [
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "On 2026-01-02, California's state law on rent-setting software was in force in Los Angeles. HomeRule lists no Los Angeles city rule on the topic. Whether the law reaches your rent depends on facts HomeRule doesn't have.\n\n**The rule:** Cal. Bus. & Prof. Code § 16729(a) has been in force since Jan 1, 2026. It says:\n\n> \"It shall be unlawful for a person to use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of this chapter.\"\n\nThe law doesn't ban all rent-setting software. It covers use or distribution of a \"common pricing algorithm\" as part of a contract, combination or conspiracy that restrains trade. The source is [AB 325](https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325).\n\n**Unknowns:**\n- HomeRule says the conditions for this rule are \"not extracted yet.\"\n- It has no building-specific facts for you, such as your address or your landlord's software.\n- It has no text for the law beyond the quoted provision. The one related source it lists is a law-firm article that isn't in its corpus.\n- So I can't say whether software was actually used on your rent, or whether a particular tool counts as a \"common pricing algorithm.\"\n\n**To confirm:** Contact the California Attorney General, Public Inquiry Unit, at (800) 952-5225 or https://oag.ca.gov/contact. HomeRule marks this number as not yet checked, so confirm it before calling.\n\nMore detail is on the [HomeRule Los Angeles page](https://yourhomerule.com/j/CA-LOS-ANGELES) and the [rule page](https://yourhomerule.com/r/CA-ALG-16729).\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "A3-jc-alg",
+   "question": "Can rent-setting software be used on my rent in Jersey City, NJ? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Jersey City, NJ",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 22480,
+   "input_tokens": 21496,
+   "output_tokens": 828,
+   "turns": 2,
+   "seconds": 9.8,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "As of 2026-10-01, Jersey City has two city rules on rent-setting software that were in force. A third, statewide rule had been enacted but wasn't in force yet. I looked up Jersey City generally, not your specific building. HomeRule doesn't list any building facts that these city rules depend on.\n\n**Jersey City, in force on 2026-10-01**\n\n- **Ban on using a service provider** (Jersey City Code § 218-12(2)(a), in force since Jun 10, 2025). The ordinance says: *\"It is unlawful for any real estate lessor, agent, or subcontractor thereof, to subscribe to, contract with, or otherwise exchange anything of value in return for the services of a Service Provider.\"*\n- **Disclosure with rent increases** (Jersey City Code § 218-12.3(a), in force since Oct 15, 2025). The ordinance says: *\"Any landlord must include, with any lease or written notice of rent increase for a residential dwelling unit, a sworn disclosure statement, executed under penalty of perjury, in substantially the following form:\"* HomeRule's summary says the form certifies that nothing of value was exchanged for a Service Provider's services in connection with the proposed rent. The summary is cut off, so I can't give you the rest of what the form certifies.\n\n**State law, enacted but not yet in force**\n\n- N.J. Stat. Ann. § 56:9-23(e) says it is prohibited for *\"any person to perform a coordinating function.\"* It takes effect Jul 1, 2027, so it wasn't in force on 2026-10-01.\n\n**Open question:** HomeRule flags that New Jersey's FAIR Act may override the Jersey City ordinances once the state law takes effect. This is flagged, not decided. I can't tell you how that would play out.\n\n**To confirm:** Legal Services of New Jersey's LSNJLAW Hotline, 1-888-576-5529 (https://lsnjlawhotline.org/). HomeRule marks that number as not yet checked, so confirm it before calling. The hotline is for low-income New Jersey residents, and financial eligibility is required.\n\nMore detail: https://yourhomerule.com/j/NJ-JERSEY-CITY\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "A4-newark-alg",
+   "question": "Can rent-setting software be used on my rent in Newark, NJ? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Newark, NJ",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 25900,
+   "input_tokens": 23015,
+   "output_tokens": 787,
+   "turns": 2,
+   "seconds": 16.8,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "**As of 2026-10-01, HomeRule shows no rule in force in Newark that restricts rent-setting software.** New Jersey has enacted a prohibition, but it doesn't take effect until Jul 1, 2027.\n\n- **The law:** N.J. Stat. Ann. § 56:9-23(e) says it is unlawful \"any person to perform a coordinating function.\" (That is the quote as HomeRule has it, and it is a fragment.) HomeRule lists its status as \"Enacted, not yet in force,\" with an effective date of Jul 1, 2027. The bill text is at https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM.\n- **Newark:** HomeRule lists no Newark city rule on rent-setting software.\n- **What HomeRule doesn't have:** The summary only says a person may not \"perform a coordinating function.\" HomeRule hasn't extracted the conditions or the definition of that term. So I can't tell you from this data whether a particular landlord's use of software would fall under it once it takes effect.\n- **State vs. local:** HomeRule flags that state law may limit local rules on this topic. It flags this for review and doesn't decide it.\n- **Other rules:** Newark's rent-increase limits and the state's good-cause eviction rule are in force now, and they apply whether or not software is involved. The Newark limit on rent increases (§ 19:2-3.1, in force since Oct 8, 2024) is \"the percentage increase in the Consumer Price Index (CPI)… In no case shall the allowable rent increase exceed four (4%) percent.\" Whether it covers your building depends on facts HomeRule doesn't have, such as the building's age and number of units.\n\nTo confirm, you can contact the Legal Services of New Jersey LSNJLAW Hotline at 1-888-576-5529 (https://lsnjlawhotline.org/). It offers free help to low-income New Jersey residents, and HomeRule hasn't yet checked that number.\n\nHomeRule page: https://yourhomerule.com/j/NJ-NEWARK\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "A6-cambridge-alg",
+   "question": "Can rent-setting software be used on my rent in Cambridge, MA? Answer as of 2026-10-01.",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Cambridge, MA",
+      "as_of": "2026-10-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 16070,
+   "input_tokens": 18764,
+   "output_tokens": 562,
+   "turns": 2,
+   "seconds": 8.9,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "As of 2026-10-01, HomeRule shows no Massachusetts or Cambridge law in force that bans or limits rent-setting software. HomeRule lists two bills on the topic, and both are marked \"Proposed, not law\":\n\n- **Mass. S.2983**, \"An Act prohibiting algorithmic rent setting.\" Source: https://malegislature.gov/Bills/194/S2983\n- **Mass. H.5222**, \"An Act relative to preventing algorithmic rent fixing in the rental housing market.\" Source: https://malegislature.gov/Bills/194/H5222\n\nFor this topic, HomeRule has only the bill titles, with no operative text, so I can't say what the bills would cover or when they would take effect. It also lists no Cambridge city rule on rent-setting software.\n\nHomeRule doesn't say whether the bills have advanced since being filed. Nor does it say whether other laws, such as general antitrust law, could apply to software-set rents. Its data doesn't address either point.\n\nTo confirm, you can contact the Massachusetts Attorney General's Consumer Hotline at (617) 727-8400 (https://www.mass.gov/orgs/office-of-the-attorney-general). HomeRule marks that number as not yet checked, so verify it before calling.\n\nMore detail is on the HomeRule page for Cambridge: https://yourhomerule.com/j/MA-CAMBRIDGE\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "J1-fillmore",
+   "question": "What rent rules apply at 3515 Fillmore St, San Francisco?",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "3515 Fillmore St, San Francisco"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 18348,
+   "input_tokens": 19730,
+   "output_tokens": 1472,
+   "turns": 2,
+   "seconds": 14.6,
+   "facts_hit": 3,
+   "facts_total": 3,
+   "facts_detail": [
+    true,
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "**3515 Fillmore St, San Francisco** (data as of 2026-10-01). HomeRule's building facts are a 21-unit apartment building built in 1926 (DataSF, 2025 roll). City and state rules both apply. Your unit may differ.\n\nFull page: https://yourhomerule.com/a/A0016\n\n## Rent increases\n- **San Francisco governs here.** The building was built before June 13, 1979, so city rent control applies. It replaces the state cap.\n- City rule: \"For rent-controlled units, the annual allowable increase amount effective March 1, 2026 through February 28, 2027 is 1.6%.\" (SF Rent Ordinance § 37.3). HomeRule rates its confidence in this rule as low.\n- The state rule is replaced here. It reads \"…more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower\" (Cal. Civ. Code § 1947.12, in effect Apr 1, 2024 to Jan 1, 2030).\n- Some units and increases are exempt. One unknown fact is whether the owner lives in the building.\n\n## Eviction\n- City rule: \"In order to evict a tenant from a rental unit covered by the Rent Ordinance, a landlord must have a 'just cause' reason that is the dominant motive for pursuing the eviction.\" (SF Rent Ordinance § 37.9(a))\n- The state just-cause law (Cal. Civ. Code § 1946.2) is replaced by the stricter city rule.\n- If you have to move out for a reason that isn't your fault, the law sets moving payments.\n\n## Software that sets rents\n- **City, in effect since Oct 14, 2024:** \"The law prohibits the sale or use of algorithmic devices to set rents or manage occupancy levels for residential units in San Francisco.\" (§ 37.10C)\n- **State, in effect since Jan 1, 2026:** \"It shall be unlawful for a person to use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce…\" (Cal. Bus. & Prof. Code § 16729(a))\n\n## Security deposit\n- **City:** \"Security Deposit Interest: 4.2% for March 1, 2026 – February 28, 2027\" (§ 37.6). The landlord pays this interest to you each year.\n- **State, in effect since Jul 1, 2024:** \"a landlord shall not demand or receive security, however denominated, in an amount or value in excess of an amount equal to one month's rent\" (Cal. Civ. Code § 1950.5(c)(1))\n\n## Application fees\n- California law: \"In no case shall the amount of the application screening fee charged by the landlord or their agent be greater than thirty dollars ($30) per applicant.\" The fee also can't exceed the landlord's actual out-of-pocket costs (Cal. Civ. Code § 1950.6).\n- HomeRule says there is no single official figure for 2026, so the $30 cap is adjusted for inflation each year.\n\n## Tenant screening\n- California fair housing law: \"This law prohibits people or entities that provide housing from discriminating against or harassing tenants, homeowners, residents, their guests, housing or mortgage applicants, home buyers, and others.\" (Cal. Gov. Code § 12955)\n- This covers how you pay rent, such as a Section 8 voucher.\n\n## Coming up\nHomeRule shows no scheduled changes for this address. The most recent change was California's pricing-software law taking effect on Jan 1, 2026.\n\n## Who to confirm with\nHomeRule has not yet checked any of these numbers, so confirm them before you rely on them.\n- **Rent, eviction and deposit questions:** SF Rent Board, 415-252-4600, https://sf.gov/speak-rent-board-counselor\n- **Rent-setting software and application fees:** California Attorney General, Public Inquiry Unit, (800) 952-5225, https://oag.ca.gov/contact\n- **Screening and discrimination:** SF Human Rights Commission, 415-252-2500, https://www.sf.gov/information--affordable-housing-protections-people-criminal-history/\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "J2-honest-unknown",
+   "question": "I live at 10635 Sherman Grove Ave, Los Angeles. How much can my rent go up?",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "10635 Sherman Grove Ave, Los Angeles"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 19891,
+   "input_tokens": 20279,
+   "output_tokens": 743,
+   "turns": 2,
+   "seconds": 8.2,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "HomeRule can't give you one number for 10635 Sherman Grove Ave yet. It's missing one fact, and the answer depends on it.\n\n**What it knows about your building:** it was built in 1978 and has 20 units (LA County parcel data).\n\n**Which rule applies depends on one date.**\n\n- **City rent control (LAMC § 151.06).** This applies if the city first approved the building for occupancy on or before October 1, 1978. A build year of 1978 can't settle that. The rule says: \"Rent may be increased once every 12 months by the allowable rent increase percentage.\" HomeRule lists the figure as 3% for Jul 2025–Jun 2026. It did not give the figure for the current period, so I can't tell you what applies now. Citation: LAMC § 151.06. Source: https://housing.lacity.gov/residents/rso-overview\n- **State law (Cal. Civ. Code § 1947.12).** The state rule is in effect from Apr 1, 2024 to Jan 1, 2030. It says an owner \"shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower\". If the city rule covers your unit, it governs instead. The state rule also depends on whether the owner lives in the building, and HomeRule doesn't have that fact either.\n\n**To find out which applies:**\n1. Ask your landlord or the Los Angeles Housing Department for the building's certificate-of-occupancy date.\n2. Ask your landlord whether the owner lives in the building.\n\n**Who to contact:** Los Angeles Housing Department, 866-557-7368, https://housing.lacity.gov/highlights/renter-protection. HomeRule marks this number as not yet checked, so confirm it before you rely on it. Have your lease, your move-in date and any rent increase notice ready when you call.\n\nYour HomeRule page is https://yourhomerule.com/a/A0107.\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "J3-whats-coming",
+   "question": "I rent at 327 Jackson St, Hoboken, NJ. Is anything coming up that changes my rights?",
+   "calls": [
+    {
+     "tool": "get_changes",
+     "input": {
+      "place": "327 Jackson St, Hoboken, NJ",
+      "from": "2026-10-04"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 2396,
+   "input_tokens": 13348,
+   "output_tokens": 676,
+   "turns": 2,
+   "seconds": 8.6,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "HomeRule shows one upcoming change for 327 Jackson St, Hoboken. It affects rent-setting software only.\n\n**NJ FAIR Act, N.J. Stat. Ann. § 56:9-23(e)**\n- **Now:** The rule is enacted but not yet in effect.\n- **Later:** It applies from July 1, 2027. HomeRule found no building condition in it that excludes your address.\n- **What it says:** It prohibits \"any person to perform a coordinating function.\" HomeRule files this under rent-setting software. The quote is only a fragment of the provision.\n- **Open conflict:** HomeRule flags that this may conflict with a Hoboken ordinance. The flag says the ordinance's citation is not stated. The conflict is flagged for human review and has not been decided, so I can't say which rule would control.\n- **Renter-impact badge:** HomeRule gave none, so I won't infer whether this adds to or narrows your protection.\n\nHomeRule lists no upcoming changes for rent increases, eviction, deposits, application fees or screening at this address. That only reflects its data, which is current as of 2026-10-01. It is not a guarantee that nothing else is coming.\n\nSources:\n- Statute text: https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM\n- Rule page: https://yourhomerule.com/r/NJ-ALG-56%3A9-23\n- Your address's change log: https://yourhomerule.com/changes/A0256\n\nI didn't pull the contact HomeRule lists for this topic. If this matters for a decision, confirm with that contact or a local tenant-rights organization. I can look up that contact or the other current rules for your address if you'd like.\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "J6-bill-reach",
+   "question": "Which buildings in Massachusetts would the rent-algorithm bill S.2983 reach if it passed?",
+   "calls": [
+    {
+     "tool": "get_rule",
+     "input": {
+      "rule_id": "MA-ALG-2983"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 3239,
+   "input_tokens": 13699,
+   "output_tokens": 511,
+   "turns": 2,
+   "seconds": 8.9,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "HomeRule can't say which buildings S.2983 would reach, because the data doesn't have the bill's scope conditions.\n\n- **Status:** S.2983 (\"An Act prohibiting algorithmic rent setting\") is proposed, not law, as of 2026-10-01. The Senate Housing committee reported it on March 12, 2026, in the 194th session.\n- **What it covers:** HomeRule lists this as \"Conditions not extracted yet.\" Its summary only says the bill \"Prohibits algorithmic rent setting.\" That leaves unknown the building types, unit counts, landlord types and exemptions the bill would use to decide who is covered. It also doesn't say whether the bill would apply to landlords, software vendors or both.\n- **Sample buildings:** All 110 Massachusetts sample addresses in HomeRule show \"Pending, not law.\" Examples are 471 Columbia Rd, Dorchester and 134 Oxford St, Cambridge. This is a status result and doesn't mean the bill would or wouldn't reach those buildings. HomeRule says a bill \"never covers an address yet.\"\n- **Next step:** To see the scope, read the bill text at https://malegislature.gov/Bills/194/S2983. HomeRule's rule page is https://yourhomerule.com/r/MA-ALG-2983.\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "J7-who-to-call",
+   "question": "Who should I call about a rent increase at 10635 Sherman Grove Ave, Los Angeles?",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "10635 Sherman Grove Ave, Los Angeles"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 19891,
+   "input_tokens": 20279,
+   "output_tokens": 698,
+   "turns": 2,
+   "seconds": 9.0,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "**Call the Los Angeles Housing Department at 866-557-7368.** HomeRule lists them for questions about local rent stabilization and eviction protections. HomeRule marks the number \"not yet checked by us, confirm before calling.\" You can also check https://housing.lacity.gov/highlights/renter-protection first.\n\n**Which rules apply to your building isn't settled.** HomeRule shows the building as built in 1978 with 20 units. LA rent control (LAMC § 151.06) generally covers buildings first built on or before October 1, 1978. The build year alone can't settle it, so the missing fact is the date the city first approved the building for occupancy (the certificate-of-occupancy date). The Housing Department or your landlord can tell you that date.\n\n- **If LA rent control covers the building:** HomeRule's summary says the limit was 3% for Jul 2025–Jun 2026. The rule says: \"Rent may be increased once every 12 months by the allowable rent increase percentage\" (LAMC § 151.06).\n- **If it doesn't:** the state rule may apply instead. It says an owner \"shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower\" (Cal. Civ. Code § 1947.12, in effect since Apr 1, 2024, ending Jan 1, 2030). That rule also depends on whether the owner lives in the building, which HomeRule doesn't know.\n\n**Have these ready when you call:**\n- Your rent increase notice\n- Your lease\n- Your move-in date\n\nIf you think software set your rent, the California Attorney General's Public Inquiry Unit at (800) 952-5225 is the listed contact. It is also not yet checked.\n\nFull address page: https://yourhomerule.com/a/A0107\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "X1-boston-to-sf",
+   "question": "I'm moving from Boston to San Francisco. How is my rent situation changing?",
+   "calls": [
+    {
+     "tool": "compare_places",
+     "input": {
+      "a": "Boston, MA",
+      "b": "San Francisco, CA",
+      "as_of": "2026-10-04"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 16931,
+   "input_tokens": 19155,
+   "output_tokens": 2031,
+   "turns": 2,
+   "seconds": 17.9,
+   "facts_hit": 4,
+   "facts_total": 4,
+   "facts_detail": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "Here is how the rules compare as of 2026-10-04. Which rule applies to a given building depends on the building's facts.\n\n## Rent increases\n- **Boston:**\n  - Mass. Gen. Laws ch. 40P, § 4 is in force: \"No city or town may enact, maintain or enforce rent control of any kind, except that any city or town that accepts this chapter may adopt rent control regulation that provides:\"\n  - Mass. H.3744 would let Boston adopt rent stabilization. It is proposed, not law.\n- **San Francisco:**\n  - San Francisco Rent Ordinance § 37.3, in force: \"For rent-controlled units, the annual allowable increase amount effective March 1, 2026 through February 28, 2027 is 1.6%.\" Newly built units that first got a Certificate of Occupancy after June 13, 1979 are exempt.\n  - Cal. Civ. Code § 1947.12, in force since Apr 1, 2024: an owner \"shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower\". It has statutory exceptions.\n\n## Eviction protection\n- **Boston:**\n  - Mass. Gen. Laws ch. 186, § 11: \"fourteen days' notice to quit, given in writing by the landlord to the tenant, shall be sufficient to determine the lease\". HomeRule lists this as the 14-day notice for nonpayment.\n  - Boston City Ordinances § 10-11.7, in force since Nov 6, 2020: \"The Notice of Tenants' Rights and Resources must be delivered at the same time as the Notice to Quit.\"\n- **San Francisco:**\n  - San Francisco Rent Ordinance § 37.9(a): a landlord \"must have a 'just cause' reason that is the dominant motive for pursuing the eviction.\"\n  - Cal. Civil Code § 1946.2, in force since Apr 1, 2024: \"after a tenant has continuously and lawfully occupied a residential real property for 12 months, the owner of the residential real property shall not terminate a tenancy without just cause\". It has exclusions.\n\n## Deposits\n- **Boston:** Mass. Gen. Laws ch. 186, § 15B limits amounts at the start of a tenancy. HomeRule's key value is that the security deposit may not exceed the first month's rent.\n- **San Francisco:**\n  - Cal. Civ. Code § 1950.5(c)(1), in force since Jul 1, 2024: a landlord \"shall not demand or receive security, however denominated, in an amount or value in excess of an amount equal to one month's rent\".\n  - San Francisco Rent Ordinance § 37.6 sets deposit interest at 4.2% for March 1, 2026 – February 28, 2027.\n\n## Application fees\n- **Boston:**\n  - Mass. Gen. Laws ch. 112, § 87DDD½, in force since Aug 1, 2025: \"Any fee shall only be paid by the party, lessor or tenant who originally engaged and entered into a contract with the licensed broker or salesperson.\"\n  - Mass. Gen. Laws ch. 186, § 15B(1)(b) limits what can be required at the start of a tenancy. HomeRule gives no separate key value for it.\n- **San Francisco:** Cal. Civ. Code § 1950.6. The key value is $30 per applicant, adjusted annually for CPI beginning January 1, 1998. The fee is limited to the \"actual out-of-pocket costs of gathering information concerning the applicant\".\n\n## Screening\n- **Boston:**\n  - Mass. Gen. Laws ch. 151B, § 4(6)(a) bars refusing to rent because of protected characteristics. It covers housing described as publicly assisted, multiple dwelling, or contiguously located.\n  - Boston Fair Housing Regulations apply to housing in Boston.\n  - The Boston Fair Chance Tenant Selection Policy bars blanket criminal-record denials. It applies only to providers with DND funding or land, or with income-restricted units under the BPDA Inclusionary Development Policy.\n- **San Francisco:** Cal. Gov. Code § 12955: \"This law prohibits people or entities that provide housing from discriminating against or harassing tenants, homeowners, residents, their guests, housing or mortgage applicants, home buyers, and others.\"\n\n## Rent-setting software\n- **Boston:** Mass. S.2983 and H.5222 would restrict algorithmic rent setting. Both are proposed, not law.\n- **San Francisco:**\n  - San Francisco Rent Ordinance § 37.10C, in force since Oct 14, 2024: \"The law prohibits the sale or use of algorithmic devices to set rents or manage occupancy levels for residential units in San Francisco.\"\n  - Cal. Bus. & Prof. Code § 16729(a), in force since Jan 1, 2026, concerns common pricing algorithms used to restrain trade.\n\n## Unknowns\n- I don't know your SF building's age, type, or whether it is rent-controlled. Those facts decide whether the 1.6% city limit, the state cap, or an exemption applies.\n- HomeRule lists \"conditions not extracted yet\" for several of these rules.\n\nFull pages: [Boston](https://yourhomerule.com/j/MA-BOSTON) and [San Francisco](https://yourhomerule.com/j/CA-SAN-FRANCISCO). The tool result didn't include contacts. Before you rely on any of this, confirm it with the San Francisco Rent Board or a local tenant counselor.\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "X2-newark-changes",
+   "question": "What's changing for renters in Newark?",
+   "calls": [
+    {
+     "tool": "get_changes",
+     "input": {
+      "place": "Newark, NJ",
+      "from": "2026-10-04"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 2116,
+   "input_tokens": 13192,
+   "output_tokens": 554,
+   "turns": 2,
+   "seconds": 9.0,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "HomeRule lists one upcoming change for Newark renters. Its data is as of 2026-10-01.\n\n**Rent-setting software: a ban on \"coordinating functions\" (N.J. Stat. Ann. § 56:9-23(e))**\n- **Status:** The law is enacted but not yet in effect. It takes effect **July 1, 2027**.\n- **Quoted text:** \"any person to perform a coordinating function.\"\n- **Effect:** At all 50 of HomeRule's sample Newark addresses, the status moves from \"Enacted, not yet in effect\" to \"Applies.\" HomeRule marks this as **↑ adds renter protection**.\n- **Caveat:** HomeRule's source is titled \"NJ FAIR Act: enacted, not yet effective; possible preemption.\" The law could be preempted, and HomeRule doesn't say how that would play out.\n- **Official text:** https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM\n- **Rule page:** https://yourhomerule.com/r/NJ-ALG-56%3A9-23\n\nHomeRule shows no other dated changes for Newark from today on. The counts cover its 50 sample addresses, not every building, so your own building could differ. The Newark page is https://yourhomerule.com/j/NJ-NEWARK. If you give me a specific address, I can check its change log.\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "X3-ca-pricefix-2025",
+   "question": "Was California's price-fixing software ban in force on June 1, 2025?",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "California",
+      "as_of": "2025-06-01"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 16543,
+   "input_tokens": 18778,
+   "output_tokens": 540,
+   "turns": 2,
+   "seconds": 6.8,
+   "facts_hit": 3,
+   "facts_total": 3,
+   "facts_detail": [
+    true,
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "No. According to HomeRule, California's ban on rent-setting software was not in force on June 1, 2025. It was enacted but not yet in effect, and it takes effect on January 1, 2026.\n\n- **Rule:** Cal. Bus. & Prof. Code § 16729(a), which comes from AB 325.\n- **Status on 2025-06-01:** \"Enacted, not yet in force\"\n- **Effective date:** 2026-01-01\n- **Quote:** \"It shall be unlawful for a person to use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of this chapter.\"\n- **Official source:** https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325\n- **HomeRule page:** https://yourhomerule.com/r/CA-ALG-16729\n\nHomeRule has only a news link for the enacted law and no text of it in its database. This answer therefore rests on the status and date it lists. HomeRule also doesn't say whether other California laws or local rules covered this conduct on that date.\n\nTo confirm, you can contact the California Attorney General's Public Inquiry Unit at (800) 952-5225 or https://oag.ca.gov/contact. HomeRule marks that number as not yet checked.\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "X4-hoboken-10pct",
+   "question": "Can my landlord in Hoboken raise rent 10%?",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Hoboken, NJ"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 23016,
+   "input_tokens": 21664,
+   "output_tokens": 941,
+   "turns": 2,
+   "seconds": 10.0,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "HomeRule's data doesn't give a yes or no for a 10% increase. It has no specific percentage cap for Hoboken, and the answer depends on facts about your building.\n\n**What the data shows (as of 2026-10-01)**\n\n- **State rule:** N.J.S.A. 2A:18-61.1 et seq. says: \"The increase in rent must not be unconscionable; it must not be so unreasonable as to shock the conscience of a fair and honest person and must comply with any municipal ordinances governing rent increases.\" HomeRule marks it in force, with no start date given.\n- **Hoboken rent control:** HomeRule lists Hoboken Rent Control Regulations, including § 18:54(H) on rent reductions for deteriorated services. It also lists Regulation #3 on vacancy decontrol, in force since Feb 12, 2025. The extracted data doesn't include Hoboken's allowed annual increase percentage. Quote text for § 18:54(H) is still pending extraction, and the conditions for these rules haven't been extracted either.\n- **Possible exemption:** N.J.S.A. 2A:42-84.5 says \"newly constructed multiple dwellings shall be exempt from any local rent control ordinances for a period of 30 years following completion of construction of the building.\" If your building is that new, local rent control may not apply. The state's \"unconscionable\" standard would still be there.\n- **Eviction:** N.J.S.A. 2A:18-61.1 says: \"No residential landlord may evict or fail to renew a lease, whether it is a written or an oral lease without good cause.\" HomeRule doesn't say whether this covers your building. The owner-occupancy and number-of-units facts are unknown.\n\n**Facts HomeRule doesn't have**\n\n- Your building's age and number of units, which decide whether the 30-year exemption applies.\n- Whether your unit is covered by Hoboken rent control, and whether a vacancy or original-tenant change affects it.\n\n**Who to confirm with**\n\n- **Rent increases:** Hoboken Rent Leveling and Stabilization Office, (201) 420-2000 x1721, https://www.hobokennj.gov/departments/rent-leveling-and-stabilization-office. HomeRule marks this number \"not yet checked,\" so confirm it before calling.\n- **Eviction and other tenant questions:** Legal Services of New Jersey hotline, 1-888-576-5529. It is also marked not yet checked, and it requires financial eligibility.\n\nIf you share your building's address, I can look for building-specific results. Full Hoboken details: https://yourhomerule.com/j/NJ-HOBOKEN\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "X5-austin",
+   "question": "What renter protections apply in Austin, TX?",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "Austin, TX"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 1602,
+   "input_tokens": 12921,
+   "output_tokens": 441,
+   "turns": 2,
+   "seconds": 7.7,
+   "facts_hit": 1,
+   "facts_total": 1,
+   "facts_detail": [
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": false,
+   "has_date": false,
+   "distrust": false,
+   "answer": "HomeRule, the renter-law database I use, doesn't cover Austin or Texas, so I can't tell you which protections apply there. It only has law for California, New Jersey and Massachusetts, plus ten cities in those states. I won't answer from memory, because I can't give you dated, quoted law that I've checked.\n\nThe database does note that federal law applies everywhere, including fair housing rules and the rules on tenant-screening reports. It doesn't contain that law either.\n\nFor Austin, these are the places to check:\n- **Texas Property Code, Title 8 (Landlord and Tenant):** this is the state statute. You can read it on statutes.capitol.texas.gov.\n- **City of Austin Housing Department** or the **Austin Tenants' Council:** local tenant-rights organizations can tell you about city-level rules.\n- **Texas RioGrande Legal Aid** or **Austin's local legal aid:** they can advise on a specific situation, such as an eviction notice or a withheld deposit.\n\nIf you're comparing Austin with a place HomeRule covers, such as Boston, San Francisco or Newark, I can pull up those rules.\n\nNot legal advice.",
+   "stderr": ""
+  },
+  {
+   "id": "X6-typed-address",
+   "question": "What rules apply to my apartment at 100 Summit Ave, Jersey City, NJ?",
+   "calls": [
+    {
+     "tool": "get_place",
+     "input": {
+      "place": "100 Summit Ave, Jersey City, NJ"
+     }
+    }
+   ],
+   "n_calls": 1,
+   "tool_result_bytes": 25532,
+   "input_tokens": 22835,
+   "output_tokens": 1570,
+   "turns": 2,
+   "seconds": 13.8,
+   "facts_hit": 2,
+   "facts_total": 2,
+   "facts_detail": [
+    true,
+    true
+   ],
+   "says_not_legal_advice": true,
+   "has_quote": true,
+   "has_date": true,
+   "distrust": false,
+   "answer": "**100 Summit Ave, Jersey City, NJ** (data as of Oct 1, 2026)\n\nHomeRule has no property record for this address. Building facts such as unit count, owner-occupancy and building use are unknown. Several rules below therefore show \"missing one fact\" instead of a firm yes or no. City and state rules apply, and HomeRule has no county rules.\n\n## Rules that apply now\n\n**Software that sets rents**\n- Jersey City Code § 218-12(2)(a), in force since Jun 10, 2025: \"It is unlawful for any real estate lessor, agent, or subcontractor thereof, to subscribe to, contract with, or otherwise exchange anything of value in return for the services of a Service Provider.\"\n- Jersey City Code § 218-12.3(a), in force since Oct 15, 2025: \"Any landlord must include, with any lease or written notice of rent increase for a residential dwelling unit, a sworn disclosure statement, executed under penalty of perjury, in substantially the following form:\"\n- **Coming up:** N.J. Stat. Ann. § 56:9-23(e) starts Jul 1, 2027: \"any person to perform a coordinating function.\"\n\n**Rent increases**\n- N.J.S.A. 2A:18-61.1 et seq. applies: \"The increase in rent must not be unconscionable; it must not be so unreasonable as to shock the conscience of a fair and honest person and must comply with any municipal ordinances governing rent increases.\"\n\n## Rules that depend on a missing fact\n\n| Topic | Rule | Missing fact |\n|---|---|---|\n| Rent control | N.J.S.A. 2A:42-84.5: \"newly constructed multiple dwellings shall be exempt from any local rent control ordinances for a period of 30 years following completion of construction of the building.\" | Number of units |\n| Eviction | N.J.S.A. 2A:18-61.1: \"No residential landlord may evict or fail to renew a lease, whether it is a written or an oral lease without good cause. The landlord must be able to prove in court that he has grounds for an eviction.\" | Owner-occupancy and number of units |\n| Security deposit | N.J.S.A. 46:8-21.2: \"The maximum-security deposit to be collected by the landlord cannot be more than one and one-half times one month's rent\" | Owner-occupancy and number of units |\n| Application fee | N.J. Stat. § 46:8-18.1(a), effective May 1, 2026: a landlord \"shall not require an application or other similar fee to apply to lease or sublease a residential rental property for dwelling purposes, which exceeds $50.\" It doesn't cover one- or two-family homes. | What the building is used for |\n| Screening | N.J. Stat. Ann. § 46:8-55(a)(1), effective Jan 1, 2022: \"A housing provider shall not require an applicant to complete any housing application that includes any inquiries regarding an applicant's criminal record prior to the provision of a conditional offer\" | Owner-occupancy, number of units and building use |\n\nOther screening rules in the same group (§§ 46:8-56, 46:8-58, 46:8-60 and N.J.S.A. 10:5-12 on lawful income source) depend on the same facts.\n\n## Finding the missing facts\nAsk your landlord how many units the building has, whether the owner lives there, and what kind of building it is. HomeRule's suggested email text is on the address page.\n\n## Who to confirm with\nHomeRule hasn't yet checked any of these numbers, so confirm them before you call.\n- **Rent control and rent increases:** Jersey City Office of Landlord/Tenant Relations, (201) 547-4821. [Website](https://www.jerseycitynj.gov/cityhall/HousingAndDevelopment/housingpreservation/landlordtenantrelations)\n- **Eviction, deposits, fees and software:** Legal Services of New Jersey hotline, 1-888-576-5529. It is free but requires low-income eligibility. [Website](https://lsnjlawhotline.org/)\n- **Criminal-record screening:** NJ Division on Civil Rights, 833-653-2748. [Website](https://www.njoag.gov/about/divisions-and-offices/division-on-civil-rights-home/division-on-civil-rights-about/contact-dcr/)\n\nFull address page: https://yourhomerule.com/a/at?q=100%20Summit%20Ave%2C%20Jersey%20City%2C%20NJ\n\nNot legal advice.",
+   "stderr": ""
+  }
+ ]
+}

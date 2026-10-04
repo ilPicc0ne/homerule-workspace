@@ -16,8 +16,9 @@ export const metadata: Metadata = {
 const MCP_URL = "https://yourhomerule.com/api/mcp";
 const EXAMPLES = [
   "Use HomeRule: what renter protections apply at 471 Columbia Rd, Dorchester, MA? Quote the law with its date, and tell me what's unknown.",
+  "Use HomeRule: I'm moving from Boston to San Francisco. How is my rent situation changing?",
   "Use HomeRule: what's changing for renters in Newark? Show old → new with the law's own words and dates.",
-  "Use HomeRule: what does New Jersey's FAIR Act on rent-setting software say, and when does it take effect?",
+  "Use HomeRule: was California's ban on rent price-fixing software in force on June 1, 2025?",
 ];
 
 export default function ConnectPage() {
@@ -28,7 +29,8 @@ export default function ConnectPage() {
         <h1>Make your chatbot rent-law aware</h1>
         <p className={s.sub}>
           Add HomeRule as a connector. Your chatbot gets everything on the website, with the law&rsquo;s own words and links: an
-          address&rsquo;s six topics, what&rsquo;s changing, each rule in full and each city&rsquo;s rules, for 3 states and 10 cities.
+          address&rsquo;s or city&rsquo;s six topics in one look-up, two places side by side, what&rsquo;s changing, and each rule in
+          full, for 3 states and 10 cities.
         </p>
       </div>
 

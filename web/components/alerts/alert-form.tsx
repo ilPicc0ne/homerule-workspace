@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import EmailPreview, { type EmailView } from "./email-preview";
-import { PRIVACY } from "@/lib/alerts/disclaimer";
+import { PRIVACY_STORE, PRIVACY_UNSUB } from "@/lib/alerts/disclaimer";
 import "./alerts.css";
 
 type Status = "sent" | "closed_test" | "not_configured" | "failed" | "invalid" | "rate_limited" | "unavailable";
@@ -148,9 +148,15 @@ export default function AlertForm({
               </button>
             </p>
           )}
-          <p className="al-more" id="al-more">
-            One email per rule change for this address. We ask you to confirm first. Not legal advice. {PRIVACY}
-          </p>
+          <div className="al-fine" id="al-more">
+            <p className="al-lead">One email when a rule changes for this address.</p>
+            <ul className="al-pts">
+              <li>We ask you to confirm first.</li>
+              <li>{PRIVACY_UNSUB}</li>
+              <li>{PRIVACY_STORE}</li>
+            </ul>
+            <p className="al-nla">Not legal advice.</p>
+          </div>
         </form>
       )}
       <EmailPreview
