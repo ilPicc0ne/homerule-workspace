@@ -126,9 +126,35 @@ type Compiled = { team_rule_id: string; jurisdiction: string; level: "state"|"ci
                   kind: "grounds"|"procedure"|"ban"|"disclosure"|null; kind_confidence: number|null} };
 ```
 
-### Renter-protection score (`engine/score.py`, `out/scores.json`)
+### Renter-protection score and change rating (`engine/score.py`, `out/scores.json`)
 
-One aggregated score per address, city and state on each date in `contracts/impact.json`, broken down per topic. A topic's level (strong 1.0 / basic 0.5 / none 0 / unknown) comes from the strongest protecting rule that applies (its `renter_impact` strength against the thresholds; eviction and algorithmic rules by kind: grounds or ban = strong, procedure or disclosure = basic); a limiting rule that applies caps the topic. Score = 100 × weighted mean of the topic levels (weights in the contract: rent and eviction 25% each, the other four 12.5%) with unknown topics at their lowest: the protection a renter can count on (`score` = `low`); `high` is the same with unknown topics at their highest ("up to"), and `unknown_topics` are listed apart. Cities: median of their sample addresses; states: the statewide floor (state rules only). Each change in the per-address diff (I6) gets `renter_impact`: `verdict` better / worse / unchanged / unclear from the topic level before and after (unclear when unknowns move or a conflict flag changes); `why`, one plain sentence built by code from the same fields (the numbers before and after, the leading rule's citation, the missing facts; at most 25 words, no advice); `decided_by` (the verdict is always `code`; each rule's direction is `code` or `model_override`) and the `inputs` it used. Each unknown topic of an address also gets `open`: the building facts that would settle it, where to check each, and the topic level and score for each possible answer (the engine re-run with that one fact set), the exemptions only the law's text states, and the tenant notes of its rules. Display: S. Tests: `tests/test_impact.py` against `tests/fixtures/impact.yaml`.
+The renter-facing change rating is **positive / neutral / negative**. It describes how protection changes between two dates, not whether an address or city is absolutely renter-friendly. The internal numeric score is kept for analysis only. The display choice is the three-way rating with an explanation, not a 0–100 number or topic weights.
+
+**Topic levels first.** At each address and date, the engine evaluates each topic as `none`, `basic`, `strong` or `unknown`, with `at_least` / `at_most` bounds. Protecting rules determine the strongest level; numeric protections use `contracts/impact.json` thresholds, while eviction/algorithmic protections use their extracted kind. Limiting rules can lower the guaranteed level or cap the possible level. These level definitions still apply; removing topic weights from the change rating does not remove the thresholds used to classify protection.
+
+**Compare topics, then assign the rating.** `verdict()` compares each topic before and after. Known levels moving up/down become `better`/`worse`. If either level is unknown, equal bounds mean `unchanged`; changed bounds mean `unclear`. The overall result considers the directions of definite changes without weighting or counting topics:
+
+| Definite topic changes | Internal `overall` | Display `rating` |
+|---|---|---|
+| At least one improves, none worsen | `better` | `positive` |
+| At least one worsens, none improve | `worse` | `negative` |
+| Some improve and some worsen | `mixed` | `neutral` |
+| No definite movement, but uncertain bounds change | `unclear` | `neutral` |
+| No topic moves | `unchanged` | `neutral` |
+
+Unclear topics do not cancel a definite direction: one improvement plus an unclear topic is positive; one worsening plus an unclear topic is negative. They remain explicitly listed in `unclear_topics`. Mixed directions stay neutral even if more topics improve than worsen. **Neutral does not mean nothing changed or nothing is uncertain**: consumers must retain the internal verdict, topic breakdown and explanation. An unknown topic whose bounds did not change stays `unchanged` in this comparison but remains in the date's `unknown_topics`.
+
+**Where the fields live:**
+
+- Each address/date after the first in `out/scores.json` has `change_from_previous`: `from`, `overall`, `rating`, per-topic `topics`, `unclear_topics` and the retained diagnostic `score_delta`. The rating is computed from topic directions, never from the sign of `score_delta`.
+- Each individual change in I6 has `renter_impact.verdict` and `renter_impact.rating`. This is that change's topic, not the overall address rating. `rating()` maps `better` → positive, `worse` → negative, and everything else → neutral. A changed conflict flag forces the individual change verdict to `unclear`, hence neutral; the code does not resolve the legal conflict. The overall date-comparison rating above is based on topic levels and has no separate conflict-flag override.
+- Per-change `why`, `decided_by` and `inputs` remain. `why` is a short code-generated explanation grounded in the before/after values, rules, citations or missing facts. The verdict is decided by code; each rule's extracted direction can be `code` or `model_override`. Unknown topics also retain `open` investigations: missing building facts, where to check them, hypothetical outcomes, stated exemptions and tenant notes.
+
+**Example:** for Newark sample A0003, the transition to 2026-10-01 has a definite improvement from the NJ application-fee cap while the rent topic is unclear. It is `overall: better`, `rating: positive`, with `rent_increase_limits` in `unclear_topics`; this does not assert that its rent protection is settled.
+
+**Internal numeric score retained.** `aggregate()` still maps strong/basic/none to 1/0.5/0 and uses the contract weights (rent and eviction 25% each, the other four 12.5%). `score = low` uses the guaranteed levels; `high` uses the possible levels. Cities aggregate sample-address medians; states aggregate the state-only floor. These numbers, ranges and `score_delta` remain in the dataset for analysis but do not decide the three-way change rating.
+
+Validation lives in `tests/test_impact.py`: the `Ratings` cases cover definite movement with uncertainty, mixed directions, uncertainty alone, unchanged topics and the Newark example; existing fixtures in `tests/fixtures/impact.yaml` cover topic/score behavior. Adding the data fields does not by itself verify that every page, email or MCP consumer has switched to the new display labels.
 
 ## B · Address resolution
 
@@ -232,7 +258,7 @@ A change is either a new document (ingest) or a second date (as-of query).
 **Built (#45, issue #11; restyled in #56):**
 
 - `engine/diff.py` is the one diff (I6). It compares two engine evaluations (the same rows as `lookups.json`) per address by `team_rule_id`: added, removed, or changed (result or conflict flag). Each change carries old → new result and explanation, both conflict flags, and the rule's title, citation, verbatim quote, effective date and official source.
-- `make build` writes `out/changes.full.json` with the change sources it can compute from the committed files: the brief's as_of tests (`asof:2025-12-31..2026-01-02` for T1, `asof:2026-10-01..2027-07-02` for T3/J3), each rule end date `effective.until` ±1 day (`asof:2029-12-31..2030-01-02` for the CA sunsets; the source carries `ending_rule_ids`, each change `effective_until`), plus `ingest:<doc>@<as_of>` for each ingested document already in I2 (`origin: ingested`). Deterministic. Only addresses with a change are listed:
+- `make build` writes `out/changes.full.json` with the change sources it can compute from the committed files: the brief's as_of tests (`asof:2025-12-31..2026-01-02` for T1, `asof:2026-10-01..2027-07-02` for T3/J3), each rule end date `effective.until` ±1 day (`asof:2029-12-31..2030-01-02` for the CA sunsets; the source carries `ending_rule_ids`, each change `effective_until`), each rule start date `effective.from` ±1 day from a year before as-of unless an earlier window already spans it (`asof:2026-02-28..2026-03-02` for Berkeley's ban; the source carries `starting_rule_ids`; #117), plus `ingest:<doc>@<as_of>` for each ingested document already in I2 (`origin: ingested`). Deterministic. Only addresses with a change are listed:
 
   ```
   {as_of, not_legal_advice: true,
