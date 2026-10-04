@@ -11,10 +11,10 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
   --page:#fff; --wash:#F4F6F9; --surface:#fff;
   --ink:#15222E; --ink-2:#3A4855; --muted:#5B6875; --faint:#AEB9C4;
   --line:#DCE3EA; --line-soft:#E9EEF2;
-  --blue:#2747C4; --blue-ink:#1D379E; --blue-tint:#EDF1FD; --blue-line:#C9D4F6;
+  --blue:#1E5E6A; --blue-ink:#154A54; --blue-tint:#EAF2F3; --blue-line:#C7DCE0;
   --green:#1C8150; --green-ink:#11643D; --green-tint:#E2F2E8; --green-soft:#F5FAF7; --green-line:#C9E5D3;
-  --amber:#C98112; --amber-ink:#87480A; --amber-tint:#FBEED3; --amber-soft:#FEF8EC; --amber-line:#EED29F;
-  --slate:#7D8B98; --slate-ink:#4A5764; --slate-tint:#E8ECF1; --slate-soft:#F7F8FA; --slate-line:#D8DEE5;
+  --amber:#B7793A; --amber-ink:#7A4A1C; --amber-tint:#F6EADB; --amber-soft:#FBF6EF; --amber-line:#E6CFB3;
+  --slate:#868B8F; --slate-ink:#4D5256; --slate-tint:#ECEDEE; --slate-soft:#F7F7F8; --slate-line:#DCDEE0;
   --r-lg:20px; --r-md:12px; --r-sm:8px;
   --sh-1:0 1px 2px rgb(21 34 46/.05);
   --sh-2:0 1px 2px rgb(21 34 46/.04),0 18px 40px -20px rgb(21 34 46/.30);
