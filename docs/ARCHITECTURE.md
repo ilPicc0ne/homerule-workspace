@@ -250,7 +250,7 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 
 - **Hosting:** Vercel (Next.js 16), project `homerule`, Root Directory `web/`, domains `yourhomerule.com` and `www.yourhomerule.com`, phone-first.
 - **Previews:** every PR branch and `main` get a preview deployment. Pushing to `main` does **not** change the live site.
-- **Production only via the `production` branch** (Vercel production branch = `production`): going live means pushing (fast-forwarding) `production` to the commit wanted. Today `production` = 8d4b6d5 (#63).
+- **Production only via the `production` branch** (Vercel production branch = `production`): going live means pushing (fast-forwarding) `production` to the commit wanted. Today `production` = 8e7c326 (#70), same as `main`.
 - **Hour-16 update:** ingest → `make build` → `npm run sync` → commit → merge to `main` → push `production` → wait for Ready (~1 min) → `make alert SOURCE=…`. The change data is imported at build time, so only a deploy that contains the new source can show or send it. (Vercel Blob as a fallback store was considered, not built.)
 
 ### Data: files in git, no database for law

@@ -90,7 +90,7 @@ This is the project's feature list; each build updates its status in the same co
 
 **No feature without asking first.** Nobody (person or agent) builds a feature that isn't in this table or its issue. A new idea goes into the table as `idea` and gets agreed before any code.
 
-Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live site. Production (`yourhomerule.com`) serves the `production` branch at 8d4b6d5 (#63); `main` is ahead only by `scripts/alerts-env.sh` (#65, #66), so the live site = `main` for everything below. "Live:" names a URL that shows the feature today.
+Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live site. Production (`yourhomerule.com`) serves the `production` branch at 8e7c326 (#70), the same commit as `main`, so the live site = `main` for everything below (banner and icon rows updated after #67 and #70 merged). "Live:" names a URL that shows the feature today.
 
 ### Pipeline and scored files
 
@@ -134,9 +134,9 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 | P1 | Jurisdiction pages for every level (`/j/<id>`), rules by question with their conditions, list of sample addresses | S | built (#41/#50). Live: `/j/NJ-HOBOKEN`, `/j/CA` |
 | P0 | Contacts per tile (J7): `contracts/contacts.json` (36 entries, all city × topic routes, source + retrieval date); first next step on each tile is a person | D (data), S (display) | built (data via #56 from the `d/contacts` work; display #56). Phones labelled "Number not yet checked by us". PR #48 is still open although the data is on `main` |
 | P1 | Action helpers (J7): "Before you call, have ready" checklist, "Ask your landlord" ready email for a missing fact, Boston tenant-rights notice check | S | partial (#52): checklist on rent/eviction tiles, landlord email where a fact is missing (`/a/A0107`), Boston notice item (`/a/A0258`); not on every tile |
-| P0 | Site-wide prototype banner ("Prototype built at a hackathon — not production-ready…"), same text in every email footer | S | built (#57), light grey bar. Navy, clearly visible version: WIP (PR #67) |
+| P0 | Site-wide prototype banner ("Prototype built at a hackathon — not production-ready…"), same text in every email footer | S | built (#57; solid navy bar with info icon and bold "Not legal advice." since #67, live) |
 | P0 | Palette + header option A "Quiet": teal-derived accent, softer clay caution, slate-navy UI chrome | S | built (#58, #63) |
-| P2 | Favicon / app icon | S | WIP (local branch `s/icon`, no commits and no PR yet); live site serves the default `favicon.ico` |
+| P2 | Brand icon: roof-scales mark as favicon, apple-icon, site headers and email logo | S | built (#70, live in production 8e7c326) |
 | P1 | As-of date picker / date slider on the address page | S | not built: header shows the single as-of date "Oct 1, 2026"; `meta.as_of_dates` has one entry |
 
 ### Alerts (email)
@@ -180,7 +180,7 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 8. **No date slider** anywhere (one as-of date in the live data): J3 step 2 and demo beat 5 can't be shown as written; the change log `/changes/A0256` is the stand-in.
 9. `outputs/rules.json` missing (only `out/rules.json`).
 10. `DEMO_TOKEN` and `ALERTS_SITE_URL` are set in Vercel **production only**; `make alert` against a preview URL gets 401. [verified with `vercel env ls`]
-11. Open PRs not merged by the freeze stay out of the submission: #48 (contacts, data already on `main`), #53, #55, #59, #67, #68.
+11. Open PRs not merged by the freeze stay out of the submission: #48 (contacts, data already on `main`), #53, #55, #59, #68.
 
 ## User journeys
 
