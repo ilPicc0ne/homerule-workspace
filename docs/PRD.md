@@ -3,7 +3,7 @@
 **Your rights as a renter, for your exact address.**
 Demo headline: *A model has a training cutoff. A law has an effective date.*
 
-The master document for scope, priorities and owners. The brief wins on rules; the how lives in [ARCHITECTURE.md](ARCHITECTURE.md). Updated Sun 04.10.2026. Submission 15:00 CEST, freeze 12:00.
+The master document for scope, priorities and owners. The brief wins on rules; the how lives in [ARCHITECTURE.md](ARCHITECTURE.md). Updated Sun 04.10.2026 (feature status checked against `main` and the live site ~05:00 CEST). Submission 15:00 CEST, freeze 12:00.
 
 ## In one minute
 
@@ -70,7 +70,7 @@ Bonus the guide offers: show its four open legal questions (e.g. Berkeley's ban 
 **Click any answer → the rule page** (one page per rule, shared by all addresses):
 - **Source:** the verbatim quote highlighted in the source text, citation, **link to the official law** (`source_url`), retrieval date, effective date, status.
 - **Audit trail:** what the model extracted (and its confidence), what the code decided (jurisdiction match, coverage test on this building's facts, precedence), with the line between the two shown ("reasoning boundary").
-- **Impact map:** every sample address this rule touches, coloured by result (applies / unknown / not yet effective / pending), with the date slider. Moving the date flips the dots (e.g. FAIR Act on 02.07.2027).
+- **Impact map:** every sample address this rule touches, coloured by result (applies / unknown / not yet effective / pending), with the date slider. Moving the date flips the dots (e.g. FAIR Act on 02.07.2027). Built: the map and list for one as-of date; the slider is not built.
 - This page is also the advocates' view: "which buildings does this law or bill reach?"
 
 **Page, top to bottom (one view):**
@@ -86,49 +86,103 @@ Bonus the guide offers: show its four open legal questions (e.g. Berkeley's ban 
 
 ## Priorities and feature status
 
-This is the project's feature list; each build updates its status in the same commit.
+This is the project's feature list; each build updates its status in the same commit. Statuses: built · partial · experimental · WIP (branch/PR) · planned · idea · not specified.
 
 **No feature without asking first.** Nobody (person or agent) builds a feature that isn't in this table or its issue. A new idea goes into the table as `idea` and gets agreed before any code.
 
+Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live site. Production (`yourhomerule.com`) serves the `production` branch at 8e7c326 (#70), the same commit as `main`, so the live site = `main` for everything below (banner and icon rows updated after #67 and #70 merged). "Live:" names a URL that shows the feature today.
+
+### Pipeline and scored files
+
+| Prio | Feature | Owner | Status · evidence |
+|---|---|---|---|
+| P0 | Extraction → `out/rules.json` + `out/rules.compiled.json` | D | built (#30, #31, #35, #40, #46, #51): 58 rules in `out/rules.json`, quotes verbatim, `make eval`, audit trail `out/audit.json`; Santa Ana has no text in the corpus (a finding). Brief-named rule count and T1–T5 as reported by `make eval`, not re-run for this check |
+| P0 | Stable extraction: three samples + majority vote, `make check` | D | WIP (PR #53) |
+| P0 | Prompt lint + freeze (`make freeze`, `extract/PROMPTS.lock`) | D | partial (#35): lint and lock built, but the current prompt digest does **not** match the lock (`extract.prompts.status()` → `matches_lock: False`); re-freeze or explain before hour 16 |
+| P0 | Jurisdiction list + address resolution (Census geocoder, offline cache) | S | built (#29): `make resolve`, 500/500, `out/addresses.resolved.json` |
+| P0 | Engine → `outputs/lookups.json`, `outputs/changes.json`, `out/lookups.full.json` | S | built (#36, #40, #47): `make build`, all 500 addresses, T1–T5 in `outputs/changes.json` (T6 needs the hour-16 document), J1–J3 + Dorchester as tests (`tests/test_engine.py`) |
+| P0 | Per-address diff (I6) → `out/changes.full.json` | S | built (#45): `engine/diff.py`; two as-of sources today (`asof:2025-12-31..2026-01-02`, `asof:2026-10-01..2027-07-02`), 390 addresses with an entry; `tests/test_diff.py` checks agreement with `changes.json` |
+| P0 | `outputs/` holds the three scored files | S | partial: `outputs/` has `lookups.json` and `changes.json`; `rules.json` is only in `out/` so far (submission checklist step) |
+| P0 | Hour-16 ingest in one command | D | built (#30): `make ingest`, `make rehearse`, `make rerun` |
+| P0 | Demo change for beat 6: `make demo-change` (fictional X001 ingest → before/after → diff → web sync) | S | partial (#45): built, never run; X001 extraction needs `OPENROUTER_API_KEY` or a warm `build/cache`, so `out/changes.full.json` has no `ingest:` source yet |
+| P0 | Live data sync: `npm run sync` copies contracts + `out/` into `web/` and builds `web/data/live/` (rules, findings, per-address results, quote excerpts ±320 chars), drift test | S | built (#41/#50, #54): `web/scripts/sync-contracts.ts`, `web/scripts/build-live.ts`, `web/tests/contracts-sync.test.ts`; header shows "Live" (one build = one source via `NEXT_PUBLIC_DATA_SOURCE`, the "Demo data" option is shown disabled) |
+| P1 | Chatbot scoreboard: ~20 dated questions, plain vs web search vs HomeRule | D | built as a measurement (#39, #43, `scoreboard/`): plain 16/20 (4 wrong), plain + web search 20/20, HomeRule 18/20 (0 wrong); not a headline number, not on the site |
+| P1 | Show the guide's four open legal questions as flags with both sources | D (data), S (display) | built (`out/findings.json` kind `open_question`, `extract/open_questions.py`; shown on the tiles) |
+| P1 | Card answers per card question (`out/cards.json`) + card audit | D | WIP (PR #55): fixes wrong headline values, e.g. LA rent "3% for Jul 2025–Jun 2026" shown as current |
+| P1 | Renter-protection score: impact per rule, one score with per-topic breakdown | D | WIP (PR #59, stacked on #53) |
+| P1 | Extra data: next useful building fact + public evidence pilot | D | WIP (draft PR #68) |
+| P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-to-extend-coverage-p1-checked-04102026)) | D | planned (only TIGER/Line places used, for the map outline) |
+
+| P1 | Proactive source monitoring: approved official routes, new-document discovery, version snapshots, isolated extraction, before/after address-impact previews and effective-date checks; no automatic legal promotion or emails | D | built (issue #60, `d/source-monitor`; bounded Newark pilot, candidate previews require review; foreground worker, not deployed) |
+
+### Site (live at yourhomerule.com)
+
+| Prio | Feature | Owner | Status · evidence |
+|---|---|---|---|
+| P0 | Landing page: hero, search box, eight example addresses, six questions, scope line "3 states and 10 cities" | S | built (#28; was "coming soon" until then). Live: `/` |
+| P0 | Search (one box): address, city, neighbourhood, county, state via the jurisdiction list + aliases; "Not covered" for anything outside | S | built (#29). Live: `/where?q=Dorchester` (→ Boston), `/where?q=Austin` (→ "Not covered"); `/api/resolve?q=`; landing search routes sample addresses to `/a/<id>` and places to `/j/<id>` |
+| P0 | `/where`: jurisdiction tree Federal › State › County › City with coverage per level, autocomplete over sample addresses and places | S | built (#29). Live: `/where` |
+| P0 | Address page v3, one view: sticky bar (search + "Get alerts"), next change, map, at a glance, six accordion tiles (plain answer · details · "Show the law"), coming up, alerts, how it works | S | built (#52, #54) for all 500 sample addresses. Live: `/a/A0016` |
+| P0 | "At a glance": one plain sentence + six topic tokens | S | built (#52). Live: `/a/A0258` ("…missing one fact. For 2 topics, there's no local rule…") |
+| P0 | "Next change" line in the header | S | partial (#52): shows the next dated change where the data has one (`/a/A0256`: Jul 1, 2027); "No changes scheduled" for SF/LA/Boston because no rule end dates are extracted |
+| P0 | Typed address outside the 500 (`/a/at?q=`), resolved via Census, rules evaluated with unknown building facts | S | built (#52). Live: `/a/at?q=4801 E 3rd St, Los Angeles, CA` (unincorporated East LA: state rules only, "Los Angeles County's own rules … aren't in HomeRule") |
+| P0 | JSON per address: `/api/address/[id]` (`not_legal_advice`, `as_of`, results with rule, quote, what next) | S | built (#52). Live: `/api/address/A0016` |
+| P1 | Small real map: MapLibre GL + OpenFreeMap, pin, Census TIGER city outline, "Inside <city> city limits" / "Outside any city" caption | S | built (#49, #54). Live: `/a/A0016`; unincorporated caption via the typed East LA address (no sample address is unincorporated) |
+| P0 | Coming up: dated plain lines, recently changed, undated bills as "Proposed, not law" with "Follow" links | S | built (#52, #56). Live: `/a/A0256` (FAIR Act Jul 1, 2027), `/a/A0010` (Mass. S.2983, H.5222) |
+| P0 | Change log per address, old → new, dated, quoted; linked from Coming up ("See the full change log", "What changed, old → new") | S | built (#45, #56). Live: `/changes/A0256`. Addresses without a diff entry show an empty log (`/changes/A0010`) |
+| P0 | Email preview on the change log (From, Subject, `List-Unsubscribe`, plain-text part; "Preview only, nothing is sent") | S | built (#45, #61). Live: `/changes/A0256` |
+| P0 | Rule page: quote in a source excerpt, link to the official law, dates, status, "what it depends on", audit trail with "reasoning boundary" (model extracted vs code decided) | S (audit data D) | built (#41/#50). Live: `/r/MA-ALG-2983`; 64 rule pages (58 scored + unscored records) |
+| P1 | Impact on the rule page: every sample address the rule reaches, coloured by result | S | partial: SVG dot map + address list for one as-of date (2026-10-01); **no date slider** (the live data has one as-of date). Live: `/r/MA-ALG-2983` (110 MA addresses, all pending) |
+| P1 | Jurisdiction pages for every level (`/j/<id>`), rules by question with their conditions, list of sample addresses | S | built (#41/#50). Live: `/j/NJ-HOBOKEN`, `/j/CA` |
+| P0 | Contacts per tile (J7): `contracts/contacts.json` (36 entries, all city × topic routes, source + retrieval date); first next step on each tile is a person | D (data), S (display) | built (data via #56 from the `d/contacts` work; display #56). Phones labelled "Number not yet checked by us". PR #48 is still open although the data is on `main` |
+| P1 | Action helpers (J7): "Before you call, have ready" checklist, "Ask your landlord" ready email for a missing fact, Boston tenant-rights notice check | S | partial (#52): checklist on rent/eviction tiles, landlord email where a fact is missing (`/a/A0107`), Boston notice item (`/a/A0258`); not on every tile |
+| P0 | Site-wide prototype banner ("Prototype built at a hackathon — not production-ready…"), same text in every email footer | S | built (#57; solid navy bar with info icon and bold "Not legal advice." since #67, live) |
+| P0 | Palette + header option A "Quiet": teal-derived accent, softer clay caution, slate-navy UI chrome | S | built (#58, #63) |
+| P2 | Brand icon: roof-scales mark as favicon, apple-icon, site headers and email logo | S | built (#70, live in production 8e7c326) |
+| P1 | As-of date picker / date slider on the address page | S | not built: header shows the single as-of date "Oct 1, 2026"; `meta.as_of_dates` has one entry |
+
+### Alerts (email)
+
+| Prio | Feature | Owner | Status · evidence |
+|---|---|---|---|
+| P1 | "Get alerts" form (bell in the sticky bar + Coming up link) → `POST /api/subscribe` (5 per IP per 10 min, never reveals an existing subscription) → `alerts:pending:<token>` (48 h) → confirmation email → `/confirm` page with a POST button → `alerts:sub:<address_id>` | S | built (#57, #62). Live: `/a/A0010` → "Get alerts" opens "Alerts for 134 Oxford St · Email me" (not submitted in this check) |
+| P1 | Closed test: while the postal address in `web/lib/alerts/disclaimer.ts` is a placeholder, confirmation mails and alerts go only to subscribers the seed script marked `allowed` | S | built (#62); still in force (placeholder visible in the live email preview) |
+| P1 | Unsubscribe: `/unsubscribe` page with one button + RFC 8058 one-click `POST /api/unsubscribe`, random per-subscription token stored on the subscriber (no server secret); landing pages `/alerts/confirmed`, `/alerts/unsubscribed`, `/alerts/invalid` | S | built (#57, #62) |
+| P1 | Email delivery via Resend from `alerts@yourhomerule.com`, HTML + text, `List-Unsubscribe` headers, one shared layout | S | built (#57, #61); `RESEND_API_KEY` set in Vercel (production, preview). Deliverability warm-up: not documented as done |
+| P1 | "See an example alert" overlay on the address page ("Preview — simulated, nothing is sent") | S | built (#57). Live: `/a/A0010` |
+| P0 | Demo dispatch for beat 6 (issue #11): `make alert SOURCE=<id> [RESET=1]` → `POST /api/alerts/dispatch {source}` (Bearer `DEMO_TOKEN`) on production, retried until the deploy has the source; idempotent via `alerts:sent:…`; demo-labelled sources only to `demo`-flagged subscribers; `npm run seed-subscriber -- [--demo] <email> <ids>` | S | built (#62, #65, #66); `DEMO_TOKEN` and `ALERTS_SITE_URL` set in Vercel production since ~04:30 and included in the current production deploy. Not rehearsed end to end on production; blocked on a demo source (see `make demo-change`) |
+| P1 | `make notify [SEND=1]`: local dry run / send of change alerts without a token | S | built (#57) |
+
+### Not built yet
+
 | Prio | Feature | Owner | Status |
 |---|---|---|---|
-| P0 | Extraction → `rules.json` | D | built (26/27 brief-named rules, T1-T5 pass, quotes 100% verbatim in `rules.json`, `make eval`, prompt lint + freeze, audit trail `out/audit.json`; Santa Ana has no text in the corpus: recorded as a finding) |
-| P0 | Jurisdiction list + address lookup (Census geocoder) | S | built (`make resolve`, 500/500) |
-| P0 | Engine → `lookups.json`, `changes.json`, per-address diff | S | partial (`make build` → all 500 addresses, T1–T5 pass, J1–J3 as tests; per-address diff built on `s/changes`: `engine/diff.py` → `out/changes.full.json`) |
-| P0 | Live data on the site: `npm run sync` builds `web/data/live/` from `out/` (rules, findings, per-address results, quote excerpts), drift test; header toggle defaults to Live | S | built (`s/live-data`) |
-| P0 | Address page, one view (sticky bar with search + alert bell, next change, at a glance, six accordion tiles, coming up; sections 1–2, 4–8), JSON endpoint per address | S | built, in review (`s/page-v3`): one view per mockup v3 on live engine data for all 500 addresses (`/a/[id]`), typed addresses via the Census resolver (`/a/at?q=`, provisional state-only results until the engine evaluates them), real map (`s/map`), coming up from rule effective dates; `/api/address/[id]`. Gaps: no dated change ahead for SF/Boston in the data (rule end dates not published). Alerts form live (`s/alerts`, see the email row) |
-| P0 | Change log + email preview, triggered by a demo-only ingest | S | partial (`s/changes`: one diff → `/changes/[id]` change log + email preview, J3 works; restyled to v3 in `s/changelog-contacts`: same sticky bar, one header, back-link to the address; linked from Coming up ("See the full change log") and from each dated item with an entry ("What changed, old → new", anchored); `make demo-change` built but the X001 extraction needs `OPENROUTER_API_KEY` or a warm cache, not run yet) |
-| P0 | Rule page: quote in source, link to the law, audit trail with reasoning boundary | S (audit data from D) | partial (live: 56 rules, 55 quotes highlighted in a short excerpt of the pinned source text, audit from `out/audit.json`; `s/live-data`) |
-| P0 | Search resolves address / city / neighbourhood / county / state via the jurisdiction list; "not covered" for anything outside | S | built (`/api/resolve`, tree view on `/where` with autocomplete over the sample addresses and places; address page links pending) |
-| P1 | Jurisdiction pages for all levels (state › county › city), rules with their conditions | S | partial (live rules; `s/live-data`) |
-| P1 | Chatbot scoreboard: ~20 dated city-level questions, plain chatbot vs HomeRule, date-stamped | D | measured (`scoreboard/`): plain 16/20 (4 wrong), plain + web search 20/20, HomeRule 18/20 (0 wrong); not a headline number |
-| P1 | Impact map on the rule page with date slider | S | partial (SVG dot map coloured by engine results; one as-of date only, so no slider yet; `s/live-data`) |
-| P0 | Hour-16 ingest in one command | D | built (`make ingest`, `make rehearse`, `make rerun`; rehearsal 45/45 addresses in ~24 s) |
-| P1 | Real email sending (double opt-in) via Resend from `alerts@yourhomerule.com`; deliverability: HTML + text, unsubscribe link and header, warm-up (issue #14) | S | partial (`s/alerts`: built and unit-tested with fake Redis + fake Resend; one shared email layout (warm white, ink buttons, brand mark, Figtree, dark mode, preheader); unsubscribe page + RFC 8058 one-click POST with a random per-subscription token; local end-to-end against a fake Resend. Not live until `DEMO_TOKEN` and `ALERTS_SITE_URL` are in Vercel; postal-address footer is a placeholder, so the closed test holds: mail only to subscribers the seed script marked `allowed`) |
-| P1 | Alerts: "Get alerts" form (bell + Coming up link) → `POST /api/subscribe` (rate limit per IP, never reveals an existing subscription) → `pending:<token>` (48 h) → confirmation mail ("Confirm alerts for <address>", privacy line) → `/confirm` page with a POST button (scanners prefetch GET) → `sub:<address_id>`; `/unsubscribe` page with one button + one-click `POST /api/unsubscribe` (the subscription's own random token). Change alerts never on their own: `dispatchAlerts(source)` from the one alert template (`web/lib/changes/email.ts`), `make notify` dry run locally. On-page overlay: "See an example alert" and the confirmation email, labelled "Preview — simulated, nothing is sent" (the demo fallback) | S | built (`s/alerts`; unit tests + local end-to-end against fake Upstash/Resend: subscribe → confirm → dispatch → one-click unsubscribe) |
-| P0 | Demo hook for beat 6 (issue #11): `make alert SOURCE=<id> [RESET=1]` → `POST /api/alerts/dispatch {source}` (Bearer `DEMO_TOKEN`, constant-time) on production, retried until the deploy has the source; idempotent per `sent:<source>:<address>:<hash(email)>` (written only after Resend 2xx); demo-labelled sources only to subscribers flagged `demo`; `RESET=1` clears the demo inbox's keys between rehearsals; `npm run seed-subscriber -- --demo <email> <id>` seeds the demo inbox (who may get mail is data on the subscriber record, not env); `make notify SEND=1` is the local path without a token | S | built, not rehearsed on production (needs `DEMO_TOKEN`, `ALERTS_SITE_URL` in Vercel; Silvan's go) |
-| P0 | Site-wide prototype disclaimer: slim banner on every page ("Prototype built at a hackathon — not production-ready. Results may be wrong or out of date. Not legal advice.") and the same text in every email footer | S | built (`s/alerts`) |
-| P0 | Coming-soon landing page on yourhomerule.com | S | WIP (`s/landing`, preview) |
-| P1 | Renter-protection score + compare picked addresses (no ranking, no rent levels, unknown counted apart) | S | planned |
-| P1 | Renter-protection map: the overall protection score as colours on the map, by **area** (city, later neighbourhood), unknown shown separately; building dots only around the user's own address, never a map of every building's level (would work as an exemption finder, see Never) | S | idea |
-| P2 | Protection map over time: the same map for past, today and future dates (e.g. 2025 → 2026 → after 01.07.2027) to show how protection is changing | S | idea |
-| P0 | Contacts per tile (J7): hand-checked table per city × topic (rent board, housing department, tenant hotline, legal aid; link + phone, free or not, source + retrieval date) in `contracts/contacts.json`; every tile's first next step is one human contact | D (data), S (display) | built (data #48, issue #32: 36 entries, 78/78 routes, `tests/check_contacts.py`; display `s/changelog-contacts`: tiles read the synced `web/contracts/contacts.json`, the vendored copy is gone; phones labelled "not yet checked by us", the contract has no verified flag and the live checker passes 11/18) |
-| P1 | Action helpers (J7): neutral one-tap follow-ups on the page: ready email asking the landlord for a missing fact, call checklist ("have your notice, lease, move-in date"), check item ("Did your notice include the required tenant-rights form?"). They ask for information or point to an office, never argue the renter's case | S | partial (`s/page-v3`: call checklist on rent/eviction, Boston notice check, landlord email for a missing building fact) |
-| P2 | Legal-aid finder: nearest free legal help for the exact address from public directories | S | planned |
 | P1 | Renter answers one missing building fact ("you told us", never in the scored files) | S | planned |
-| P1 | Small map on the address page: MapLibre GL + OpenFreeMap Positron (no key), building pin, legal-city outline from Census TIGER/Line places (`web/data/city-outlines.geojson`, 77 KB, `web/scripts/build-city-outlines.sh`), caption "Inside <city> city limits" / "Outside any city: unincorporated <county>", OSM attribution, tap to enlarge | S | built (`s/map`; unincorporated case only in the component, no demo address page for East LA yet) |
-| P1 | Show the guide's four open legal questions as flags with both sources (e.g. Berkeley's two effective dates) | D | built (`out/findings.json` kind `open_question`, `extract/open_questions.py`; card display: S); shown on the cards with state bars and link-only laws, `s/live-data`) |
+| P1 | Compare picked addresses (J5; no ranking, no rent levels, unknown counted apart) | S | planned |
+| P1 | Renter-protection map: protection score as colours by **area**, unknown shown separately; never a per-building exemption map (see Never) | S | idea |
+| P2 | Protection map over time (past, today, after 01.07.2027) | S | idea |
 | P1 | Spanish card summaries (brief stretch goal; quotes stay English) | S | planned |
-| P1 | "I rent / I own" wording toggle (sponsor's users) | S | planned |
-| P2 | Typed address outside the sample, e.g. Santa Ana (brief stretch goal "new jurisdiction live") | S | partial (jurisdiction tree on `/where`; rules need the engine) |
-| P1 | Proactive source monitoring: approved official routes, new-document discovery, version snapshots, isolated extraction, before/after address-impact previews and effective-date checks; no automatic legal promotion or emails | D | built (issue #60, `d/source-monitor`; bounded Newark pilot, candidate previews require review; foreground worker, not deployed) |
-| P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-to-extend-coverage-p1-checked-04102026)) | D | planned |
-| P2 | MCP route | D | planned |
-| P2 | Compare view | S | planned |
+| P1 | "I rent / I own" wording toggle | S | planned |
+| P2 | Legal-aid finder for the exact address | S | planned |
+| P2 | MCP route (`/api/mcp`) | D | planned (no code) |
 | P3 | ChatGPT custom GPT on the JSON endpoint | D | planned |
-| Idea | Search typo tolerance: near-miss names ("Hobokn") → suggestion via edit distance over the list and aliases, never applied silently | S | idea |
-| Idea | Google Places autocomplete for any US address (Places API (New), ~10k free requests/month then $2.83/1k; needs Google Maps attribution, key behind our server, and likely a Google map for the pin per Maps Platform terms) | S | idea |
-| Idea | Own chatbot · addresses outside the 500 · neighbourhood comparison · repairs card | — | idea |
+| Idea | Search typo tolerance ("Hobokn" → suggestion, never applied silently) | S | idea |
+| Idea | Google Places autocomplete for any US address (attribution and Maps terms apply) | S | idea (`NEXT_PUBLIC_GOOGLE_MAPS_KEY` exists in Vercel, no code on `main` uses it) |
+| Idea | Own chatbot · neighbourhood comparison · repairs card | — | idea |
+
+### Known gaps before the freeze
+
+1. **Demo change X001 not run:** `make demo-change` needs `OPENROUTER_API_KEY` (or a warm `build/cache`); without it there is no `ingest:` source, so beat 6 (`make alert`) has nothing to send. [verified: `out/changes.full.json` has only two `asof:` sources]
+2. **Postal-address placeholder** in `web/lib/alerts/disclaimer.ts`: every email footer (and the live preview on `/changes/A0256`) shows `[PLACEHOLDER: HomeRule postal address — owner to fill in]`; this also keeps the closed test on. [verified]
+3. **"Next change" empty where no end dates:** SF, LA, Boston and Cambridge addresses say "No changes scheduled" because rule end dates (e.g. SF's yearly 1.6% through Feb 2027) are not extracted. [verified on `/a/A0016`, `/a/A0107`]
+4. **East LA is a stand-in:** the unincorporated case only shows for a typed address (`/a/at?q=4801 E 3rd St…`); no sample address is unincorporated and LA County's own ordinance (ch. 8.52) is not in HomeRule. [verified]
+5. **Newark exception tagged as a core rule** in the extraction: `NJ-NEWARK-RENT-19:2-18.3` (initial rent of rehabilitated dwellings not restricted) is a `rent_increase_limits` rule, not an exemption. [verified in `out/rules.json`]
+6. **Prompt lock mismatch:** current prompt digest ≠ `extract/PROMPTS.lock`. [verified]
+7. **Stale headline values** until PR #55 lands: LA rent shows "3% for Jul 2025–Jun 2026" as current on 01.10.2026. [verified on `/a/A0107`]
+8. **No date slider** anywhere (one as-of date in the live data): J3 step 2 and demo beat 5 can't be shown as written; the change log `/changes/A0256` is the stand-in.
+9. `outputs/rules.json` missing (only `out/rules.json`).
+10. `DEMO_TOKEN` and `ALERTS_SITE_URL` are set in Vercel **production only**; `make alert` against a preview URL gets 401. [verified with `vercel env ls`]
+11. Open PRs not merged by the freeze stay out of the submission: #48 (contacts, data already on `main`), #53, #55, #59, #68.
 
 ## User journeys
 
@@ -173,6 +227,20 @@ This is the project's feature list; each build updates its status in the same co
 3. Taps "Before you call": checklist "have your notice, lease, move-in date". On the eviction tile, a check item: "Did your notice include the required tenant-rights form?"
 - ✅ Done when: every tile has a contact from `contracts/contacts.json` and the renter can copy a ready email or open a checklist without leaving the page.
 
+### Journey status on the live site (checked 04.10.2026)
+
+Walked read-only on yourhomerule.com: no form submitted, no signup, no send.
+
+| CUJ | Live demo URL | Status | Gap |
+|---|---|---|---|
+| J1 What applies at my address? | [/a/A0016](https://yourhomerule.com/a/A0016) (3515 Fillmore St) | walkable | None for the done-criterion: SF Rent Ordinance § 37.3 applies, Cal. Civ. Code § 1947.12 "replaced here by the city rule", quotes + dates, built 1926 · 21 units |
+| J2 An honest unknown | [/a/A0107](https://yourhomerule.com/a/A0107) (10635 Sherman Grove Ave) | partly walkable | Rent tile says "We're missing one fact" and names the office (LA Housing Department) and a landlord email. But the named facts are "an exception in the law's text" and "whether the owner lives in the building", not the certificate-of-occupancy date the journey describes. Step 3 (renter enters the date, "you told us") not built |
+| J3 What's coming? | [/a/A0256](https://yourhomerule.com/a/A0256), [/changes/A0256](https://yourhomerule.com/changes/A0256) | partly walkable | Coming up shows the FAIR Act on Jul 1, 2027 with the conflict flag "flagged for review, not decided"; the change log shows Enacted → Applies, still flagged. Step 2 (move the date to 02.07.2027, tile flips) not possible: no date picker or slider |
+| J4 Tell me when the law changes | [/a/A0010](https://yourhomerule.com/a/A0010) ("Get alerts", "See an example alert"), [/changes/A0256](https://yourhomerule.com/changes/A0256) (email preview) | partly walkable | Signup form, double opt-in, confirm and unsubscribe are live but in the closed test (only `allowed` emails get mail). No ingested change exists yet, and /changes/A0010 is empty: the Cambridge address has no change to show. The hour-16 ingest → change log → email path has not run on production |
+| J5 Compare before I move | — | not built | Planned (P1) |
+| J6 Which buildings does this bill reach? | [/r/MA-ALG-2983](https://yourhomerule.com/r/MA-ALG-2983?from=A0258) | walkable | "Proposed, not law", bill quote, link to malegislature.gov, 110 MA addresses all "Pending, not law", audit trail with the reasoning boundary. Impact is a dot map for one date (no slider) |
+| J7 Take action | [/a/A0107](https://yourhomerule.com/a/A0107), [/a/A0258](https://yourhomerule.com/a/A0258) | mostly walkable | Contact first on each tile (phones marked "not yet checked by us"), "Before you call, have ready" checklist, "Ask your landlord" ready email, Boston tenant-rights notice item. Helpers are not on every tile |
+
 ## Demo (2:30)
 
 | # | Beat | Shows | Time |
@@ -185,7 +253,7 @@ This is the project's feature list; each build updates its status in the same co
 | 6 | **Hour-16 live:** ingest the new ordinance on camera with a clock, change log updates, the alert email arrives on a phone | Automation, the live proof | 0:30 |
 | 7 | **Proof frame:** 500/500 addresses resolved · 38 postal-city corrections · 100% verbatim quotes · T1–T6 pass | Credibility | 0:05 |
 
-The order of beats still holds with the one-view page. Mockup: `lab/ui-proposal` on branch `s/demo-site` (v2 → v3 in progress). Expected answers come from the brief, not yet from our engine; these addresses are also engine tests. If the map isn't built, beat 5 uses the slider on the Hoboken address page.
+The order of beats still holds with the one-view page (v3, live). The answers on the site now come from the engine; these addresses are also engine tests. There is no date slider (see Known gaps): beat 5 needs a stand-in, e.g. Coming up and the change log on `/a/A0256` → `/changes/A0256`. Beat 1's numbers are placeholders; the measured scoreboard is plain 16/20, web search 20/20, HomeRule 18/20.
 
 ## Owners and handoffs
 
