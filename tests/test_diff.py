@@ -79,8 +79,10 @@ class Diff(unittest.TestCase):
         self.assertTrue(full["not_legal_advice"])
         self.assertEqual(full["as_of"], AS_OF)
         self.assertEqual(sorted(full["sources"]), ["asof:2017-09-24..2017-09-26", "asof:2024-10-07..2024-10-09",
-                                                   "asof:2025-12-31..2026-01-02", "asof:2026-10-01..2027-07-02",
-                                                   "asof:2029-12-31..2030-01-02"])   # T1, T3 + rule end dates
+                                                   "asof:2025-10-14..2025-10-16", "asof:2025-12-31..2026-01-02",
+                                                   "asof:2026-02-28..2026-03-02", "asof:2026-04-30..2026-05-02",
+                                                   "asof:2026-06-08..2026-06-10", "asof:2026-10-01..2027-07-02",
+                                                   "asof:2029-12-31..2030-01-02"])   # T1, T3, rule end and start dates
         d = Path(tempfile.mkdtemp())
         B.run(AS_OF, out_dir=d, outputs_dir=d, quiet=True)
         self.assertEqual(json.loads((d / "changes.full.json").read_text()), full)
@@ -189,6 +191,27 @@ class Until(unittest.TestCase):
         sids = [s for s, _, _ in D.until_sources(rules, {}, skip={"asof:2025-12-31..2026-01-02"})]
         self.assertNotIn("asof:2025-12-31..2026-01-02", sids)
         self.assertIn("asof:2029-12-31..2030-01-02", sids)
+
+
+class Starts(unittest.TestCase):
+    """#117: a law starting gets its own window, unless an earlier window (a brief test, an end date) spans it."""
+    @classmethod
+    def setUpClass(cls):
+        cls.srcs = D.build_sources(RULES, ADDR, AS_OF)
+        cls.by_id = {sid: (m, ch) for sid, m, ch in cls.srcs}
+
+    def test_berkeley_ban_has_its_own_entry(self):
+        m, ch = self.by_id["asof:2026-02-28..2026-03-02"]
+        self.assertIn("CA-BERKELEY-ALG-13.63.030", m["starting_rule_ids"])
+        self.assertIn("CA-BERKELEY-ALG-13.63.030", {c["team_rule_id"] for c in ch["A0373"]})
+
+    def test_no_window_inside_an_earlier_one(self):
+        tests = [(m["before"]["as_of"], m["after"]["as_of"]) for _, m, _ in self.srcs if m.get("test_id")]
+        for sid, m, _ in self.srcs:
+            if "starting_rule_ids" in m:
+                frm = D.add_day(m["before"]["as_of"])
+                self.assertFalse(any(b < frm <= a for b, a in tests), sid)
+        self.assertNotIn("asof:2027-06-30..2027-07-02", self.by_id)      # FAIR Act: inside T3
 
 
 class DemoChange(unittest.TestCase):

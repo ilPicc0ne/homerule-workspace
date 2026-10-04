@@ -1,5 +1,7 @@
 # Hour 16: the new ordinance, step by step
 
+> The organizers removed the hour-16 ordinance (v5 participant release, confirmed 04.10.): the change tests are T1–T5. These steps still work for any new document, e.g. the fictional X001 in `make rehearse`.
+
 Rehearsed by `make rehearse` (fictional X001, Cambridge: 45 addresses). A real document makes live model calls
 (three Luna samples in parallel plus checks): minutes, not seconds.
 

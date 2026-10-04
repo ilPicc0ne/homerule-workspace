@@ -158,11 +158,12 @@ function SearchField({ current, index }: { current: string; index: PageProps["in
           ))}
           {matches.length === 0 && (
             <li className="sugg-none" role="presentation">
-              <b>Not one of our 500 sample addresses.</b> Press Enter to look it up with the US Census.
+              <b>Not one of our 500 sample addresses.</b> Press Enter for a provisional answer: we look it up with the US Census, without
+              building facts.
             </li>
           )}
           <li className="sugg-foot" role="presentation">
-            HomeRule covers 3 states and 10 cities; 500 sample addresses have building records.
+            Hackathon prototype: full answers for 500 sample addresses in 3 states (10 cities). Other addresses are provisional.
           </li>
         </ul>
       )}
@@ -583,6 +584,17 @@ export default function AddressPageView(p: PageProps) {
       </header>
 
       <main id="main">
+        {p.typed && (
+          <div className="wrap">
+            <p className="typed-note" role="note">
+              <Ic id="i-info" />
+              <span>
+                <b>Provisional answer.</b> Not one of our 500 sample addresses: we found its jurisdiction with the US Census, but have
+                no building facts for it.
+              </span>
+            </p>
+          </div>
+        )}
         <div className="wrap page">
           <section className="hero" aria-labelledby="h-addr">
             <h1 className="addr" id="h-addr">

@@ -96,7 +96,9 @@ def aggregate(topics):
 
 
 def verdict(before, after):
-    """Topic levels at two dates -> better / worse / unchanged per topic and overall (unclear if unknowns move)."""
+    """Topic levels at two dates -> better / worse / unchanged per topic (unclear if unknowns move), and overall:
+    better (or worse) when every topic that surely moved went that way, even if others are unclear; mixed when
+    topics went both ways; unclear when only unknowns moved."""
     per = {}
     for cat in CFG["weights"]:
         b, a = before[cat], after[cat]
@@ -106,8 +108,17 @@ def verdict(before, after):
             d = ORDER.index(a["level"]) - ORDER.index(b["level"])
             per[cat] = "better" if d > 0 else "worse" if d < 0 else "unchanged"
     moved = {v for v in per.values() if v != "unchanged"}
-    overall = "unchanged" if not moved else moved.pop() if len(moved) == 1 else "mixed"
+    sure = moved - {"unclear"}
+    overall = ("mixed" if len(sure) > 1 else sure.pop() if sure else "unclear" if moved else "unchanged")
     return overall, per
+
+
+RATING = {"better": "positive", "worse": "negative"}     # unchanged, unclear, mixed: neutral
+
+
+def rating(verdict):
+    """The three-way rating shown to renters: positive / neutral / negative. No weights: only better or worse."""
+    return RATING.get(verdict, "neutral")
 
 
 NOUN = {"rent_increase_limits": "yearly rent increase cap", "security_deposits": "security deposit limit",
@@ -238,7 +249,7 @@ def annotate_changes(changes, before_rows, after_rows, rules_by_id):
         used = sorted(set(b[cat]["rules"]) | set(a[cat]["rules"]) | set(b[cat]["limited_by"]) | set(a[cat]["limited_by"])
                       | {c["team_rule_id"]})
         c["renter_impact"] = {
-            "verdict": v, "topic": cat, "level_before": b[cat]["level"], "level_after": a[cat]["level"],
+            "verdict": v, "rating": rating(v), "topic": cat, "level_before": b[cat]["level"], "level_after": a[cat]["level"],
             "why": why(cat, v, b[cat], a[cat], c, before_rows, after_rows, rules_by_id),
             "decided_by": {"verdict": "code",
                            "direction": {i: (rules_by_id[i].get("renter_impact") or {}).get("decided_by", "code")
@@ -332,7 +343,9 @@ def build(dates=None):
     for aid, per_date in res["addresses"].items():           # change between consecutive dates
         for d0, d1 in zip(dates, dates[1:]):
             overall, per = verdict(per_date[d0]["topics"], per_date[d1]["topics"])
-            per_date[d1]["change_from_previous"] = {"from": d0, "overall": overall, "topics": per,
+            per_date[d1]["change_from_previous"] = {"from": d0, "overall": overall, "rating": rating(overall),
+                                                     "topics": per,
+                                                     "unclear_topics": sorted(c for c, v in per.items() if v == "unclear"),
                                                      "score_delta": None if None in (per_date[d0]["score"], per_date[d1]["score"])
                                                      else per_date[d1]["score"] - per_date[d0]["score"]}
     return res

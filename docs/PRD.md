@@ -86,7 +86,7 @@ Bonus the guide offers: show its four open legal questions (e.g. Berkeley's ban 
 
 ## Priorities and feature status
 
-Architecture and the pipeline rows noted below were checked against `625c00d` on 04.10.2026; older live-site observations retain their original timestamps. See [implementation boundaries](ARCHITECTURE.md#implementation-boundaries) for unmerged work.
+Architecture and the pipeline rows noted below were checked against `fcff56b` on 04.10.2026; older live-site observations retain their original timestamps. See [implementation boundaries](ARCHITECTURE.md#implementation-boundaries) for unmerged work.
 
 This is the project's feature list; each build updates its status in the same commit. Statuses: built · partial · experimental · WIP (branch/PR) · planned · idea · not specified.
 
@@ -98,12 +98,12 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 
 | Prio | Feature | Owner | Status · evidence |
 |---|---|---|---|
-| P0 | Extraction → `out/rules.json` + `out/rules.compiled.json` | D | built (#30, #31, #35, #40, #46, #51): 54 scored rules in `out/rules.json` at `625c00d`, quotes verbatim, `make eval`, audit trail `out/audit.json`; Santa Ana has no text in the corpus (a finding). Brief-named rule count and T1–T5 as reported by `make eval`, not re-run for this check |
+| P0 | Extraction → `out/rules.json` + `out/rules.compiled.json` | D | built (#30, #31, #35, #40, #46, #51): 54 scored rules in `out/rules.json` at `fcff56b`, quotes verbatim, `make eval`, audit trail `out/audit.json`; Santa Ana has no text in the corpus (a finding). Brief-named rule count and T1–T5 as reported by `make eval`, not re-run for this check |
 | P0 | Stable extraction: three samples + majority vote, `make check` | D | built (merged #53): `Makefile`, `extract/vote.py`; three extraction/gate samples, majority selection and `out/vote.json` |
 | P0 | Prompt lint + freeze (`make freeze`, `extract/PROMPTS.lock`) | D | built (#35, later prompt updates through #106): lint, vocabulary-drift check and committed lock; run `python -m extract.prompts` before hour 16 to verify the current digest. The earlier mismatch observation is historical, not a current check |
 | P0 | Jurisdiction list + address resolution (Census geocoder, offline cache) | S | built (#29): `make resolve`, 500/500, `out/addresses.resolved.json` |
 | P0 | Engine → `outputs/lookups.json`, `outputs/changes.json`, `out/lookups.full.json` | S | built (#36, #40, #47): `make build`, all 500 addresses, T1–T5 in `outputs/changes.json` (T6 needs the hour-16 document), J1–J3 + Dorchester as tests (`tests/test_engine.py`) |
-| P0 | Per-address diff (I6) → `out/changes.full.json` | S | built (#45, #113): `engine/diff.py`; 5 as-of sources including sunset/replacement dates, 390 addresses with an entry at `625c00d`; per-change impact verdicts; `tests/test_diff.py` checks agreement with `changes.json` |
+| P0 | Per-address diff (I6) → `out/changes.full.json` | S | built (#45, #113, #119): `engine/diff.py`; 9 as-of sources including rule start and end dates, 390 addresses with an entry, 1,514 changes at `fcff56b`; per-change verdict, `rating` (positive / neutral / negative) and why; `tests/test_diff.py` checks agreement with `changes.json` |
 | P0 | `outputs/` holds the three scored files | S | built (#110): all three committed; `outputs/rules.json` matches `out/rules.json`. The release copy remains explicit after a build on main |
 | P0 | Hour-16 ingest in one command | D | built (#30): `make ingest`, `make rehearse`, `make rerun` |
 | P0 | Demo change for beat 6: `make demo-change` (fictional X001 ingest → before/after → diff → web sync) | S | partial (#45): built, never run; X001 extraction needs `OPENROUTER_API_KEY` or a warm `build/cache`, so `out/changes.full.json` has no `ingest:` source yet |
@@ -111,22 +111,23 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 | P1 | Chatbot scoreboard: ~20 dated questions, plain vs web search vs HomeRule | D | built as a measurement (#39, #43, `scoreboard/`): plain 16/20 (4 wrong), plain + web search 20/20, HomeRule 18/20 (0 wrong); not a headline number, not on the site |
 | P1 | Show the guide's four open legal questions as flags with both sources | D (data), S (display) | built (`out/findings.json` kind `open_question`, `extract/open_questions.py`; shown on the tiles) |
 | P1 | Card answers per card question (`out/cards.json`) + card audit | D | WIP (PR #55): fixes wrong headline values, e.g. LA rent "3% for Jul 2025–Jun 2026" shown as current |
-| P1 | Renter-protection score: impact per rule, one score with per-topic breakdown | D | built (#59): `renter_impact` per rule and per change (verdict better / worse / unchanged / unclear, `why`, `decided_by`), `out/scores.json` per address / city / state and date with per-topic levels and "what would settle this"; display: S (no 0-100 on the page) |
+| P1 | Renter-protection score: impact per rule, one score with per-topic breakdown | D | built (#59): `renter_impact` per rule and per change (verdict better / worse / unchanged / unclear, `rating` positive / neutral / negative, `why`, `decided_by`); per address and date `change_from_previous.rating` (no weights: only which way the topics that surely moved went), `out/scores.json` per address / city / state and date with per-topic levels and "what would settle this"; display: S, the three-way rating only (no 0-100 number or per-topic weights on the page; Silvan 04.10.) |
 | P1 | Change verdict on the page, change log and email: ↑ "adds renter protection" / ↓ "narrows" / grey "depends on a fact we don't have", from the diff's `renter_impact` (#72), and protections ending ("Ends: …" in the history, sunset sources in the diff, `effective_until` in rules and API, #71 + #77) | S | built (PR "Verdicts: #71 + #72 + #77 on #110"): `PAGE_BADGES` on; verdicts after rebuild 270 better · 28 worse · 838 unchanged · 98 unclear; Hoff St A0050 "Ends Jan 1, 2030" ↓, Newark FAIR Act ↑. Before production: Silvan's 15-badge hand check (`node web/scripts/verdict-split.ts`) |
 | P1 | Extra data: next useful building fact + public evidence pilot | D | WIP (draft PR #68) |
-| P1 | Official-source monitoring: discover law updates, preserve versions, extract changes and preview affected addresses | D | WIP ([#60](https://github.com/ilPicc0ne/homerule-workspace/issues/60), [PR #75](https://github.com/ilPicc0ne/homerule-workspace/pull/75)): implemented on `d/source-monitor`; bounded Newark pilot, review before publication; not merged or deployed. See [Keeping the law data fresh](#keeping-the-law-data-fresh-issue-60) |
+| P1 | Official-source monitoring: discover law updates, preserve versions, extract changes and preview affected addresses | D | built, on `main` ([#60](https://github.com/ilPicc0ne/homerule-workspace/issues/60), [PR #75](https://github.com/ilPicc0ne/homerule-workspace/pull/75)): Newark prototype run by hand, review before publication; no scheduler, not deployed, not part of the scored outputs. See [Keeping the law data fresh](#keeping-the-law-data-fresh-issue-60) |
 | P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-and-remaining-expansion)) | D | partial: approved supplemental law feeds extraction; additional building records and planner implemented in draft #68, not promoted to I3. Map assets are separate; see architecture |
 
 ### Keeping the law data fresh (issue #60)
 
-The official-source monitor checks for new and revised housing-law documents so HomeRule can detect changes after the initial corpus was collected. **Implemented on `d/source-monitor` in [PR #75](https://github.com/ilPicc0ne/homerule-workspace/pull/75); not yet merged or deployed.**
+The official-source monitor checks for new and revised housing-law documents so HomeRule can detect changes after the initial corpus was collected. **On `main` since [PR #75](https://github.com/ilPicc0ne/homerule-workspace/pull/75): a Newark prototype run by hand; not scheduled or deployed.**
 
 1. **Check approved sources.** The current live-source pilot polls Newark's documented Legistar API every six hours while the worker is running. It revisits six known rent-control matters and discovers housing-related titles. This is bounded discovery, not complete coverage of Newark or all ten cities. Additional official text, HTML and embedded-text PDF routes can use the document adapter after source review.
 2. **Preserve evidence and detect changes.** Keep immutable source snapshots and retrieval details, compare document versions, and queue new or changed text. Unchanged responses do not trigger extraction. Failed fetches and incomplete discovery stay visible in the report; old evidence is retained.
 3. **Extract and preview the impact.** With extraction enabled, run the existing Jev/Luna pipeline on each changed whole document, check its supporting quotes, and evaluate candidate before/after rules across the 500 sample addresses. Show changed answers and coverage, including future effective and end dates. Also check accepted rules for date-driven changes without needing a new source publication.
 4. **Review before publishing.** Candidate impacts require review and promotion through the existing corpus/build pipeline before reaching the site or alerts. A changed page is not proof that a law took effect; a missing provision is not proof of repeal. Keep discovery, publisher modification and legal effective dates separate. The monitor itself does not overwrite accepted rules or scored outputs, or send emails.
 
-**Operation:** on the implementation branch, `make monitor` runs one bounded poll; `make monitor EXTRACT=1` also processes queued changes; `make monitor-watch EXTRACT=1` keeps the foreground worker running; `make monitor-report` opens access to its local report. No scheduler is installed automatically. Deploying an ongoing worker and adding reviewed sources are remaining rollout steps. Requests respect reviewed source routes, robots rules, rate limits and retry delays. Details: [monitor README on the implementation branch](https://github.com/ilPicc0ne/homerule-workspace/blob/d/source-monitor/monitor/README.md).
+**Operation:** `make monitor` runs one bounded poll; `make monitor EXTRACT=1` also processes queued changes; `make monitor-watch EXTRACT=1` keeps the foreground worker running; `make monitor-report` opens access to its local report. No scheduler is installed automatically. Deploying an ongoing worker and adding reviewed sources are remaining rollout steps. Requests respect reviewed source routes, robots rules, rate limits and retry delays. Details: [monitor/README.md](../monitor/README.md).
+
 
 ### Site (live at yourhomerule.com)
 
@@ -152,10 +153,11 @@ The official-source monitor checks for new and revised housing-law documents so 
 | P0 | Contacts per tile (J7): `contracts/contacts.json` (36 entries, all city × topic routes, source + retrieval date); first next step on each tile is a person | D (data), S (display) | built (data via #56 from the `d/contacts` work; display #56). Phones labelled "Number not yet checked by us". PR #48 is still open although the data is on `main` |
 | P1 | Action helpers (J7): "Before you call, have ready" checklist, "Ask your landlord" ready email for a missing fact, Boston tenant-rights notice check | S | partial (#52): checklist on rent/eviction tiles, landlord email where a fact is missing (`/a/A0107`), Boston notice item (`/a/A0258`); not on every tile |
 | P0 | Site-wide prototype banner ("Prototype built at a hackathon — not production-ready…"), same text in every email footer | S | built (#57; solid navy bar with info icon and bold "Not legal advice." since #67, live) |
+| P0 | Scope disclaimer: full answers only for the 500 sample addresses (hackathon scope) — note under the landing search, "sample only" in search suggestions and no-match, "Provisional answer" banner on typed addresses (`/a/at`) | S | built (s/ui-polish) |
 | P0 | Palette + header option A "Quiet": teal-derived accent, softer clay caution, slate-navy UI chrome | S | built (#58, #63) |
 | P2 | Brand icon: roof-scales mark as favicon, apple-icon, site headers and email logo | S | built (#70, live in production 8e7c326) |
 | P1 | As-of date picker / date slider on the address page | S | not built: header shows the single as-of date "Oct 1, 2026"; `meta.as_of_dates` has one entry |
-| P2 | MCP server `/api/mcp` (issue #23): public, read-only, Streamable HTTP via `mcp-handler` 2.2.0, stateless (no Redis sessions). **Everything on the website, with the law's own words and links**, built from the same functions the pages render: `find_place` (/where), `get_address` (address page `/a/[id]` and typed `/a/at`, provisional and labelled), `get_changes` (change log `/changes/[id]`; for a city or state grouped by rule with affected counts), `get_rule` (rule page incl. impact), `get_jurisdiction` (jurisdiction page), `coverage` (landing); `get_rules` kept for compatibility. Every result: `not_legal_advice`, `as_of`, `retrieved`, `how_to_present`; one audit log line per call (tool, ids, as_of; no IP, no query text); 300 POSTs per IP per minute via Upstash | S | built (PR #98; parity tools in the "MCP: full parity" PR; preview only, **not in production** until Silvan pushes `production`). Address results exist for the one engine date (2026-10-01): another `as_of` answers for 2026-10-01 and says so. No renter-impact verdict in the change data yet (the answer says so). Claude/ChatGPT can only reach production (previews are login-protected) |
+| P2 | MCP server `/api/mcp` (issue #23): public, read-only, Streamable HTTP via `mcp-handler` 2.2.0, stateless (no Redis sessions). **Everything on the website, with the law's own words and links**, built from the same functions the pages render. Task-shaped (one call per question, measured: median 2 → 1 call over 26 renter questions): `get_place` (any address or place → address page `/a/[id]` / typed `/a/at`, provisional and labelled, or jurisdiction page `/j/[id]` with each rule's status, key value and quote; not covered says so), `compare_places` (two places side by side, J5 for chatbots; no ranking), `get_changes` (change log `/changes/[id]` with the renter-impact badge; for a city or state grouped by rule with affected and badge counts), `get_rule` (rule page incl. impact, for depth), `coverage` (landing). Every result: `not_legal_advice`, `as_of`, `retrieved`, data only (presentation rules in tool descriptions and server instructions, never inside results); one audit log line per call (tool, ids, as_of; no IP, no query text); 300 POSTs per IP per minute via Upstash | S | built (PR #98; parity tools in the "MCP: full parity" PR; preview only, **not in production** until Silvan pushes `production`). Address results exist for the one engine date (2026-10-01): another `as_of` answers for 2026-10-01 and says so. Task-shaped redesign on branch `s/mcp-eval` (not merged). Claude/ChatGPT can only reach production (previews are login-protected) |
 | P2 | `/connect` page: "Make your chatbot rent-law aware", connector URL + copy, tabs Claude / ChatGPT / Developers (Claude Code command, Cursor + VS Code install links, JSON config), example prompt, disclaimer; linked from the landing page and the address page footer ("Ask your chatbot about this address" copies a prompt) | S | built (PR #98, preview only) |
 
 ### Alerts (email)
@@ -199,7 +201,7 @@ The official-source monitor checks for new and revised housing-law documents so 
 8. **No date slider** anywhere (one as-of date in the live data): J3 step 2 and demo beat 5 can't be shown as written; the change log `/changes/A0256` is the stand-in.
 9. `outputs/rules.json` missing (only `out/rules.json`).
 10. `DEMO_TOKEN` and `ALERTS_SITE_URL` are set in Vercel **production only**; `make alert` against a preview URL gets 401. [verified with `vercel env ls`]
-11. Open PRs not merged by the freeze stay out of the submission: #48 (contacts, data already on `main`), #53, #55, #59, #68.
+11. Open PRs not merged by the freeze stay out of the submission: #48 (contacts, data already on `main`), #55, #68. (#53, #59 and #75 are merged.)
 
 ## User journeys
 
@@ -268,7 +270,7 @@ Walked read-only on yourhomerule.com: no form submitted, no signup, no send.
 | 4 | **Click the answer → rule page:** quote in the law text, link to the official source, what the model extracted vs what the code decided | The AI and the responsible design, visible | 0:25 |
 | 5 | **Date slider on the FAIR Act map:** NJ dots flip on 02.07.2027, conflict rings on Hoboken and Jersey City | Change tracking | 0:20 |
 | 6 | **Hour-16 live:** ingest the new ordinance on camera with a clock, change log updates, the alert email arrives on a phone | Automation, the live proof | 0:30 |
-| 7 | **Proof frame:** 500/500 addresses resolved · 38 postal-city corrections · 100% verbatim quotes · T1–T6 pass | Credibility | 0:05 |
+| 7 | **Proof frame:** 500/500 addresses resolved · 38 postal-city corrections · 100% verbatim quotes · T1–T5 pass | Credibility | 0:05 |
 
 The order of beats still holds with the one-view page (v3, live). The answers on the site now come from the engine; these addresses are also engine tests. There is no date slider (see Known gaps): beat 5 needs a stand-in, e.g. Coming up and the change log on `/a/A0256` → `/changes/A0256`. Beat 1's numbers are placeholders; the measured scoreboard is plain 16/20, web search 20/20, HomeRule 18/20.
 
@@ -293,7 +295,7 @@ The interfaces between us (file shapes, the jurisdiction list) are in [ARCHITECT
 - `make eval` green:
   - ≥22 of the ~27 rules the brief names, with the right status and date;
   - every jurisdiction × category cell triaged;
-  - T1–T6 right;
+  - T1–T5 right;
   - the demo addresses right;
   - 100% of quotes verbatim;
   - "not legal advice" found everywhere.
@@ -303,12 +305,12 @@ The interfaces between us (file shapes, the jurisdiction list) are in [ARCHITECT
 
 | Item | Owner | Done when |
 |---|---|---|
-| `rules.json`, `lookups.json`, `changes.json` committed in `outputs/` from a build on `main` | S | Schema-valid, all 500 addresses, T1–T6 present |
+| `rules.json`, `lookups.json`, `changes.json` committed in `outputs/` from a build on `main` | S | Schema-valid, all 500 addresses, T1–T5 present (no T6: the hour-16 ordinance was removed, organizers 04.10.) |
 | Public GitHub repo with code, README (how to run), output files | S | A fresh clone runs `make all` |
 | Live demo link (yourhomerule.com) | S | Works on a phone |
 | Team video (Team Intro) | S | Both of us, ≤ 60 s ([docs/VIDEO.md](VIDEO.md)) |
 | Demo video, with the scores on screen | S | ≤ 60 s, follows `notes/demo/video/STORY.md` cut to 60 s ([docs/VIDEO.md](VIDEO.md)) |
-| Technical video (Teach): `score.py` report on the dev set (or the `make eval` report if no score.py ships), T1–T6 results, the hour-16 run, a live `make rerun DOC=` | D | ≤ 60 s, all four visible on screen ([docs/VIDEO.md](VIDEO.md)) |
+| Technical video (Teach): our own validation, the `make eval` report (no `score.py`: organizers 04.10.), T1–T5 results, the new-ordinance rehearsal (fictional X001, labelled), a live `make rerun DOC=` | D | ≤ 60 s, all four visible on screen ([docs/VIDEO.md](VIDEO.md)) |
 | One-page method note | S | Sources, pipeline, what code decides vs the model, limits |
 
 ## Never
@@ -320,8 +322,8 @@ The interfaces between us (file shapes, the jurisdiction list) are in [ARCHITECT
 
 ## Open questions
 
-- Will `score.py` and the dev key be released? How are unknowns scored? (Discord)
-- When exactly does the hour-16 ordinance drop?
+- ~~Will `score.py` and the dev key be released?~~ No (organizers 04.10.): videos show our own output and validation. How are unknowns scored? (Discord)
+- ~~When exactly does the hour-16 ordinance drop?~~ It doesn't: removed in the v5 participant release; T1–T5 only (organizers 04.10.).
 - How are the 19 "no rule" findings represented in `rules.json`?
 - Jev access and quality (5-document test).
 - Tagline: Dimitar may still argue for the provocative line, "Your landlord has a lawyer. You have the law."

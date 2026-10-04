@@ -2,6 +2,7 @@
 
 Inputs: out/rules.compiled.json + out/rules.json + out/findings.json (I2, I8), out/addresses.resolved.json (I3).
 Outputs (byte-deterministic: sorted keys and order, no timestamp but as_of):
+- outputs/rules.json     out/rules.json for submission: source_doc_id null where the source isn't in the corpus manifest
 - outputs/lookups.json   the template shape {as_of, lookups: {address_id: [{team_rule_id, result, explanation, conflict_flag}]}}
 - outputs/changes.json   T1-T5 (T6 when an ingested document exists) via extract/changes.py, same evaluation
 - out/lookups.full.json  the same results with confidence, missing facts, governed_by, conflict_with, value,
@@ -139,6 +140,20 @@ def lookups_json(full, as_of):
                         for aid, rows in full.items()}}
 
 
+def rules_json():
+    """The scored rules.json: out/rules.json, with source_doc_id null for a source outside corpus_manifest.csv (the
+    schema's doc_id field). Such a rule (an official text we saved, e.g. a city ordinance the manifest lists as link
+    only) keeps its source_url and verbatim quote; it doesn't count toward the citation metric (organizers, 04.10.)."""
+    import csv
+    from extract import config
+    corpus = {row["doc_id"] for row in csv.DictReader(open(config.MANIFEST, encoding="utf-8"))}
+    recs = json.loads((R.OUT / "rules.json").read_text(encoding="utf-8"))
+    for r in recs["rules"]:
+        if r.get("source_doc_id") not in corpus:
+            r["source_doc_id"] = None
+    return recs
+
+
 def full_json(full, rules, addresses, findings, as_of):
     scored_rules = {r["id"]: {k: r[k] for k in ("jurisdiction_id", "category", "citation", "title", "source_url",
                                                 "source_doc_id", "requirement_quote", "retrieved", "eff",
@@ -219,6 +234,8 @@ def run(as_of, out_dir=None, outputs_dir=None, with_changes=True, quiet=False):
     full = build_lookups(rules, addresses, as_of)
     outputs_dir.mkdir(parents=True, exist_ok=True)
     (outputs_dir / "lookups.json").write_text(dump(lookups_json(full, as_of)), encoding="utf-8")
+    (outputs_dir / "rules.json").write_text(json.dumps(rules_json(), indent=1, ensure_ascii=False),
+                                             encoding="utf-8")      # out/rules.json's format
     (out_dir / "lookups.full.json").write_text(dump(full_json(full, rules, addresses, findings, as_of)), encoding="utf-8")
     if with_changes:
         (outputs_dir / "changes.json").write_text(dump(changes(rules, findings, addresses)), encoding="utf-8")

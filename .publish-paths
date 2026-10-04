@@ -20,3 +20,4 @@ out/rules.compiled.json
 out/rules.json
 out/findings.json
 out/addresses.resolved.json
+monitor/

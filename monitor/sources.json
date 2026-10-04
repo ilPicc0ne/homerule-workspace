@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "newark-legistar",
+      "kind": "legistar",
+      "jurisdiction": "NJ-NEWARK",
+      "enabled": true,
+      "access": {
+        "status": "reviewed",
+        "reviewed_at": "2026-10-04",
+        "note": "Official documented read-only API; targeted acquisition reviewed in data/supplemental-legal/TERMS-REVIEW.md. Bounded metadata polling and matter-text requests only; no attachment or website crawl. API robots returned 404 on 2026-10-04. This is a project access decision, not blanket legal clearance.",
+        "reference": "https://webapi.legistar.com/Help"
+      },
+      "scopes": [{"host": "webapi.legistar.com", "path": "/v1/newark/matters", "prefix": true}],
+      "base_url": "https://webapi.legistar.com/v1/newark/matters",
+      "interval_seconds": 21600,
+      "lookback_days": 90,
+      "page_size": 50,
+      "max_pages": 4,
+      "max_documents": 12,
+      "title_terms": ["rent", "tenant", "housing", "evict", "landlord", "deposit", "screening"],
+      "known_matters": [1591971, 1593182, 1598082, 1606502, 1608659, 1611524],
+      "baseline_units": {"1591971": ["S020"], "1593182": ["S021"], "1598082": ["S022"], "1606502": ["S023"], "1608659": ["S018"], "1611524": ["S019"]}
+    }
+  ]
+}
