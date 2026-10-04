@@ -194,7 +194,7 @@ Phone (Silvan's):
 
 | Time (CEST) | Silvan | Dimitar |
 |---|---|---|
-| 07:00–09:00 | GAPS #1, #2, #5, #9 fixes merged, production update | GAPS #4 (clean `make eval`, quotes, re-freeze), hour-16 readiness |
+| 07:00–09:00 | GAPS #1 (production update: #76, #78), #7 footer, #8 fictional label, #11 labels | GAPS #3 (issue #81 owner-occupied scope), #4 (clean `make eval`, re-freeze), hour-16 readiness |
 | 09:00–10:00 | Rehearse beats 0–5 twice with a stopwatch; 6B once | Rehearse 6A on X001 with the clock |
 | hour 16 (time [unknown], watch Discord) | Phone and alert for 6A | Ingest on camera, `make build`, PR |
 | 11:00 | Decide 6A vs 6B for the video | T6 numbers into the proof slide |
