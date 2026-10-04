@@ -48,7 +48,8 @@ def effective(events, jurisdiction, provision=None):
                 continue
             d = e.get("date")
             if d and re.fullmatch(r"\d{4}-\d{2}-\d{2}", d):
-                cands.append((d, None, "day"))
+                cands.append((d, "the later of the published dates (open question)" if e.get("open_question") else None,
+                              "day"))
             elif d and re.fullmatch(r"\d{4}-\d{2}", d):
                 cands.append((d + "-01", None, "month"))
             elif e.get("relative_rule") == "first_day_of_nth_month_after_enactment" and enacted and e.get("n"):
@@ -209,8 +210,11 @@ def compiled(rule):
                                  for b in rule["key_value_conditions"]],
         "interaction": ({"type": inter["type"], "target_category": inter["target_category"], "quote": inter["quote"]}
                         if inter else {"type": "none"}),
+        "interactions": [{"type": i["type"], "target_category": i["target_category"], "quote": i["quote"]}
+                         for i in rule["interactions"]],
         "retrieved_at": rule["retrieved"], "parse_status": rule["parse_status"], "checks": rule["checks"],
         "x_source": {"unit": rule["unit"], "source_doc_id": rule["source_doc_id"], "citation": rule["citation"],
+                     "effect": rule["effect"], "cap_pct_low": rule["cap_low"], "cap_pct_high": rule["cap_high"],
                      "status_evidence": rule.get("status_evidence"),
                      "origin": rule["origin"], "stub": rule["stub"]},
         "details": rule.get("details", []),   # other headline provisions under the same citation
@@ -279,7 +283,12 @@ def build(extracted_dir=None, suffix=""):
     starter = [rec for rec in (starter_record(r, c) for r, c in zip(rules, comps)) if rec]   # starter, supplemental, ingested
     (config.OUT / f"rules.compiled{suffix}.json").write_text(json.dumps(comps, indent=1, ensure_ascii=False))
     (config.OUT / f"rules{suffix}.json").write_text(json.dumps({"rules": starter}, indent=1, ensure_ascii=False))
-    (config.OUT / f"findings{suffix}.json").write_text(json.dumps(findings(rules), indent=1, ensure_ascii=False))
+    finds = findings(rules)
+    (config.OUT / f"findings{suffix}.json").write_text(json.dumps(finds, indent=1, ensure_ascii=False))
+    from . import audit                    # curated per-rule trail for the rule page, and one line per build
+    trail = audit.build(rules, comps, finds, open_questions())
+    (config.OUT / f"audit{suffix}.json").write_text(json.dumps(trail, indent=1, ensure_ascii=False))
+    audit.log_build(len(comps), len(finds))
     return rules, comps
 
 

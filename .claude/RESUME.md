@@ -1,40 +1,38 @@
 # Resume
 
-**Updated:** 2026-10-03T22:20Z
+**Updated:** 2026-10-04T00:08Z
 **Branch:** main
-**Last commit:** 172c2f0 — Ignore .worktrees/
-**Working tree:** clean (before this wrap-up commit)
+**Last commit:** 511b4b6 — Merge pull request #38 from ilPicc0ne/s/prd-dedupe-map
+**Working tree:** clean except `.claude/worktrees/` (untracked, likely from the address session; not touched)
 
 ## Pick up next
 
-1. Address resolver (#7, #10): fresh session in `.worktrees/address` (branch `s/address-lookup`), paste the kickoff prompt (goal, decisions, tests-first). Edge cases: `lab/resolve-edge-cases/README.md` on that branch.
-2. Demo site: agent was building on `s/demo-site` in `/Users/silvan/claude/code/personal/homerule-demo`; no commits pushed at wrap-up time. Check if it finished; review (light only, "Demo data | Live" toggle, quote check), PR, merge, `vercel deploy --prod` from `web/`; then `git worktree move ../homerule-demo .worktrees/demo`.
-3. Dimitar: issue #27 (task split), then #2 grid triage, #3 Jev test, #4 extraction.
-4. Discord answers → PRD open questions. Email warm-up: mark `alerts@yourhomerule.com` not-spam.
-
-5. Housekeeping: kill leftover automation Chromes once the address session is done (`pkill -f "disable-field-trial-config"`; closes only Playwright-launched browsers), and stop the local dev servers on ports 3100 (demo) and 3210 (address) when no longer needed.
+1. Review mockup v3 (`/Users/silvan/claude/code/personal/homerule-demo/lab/ui-proposal/v3/index.html#sf`, compare v2). Then rebuild the demo site's address page to the v3 design on `s/demo-site`, **locally first** (`cd web && npm run dev`), deploy only when ready. Iterate: medium agent, ~15 min, two variants, then renter critique.
+2. Address session in `.worktrees/address` (branch `s/address-lookup`, issues #7 #10): check its PR/progress; the real map (MapLibre + OpenFreeMap Positron + TIGER outline) comes after it.
+3. Engine (#8) reads I2 `out/rules.json` + I8 `out/findings.json` (Dimitar's outputs on main); grey/amber tiles take text from findings.
+4. Dimitar: #4 extraction, #5 eval, #32 contacts data (`contracts/contacts.json`).
+5. Housekeeping: `pkill -f "disable-field-trial-config"` once the address session is done; stop dev servers (3100 demo, 3210 address); move `../homerule-demo` to `.worktrees/demo` when no one works in it.
 
 ## Open questions
 
-- Hour-16 drop time and format; score.py / dev key release — context: posted to Discord.
-- Do use-code unit ranges count as known in the key? — context: we treat them as known behind a switch.
+- Hour-16 drop time; score.py / dev key; how unknowns score — context: Discord.
+- Phone numbers in contacts are unverified (mockups say "demo number").
 
 ## Recent decisions
 
-- Address iteration goal: live search on the site → jurisdiction tree; one TypeScript resolver for site and batch — *why:* visible, scalability proof, no drift.
-- Tree Federal › State › County › City / Township / unincorporated; legislative districts P2 — *why:* NJ/MA municipalities are county subdivisions; unincorporated areas fall to county law.
-- Use-code units ("5+", NJ class 4C) as known facts behind a switch — *why:* settles small-building exemptions for nearly all 500.
-- Worktrees under git-ignored `.worktrees/` — *why:* keep `code/personal/` free of repo-lookalike folders.
-- PRD master in docs/, contracts I1/I7, files as data store, no own chatbot, yourhomerule.com + Resend — see SESSIONS.
+- One-view renter page: sticky address bar with "Get alerts" bell, "Next change" line, map, six accordion tiles with three levels (plain → next step → "Show the law"), labels "There's a rule" / "We're missing one fact" / "No local rule — state basics only" — *why:* renter critique (5–6/10 on v2), not for lawyers.
+- Never invite comparing the renter's number to a cap; state facts, let the reader conclude; grade 6–8 words — *why:* legal-advice risk found by the critique ("1.6%").
+- J7 "Take action": contact on every tile (P0, data Dimitar #32), action helpers (P1), legal-aid finder (P2).
+- Real map: MapLibre + OpenFreeMap Positron + Census TIGER city outline (P1).
+- I8 findings (Dimitar) feed the "why no rule" tiles.
+- Design work iterative, not one deep pass — *why:* the owner's eye is the test; deep-work took ~45 min for v2.
 
 ## Surprises / gotchas
 
-- East LA: postal "Los Angeles" but unincorporated — *avoid:* never trust postal city; use Census place.
-- Brookline: town with no Census place — *avoid:* county subdivision as municipality in NJ/MA.
-- Census one-line returns no match for place-only input ("Boston, MA", ZIPs) — *avoid:* resolve via jurisdiction list/aliases.
-- Vercel deploy uploads only `web/` — *avoid:* sync contracts into web/ with a drift test.
-- `!` commands are non-interactive; first test mail went to spam.
+- Agents can stay "running" in the panel via leftover background children — *avoid:* TaskStop when the report is in.
+- Dimitar pushes to main often — *avoid:* pull/rebase before pushing; docs changes via small PRs.
+- See SESSIONS for earlier gotchas (East LA, Brookline, Vercel uploads only web/, spam).
 
 ## Long-form
 
-See `.claude/SESSIONS.md`, `docs/decisions/`, `docs/PRD.md`, `docs/ARCHITECTURE.md`.
+See `.claude/SESSIONS.md`, `docs/PRD.md`, `docs/ARCHITECTURE.md`, `docs/decisions/`.

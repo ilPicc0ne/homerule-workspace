@@ -1,7 +1,7 @@
 # HomeRule pipeline. Targets fail loudly until implemented; see docs/ARCHITECTURE.md.
 AS_OF ?= 2026-10-01
 
-.PHONY: all extract resolve build eval ingest rehearse rerun web
+.PHONY: all extract resolve build eval freeze ingest rehearse rerun web
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
@@ -21,6 +21,9 @@ build:                                   ## C+D · engine -> outputs/lookups.jso
 
 eval:                                    ## assertion suite, T1-T6, trap addresses, quote check, disclaimer crawl
 	python3 -m tests.eval_suite --supplemental
+
+freeze:                                  ## before the hour-16 drop: lock the prompt digest (extract/PROMPTS.lock); make eval checks it
+	python3 -m extract.prompts --freeze
 
 ingest:                                  ## hour-16: make ingest DOC=<path> JUR="Cambridge, MA" [ID=X002]
 	python3 -m extract.ingest $(DOC) --jurisdiction "$(JUR)" --id $(or $(ID),X002)
