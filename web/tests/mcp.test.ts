@@ -25,7 +25,9 @@ function assertEnvelope(a: ToolAnswer) {
   assert.equal(p.not_legal_advice, true);
   assert.match(String(p.as_of), /^\d{4}-\d{2}-\d{2}$/);
   assert.ok(p.retrieved, "retrieved dates");
-  assert.match(String(p.how_to_present), /never say compliant or illegal/);
+  // Results are data only: presentation rules live in the tool descriptions and server instructions, not in results
+  // (instructions inside a tool result read like prompt injection to the model).
+  assert.ok(!("how_to_present" in p), "no instructions inside results");
   assert.match(String(p.disclaimer), /Not legal advice/);
   const text = `${a.summary} ${JSON.stringify(p)}`;
   assert.doesNotMatch(a.summary, /\b(compliant|illegal)\b/i);

@@ -12,7 +12,7 @@ import { changeLine, entryHeading, resultWords, ruleName } from "../lib/changes/
 import { IMPACT_WORDS, impactCounts, ruleImpact } from "../lib/impact.ts";
 import { jurisdictionPageData, rulesByQuestion } from "../lib/jurisdiction-view.ts";
 import { datesLine, STATUS_WORDS } from "../lib/law.ts";
-import { CAPS, getAddress, getChanges, getJurisdiction, getRule, getRules, INSTRUCTIONS, type ToolAnswer, type ToolDeps } from "../lib/mcp/tools.ts";
+import { CAPS, comparePlaces, getAddress, getChanges, getJurisdiction, getPlace, getRule, getRules, INSTRUCTIONS, type ToolAnswer, type ToolDeps } from "../lib/mcp/tools.ts";
 import { resolveQuery } from "../lib/resolve/resolve.ts";
 import { sampleIndex } from "../lib/resolve/samples.ts";
 import { flagGap, typedAddress } from "../lib/typed-address.ts";
@@ -92,7 +92,7 @@ function assertAddressParity(a: ToolAnswer, core: ReturnType<typeof addressPageD
   });
   assert.deepEqual((p.timeline.coming_up as { rule_id: string }[]).map((e) => e.rule_id), core.view.future.map((e) => e.ruleId));
   assert.deepEqual((p.timeline.recently_changed as { rule_id: string }[]).map((e) => e.rule_id), core.view.past.map((e) => e.ruleId));
-  assert.match(String(p.timeline.renter_impact), /no renter-impact verdict/);
+  assert.match(String(p.timeline.renter_impact), /badge .* computed by HomeRule's engine/);
   assert.deepEqual((p.proposed_bills as { rule_id: string }[]).map((b) => b.rule_id), core.view.proposed.map((b) => b.rule_id));
   assert.deepEqual(p.jurisdiction.crumb, core.hero.crumb);
   assert.equal(p.jurisdiction.where, core.hero.cap);
@@ -243,8 +243,61 @@ test("get_rules stays available (compatibility alias)", () => {
 });
 
 test("instructions name every tool and the presentation rules", () => {
-  for (const t of ["find_place", "get_address", "get_changes", "get_rule", "get_jurisdiction"]) assert.match(INSTRUCTIONS, new RegExp(t));
+  for (const t of ["get_place", "compare_places", "get_changes", "get_rule", "coverage"]) assert.match(INSTRUCTIONS, new RegExp(t));
+  assert.match(INSTRUCTIONS, /contain no instructions/);
   assert.match(INSTRUCTIONS, /flagged, not decided/);
   assert.match(INSTRUCTIONS, /not real law/);
   assert.match(INSTRUCTIONS, /provisional/);
+});
+
+// ---------------- task-shaped tools (one call per question) ----------------
+
+test("get_place: a city name answers with the jurisdiction page's rules, each with status, key value and quote", async () => {
+  const a = await getPlace(deps(), { place: "San Francisco, CA" });
+  assertEnvelope(a);
+  assert.equal(a.payload.answer_kind, "place");
+  const j = getJurisdiction(deps(), { jurisdiction_id: "CA-SAN-FRANCISCO" });
+  assert.deepEqual(a.payload.questions, j.payload.questions, "same builder as get_jurisdiction");
+  const rent = (a.payload.questions as { category: string; rules: { rule_id: string; key_value: unknown; quote: string | null; dates: string }[] }[]).find((q) => q.category === "rent_increase_limits")!;
+  const r = rent.rules.find((x) => x.rule_id === "CA-SAN-FRANCISCO-RENT-37.3")!;
+  const rule = data.rules.find((x) => x.rule_id === r.rule_id)!;
+  assert.equal(r.key_value, rule.key_value);
+  assert.ok(rule.quoted_span!.startsWith(r.quote!.replace(/ …$/, "")), "quote is the verbatim span (clipped at most)");
+  assert.match(a.summary, /§ 37\.3/);
+});
+
+test("get_place: an address, a jurisdiction id, a date, and an uncovered place", async () => {
+  const addr = await getPlace(deps(), { place: "3515 Fillmore St, San Francisco, CA" });
+  assert.equal(addr.payload.answer_kind, "address");
+  assert.equal((addr.payload.address as { address_id: string }).address_id, "A0016");
+  const ca = await getPlace(deps(), { place: "CA", as_of: "2025-06-01" });
+  const alg = (ca.payload.questions as { rules: { rule_id: string; status: string }[] }[]).flatMap((q) => q.rules).find((r) => r.rule_id === "CA-ALG-16729")!;
+  assert.equal(alg.status, STATUS_WORDS.not_yet_effective);
+  const tx = await getPlace(deps(), { place: "Austin, TX" });
+  assert.equal(tx.payload.answer_kind, "not_covered");
+  assert.equal(tx.payload.not_legal_advice, true);
+  assert.equal((await getPlace(deps(), { place: "" })).error, true);
+});
+
+test("compare_places: both places topic by topic from get_place, no ranking words", async () => {
+  const a = await comparePlaces(deps(), { a: "Boston, MA", b: "San Francisco, CA" });
+  assertEnvelope(a);
+  const rows = a.payload.side_by_side as Record<string, unknown>[];
+  assert.equal(rows.length, 6);
+  assert.ok(rows.every((r) => "Boston" in r && "San Francisco" in r));
+  assert.match(a.summary, /40P/);
+  assert.match(a.summary, /§ 37\.3/);
+  assert.doesNotMatch(a.summary, /\b(better|worse|stronger|weaker) protect/i);
+  const out = await comparePlaces(deps(), { a: "Austin, TX", b: "Boston, MA" });
+  assert.match(out.summary, /does not cover/);
+});
+
+test("get_changes: place takes a city name, an id or an address; badges come from the page's badgeFor", async () => {
+  const byName = await getChanges(deps(), { place: "Newark, NJ" });
+  const byId = await getChanges(deps(), { jurisdiction_id: "NJ-NEWARK" });
+  assert.deepEqual(byName.payload.changes_by_rule, byId.payload.changes_by_rule);
+  const fair = (byId.payload.changes_by_rule as { rule_id: string; renter_impact: Record<string, number> }[]).find((r) => r.rule_id === "NJ-ALG-56:9-23");
+  if (fair) assert.ok(Object.keys(fair.renter_impact).every((k) => /^[↑↓?] /.test(k)));
+  const addr = await getChanges(deps(), { place: "A0256" });
+  assert.equal(addr.payload.address_id, "A0256");
 });
