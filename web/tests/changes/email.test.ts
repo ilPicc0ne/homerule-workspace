@@ -33,12 +33,17 @@ test("J3: Hoboken FAIR Act email shows old -> new, quote, citation, date and sou
 
 test("unsubscribe link and List-Unsubscribe header", () => {
   const m = render(j3(), { token: "abc" });
-  assert.equal(m.unsubscribe_url, "https://yourhomerule.com/unsubscribe?a=A0256&t=abc");
-  assert.equal(m.headers["List-Unsubscribe"], "<https://yourhomerule.com/unsubscribe?a=A0256&t=abc>");
+  assert.equal(m.unsubscribe_url, "https://yourhomerule.com/api/unsubscribe?token=abc");
+  assert.equal(m.headers["List-Unsubscribe"], "<https://yourhomerule.com/api/unsubscribe?token=abc>");
+  assert.match(render(j3(), { token: "a+b/c=&d" }).unsubscribe_url, /token=a%2Bb%2Fc%3D%26d$/);   // tokens are URL-encoded
   assert.equal(m.headers["List-Unsubscribe-Post"], "List-Unsubscribe=One-Click");
   assert.ok(m.html.includes(esc(m.unsubscribe_url)));
   assert.ok(m.text.includes(m.unsubscribe_url));
-  assert.match(render(j3()).unsubscribe_url, /\{\{unsubscribe_token\}\}/);   // placeholder in the preview
+  assert.match(render(j3()).unsubscribe_url, /%7B%7Bunsubscribe_token%7D%7D/);   // placeholder in the preview
+  for (const part of [m.text, m.html]) {
+    assert.match(part, /Prototype built at a hackathon/);                       // prototype notice in every footer
+    assert.match(part, /PLACEHOLDER: HomeRule postal address/);
+  }
 });
 
 test("no verdicts or advice words in any email", () => {

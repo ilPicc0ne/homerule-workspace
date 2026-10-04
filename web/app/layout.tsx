@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Figtree } from "next/font/google";
+import PrototypeBanner from "@/components/prototype-banner";
 import SiteHeader from "@/components/site-header";
 import { getDataset } from "@/lib/data";
 import "./globals.css";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${figtree.variable} antialiased`}>
       <body>
+        <PrototypeBanner />
         <SiteHeader dates={dates} fallback={data?.meta.default_as_of ?? null} />
         {children}
         <footer className="wrap site-footer">

@@ -2,7 +2,7 @@
 AS_OF ?= 2026-10-01
 PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
-.PHONY: all extract resolve resolve-live build test eval freeze ingest rehearse demo-change rerun web
+.PHONY: notify all extract resolve resolve-live build test eval freeze ingest rehearse demo-change rerun web
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
@@ -57,3 +57,6 @@ rerun:                                   ## live re-extraction of one doc, fresh
 
 web:                                     ## local dev server
 	cd web && npm run dev
+
+notify:                                  ## change alerts: dry run lists who would get which email; SEND=1 sends (allowlisted only). Never automatic
+	cd web && node --env-file-if-exists=.env.local scripts/notify.ts --changes $(or $(CHANGES),../out/changes.full.json) $(if $(SOURCE),--source $(SOURCE)) $(if $(SEND),--send)

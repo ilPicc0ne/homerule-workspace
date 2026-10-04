@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useId, useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
 import AddressMap from "@/components/address-map";
+import AlertForm from "@/components/alerts/alert-form";
+import ExampleAlert from "@/components/alerts/example-alert";
 import type { MapProps } from "@/components/address-map-gl";
 import type { AddressView, Helper, RuleRow, Tile, TileStatus, TimelineEvent } from "@/lib/address-view";
 import { DATA_SOURCE } from "@/lib/config";
@@ -165,12 +167,9 @@ function SearchField({ current, index }: { current: string; index: PageProps["in
   );
 }
 
-function Alerts({ street, open, setOpen }: { street: string; open: boolean; setOpen: (o: boolean) => void }) {
-  const [sent, setSent] = useState(false);
-  const ref = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    if (open) ref.current?.focus();
-  }, [open]);
+const icon = (id: string) => <Ic id={id} />;
+
+function Alerts({ id, street, open, setOpen }: { id: string; street: string; open: boolean; setOpen: (o: boolean) => void }) {
   return (
     <div className="alwrap">
       <button type="button" className="bell" aria-expanded={open} aria-label={`Get alerts for ${street}`} onClick={() => setOpen(!open)}>
@@ -178,39 +177,7 @@ function Alerts({ street, open, setOpen }: { street: string; open: boolean; setO
         <span className="bell-l bell-s">Get alerts</span>
         <span className="bell-l bell-w">Alerts for {street}</span>
       </button>
-      {open && (
-        <form
-          className={`alert${sent ? " sent" : ""}`}
-          noValidate
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSent(true);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Escape") setOpen(false);
-          }}
-        >
-          <label className="fld-l" htmlFor="em">
-            <Ic id="i-bell" />
-            <span>Alerts for {street}</span>
-          </label>
-          <div className="al-row">
-            <div className="fld">
-              <Ic id="i-mail" />
-              <input ref={ref} id="em" type="email" inputMode="email" autoComplete="email" placeholder="you@example.com" />
-            </div>
-            <button type="submit" className="al-btn">
-              {sent ? "Coming soon" : "Email me"}
-            </button>
-          </div>
-          {sent && (
-            <p className="al-status" role="status">
-              <Ic id="i-clock" />
-              Coming soon — launches with double opt-in. Nothing was stored.
-            </p>
-          )}
-        </form>
-      )}
+      <AlertForm addressId={id} street={street} open={open} onClose={() => setOpen(false)} icon={icon} />
     </div>
   );
 }
@@ -480,7 +447,7 @@ function Ev({ e, cls, log }: { e: TimelineEvent; cls: string; log: PageProps["ch
   );
 }
 
-function Ahead({ v, onAlerts, log }: { v: AddressView; onAlerts: () => void; log: PageProps["changeLog"] }) {
+function Ahead({ id, v, onAlerts, log }: { id: string; v: AddressView; onAlerts: () => void; log: PageProps["changeLog"] }) {
   return (
     <>
       <h2 className="sec-h" id="h-ahead">
@@ -492,6 +459,9 @@ function Ahead({ v, onAlerts, log }: { v: AddressView; onAlerts: () => void; log
           <Ic id="i-bell" />
           Get alerts when the law changes here
         </button>
+      </p>
+      <p className="ahead-alert ex-alert">
+        <ExampleAlert addressId={id} icon={icon} />
       </p>
       {v.proposed.length > 0 && (
         <div className="prop">
@@ -598,7 +568,7 @@ export default function AddressPageView(p: PageProps) {
         <div className="bar-in wrap">
           {logo}
           <SearchField current={`${v.street}, ${v.postal}, ${hero.state}`} index={p.index} />
-          <Alerts street={v.street} open={alerts} setOpen={setAlerts} />
+          <Alerts id={p.id} street={v.street} open={alerts} setOpen={setAlerts} />
           <div className="bar-trust">
             <SourcePill />
             <span className="nla2">Not legal advice · Law as of {v.asOfText}</span>
@@ -739,7 +709,7 @@ export default function AddressPageView(p: PageProps) {
           </section>
 
           <section className="ahead" aria-labelledby="h-ahead">
-            <Ahead v={v} onAlerts={openAlerts} log={p.changeLog} />
+            <Ahead id={p.id} v={v} onAlerts={openAlerts} log={p.changeLog} />
           </section>
         </div>
       </main>
@@ -773,8 +743,23 @@ export default function AddressPageView(p: PageProps) {
   The v3 sticky bar for pages that aren't the address page itself (the change log): logo, address search,
   "Get alerts" for that address, trust line. Same parts as the address page's bar, so it looks and works the same.
 */
-export function StickyBar({ street, current, index, asOfText }: { street: string; current: string; index: PageProps["index"]; asOfText: string }) {
+export function StickyBar({
+  street,
+  current,
+  index,
+  asOfText,
+  addressId,
+}: {
+  street: string;
+  current: string;
+  index: PageProps["index"];
+  asOfText: string;
+  /** The address the alert form signs up for; defaults to the last path segment (/changes/<id>). */
+  addressId?: string;
+}) {
   const [alerts, setAlerts] = useState(false);
+  const path = usePathname();
+  const id = addressId ?? decodeURIComponent(path?.split("/").filter(Boolean).pop() ?? "");
   const logo = (
     <Link className="logo" href="/">
       <span className="logo-mark">
@@ -797,7 +782,7 @@ export function StickyBar({ street, current, index, asOfText }: { street: string
         <div className="bar-in wrap">
           {logo}
           <SearchField current={current} index={index} />
-          <Alerts street={street} open={alerts} setOpen={setAlerts} />
+          <Alerts id={id} street={street} open={alerts} setOpen={setAlerts} />
           <div className="bar-trust">
             <SourcePill />
             <span className="nla2">Not legal advice · Law as of {asOfText}</span>
