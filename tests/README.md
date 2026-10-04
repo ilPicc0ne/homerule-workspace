@@ -13,3 +13,5 @@
 | Questions | 24 tuning (`fixtures/address_questions.yaml`) and 16 held-out (`fixtures/address_questions_holdout.yaml`) address questions, with conditional amounts |
 
 Fixtures are expected answers and are never shown to a prompt. Address results use the engine's inputs, so `make eval` checks what `make build` scores: rules from `out/rules.compiled.json` (`engine/rules.py`), facts from I3 (`engine/facts.py`), the evaluator in `engine/evaluate.py`. `--extracted` reads rules from `out/extracted/` instead; `--lab-facts` uses the old I3 stand-in, for comparison. Engine unit tests and guards: `make test` (`tests/test_engine.py`).
+
+`python3 -m tests.hour16_question <DOC> [address_id]` (also in `make rehearse`): hour 16 asked as a question. Every sample address without vs with the new document the day after it takes effect, then one address answered as the address page answers it (each change, the engine's explanation, the renter verdict and its why) and by the HomeRule chatbot.

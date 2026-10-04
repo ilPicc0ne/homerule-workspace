@@ -56,9 +56,10 @@ ingest:                                  ## hour-16: make ingest DOC=<path> JUR=
 	$(PY) -m extract.ingest $(DOC) --jurisdiction "$(JUR)" --id $(or $(ID),X002)
 	$(PY) -m tests.eval_suite --supplemental
 
-rehearse:                                ## hour-16 dry run on the fictional tests/fixtures/synthetic/X001.txt; removed afterwards
+rehearse:                                ## hour-16 dry run on the fictional tests/fixtures/synthetic/X001.txt (incl. the question an address would ask); removed afterwards
 	$(PY) -m extract.ingest tests/fixtures/synthetic/X001.txt --jurisdiction "Cambridge, MA" --id X001
 	$(PY) -m tests.eval_suite --supplemental
+	$(PY) -m tests.hour16_question X001
 	rm -f out/index/X001.json out/extracted*/X001.json
 	$(PY) -m extract.compile
 	$(PY) -m tests.eval_suite --supplemental > /dev/null
