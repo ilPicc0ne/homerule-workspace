@@ -15,7 +15,7 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
   --green:#1C8150; --green-ink:#11643D; --green-tint:#E2F2E8; --green-soft:#F5FAF7; --green-line:#C9E5D3;
   --amber:#B7793A; --amber-ink:#7A4A1C; --amber-tint:#F6EADB; --amber-soft:#FBF6EF; --amber-line:#E6CFB3;
   --slate:#868B8F; --slate-ink:#4D5256; --slate-tint:#ECEDEE; --slate-soft:#F7F7F8; --slate-line:#DCDEE0;
-  --red-ink:#9B2C2C; --red-tint:#FBE9E7; --red-line:#F0C9C4; /* only the "narrows renter protection" change badge */
+  --red-ink:#9B2C2C; --red-tint:#FBE9E7; --red-line:#F0C9C4; /* only the "narrows renter protection" verdict (badge, marker, card edge) */
   --r-lg:20px; --r-md:12px; --r-sm:8px;
   --sh-1:0 1px 2px rgb(21 34 46/.05);
   --sh-2:0 1px 2px rgb(21 34 46/.04),0 18px 40px -20px rgb(21 34 46/.30);
@@ -465,3 +465,40 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .ev-lk .icon{width:16px;height:16px}
 .v3 .ahead-log{margin-top:-6px;padding-left:38px}
 .v3 .ahead-log .src .icon{width:18px;height:18px}
+/* ---- Verdict in the history column (Coming up / Recently changed), the "Next change" line and the change log.
+   The marker replaces the timeline dot: green ↑ adds, red ↓ narrows, grey filled circle depends / conflict; no verdict keeps
+   the plain dot. Colour is never alone: the card's first line says it in words, with the arrow. */
+.v3 .vm{display:inline-grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;color:#fff;font-size:.9375rem;font-weight:800;line-height:1}
+.v3 .vm.adds{background:var(--green)}
+.v3 .vm.narrows{background:var(--red-ink)}
+.v3 .vm.unclear{background:var(--slate)}
+.v3 .vm.sm{width:16px;height:16px;font-size:.6875rem;vertical-align:-3px}
+.v3 .ev.has-v::before{display:none}
+.v3 .ev-m{position:absolute;left:0;top:10px;box-shadow:0 0 0 3px var(--wash)}
+.v3 .ev.has-v .ev-card{margin-left:-4px;padding:10px 12px 6px 12px;border-left:4px solid var(--slate);border-radius:4px 12px 12px 4px;background:var(--surface);box-shadow:var(--sh-1)}
+.v3 .ev.v-adds .ev-card{border-left-color:var(--green)}
+.v3 .ev.v-narrows .ev-card{border-left-color:var(--red-ink)}
+.v3 .ev.has-v .ev-card:not(:has(.ev-lk)){padding-bottom:12px}
+.v3 .ev-top{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.v3 .ev-top + .ev-d{margin-top:6px}
+.v3 .vl{display:inline-flex;align-items:baseline;gap:5px;font-weight:800;font-size:.9375rem;line-height:1.3}
+.v3 .vl-a{font-size:1.0625rem}
+.v3 .vl.adds{color:var(--green-ink)}
+.v3 .vl.narrows{color:var(--red-ink)}
+.v3 .vl.unclear{color:var(--slate-ink)}
+.v3 .tchip{display:inline-flex;align-items:center;gap:5px;padding:2px 9px 2px 7px;border-radius:999px;background:var(--wash);border:1px solid var(--line);color:var(--ink-2);font-size:.8125rem;font-weight:700;line-height:1.35;white-space:nowrap}
+.v3 .tchip .icon{width:15px;height:15px}
+.v3 .ev-why{margin-top:4px;font-size:.875rem;color:var(--ink-2)}
+.v3 .vlegend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin-top:10px;font-size:.8125rem;font-weight:600;color:var(--ink-2)}
+.v3 .vlegend .vsep{display:none}
+.v3 .vlegend > span{white-space:nowrap}
+.v3 .nxt.has-v{align-items:flex-start}
+.v3 .nxt.has-v::before{display:none}
+.v3 .nxt-m{width:20px;height:20px;font-size:.8125rem;margin-top:1px}
+.v3 .nxt .vl{display:inline;font-size:inherit;white-space:nowrap}
+.v3 .nxt .vl-a{margin-right:4px}
+/* Change log (/changes/[id]), lighter: a thin verdict edge on the change, label + topic chip as its first line. */
+.v3 .cl-v{padding-left:12px;border-left:3px solid var(--slate)}
+.v3 .cl-v.v-adds{border-left-color:var(--green)}
+.v3 .cl-v.v-narrows{border-left-color:var(--red-ink)}
+.v3 .cl-v .ev-top + .r-t,.v3 li .ev-top + .r-t{margin-top:6px}

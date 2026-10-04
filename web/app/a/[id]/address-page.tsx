@@ -11,7 +11,7 @@ import type { AddressView, Helper, RuleRow, Tile, TileStatus, TimelineEvent } fr
 import { DATA_SOURCE } from "@/lib/config";
 import { GROUPS, TOPICS } from "@/lib/plain";
 import { Ic, Sprite } from "./sprite";
-import { VerdictBadge } from "./verdict-badge";
+import { TopicChip, VerdictLabel, VerdictLegend, VerdictMark } from "./verdict-badge";
 
 /*
   The one-view address page, built to mockup v3 (lab/ui-proposal/v3): sticky address bar with
@@ -428,22 +428,26 @@ const topicIcon = (id: string) => TOPICS.find((t) => t.id === id)?.icon ?? "i-in
 
 function Ev({ e, cls, log }: { e: TimelineEvent; cls: string; log: PageProps["changeLog"] }) {
   const linked = log?.rules.includes(e.ruleId);
+  const b = e.badge ?? null;
   return (
-    <li className={`ev ${cls}`}>
-      <p className="ev-d">{e.dateText}</p>
-      <p className="ev-tp">
-        <Ic id={topicIcon(e.topic)} />
-        {topicTitle(e.topic)}
-      </p>
-      <p className="ev-t">{e.title}</p>
-      {e.body && <p className="ev-b">{e.body}</p>}
-      {e.badge && <VerdictBadge b={e.badge} lawHref={linked ? `${log!.href}#c-${encodeURIComponent(e.ruleId)}` : null} />}
-      {linked && (
-        <Link className="ev-lk" href={`${log!.href}#c-${encodeURIComponent(e.ruleId)}`}>
-          What changed, old → new
-          <Ic id="i-arrow" />
-        </Link>
-      )}
+    <li className={`ev ${cls} ${b ? `has-v v-${b.kind}` : "v-none"}`}>
+      {b && <VerdictMark b={b} className="ev-m" />}
+      <div className="ev-card">
+        <p className="ev-top">
+          {b && <VerdictLabel b={b} />}
+          <TopicChip title={topicTitle(e.topic)} icon={topicIcon(e.topic)} />
+        </p>
+        <p className="ev-d">{e.dateText}</p>
+        <p className="ev-t">{e.title}</p>
+        {e.body && <p className="ev-b">{e.body}</p>}
+        {b?.why && <p className="ev-why">{b.why}</p>}
+        {linked && (
+          <Link className="ev-lk" href={`${log!.href}#c-${encodeURIComponent(e.ruleId)}`}>
+            What changed, old → new
+            <Ic id="i-arrow" />
+          </Link>
+        )}
+      </div>
     </li>
   );
 }
@@ -455,6 +459,7 @@ function Ahead({ id, v, onAlerts, log }: { id: string; v: AddressView; onAlerts:
         Coming up
       </h2>
       <p className="sec-sub">Dated changes for this address, and what changed in the last year.</p>
+      {[...v.future, ...v.past].some((e) => e.badge) && <VerdictLegend />}
       <p className="ahead-alert">
         <button type="button" className="linkbtn" onClick={onAlerts}>
           <Ic id="i-bell" />
@@ -585,11 +590,19 @@ export default function AddressPageView(p: PageProps) {
             <h1 className="addr" id="h-addr">
               {v.street}
             </h1>
-            <p className="nxt">
+            <p className={`nxt ${v.next?.badge ? `has-v v-${v.next.badge.kind}` : ""}`}>
+              {v.next?.badge && <VerdictMark b={v.next.badge} className="nxt-m" />}
               <span>
                 {v.next ? (
                   <>
-                    <b>Next change: {v.next.dateText}</b> — {topicTitle(v.next.topic).toLowerCase()}: {v.next.title.replace(/^Takes effect: /, "")}
+                    <b>Next change: {v.next.dateText}</b>
+                    {v.next.badge && (
+                      <>
+                        {" "}
+                        <VerdictLabel b={v.next.badge} />
+                      </>
+                    )}{" "}
+                    — {topicTitle(v.next.topic).toLowerCase()}: {v.next.title.replace(/^Takes effect: /, "")}
                   </>
                 ) : (
                   <>

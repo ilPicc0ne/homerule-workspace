@@ -23,6 +23,8 @@ export type Badge = {
   /** Always shown next to the text: never colour alone. */
   arrow: "↑" | "↓" | "?";
   text: string;
+  /** The same verdict, short, as the first line of a history card: "Adds renter protection". */
+  short: string;
   /** aria-label and tooltip: the text plus "Your unit may differ." */
   label: string;
   /** The data's one-line summary, only when it passes `whyOk`; else null (badge alone). */
@@ -43,6 +45,14 @@ export const BADGE_TEXT: Record<BadgeKind | "unclear_conflict", string> = {
   narrows: "This change narrows renter protection",
   unclear: "Depends on a fact we don't have",
   unclear_conflict: "May conflict with another rule, not decided",
+};
+
+/** Short form for history cards and the "Next change" line; same meaning as BADGE_TEXT. */
+export const BADGE_SHORT: Record<BadgeKind | "unclear_conflict", string> = {
+  adds: "Adds renter protection",
+  narrows: "Narrows renter protection",
+  unclear: "Depends on a fact we don't have",
+  unclear_conflict: "May conflict with another rule",
 };
 
 const ARROW: Record<BadgeKind, Badge["arrow"]> = { adds: "↑", narrows: "↓", unclear: "?" };
@@ -79,7 +89,8 @@ export function badgeFor(c: Change): Badge | null {
   if (!kind) return null;
   const conflict = kind === "unclear" && (c.conflict_flag_changed || !!c.after?.conflict_flag || !!c.before?.conflict_flag);
   const text = conflict ? BADGE_TEXT.unclear_conflict : BADGE_TEXT[kind];
-  return { kind, arrow: ARROW[kind], text, label: `${text}. ${UNIT_MAY_DIFFER}`, why: whyOk(ri.why) ? ri.why.trim() : null };
+  const short = conflict ? BADGE_SHORT.unclear_conflict : BADGE_SHORT[kind];
+  return { kind, arrow: ARROW[kind], text, short, label: `${text}. ${UNIT_MAY_DIFFER}`, why: whyOk(ri.why) ? ri.why.trim() : null };
 }
 
 /**

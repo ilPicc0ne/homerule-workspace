@@ -13,7 +13,8 @@ import { fontVars } from "../../a/fonts";
 import { searchIndex } from "../../a/view-props";
 import { StickyBar } from "../../a/[id]/address-page";
 import { Ic } from "../../a/[id]/sprite";
-import { VerdictBadge } from "../../a/[id]/verdict-badge";
+import { TopicChip, VerdictLabel } from "../../a/[id]/verdict-badge";
+import { TOPICS } from "@/lib/plain";
 import "../../a/[id]/v3.css";
 import s from "./changes.module.css";
 
@@ -60,11 +61,16 @@ function ChangeItem({ c, anchor }: { c: Change; anchor: boolean }) {
   const url = c.source_url && /^https?:\/\//.test(c.source_url) ? c.source_url : null;
   const why = c.after?.explanation ?? c.before?.explanation;
   const badge = PAGE_BADGES ? badgeFor(c) : null;
+  const topic = TOPICS.find((t) => t.cat === c.category);
   const flag = (c.conflict_flag_changed || c.after?.conflict_flag) && changeLine(c).split("; ").find((p) => p.includes("conflict"));
   return (
-    <li className={s.change} id={anchor ? `c-${c.team_rule_id}` : undefined}>
+    <li className={`${s.change} ${badge ? `cl-v v-${badge.kind}` : ""}`} id={anchor ? `c-${c.team_rule_id}` : undefined}>
+      <p className="ev-top">
+        {badge && <VerdictLabel b={badge} />}
+        {topic && <TopicChip title={topic.title} icon={topic.icon} />}
+      </p>
       <p className="r-t">{ruleName(c)}</p>
-      {badge && <VerdictBadge b={badge} lawHref={url} />}
+      {badge?.why && <p className="ev-why">{badge.why}</p>}
       <p className={s.flip}>
         <span className="sr">Before: </span>
         <Result side={c.before} old />
