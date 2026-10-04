@@ -290,9 +290,9 @@ The interfaces between us (file shapes, the jurisdiction list) are in [ARCHITECT
 | `rules.json`, `lookups.json`, `changes.json` committed in `outputs/` from a build on `main` | S | Schema-valid, all 500 addresses, T1–T6 present |
 | Public GitHub repo with code, README (how to run), output files | S | A fresh clone runs `make all` |
 | Live demo link (yourhomerule.com) | S | Works on a phone |
-| Team video | S | Both of us, 30–60 s |
-| Demo video, with the scores on screen | S | Follows the demo table |
-| Technical video: `score.py` report on the dev set (or the `make eval` report if no score.py ships), T1–T6 results, the hour-16 run, a live `make rerun DOC=` | D | All four visible on screen |
+| Team video (Team Intro) | S | Both of us, ≤ 60 s ([docs/VIDEO.md](VIDEO.md)) |
+| Demo video, with the scores on screen | S | ≤ 60 s, follows `notes/demo/video/STORY.md` cut to 60 s ([docs/VIDEO.md](VIDEO.md)) |
+| Technical video (Teach): `score.py` report on the dev set (or the `make eval` report if no score.py ships), T1–T6 results, the hour-16 run, a live `make rerun DOC=` | D | ≤ 60 s, all four visible on screen ([docs/VIDEO.md](VIDEO.md)) |
 | One-page method note | S | Sources, pipeline, what code decides vs the model, limits |
 
 ## Never
