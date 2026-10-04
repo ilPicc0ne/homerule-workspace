@@ -96,6 +96,9 @@ export function addDays(iso: string, n: number): string {
   return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10);
 }
 
+/** Whole days from a to b (both YYYY-MM-DD). */
+export const daysBetween = (a: string, b: string) => Math.round((Date.parse(`${b}T00:00:00Z`) - Date.parse(`${a}T00:00:00Z`)) / 86400000);
+
 export const isIsoDate = (s: unknown): s is string => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s);
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
@@ -222,13 +225,14 @@ export type Told = { date: string | null; status: string; trigger: Trigger; even
  * Corrections for one address from what this email was told (`alerts:told:<hash>` fields "<addr>|<rule>|<kind>").
  * A moved date, a removed end date, a rule that became a pending bill or left the data → one correction, due now.
  */
-export function corrections(d: LifeData, addressId: string, told: Record<string, string>): LifeEvent[] {
+export function corrections(d: LifeData, addressId: string, told: Record<string, string>, today: string): LifeEvent[] {
   const out: LifeEvent[] = [];
   for (const [field, raw] of Object.entries(told)) {
     const [addr, ruleId, kind] = field.split("|");
     if (addr !== addressId || (kind !== "start" && kind !== "end")) continue;
     const t = JSON.parse(raw) as Told;
     const cur = ruleNow(d, ruleId, addressId);
+    if (!cur && kind === "end" && t.date && t.date <= today) continue; // it ended as we said; the data may drop it
     const withdrawn = !cur || cur.status === "failed";
     const pending = !!cur && cur.status === "pending";
     const now = cur ? (kind === "start" ? cur.start : cur.end) : null;

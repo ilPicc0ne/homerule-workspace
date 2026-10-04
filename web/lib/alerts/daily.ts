@@ -10,7 +10,7 @@
 // accepts the digest, so a failed send is retried on the next run (catch-up window, lifecycle.ts). A dry run sends
 // nothing and writes nothing.
 import { eventText, renderDigest, type DigestGroup } from "./digest.ts";
-import { calendar, corrections, isDue, localDate, type LifeData, type LifeEvent, type Told, type Trigger } from "./lifecycle.ts";
+import { calendar, corrections, isDue, localDate, tzOf as zoneOf, type LifeData, type LifeEvent, type Told, type Trigger } from "./lifecycle.ts";
 import type { Mailer } from "./mail.ts";
 import { EVENT_SENT_TTL, K, type Store, type Subscriber } from "./store.ts";
 import { emailHash, maskEmail } from "./unsub.ts";
@@ -26,9 +26,9 @@ export type RunDeps = {
   dryRun: boolean;
 };
 
-export type RunOutcome = "sent" | "would_send" | "already" | "queued" | "skipped_demo" | "skipped_closed_test" | "failed";
+export type RunOutcome = "sent" | "would_send" | "already" | "queued" | "skipped_demo" | "skipped_closed_test" | "failed" | "deferred";
 export type RunLine = { event_id: string; trigger: Trigger; rule_id: string; address_id: string; to: string; outcome: RunOutcome; detail?: string };
-export type DigestLine = { to: string; subject: string; events: number; addresses: number; outcome: "sent" | "would_send" | "failed"; detail?: string; lines: string[] };
+export type DigestLine = { to: string; subject: string; events: number; addresses: number; outcome: "sent" | "would_send" | "failed" | "deferred"; detail?: string; lines: string[] };
 
 export type RunReport = {
   dry_run: boolean;
@@ -56,6 +56,13 @@ export async function unapproveRule(store: Store, ruleId: string): Promise<boole
 /** Which line a digest shows when one rule has several events at one address the same day (all are marked sent). */
 const ORDER: Trigger[] = ["correction", "in_force", "ended", "upcoming_30d", "ending_30d", "discovered"];
 const TZS = ["America/Los_Angeles", "America/New_York"];
+const DIGEST_TTL = 60 * 60 * 24 * 7;
+
+/** The zone of an address: from the jurisdiction of its first listed rule (state code), New York when none. */
+function tzOf(addressId: string, d: LifeData): string {
+  const r = (d.listing(addressId) ?? []).map((x) => d.rules.get(x.rule_id)).find(Boolean);
+  return r ? zoneOf(r.jurisdiction_id) : "America/New_York";
+}
 
 const confirmedBy = (confirmedAt: string, at: string) => {
   const c = Date.parse(confirmedAt);
@@ -93,7 +100,8 @@ export async function runDaily(d: LifeData, deps: RunDeps): Promise<RunReport> {
 
     for (const sub of subs) {
       const due: LifeEvent[] = [];
-      for (const ev of [...corrections(d, sub.address_id, told), ...calendar(d, sub.address_id)]) {
+      const today = todayFor(tzOf(sub.address_id, d));
+      for (const ev of [...corrections(d, sub.address_id, told, today), ...calendar(d, sub.address_id)]) {
         if (!isDue(ev, todayFor(ev.tz))) continue;
         if (ev.trigger === "discovered" && told[`${sub.address_id}|${ev.rule_id}|start`]) continue; // already told about it
         if (ev.demo ? !sub.demo : deps.closed && !sub.allowed) {
@@ -116,9 +124,11 @@ export async function runDaily(d: LifeData, deps: RunDeps): Promise<RunReport> {
       if (!due.length) continue;
       const byRule = new Map<string, LifeEvent[]>();
       for (const ev of due) byRule.set(ev.rule_id, [...(byRule.get(ev.rule_id) ?? []), ev]);
-      const shown = [...byRule.values()]
-        .map((evs) => evs.sort((a, b) => ORDER.indexOf(a.trigger) - ORDER.indexOf(b.trigger))[0])
-        .sort((a, b) => ORDER.indexOf(a.trigger) - ORDER.indexOf(b.trigger) || a.rule_id.localeCompare(b.rule_id));
+      // a correction always shows; other events of one rule on one day show as one line (the most urgent)
+      const shown = [
+        ...due.filter((e) => e.trigger === "correction"),
+        ...[...byRule.values()].map((evs) => evs.filter((e) => e.trigger !== "correction").sort((a, b) => ORDER.indexOf(a.trigger) - ORDER.indexOf(b.trigger))[0]).filter(Boolean),
+      ].sort((a, b) => ORDER.indexOf(a.trigger) - ORDER.indexOf(b.trigger) || a.rule_id.localeCompare(b.rule_id));
       groups.push({
         address_id: sub.address_id,
         label: sub.label,
@@ -137,6 +147,13 @@ export async function runDaily(d: LifeData, deps: RunDeps): Promise<RunReport> {
     if (deps.dryRun) {
       for (const ev of all) line(ev, "would_send");
       digest("would_send");
+      continue;
+    }
+    // one digest per email per local day (the first address's zone): a second run that day leaves the rest for tomorrow
+    const day = todayFor(all[0].tz);
+    if (await deps.store.get(K.digest(hash, day))) {
+      for (const ev of all) line(ev, "deferred", "a digest already went out today");
+      digest("deferred");
       continue;
     }
     const r = await deps.mailer!.send(msg);
@@ -161,6 +178,7 @@ export async function runDaily(d: LifeData, deps: RunDeps): Promise<RunReport> {
       }
       line(ev, "sent", r.id);
     }
+    await deps.store.set(K.digest(hash, day), r.id, DIGEST_TTL);
     digest("sent", r.id);
   }
 

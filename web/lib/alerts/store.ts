@@ -13,6 +13,7 @@
 //   alerts:approved:<rule_id>                  JSON {at, by}: the rule's lifecycle alerts may go out (set once, by CLI)
 //   alerts:told:<hash>                         hash "<address_id>|<rule_id>|start|end" -> JSON of what we told this
 //                                              email (date, status, event), the memory corrections compare against
+//   alerts:digest:<hash>:<local_date>          the Resend id of that day's digest, 7 days (one digest per email per day)
 // Nothing else is stored. Who may receive mail is data here, set by `npm run seed-subscriber`, never an env var.
 
 export type Pending = { email: string; address_id: string; label: string; created_at: string };
@@ -65,6 +66,8 @@ export const K = {
   sentEvent: (eventId: string, hash: string) => `alerts:sent:${eventId}:${hash}`,
   approved: (ruleId: string) => `alerts:approved:${ruleId}`,
   told: (hash: string) => `alerts:told:${hash}`,
+  /** One digest per email per local day: set after Resend accepted it. */
+  digest: (hash: string, day: string) => `alerts:digest:${hash}:${day}`,
 };
 
 /** Lifecycle events can be a month apart (30 days before, on the day) and years after the first one: keep 2 years. */

@@ -185,7 +185,7 @@ test("C ends: 30 days before and on the day; minus badge from renter_impact, no 
 test("today is the jurisdiction's local date: 05:00 UTC on July 1 is July 1 in New York, still June 30 in Los Angeles", async () => {
   assert.equal(localDate(at("2027-07-01", "05:00:00Z"), "America/New_York"), "2027-07-01");
   assert.equal(localDate(at("2027-07-01", "05:00:00Z"), "America/Los_Angeles"), "2027-06-30");
-  const w = world([sub("r@x.test", NJ), sub("r@x.test", CA)]);
+  const w = world([sub("ny@x.test", NJ), sub("la@x.test", CA)]);
   for (const r of ["NJ-NEW", "CA-JUL"]) await approveRule(w.store, r, at("2026-10-02"));
   const early = await w.run("2027-07-01", { now: at("2027-07-01", "05:00:00Z") });
   assert.deepEqual(early.lines.filter((l) => l.outcome === "sent").map((l) => `${l.trigger} ${l.rule_id}`), ["in_force NJ-NEW"]);
@@ -270,26 +270,41 @@ test("discovered: a newly found enacted law goes out once after approval; pendin
   assert.equal((await w.run("2026-10-06")).lines.filter((l) => l.outcome === "sent").length, 0);
 });
 
-test("correction: a sent date that moves in the data gets one correction in the next digest, then the new date's alerts", async () => {
+test("correction: a sent date that moves in the data gets one correction in the next digest, shown next to the new date's alert", async () => {
   const w = world([sub("r@x.test", NJ)]);
   await approveRule(w.store, "NJ-NEW", at("2026-10-02"));
   await w.run("2027-06-01");
   assert.equal(w.mailer.sent.length, 1);
-  w.setData(data(RULES.map((r) => (r.rule_id === "NJ-NEW" ? { ...r, effective_date: "2027-07-15" } : r))));
+  // the law now starts on July 2: the correction and the new 30-day reminder fall on the same run, both show
+  w.setData(data(RULES.map((r) => (r.rule_id === "NJ-NEW" ? { ...r, effective_date: "2027-07-02" } : r))));
   const r = await w.run("2027-06-02");
-  assert.deepEqual(r.lines.filter((l) => l.outcome === "sent").map((l) => l.trigger), ["correction"]);
+  assert.deepEqual(r.lines.filter((l) => l.outcome === "sent").map((l) => l.trigger).sort(), ["correction", "upcoming_30d"]);
   const m = w.mailer.sent[1];
   assert.equal(m.subject, "Correction and rule updates for 1 Test St");
-  assert.match(m.text, /Correction · Software that sets rents — We wrote that "Title of NJ-NEW" takes effect on July 1, 2027\. The date in our data is now July 15, 2027\./);
+  assert.match(m.text, /• Correction · Software that sets rents — We wrote that "Title of NJ-NEW" takes effect on July 1, 2027\. The date in our data is now July 2, 2027\./);
+  assert.match(m.text, /• In 30 days · Software that sets rents — From July 2, 2027: Summary of NJ-NEW\./);
   assert.equal((await w.run("2027-06-03")).lines.filter((l) => l.outcome === "sent").length, 0);
-  const sent = await daily(w.run, "2027-06-14", "2027-07-16");
-  assert.deepEqual(sent, [`2027-06-15 upcoming_30d NJ-NEW ${NJ}`, `2027-07-15 in_force NJ-NEW ${NJ}`]);
+  const sent = await daily(w.run, "2027-06-04", "2027-07-05");
+  assert.deepEqual(sent, [`2027-07-02 in_force NJ-NEW ${NJ}`]);
   // withdrawn: the rule leaves the data → one correction, then silence
   w.setData(data(RULES.filter((x) => x.rule_id !== "NJ-NEW")));
   const gone = await w.run("2027-07-20");
   assert.deepEqual(gone.lines.map((l) => [l.trigger, l.outcome]), [["correction", "sent"]]);
   assert.match(w.mailer.sent.at(-1)!.text, /Our data no longer shows this rule for this address/);
   assert.equal((await w.run("2027-07-21")).lines.length, 0);
+});
+
+test("one digest per email per day: a second run that day defers new events; the next day's mail words them from that day", async () => {
+  const w = world([sub("r@x.test", NJ), sub("r@x.test", CA)]);
+  await approveRule(w.store, "NJ-NEW", at("2026-10-02"));
+  assert.deepEqual((await w.run("2027-06-01")).counts, { sent: 1, queued: 1 });
+  await approveRule(w.store, "CA-JUL", at("2027-06-01"));
+  const again = await w.run("2027-06-01");
+  assert.deepEqual(again.lines.filter((l) => l.outcome !== "already").map((l) => [l.rule_id, l.outcome]), [["CA-JUL", "deferred"]]);
+  assert.equal(w.mailer.sent.length, 1);
+  const next = await w.run("2027-06-02");
+  assert.deepEqual(next.lines.filter((l) => l.outcome === "sent").map((l) => l.rule_id), ["CA-JUL"]);
+  assert.match(w.mailer.sent[1].text, /In 29 days · Application fees — From July 1, 2027:/);
 });
 
 // ── Idempotency, dry run, closed test ───────────────────────────────────────────────────────────────────────

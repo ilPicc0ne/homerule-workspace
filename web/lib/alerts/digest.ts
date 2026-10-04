@@ -5,7 +5,7 @@ import { esc } from "./html.ts";
 import { footerHtml, footerText } from "./disclaimer.ts";
 import { button, C, layout, link } from "./layout.ts";
 import type { Message } from "./mail.ts";
-import type { LifeData, LifeEvent } from "./lifecycle.ts";
+import { daysBetween, type LifeData, type LifeEvent } from "./lifecycle.ts";
 import { FROM, shortAddress, unsubscribeHeaders, unsubscribeUrl } from "../changes/email.ts";
 import { longDate } from "../changes/wording.ts";
 import { formatDate } from "../format.ts";
@@ -42,16 +42,27 @@ export function eventText(ev: LifeEvent, d: LifeData, today: string): ItemText {
       const tail = ev.anchor === "undated" ? "" : future ? ` It takes effect ${ev.when}.` : " It is in effect.";
       return { lead: "New law", topic, sentence: `${plain}${tail}${may}`, badge };
     }
-    case "upcoming_30d":
-      if (ev.precision === "day") return { lead: "In 30 days", topic, sentence: `${withDate}${may}`, badge };
+    case "upcoming_30d": {
+      // relative to the day the mail goes out: a retry the next day says "In 29 days", never a wrong "30"
+      const n = daysBetween(today, ev.anchor);
+      if (ev.precision === "day") return { lead: n === 1 ? "Tomorrow" : `In ${n} days`, topic, sentence: `${withDate}${may}`, badge };
       if (ev.precision === "disputed") return { lead: "Coming soon", topic, sentence: `Takes effect ${ev.when}: ${plain}${may}`, badge };
       return { lead: `Coming ${ev.when}`, topic, sentence: `Takes effect ${ev.when} (the law gives no exact day): ${plain}${may}`, badge };
+    }
     case "in_force":
+      if (today !== ev.anchor) return { lead: "Now in effect", topic, sentence: `In effect since ${longDate(ev.anchor)}: ${plain}${may}`, badge };
       return { lead: "Now in effect", topic, sentence: `${dated && plain.includes(dated) ? "Takes effect today" : `Takes effect today, ${longDate(ev.anchor)}`}: ${plain}${may}`, badge };
-    case "ending_30d":
-      return { lead: "Ends in 30 days", topic, sentence: `On ${longDate(ev.anchor)} this rule stops applying at this address: ${plain}`, badge };
+    case "ending_30d": {
+      const n = daysBetween(today, ev.anchor);
+      return { lead: n === 1 ? "Ends tomorrow" : `Ends in ${n} days`, topic, sentence: `On ${longDate(ev.anchor)} this rule stops applying at this address: ${plain}`, badge };
+    }
     case "ended":
-      return { lead: "Ended", topic, sentence: `From today, ${longDate(ev.anchor)}, this rule no longer applies at this address: ${plain}`, badge };
+      return {
+        lead: "Ended",
+        topic,
+        sentence: `${today === ev.anchor ? `From today, ${longDate(ev.anchor)},` : `Since ${longDate(ev.anchor)}`} this rule no longer applies at this address: ${plain}`,
+        badge,
+      };
     case "correction": {
       const k = ev.correction!;
       const verb = k.kind === "start" ? "takes effect" : "ends";
