@@ -120,9 +120,48 @@ def scope_owner(rules):
     return changes
 
 
+UNLESS = re.compile(r"\s*unless\b", re.I)
+
+
+def _unless(n):
+    """A text condition whose quote is an "unless" clause, bare or inside triage's guard."""
+    if n.get("kind") == "unparsed":
+        return bool(UNLESS.match(n.get("quote") or ""))
+    if n.get("triaged_guard"):
+        return any(c.get("kind") == "unparsed" and UNLESS.match(c.get("quote") or "") for c in n.get("children") or [])
+    return False
+
+
+def negate_unless(node):
+    """"Within 15 years, unless the housing is a mobilehome" was written as all(age < 15, <unless clause>): the
+    clause is evaluated as stated (is a mobilehome), which reverses it. Code puts a not around such a clause,
+    wherever it sits. Returns the node and how many were fixed."""
+    if not isinstance(node, dict):
+        return node, 0
+    if _unless(node) and not node.get("unless_negated"):
+        return {**BASE, "kind": "not", "children": [node], "unless_negated": True}, 1
+    if node.get("kind") == "not" and node.get("unless_negated"):
+        return node, 0
+    n = 0
+    kids = []
+    for c in node.get("children") or []:
+        c2, k = negate_unless(c)
+        kids.append(c2)
+        n += k
+    return ({**node, "children": kids} if n else node), n
+
+
 def normalize(rules):
     """In place on internal rules (protections only). Returns what changed, for the audit and the log."""
     targets = {}
+    unless = []
+    for r in rules:
+        for key in ("applies_if", "exempt_if"):
+            node, k = negate_unless(r[key])
+            if k:
+                r[key] = node
+                r["checks"] = r["checks"] + [f"{key}: {k} 'unless' clause(s) negated (code)"]
+                unless.append((r["citation"], key, [f"{k} 'unless' clause(s) negated"]))
     for r in rules:
         if r["effect"] != "protection_or_duty" or r["exempt_if"]["kind"] not in ("any", "unparsed"):
             continue
@@ -132,7 +171,7 @@ def normalize(rules):
                                              # triaged in extraction already)
         for n in nodes:
             targets.setdefault(r["source_doc_id"], []).append((r, n))
-    changes = scope_owner(rules)
+    changes = unless + scope_owner(rules)
     for doc_id, items in targets.items():
         qs = {}
         for i, (r, n) in enumerate(items):
