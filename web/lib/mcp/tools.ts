@@ -380,7 +380,7 @@ function asOfFor(data: Dataset, requested: string | undefined) {
 }
 
 const RENTER_IMPACT_NOTE =
-  "renter_impact is the change log's badge (↑ adds / ↓ narrows renter protection / ? depends on a fact we don't have), computed by HomeRule's engine per address from the topic's protection level before vs after. A change without one has no verdict: don't infer one. " +
+  "renter_impact is the change log's badge (↑ adds / ↓ narrows renter protection / = no change in protection here / ? depends on a fact we don't have), computed by HomeRule's engine per address from the topic's protection level before vs after. A change without one has no verdict: don't infer one. " +
   UNIT_MAY_DIFFER;
 
 /** The page's renter-impact badge for one diff change (lib/changes/impact.ts badgeFor), or null. */

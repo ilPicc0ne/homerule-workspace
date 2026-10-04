@@ -37,8 +37,39 @@ test("unclear -> grey: a missing fact, or a conflict flag involved", () => {
   assert.equal(conflict.text, "May conflict with another rule, not decided");
 });
 
-test("unchanged, missing, malformed or old-style values -> no badge (never guess)", () => {
-  assert.equal(badgeFor(withRi({ verdict: "unchanged" })), null);
+test("neutral: verdict unchanged -> '= No change in protection here', its own kind (not the grey 'depends')", () => {
+  const eq = badgeFor(withRi({ verdict: "unchanged", why: "No change in rent increase protection: a city cap already applies." }))!;
+  assert.deepEqual([eq.kind, eq.arrow, eq.text], ["neutral", "=", "No change in protection here"]);
+  assert.equal(eq.label, "No change in protection here. Your unit may differ.");
+  assert.equal(eq.why, "No change in rent increase protection: a city cap already applies.");
+  assert.notEqual(BADGE_STYLE.neutral.bg, BADGE_STYLE.unclear.bg);
+});
+
+test("rating (#119) wins over verdict; neutral + verdict unclear stays grey; rating alone works", () => {
+  assert.equal(badgeFor(withRi({ rating: "positive", verdict: "better" }))!.kind, "adds");
+  assert.equal(badgeFor(withRi({ rating: "negative", verdict: "worse" }))!.kind, "narrows");
+  assert.equal(badgeFor(withRi({ rating: "neutral", verdict: "unchanged" }))!.kind, "neutral");
+  assert.equal(badgeFor(withRi({ rating: "neutral", verdict: "unclear" }))!.kind, "unclear");
+  assert.equal(badgeFor(withRi({ rating: "positive" }))!.kind, "adds");
+  assert.equal(badgeFor(withRi({ rating: "neutral" }))!.kind, "neutral");
+  assert.equal(badgeFor(withRi({ rating: "negative", verdict: "better" }))!.kind, "narrows");   // the rating is the source
+  assert.equal(badgeFor(withRi({ rating: "bogus", verdict: "better" }))!.kind, "adds");          // unknown rating -> verdict
+});
+
+test("live data: every change carries a badge, and the rating agrees with the verdict", () => {
+  for (const rec of Object.values(liveChanges.addresses))
+    for (const e of rec.entries)
+      for (const c of e.changes) {
+        if (isPending(c)) continue;
+        const b = badgeFor(c);
+        assert.ok(b, `${c.team_rule_id} ${e.source}`);
+        const v = c.renter_impact?.verdict;
+        const want = v === "better" ? "adds" : v === "worse" ? "narrows" : v === "unclear" ? "unclear" : "neutral";
+        assert.equal(b.kind, want, `${c.team_rule_id} ${e.source}`);
+      }
+});
+
+test("missing, malformed or old-style values -> no badge (never guess)", () => {
   assert.equal(badgeFor(withRi(undefined)), null);
   assert.equal(badgeFor(withRi(null)), null);
   assert.equal(badgeFor(withRi({})), null);
@@ -145,8 +176,8 @@ test("badge colours: AA contrast (4.5:1) on their tint", () => {
   const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
   const pairs: [string, string][] = [
     ...Object.values(BADGE_STYLE).map((s) => [s.color, s.bg] as [string, string]),
-    ["#9BDDB7", "#173D2A"], ["#F6B5AE", "#45201F"], ["#C7CDD4", "#2A3036"],   // email dark mode (lib/alerts/layout.ts)
-    ["#11643D", "#E2F2E8"], ["#9B2C2C", "#FBE9E7"], ["#4D5256", "#ECEDEE"],   // page tokens (v3.css --*-ink on --*-tint)
+    ["#9BDDB7", "#173D2A"], ["#F6B5AE", "#45201F"], ["#C7CDD4", "#2A3036"], ["#C9D3DF", "#15191d"],   // email dark mode (lib/alerts/layout.ts)
+    ["#11643D", "#E2F2E8"], ["#9B2C2C", "#FBE9E7"], ["#4D5256", "#ECEDEE"], ["#1E2B3A", "#FFFFFF"],   // page tokens (v3.css --*-ink on --*-tint)
   ];
   for (const [fg, bg] of pairs) assert.ok(ratio(fg, bg) >= 4.5, `${fg} on ${bg}: ${ratio(fg, bg).toFixed(2)}`);
 });

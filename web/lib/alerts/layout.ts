@@ -3,6 +3,7 @@
 // neutral ink; green and clay are status colours, used only for the renter-impact badge in the alert.
 // Table layout and inline styles (email clients), max 560 px, light + dark colour scheme, hidden preheader.
 import { esc } from "./html.ts";
+import type { Badge, BadgeKind } from "../changes/impact.ts";
 
 export const C = {
   bg: "#fdfcfa",
@@ -54,6 +55,7 @@ export function layout(o: Layout): string {
  a{color:#c9d3df!important}
  .vb-up{background:#173D2A!important;color:#9BDDB7!important} .vb-dn{background:#45201F!important;color:#F6B5AE!important}
  .vb-un{background:#2A3036!important;color:#C7CDD4!important}
+ .vb-nt{background:#15191d!important;color:#C9D3DF!important;border-color:#5E6C7B!important}
 }
 </style></head>
 <body class="bg" style="margin:0;padding:0;background:${C.bg};color:${C.text};${FONT}">
@@ -68,4 +70,32 @@ ${o.banner ? `<tr><td class="pn" style="padding:10px 14px;background:${C.panel};
 ${o.rows}
 <tr><td class="mu ln" style="padding:16px 0 32px;border-top:1px solid ${C.line};font-size:12px;line-height:1.55;color:${C.faint}">${o.footer}</td></tr>
 </table></td></tr></table></body></html>`;
+}
+
+/** Verdict badge colours (light; dark mode via the vb-* classes above). Arrow + text always, never colour alone; AA on
+ *  their tint. The same four kinds as the site (lib/changes/impact.ts): ↑ adds, ↓ narrows, = no change (outlined slate),
+ *  grey depends. */
+export const BADGE_STYLE: Record<BadgeKind, { cls: string; color: string; bg: string; border?: string }> = {
+  adds: { cls: "vb-up", color: "#11643D", bg: "#E2F2E8" },
+  narrows: { cls: "vb-dn", color: "#9B2C2C", bg: "#FBE9E7" },
+  neutral: { cls: "vb-nt", color: "#1E2B3A", bg: "#FFFFFF", border: "#8D9AA9" },
+  unclear: { cls: "vb-un", color: "#4D5256", bg: "#ECEDEE" },
+};
+
+/** One change's verdict badge as inline-styled HTML (survives email clients), ending in a line break. Shared by the
+ *  single-source alert (lib/changes/email.ts) and the lifecycle digest. No badge (null) -> nothing, as on the site. */
+export function badgeHtml(b: Badge | null | undefined): string {
+  if (!b) return "";
+  const st = BADGE_STYLE[b.kind];
+  return `<span class="${st.cls}" title="${esc(b.label)}" aria-label="${esc(b.label)}" style="display:inline-block;margin:0 0 6px;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:600;color:${st.color};background:${st.bg}${st.border ? `;border:1px solid ${st.border}` : ""}"><span aria-hidden="true">${b.arrow}</span> ${esc(b.text)}</span><br>`;
+}
+
+/** The same badge in the text part: "↑ This change adds renter protection. Your unit may differ." */
+export function badgeText(b: Badge | null | undefined): string {
+  return b ? `${b.arrow} ${b.label}` : "";
+}
+
+/** The topic label as on the site's history column ("Rent increases", "Software that sets rents", …). */
+export function topicHtml(topic: string): string {
+  return `<span class="mu" style="display:block;margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.01em;color:${C.muted}">${esc(topic)}</span>`;
 }
