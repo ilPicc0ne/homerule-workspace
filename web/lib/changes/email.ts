@@ -1,6 +1,8 @@
 // The alert email for one address and one change source, rendered from the same diff as the change log
-// (I6). PREVIEW ONLY: nothing here sends mail. Sending (Resend, double opt-in) is a P1 row in the PRD.
+// (I6). Rendering only: sending is `make notify SEND=1` (web/scripts/notify.ts), never automatic.
 import type { AddressChanges, ChangesFile, Change, Entry } from "./types.ts";
+import { esc } from "../alerts/html.ts";
+import { footerHtml, footerText } from "../alerts/disclaimer.ts";
 import { changeLine, entryHeading, featuredEntry, longDate, resultWords, ruleName } from "./wording.ts";
 
 export const FROM = "HomeRule <alerts@yourhomerule.com>";
@@ -25,7 +27,12 @@ export type RenderedEmail = {
   unsubscribe_url: string;
 };
 
-export type RenderOptions = { site?: string; token?: string };
+export type RenderOptions = {
+  site?: string;
+  token?: string;
+  /** Replaces the demo banner text (the sample alert on the address page says what it is). */
+  banner?: string;
+};
 
 /** The email input for one address: the given source, or the featured one (a new document first). */
 export function addressChange(file: ChangesFile, addressId: string, source?: string): AddressChange | null {
@@ -35,8 +42,12 @@ export function addressChange(file: ChangesFile, addressId: string, source?: str
   return entry ? { address_id: addressId, label: rec.label, as_of: file.as_of, entry } : null;
 }
 
-const ESC: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
-export const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ESC[c]);
+export { esc };
+
+/** The one-click unsubscribe link for a subscription token (URL-encoded). */
+export function unsubscribeUrl(site: string, token: string): string {
+  return `${site.replace(/\/$/, "")}/api/unsubscribe?token=${encodeURIComponent(token)}`;
+}
 
 function safeUrl(u: string | null): string | null {
   return u && /^https?:\/\//.test(u) ? u : null;
@@ -52,9 +63,10 @@ function block(c: Change) {
 export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEmail {
   const site = (opts.site ?? SITE).replace(/\/$/, "");
   const token = opts.token ?? UNSUBSCRIBE_TOKEN;
-  const unsubscribe = `${site}/unsubscribe?a=${encodeURIComponent(ac.address_id)}&t=${token}`;
+  const unsubscribe = unsubscribeUrl(site, token);
   const page = `${site}/changes/${encodeURIComponent(ac.address_id)}`;
   const demo = ac.entry.demo_label;
+  const banner = opts.banner ?? (demo ? `${demo}: built from a fictional test document, not real law.` : null);
   const n = ac.entry.changes.length;
   const subject = `${demo ? `[${demo}] ` : ""}${n === 1 ? "A housing rule changed" : `${n} housing rules changed`} for ${ac.label}`;
   const blocks = ac.entry.changes.map(block);
@@ -62,7 +74,7 @@ export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEma
   const header = `Not legal advice. HomeRule shows which published housing rules may apply to an address, with quotes and dates. Data as of ${asOf}.`;
 
   const text = [
-    ...(demo ? [`${demo.toUpperCase()}: this example is built from a fictional test document, not real law.`, ""] : []),
+    ...(banner ? [banner.toUpperCase(), ""] : []),
     header,
     "",
     `${ac.label}`,
@@ -81,6 +93,7 @@ export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEma
     "",
     `You get this because you asked for alerts on ${ac.label}. Unsubscribe: ${unsubscribe}`,
     `HomeRule · ${FROM.replace(/^.*<|>$/g, "")} · Not legal advice · as of ${asOf}`,
+    ...footerText(),
   ].join("\n");
 
   const font = "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif";
@@ -106,12 +119,12 @@ ${b.quote ? `<blockquote style="margin:0 0 8px;padding:8px 12px;border-left:3px 
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${esc(subject)}</title></head>
 <body style="margin:0;background:#fdfcfa;color:#1d2b2f;${font}">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;padding:16px">
-${demo ? `<tr><td style="padding:10px 12px;background:#fff4e0;color:#6b4500;border-radius:8px;font-weight:700">${esc(demo)}: built from a fictional test document, not real law.</td></tr>` : ""}
+${banner ? `<tr><td style="padding:10px 12px;background:#fff4e0;color:#6b4500;border-radius:8px;font-weight:700">${esc(banner)}</td></tr>` : ""}
 <tr><td style="padding:12px 0;font-size:13px;color:#5a6a6e"><strong>Not legal advice.</strong> HomeRule shows which published housing rules may apply to an address, with quotes and dates. Data as of ${esc(asOf)}.</td></tr>
 <tr><td style="padding:8px 0"><p style="margin:0;font-size:20px;font-weight:700">${esc(ac.label)}</p><p style="margin:4px 0 0;color:#5a6a6e">${esc(entryHeading(ac.entry))}</p></td></tr>
 ${htmlBlocks}
 <tr><td style="padding:16px 0"><a href="${esc(page)}" style="display:inline-block;background:#0f766e;color:#fff;padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:600">See the change log</a></td></tr>
-<tr><td style="padding:16px 0;border-top:1px solid #e4eae9;font-size:12px;color:#5a6a6e">You get this because you asked for alerts on ${esc(ac.label)}. <a href="${esc(unsubscribe)}" style="color:#5a6a6e">Unsubscribe</a>.<br>HomeRule &middot; Not legal advice &middot; as of ${esc(asOf)}</td></tr>
+<tr><td style="padding:16px 0;border-top:1px solid #e4eae9;font-size:12px;color:#5a6a6e">You get this because you asked for alerts on ${esc(ac.label)}. <a href="${esc(unsubscribe)}" style="color:#5a6a6e">Unsubscribe</a>.<br>HomeRule &middot; Not legal advice &middot; as of ${esc(asOf)}<br><br>${footerHtml()}</td></tr>
 </table></body></html>`;
 
   return {
