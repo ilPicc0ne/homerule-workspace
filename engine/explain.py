@@ -106,6 +106,44 @@ def _cap(s):
     return s[:1].upper() + s[1:]
 
 
+def value_note(rule, res, facts, as_of, refs=None):
+    """' Which amount applies depends on the unit count (not in the data). Check …' for a conditional value, else ''.
+
+    Walks the value branches as evaluate.select_value does (in order, up to the first true one) and names the
+    leaves left open, so an explanation never reads as settled while the value is not."""
+    v = res.get("value")
+    if not isinstance(v, dict) or "conditional" not in v:
+        return ""
+    open_, checks = [], []
+    for b in rule.get("key_value_conditions", []):
+        ctx = E.Ctx(facts, as_of, refs or {})
+        t = E.ev(b["when"], ctx)
+        if t is True:
+            break
+        if t is False:
+            continue
+        for n, t in leaves(b["when"], ctx, []):
+            if t is not None:
+                continue
+            key = "built" if n["kind"] == "age_years" else n.get("fact")
+            if n["kind"] == "unparsed":
+                open_.append("a condition in the text we can't check from the data")
+            elif n["kind"] == "ref":
+                open_.append("whether local " + n["ref"].replace("local_", "").replace("_", " ") + " covers the unit")
+            elif key in facts and facts[key].known:
+                open_.append(leaf_phrase(n, None, facts, as_of))
+                checks.append(HOW_TO_CHECK.get(key))
+            else:
+                open_.append(f"{FACT_NOUN.get(key, key)} (not in the data)")
+                checks.append(HOW_TO_CHECK.get(key))
+    open_ = list(dict.fromkeys(open_)) or [_join(FACT_NOUN.get(k, k) for k in v.get("depends_on", [])) or "a condition"]
+    s = f" Which amount applies depends on {_join(open_[:2])}."
+    checks = [c for c in dict.fromkeys(checks) if c]
+    if checks:
+        s += f" Check {_join(checks[:2])}."
+    return s
+
+
 def explain(rule, res, facts, as_of, rules_by_id, refs=None, flags=None):
     """One or two sentences for the lookup row."""
     cite = rule.get("citation") or rule["id"]
@@ -133,16 +171,19 @@ def explain(rule, res, facts, as_of, rules_by_id, refs=None, flags=None):
         s = f"Covered by {cite}, but the stricter local {g} governs here"
         return s + (f": {_join(why)}." if why else ".")
     if result == "applies":
+        note = value_note(rule, res, facts, as_of, refs)
         rank = {"built": 0, "age_years": 0, "units": 1, "subsidised": 2, "use_class": 3}
         decided = sorted(decided, key=lambda nt: rank.get(nt[0].get("fact") or nt[0]["kind"], 9))
         why = [leaf_phrase(n, t, facts, as_of) for n, t in decided][:2]
         level = "Statewide" if ", " not in rule["jurisdiction"] else "Citywide"
         if why:
             s = f"{cite} covers this address: {_join(why)}."
-        elif since:
-            s = f"{level} {place(rule)} rule in force since {fmt_date(since)} ({cite}); no building condition in it excludes this address."
         else:
-            s = f"{level} {place(rule)} rule in force ({cite}); no building condition in it excludes this address."
+            # the claim is about coverage only; an open value branch is named right after it (value_note)
+            s = f"{level} {place(rule)} rule in force" + (f" since {fmt_date(since)}" if since else "") \
+                + f" ({cite}); no building condition in it excludes this address" \
+                + (", but the amount is not settled." if note else ".")
+        s += note
         if res.get("conflict_with"):
             s += f" May conflict with {_join([rules_by_id[c].get('citation') or c for c in res['conflict_with']])}: flagged for human review, not decided."
         return s
@@ -184,7 +225,8 @@ def explain(rule, res, facts, as_of, rules_by_id, refs=None, flags=None):
     reasons = list(dict.fromkeys(straddle + absent + local + unparsed)) or \
         ["whether a local rule covers this unit (its coverage is unknown)"]
     s = f"Unknown whether {cite} covers this address: depends on {'; and on '.join(reasons[:2])}."
+    note = value_note(rule, res, facts, as_of, refs)
     checks = [c for c in dict.fromkeys(checks) if c]
     if checks:
         s += f" Check {_join(checks[:2])}."
-    return s
+    return s + note

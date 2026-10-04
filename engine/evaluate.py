@@ -177,6 +177,32 @@ def local_refs(stack, city, facts, as_of):
     return refs
 
 
+def select_value(rule, vctx):
+    """The rule's value at this address: branches in order, first true one wins (like a case statement).
+
+    A branch left open (unknown) before the deciding one, or with none deciding, makes the value
+    conditional: every value still possible (the open branches', then the deciding one or the default),
+    and the facts it depends on. A branch whose condition is unknown never yields a flat value.
+    """
+    open_, decided, depends = [], None, set()
+    for b in rule.get("key_value_conditions", []):
+        bctx = Ctx(vctx.facts, vctx.as_of, vctx.refs)
+        t = ev(b["when"], bctx)
+        vctx.used_assumptions |= bctx.used_assumptions
+        vctx.invalid += bctx.invalid
+        v = b["value"] + (f" ({b['tenant_note']})" if b.get("tenant_note") else "")
+        if t is T:
+            decided = v
+            break
+        if t is U:
+            open_.append(v)
+            depends |= bctx.missing
+    fallback = rule.get("key_value") if decided is None else decided
+    if not open_:
+        return fallback
+    return {"conditional": list(dict.fromkeys([fallback] + open_)), "depends_on": sorted(depends)}
+
+
 def evaluate(rules, facts, as_of):
     """Results for every rule whose jurisdiction is in the address's stack."""
     city = facts["address.city"].values[0]
@@ -232,16 +258,7 @@ def evaluate(rules, facts, as_of):
         # value: default or a branch
         if res["result"] in ("applies", "unknown", "superseded"):
             vctx = Ctx(facts, as_of, refs)
-            alts = r.get("key_value_conditions", [])
-            branch_truths = [(ev(b["when"], vctx), b["value"] + (f" ({b['tenant_note']})" if b.get("tenant_note") else ""))
-                             for b in alts]
-            if any(t is T for t, _ in branch_truths):
-                res["value"] = next(v for t, v in branch_truths if t is T)
-            elif any(t is U for t, _ in branch_truths):
-                res["value"] = {"conditional": [r.get("key_value")] + [v for t, v in branch_truths if t is U],
-                                "depends_on": sorted(vctx.missing)}
-            else:
-                res["value"] = r.get("key_value")
+            res["value"] = select_value(r, vctx)
             res["assumptions"] |= vctx.used_assumptions
         res["assumptions"] = sorted(res["assumptions"])
         res["missing"] = sorted(res["missing"])
