@@ -1,43 +1,41 @@
 # Resume
 
-**Updated:** 2026-10-04T06:00Z (08:00 CEST)
+**Updated:** 2026-10-04T10:30Z (12:30 CEST)
 **Branch:** main
-**Last commit:** 0f3c8fb — Merge pull request #86 (rehearsal done)
-**Production:** `f8c33fd` on yourhomerule.com (verified: NJ rule pages 200, J2 fix live)
-**Working tree:** clean apart from untracked `lab/ui-proposal/release/` (screenshot) and local `.claude/REHEARSAL.md`
+**Last commit:** 533f1b6 — Merge pull request #126 (method limits)
+**Production:** `1b914bd` = main `284a379` (3D map + building outline, elevation fix, MCP 5 tools + v1 aliases, calmer alert popover, 500-address note)
+**Working tree:** clean (worktrees under `.worktrees/` hold merged branches)
 
 ## Pick up next
 
-Freeze 12:00, submission 15:00.
+Freeze 12:00 passed, submission 15:00.
 
-1. **Alert lifecycle engine** (deep-work agent, branch `s/alert-engine`, worktree `.worktrees/alert-engine`, timebox ~10:20): triggers found / takes effect / ends (30 days ahead + on the day), approval per rule, daily digest, corrections, cron route dry-run by default. Review → merge → production on Silvan's go; `ALERTS_CRON_SEND=1` only on his go.
-2. **Dimitar** (issue #81): #53 hold (scored results worse: applies 4240→4004, owner_occupied unknowns 245→301, drops LA 165.03, Hoboken 10:54/18:66, Jersey City rent, Cambridge 8.71); #59 then #55 after #53; #75 + #68 merge-ready; #48 close. Final `make build` of all three scored files after his hour-16 ingest (`outputs/rules.json` = placeholder copy, #74). Silvan decides: merge #75/#68, close #48, post findings on #81. His Vercel previews are blocked (author not a project member).
-3. **Video:** 15–20 s style clip, Gemini voice Iapetus, `/Users/silvan/claude/code/tools/demo-video/out/homerule/clip.mp4` (agent running); full film only after the remaining features. First film kept as `demo-0714.mp4`.
-4. **Demo:** script doc https://claude.ai/code/artifact/a0d324be-07ad-44f7-b862-588cdacc61ed (private; share with Dimitar); full version `notes/demo/`. Live take of the email beat = Dimitar's hour-16 source; rehearsed path done (2/2 on production 04.10. 07:45/07:50).
-5. Postal address for the email footer (placeholder in `web/lib/alerts/disclaimer.ts`).
+1. Hour-16 ingest + final scored files from a main build (Dimitar).
+2. Submission (#13). Tech video 60 s is with Dimitar (#93 draft 1 = 2-min cut, #129 his 60 s script).
+3. Data before the next sync: `web/data/changes.full.json` is stale on main (contracts-sync test fails); syncing brings a banned "must" in NJ-JERSEY-CITY-ALG-218-12.3 (A0008) into alert emails.
+4. Triage open PRs: #130 #128 #123 #122 #94 (docs sync) #92 #91 (email redesign) #90 (alert engine).
+5. After the hackathon: Google geocoding for the 3D target (script parked in the session scratchpad as `build-google-geocodes.ts`; key `homerule-geocoding-script` in `web/.env.local`, cap 1000/day; coordinates only in the 3D view, refresh within 30 days).
+6. Postal address for the email footer (placeholder in `web/lib/alerts/disclaimer.ts`).
 
 ## Open questions
 
 - Hour-16 drop time — context: Discord.
-- Starter-pack licence "TBD by organizers"; `web/` holds short source excerpts — before the public repo goes public.
-- Contact phone numbers unverified (shown as "not yet checked by us").
+- 15-badge hand check of ↑/↓ verdicts: done or still open? — context: #113 turned badges on.
 
 ## Recent decisions
 
-- Vercel: root `web`, previews per PR and `main`, production only by pushing to branch `production` — *why:* nothing goes live by accident.
-- Law data stay files in git, only subscriptions are mutable (Upstash); no Neon — *why:* deterministic builds, one source of truth.
-- Alert recipients are flags on the subscriber (`allowed`, `demo`), unsubscribe = random token per subscription — *why:* Silvan's proposal, fewer secrets, no redeploy.
-- UI option A: navy for UI, green/clay/grey only as status colours; icon roof scales — *why:* green is the renter signal.
-- Plain alert email, one sentence per change, button to the address page — *why:* the legal-style mail was unreadable.
-- Build the alert engine for the prototype; critic's Step 0 (partners, 10 renters) = before a real launch, later — *why:* owner decision 04.10.
+- MCP = few task-shaped tools (`get_place`, `compare_places`, `get_changes`, `get_rule`, `coverage`); presentation rules in descriptions/instructions, never in results; v1 names stay as aliases — *why:* measured 7 → 1 call per question; Claude read result instructions as injection and caches tool lists.
+- 3D view is the default on production (`NEXT_PUBLIC_DEFAULT_MAP_VIEW=3d`, Maps key `homerule-maps-browser`, 500 loads/day) — *why:* demo impact; cap protects cost.
+- Building highlight only when the geocode lies inside the OSM footprint, else a ~25 m circle "Approximate location" — *why:* nearest-building matches lit the neighbour.
+- Verdict wording describes the rule ("adds / narrows renter protection"), green ↑ / red ↓, no badge when data is missing; protection score moved to a separate discussion — *why:* responsible design, no advice.
+- Rule end dates (`effective.until`) are change sources — *why:* sunsets are the clearest "narrows" changes.
 
 ## Surprises / gotchas
 
-- Auto mode blocks secret-store writes, creating/pushing `production` without an explicit go, and merges without a first-hand review — *avoid:* Silvan runs `scripts/alerts-env.sh`; read the diff before `gh pr merge`.
-- Subagents die on connection drops (ECONNREFUSED) — *avoid:* commit and push each deliverable as soon as it exists.
-- A `/goal` whose last step needs the user's approval makes the Stop hook loop — *avoid:* goals only for steps the agent can finish alone.
-- Dimitar's #53 passes eval (assertions, T1–T5, holdout) yet worsens scored lookups — *avoid:* check `out/build_summary.json` deltas, not only eval.
+- Vercel blocks production deploys whose head commit is authored by Dimitar — *avoid:* deploy commit by Silvan: `C=$(git commit-tree '<sha>^{tree}' -p origin/production -p <sha> -m "Deploy …") && git push origin "${C}:refs/heads/production"` (zsh: quote `^{tree}`, brace `${C}`).
+- Map3DElement camera altitude is above sea level — *avoid:* use stored ground elevation (fixed in #97).
+- Auto mode blocks `production` pushes even with Silvan's go — *avoid:* hand him the one command.
 
 ## Long-form
 
-See `.claude/SESSIONS.md`, `docs/PRD.md` (CUJ table), `docs/ARCHITECTURE.md`, `docs/decisions/`, `notes/demo/`, `notes/plan/alert-engine.md`.
+See `.claude/SESSIONS.md`, `docs/PRD.md`, `docs/ARCHITECTURE.md`, `docs/decisions/`.
