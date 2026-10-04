@@ -35,7 +35,7 @@ Answers in *italics* are what production showed on 04.10 ~06:40 (`notes/demo/DEM
 ### Task 4 · J4 Tell me when the law changes
 - **Say:** "You want an email when the rules for 834-836 Raymond Blvd in Newark change. Show me how you'd set that up, and what such an email would look like. Don't send anything."
 - **Success:** finds "Get alerts" (bar or Coming up) and the email field; opens "See an example alert"; recognises the label *"Preview — simulated, nothing is sent"*.
-- **Observe:** whether they understand "we ask you to confirm first"; reaction to the footer placeholder (GAPS #5).
+- **Observe:** whether they understand "we ask you to confirm first"; reaction to the footer placeholder (GAPS #7).
 - **Ask after:** "What would make you trust this email?" · "Would you sign up? Why not?"
 
 ### Task 5 · J5 Compare before I move (not built)
@@ -53,12 +53,12 @@ Answers in *italics* are what production showed on 04.10 ~06:40 (`notes/demo/DEM
 ### Task 7 · J7 Take action
 - **Say:** "Back to Marco in Los Angeles. He wants to talk to someone before he answers his landlord. What should he have ready, and whom can he call?"
 - **Success:** finds *Talk to someone first: Los Angeles Housing Department* with the "not yet checked by us" note and the checklist *Your rent increase notice / Your lease / Your move-in date*.
-- **Observe:** whether they open "Ask your landlord" (it asks about owner occupancy, GAPS #11); whether any line reads as advice.
+- **Observe:** whether they open "Ask your landlord" (it asks about owner occupancy, GAPS #13); whether any line reads as advice.
 - **Ask after:** "Did the site tell you what to do, or where to ask?" (the right answer is the second).
 
 ### Task 8 · Outside the scope (guardrail)
 - **Say:** "Your cousin rents in Austin, Texas. What does HomeRule say for her?"
-- **Success:** sees "Not covered: HomeRule has law for 3 states and 10 cities". *On the home search, "Austin" or "New York" + Enter shows nothing (GAPS #10); `/where` answers it. Score "found the not-covered answer" or "got no answer".*
+- **Success:** sees "Not covered: HomeRule has law for 3 states and 10 cities". *On the home search, "Austin" or "New York" + Enter shows nothing (GAPS #12); `/where` answers it. Score "found the not-covered answer" or "got no answer".*
 
 ## 3. Scoring sheet (one per reviewer)
 
@@ -101,7 +101,7 @@ The brief (p.6) requires on screen: the `score.py` report on the dev set, the T1
 | 2 | The bet (15 s) | "The model reads the law once; code decides coverage every time." Rule page audit trail on `/r/CA-RENT-1947.12` (Extracted by the model │ reasoning boundary │ Decided by code) | `out/audit.json`, `/r/[id]` |
 | 3 | Extraction (25 s) | `make extract` stages (Jev classify, Luna extract, gate, quote check, compile); one record in `out/rules.json` with its verbatim quote; prompt lint + `make freeze` digest | `extract/`, `extract/PROMPTS.lock`, `make eval` "Prompts" line |
 | 4 | Addresses (15 s) | 500/500 resolved, 492 by Census in the expected city, 38 mailing ≠ legal city, facts as ranges with named assumptions | ARCHITECTURE B "Measured on all 500" |
-| 5 | Eval report (30 s) | `make eval` scrolled: assertions 26/27, change tests T1 250 · T2 90 · T3 140 + 90 flags · T4 110 · T5 0 (all equal to expected), questions 24/24 and holdout 16/16, quotes check | `tests/eval_suite.py`, `out/eval/report_supplemental.md`; re-run on a clean checkout first (GAPS #3) |
+| 5 | Eval report (30 s) | `make eval` scrolled: assertions 26/27, change tests T1 250 · T2 90 · T3 140 + 90 flags · T4 110 · T5 0 (all equal to expected), questions 24/24 and holdout 16/16, quotes check | `tests/eval_suite.py`, `out/eval/report_supplemental.md`; re-run on a clean checkout first (GAPS #4) |
 | 6 | Determinism (10 s) | `make build` twice, `shasum outputs/*.json` identical | ARCHITECTURE I4 (checked 04.10 06:30: rebuild byte-identical) |
 | 7 | Hour 16 (40 s) | `date; make ingest DOC=<hour-16 file> JUR="Cambridge, MA" ID=X002; date` → new rules, effective date, T6 affected addresses; `outputs/changes.json` T6 | `extract/ingest.py`, `make ingest` |
 | 8 | Live rerun (20 s) | `make rerun DOC=D0xx` (pick a short document, e.g. one with < 10 KB) with the field-level diff | Makefile `rerun` |

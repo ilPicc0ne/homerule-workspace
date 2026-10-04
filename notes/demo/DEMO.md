@@ -12,7 +12,7 @@ Companion files: `GAPS.md` (what to fix this morning), `PRODUCT-REVIEW.md` (cold
 | 5 Date slider on the FAIR Act map, dots flip | **Replaced** by Coming up + the change log (old → new) | The published data has one as-of date (`web/data/live/meta.json`: `as_of_dates` = [2026-10-01]); the timeline on rule pages has one stop; the address page ignores `?as_of=`. The flip exists only as the change log `asof:2026-10-01..2027-07-02` |
 | 3 Two buildings: LA unknown + Dorchester | Kept, split into beats 3 and 4, plus a new beat 2 (same city, two buildings) | Beat 2 is the strongest answer to "why not ask a chatbot" and costs 15 s |
 | 6 Hour-16 live with the alert on a phone | Kept, with a rehearsed fallback path that already works today (real NJ change, demo inbox) | The hour-16 document is not ingested yet; `make demo-change` needs `OPENROUTER_API_KEY` |
-| 7 Proof frame "T1–T6 pass" | Kept, numbers corrected to what the repo proves | T1–T5 exact in `make eval`; T6 only after the hour-16 ingest; quote count must be re-run on a clean checkout (GAPS #3) |
+| 7 Proof frame "T1–T6 pass" | Kept, numbers corrected to what the repo proves | T1–T5 exact in `make eval`; T6 only after the hour-16 ingest; quote count must be re-run on a clean checkout (GAPS #4) |
 | J5 compare | **Not shown** | Not built. Beat 2 opens two buildings one after the other and says nothing about "compare" |
 
 ## 1. Run of show (live, 2:45)
@@ -66,7 +66,7 @@ Spoken words per beat are written to fit the time at ~150 words per minute. Read
 - **URL / ID:** `/a/A0107` (built 1978, 20 units). Backup: `/a/A0432` 14605 Rayen St (1978, 23 units, same unknown, verified).
 - **Clicks:** chip or address bar → `/a/A0107` → At a glance shows "For 1 topic, we're missing one fact" → click **Rent increases** → point at **What we don't know yet** → scroll to **Talk to someone first** and **Before you call, have ready** (shots `b3a`, `b3b`) → click **Show the law** and point at the *City of Los Angeles* row.
 - **Screen (verified 06:40):** tile "We're missing one fact · Los Angeles rent control limits yearly increases for covered units (3% for Jul 2025–Jun 2026)". Open: "LA rent control generally covers buildings first built on or before Oct 1, 1978. Your unit may differ." → "Los Angeles Housing Department 866-557-7368 (not yet checked by us)", checklist, "Ask your landlord: whether the owner lives here". Show the law, LA row: "Missing one fact · … depends on built 1978 …, but the cutoff is on or before October 1, 1978 and the year alone can't settle it. Check the certificate-of-occupancy date (city building department or the landlord)."
-- **Screen ≠ script:** the box *What we don't know yet* lists "An exception in the law's text" and "Whether the owner lives in the building", **not** the certificate-of-occupancy date (GAPS #2; a UI fix `s/fix-missing-fact` is in progress). Until it is on production, point at the LA row under Show the law, which states the right fact. The "Ask your landlord: whether the owner lives here" helper asks about owner occupancy for a 20-unit building: don't click it on camera.
+- **Screen ≠ script:** on production (8e7c326) the box *What we don't know yet* lists "An exception in the law's text" and "Whether the owner lives in the building", **not** the certificate-of-occupancy date (GAPS #2). Fixed on main by #78 (names the missing approval date); live after the production update (GAPS #1). Until then, point at the LA row under Show the law, which states the right fact. The owner-occupied line comes from the unscoped exemption (GAPS #3, issue #81). The "Ask your landlord: whether the owner lives here" helper asks about owner occupancy for a 20-unit building: don't click it on camera.
 - **Talk:** "Marco in Los Angeles. Built 1978. LA rent control covers buildings first approved on or before October 1, 1978, and the year alone can't tell us. So we don't guess: we say unknown, name the one fact that settles it, and who can tell him. The housing department, by phone, with what to have ready."
 - **Proof point:** "unknown, not a guess" (brief rule; partial credit in scoring) · the next step is a human contact (J7) · no legal advice.
 - **Fallback:** Show the law row as above; backup address A0432.
@@ -77,7 +77,7 @@ Spoken words per beat are written to fit the time at ~150 words per minute. Read
 - **Screen (verified):** "Inside Boston city limits (mailing address says Dorchester) · The mailing address says Dorchester, but the building is inside the City of Boston. Boston law applies. · Built 1930 · 7 or more units · Listed as subsidised housing · Units are read from the use code (an estimate)". Rent tile: "No local rule — state basics only · Massachusetts doesn't allow rent control, so there's no city limit on increases… One bill is proposed; a bill is not law." Show the law: Mass. Gen. Laws ch. 40P § 4 quote "No city or town may enact, maintain or enforce rent control of any kind…" + Boston H.3744 "Proposed, not law". `/r/MA-ALG-2983`: "Proposed, not law · 110 pending, not law · All 110 sample addresses in Massachusetts", audit "Dates: a bill, not law, so it never covers an address yet."
 - **Talk:** "The mail says Dorchester. The law says Boston, and Boston can't cap rents: state law bars it. The struck ballot question never shows up as a rule. Two bills on rent-setting software are pending: for an advocate, here are all 110 Massachusetts buildings they would reach, marked pending, never in force."
 - **Proof point:** jurisdiction resolution (38 postal ≠ legal cities fixed) · T5 (no cap in Boston/Cambridge) · T4 (pending, 110 addresses) · enacted vs pending separated.
-- **Don't open:** the Eviction tile on Boston/Cambridge addresses ("No local rule" label above a Boston rule; A0258 also shows "An exception in the law's text"). GAPS #9.
+- **Don't open:** the Eviction tile on Boston/Cambridge addresses ("No local rule" label above a Boston rule; A0258 also shows "An exception in the law's text"). GAPS #11.
 - **Fallback:** typed address beat: `/a/at?q=4801 E 3rd St, Los Angeles, CA` shows "Outside any city: unincorporated Los Angeles County … City of Los Angeles rules don't apply here" (shot `b4c`). It calls Census live (one retry, 8 s timeout), so only use it when the network is good.
 
 ### Beat 5 · 1064 Summit Ave., Jersey City: what's coming (J3) (1:45–2:05)
@@ -90,7 +90,7 @@ Spoken words per beat are written to fit the time at ~150 words per minute. Read
 - **Fallback:** `/changes/A0256` (Hoboken) shows the same entry.
 
 ### Beat 6 · Hour 16: a new law arrives, the renter hears about it (J4) (2:05–2:35)
-Two versions. Decide at 11:00 which one is recorded (GAPS #4); both are honest.
+Two versions. Decide at 11:00 which one is recorded (GAPS #6); both are honest.
 
 **6A Live take (the goal): the hour-16 ordinance.**
 - **Dimitar, terminal** (font 20 pt, clock visible: `date` before and after):
@@ -106,17 +106,17 @@ Two versions. Decide at 11:00 which one is recorded (GAPS #4); both are honest.
 - Address `/a/A0011` 834-836 Raymond Blvd, Newark (shot `b6a`; alert form opened, not submitted: `b6b`) (demo inbox seeded there 04.10, allowed + demo; dry run = exactly one recipient, per `.claude/REHEARSAL.md`).
 - **Silvan:** `make notify SOURCE='asof:2026-10-01..2027-07-02'` (dry run, must print one `would_send A0011` line) → `make alert SOURCE='asof:2026-10-01..2027-07-02' RESET=1 URL=https://yourhomerule.com` → phone: "Something changes for your rent rules at 834-836 Raymond Blvd" in < 60 s.
 - **Talk:** "Alerts run on the same comparison as the change log. Here: the FAIR Act for a Newark tenant who signed up."
-- **Don't show:** the Newark rent tile (its line is a hardship ceiling, "must not grant an increase exceeding 25%", which reads like a cap; GAPS #8).
+- **Don't show:** the Newark rent tile (its line is a hardship ceiling, "must not grant an increase exceeding 25%", which reads like a cap; GAPS #10).
 
 **Fallbacks (both versions):** sending fails → on the address page click **See an example alert** (overlay labelled "Preview — simulated, nothing is sent", shot `b6c`) or show the **Alert email preview** on `/changes/<id>`. Ingest fails live → play the rehearsal recording (`make rehearse` on the fictional X001, ~24 s for 45 addresses per the PRD) and say it is the rehearsal.
-- **Screen ≠ script:** the email footer shows "HomeRule · [PLACEHOLDER: HomeRule postal address — owner to fill in]" (overlay, preview and real mail). GAPS #5.
+- **Screen ≠ script:** the email footer shows "HomeRule · [PLACEHOLDER: HomeRule postal address — owner to fill in]" (overlay, preview and real mail). GAPS #7.
 
 ### Beat 7 · Proof frame and close (2:35–2:45)
 - **Screen:** one slide (or the `make eval` report scrolled): numbers only with their source.
   - 500/500 sample addresses resolved; 38 mailing cities corrected to the legal city (ARCHITECTURE B, `make resolve`)
   - T1 250 · T2 90 · T3 140 flips + 90 conflict flags · T4 110 pending · T5 0, all equal to the expected sets (`make eval`, verified 06:30 on main)
   - 26 of 27 rules the brief names, right status and date (the miss: Santa Ana's ban, no text in the corpus)
-  - quotes verbatim in the pinned source: re-run on a clean checkout before quoting a number (GAPS #3)
+  - quotes verbatim in the pinned source: re-run on a clean checkout before quoting a number (GAPS #4)
   - T6: fill in after the hour-16 run
   - Chatbot check, 20 dated questions: plain chatbot 4 wrong, HomeRule 0 wrong (`scoreboard/`)
 - **Talk (Dimitar):** "Every number here comes from one command, and the same input gives the same bytes. Not legal advice: the law, quoted and dated, for your exact address."
@@ -160,7 +160,7 @@ Each objection a judge or the RealPage sponsor could raise, tested against the l
 |---|---|---|---|---|
 | 1 | "ChatGPT with search answers this." | `scoreboard/results/SCOREBOARD.md`: + web search 20/20 | We agree on city-level questions. B2 shows what it can't: two buildings, one city, two answers; B6 shows law that isn't on the web; every answer is quoted and reproducible | Opener cut; no "9/20" anywhere |
 | 2 | "Your model decides who is covered, so it can hallucinate coverage." | Rule page audit on production | B1: the model extracts, code decides; same facts and date give the same answer (rebuild byte-identical, checked 06:30) | Audit trail moved into B1 |
-| 3 | "Is the extraction really automated, or hand-coded?" | Brief p.5 rule | B6 live ingest of a document nobody saw before, prompts frozen | Prompt lock currently "DOES NOT MATCH" in `make eval`: must be re-frozen before hour 16 or the claim is weak (GAPS #3) |
+| 3 | "Is the extraction really automated, or hand-coded?" | Brief p.5 rule | B6 live ingest of a document nobody saw before, prompts frozen | Prompt lock currently "DOES NOT MATCH" in `make eval`: must be re-frozen before hour 16 or the claim is weak (GAPS #4) |
 | 4 | "You show 'unknown' a lot: that's a cop-out." | `out/build_summary.json`: San Diego 150 unknown of 400, Berkeley 80 | B3: unknown names the one fact and who can settle it; the brief gives unknown partial credit and penalises a wrong "applies"; San Diego/Berkeley have no year built in the public data (brief) | — |
 | 5 | "Isn't this legal advice?" | Banner, tile foot, email footer, API `not_legal_advice: true` | B0 banner; tiles state facts and a human contact; conflicts not decided | Avoid helpers that read like advice on camera |
 | 6 | "Could a landlord use this to find unprotected buildings?" | PRD Never list | No ranking, no map of protection levels; the impact map is per rule for advocates | Not said unless asked |
@@ -168,10 +168,10 @@ Each objection a judge or the RealPage sponsor could raise, tested against the l
 | 8 | "Does it scale to a new city?" | ARCHITECTURE "Scaling" | Documents + one jurisdiction-list entry + `make all`; hour 16 is the live proof. Santa Ana: rules extracted, no addresses in the data | Don't demo Santa Ana as "new jurisdiction live": it's in the original scope |
 | 9 | "These phone numbers: are they right?" | Tile text | Every number says "not yet checked by us, confirm before calling" | — |
 | 10 | "Confidence: low on the SF rule?" | Show the law | Source is the Rent Board's notice, not the ordinance; we show it | Line ready for Q&A |
-| 11 | "Newark: 25% a year?" | `/a/A0011` rent tile | Not shown; GAPS #8 | Newark used only for the email |
+| 11 | "Newark: 25% a year?" | `/a/A0011` rent tile | Not shown; GAPS #10 | Newark used only for the email |
 | 12 | "Is the alert real?" | `.claude/REHEARSAL.md` | Real Resend send to a seeded demo inbox in a closed test; the overlay is labelled simulated | 6B before 6A in rehearsal |
 | 13 | "What if the address isn't one of the 500?" | `/a/at?q=…` East LA | Census resolves it; building facts unknown, said plainly | B4 fallback only (network risk) |
-| 14 | "Outside your three states?" | `/where?q=Austin, TX` | "Not covered: HomeRule has law for 3 states and 10 cities" (shot `b7a`). Home search: "New York" returns no suggestion and Enter does nothing visible (GAPS #10): use `/where` | Optional Q&A screen |
+| 14 | "Outside your three states?" | `/where?q=Austin, TX` | "Not covered: HomeRule has law for 3 states and 10 cities" (shot `b7a`). Home search: "New York" returns no suggestion and Enter does nothing visible (GAPS #12): use `/where` | Optional Q&A screen |
 
 ## 5. Pre-flight checklist (T-30 min)
 
@@ -194,7 +194,7 @@ Phone (Silvan's):
 
 | Time (CEST) | Silvan | Dimitar |
 |---|---|---|
-| 07:00–09:00 | GAPS #1, #2, #5, #9 fixes merged, production update | GAPS #3 (clean `make eval`, quotes, re-freeze), hour-16 readiness |
+| 07:00–09:00 | GAPS #1, #2, #5, #9 fixes merged, production update | GAPS #4 (clean `make eval`, quotes, re-freeze), hour-16 readiness |
 | 09:00–10:00 | Rehearse beats 0–5 twice with a stopwatch; 6B once | Rehearse 6A on X001 with the clock |
 | hour 16 (time [unknown], watch Discord) | Phone and alert for 6A | Ingest on camera, `make build`, PR |
 | 11:00 | Decide 6A vs 6B for the video | T6 numbers into the proof slide |
@@ -204,7 +204,7 @@ Phone (Silvan's):
 ## 7. Screen ≠ script (open items found on production, 04.10 ~06:40)
 
 1. `/r/<NJ rule>` 404 for all 22 rule ids with ":" (FAIR Act, NJ fee cap, Hoboken rent) — fixed on main (#76), not on production.
-2. J2 missing-fact box names the wrong facts on `/a/A0107` — fix in progress (`s/fix-missing-fact`).
+2. J2 missing-fact box names the wrong facts on `/a/A0107` — fixed on main (#78), not on production.
 3. Email footer placeholder "[PLACEHOLDER: HomeRule postal address — owner to fill in]".
 4. No as-of control anywhere; `?as_of=` links from rule pages to address pages are ignored by the address page.
 5. "No local rule — state basics only" label on tiles that describe a city rule (Boston/Cambridge eviction) or no rule at all ("…and no California rule either" on `/a/A0105`).
