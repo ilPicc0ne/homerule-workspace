@@ -9,8 +9,10 @@ Added to every record of out/rules.compiled.json as `renter_impact`:
   protection; a protection or duty protects). One batched Jev call reviews every protecting rule with its quote
   ("for tenants, does this provision add a protection, take one away or limit it, or neither?") and overrides the
   code default only at p >= 0.9, e.g. an exemption from a rent cap filed as a protection.
-- kind (eviction, algorithmic pricing): a Jev label in the same call - does the rule limit the reasons for ending a
-  tenancy (grounds) or only procedure; is it a ban or only a disclosure duty. Presence alone overstates a notice rule.
+- kind (eviction, algorithmic pricing, application fees): a Jev label in the same call - does the rule limit the
+  reasons for ending a tenancy (grounds) or only procedure; is it a ban or only a disclosure duty; does a fee rule
+  ban the fee (strength $0), cap it, or set something else. Presence alone overstates a notice rule; a missing
+  number understates a ban.
 - strength: code only, from fields extraction already filled (cap percentages) or parsed from the key value
   (months of rent, dollars). Not parseable means null ("strength unknown"), never a guess.
 The score (engine/score.py) and the better/worse verdict of a change (engine/impact.py) are built on this.
@@ -34,7 +36,16 @@ KIND = {   # topics where a protection's presence is not enough: what kind of pr
         "ban": "It prohibits using or providing algorithmic or coordinated rent-setting.",
         "disclosure": "It only requires disclosure, notice or reporting about such software.",
     },
+    "application_screening_fees": {
+        "ban": "No application, screening or credit-check fee may be charged: it prohibits such fees, or it lists "
+               "the only amounts that may be required and such a fee is not among them.",
+        "cap": "It limits the amount of the fee (a maximum, or the actual cost).",
+        "other": "It sets something else: who pays a fee, refunds, receipts, notices or procedures.",
+    },
 }
+KIND_QUESTION = {"application_screening_fees": "What does this provision mean for an application, screening or "
+                                               "credit-check fee charged to an applicant"}
+BAN_STRENGTH = {"application_screening_fees"}   # a ban is the lowest possible amount: $0
 OVERRIDE = 0.9
 UNITS = {"rent_increase_limits": ("%/year", True), "security_deposits": ("months of rent", True),
          "application_screening_fees": ("$", True)}
@@ -86,9 +97,9 @@ def annotate(rules, comps):
                                            f'(cited as {r["citation"]}, topic {r["category"]})?'}
             idx[f"r{i}"] = i
             if r["category"] in KIND:
+                ask = KIND_QUESTION.get(r["category"], "What kind of tenant protection is this provision")
                 qs[f"k{i}"] = {"type": "choice", "criteria": KIND[r["category"]],
-                               "instructions": f'What kind of tenant protection is this provision: "{quote}" '
-                                               f'(cited as {r["citation"]})?'}
+                               "instructions": f'{ask}: "{quote}" (cited as {r["citation"]})?'}
     answers = {}
     if qs:
         state = "\n".join(f"- {r['citation']}: {r['requirement']}" for r in rules)
@@ -108,9 +119,13 @@ def annotate(rules, comps):
                 how += f"; jev agrees or unsure (p={conf:.2f})"
         k = answers.get(f"k{i}")
         kind = k["choice"] if k and direction == "protects" else None
+        st = strength(c) if direction == "protects" else None
+        if kind == "ban" and r["category"] in BAN_STRENGTH:
+            unit, lower = UNITS[r["category"]]
+            st = {"value": 0.0, "unit": unit, "lower_is_better": lower, "from": "kind: ban"}
         c["renter_impact"] = {"direction": direction, "decided_by": decided_by, "how": how, "confidence": round(conf, 3),
                               "inputs": {"effect": effect, "quote_chars": 400, "category": r["category"],
                                          "citation": r["citation"]},
-                              "strength": strength(c) if direction == "protects" else None,
+                              "strength": st,
                               "kind": kind, "kind_confidence": round(k["confidence"], 3) if kind else None}
     return comps

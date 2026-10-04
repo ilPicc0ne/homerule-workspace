@@ -334,8 +334,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.98)",
-   "confidence": 0.98,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.99)",
+   "confidence": 0.99,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -347,8 +347,8 @@
     "unit": "$",
     "lower_is_better": true
    },
-   "kind": null,
-   "kind_confidence": null
+   "kind": "cap",
+   "kind_confidence": 1
   }
  },
  {
@@ -465,8 +465,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.92)",
-   "confidence": 0.92,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.93)",
+   "confidence": 0.93,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -544,8 +544,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.96)",
-   "confidence": 0.96,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.97)",
+   "confidence": 0.97,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -1047,8 +1047,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.83)",
-   "confidence": 0.83,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.82)",
+   "confidence": 0.82,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -1101,8 +1101,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.77)",
-   "confidence": 0.77,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.78)",
+   "confidence": 0.78,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -1354,8 +1354,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.96)",
-   "confidence": 0.96,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.97)",
+   "confidence": 0.97,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -2098,8 +2098,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.98)",
-   "confidence": 0.98,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.99)",
+   "confidence": 0.99,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -2645,8 +2645,8 @@
     "unit": "$",
     "lower_is_better": true
    },
-   "kind": null,
-   "kind_confidence": null
+   "kind": "cap",
+   "kind_confidence": 1
   }
  },
  {
@@ -2718,8 +2718,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.84)",
-   "confidence": 0.84,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.81)",
+   "confidence": 0.81,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -3542,8 +3542,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.43)",
-   "confidence": 0.43,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.41)",
+   "confidence": 0.41,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -3957,9 +3957,14 @@
     "category": "application_screening_fees",
     "citation": "Mass. Gen. Laws ch. 186, § 15B(1)(b)"
    },
-   "strength": null,
-   "kind": null,
-   "kind_confidence": null
+   "strength": {
+    "value": 0.0,
+    "unit": "$",
+    "lower_is_better": true,
+    "from": "kind: ban"
+   },
+   "kind": "ban",
+   "kind_confidence": 0.82
   }
  },
  {
@@ -4018,8 +4023,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.96)",
-   "confidence": 0.96,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.97)",
+   "confidence": 0.97,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -4027,8 +4032,8 @@
     "citation": "Mass. Gen. Laws ch. 112, § 87DDD½"
    },
    "strength": null,
-   "kind": null,
-   "kind_confidence": null
+   "kind": "other",
+   "kind_confidence": 0.99
   }
  },
  {
@@ -4516,8 +4521,8 @@
     "unit": "$",
     "lower_is_better": true
    },
-   "kind": null,
-   "kind_confidence": null
+   "kind": "cap",
+   "kind_confidence": 1
   }
  },
  {
@@ -5672,8 +5677,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.94)",
-   "confidence": 0.94,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.96)",
+   "confidence": 0.96,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -6571,8 +6576,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.98)",
-   "confidence": 0.98,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.99)",
+   "confidence": 0.99,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -7213,8 +7218,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.87)",
-   "confidence": 0.87,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.88)",
+   "confidence": 0.88,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -7267,8 +7272,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.14)",
-   "confidence": 0.14,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.11)",
+   "confidence": 0.11,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -7321,8 +7326,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.70)",
-   "confidence": 0.7,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.69)",
+   "confidence": 0.69,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -8131,7 +8136,7 @@
    },
    "strength": null,
    "kind": "grounds",
-   "kind_confidence": 0.97
+   "kind_confidence": 0.98
   }
  },
  {
@@ -8195,8 +8200,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.70)",
-   "confidence": 0.7,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.71)",
+   "confidence": 0.71,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -8760,8 +8765,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.96)",
-   "confidence": 0.96,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.95)",
+   "confidence": 0.95,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,
@@ -8872,8 +8877,8 @@
   "renter_impact": {
    "direction": "protects",
    "decided_by": "code",
-   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.40)",
-   "confidence": 0.4,
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.38)",
+   "confidence": 0.38,
    "inputs": {
     "effect": "protection_or_duty",
     "quote_chars": 400,

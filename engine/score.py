@@ -140,6 +140,8 @@ def _numbered(topic, rules_by_id):
 def _cov(cat, rule):
     if cat in NOUN:
         st = (rule.get("renter_impact") or {}).get("strength")
+        if st and st.get("from") == "kind: ban":
+            return "A ban on application fees"
         return f"A {_amount(st)} {NOUN[cat]}" if st else f"A {NOUN[cat]}"
     kind = (rule.get("renter_impact") or {}).get("kind")
     return PRESENCE.get((cat, kind)) or PRESENCE.get((cat, None))
@@ -180,6 +182,10 @@ def why(cat, verdict, b, a, change, before_rows, after_rows, rules_by_id):
     if b["limited_by"] and not a["limited_by"]:
         return f"An exemption ({rules_by_id[b['limited_by'][0]]['citation']}) no longer limits {TOPIC_WORDS[cat]} here."
     nb, na = _numbered(b, rules_by_id), _numbered(a, rules_by_id)
+    if cat in NOUN and na and na[1].get("from") == "kind: ban" and not (nb and nb[1].get("from") == "kind: ban"):
+        return f"Application fees are now banned for this home ({na[0]['citation']})."
+    if cat in NOUN and nb and nb[1].get("from") == "kind: ban" and not (na and na[1].get("from") == "kind: ban"):
+        return f"Application fees are no longer banned for this home ({nb[0]['citation']})."
     if cat in NOUN and nb and na and nb[1]["value"] != na[1]["value"]:
         return f"The {NOUN[cat]} goes from {_amount(nb[1])} to {_amount(na[1])} ({na[0]['citation']})."
     if cat in NOUN and na and not nb and la and la["id"] == na[0]["id"]:
