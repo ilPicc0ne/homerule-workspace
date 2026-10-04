@@ -41,6 +41,7 @@ Model calls are cached by request hash (`build/cache/`), so a rerun of `make ext
 | `status.py` | Corroborates a "draft" reading against the manifest's code-publisher links |
 | `gate.py` | Verification gate G1-G6 |
 | `vote.py` | Majority vote over the extraction samples |
+| `exemptions.py` | After the vote (in compile): text-only exemptions left standing alone. Parts of one exemption (a numbered item that requires its sub-items together, e.g. "provided that both of the following apply") are joined by code from the document's structure; Jev answers whether an exemption holds only when the owner lives there (code adds `owner_occupied`, p >= 0.9) and triages joined exemptions for 5+ unit apartments. One Jev call per source document, only for these nodes; each fix is in the rule's checks and `audit.json` |
 | `impact.py` | Renter impact per rule (`renter_impact` in `rules.compiled.json`): protects / limits (code from the effect, one batched Jev review at p >= 0.9), strength (rent %, deposit months, fee $; code only), kind for eviction (grounds / procedure) and algorithmic rules (ban / disclosure) |
 | `open_questions.py` | The guide's known open questions (starter README) → `open_question` findings: our rule and source next to each competing claim, the claim's source matched to a manifest row by Jev. A law that two sources give effective dates for counts as adopted (the later date applies) |
 | `links.py` | One Jev call over link-only manifest rows → `out/link_findings.json` (failed measures, bans with no corpus text) |

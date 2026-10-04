@@ -41,9 +41,14 @@ class Changes(unittest.TestCase):
                 ch = D.diff_lookups(before, after, self.by_id).get(f["address"], [])
                 if "rule" in f:
                     got = [c["renter_impact"]["verdict"] for c in ch if c["team_rule_id"] == f["rule"]]
+                    whys = [c["renter_impact"]["why"] for c in ch if c["team_rule_id"] == f["rule"]]
+                    self.assertEqual(whys, [f["expect_why"]], f["why"])
                 else:
                     got = sorted({c["renter_impact"]["verdict"] for c in ch
                                   if self.by_id[c["team_rule_id"]]["category"] == f["category"]})
+                    whys = sorted({c["renter_impact"]["why"] for c in ch
+                                   if self.by_id[c["team_rule_id"]]["category"] == f["category"]})
+                    self.assertEqual(whys, [f["expect_why"]], f["why"])
                 self.assertEqual(got, [f["expect"]], f"{f['why']}: {ch and [(c['team_rule_id'], c['change'], c['renter_impact']) for c in ch]}")
 
 
@@ -59,11 +64,43 @@ class Scores(unittest.TestCase):
                 self.assertEqual((got["score"], got["high"], got["unknown_topics"]),
                                  (f["score"], f["high"], f["unknown"]), f["why"])
 
+    def test_open_questions(self):
+        for f in FX["open_questions"]:
+            with self.subTest(address=f["address"], fact=f["fact"], answer=f["answer"]):
+                got = self.res["addresses"][f["address"]][f["date"]]["open"][f["topic"]]
+                q = next(q for q in got["facts"] if q["fact"] == f["fact"])
+                a = q["answers"][json.dumps(f["answer"])]
+                self.assertEqual((a["level"], a["score"]), (f["level"], f["score"]), f["why"])
+
     def test_score_within_range(self):
         for aid, per_date in self.res["addresses"].items():
             for d, x in per_date.items():
                 with self.subTest(address=aid, date=d):
                     self.assertTrue(x["low"] <= x["score"] <= x["high"], x)
+
+
+class Whys(unittest.TestCase):
+    """Every change between consecutive score dates: a why of at most WORDS words, no advice words, decided_by."""
+    WORDS = 25
+    BANNED = ("compliant", "illegal", "you should", "legal advice")
+
+    def test_every_change(self):
+        rules = R.load()
+        by_id = {r["id"]: r for r in rules}
+        addresses = F.load()
+        dates = S.CFG["dates"]
+        rows = {d: B.build_lookups(rules, addresses, d) for d in dates}
+        n = 0
+        for d0, d1 in zip(dates, dates[1:]):
+            for aid, ch in D.diff_lookups(rows[d0], rows[d1], by_id).items():
+                for c in ch:
+                    ri = c["renter_impact"]
+                    with self.subTest(address=aid, dates=(d0, d1), rule=c["team_rule_id"]):
+                        self.assertTrue(ri["why"] and len(ri["why"].split()) <= self.WORDS, ri["why"])
+                        self.assertFalse(any(b in ri["why"].lower() for b in self.BANNED), ri["why"])
+                        self.assertEqual(ri["decided_by"]["verdict"], "code")
+                    n += 1
+        self.assertGreater(n, 0)
 
 
 if __name__ == "__main__":

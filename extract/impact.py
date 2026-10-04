@@ -1,7 +1,8 @@
 """Renter impact per rule (layer 1): does the rule protect renters or limit a protection, and how strong is it?
 
 Added to every record of out/rules.compiled.json as `renter_impact`:
-  {"direction": "protects" | "limits" | "neutral", "how": "...", "confidence": float,
+  {"direction": "protects" | "limits" | "neutral", "decided_by": "code" | "model_override", "how": "...",
+   "confidence": float, "inputs": {effect, category, citation, quote_chars},
    "strength": {"value": float, "unit": str, "lower_is_better": bool} | null}
 
 - direction: code from what extraction already decided (effect: a rule that bars or limits local rules limits a
@@ -95,18 +96,21 @@ def annotate(rules, comps):
     for i, (r, c) in enumerate(zip(rules, comps)):
         effect = (c.get("x_source") or {}).get("effect", r.get("effect"))
         direction = "limits" if effect == "bars_or_limits_local_rules" else "protects"
-        how, conf = f"code: effect {effect}", 1.0
+        how, conf, decided_by = f"code: effect {effect}", 1.0, "code"
         a = answers.get(f"r{i}")
         if a:
             p = a.get("probabilities", {})
             if a["choice"] != direction and p.get(a["choice"], 0) >= OVERRIDE:
                 direction, how, conf = a["choice"], f"jev review (p={p[a['choice']]:.2f}) over code ({effect})", p[a["choice"]]
+                decided_by = "model_override"
             else:
                 conf = p.get(direction, a["confidence"])
                 how += f"; jev agrees or unsure (p={conf:.2f})"
         k = answers.get(f"k{i}")
         kind = k["choice"] if k and direction == "protects" else None
-        c["renter_impact"] = {"direction": direction, "how": how, "confidence": round(conf, 3),
+        c["renter_impact"] = {"direction": direction, "decided_by": decided_by, "how": how, "confidence": round(conf, 3),
+                              "inputs": {"effect": effect, "quote_chars": 400, "category": r["category"],
+                                         "citation": r["citation"]},
                               "strength": strength(c) if direction == "protects" else None,
                               "kind": kind, "kind_confidence": round(k["confidence"], 3) if kind else None}
     return comps

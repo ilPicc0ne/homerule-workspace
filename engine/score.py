@@ -15,13 +15,17 @@ import json
 from pathlib import Path
 from statistics import median
 
-from engine import build as B, facts as F, rules as R
+import copy
+
+from engine import build as B, explain as X, facts as F, rules as R
 
 ROOT = Path(__file__).resolve().parent.parent
 CFG = json.loads((ROOT / "contracts" / "impact.json").read_text(encoding="utf-8"))
 LEVEL = CFG["levels"]
 ORDER = ["none", "basic", "strong"]
 PREFIX = {"states": "state", "cities": "city", "addresses": "address"}
+FACT_VALUES = {f["name"]: ([True, False] if f["type"] == "bool" else f["values"] if f["type"] == "enum" else None)
+               for f in json.loads((ROOT / "contracts" / "facts.json").read_text(encoding="utf-8"))["facts"]}
 
 
 def rule_level(rule):
@@ -94,6 +98,103 @@ def verdict(before, after):
     return overall, per
 
 
+NOUN = {"rent_increase_limits": "yearly rent increase cap", "security_deposits": "security deposit limit",
+        "application_screening_fees": "application fee cap"}
+PRESENCE = {   # (topic, kind) -> what covers the home, for topics without a number
+    ("just_cause_eviction", "grounds"): "Just-cause eviction protection",
+    ("just_cause_eviction", "procedure"): "Eviction notice rules (not just cause)",
+    ("just_cause_eviction", None): "Eviction protection",
+    ("algorithmic_rent_setting", "ban"): "A ban on rent-setting software",
+    ("algorithmic_rent_setting", "disclosure"): "A disclosure rule for rent-setting software",
+    ("algorithmic_rent_setting", None): "A rule on rent-setting software",
+    ("screening_restrictions", None): "Tenant screening protections",
+}
+TOPIC_WORDS = {"rent_increase_limits": "rent increase protection", "just_cause_eviction": "eviction protection",
+               "security_deposits": "deposit protection", "application_screening_fees": "application fee protection",
+               "screening_restrictions": "screening protection", "algorithmic_rent_setting": "rent-setting software protection"}
+
+
+def _amount(st):
+    v = st["value"]
+    v = int(v) if float(v).is_integer() else v
+    return {"%/year": f"{v}%", "months of rent": f"{v} month{'s' if v != 1 else ''}' rent", "$": f"${v}"}[st["unit"]]
+
+
+def _lead(topic, rules_by_id):
+    """The rule that sets a topic's level: highest level, then the lowest number."""
+    rs = [rules_by_id[i] for i in topic["rules"] if i in rules_by_id]
+    if not rs:
+        return None
+    key = lambda r: (-ORDER.index(rule_level(r)), ((r.get("renter_impact") or {}).get("strength") or {}).get("value", 1e9))
+    return sorted(rs, key=key)[0]
+
+
+def _numbered(topic, rules_by_id):
+    """(rule, strength) with the best number among the topic's rules, or None (numbers decide numbered topics)."""
+    rs = [(rules_by_id[i], (rules_by_id[i].get("renter_impact") or {}).get("strength")) for i in topic["rules"]
+          if i in rules_by_id]
+    rs = [x for x in rs if x[1]]
+    return min(rs, key=lambda x: x[1]["value"]) if rs else None
+
+
+def _cov(cat, rule):
+    if cat in NOUN:
+        st = (rule.get("renter_impact") or {}).get("strength")
+        return f"A {_amount(st)} {NOUN[cat]}" if st else f"A {NOUN[cat]}"
+    kind = (rule.get("renter_impact") or {}).get("kind")
+    return PRESENCE.get((cat, kind)) or PRESENCE.get((cat, None))
+
+
+def _missing_words(rows, cat, rules_by_id):
+    facts, text = [], False
+    for row in rows:
+        if rules_by_id[row["team_rule_id"]]["category"] == cat and row["result"] == "unknown":
+            for m in row.get("missing") or []:
+                if m.startswith("unparsed: "):
+                    text = True
+                elif X.FACT_NOUN.get(m, m) not in facts:
+                    facts.append(X.FACT_NOUN.get(m, m))
+    if facts:
+        return "Depends on " + " and ".join(facts[:2]) + ", which our data doesn't have."
+    if text:
+        return "Depends on an exception in the law's text that our building data can't check."
+    return "Depends on facts our data doesn't have."
+
+
+def why(cat, verdict, b, a, change, before_rows, after_rows, rules_by_id):
+    """One plain sentence, built only from the fields that decided the verdict (levels, the leading rules, their
+    numbers and citations, the missing facts). Never advice; no model."""
+    if verdict == "unclear":
+        if change.get("conflict_flag_changed"):
+            return "A state law may limit the city rule here; this overlap is not decided."
+        return _missing_words(after_rows, cat, rules_by_id) if a["level"] == "unknown" else \
+            _missing_words(before_rows, cat, rules_by_id)
+    lb, la = _lead(b, rules_by_id), _lead(a, rules_by_id)
+    if verdict == "unchanged":
+        other = next((x for x in (lb, la) if x and x["id"] != change["team_rule_id"]), None)
+        if other:
+            return f"No change in {TOPIC_WORDS[cat]}: {other['citation']} already gives this protection."
+        return f"No change in {TOPIC_WORDS[cat]} for this home."
+    if a["limited_by"] and not b["limited_by"]:
+        return f"An exemption ({rules_by_id[a['limited_by'][0]]['citation']}) now limits {TOPIC_WORDS[cat]} here."
+    if b["limited_by"] and not a["limited_by"]:
+        return f"An exemption ({rules_by_id[b['limited_by'][0]]['citation']}) no longer limits {TOPIC_WORDS[cat]} here."
+    nb, na = _numbered(b, rules_by_id), _numbered(a, rules_by_id)
+    if cat in NOUN and nb and na and nb[1]["value"] != na[1]["value"]:
+        return f"The {NOUN[cat]} goes from {_amount(nb[1])} to {_amount(na[1])} ({na[0]['citation']})."
+    if cat in NOUN and na and not nb and la and la["id"] == na[0]["id"]:
+        return f"The {NOUN[cat]} is now {_amount(na[1])} ({na[0]['citation']})." if lb else \
+            f"{_cov(cat, la)} now covers this home ({la['citation']})."
+    if la and (not lb or b["at_least"] == "none"):
+        cov = _cov(cat, la)
+        return f"{cov} now covers this home ({la['citation']})."
+    if lb and (not la or a["at_least"] == "none"):
+        cov = _cov(cat, lb)
+        return f"{cov} no longer covers this home ({lb['citation']})."
+    word = "stronger" if verdict == "better" else "weaker"
+    return f"{TOPIC_WORDS[cat].capitalize()} gets {word}: {_cov(cat, lb).lower()} becomes {_cov(cat, la).lower()} ({la['citation']})."
+
+
 def annotate_changes(changes, before_rows, after_rows, rules_by_id):
     """Layer 2: each change of one address gets renter_impact = better / worse / unchanged / unclear for its topic,
     from the topic's level before and after (so a law replaced by a newer version is judged by the levels, not by
@@ -104,8 +205,58 @@ def annotate_changes(changes, before_rows, after_rows, rules_by_id):
     for c in changes:
         cat = rules_by_id[c["team_rule_id"]]["category"]
         v = "unclear" if c.get("conflict_flag_changed") else per[cat]
-        c["renter_impact"] = {"verdict": v, "topic": cat, "level_before": b[cat]["level"], "level_after": a[cat]["level"]}
+        used = sorted(set(b[cat]["rules"]) | set(a[cat]["rules"]) | set(b[cat]["limited_by"]) | set(a[cat]["limited_by"])
+                      | {c["team_rule_id"]})
+        c["renter_impact"] = {
+            "verdict": v, "topic": cat, "level_before": b[cat]["level"], "level_after": a[cat]["level"],
+            "why": why(cat, v, b[cat], a[cat], c, before_rows, after_rows, rules_by_id),
+            "decided_by": {"verdict": "code",
+                           "direction": {i: (rules_by_id[i].get("renter_impact") or {}).get("decided_by", "code")
+                                         for i in used if i in rules_by_id}},
+            "inputs": {"rules_before": b[cat]["rules"], "rules_after": a[cat]["rules"],
+                       "limited_by_before": b[cat]["limited_by"], "limited_by_after": a[cat]["limited_by"],
+                       "range_before": [b[cat]["at_least"], b[cat]["at_most"]],
+                       "range_after": [a[cat]["at_least"], a[cat]["at_most"]],
+                       "conflict_flag_changed": bool(c.get("conflict_flag_changed"))}}
     return changes
+
+
+def open_questions(rec, d, rows, topics, rules, by_id):
+    """For each unknown topic: the building facts that would settle it, where to check each, and the topic level and
+    score for each possible answer (the engine re-run with that one fact set; code only); the exemptions only the
+    law's text states; and the tenant conditions of its rules (never inputs, notes for the reader)."""
+    out = {}
+    for cat, t in topics.items():
+        if t["level"] != "unknown":
+            continue
+        facts, text = [], []
+        for row in rows:
+            if by_id[row["team_rule_id"]]["category"] != cat or row["result"] != "unknown":
+                continue
+            for m in row.get("missing") or []:
+                if m.startswith("unparsed: "):
+                    m = m[len("unparsed: "):]
+                    if m not in text:
+                        text.append(m)
+                elif m not in facts:
+                    facts.append(m)
+        asked = []
+        for f in facts:
+            q = {"fact": f, "check": X.HOW_TO_CHECK.get(f)}
+            if FACT_VALUES.get(f) and (rec.get("facts") or {}).get(f) is None:
+                q["answers"] = {}
+                for v in FACT_VALUES[f]:
+                    r2 = copy.deepcopy(rec)
+                    r2["facts"][f] = v
+                    t2 = topic_levels(B.build_lookups(rules, {rec["address_id"]: r2}, d)[rec["address_id"]], by_id)
+                    a2 = aggregate(t2)
+                    q["answers"][json.dumps(v)] = {"level": t2[cat]["level"], "score": a2["score"], "high": a2["high"]}
+            asked.append(q)
+        notes = sorted({n for row in rows if by_id[row["team_rule_id"]]["category"] == cat
+                        and row["result"] in ("applies", "superseded", "unknown")
+                        for n in by_id[row["team_rule_id"]].get("tenant_conditions") or []})
+        out[cat] = {"facts": asked, "text_exemptions": text, "tenant_notes": notes}
+    return out
 
 
 def build(dates=None):
@@ -121,7 +272,8 @@ def build(dates=None):
         srows = B.build_lookups(state_rules, addresses, d)
         for aid, rs in rows.items():
             t = topic_levels(rs, by_id)
-            res["addresses"].setdefault(aid, {})[d] = {**aggregate(t), "topics": t}
+            res["addresses"].setdefault(aid, {})[d] = {**aggregate(t), "topics": t,
+                                                       "open": open_questions(addresses[aid], d, rs, t, rules, by_id)}
             floor.setdefault(aid, {})[d] = aggregate(topic_levels(srows[aid], by_id))
     for d in dates:
         by_city, by_state = {}, {}

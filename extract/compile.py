@@ -268,7 +268,11 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
             main["details"].append({"provision": o["provision"], "requirement": o["requirement"],
                                     "key_value": o["key_value"], "source_doc_id": span["doc_id"] if span else None,
                                     "quote": source_span(span) if span else None, "supporting": True})
-    return attribute([local_exemption_to_interaction(r) for r in replaced(rules, chains)])
+    rules = attribute([local_exemption_to_interaction(r) for r in replaced(rules, chains)])
+    from . import exemptions               # text-only exemptions: rejoin split parts, owner-occupied, triage
+    for citation, quote, how in exemptions.normalize(rules):
+        print(f"exemption {citation}: '{quote}': {'; '.join(how)}")
+    return rules
 
 
 def _old_version_block(text, date_words):

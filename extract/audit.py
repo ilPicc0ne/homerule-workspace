@@ -85,7 +85,9 @@ def build(rules, comps, findings, open_questions):
                        "parse_status": c["parse_status"]},
             "code": {"status": c["status"], "effective": c["effective"],
                      "status_evidence": c["x_source"].get("status_evidence"), "interaction": c["interaction"],
-                     "open_questions": [q for q in open_questions.get((r["jurisdiction"], r["category"]), [])]},
+                     "open_questions": [q for q in open_questions.get((r["jurisdiction"], r["category"]), [])],
+                     "renter_impact": c.get("renter_impact"),
+                     "exemption_fixes": [x for x in r.get("checks", []) if x.startswith("exempt_if: '")]},
             "calls": sorted(({k: x.get(k) for k in ("stage", "ref", "model", "request_hash", "seconds", "cost", "ts")}
                              for x in mine), key=lambda x: x["ts"]),
             "boundary": BOUNDARY,
