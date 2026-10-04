@@ -1,8 +1,8 @@
 # HomeRule tech video ("Teach"), 60 seconds
 
 Script for the visual pipeline. The video follows one law from text to answers, so a viewer understands each
-technical decision from the story itself. It is a product video for outsiders: it shows what the system does and
-why it is built that way, not our internal test results. Every record below is real (see the source table). Do
+technical decision from the story itself. It shows what the system does and why it is built that way, with a
+three-second terminal insert showing the actual repository checks. Every record below is real (see the source table). Do
 not add numbers that aren't here.
 
 ## Global direction
@@ -94,6 +94,10 @@ is just data."
      `0 model calls` · `< 1 ms per address`.
 2. On "a new city", a US map: CA, NJ and MA lit, with the ten cities as bright dots. One dim city inside a lit state
    gets a label: "a new city: its law texts + building records".
+3. At **0:51–0:54**, cut to `assets/make-check.mp4`, then the end card. Keep the existing voice track; no extra
+   narration or runtime. This terminal insert shows T1–T5 and the verbatim-quote check from a real run.
+   `assets/README.md` records the tested revision, provenance and limits. These are our repository checks,
+   not an organizer score or a promise that every extraction is correct.
 
 ### End card · 0:54–1:00
 
@@ -117,8 +121,8 @@ advice".
 
 ## Don'ts
 
-- No internal test results: no test cases, held-out scores, quote counts, eval runs or `make check`. This is a product
-  video for outsiders.
+- Keep validation to the three-second terminal insert. Do not turn the repository checks into an organizer score;
+  the recorded run still has a known assertion gap. No claim of a stable 16/16 across fresh re-extractions.
 - Don't say the website, API or chatbot run the engine on each request: they serve its precomputed output.
 - Don't say adding a state is data only: a new state also needs code for its default start dates and a building-data
   source. A new city in a covered state is data.
