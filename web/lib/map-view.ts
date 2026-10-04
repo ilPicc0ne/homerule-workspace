@@ -83,14 +83,40 @@ export type Camera = {
 
 const M_PER_DEG_LAT = 111_320;
 
-/** Final shot: the building from ~300 m at 50° tilt (steep enough that its roof isn't hidden by the next row). */
-export function buildingCamera(coords: { lon: number; lat: number }): Camera {
-  return { center: { lat: coords.lat, lng: coords.lon, altitude: 0 }, range: 300, tilt: 50, heading: 0 };
+/** Tilt of the final shot when the ground elevation is known. */
+export const BUILDING_TILT = 50;
+
+/**
+ * Final shot (also the orbit centre): the building from ~300 m.
+ * Map3DElement's camera centre altitude is metres above sea level, not above ground: a centre at
+ * altitude 0 on a 210 m hill lies 210 m under the street, and at 50° tilt the view lands
+ * ≈ elevation × tan(tilt) (~250 m) beyond the building. So the centre sits at the ground elevation
+ * of the target (`web/data/elevations.json`, sample addresses only).
+ * - elevation known: 50° tilt (steep enough that its roof isn't hidden by the next row);
+ * - elevation unknown (typed address outside the sample; nothing is fetched at runtime): straight
+ *   down (tilt 0), where the altitude moves the camera along the view axis only, so the target stays
+ *   centred whatever the elevation.
+ */
+export function buildingCamera(coords: { lon: number; lat: number }, elevationM?: number | null): Camera {
+  const known = typeof elevationM === "number" && Number.isFinite(elevationM);
+  return {
+    center: { lat: coords.lat, lng: coords.lon, altitude: known ? elevationM : 0 },
+    range: 300,
+    tilt: known ? BUILDING_TILT : 0,
+    heading: 0,
+  };
+}
+
+/** How far the look-at point shifts horizontally when the centre altitude is off by `errorM` at `tilt` degrees. */
+export function cameraOffsetM(errorM: number, tilt: number): number {
+  return Math.abs(errorM) * Math.tan((tilt * Math.PI) / 180);
 }
 
 /**
  * Opening shot: straight down over the legal city so the whole outline is in view.
  * Without an outline (unincorporated), a high shot over the building.
+ * Altitude 0 is fine here: at tilt 0 the altitude only moves the camera along the view axis
+ * (a few hundred metres on a 2–120 km range), so the centre stays put.
  */
 export function cityCamera(rings: Ring[], coords: { lon: number; lat: number } | null): Camera | null {
   const pts = rings.flat();

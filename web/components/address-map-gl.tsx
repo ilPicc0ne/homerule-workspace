@@ -24,6 +24,8 @@ export type MapProps = {
   label: string;
   /** OSM building outline matched to the address (sample addresses only); null/absent → pin on the geocode. */
   footprint?: Footprint | null;
+  /** Ground elevation (m above sea level) at the 3D camera target (sample addresses only); null/absent → top-down 3D shot. */
+  elevation_m?: number | null;
 };
 
 type Ring = number[][];

@@ -36,7 +36,7 @@ function timeout<T>(p: Promise<T>, ms: number): Promise<T> {
 
 export type Map3DProps = MapProps & { onFail: (reason: string) => void };
 
-export default function AddressMap3D({ coords: geocode, outline, footprint, caption, label, onFail }: Map3DProps) {
+export default function AddressMap3D({ coords: geocode, outline, footprint, elevation_m, caption, label, onFail }: Map3DProps) {
   const host = useRef<HTMLDivElement>(null);
   const failRef = useRef(onFail);
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function AddressMap3D({ coords: geocode, outline, footprint, capt
     const coords = hl ? hl.center : null;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const rings = outerRings(outline?.geometry as never);
-    const end = coords ? buildingCamera(coords) : null;
+    const end = coords ? buildingCamera(coords, elevation_m) : null;
     const start = cityCamera(rings, coords);
     if (!start) return fail("nothing to show");
 
@@ -178,7 +178,7 @@ export default function AddressMap3D({ coords: geocode, outline, footprint, capt
       } catch {}
       map?.remove();
     };
-  }, [geocode, outline, footprint, label]);
+  }, [geocode, outline, footprint, elevation_m, label]);
 
   const building = highlightFor(geocode, footprint)?.kind === "building";
   const where = geocode ? `3D map: ${label}. ${caption}.` : `3D map of city limits. ${caption}.`;
