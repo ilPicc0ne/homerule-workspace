@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useId, useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
 import AddressMap from "@/components/address-map";
+import BrandMark from "@/components/brand-mark";
 import AlertForm from "@/components/alerts/alert-form";
 import ExampleAlert from "@/components/alerts/example-alert";
 import type { MapProps } from "@/components/address-map-gl";
@@ -548,7 +549,7 @@ export default function AddressPageView(p: PageProps) {
   const logo: ReactNode = (
     <Link className="logo" href="/">
       <span className="logo-mark">
-        <Ic id="i-logo" />
+        <BrandMark />
       </span>
       HomeRule
     </Link>
@@ -766,7 +767,7 @@ export function StickyBar({
   const logo = (
     <Link className="logo" href="/">
       <span className="logo-mark">
-        <Ic id="i-logo" />
+        <BrandMark />
       </span>
       HomeRule
     </Link>

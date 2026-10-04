@@ -143,9 +143,10 @@ a:hover {
   color: #fff;
 }
 
-.brand-mark .icon {
-  width: 1.05rem;
-  height: 1.05rem;
+.brand-mark .brand-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .header-meta {
