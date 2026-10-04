@@ -1,0 +1,288 @@
+{
+  "title": "HomeRule",
+  "tagline": "Housing law, quoted and dated, for your exact address.",
+  "titleStyle": "light",
+  "theme": "light",
+  "badge": "Prototype · not legal advice",
+  "targetSeconds": [
+    60,
+    120
+  ],
+  "url": "https://yourhomerule.com/",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "voice": {
+    "narrator": "Iapetus"
+  },
+  "music": {
+    "track": "One continuous cinematic electronic piece for a product video, 112 bpm, in one key, with an arc. First 7 seconds: tension builds, a ticking pulse, a rising synth arpeggio over a low drone and a riser. Then one huge drum hit with a deep bass drop. Right after the hit the same theme keeps going with steady driving drums, pulsing bass and the arpeggio at full energy, never calming down, no breakdown, no quiet piano part. It ends on a confident resolving chord. No vocals.",
+    "maxDelay": 3
+  },
+  "hook": {
+    "plain": true,
+    "narration": "Three layers of housing law decide your rent. Which ones apply to your home?",
+    "lines": [
+      "Three layers of housing law decide your rent.",
+      "Which ones apply to your home?"
+    ],
+    "montage": {
+      "windows": [
+        {
+          "kind": "mail",
+          "title": "Re: your rent increase"
+        },
+        {
+          "kind": "pdf",
+          "title": "Cal. Civ. Code 1947.12.pdf"
+        },
+        {
+          "kind": "pdf",
+          "title": "SF Rent Ordinance ch. 37.pdf"
+        },
+        {
+          "kind": "pdf",
+          "title": "Mass. S.2983 (pending).pdf"
+        },
+        {
+          "kind": "pdf",
+          "title": "NJ FAIR Act, eff. 2027.pdf"
+        },
+        {
+          "kind": "xlsx",
+          "title": "Which rules apply.xlsx"
+        }
+      ],
+      "value": "3515 Fillmore St",
+      "counter": "searched",
+      "arms": true
+    }
+  },
+  "scenes": [
+    {
+      "id": "search",
+      "still": "stills/01_search.png",
+      "narration": "Ana rents in San Francisco and just got a rent increase. She types her address. HomeRule finds her building: built 1926, 21 units.",
+      "actions": [
+        {
+          "do": "pause",
+          "value": 600
+        },
+        {
+          "do": "fill",
+          "target": "role=combobox",
+          "value": "3515 Fill"
+        },
+        {
+          "do": "wait",
+          "target": "role=option"
+        },
+        {
+          "do": "pause",
+          "value": 1200
+        },
+        {
+          "do": "click",
+          "target": "role=option"
+        },
+        {
+          "do": "wait",
+          "target": "#t-rent"
+        },
+        {
+          "do": "hover",
+          "target": "ul.facts"
+        }
+      ]
+    },
+    {
+      "id": "rent",
+      "still": "stills/02_rent.png",
+      "narration": "The city limits her increase to 1.6 percent this year. The state cap is replaced here by the city rule, and every line quotes the law, with its date.",
+      "actions": [
+        {
+          "do": "click",
+          "target": "#t-rent .tile-btn"
+        },
+        {
+          "do": "click",
+          "target": "#t-rent details.law > summary"
+        },
+        {
+          "do": "scrollTo",
+          "target": "#t-rent .law-notes",
+          "value": 110
+        },
+        {
+          "do": "hover",
+          "target": "#t-rent .law-notes"
+        }
+      ]
+    },
+    {
+      "id": "audit",
+      "still": "stills/03_audit.png",
+      "narration": "Behind every answer, the line stays visible: the model read the law, and code decided whether it covers this building. Same facts, same answer.",
+      "actions": [
+        {
+          "do": "goto",
+          "target": "https://yourhomerule.com/r/CA-RENT-1947.12?from=A0016"
+        },
+        {
+          "do": "scrollTo",
+          "target": "#audit-h",
+          "value": 20
+        },
+        {
+          "do": "hover",
+          "target": ".boundary"
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "still": "stills/04_other_building.png",
+      "narration": "Same city, a building from 1986: here the state cap applies instead. A chatbot answers per city. The law answers per building.",
+      "actions": [
+        {
+          "do": "goto",
+          "target": "https://yourhomerule.com/a/A0050"
+        },
+        {
+          "do": "hover",
+          "target": "ul.facts"
+        },
+        {
+          "do": "click",
+          "target": "#t-rent .tile-btn"
+        },
+        {
+          "do": "scrollTo",
+          "target": "#t-rent",
+          "value": 110
+        },
+        {
+          "do": "hover",
+          "target": "#t-rent .t-line"
+        }
+      ]
+    },
+    {
+      "id": "unknown",
+      "still": "stills/05_unknown.png",
+      "narration": "In Los Angeles, this 1978 building sits right on the rent control cutoff. HomeRule doesn't guess. It says which fact is missing, and whom to call.",
+      "actions": [
+        {
+          "do": "goto",
+          "target": "https://yourhomerule.com/a/A0107"
+        },
+        {
+          "do": "click",
+          "target": "#t-rent .tile-btn"
+        },
+        {
+          "do": "scrollTo",
+          "target": "#t-rent .box",
+          "value": 110
+        },
+        {
+          "do": "hover",
+          "target": "#t-rent .who"
+        }
+      ]
+    },
+    {
+      "id": "dorchester",
+      "still": "stills/06_dorchester.png",
+      "narration": "The mailing address says Dorchester, but the building is in Boston. Massachusetts bars rent control, so there is no cap, and a pending bill is never shown as law.",
+      "actions": [
+        {
+          "do": "goto",
+          "target": "https://yourhomerule.com/a/A0258"
+        },
+        {
+          "do": "hover",
+          "target": "p.cap-sub"
+        },
+        {
+          "do": "click",
+          "target": "#t-rent .tile-btn"
+        },
+        {
+          "do": "scrollTo",
+          "target": "#t-rent",
+          "value": 110
+        }
+      ]
+    },
+    {
+      "id": "coming",
+      "still": "stills/07_coming.png",
+      "narration": "In Jersey City, a state ban on rent-setting software starts in July 2027 and may clash with the city's own ban. HomeRule flags it for a person. It doesn't decide.",
+      "actions": [
+        {
+          "do": "goto",
+          "target": "https://yourhomerule.com/a/A0012"
+        },
+        {
+          "do": "hover",
+          "target": "p.nxt"
+        },
+        {
+          "do": "click",
+          "target": "#t-soft .tile-btn"
+        },
+        {
+          "do": "click",
+          "target": "#t-soft details.law > summary"
+        },
+        {
+          "do": "scrollTo",
+          "target": "#t-soft .law-in .box",
+          "value": 110
+        },
+        {
+          "do": "hover",
+          "target": "#t-soft .law-in .box .box-h"
+        }
+      ]
+    },
+    {
+      "id": "alert",
+      "still": "stills/08_alert.png",
+      "badge": "Preview · nothing is sent",
+      "narration": "Renters can ask for alerts. When a rule at their address changes, the email says what changes and from when, quoted, and never as legal advice.",
+      "actions": [
+        {
+          "do": "scrollTo",
+          "target": "#h-ahead",
+          "value": 110
+        },
+        {
+          "do": "click",
+          "target": "role=button[name=\"See an example alert\"]"
+        },
+        {
+          "do": "wait",
+          "target": "dialog.em-dlg[open] iframe"
+        }
+      ]
+    },
+    {
+      "id": "proof",
+      "still": "stills/09_proof.png",
+      "narration": "Measured on the challenge data: all 500 addresses in their legal city, every supplied change test exact, and no wrong answer in our chatbot check.",
+      "clip": {
+        "url": "file:///Users/silvan/claude/code/tools/demo-video/examples/homerule/proof.html"
+      }
+    }
+  ],
+  "end": {
+    "cta": "Your rights as a renter, for your exact address.",
+    "line": "yourhomerule.com · Hack-Nation 7 · RealPage challenge",
+    "narration": "Home Rule. Your rights as a renter, for your exact address.",
+    "captions": "HomeRule. Your rights as a renter, for your exact address."
+  },
+  "forbiddenNames": []
+}
