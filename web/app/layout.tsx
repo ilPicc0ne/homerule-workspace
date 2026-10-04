@@ -11,7 +11,7 @@ const figtree = Figtree({
 });
 
 const description =
-  "Your rights as a renter, for your exact address: which housing rules apply to your home, today and next, quoted and dated. Demo data. Not legal advice.";
+  "Your rights as a renter, for your exact address: which housing rules apply to your home, today and next, quoted and dated. Not legal advice.";
 
 export const metadata: Metadata = {
   title: { default: "HomeRule", template: "%s · HomeRule" },
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <p>
             {data?.meta.data_source === "demo"
               ? "Demo data: hand-prepared from the challenge brief; the rule engine will replace it. Quotes are verbatim from the challenge corpus."
-              : "Data from the HomeRule rule engine."}{" "}
+              : "Rules read from the law in the challenge corpus and supplemental official sources; results computed by the HomeRule rule engine. Quotes are verbatim."}{" "}
             Built at Hack-Nation 7 for the RealPage challenge.
           </p>
         </footer>

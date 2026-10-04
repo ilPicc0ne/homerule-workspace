@@ -1,0 +1,33 @@
+# TEST FIXTURE: the rules the brief names (p.3 table "Rule categories"), the guide (§7, §9) and
+# dev/change_tests.json, with what must hold on 2026-10-01. PRD acceptance check A1. Never shown to a prompt.
+# match: jurisdiction (schema_name) + category + a regex over the citation (case-insensitive).
+# status: in_force | not_yet_effective | pending | failed | finding (a "no rule" finding, not a rule)
+# effective: checked only where the brief or guide gives a day; `origin: supplemental` = only in supplemental sources.
+
+- {id: A01, jur: CA, cat: rent_increase_limits, cite: '1947\.12', status: in_force, key: '5', source: "brief p.3"}
+- {id: A02, jur: "San Francisco, CA", cat: rent_increase_limits, cite: '37|rent ordinance', status: in_force, source: "brief p.3"}
+- {id: A03, jur: "Los Angeles, CA", cat: rent_increase_limits, cite: 'RSO|151|rent stabilization', status: in_force, source: "brief p.3"}
+- {id: A04, jur: MA, cat: rent_increase_limits, cite: '40P', status: finding, source: "brief p.3: state bar on local rent control"}
+- {id: A05, jur: CA, cat: just_cause_eviction, cite: '1946\.2', status: in_force, source: "brief p.3"}
+- {id: A06, jur: NJ, cat: just_cause_eviction, cite: '2A:18-61\.1|anti-eviction', status: in_force, source: "brief p.3"}
+- {id: A07, jur: "San Francisco, CA", cat: just_cause_eviction, cite: '37\.9', status: in_force, source: "brief p.3 mock-up"}
+- {id: A08, jur: CA, cat: security_deposits, cite: '1950\.5', status: in_force, key: 'month', effective: "2024-07-01", source: "brief p.3 (AB 12, eff. 7/1/2024)"}
+- {id: A09, jur: NJ, cat: security_deposits, cite: '46:8-21\.2', status: in_force, key: '1\.5|one and one-half', source: "brief p.3"}
+- {id: A10, jur: MA, cat: security_deposits, cite: '186.*15B', status: in_force, key: 'first month|one month', source: "brief p.3"}
+- {id: A11, jur: CA, cat: application_screening_fees, cite: '1950\.6', status: in_force, source: "brief p.3"}
+- {id: A12, jur: NJ, cat: application_screening_fees, cite: '2025.*405|405|46:8-18', status: in_force, key: '50', effective: "2026-05-01", source: "brief p.3 ($50 cap, eff. 5/1/2026)"}
+- {id: A13, jur: MA, cat: application_screening_fees, cite: '186.*15B', status: in_force, source: "brief p.3 (upfront charges)"}
+- {id: A14, jur: MA, cat: application_screening_fees, cite: '87DDD', status: in_force, effective: "2025-08-01", source: "brief p.3 (broker fee, 8/1/2025)"}
+- {id: A15, jur: NJ, cat: screening_restrictions, cite: 'fair chance|2021.*110|46:8-5[2-9]|46:8-6', status: in_force, source: "brief p.3 (2021)"}
+- {id: A16, jur: CA, cat: screening_restrictions, cite: '12955|FEHA|329', status: in_force, source: "brief p.3 (SB 329)"}
+- {id: A17, jur: CA, cat: algorithmic_rent_setting, cite: '16729|325|cartwright', status: in_force, effective: "2026-01-01", source: "brief p.3; CT T1"}
+- {id: A18, jur: "San Francisco, CA", cat: algorithmic_rent_setting, cite: '37\.10C|algorithm', status: in_force, source: "brief p.3 (Oct 2024)"}
+- {id: A19, jur: "San Diego, CA", cat: algorithmic_rent_setting, cite: '98\.110', status: in_force, source: "brief p.3 (Jun 2025)"}
+- {id: A20, jur: "Berkeley, CA", cat: algorithmic_rent_setting, cite: '13\.63', status: in_force, source: "brief p.3 (2026); guide §9: two published dates"}
+- {id: A21, jur: "Santa Ana, CA", cat: algorithmic_rent_setting, cite: 'NS-3090|algorithm', status: in_force, source: "brief p.3 (Apr 2026)"}
+- {id: A22, jur: "Jersey City, NJ", cat: algorithmic_rent_setting, cite: '218-12|25-057|algorithm', status: in_force, origin: supplemental, source: "brief p.3 (Jun 2025); CT T2"}
+- {id: A23, jur: "Hoboken, NJ", cat: algorithmic_rent_setting, cite: '158|algorithm|hoboken', status: in_force, origin: supplemental, source: "brief p.3 (Jul 2025); CT T2"}
+- {id: A24, jur: NJ, cat: algorithmic_rent_setting, cite: 'FAIR|2026.*43|56:9', status: not_yet_effective, effective: "2027-07-01", source: "brief p.3; CT T3"}
+- {id: A25, jur: MA, cat: algorithmic_rent_setting, cite: '2983', status: pending, source: "brief p.3; CT T4"}
+- {id: A26, jur: MA, cat: algorithmic_rent_setting, cite: '5222', status: pending, source: "brief p.3; CT T4"}
+- {id: A27, jur: MA, cat: rent_increase_limits, cite: '25-21|ballot', status: finding, source: "CT T5: IP 25-21 recorded as failed (no corpus text, manifest link only)"}

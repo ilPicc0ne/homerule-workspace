@@ -1,0 +1,3024 @@
+[
+ {
+  "rule_id": "CA-ALG-16729",
+  "jurisdiction_id": "CA",
+  "schema_name": "CA",
+  "level": "state",
+  "kind": "rule",
+  "category": "algorithmic_rent_setting",
+  "title": "Prohibition on algorithm use or distribution in a restraint of trade",
+  "status": "in_force",
+  "effective_date": "2026-01-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2026-01-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Cal. Bus. & Prof. Code § 16729(a)",
+  "source_doc_id": "D022",
+  "source_url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "It shall be unlawful for a person to use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of this chapter.",
+  "summary": "A person must not use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of the chapter.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "algorithmic_rent_setting",
+    "requirement": "A person must not use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of the chapter.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA.",
+    "Dates: in force from 2026-01-01 (California default: January 1 after enactment 2025-10-06 (Cal. Const. art. IV § 8(c))); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-BERKELEY-ALG-13.63.030",
+  "jurisdiction_id": "CA-BERKELEY",
+  "schema_name": "Berkeley, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "algorithmic_rent_setting",
+  "title": "Prohibition on landlords using coordinated pricing algorithms",
+  "status": "in_force",
+  "effective_date": "2026-03-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2026-03-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Berkeley Mun. Code § 13.63.030(B)",
+  "source_doc_id": "D001",
+  "source_url": "https://berkeleyca.gov/sites/default/files/documents/2025-12-02%20Item%2001%20Ordinance%207992.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:44 UTC",
+  "quoted_span": "It shall be unlawful for a landlord to use a coordinated pricing algorithm described \nin subsection A when setting rents or occupancy levels for residential dwelling units in \nthe City of Berkeley.",
+  "summary": "A landlord may not use a coordinated pricing algorithm described in subsection A when setting rents or occupancy levels for residential dwelling units in Berkeley.",
+  "key_value": null,
+  "coverage_in_words": "Applies to coordinated pricing algorithms as defined in § 13.63.020 and to residential dwelling units in Berkeley.",
+  "coverage_facts": [],
+  "exemptions": "The definition excludes certain aggregated anonymous reports that do not make recommendations; products used to establish affordable-housing rent or income limits; and specified market research, appraisal, and software-development research, testing, or training uses.",
+  "interaction": {
+   "type": "none"
+  },
+  "open_question": "Published sources give different effective dates for Berkeley’s coordinated-pricing-algorithm ban.",
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://berkeleyca.gov/sites/default/files/documents/2025-12-02%20Item%2001%20Ordinance%207992.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "algorithmic_rent_setting",
+    "requirement": "A landlord may not use a coordinated pricing algorithm described in subsection A when setting rents or occupancy levels for residential dwelling units in Berkeley.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-BERKELEY.",
+    "Dates: in force from 2026-03-01 (the later of the published dates (open question)); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-BERKELEY-DEP-BerkeleyRent",
+  "jurisdiction_id": "CA-BERKELEY",
+  "schema_name": "Berkeley, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "security_deposits",
+  "title": "Security deposit interest coverage",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Berkeley Rent Stabilization and Eviction for Just Cause Ordinance",
+  "source_doc_id": "D009",
+  "source_url": "https://rentboard.berkeleyca.gov/sites/default/files/documents/Rent%20Ordinance%20Coverage%20by%20Unit%20Type.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "Partially Covered Yes No Yes Yes",
+  "summary": "The guide indicates that listed fully and partially covered unit types are covered for security deposit interest.",
+  "key_value": null,
+  "coverage_in_words": "The table marks the listed fully and partially covered unit types as covered for security deposit interest.",
+  "coverage_facts": [
+   "owner_occupied",
+   "subsidised",
+   "units",
+   "use_class"
+  ],
+  "exemptions": "The guide lists Golden Duplexes, certain owner-shared kitchen or bath units, certain ADU tenancies, university rental units, and nonprofit cooperatives as exempt.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://rentboard.berkeleyca.gov/sites/default/files/documents/Rent%20Ordinance%20Coverage%20by%20Unit%20Type.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "security_deposits",
+    "requirement": "The guide indicates that listed fully and partially covered unit types are covered for security deposit interest.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.5
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-BERKELEY.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: tested against what the building is used for, whether the owner lives in the building, the number of units, whether the building is subsidised; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-BERKELEY-EVICT-BerkeleyMuni",
+  "jurisdiction_id": "CA-BERKELEY",
+  "schema_name": "Berkeley, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Minimum rent debt required for nonpayment eviction",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Berkeley Municipal Code, Rent Stabilization and Good Cause for Eviction Ordinance",
+  "source_doc_id": "D006",
+  "source_url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "For a landlord to evict a tenant for nonpayment of rent, the tenant must owe an amount of rental debt equal to or greater than one month of the Fair Market Rent (FMR) value for a unit of equivalent size in the metro area Oakland-Fremont, CA HUD Metro FMR as determined by the US Department of Housing and Urban Development for the fiscal year in which the rent is demanded.",
+  "summary": "A landlord may not evict for nonpayment unless the tenant’s rental debt equals or exceeds one month of the applicable fair market rent.",
+  "key_value": "At least one month of the applicable HUD Fair Market Rent",
+  "coverage_in_words": "Tenants in units fully or partially covered by Berkeley’s Rent Ordinance.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "A landlord may not evict for nonpayment unless the tenant’s rental debt equals or exceeds one month of the applicable fair market rent.",
+    "key_value": "At least one month of the applicable HUD Fair Market Rent",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-BERKELEY.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-BERKELEY-EVICT-BerkeleyRent",
+  "jurisdiction_id": "CA-BERKELEY",
+  "schema_name": "Berkeley, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Pay adjusted standard relocation assistance",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Berkeley Rent Stabilization and Good Cause for Eviction Ordinance; Berkeley Ellis Implementation Ordinance",
+  "source_doc_id": "D004",
+  "source_url": "https://rentboard.berkeleyca.gov/elected-rent-board/news/2026-adjustments-relocation-assistance-payments",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "The Rent Stabilization and Good Cause for Eviction Ordinance requires owners to pay tenants relocation assistance in the event of an owner move-in eviction.",
+  "summary": "Owners must pay relocation assistance for owner move-in and Ellis Act evictions; the 2026 standard payment is $19,413.",
+  "key_value": "$19,413 standard relocation assistance payment for 2026",
+  "coverage_in_words": "Owner move-in evictions and evictions to remove a property from the rental housing market.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://rentboard.berkeleyca.gov/elected-rent-board/news/2026-adjustments-relocation-assistance-payments"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "Owners must pay relocation assistance for owner move-in and Ellis Act evictions; the 2026 standard payment is $19,413.",
+    "key_value": "$19,413 standard relocation assistance payment for 2026",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-BERKELEY.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-BERKELEY-FEE-13.78",
+  "jurisdiction_id": "CA-BERKELEY",
+  "schema_name": "Berkeley, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "application_screening_fees",
+  "title": "Maximum tenant screening fee",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Berkeley Municipal Code § 13.78; Cal. Civ. Code § 1950.6",
+  "source_doc_id": "D005",
+  "source_url": "https://rentboard.berkeleyca.gov/laws-regulations/city-berkeley-ordinances-affecting-rental-properties/tenant-screening-and",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "The maximum tenant screening fee for 2026 is\n$68.96",
+  "summary": "A landlord may charge no more than the stated maximum screening fee for 2026.",
+  "key_value": "$68.96 for 2026",
+  "coverage_in_words": "The document summarizes state and local screening-fee limits.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://rentboard.berkeleyca.gov/laws-regulations/city-berkeley-ordinances-affecting-rental-properties/tenant-screening-and"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "application_screening_fees",
+    "requirement": "A landlord may charge no more than the stated maximum screening fee for 2026.",
+    "key_value": "$68.96 for 2026",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-BERKELEY.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-BERKELEY-RENT-13.76.110A",
+  "jurisdiction_id": "CA-BERKELEY",
+  "schema_name": "Berkeley, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Cap the Annual General Adjustment at 5%",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Berkeley Municipal Code § 13.76.110A",
+  "source_doc_id": "D006",
+  "source_url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "The maximum AGA is 5%.",
+  "summary": "The Annual General Adjustment may not exceed 5%.",
+  "key_value": "5%",
+  "coverage_in_words": "Fully covered Berkeley rental units; the cap does not prevent use of banked AGAs to reach the rent ceiling.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "The Annual General Adjustment may not exceed 5%.",
+    "key_value": "5%",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-BERKELEY.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-BERKELEY-SCREEN-13.106",
+  "jurisdiction_id": "CA-BERKELEY",
+  "schema_name": "Berkeley, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "screening_restrictions",
+  "title": "Do not inquire about criminal history",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Berkeley Municipal Code § 13.106",
+  "source_doc_id": "D003",
+  "source_url": "https://rentboard.berkeleyca.gov/Fair_Chance",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "Inquire about criminal history",
+  "summary": "A housing provider may not inquire about a current or prospective tenant’s criminal history.",
+  "key_value": null,
+  "coverage_in_words": "Berkeley rental housing; the summary lists exemptions.",
+  "coverage_facts": [
+   "owner_occupied",
+   "units"
+  ],
+  "exemptions": "Lifetime sex offenders; limited exemptions for public housing/Section 8 properties; qualifying owner-occupied properties; certain units where the owner may move back; existing tenants seeking to sublet or add/replace roommates.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://rentboard.berkeleyca.gov/Fair_Chance"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "screening_restrictions",
+    "requirement": "A housing provider may not inquire about a current or prospective tenant’s criminal history.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-BERKELEY.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: tested against the number of units, whether the owner lives in the building; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-DEP-1950.5",
+  "jurisdiction_id": "CA",
+  "schema_name": "CA",
+  "level": "state",
+  "kind": "rule",
+  "category": "security_deposits",
+  "title": "One-month security limit",
+  "status": "in_force",
+  "effective_date": "2024-07-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2024-07-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Cal. Civ. Code § 1950.5(c)(1)",
+  "source_doc_id": "D025",
+  "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "a landlord shall not demand or receive security, however denominated, in an amount or value in excess of an amount equal to one month’s rent",
+  "summary": "Except for the stated statutory exceptions, a landlord may not demand or receive security exceeding one month’s rent, in addition to first month’s rent paid on or before initial occupancy.",
+  "key_value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": "The exceptions in paragraphs (2), (3), and (5) apply; this subdivision does not apply to security collected or demanded before July 1, 2024. The two-month limit in paragraph (5) does not apply if the prospective tenant is a service member.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "security_deposits",
+    "requirement": "Except for the stated statutory exceptions, a landlord may not demand or receive security exceeding one month’s rent, in addition to first month’s rent paid on or before initial occupancy.",
+    "key_value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA.",
+    "Dates: in force from 2024-07-01; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-EVICT-1946.2",
+  "jurisdiction_id": "CA",
+  "schema_name": "CA",
+  "level": "state",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Just cause required to terminate tenancy",
+  "status": "in_force",
+  "effective_date": "2024-04-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2024-04-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Cal. Civil Code § 1946.2",
+  "source_doc_id": "D023",
+  "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "after a tenant has continuously and lawfully occupied a residential real property for 12 months, the owner of the residential real property shall not terminate a tenancy without just cause, which shall be stated in the written notice to terminate tenancy.",
+  "summary": "After the applicable continuous-occupancy period, an owner may not terminate a tenancy without just cause, and must state the cause in the written termination notice. Just cause includes the listed at-fault and no-fault grounds.",
+  "key_value": null,
+  "coverage_in_words": "Subject to the building and local-rule exclusions; the occupancy-duration threshold and qualifying cause are tenant/tenancy conditions.",
+  "coverage_facts": [
+   "owner_occupied",
+   "owner_type",
+   "subsidised",
+   "units",
+   "use_class"
+  ],
+  "exemptions": "Includes statutory exemptions for specified housing and circumstances, including qualifying local just-cause ordinances. Transient occupancy and owner-shared bathroom or kitchen facilities are circumstances not expressible as building facts.",
+  "interaction": {
+   "type": "yields_to_local",
+   "note": "Steps back where a stricter local rule covers the building.",
+   "quote": "This section does not apply to the following residential real property:"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "After the applicable continuous-occupancy period, an owner may not terminate a tenancy without just cause, and must state the cause in the written termination notice. Just cause includes the listed at-fault and no-fault grounds.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA.",
+    "Dates: in force from 2024-04-01 until 2030-01-01; before that, not yet in force.",
+    "Coverage: tested against whether the building is subsidised, what the building is used for, whether the owner lives in the building, the number of units, who owns the building (a person or a company); a missing fact gives \"unknown\", never a guess.",
+    "Precedence: replaced where a stricter local rule covers the building; unknown when the local rule's coverage is unknown."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-FEE-1950.6",
+  "jurisdiction_id": "CA",
+  "schema_name": "CA",
+  "level": "state",
+  "kind": "rule",
+  "category": "application_screening_fees",
+  "title": "Limit on application screening fees",
+  "status": "in_force",
+  "effective_date": "2026-01-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2026-01-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Cal. Civ. Code § 1950.6",
+  "source_doc_id": "D026",
+  "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "The amount of the application screening fee shall not be greater than the actual\nout-of-pocket costs of gathering information concerning the applicant, including, but not limited to, the cost of using a tenant screening service or a consumer credit reporting service, and the reasonable value of time spent by the landlord or their agent in obtaining information on the applicant. In no case shall the amount of the application screening fee charged by the landlord or their agent be greater than thirty dollars ($30) per applicant.",
+  "summary": "A landlord may not charge an application screening fee above the actual out-of-pocket costs and reasonable value of time spent obtaining applicant information, and the fee may not exceed $30 per applicant, subject to the stated annual CPI adjustment.",
+  "key_value": "$30 per applicant; adjusted annually commensurate with an increase in the Consumer Price Index beginning January 1, 1998",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "open_question": "California’s screening-fee limit is tied to allowable costs, but no single official dollar figure for 2026 is identified in the sources.",
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "application_screening_fees",
+    "requirement": "A landlord may not charge an application screening fee above the actual out-of-pocket costs and reasonable value of time spent obtaining applicant information, and the fee may not exceed $30 per applicant, subject to the stated annual CPI adjustment.",
+    "key_value": "$30 per applicant; adjusted annually commensurate with an increase in the Consumer Price Index beginning January 1, 1998",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA.",
+    "Dates: in force from 2026-01-01; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-LOS-ANGELES-EVICT-165.03",
+  "jurisdiction_id": "CA-LOS-ANGELES",
+  "schema_name": "Los Angeles, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Termination of tenancy requires just cause",
+  "status": "in_force",
+  "effective_date": "2025-08-20",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2025-08-20",
+    "status": "in_force"
+   }
+  ],
+  "citation": "LAMC § 165.03",
+  "source_doc_id": "D040",
+  "source_url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "quoted_span": "It prohibits terminations of tenancies without just cause",
+  "summary": "A landlord may not terminate a covered tenancy without just cause; the JCO applies after the tenant has lived in the unit for at least six months or the original lease has expired, whichever comes first.",
+  "key_value": null,
+  "coverage_in_words": "Most residential properties in the City of Los Angeles not regulated by the RSO; the JCO may cover newer buildings and single-family dwellings.",
+  "coverage_facts": [],
+  "exemptions": "Specific exceptions include transient hotels, licensed care facilities, certain cooperatives and some government-owned properties.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "A landlord may not terminate a covered tenancy without just cause; the JCO applies after the tenant has lived in the unit for at least six months or the original lease has expired, whichever comes first.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-LOS-ANGELES.",
+    "Dates: in force from 2025-08-20; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-LOS-ANGELES-RENT-151.06",
+  "jurisdiction_id": "CA-LOS-ANGELES",
+  "schema_name": "Los Angeles, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Rent increase frequency and allowable percentage",
+  "status": "in_force",
+  "effective_date": "2026-02-02",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2026-02-02",
+    "status": "in_force"
+   }
+  ],
+  "citation": "LAMC § 151.06",
+  "source_doc_id": "D041",
+  "source_url": "https://housing.lacity.gov/residents/rso-overview",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "quoted_span": "Rent may be increased once every 12 months by the allowable rent increase percentage",
+  "summary": "For covered RSO units, rent may be increased once every 12 months by the allowable rent-increase percentage; the reported rate for July 1, 2025 through June 30, 2026 is 3%.",
+  "key_value": "3% for July 1, 2025 through June 30, 2026",
+  "coverage_in_words": "Generally, rental properties first built on or before October 1, 1978, including listed covered property types and replacement units under LAMC § 151.28.",
+  "coverage_facts": [
+   "built"
+  ],
+  "exemptions": "Condominium and townhome rent amounts are not regulated for tenancies commencing after December 31, 1995.",
+  "interaction": {
+   "type": "none"
+  },
+  "open_question": "Published sources give different effective dates for Los Angeles’s new RSO rent-increase formula.",
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://housing.lacity.gov/residents/rso-overview"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "For covered RSO units, rent may be increased once every 12 months by the allowable rent-increase percentage; the reported rate for July 1, 2025 through June 30, 2026 is 3%.",
+    "key_value": "3% for July 1, 2025 through June 30, 2026",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.5
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-LOS-ANGELES.",
+    "Dates: in force from 2026-02-02; before that, not yet in force.",
+    "Coverage: tested against the year the building was built; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-RENT-1947.12",
+  "jurisdiction_id": "CA",
+  "schema_name": "CA",
+  "level": "state",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Limit on rent increases",
+  "status": "in_force",
+  "effective_date": "2024-04-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2024-04-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Cal. Civ. Code § 1947.12",
+  "source_doc_id": "D024",
+  "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
+  "summary": "An owner may not increase the gross rental rate during any 12-month period by more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower, calculated from the lowest gross rental rate charged during the prior 12 months. Accepted rent discounts, incentives, concessions, or credits are excluded from that lowest rate.",
+  "key_value": "5% plus the percentage change in the cost of living, capped at 10%, whichever is lower",
+  "coverage_in_words": "Applies to subsequent increases after an initial rental rate is established; subject to the statutory exceptions.",
+  "coverage_facts": [
+   "owner_occupied",
+   "subsidised",
+   "units",
+   "use_class"
+  ],
+  "exemptions": "Does not apply to specified affordable housing, educational dormitories, qualifying recently constructed housing, qualifying separately alienable property with required notice, qualifying owner-occupied duplexes, or mobilehome homeowners. Housing covered by stricter local rent controls yields to those local controls.",
+  "interaction": {
+   "type": "yields_to_local",
+   "note": "Steps back where a stricter local rule covers the building.",
+   "quote": "Housing subject to rent or price control through a public entity’s valid exercise of its police power consistent with Chapter 2.7 (commencing with Section 1954.50) that restricts annual increases in the rental rate to an amount less than that provided in subdivision (a)."
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "An owner may not increase the gross rental rate during any 12-month period by more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower, calculated from the lowest gross rental rate charged during the prior 12 months. Accepted rent discounts, incentives, concessions, or credits are excluded from that lowest rate.",
+    "key_value": "5% plus the percentage change in the cost of living, capped at 10%, whichever is lower",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA.",
+    "Dates: in force from 2024-04-01 until 2030-01-01; before that, not yet in force.",
+    "Coverage: tested against whether the building is subsidised, what the building is used for, the number of units, whether the owner lives in the building; a missing fact gives \"unknown\", never a guess.",
+    "Precedence: replaced where a stricter local rule covers the building; unknown when the local rule's coverage is unknown."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-SAN-DIEGO-ALG-98.1103",
+  "jurisdiction_id": "CA-SAN-DIEGO",
+  "schema_name": "San Diego, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "algorithmic_rent_setting",
+  "title": "Prohibition on landlords using algorithmic devices",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "San Diego Municipal Code § 98.1103(b)",
+  "source_doc_id": "D076",
+  "source_url": "https://sandiego.gov/sites/default/files/2025-04/automated-rent-price-fixing-prohibition-ordinance-materials.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "It is unlawful for a landlord to use an algorithmic device to set rental rates\nor occupancy levels for residential rental property.",
+  "summary": "A landlord may not use an algorithmic device to set rental rates or occupancy levels for residential rental property. The defined term excludes the specified reporting software and software used in accordance with affordable housing program guidelines.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": "The definition of algorithmic device excludes specified reporting software and software used to establish rates or income limits in accordance with affordable housing program guidelines.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://sandiego.gov/sites/default/files/2025-04/automated-rent-price-fixing-prohibition-ordinance-materials.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "algorithmic_rent_setting",
+    "requirement": "A landlord may not use an algorithmic device to set rental rates or occupancy levels for residential rental property. The defined term excludes the specified reporting software and software used in accordance with affordable housing program guidelines.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-SAN-DIEGO.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-SAN-DIEGO-EVICT-98.0704",
+  "jurisdiction_id": "CA-SAN-DIEGO",
+  "schema_name": "San Diego, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Just cause required for termination of tenancy",
+  "status": "in_force",
+  "effective_date": "2023-06-24",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2023-06-24",
+    "status": "in_force"
+   }
+  ],
+  "citation": "San Diego Municipal Code § 98.0704",
+  "source_doc_id": "D073",
+  "source_url": "https://docs.sandiego.gov/municode/municodechapter09/ch09art08division07.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "A landlord shall not terminate a tenancy without just cause. For purposes of this \nDivision, just cause includes at-fault just cause and no-fault just cause.",
+  "summary": "A landlord may not terminate a tenancy without just cause. The listed at-fault and good-faith no-fault reasons define the just cause grounds; additional stated conditions apply to particular no-fault grounds.",
+  "key_value": null,
+  "coverage_in_words": "Applies unless an exemption in § 98.0703 applies.",
+  "coverage_facts": [
+   "owner_occupied",
+   "subsidised",
+   "units",
+   "use_class"
+  ],
+  "exemptions": "Exemptions include affordable housing, housing issued a certificate of occupancy within the previous 15 years, and the other circumstances specified in § 98.0703.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://docs.sandiego.gov/municode/municodechapter09/ch09art08division07.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "A landlord may not terminate a tenancy without just cause. The listed at-fault and good-faith no-fault reasons define the just cause grounds; additional stated conditions apply to particular no-fault grounds.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-SAN-DIEGO.",
+    "Dates: in force from 2023-06-24; before that, not yet in force.",
+    "Coverage: tested against whether the building is subsidised, whether the owner lives in the building, what the building is used for, the number of units; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-SAN-FRANCISCO-ALG-37.10C",
+  "jurisdiction_id": "CA-SAN-FRANCISCO",
+  "schema_name": "San Francisco, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "algorithmic_rent_setting",
+  "title": "Use of algorithmic devices to set rents or manage occupancy prohibited",
+  "status": "in_force",
+  "effective_date": "2024-10-14",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2024-10-14",
+    "status": "in_force"
+   }
+  ],
+  "citation": "San Francisco Rent Ordinance § 37.10C",
+  "source_doc_id": "D081",
+  "source_url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "The law prohibits the sale or use of algorithmic devices to set rents or manage occupancy levels for residential units in San Francisco.",
+  "summary": "A person may not use an algorithmic device to set rents or manage occupancy levels for residential units in San Francisco. The described device analyzes nonpublic competitor rental data to recommend a rent for a vacant unit.",
+  "key_value": null,
+  "coverage_in_words": "Residential units in San Francisco.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "algorithmic_rent_setting",
+    "requirement": "A person may not use an algorithmic device to set rents or manage occupancy levels for residential units in San Francisco. The described device analyzes nonpublic competitor rental data to recommend a rent for a vacant unit.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-SAN-FRANCISCO.",
+    "Dates: in force from 2024-10-14; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-SAN-FRANCISCO-DEP-37.6",
+  "jurisdiction_id": "CA-SAN-FRANCISCO",
+  "schema_name": "San Francisco, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "security_deposits",
+  "title": "Security deposit interest rate: March 2026–February 2027",
+  "status": "in_force",
+  "effective_date": "2026-03-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2026-03-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "San Francisco Rent Ordinance § 37.6",
+  "source_doc_id": "D083",
+  "source_url": "https://www.sf.gov/reports--current-rates-including-rent-increase-relocation-sec-deposit",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "Security Deposit Interest:\n4.2% for March 1, 2026 – February 28, 2027",
+  "summary": "The security deposit interest rate for March 1, 2026 through February 28, 2027 is 4.2%.",
+  "key_value": "4.2%",
+  "coverage_in_words": "Security deposit interest rate effective March 1, 2026 through February 28, 2027.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.sf.gov/reports--current-rates-including-rent-increase-relocation-sec-deposit"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "security_deposits",
+    "requirement": "The security deposit interest rate for March 1, 2026 through February 28, 2027 is 4.2%.",
+    "key_value": "4.2%",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-SAN-FRANCISCO.",
+    "Dates: in force from 2026-03-01; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-SAN-FRANCISCO-EVICT-37.9",
+  "jurisdiction_id": "CA-SAN-FRANCISCO",
+  "schema_name": "San Francisco, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Just cause required for eviction",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "San Francisco Rent Ordinance § 37.9(a)",
+  "source_doc_id": "D079",
+  "source_url": "https://sf.gov/information/overview-just-cause-evictions",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "In order to evict a tenant from a rental unit covered by the Rent Ordinance, a landlord must have a \"just cause\" reason that is the dominant motive for pursuing the eviction.",
+  "summary": "A landlord must have a just-cause reason that is the dominant motive to evict a tenant. The listed reasons include nonpayment or habitual late payment, substantial breach, nuisance, illegal use, refusal of lawful access, specified owner or family occupancy, sale after an approved condominium conversion, demolition or rehabilitation, Ellis Act withdrawal, lead remediation, and specified development or temporary-tenancy circumstances. Mere expiration of a rental agreement or a change in ownership is not just cause.",
+  "key_value": null,
+  "coverage_in_words": "The summary does not specify building-fact criteria for which units are covered. It states that some tenancies exempt from rent-increase limits remain subject to eviction protections.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://sf.gov/information/overview-just-cause-evictions"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "A landlord must have a just-cause reason that is the dominant motive to evict a tenant. The listed reasons include nonpayment or habitual late payment, substantial breach, nuisance, illegal use, refusal of lawful access, specified owner or family occupancy, sale after an approved condominium conversion, demolition or rehabilitation, Ellis Act withdrawal, lead remediation, and specified development or temporary-tenancy circumstances. Mere expiration of a rental agreement or a change in ownership is not just cause.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-SAN-FRANCISCO.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-SAN-FRANCISCO-RENT-37.3",
+  "jurisdiction_id": "CA-SAN-FRANCISCO",
+  "schema_name": "San Francisco, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Annual rent increase limit: March 2026–February 2027",
+  "status": "in_force",
+  "effective_date": "2026-03-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2026-03-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "San Francisco Rent Ordinance § 37.3",
+  "source_doc_id": "D080",
+  "source_url": "https://www.sf.gov/news--annual-rent-increase-3126-22827-announced",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "For rent-controlled units, the annual allowable increase amount effective March 1, 2026 through February 28, 2027 is 1.6%.",
+  "summary": "For rent-controlled units, the annual allowable rent increase for March 1, 2026 through February 28, 2027 is 1.6%.",
+  "key_value": "1.6%",
+  "coverage_in_words": "The summary identifies the covered units as rent-controlled but does not provide all building-fact criteria. It states that newly constructed rental units first obtaining a Certificate of Occupancy after June 13, 1979 are exempt from rent-increase limitations.",
+  "coverage_facts": [
+   "built"
+  ],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.sf.gov/news--annual-rent-increase-3126-22827-announced"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "For rent-controlled units, the annual allowable rent increase for March 1, 2026 through February 28, 2027 is 1.6%.",
+    "key_value": "1.6%",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.5
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-SAN-FRANCISCO.",
+    "Dates: in force from 2026-03-01; before that, not yet in force.",
+    "Coverage: tested against the year the building was built; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-SANTA-ANA-EVICT-SantaAnaJust",
+  "jurisdiction_id": "CA-SANTA-ANA",
+  "schema_name": "Santa Ana, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Just cause required to terminate tenancy",
+  "status": "in_force",
+  "effective_date": "2021-11-19",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2021-11-19",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Santa Ana Just Cause Eviction Ordinance",
+  "source_doc_id": "D085",
+  "source_url": "https://santa-ana.gov/santa-ana-city-council-adopts-rent-stabilization-and-just-cause-eviction-ordinances-effective-nov-19",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "After 30 days, an owner shall not terminate a tenancy without just cause",
+  "summary": "After 30 days, an owner may not terminate a tenancy without just cause.",
+  "key_value": "30 days",
+  "coverage_in_words": "Does not apply to housing produced in the last 15 years, deed-restricted affordable housing, hotels and transient occupancy, hospitals and care facilities, dormitories, or other shared living quarters.",
+  "coverage_facts": [
+   "subsidised",
+   "units",
+   "use_class"
+  ],
+  "exemptions": "Housing produced in the last 15 years; deed-restricted affordable housing; hotel and transient occupancy; hospital and care facilities; dormitories; and other shared living quarters.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://santa-ana.gov/santa-ana-city-council-adopts-rent-stabilization-and-just-cause-eviction-ordinances-effective-nov-19"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "After 30 days, an owner may not terminate a tenancy without just cause.",
+    "key_value": "30 days",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-SANTA-ANA.",
+    "Dates: in force from 2021-11-19; before that, not yet in force.",
+    "Coverage: tested against whether the building is subsidised, what the building is used for, the number of units; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-SANTA-ANA-RENT-SantaAnaRent",
+  "jurisdiction_id": "CA-SANTA-ANA",
+  "schema_name": "Santa Ana, CA",
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Limit on residential rent increases",
+  "status": "in_force",
+  "effective_date": "2021-11-19",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2021-11-19",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Santa Ana Rent Stabilization Ordinance",
+  "source_doc_id": "D085",
+  "source_url": "https://santa-ana.gov/santa-ana-city-council-adopts-rent-stabilization-and-just-cause-eviction-ordinances-effective-nov-19",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "Increase in residential rents are limited to the lower of 3% per year, or 80% of the percent change in the Consumer Price Index over the most recent 12-month period. If the CPI is negative, no rent increase is permitted.",
+  "summary": "Limit annual rent increases to the lower of 3% or 80% of the percent change in the Consumer Price Index over the most recent 12-month period; if the CPI is negative, no increase is permitted.",
+  "key_value": "Lower of 3% per year or 80% of the CPI change; 2.87% for September 1, 2026 through August 31, 2027",
+  "coverage_in_words": "Applies to residential buildings other than buildings constructed after February 1, 1995 and mobile home spaces offered for rent after January 1, 1990.",
+  "coverage_facts": [
+   "built",
+   "subsidised",
+   "units",
+   "use_class"
+  ],
+  "exemptions": "Residential buildings constructed after February 1, 1995; mobile home spaces offered for rent after January 1, 1990.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://santa-ana.gov/santa-ana-city-council-adopts-rent-stabilization-and-just-cause-eviction-ordinances-effective-nov-19"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "Limit annual rent increases to the lower of 3% or 80% of the percent change in the Consumer Price Index over the most recent 12-month period; if the CPI is negative, no increase is permitted.",
+    "key_value": "Lower of 3% per year or 80% of the CPI change; 2.87% for September 1, 2026 through August 31, 2027",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA-SANTA-ANA.",
+    "Dates: in force from 2021-11-19; before that, not yet in force.",
+    "Coverage: tested against the year the building was built, what the building is used for, the number of units, whether the building is subsidised; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "CA-SCREEN-12955",
+  "jurisdiction_id": "CA",
+  "schema_name": "CA",
+  "level": "state",
+  "kind": "rule",
+  "category": "screening_restrictions",
+  "title": "Do not discriminate or harass in housing",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Cal. Gov. Code § 12955",
+  "source_doc_id": "D016",
+  "source_url": "https://calcivilrights.ca.gov/housing/",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "This law prohibits people or entities that provide housing from discriminating against or harassing tenants, homeowners, residents, their guests, housing or mortgage applicants, home buyers, and others.",
+  "summary": "Housing providers must not discriminate against or harass tenants, residents, applicants, home seekers, or others because of a protected characteristic.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": "The document describes exceptions for certain owner-occupied shared housing and qualifying senior housing; see tenant conditions.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://calcivilrights.ca.gov/housing/"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "screening_restrictions",
+    "requirement": "Housing providers must not discriminate against or harass tenants, residents, applicants, home seekers, or others because of a protected characteristic.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is CA.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-ALG-2983",
+  "jurisdiction_id": "MA",
+  "schema_name": "MA",
+  "level": "state",
+  "kind": "rule",
+  "category": "algorithmic_rent_setting",
+  "title": "Prohibition on algorithmic rent setting",
+  "status": "pending",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "pending"
+   }
+  ],
+  "citation": "Mass. S.2983",
+  "source_doc_id": "D046",
+  "source_url": "https://malegislature.gov/Bills/194/S2983",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "quoted_span": "An Act prohibiting algorithmic rent setting",
+  "summary": "Prohibits algorithmic rent setting.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://malegislature.gov/Bills/194/S2983"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "algorithmic_rent_setting",
+    "requirement": "Prohibits algorithmic rent setting.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA.",
+    "Dates: a bill, not law, so it never covers an address yet.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-ALG-5222",
+  "jurisdiction_id": "MA",
+  "schema_name": "MA",
+  "level": "state",
+  "kind": "rule",
+  "category": "algorithmic_rent_setting",
+  "title": "An Act relative to preventing algorithmic rent fixing in the rental housing market",
+  "status": "pending",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "pending"
+   }
+  ],
+  "citation": "Mass. H.5222",
+  "source_doc_id": "D045",
+  "source_url": "https://malegislature.gov/Bills/194/H5222",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "quoted_span": "An Act relative to preventing algorithmic rent fixing in the rental housing market",
+  "summary": "Pending bill: An Act relative to preventing algorithmic rent fixing in the rental housing market",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://malegislature.gov/Bills/194/H5222"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "algorithmic_rent_setting",
+    "requirement": "Pending bill: An Act relative to preventing algorithmic rent fixing in the rental housing market",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA.",
+    "Dates: a bill, not law, so it never covers an address yet.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-BOSTON-EVICT-10-11.7",
+  "jurisdiction_id": "MA-BOSTON",
+  "schema_name": "Boston, MA",
+  "level": "city",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Deliver tenant rights notice when ending tenancy",
+  "status": "in_force",
+  "effective_date": "2020-11-06",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2020-11-06",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Boston City Ordinances § 10-11.7",
+  "source_doc_id": "D014",
+  "source_url": "https://www.boston.gov/sites/default/files/file/2020/11/Housing%20Stability%20Notification%20Act%20Tenant%20FAQs.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:44 UTC",
+  "quoted_span": "The Notice of\nTenants’ Rights and Resources must be delivered at the same time as the Notice to\nQuit.",
+  "summary": "When planning to end a tenancy or post-foreclosure occupancy, landlords and applicable foreclosing owners must provide the Notice of Tenants’ Rights and Resources to the tenant or former owner at the same time as the Notice to Quit or notice of non-renewal.",
+  "key_value": null,
+  "coverage_in_words": "Applies to all landlords and foreclosing owners intending to end a tenancy or post-foreclosure occupancy of a unit in Boston.",
+  "coverage_facts": [
+   "subsidised",
+   "units",
+   "use_class"
+  ],
+  "exemptions": "Residences in hospitals, skilled nursing facilities or health facilities, and residences in qualifying non-profit short-term treatment, assistance or therapy facilities for substance abuse.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.boston.gov/sites/default/files/file/2020/11/Housing%20Stability%20Notification%20Act%20Tenant%20FAQs.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "When planning to end a tenancy or post-foreclosure occupancy, landlords and applicable foreclosing owners must provide the Notice of Tenants’ Rights and Resources to the tenant or former owner at the same time as the Notice to Quit or notice of non-renewal.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA-BOSTON.",
+    "Dates: in force from 2020-11-06; before that, not yet in force.",
+    "Coverage: tested against what the building is used for, the number of units, whether the building is subsidised; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-BOSTON-RENT-3744",
+  "jurisdiction_id": "MA-BOSTON",
+  "schema_name": "Boston, MA",
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "An Act petition for a special law authorizing the city of Boston to implement rent stabilization and tenant eviction pro",
+  "status": "pending",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "pending"
+   }
+  ],
+  "citation": "Mass. H.3744",
+  "source_doc_id": "D011",
+  "source_url": "https://malegislature.gov/Bills/193/H3744",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:35 UTC",
+  "quoted_span": "An Act petition for a special law authorizing the city of Boston to implement rent stabilization and tenant eviction protections",
+  "summary": "Pending bill: An Act petition for a special law authorizing the city of Boston to implement rent stabilization and tenant eviction protections",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://malegislature.gov/Bills/193/H3744"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "Pending bill: An Act petition for a special law authorizing the city of Boston to implement rent stabilization and tenant eviction protections",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.5
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA-BOSTON.",
+    "Dates: a bill, not law, so it never covers an address yet.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-BOSTON-SCREEN-BostonFairCh",
+  "jurisdiction_id": "MA-BOSTON",
+  "schema_name": "Boston, MA",
+  "level": "city",
+  "kind": "rule",
+  "category": "screening_restrictions",
+  "title": "No blanket criminal-record denials; individual review",
+  "status": "in_force",
+  "effective_date": "2020-11-06",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2020-11-06",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Boston Fair Chance Tenant Selection Policy",
+  "source_doc_id": "D010",
+  "source_url": "https://drive.google.com/file/d/1j4U3fDtmnYuwcUWhx5BMUcXc1bnKT8Ku/view?usp=sharing",
+  "source_kind": "secondary",
+  "retrieved_at": "2026-10-01 22:44 UTC",
+  "quoted_span": "will not impose a blanket policy that denies \nhousing to anyone with arrests and or convictions. Housing providers will consider applicants on \na case-by-case basis.",
+  "summary": "Covered housing providers must not impose a blanket policy denying housing to anyone with arrests or convictions and must consider applicants case by case.",
+  "key_value": null,
+  "coverage_in_words": "Applies to housing providers receiving DND funding and/or land, or with income-restricted units created under the BPDA Inclusionary Development Policy.",
+  "coverage_facts": [
+   "subsidised"
+  ],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the source we have (news or law-firm page)",
+   "url": "https://drive.google.com/file/d/1j4U3fDtmnYuwcUWhx5BMUcXc1bnKT8Ku/view?usp=sharing"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "screening_restrictions",
+    "requirement": "Covered housing providers must not impose a blanket policy denying housing to anyone with arrests or convictions and must consider applicants case by case.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA-BOSTON.",
+    "Dates: in force from 2020-11-06; before that, not yet in force.",
+    "Coverage: tested against whether the building is subsidised; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-BOSTON-SCREEN-BostonFairHo",
+  "jurisdiction_id": "MA-BOSTON",
+  "schema_name": "Boston, MA",
+  "level": "city",
+  "kind": "rule",
+  "category": "screening_restrictions",
+  "title": "Prohibit housing discrimination on protected grounds",
+  "status": "in_force",
+  "effective_date": "2020-11-06",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2020-11-06",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Boston Fair Housing Regulations",
+  "source_doc_id": "D012",
+  "source_url": "https://www.boston.gov/departments/fair-housing-and-equity/boston-fair-housing-regulations",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:44 UTC",
+  "quoted_span": "In the City of Boston, it’s illegal to discriminate when renting, buying, selling, or securing financing for any housing.",
+  "summary": "Discrimination is illegal in Boston when renting, buying, selling, or securing financing for housing based on the listed protected characteristics.",
+  "key_value": null,
+  "coverage_in_words": "Applies to housing in the City of Boston.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.boston.gov/departments/fair-housing-and-equity/boston-fair-housing-regulations"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "screening_restrictions",
+    "requirement": "Discrimination is illegal in Boston when renting, buying, selling, or securing financing for housing based on the listed protected characteristics.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA-BOSTON.",
+    "Dates: in force from 2020-11-06; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-CAMBRIDGE-EVICT-8.71",
+  "jurisdiction_id": "MA-CAMBRIDGE",
+  "schema_name": "Cambridge, MA",
+  "level": "city",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Offer the tenants’ rights and resources Guide when taking legal steps to terminate a tenancy",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Cambridge Municipal Code ch. 8.71",
+  "source_doc_id": "D031",
+  "source_url": "https://www.cambridgema.gov/tenantrights",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "quoted_span": "The Ordinance also requires that a landlord provide the Guide to tenants when legal steps to terminate a tenancy are taken (ex. Notice to Quit or Summary Process).",
+  "summary": "Owners, landlords, and management companies must offer the Guide to tenants when legal steps to terminate a tenancy are taken.",
+  "key_value": null,
+  "coverage_in_words": "Applies to residential rental agreements in Cambridge, including a single residential dwelling unit.",
+  "coverage_facts": [
+   "subsidised",
+   "units",
+   "use_class"
+  ],
+  "exemptions": "Rental units in specified health or nonprofit treatment facilities, and short-term rental units.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.cambridgema.gov/tenantrights"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "Owners, landlords, and management companies must offer the Guide to tenants when legal steps to terminate a tenancy are taken.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA-CAMBRIDGE.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: tested against what the building is used for, the number of units, whether the building is subsidised; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-CAMBRIDGE-SCREEN-14.04",
+  "jurisdiction_id": "MA-CAMBRIDGE",
+  "schema_name": "Cambridge, MA",
+  "level": "city",
+  "kind": "rule",
+  "category": "screening_restrictions",
+  "title": "Apply applicant-selection standards equally and uniformly",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Cambridge Code of Ordinances ch. 14.04",
+  "source_doc_id": "D029",
+  "source_url": "https://www.cambridgema.gov/departments/humanrightscommission",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "quoted_span": "landlords, sellers and rental agents may use any reasonable standard to determine which applicants are selected, as long as that standard is applied equally and uniformly to all applicants.",
+  "summary": "Landlords, sellers, and rental agents may use reasonable standards to select applicants only if they apply the standards equally and uniformly to all applicants.",
+  "key_value": null,
+  "coverage_in_words": "Applies to housing transactions in Cambridge.",
+  "coverage_facts": [
+   "owner_occupied",
+   "use_class"
+  ],
+  "exemptions": "Two-family dwellings when the owner lives there.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.cambridgema.gov/departments/humanrightscommission"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "screening_restrictions",
+    "requirement": "Landlords, sellers, and rental agents may use reasonable standards to select applicants only if they apply the standards equally and uniformly to all applicants.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA-CAMBRIDGE.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: tested against what the building is used for, whether the owner lives in the building; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-DEP-186",
+  "jurisdiction_id": "MA",
+  "schema_name": "MA",
+  "level": "state",
+  "kind": "rule",
+  "category": "security_deposits",
+  "title": "Limit on amounts charged at the start of a tenancy",
+  "status": "in_force",
+  "effective_date": "2025-08-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2025-08-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Mass. Gen. Laws ch. 186, § 15B",
+  "source_doc_id": "D052",
+  "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "At or prior to the commencement of any tenancy, no lessor or agent of the lessor may require a tenant or prospective tenant to pay, to the lessor or to an agent of the lessor, any amount in excess of the following:",
+  "summary": "At or before the start of a tenancy, a lessor may not require payment of amounts beyond the listed first month's rent, last month's rent at the same rate, a compliant security deposit equal to the first month's rent, and the purchase and installation cost of a key and lock. A fee in lieu of a deposit may be authorized by regulation subject to the stated requirements.",
+  "key_value": "Security deposit may not exceed the first month's rent",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "security_deposits",
+    "requirement": "At or before the start of a tenancy, a lessor may not require payment of amounts beyond the listed first month's rent, last month's rent at the same rate, a compliant security deposit equal to the first month's rent, and the purchase and installation cost of a key and lock. A fee in lieu of a deposit may be authorized by regulation subject to the stated requirements.",
+    "key_value": "Security deposit may not exceed the first month's rent",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA.",
+    "Dates: in force from 2025-08-01; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-EVICT-186",
+  "jurisdiction_id": "MA",
+  "schema_name": "MA",
+  "level": "state",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Written 14-day notice to quit for nonpayment",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Mass. Gen. Laws ch. 186, § 11",
+  "source_doc_id": "D050",
+  "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "fourteen days' notice to quit, given in writing by the landlord to the tenant, shall be sufficient to determine the lease",
+  "summary": "To determine a written lease for nonpayment of rent, the landlord must give the tenant written notice to quit at least 14 days before termination.",
+  "key_value": "14 days",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "To determine a written lease for nonpayment of rent, the landlord must give the tenant written notice to quit at least 14 days before termination.",
+    "key_value": "14 days",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-FEE-112",
+  "jurisdiction_id": "MA",
+  "schema_name": "MA",
+  "level": "state",
+  "kind": "rule",
+  "category": "application_screening_fees",
+  "title": "Fee paid by the party that contracted with the broker",
+  "status": "in_force",
+  "effective_date": "2025-08-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2025-08-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Mass. Gen. Laws ch. 112, § 87DDD½",
+  "source_doc_id": "D057",
+  "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:56 UTC",
+  "quoted_span": "Any fee shall only be paid by the party, lessor or tenant who originally engaged and entered into a contract with the licensed broker or salesperson.",
+  "summary": "A broker's fee may be paid only by the lessor or tenant who originally engaged and entered into a contract with the broker.",
+  "key_value": "Only the party who originally engaged and contracted with the broker may pay the fee.",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "application_screening_fees",
+    "requirement": "A broker's fee may be paid only by the lessor or tenant who originally engaged and entered into a contract with the broker.",
+    "key_value": "Only the party who originally engaged and contracted with the broker may pay the fee.",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA.",
+    "Dates: in force from 2025-08-01; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-FEE-186",
+  "jurisdiction_id": "MA",
+  "schema_name": "MA",
+  "level": "state",
+  "kind": "rule",
+  "category": "application_screening_fees",
+  "title": "Limit on amounts required at the start of a tenancy",
+  "status": "in_force",
+  "effective_date": "2025-08-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2025-08-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Mass. Gen. Laws ch. 186, § 15B(1)(b)",
+  "source_doc_id": "D052",
+  "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "At or prior to the commencement of any tenancy, no lessor or agent of the lessor may require a tenant or prospective tenant to pay, to the lessor or to an agent of the lessor, any amount in excess of the following:",
+  "summary": "At or before the start of a tenancy, a lessor or the lessor’s agent may not require a tenant or prospective tenant to pay an amount beyond the charges permitted by this subsection.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "application_screening_fees",
+    "requirement": "At or before the start of a tenancy, a lessor or the lessor’s agent may not require a tenant or prospective tenant to pay an amount beyond the charges permitted by this subsection.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA.",
+    "Dates: in force from 2025-08-01; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-RENT-40P",
+  "jurisdiction_id": "MA",
+  "schema_name": "MA",
+  "level": "state",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Prohibition on local rent control",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Mass. Gen. Laws ch. 40P, § 4",
+  "source_doc_id": "D048",
+  "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "quoted_span": "No city or town may enact, maintain or enforce rent control of any kind, except that any city or town that accepts this chapter may adopt rent control regulation that provides:",
+  "summary": "Cities and towns may not enact, maintain, or enforce rent control, except as allowed for a city or town that accepts the chapter.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": "A city or town that accepts the chapter may adopt rent control regulation subject to the stated restrictions.",
+  "interaction": {
+   "type": "may_preempt_local",
+   "note": "State law may limit local rules on this topic. HomeRule flags this for review and does not decide it.",
+   "quote": "No city or town may enact, maintain or enforce rent control of any kind"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "Cities and towns may not enact, maintain, or enforce rent control, except as allowed for a city or town that accepts the chapter.",
+    "key_value": null,
+    "effect": "bars_or_limits_local_rules",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text.",
+    "Conflict: flagged on both levels when a local rule on the same topic exists; never decided."
+   ]
+  }
+ },
+ {
+  "rule_id": "MA-SCREEN-151B",
+  "jurisdiction_id": "MA",
+  "schema_name": "MA",
+  "level": "state",
+  "kind": "rule",
+  "category": "screening_restrictions",
+  "title": "No discriminatory denial of covered housing",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Mass. Gen. Laws ch. 151B, § 4(6)(a)",
+  "source_doc_id": "D049",
+  "source_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "(a) to refuse to rent or lease or sell or negotiate for sale or otherwise to deny to or withhold from any person or group of persons such accommodations because of the race, religious creed, color, national origin, sex, gender identity, sexual orientation, which shall not include persons whose sexual orientation involves minor children as the sex object, age, genetic information, ancestry, or marital status of such person or persons or because such person is a veteran or member of the armed forces, or because such person is blind, or hearing impaired or has any other handicap;",
+  "summary": "Covered housing providers may not refuse to rent, lease, sell, negotiate for sale, or otherwise deny or withhold covered accommodations on the listed protected grounds.",
+  "key_value": null,
+  "coverage_in_words": "Housing described in subsection 6 as publicly assisted, multiple dwelling, or contiguously located.",
+  "coverage_facts": [
+   "subsidised",
+   "units"
+  ],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "screening_restrictions",
+    "requirement": "Covered housing providers may not refuse to rent, lease, sell, negotiate for sale, or otherwise deny or withhold covered accommodations on the listed protected grounds.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.5
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is MA.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: tested against whether the building is subsidised, the number of units; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-ALG-56:9-23",
+  "jurisdiction_id": "NJ",
+  "schema_name": "NJ",
+  "level": "state",
+  "kind": "rule",
+  "category": "algorithmic_rent_setting",
+  "title": "Performing a coordinating function prohibited",
+  "status": "not_yet_effective",
+  "effective_date": "2027-07-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2027-07-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "N.J. Stat. Ann. § 56:9-23(e)",
+  "source_doc_id": "D069",
+  "source_url": "https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:56 UTC",
+  "quoted_span": "any person to perform a coordinating function.",
+  "summary": "A person may not perform a coordinating function.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "may_preempt_local",
+   "note": "State law may limit local rules on this topic. HomeRule flags this for review and does not decide it.",
+   "quote": "A municipality shall be prohibited from enacting an ordinance that conflicts with this act."
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "algorithmic_rent_setting",
+    "requirement": "A person may not perform a coordinating function.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
+    "Dates: in force from 2027-07-01; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text.",
+    "Conflict: flagged on both levels when a local rule on the same topic exists; never decided."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-DEP-46:8-21.2",
+  "jurisdiction_id": "NJ",
+  "schema_name": "NJ",
+  "level": "state",
+  "kind": "rule",
+  "category": "security_deposits",
+  "title": "Security deposit cap",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "N.J.S.A. 46:8-21.2",
+  "source_doc_id": "D067",
+  "source_url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "The maximum-security deposit to be collected by the landlord cannot be more than \none and one-half times one month’s rent",
+  "summary": "A landlord who collects a security deposit may not collect more than one and one-half times one month’s rent.",
+  "key_value": "1.5 times one month’s rent",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [
+   "owner_occupied",
+   "units"
+  ],
+  "exemptions": "Owner-occupied two- or three-family dwellings, unless the tenant sends a written request and allows 30 days for the law to apply.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "security_deposits",
+    "requirement": "A landlord who collects a security deposit may not collect more than one and one-half times one month’s rent.",
+    "key_value": "1.5 times one month’s rent",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: tested against whether the owner lives in the building, the number of units; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-EVICT-2A:18-61.1",
+  "jurisdiction_id": "NJ",
+  "schema_name": "NJ",
+  "level": "state",
+  "kind": "rule",
+  "category": "just_cause_eviction",
+  "title": "Eviction and nonrenewal require good cause",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "N.J.S.A. 2A:18-61.1",
+  "source_doc_id": "D067",
+  "source_url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "No residential landlord may evict or fail to renew a \nlease, whether it is a written or an oral lease without good cause. The landlord must be able to \nprove in court that he has grounds for an eviction.",
+  "summary": "A residential landlord may not evict a tenant or fail to renew a lease without good cause, and must be able to prove the grounds in court.",
+  "key_value": null,
+  "coverage_in_words": "Applies to most residential rental properties; stated exceptions are recorded as tenant conditions.",
+  "coverage_facts": [],
+  "exemptions": "Possible exceptions include certain owner-occupied premises, transient or seasonal guests, and a specified family trust unit.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "just_cause_eviction",
+    "requirement": "A residential landlord may not evict a tenant or fail to renew a lease without good cause, and must be able to prove the grounds in court.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-FEE-46:8-18.1",
+  "jurisdiction_id": "NJ",
+  "schema_name": "NJ",
+  "level": "state",
+  "kind": "rule",
+  "category": "application_screening_fees",
+  "title": "Application fee cap",
+  "status": "in_force",
+  "effective_date": "2026-05-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2026-05-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "N.J. Stat. § 46:8-18.1(a)",
+  "source_doc_id": "D066",
+  "source_url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "A landlord, or\nagent thereof, shall not require an application or other similar fee to apply\nto lease or sublease a residential rental property for dwelling purposes, which\nexceeds $50.",
+  "summary": "A landlord or agent may not require an application or similar fee exceeding the statutory limit to apply to lease or sublease a residential rental property for dwelling purposes.",
+  "key_value": "$50",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [
+   "use_class"
+  ],
+  "exemptions": "Does not apply to a dwelling unit in a one-family or two-family dwelling offered for rent, or to a New Jersey Real Estate Commission licensee unless the licensee is the landlord.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "application_screening_fees",
+    "requirement": "A landlord or agent may not require an application or similar fee exceeding the statutory limit to apply to lease or sublease a residential rental property for dwelling purposes.",
+    "key_value": "$50",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
+    "Dates: in force from 2026-05-01 (first day of month 4 after enactment 2026-01-20); before that, not yet in force.",
+    "Coverage: tested against what the building is used for; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-HOBOKEN-ALG-Hobokenordin",
+  "jurisdiction_id": "NJ-HOBOKEN",
+  "schema_name": "Hoboken, NJ",
+  "level": "city",
+  "kind": "rule",
+  "category": "algorithmic_rent_setting",
+  "title": "Ban on algorithmic rent-fixing",
+  "status": "in_force",
+  "effective_date": "2025-07-29",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2025-07-29",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Hoboken ordinance (citation not stated)",
+  "source_doc_id": "S008",
+  "source_url": "https://www.hobokennj.gov/news/city-of-hoboken-outlaws-algorithmic-rent-fixing",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-03T21:02:42.249507+00:00",
+  "quoted_span": "they can no longer use software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental prices, lease terms, or occupancy levels among competing landlords.",
+  "summary": "Landlords may not use software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental prices, lease terms, or occupancy levels among competing landlords.",
+  "key_value": null,
+  "coverage_in_words": "Residential rental units in Hoboken.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "open_question": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once it takes effect.",
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.hobokennj.gov/news/city-of-hoboken-outlaws-algorithmic-rent-fixing"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "algorithmic_rent_setting",
+    "requirement": "Landlords may not use software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental prices, lease terms, or occupancy levels among competing landlords.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-HOBOKEN.",
+    "Dates: in force from 2025-07-29 (New Jersey municipal default: 20 days after final passage 2025-07-09 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-HOBOKEN-RENT-10:54",
+  "jurisdiction_id": "NJ-HOBOKEN",
+  "schema_name": "Hoboken, NJ",
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Tenant request for legal rent calculation",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Hoboken Rent Control Regulations § 10:54(A)",
+  "source_doc_id": "S012",
+  "source_url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
+  "quoted_span": "A tenant may request a legal rent calculation where the\ntenant's rent is believed to be in excess of the legal rent as established\npursuant to the ordinance.",
+  "summary": "A tenant may request a legal rent calculation when the tenant believes the rent exceeds the legal rent.",
+  "key_value": "Right to request a legal rent calculation",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "A tenant may request a legal rent calculation when the tenant believes the rent exceeds the legal rent.",
+    "key_value": "Right to request a legal rent calculation",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-HOBOKEN.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-HOBOKEN-RENT-18:54",
+  "jurisdiction_id": "NJ-HOBOKEN",
+  "schema_name": null,
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Hoboken Rent Control Regulations § 18:54(H)",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Hoboken Rent Control Regulations § 18:54(H)",
+  "source_doc_id": "S012",
+  "source_url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
+  "quoted_span": null,
+  "summary": "When service, care, or maintenance deterioration exists at the time of a rent-reduction application or existed within 60 days before filing, the Board must value the deterioration for the applicable period and reduce rent by that value over a period it determines.",
+  "key_value": "An amount equal to the value of the deteriorated services",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "When service, care, or maintenance deterioration exists at the time of a rent-reduction application or existed within 60 days before filing, the Board must value the deterioration for the applicable period and reduce rent by that value over a period it determines.",
+    "key_value": "An amount equal to the value of the deteriorated services",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": false,
+    "confidence": 0
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-HOBOKEN.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-HOBOKEN-RENT-18:66",
+  "jurisdiction_id": "NJ-HOBOKEN",
+  "schema_name": "Hoboken, NJ",
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Timely vacancy-decontrol certificate",
+  "status": "in_force",
+  "effective_date": "2009-04-22",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2009-04-22",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Hoboken Rent Control Regulations § 18:66",
+  "source_doc_id": "S012",
+  "source_url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
+  "quoted_span": "A Landlord of any dwelling subject to the provisions of this chapter may file a Certificate\npursuant to Section 155-33 for any year where the landlord legally owned the dwelling, provided\nthe Certificate is filed no later than the latter of either one (1) year from when the vacancy\noccurred or one (1) year from when the apartment was first rented to a replacement Tenant after\na vacancy",
+  "summary": "A landlord may file a decontrol certificate for a year it legally owned the dwelling, no later than one year after the later of the vacancy or first rental to a replacement tenant; the dwelling must be registered, and filing must precede a legal-rent-calculation request for the certificate to be used in a legal rent determination.",
+  "key_value": "No later than one year after the later of vacancy or first rental to a replacement tenant",
+  "coverage_in_words": "The dwelling must be registered when the certificate is filed; certificate use in a legal rent determination also requires filing before a request for a legal rent calculation.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "A landlord may file a decontrol certificate for a year it legally owned the dwelling, no later than one year after the later of the vacancy or first rental to a replacement tenant; the dwelling must be registered, and filing must precede a legal-rent-calculation request for the certificate to be used in a legal rent determination.",
+    "key_value": "No later than one year after the later of vacancy or first rental to a replacement tenant",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-HOBOKEN.",
+    "Dates: in force from 2009-04-22; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-HOBOKEN-RENT-3",
+  "jurisdiction_id": "NJ-HOBOKEN",
+  "schema_name": "Hoboken, NJ",
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Original-tenant designation and vacancy decontrol",
+  "status": "in_force",
+  "effective_date": "2025-02-12",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2025-02-12",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Hoboken Rent Control Regulations, Regulation #3: Vacancy Decontrol as to Multiple Tenants",
+  "source_doc_id": "S012",
+  "source_url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
+  "quoted_span": "a landlord who rents a residential apartment unit to\nmultiple tenants may designate an original tenant category which shall consist of all the members\nof the original group of tenants to which the unit is rented.",
+  "summary": "A landlord renting an apartment to multiple tenants may designate all members of the original tenant group as original tenants; vacancy is deemed to occur when the last original tenant leaves, allowing the landlord to seek available vacancy-decontrol relief.",
+  "key_value": "Vacancy is deemed to occur when the last original tenant vacates",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "A landlord renting an apartment to multiple tenants may designate all members of the original tenant group as original tenants; vacancy is deemed to occur when the last original tenant leaves, allowing the landlord to seek available vacancy-decontrol relief.",
+    "key_value": "Vacancy is deemed to occur when the last original tenant vacates",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-HOBOKEN.",
+    "Dates: in force from 2025-02-12; before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-JERSEY-CITY-ALG-218-12",
+  "jurisdiction_id": "NJ-JERSEY-CITY",
+  "schema_name": "Jersey City, NJ",
+  "level": "city",
+  "kind": "rule",
+  "category": "algorithmic_rent_setting",
+  "title": "Ban on real estate lessors using service providers",
+  "status": "in_force",
+  "effective_date": "2025-06-10",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2025-06-10",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Jersey City Code § 218-12(2)(a)",
+  "source_doc_id": "S001",
+  "source_url": "https://cityofjerseycity.civicweb.net/document/429156/Ordinance%20Amending%20Chapter%20218%20creating%20section.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-03T21:00:55.189844+00:00",
+  "quoted_span": "It is unlawful for any real estate lessor, agent, or subcontractor thereof, to subscribe to, contract with, or otherwise\nexchange anything of value in return for the services of a Service Provider.",
+  "summary": "A real estate lessor, its agent, or its subcontractor may not subscribe to, contract with, or exchange anything of value for a service provider’s services.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": "The definition of “Coordinate” exempts owners of multiple properties for actions related exclusively to properties controlled by the same rental property owner. Licensed real estate agents operating in accordance with applicable state regulations are excluded from the definition of service provider.",
+  "interaction": {
+   "type": "none"
+  },
+  "open_question": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once it takes effect.",
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://cityofjerseycity.civicweb.net/document/429156/Ordinance%20Amending%20Chapter%20218%20creating%20section.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "algorithmic_rent_setting",
+    "requirement": "A real estate lessor, its agent, or its subcontractor may not subscribe to, contract with, or exchange anything of value for a service provider’s services.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-JERSEY-CITY.",
+    "Dates: in force from 2025-06-10 (New Jersey municipal default: 20 days after final passage 2025-05-21 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-JERSEY-CITY-ALG-218-12.3",
+  "jurisdiction_id": "NJ-JERSEY-CITY",
+  "schema_name": "Jersey City, NJ",
+  "level": "city",
+  "kind": "rule",
+  "category": "algorithmic_rent_setting",
+  "title": "Mandatory disclosure for rent increases",
+  "status": "in_force",
+  "effective_date": "2025-10-15",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2025-10-15",
+    "status": "in_force"
+   }
+  ],
+  "citation": "Jersey City Code § 218-12.3(a)",
+  "source_doc_id": "S017",
+  "source_url": "https://cityofjerseycity.civicweb.net/document/436629/Ordinance%20Amending%20Chapter%20218%20Section%2012.pd?handleBA65167715D64D65AB58827857A89651",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-03T23:25:58.281553+00:00",
+  "quoted_span": "Any landlord must include, with any lease or written notice of rent increase for a residential dwelling unit, a sworn\ndisclosure statement, executed under penalty of perjury, in substantially the following form:",
+  "summary": "With any lease or written notice of rent increase for a residential dwelling unit, the landlord must provide a sworn disclosure statement, executed under penalty of perjury and substantially in the prescribed form. The form certifies that no entity exchanged anything of value for a Service Provider’s services in connection with the proposed rent, that the rent-increase methodology did not use shared non-public competitor data, and includes the stated acknowledgment concerning illegal deception, fraud, misrepresentation, or knowing failure or refusal to provide important information.",
+  "key_value": null,
+  "coverage_in_words": "Applies to a lease or written notice of rent increase for a residential dwelling unit.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "open_question": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once it takes effect.",
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://cityofjerseycity.civicweb.net/document/436629/Ordinance%20Amending%20Chapter%20218%20Section%2012.pd?handleBA65167715D64D65AB58827857A89651"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "algorithmic_rent_setting",
+    "requirement": "With any lease or written notice of rent increase for a residential dwelling unit, the landlord must provide a sworn disclosure statement, executed under penalty of perjury and substantially in the prescribed form. The form certifies that no entity exchanged anything of value for a Service Provider’s services in connection with the proposed rent, that the rent-increase methodology did not use shared non-public competitor data, and includes the stated acknowledgment concerning illegal deception, fraud, misrepresentation, or knowing failure or refusal to provide important information.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-JERSEY-CITY.",
+    "Dates: in force from 2025-10-15 (New Jersey municipal default: 20 days after final passage 2025-09-25 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-JERSEY-CITY-RENT-JerseyCityLa",
+  "jurisdiction_id": "NJ-JERSEY-CITY",
+  "schema_name": "Jersey City, NJ",
+  "level": "city",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Right to file an illegal rent petition",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "Jersey City Landlord/Tenant Relations webpage",
+  "source_doc_id": "D036",
+  "source_url": "https://www.jerseycitynj.gov/landlordtenant",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:36 UTC",
+  "quoted_span": "A tenant claiming the rent they are being charged is illegal may file an Illegal Rent Petition:",
+  "summary": "A tenant who claims they are being charged illegal rent may file an Illegal Rent Petition.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.jerseycitynj.gov/landlordtenant"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "A tenant who claims they are being charged illegal rent may file an Illegal Rent Petition.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.5
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ-JERSEY-CITY.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-RENT-2A:18-61.1",
+  "jurisdiction_id": "NJ",
+  "schema_name": "NJ",
+  "level": "state",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Rent increase may not be unconscionable",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "N.J.S.A. 2A:18-61.1 et seq.",
+  "source_doc_id": "D067",
+  "source_url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "The increase in rent must not be \nunconscionable; it must not be so unreasonable as to shock the conscience of a fair and honest \nperson and must comply with any municipal ordinances governing rent increases.",
+  "summary": "A rent increase must not be unconscionable and must comply with municipal ordinances governing rent increases.",
+  "key_value": "Must not be unconscionable",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
+  "interaction": {
+   "type": "coexists",
+   "note": "Applies alongside rules from other levels.",
+   "quote": "must comply with any municipal ordinances governing rent increases."
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "A rent increase must not be unconscionable and must comply with municipal ordinances governing rent increases.",
+    "key_value": "Must not be unconscionable",
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-RENT-2A:42-84.5",
+  "jurisdiction_id": "NJ",
+  "schema_name": "NJ",
+  "level": "state",
+  "kind": "rule",
+  "category": "rent_increase_limits",
+  "title": "Thirty-year exemption from local rent control for newly constructed multiple dwellings",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "N.J.S.A. 2A:42-84.5",
+  "source_doc_id": "D067",
+  "source_url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "newly \nconstructed multiple dwellings shall be exempt from any local rent control ordinances for a period \nof 30 years following completion of construction of the building.",
+  "summary": "Local rent control ordinances do not apply to newly constructed multiple dwellings for 30 years following completion of construction.",
+  "key_value": "30 years following completion of construction",
+  "coverage_in_words": "Newly constructed multiple dwellings during the first 30 years after construction is completed.",
+  "coverage_facts": [
+   "units"
+  ],
+  "exemptions": null,
+  "interaction": {
+   "type": "may_preempt_local",
+   "note": "State law may limit local rules on this topic. HomeRule flags this for review and does not decide it.",
+   "quote": "newly constructed multiple dwellings shall be exempt from any local rent control ordinances for a period of 30 years"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "rent_increase_limits",
+    "requirement": "Local rent control ordinances do not apply to newly constructed multiple dwellings for 30 years following completion of construction.",
+    "key_value": "30 years following completion of construction",
+    "effect": "bars_or_limits_local_rules",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: tested against the number of units; a missing fact gives \"unknown\", never a guess.",
+    "Conflict: flagged on both levels when a local rule on the same topic exists; never decided."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-SCREEN-10:5-12",
+  "jurisdiction_id": "NJ",
+  "schema_name": "NJ",
+  "level": "state",
+  "kind": "rule",
+  "category": "screening_restrictions",
+  "title": "No discrimination in housing based on protected characteristics",
+  "status": "in_force",
+  "effective_date": null,
+  "status_history": [
+   {
+    "from": null,
+    "status": "in_force"
+   }
+  ],
+  "citation": "N.J.S.A. 10:5-12",
+  "source_doc_id": "D068",
+  "source_url": "https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "The NJ Law Against Discrimination (LAD) prohibits\ndiscrimination on the bases of race, creed (religion),\ncolor, national origin, sex, gender identity or expression,\nmarital status, civil union status, ancestry, actual or\nperceived physical or mental disability, nationality,\naffectional or sexual orientation, familial status, and\ndomestic partner status.",
+  "summary": "A landlord may not discriminate in housing on the bases of race, creed (religion), color, national origin, sex, gender identity or expression, marital status, civil union status, ancestry, actual or perceived physical or mental disability, nationality, affectional or sexual orientation, familial status, or domestic partner status.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [
+   "owner_occupied",
+   "use_class"
+  ],
+  "exemptions": "The brochure states exceptions for certain owner-occupied two-family and one-family rentals; familial-status discrimination is excepted for housing for older persons.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "screening_restrictions",
+    "requirement": "A landlord may not discriminate in housing on the bases of race, creed (religion), color, national origin, sex, gender identity or expression, marital status, civil union status, ancestry, actual or perceived physical or mental disability, nationality, affectional or sexual orientation, familial status, or domestic partner status.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
+    "Dates: no effective date in the text; treated as in force.",
+    "Coverage: tested against what the building is used for, whether the owner lives in the building; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-SCREEN-46:8-55",
+  "jurisdiction_id": "NJ",
+  "schema_name": "NJ",
+  "level": "state",
+  "kind": "rule",
+  "category": "screening_restrictions",
+  "title": "Do not require pre-offer applications that inquire about criminal records",
+  "status": "in_force",
+  "effective_date": "2022-01-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2022-01-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "N.J. Stat. Ann. § 46:8-55(a)(1)",
+  "source_doc_id": "D065",
+  "source_url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "A\nhousing provider\nshall not require an applicant to\ncomplete any housing application that includes any inquiries regarding an\napplicant’s criminal record prior to the provision of a conditional offer",
+  "summary": "A housing provider may not require an applicant to complete an application that includes criminal-record inquiries before making a conditional offer, except for the specified methamphetamine-related conviction and lifetime sex-offender registration inquiries.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [
+   "owner_occupied",
+   "units"
+  ],
+  "exemptions": "Owner-occupied premises with no more than four dwelling units are outside the act's definition of rental dwelling unit.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "screening_restrictions",
+    "requirement": "A housing provider may not require an applicant to complete an application that includes criminal-record inquiries before making a conditional offer, except for the specified methamphetamine-related conviction and lifetime sex-offender registration inquiries.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
+    "Dates: in force from 2022-01-01; before that, not yet in force.",
+    "Coverage: tested against whether the owner lives in the building, the number of units; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-SCREEN-46:8-56",
+  "jurisdiction_id": "NJ",
+  "schema_name": "NJ",
+  "level": "state",
+  "kind": "rule",
+  "category": "screening_restrictions",
+  "title": "Do not evaluate applicants using specified criminal records",
+  "status": "in_force",
+  "effective_date": "2022-01-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2022-01-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "N.J. Stat. Ann. § 46:8-56(a)",
+  "source_doc_id": "D065",
+  "source_url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "A housing provider shall not, either before\nor after the issuance of a conditional offer, evaluate an applicant based on\nany of the following types of criminal records:\n(1)   arrests or charges that have not resulted in a\ncriminal conviction;\n(2)   expunged convictions;",
+  "summary": "A housing provider may not evaluate an applicant based on arrests or charges without conviction, expunged or pardoned convictions, legally nullified convictions, juvenile delinquency adjudications, or sealed records, before or after a conditional offer.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [
+   "owner_occupied",
+   "units"
+  ],
+  "exemptions": "Owner-occupied premises with no more than four dwelling units are outside the act's definition of rental dwelling unit.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "screening_restrictions",
+    "requirement": "A housing provider may not evaluate an applicant based on arrests or charges without conviction, expunged or pardoned convictions, legally nullified convictions, juvenile delinquency adjudications, or sealed records, before or after a conditional offer.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
+    "Dates: in force from 2022-01-01; before that, not yet in force.",
+    "Coverage: tested against whether the owner lives in the building, the number of units; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-SCREEN-46:8-58",
+  "jurisdiction_id": "NJ",
+  "schema_name": "NJ",
+  "level": "state",
+  "kind": "rule",
+  "category": "screening_restrictions",
+  "title": "Do not publish categorical criminal-record exclusion advertisements",
+  "status": "in_force",
+  "effective_date": "2022-01-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2022-01-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "N.J. Stat. Ann. § 46:8-58(a)",
+  "source_doc_id": "D065",
+  "source_url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "A housing provider shall not knowingly or\npurposefully publish, or cause to be published, any housing advertisement that\nexplicitly provides that the housing provider will not consider any applicant\nwho has been arrested or convicted of one or more crimes or offenses",
+  "summary": "A housing provider may not knowingly or purposefully publish an advertisement explicitly stating that applicants arrested or convicted of crimes will not be considered, except for the two specified criminal-history categories.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [
+   "owner_occupied",
+   "units"
+  ],
+  "exemptions": "Owner-occupied premises with no more than four dwelling units are outside the act's definition of rental dwelling unit.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "screening_restrictions",
+    "requirement": "A housing provider may not knowingly or purposefully publish an advertisement explicitly stating that applicants arrested or convicted of crimes will not be considered, except for the two specified criminal-history categories.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
+    "Dates: in force from 2022-01-01; before that, not yet in force.",
+    "Coverage: tested against whether the owner lives in the building, the number of units; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ },
+ {
+  "rule_id": "NJ-SCREEN-46:8-60",
+  "jurisdiction_id": "NJ",
+  "schema_name": "NJ",
+  "level": "state",
+  "kind": "rule",
+  "category": "screening_restrictions",
+  "title": "Do not require drug or alcohol tests or request treatment-facility consent",
+  "status": "in_force",
+  "effective_date": "2022-01-01",
+  "status_history": [
+   {
+    "from": null,
+    "status": "not_yet_effective"
+   },
+   {
+    "from": "2022-01-01",
+    "status": "in_force"
+   }
+  ],
+  "citation": "N.J. Stat. Ann. § 46:8-60",
+  "source_doc_id": "D065",
+  "source_url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM",
+  "source_kind": "official",
+  "retrieved_at": "2026-10-01 22:37 UTC",
+  "quoted_span": "A housing provider shall not require an applicant\nto submit to a drug or alcohol test, or request the applicant’s consent to\nobtain information from a drug abuse treatment facility.",
+  "summary": "A housing provider may not require an applicant to submit to a drug or alcohol test or request the applicant’s consent to obtain information from a drug abuse treatment facility.",
+  "key_value": null,
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [
+   "owner_occupied",
+   "units"
+  ],
+  "exemptions": "Owner-occupied premises with no more than four dwelling units are outside the act's definition of rental dwelling unit.",
+  "interaction": {
+   "type": "none"
+  },
+  "what_next": {
+   "label": "Read the law at its official source",
+   "url": "https://pub.njleg.gov/bills/2020/PL21/110_.HTM"
+  },
+  "audit": {
+   "model_extracted": {
+    "category": "screening_restrictions",
+    "requirement": "A housing provider may not require an applicant to submit to a drug or alcohol test or request the applicant’s consent to obtain information from a drug abuse treatment facility.",
+    "key_value": null,
+    "effect": "protection_or_duty",
+    "quote_found_in_source": true,
+    "confidence": 0.9
+   },
+   "code_decided": [
+    "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
+    "Dates: in force from 2022-01-01; before that, not yet in force.",
+    "Coverage: tested against whether the owner lives in the building, the number of units; a missing fact gives \"unknown\", never a guess."
+   ]
+  }
+ }
+]

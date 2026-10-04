@@ -4,6 +4,8 @@ import Link from "next/link";
 import AsOfTimeline from "@/components/as-of-timeline";
 import { ruleHref } from "@/components/question-card";
 import { Dot } from "@/components/status";
+import SourceTag from "@/components/source-tag";
+import { DATA_SOURCE } from "@/lib/config";
 import { useAsOf, useUrlParam } from "@/lib/as-of";
 import { formatDate } from "@/lib/format";
 import { IMPACT_ORDER, IMPACT_WORDS, type ImpactClass } from "@/lib/impact";
@@ -67,7 +69,7 @@ export default function Impact({ ruleId, stops, fallback, retrieved, stateName, 
 
       <section className="section" aria-labelledby="impact-h">
         <h2 id="impact-h">
-          Which buildings it reaches <span className="tag tag-demo">Demo data</span>
+          Which buildings it reaches <SourceTag />
         </h2>
         <p className="section-sub">
           All {total} sample addresses in {stateName} on {formatDate(asOf)}.
@@ -121,15 +123,16 @@ export default function Impact({ ruleId, stops, fallback, retrieved, stateName, 
           ))}
         </div>
         <p className="map-caption">
-          Demo colouring: the larger dots are the hand-prepared demo addresses. Other dots use only jurisdiction and dates;
-          where a rule depends on building facts they show &ldquo;in the area, coverage not checked&rdquo;.
+          {DATA_SOURCE === "demo"
+            ? "Demo colouring: the larger dots are the hand-prepared demo addresses. Other dots use only jurisdiction and dates; where a rule depends on building facts they show “in the area, coverage not checked”."
+            : "Every dot is the rule engine’s result for that address. The larger dots are the example addresses listed below."}
           {noCoords > 0 && ` ${noCoords} addresses have no coordinates and are counted but not drawn.`}
         </p>
       </section>
 
       {demo.length > 0 && (
         <section className="section" aria-labelledby="touch-h">
-          <h2 id="touch-h">Decided by code for the demo addresses</h2>
+          <h2 id="touch-h">Decided by code for the example addresses</h2>
           <p className="section-sub">On {formatDate(asOf)}. Rules that don&rsquo;t apply are left out.</p>
           <ul className="touches">
             {demo.map((d) => {

@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import jurisdictionsFile from "@/data/jurisdictions.json";
 import { DATA_SOURCE } from "./config";
-import type { Address, Dataset, Excerpt, Jurisdiction, LookupsByDate, Meta, Rule } from "./types";
+import type { Address, Dataset, Excerpt, Finding, Jurisdiction, LookupsByDate, Meta, Rule } from "./types";
 
 /*
   Server-side loader. Reads web/data/<source>/*.json, where <source> comes from
@@ -18,6 +18,7 @@ const FILES = {
   lookups: "lookups.json",
   addresses: "addresses.json",
   excerpts: "excerpts.json",
+  findings: "findings.json",
 } as const;
 
 function dir() {
@@ -39,7 +40,8 @@ export function getDataset(): Dataset | null {
   const lookups = read<LookupsByDate>(FILES.lookups);
   const addresses = read<Address[]>(FILES.addresses);
   const excerpts = read<Record<string, Excerpt>>(FILES.excerpts) ?? {};
-  cached = meta && rules && lookups && addresses ? { meta, rules, lookups, addresses, excerpts } : null;
+  const findings = read<Record<string, Finding[]>>(FILES.findings) ?? {};
+  cached = meta && rules && lookups && addresses ? { meta, rules, lookups, addresses, excerpts, findings } : null;
   return cached;
 }
 

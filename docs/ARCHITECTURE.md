@@ -32,12 +32,13 @@ Frozen before parallel work; changed only via PR with the other person tagged.
 
 | ID | Interface | From → to | Must hold |
 |---|---|---|---|
-| I1 | `contracts/jurisdictions.json`: 13 rule-bearing IDs (e.g. `NJ-HOBOKEN`) plus display-only county entries; each with legal name, level, `parent` (city → county → state), Census code, `schema_name` (the exact string the rule schema expects, e.g. "San Francisco, CA") and `aliases` ("Dorchester", "SF", "Jersey City NJ") | S → D, S | Only these IDs internally; `rules.json` writes `schema_name`; search resolves names and aliases through it |
-| I2 | `out/rules.json` + `out/rules.compiled.json` | D → S | Schema-valid; `jurisdiction` = the list's `schema_name`; status mapped to the schema values (`enacted_not_effective` → `not_yet_effective`, `repealed` → `failed`); effective date or null (two dates kept when sources disagree); verbatim quote |
-| I3 | `out/addresses.resolved.json` | S → engine, D eval | All 500; jurisdiction IDs, coords, facts as ranges, source + confidence |
-| I4 | Engine CLI `build --as-of <date>` | S → eval, web | Deterministic; writes `lookups.json` and `changes.json` in the guide's shapes |
+| I1 | `contracts/jurisdictions.json`: 13 rule-bearing IDs (e.g. `NJ-HOBOKEN`) plus display-only county entries; each with legal name, level, `parent` (city → county → state), Census code (`census_geoid`; NJ/MA cities also `census_cousub_geoid`; counties optionally `county_law`), `schema_name` (the exact string the rule schema expects, e.g. "San Francisco, CA") and `aliases` ("Dorchester", "SF", "Jersey City NJ") | S → D, S | Only these IDs internally; `rules.json` writes `schema_name`; search resolves names and aliases through it |
+| I2 | `out/rules.json` + `out/rules.compiled.json` | D → S | Schema-valid; `jurisdiction` = the list's `schema_name`; status mapped to the schema values (`enacted_not_effective` → `not_yet_effective`; repealed rules are left out of `rules.json`, since `failed` means a measure that never became law); effective date or null (two dates kept when sources disagree); verbatim quote |
+| I3 | `out/addresses.resolved.json` (type `ResolvedFile` in `web/lib/resolve/types.ts`) | S → engine, D eval | All 500; jurisdiction IDs + `stack`, tree, coords, facts as ranges, source + confidence per field, `review` flags |
+| I4 | Engine CLI `make build AS_OF=<date>` (`python -m engine.build --as-of <date>`) | S → eval, web | Deterministic (byte-identical reruns); reads only I2, I3, I8; writes `outputs/lookups.json` and `outputs/changes.json` in the guide's shapes plus `out/lookups.full.json` for the web (shape in C) |
 | I5 | `/api/address/<id>?as_of=` | S → page, email, MCP | Same data as `lookups.json`; `as_of`, retrieval dates, `not_legal_advice: true` |
 | I6 | Per-address diff | S → changes, change log, email | One computation feeds all three |
+| I8 | `out/findings.json`: what is not a rule — `barred_by_law` (e.g. MA c.40P), `measure_failed` (e.g. IP 25-21), `not_in_corpus` (e.g. Hoboken ch. 158: manifest link, no text) per jurisdiction × category, with quote where one exists; `open_question` (the guide's known open questions, e.g. Berkeley's two published effective dates: our rule and its source next to each competing claim and its source) | D → S | Never emitted as rules; the page shows them ("No rent cap: barred by …") and they fill the 13 × 6 grid |
 | I7 | `contracts/facts.json`: building-fact names, types, operators, three-valued semantics, special nodes (`age_years`, `ref`, `unparsed`) | S → D | Coverage conditions use only these names; anything else becomes `unparsed` (unknown) or a tenant condition |
 
 ## Shared vocabulary: the jurisdiction list
@@ -79,17 +80,30 @@ type Node = {all: Node[]} | {any: Node[]} | {not: Node} | boolean
 
 type Compiled = { team_rule_id: string; jurisdiction: string; level: "state"|"city";
   category: string; status: "in_force"|"enacted_not_effective"|"pending"|"failed"|"repealed";
-  effective: {from: string|null; precision: "day"|"month"|"year"};
+  effective: {from: string|null;       // operative date if the text gives one, else effective date
+              until: string|null;       // repeal or sunset date (e.g. Civ. Code §1947.12: 2030-01-01)
+              precision: "day"|"month"|"year";
+              derived: string|null};    // how a computed date was derived, e.g. "1st day of 12th month after enactment"
   applies_if: Node; exempt_if: Node; tenant_conditions: string[];
+  key_value: string|null;
+  key_value_conditions: {value: string; when: Node; tenant_note: string|null}[];  // alternative amounts, e.g. the
+                                        // small-landlord deposit cap; coverage is unaffected
   interaction: {type: "none"|"yields_to_local"|"coexists"|"may_preempt_local", target_category?: string, quote?: string};
-  retrieved_at: string; parse_status: "ok"|"partial"|"failed" };
+  interactions: {type: string; target_category: string; quote: string}[];  // all of them; `interaction` is the first
+  retrieved_at: string; parse_status: "ok"|"partial"|"failed";
+  checks: string[];                     // names of failed extraction checks; empty when parse_status is ok
+  x_source: {unit: string; source_doc_id: string; citation: string;
+             effect: "protection_or_duty"|"bars_or_limits_local_rules";
+             cap_pct_low: number|null; cap_pct_high: number|null;   // rent caps: the evaluator compares them to
+                                                                    // decide whether a local cap supersedes the state's
+             status_evidence: object|null; origin: "starter"|"supplemental"|"ingested"; stub: boolean} };
 ```
 
 ## B · Address resolution
 
 Requirements: PRD [scoring](PRD.md#what-we-must-get-right-scoring): Address coverage.
 
-Input: `data/sample_addresses.csv`. Output: `out/addresses.resolved.json`.
+Input: `data/sample_addresses.csv`. Output: `out/addresses.resolved.json`. Code: `web/lib/resolve/` (one TypeScript implementation for the batch run and the website), batch in `web/scripts/resolve-batch.ts`, `make resolve`.
 
 1. **Normalise** the street: strip leading zeros in ordinals ("05TH AV" → "5TH AVE"), take the first of double addresses ("600 JACKSON/601 HARRISON"), drop lot suffixes.
 2. **Census geocoder**, one geographies call per address (the batch endpoint returns no city name): street, city, state. The ZIP is sent for CA and MA but never for NJ, because the NJ ZIPs in the data are owners' mailing ZIPs.
@@ -98,8 +112,21 @@ Input: `data/sample_addresses.csv`. Output: `out/addresses.resolved.json`.
 5. **Building facts as ranges:**
    - year built y → [y-01-01, y-12-31];
    - units from `units`, else parsed from the use description ("5B-20U", "APT 7-30 UNITS", "(5+ units)");
+   - Boston land use "A/…" without a range of its own (LUXURY APARTMENT, SUBSD HOUSING, ELDERLY HOME) → 7+ units [assumed: `boston_land_use_A_is_7_plus`]; ELDERLY HOME counts as an apartment building [assumed: `boston_elderly_home_is_apartment`];
+   - subsidised: "SUBSD HOUSING" or an NJ description with "AFFORDABL" → true; no affordability code in the record → false [assumed: `no_recorded_affordability_restriction`];
    - conflicting facts → unknown plus a flag;
    - owner type is always unknown.
+
+   The assumptions mirror the extraction's APT5 guard (use_class in [apartment, mixed_use] ∧ units ≥ 5 ∧ subsidised = false, `extract/luna_pass.py`) and its stand-in `lab/schema_experiment/facts.py`. Each record names the ones it relies on in `assumptions`, its `source` says `assumption` for such a fact, and `source_detail` gives a short quotable origin per fact.
+
+**Jurisdiction tree** (`tree.ts`), the same for the batch and the website: Federal › State › County › Municipality. Each level has a status: `covered` (rules in HomeRule), `not_covered` (law exists there, HomeRule doesn't have it: federal law, an unchecked county, LA County for an unincorporated address) or `no_rules` (nothing to cover: no county government, county law only for unincorporated areas, no city government). Counties carry `county_law` in the list (`none` for Suffolk and Middlesex, `unincorporated_only` for LA County, ch. 8.52); unchecked counties stay `not_covered`.
+- Municipality = the Census incorporated place; else a county subdivision with an active government (Census `FUNCSTAT` A: NJ townships, MA towns such as Brookline town). CA county subdivisions are statistical CCDs and never count; a CDP is only a label.
+- No incorporated place and no town government → "unincorporated": the county governs, no city's law applies (4801 E 3rd St, postal "Los Angeles", is unincorporated East Los Angeles).
+- MA counties have no county government (`FUNCSTAT` N); the tree says so.
+
+**Census cache:** every raw Census response of the batch run is committed in `engine/cache/census/` (one file per request URL, layers limited to the tree's six). `make resolve` runs offline from it and is byte-identical on every run; `make resolve-live` fills missing requests.
+
+**Website search** (`/api/resolve`, `/where`): place-only input ("Boston, MA", "Dorchester", "Hudson County", "California") resolves through the list and its aliases, never Census; a ZIP alone gives its state (CA/NJ/MA only) and asks for the street; a street address that is one of the 500 answers from the batch file with its building facts; any other street address goes to Census. Several matches in different places → `ambiguous` with candidates; Census matching another city than the one typed → a warning; Census down or slow → `unavailable` (one retry, 8 s timeout).
 
 Further rules:
 - **Unknown, not omitted:** missing year or units, or a build year equal to a certificate-of-occupancy cutoff year (SF 1979, LA 1978), gives `unknown`.
@@ -107,9 +134,9 @@ Further rules:
 - **County:** resolved for display only. No county documents in the corpus; county tenant ordinances in scope cover unincorporated areas only [assumed, check LA County], and all 500 addresses are in incorporated cities. The page says "No county rules for addresses inside <city>".
 - **Tenant facts** (12 months' tenancy, owner-occupied duplex) are notes on the card, never inputs.
 
-Measured on all 500 (04.10.2026): 493 geocoded to the right city, 7 not geocodable to a point (6 without a house number, 1 unknown to Census) but certain from the postal city. Jurisdiction: 500/500.
+Measured on all 500 (04.10.2026, `make resolve`): 492 placed by Census in the expected city, 8 from the postal city (6 without a house number, 21 Guerrero St unknown to Census, 85-87 Sierra Rd no match), 0 contradictions after normalisation (A0009 matches Cambridge once "322-322.5" becomes "322"). 38 postal ≠ legal city (37 Boston neighbourhoods, San Ysidro). Units: 255 from the CSV, 242 from use codes (32 of them Boston land use A = 7+, assumed), 3 unknown, all 3 conflicts flagged (A0227, A0041, A0398). Subsidised: 27 true from the use code (26 SUBSD HOUSING, A0049 "AFFORDABL"), 473 false by assumption, 0 unknown. 468 rows meet the APT5 guard.
 
-Each record: `address_id`, `jurisdictions` (state, county, city IDs), `postal_city`, `coords` (or approximate), `facts {built, units, use_class, owner_type: null}`, `source` and `confidence` per field.
+Each record: `address_id`, `jurisdictions` (state, county, city IDs), `stack`, `tree`, `postal_city`, `legal_city`, `postal_differs`, `coords` (null when Census didn't place it), `census` (matched address, attempts), `facts {built, units, use_class, subsidised, owner_type: null, owner_occupied: null}`, `source`, `source_detail` and `confidence` per field, `assumptions` (sorted names), `review`. Unit ranges from use codes count as facts (`units_from_use_code`, switch `--no-use-code-units`); NJ class 4C = 5+ units, "3SB" is storeys and never units.
 
 ## C · Engine
 
@@ -117,16 +144,45 @@ Requirements: PRD scoring (Address coverage); interface I4.
 
 A deterministic function of (rules, compiled predicates, resolved addresses, as-of date). The same input gives byte-identical output. Per address and rule:
 
-1. **Jurisdiction:** the rule's jurisdiction ID is in the address's stack, else the rule is not listed.
-2. **Status gate:** failed or repealed rules are never listed; pending → `pending`; an effective date after as-of → `not_yet_effective`.
+Built as a thin adapter around one evaluator (`engine/evaluate.py`, the three-valued reference evaluator from the extraction work; `lab/schema_experiment/evaluate.py` re-exports it). `make build AS_OF=<date>` = `python -m engine.build --as-of <date>`:
+
+- `engine/rules.py` reads I2 (`out/rules.compiled.json`, `out/rules.json`) and I8 (`out/findings.json`) and turns each compiled record back into the evaluator's format (Nodes inverted from `compile.to_node`; dates only from `effective.from/until`; `effect` = bars local rules when an I8 `barred_by_law` finding has the same jurisdiction, category and citation). It never reads `out/extracted/`, so a clean checkout builds.
+- `engine/facts.py` turns each I3 record into the evaluator's facts (`address.city` = the city's `schema_name`, `built`, `units`, `use_class`, `subsidised`; a null fact is left out, so it counts as missing). Each fact keeps its I3 `source_detail` and named assumption for the explanation. `subsidised_housing` is read as `apartment` (assumption `subsidised_housing_counts_as_apartment`; the subsidy stays in `subsidised`).
+- `engine/explain.py` words each result in one or two sentences from the same conditions: the deciding facts with their source ("built 1926 (year_built, DataSF …), before the June 13, 1979 cutoff"), or for unknown the missing or undecidable fact and where to check it.
+
+Per address and rule:
+
+1. **Jurisdiction:** the rule's jurisdiction is the address's state or legal city, else the rule is not listed.
+2. **Status gate:** failed or repealed rules are never listed, nor rules whose `effective.until` is on or before as-of; pending → `pending`; an `effective.from` after as-of → `not_yet_effective` (on the day itself the rule is in force). A `from` with month or year precision: before it `not_yet_effective`, during that month/year `unknown` ("takes effect during <month>"), after it normal. Today all dates are day precision.
 3. **Coverage:** `applies_if ∧ ¬exempt_if` under three-valued logic over fact ranges. True → `applies`; unknown → `unknown` with the missing facts named; false → not listed. A building whose year equals a certificate-of-occupancy cutoff year is unknown.
 4. **Precedence**, per category:
    - A state rule that yields to local rules becomes `superseded` (governed by the local rule) when the local rule applies.
    - It becomes `unknown` when the local rule's coverage is unknown.
    - Without an extracted clause, both rules apply.
-5. **Conflicts:** `may_preempt_local` plus a local rule of the same category → `conflict_flag` on both.
+5. **Conflicts:** `may_preempt_local` plus a local rule of the same category → `conflict_flag` on both (also while the preempting law is not yet effective); never decided.
 
-Output: `out/lookups.json` in the challenge format, `{as_of, lookups: {address_id: [{team_rule_id, result, explanation, conflict_flag}]}}`, for all 500 addresses. Rules that don't apply are left out. Each result also carries a `confidence` (rule confidence × fact confidence) for the cards and the API; extra fields are dropped if the scorer rejects them.
+Outputs (byte-deterministic: sorted keys and order, no timestamp but `as_of`):
+
+- `outputs/lookups.json`: the challenge format `{as_of, lookups: {address_id: [{team_rule_id, result, explanation, conflict_flag}]}}`, all 500 addresses (an empty list is allowed), only rules in `rules.json` (a verbatim quote), only the template fields.
+- `outputs/changes.json`: T1–T5 (T6 once an ingested rule exists) through `extract/changes.py`, driven by the same evaluator and I3 facts.
+- `out/lookups.full.json` for the web:
+
+  ```
+  {as_of, not_legal_advice: true,
+   rules:    {team_rule_id: {jurisdiction_id, category, citation, title, source_url, source_doc_id, requirement_quote,
+                             retrieved, eff {from, until, precision, derived}, document_status, key_value,
+                             tenant_conditions, scored, confidence, origin}},
+   findings: {jurisdiction_id: [{category, kind, citation, quote, note, source_doc_ids, url}]},   // I8
+   addresses: {address_id: {stack, jurisdictions, facts, assumptions, review,
+                            results: [{team_rule_id, result, explanation, conflict_flag, jurisdiction, category,
+                                       scored, confidence, missing, assumptions, governed_by, conflict_with,
+                                       value, flags, invalid}]}}}
+  ```
+
+  `confidence` = rule confidence × jurisdiction confidence × the confidence of `built`/`units` when the rule tests them. `scored: false` marks rules without a verbatim quote (not in `lookups.json`). `value` is the key value or `{conditional, depends_on}`.
+- `out/build_summary.json`: counts per city × result; each build prints it with the deltas to the previous one and warns when a count halves.
+
+Tests: `make test` (adapter, determinism, guards on the scored file, as-of boundaries, J1–J3 and Dorchester); `make eval` uses the same rule loader and I3 facts.
 
 ## D · Change and diff
 
@@ -162,18 +218,19 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
     - six question cards;
     - coming up and the change log.
   - `/j/[id]`: jurisdiction page for any level, rules with their conditions; `/api/jurisdiction/[id]?as_of=` read-only JSON.
-  - `/api/resolve?q=`: free text (address, city, neighbourhood, county, state) → address ID, jurisdiction ID, or `{covered: false}`.
+  - `/where?q=`: the jurisdiction tree for any US address or place (server-rendered, plain GET form; client-side autocomplete over the sample addresses and places from `lib/resolve/suggest.ts`, nothing fetched while typing).
+  - `/api/resolve?q=`: free text (address, city, neighbourhood, county, state, ZIP) → `{kind: address | place | ambiguous | not_found | unavailable, tree, coverage, notes, …}`; sample addresses carry `sample.address_id` and facts. 404 for not found, 503 when Census is down.
   - `/api/address/[id]?as_of=`: read-only JSON with `as_of`, retrieval dates and `not_legal_advice: true`.
   - Later `/api/mcp`, the same functions behind `mcp-handler`.
 - **As-of dates:** the engine runs at build time for a fixed list: 2025-12-31 and 2026-01-02 (T1), 2026-10-01 (default), and each effective date in the rules ±1 day. The picker snaps to this list.
 - **Email (P1):** Resend (EU region), domain `yourhomerule.com` verified (DKIM on `resend._domainkey`, SPF and bounce MX on `send.`, DMARC `p=none`); sender `HomeRule <alerts@yourhomerule.com>`. Subscriptions per address ID with double opt-in; sent after a rebuild from the diff. Deliverability: HTML + text part, unsubscribe link and `List-Unsubscribe` header, a warm-up of a few mails to our own inboxes. The first test landed in Outlook spam (new domain, no reputation yet). Use a dedicated sending-only API key for the app, not the account-wide one.
-- **Subscription store (Silvan):** Upstash Redis from the Vercel Marketplace, free tier [assumed]. Keys: `sub:<address_id>` = set of confirmed emails; `pending:<token>` = email + address ID with a 48 h expiry for double opt-in. Nothing else is stored. Swap for Neon Postgres if we ever need queries beyond "who follows this address".
+- **Subscription store (Silvan):** Upstash Redis `homerule-subscriptions` (Vercel Marketplace, free plan, created 04.10.2026), connected to project `homerule` for production, preview and development; credentials only as Vercel env vars (`KV_REST_API_URL`, `KV_REST_API_TOKEN`, `KV_REST_API_READ_ONLY_TOKEN`, `KV_URL`, `REDIS_URL`), pulled locally with `vercel env pull` into git-ignored `.env.local`. No database for law or address data: Dimitar pushes output files to git, we deploy from here. Keys: `sub:<address_id>` = set of confirmed emails; `pending:<token>` = email + address ID with a 48 h expiry for double opt-in. Nothing else is stored. Swap for Neon Postgres if we ever need queries beyond "who follows this address".
 
 ## Audit and evaluation
 
 Requirements: PRD scoring (Responsible design), [Done by the 12:00 freeze](PRD.md#done-by-the-1200-freeze), [Never](PRD.md#never).
 
-- **Audit log**, `audit/*.jsonl`, append-only: one line per model call and per build (stage, document, model, prompt hash, input hash, verdicts, rule IDs, cost, git SHA). Raw model outputs sit in `audit/raw/`.
+- **Audit log**, `audit/*.jsonl` (git-ignored, append-only): `calls.jsonl` one line per model call (stage, document, model, request hash, seconds, cost, usage), `builds.jsonl` one line per build. Raw model responses sit in `build/cache/` keyed by request hash.
 - **`make eval`** runs, and writes one report:
   - the assertion suite: brief-named rules with status and date;
   - the jurisdiction × category grid;
@@ -181,7 +238,8 @@ Requirements: PRD scoring (Responsible design), [Done by the 12:00 freeze](PRD.m
   - the trap addresses;
   - the quote check;
   - a crawl for "not legal advice".
-- **Prompt lint:** no citation, date or key value from the assertion suite appears in any prompt. Prompts are frozen before the hour-16 drop (hash checked).
+- **Prompt lint** (`extract/prompts.py`, in `make eval`): no citation, date or key value from the test suite (`tests/fixtures/`, `dev/change_tests.json`) appears in any prompt literal; reviewed exceptions are listed with a reason. **Freeze:** `make freeze` writes the prompt digest to `extract/PROMPTS.lock` before the hour-16 drop; `make eval` reports whether the prompts still match it.
+- **Curated audit trail** `out/audit.json` (D → S, for the rule page), one entry per `team_rule_id`: `source` (version, URL, retrieved, verbatim quote), `model` (what Luna extracted, dates as stated), `checks` (code checks, Jev overrides, gate answers with confidence, triaged conditions), `code` (status, effective dates and how they were derived, status evidence, open questions), `calls` (stage, model, request hash, cost). The `model` / `code` split is the reasoning boundary. `audit/builds.jsonl` gets one line per build (git SHA, prompt digest, counts).
 - **Promotion rule:** a change to prompts or the engine is kept only if no eval component drops.
 
 ## Scaling to a new jurisdiction

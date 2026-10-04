@@ -147,10 +147,24 @@ export type Meta = {
   simulation?: { address_id: string; rule: Rule };
 };
 
+/** A "what the sources say" finding that is not a rule (I8, out/findings.json): a state bar on local
+    rules, an open legal question, or a law reported only by a link with no text in our sources. */
+export type Finding = {
+  category: Category;
+  kind: "barred_by_law" | "open_question" | "not_in_corpus" | string;
+  citation: string | null;
+  quote: string | null;
+  note: string;
+  source_doc_ids: string[];
+  url: string | null;
+};
+
 export type Dataset = {
   meta: Meta;
   rules: Rule[];
   lookups: LookupsByDate;
   addresses: Address[];
   excerpts: Record<string, Excerpt>;
+  /** jurisdiction_id → findings; live data only. */
+  findings: Record<string, Finding[]>;
 };

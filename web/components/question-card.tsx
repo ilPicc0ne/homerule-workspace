@@ -2,7 +2,7 @@ import Link from "next/link";
 import { withAsOf } from "@/lib/links";
 import { confidenceWord, formatDate, formatRetrieved, percent } from "@/lib/format";
 import { LEVEL_WORDS, QUESTION, RESULT_WORDS, STATUS_WORDS, ruleStatusOn, type Card } from "@/lib/law";
-import type { Result, Rule } from "@/lib/types";
+import type { Finding, Result, Rule } from "@/lib/types";
 import { Dot, type DotKind } from "./status";
 
 /*
@@ -19,7 +19,40 @@ type Props = {
   asOf: string;
   fallback: string;
   addressId: string;
+  /** What the sources say beyond rules: state bars, open questions, laws we only have a link for. */
+  findings?: Finding[];
 };
+
+function FindingLine({ f }: { f: Finding }) {
+  if (f.kind === "barred_by_law") {
+    return (
+      <>
+        <p>
+          <b>State law limits local rules on this.</b> {f.citation && <span className="muted">({f.citation})</span>}
+        </p>
+        {f.quote && <blockquote className="quote">{f.quote}</blockquote>}
+      </>
+    );
+  }
+  if (f.kind === "open_question") {
+    return (
+      <p>
+        <b>Open question:</b> {f.note}
+      </p>
+    );
+  }
+  return (
+    <p>
+      <b>Reported, not checked:</b> a law on this was reported, but its text is not in our sources yet, so HomeRule
+      can&rsquo;t check it.{" "}
+      {f.url && (
+        <a href={f.url} target="_blank" rel="noreferrer">
+          Read the report
+        </a>
+      )}
+    </p>
+  );
+}
 
 export function ruleHref(ruleId: string, addressId: string | null, asOf: string, fallback: string) {
   return withAsOf(addressId ? `/r/${ruleId}?a=${addressId}` : `/r/${ruleId}`, asOf, fallback);
@@ -56,11 +89,14 @@ function statusText(card: Card, rules: Record<string, Rule>): { kind: DotKind; w
   return { kind: "none", words: "None found" };
 }
 
-export default function QuestionCard({ card, rules, checked, asOf, fallback, addressId }: Props) {
+export default function QuestionCard({ card, rules, checked, asOf, fallback, addressId, findings = [] }: Props) {
   const lead = card.lead;
   const rule = lead ? rules[lead.rule_id] : null;
   const st = statusText(card, rules);
   const others = card.results.filter((r) => r !== lead);
+  const notes = findings.filter(
+    (f, i, all) => all.findIndex((g) => g.kind === f.kind && (g.url ?? g.note) === (f.url ?? f.note)) === i,
+  );
   const conflicts = lead?.conflict_with?.map((id) => rules[id]).filter(Boolean) ?? [];
 
   let summary: string;
@@ -182,6 +218,15 @@ export default function QuestionCard({ card, rules, checked, asOf, fallback, add
             );
           })}
         </ul>
+      )}
+
+      {notes.length > 0 && (
+        <div className="checked">
+          <p className="muted small">Also in our sources:</p>
+          {notes.map((f, i) => (
+            <FindingLine key={`${f.kind}-${i}`} f={f} />
+          ))}
+        </div>
       )}
 
       {!lead && checked.length > 0 && (

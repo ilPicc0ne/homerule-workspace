@@ -1,0 +1,404 @@
+{
+ "CA": [
+  {
+   "category": "algorithmic_rent_setting",
+   "citation": "manifest link: https://www.clearygottlieb.com/news-and-insights/publication-listing/californias-antitrust-law-amendments-kick-in-targeting-algorithmic-pricing",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (enacted_news); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D028"
+   ],
+   "url": "https://www.clearygottlieb.com/news-and-insights/publication-listing/californias-antitrust-law-amendments-kick-in-targeting-algorithmic-pricing"
+  },
+  {
+   "category": "application_screening_fees",
+   "citation": "guide: known open questions in the law",
+   "kind": "open_question",
+   "note": "California’s screening-fee limit is tied to allowable costs, but no single official dollar figure for 2026 is identified in the sources.",
+   "quote": null,
+   "source_doc_ids": [
+    "D026"
+   ],
+   "url": null
+  },
+  {
+   "category": "just_cause_eviction",
+   "citation": "manifest link: https://law.justia.com/codes/california/code-civ/division-3/part-4/title-5/chapter-2/section-1946-2/",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (law_text); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D018"
+   ],
+   "url": "https://law.justia.com/codes/california/code-civ/division-3/part-4/title-5/chapter-2/section-1946-2/"
+  },
+  {
+   "category": "screening_restrictions",
+   "citation": "manifest link: https://law.justia.com/codes/california/code-gov/title-2/division-3/part-2-8/chapter-6/article-2/section-12955/",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (law_text); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D021"
+   ],
+   "url": "https://law.justia.com/codes/california/code-gov/title-2/division-3/part-2-8/chapter-6/article-2/section-12955/"
+  },
+  {
+   "category": "security_deposits",
+   "citation": "manifest link: https://law.justia.com/codes/california/code-civ/division-3/part-4/title-5/chapter-2/section-1950-5/",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (law_text); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D020"
+   ],
+   "url": "https://law.justia.com/codes/california/code-civ/division-3/part-4/title-5/chapter-2/section-1950-5/"
+  }
+ ],
+ "CA-BERKELEY": [
+  {
+   "category": "algorithmic_rent_setting",
+   "citation": "guide: known open questions in the law",
+   "kind": "open_question",
+   "note": "Published sources give different effective dates for Berkeley’s coordinated-pricing-algorithm ban.",
+   "quote": null,
+   "source_doc_ids": [
+    "D001",
+    "D002"
+   ],
+   "url": null
+  }
+ ],
+ "CA-LOS-ANGELES": [
+  {
+   "category": "rent_increase_limits",
+   "citation": "guide: known open questions in the law",
+   "kind": "open_question",
+   "note": "Published sources give different effective dates for Los Angeles’s new RSO rent-increase formula.",
+   "quote": null,
+   "source_doc_ids": [
+    "D040",
+    "D041",
+    "D044"
+   ],
+   "url": null
+  },
+  {
+   "category": "security_deposits",
+   "citation": "manifest link: https://members.aagla.org/news/city-of-la-security-deposit-interest-requirement",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (enacted_news); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D044"
+   ],
+   "url": "https://members.aagla.org/news/city-of-la-security-deposit-interest-requirement"
+  }
+ ],
+ "CA-SAN-DIEGO": [
+  {
+   "category": "algorithmic_rent_setting",
+   "citation": "manifest link: https://gocodebook.com/library/us/ca/san-diego-zoning/division-11-prohibition-of-anti-competitive-automated-rent-price-fixing/98.1103-use-and-sale-of-algorithmic-devices-prohibited",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (law_text); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D074"
+   ],
+   "url": "https://gocodebook.com/library/us/ca/san-diego-zoning/division-11-prohibition-of-anti-competitive-automated-rent-price-fixing/98.1103-use-and-sale-of-algorithmic-devices-prohibited"
+  },
+  {
+   "category": "screening_restrictions",
+   "citation": "manifest link: https://gocodebook.com/library/us/ca/san-diego-zoning/division-8-prohibition-of-discrimination-based-on-a-tenant-s-source-of-income",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (law_text); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D075"
+   ],
+   "url": "https://gocodebook.com/library/us/ca/san-diego-zoning/division-8-prohibition-of-discrimination-based-on-a-tenant-s-source-of-income"
+  }
+ ],
+ "CA-SANTA-ANA": [
+  {
+   "category": "algorithmic_rent_setting",
+   "citation": "manifest link: https://www.ocbj.com/real-estate/santa-ana-bans-landlords-from-using-ai-apartment-rent-pricing-software/",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (enacted_news); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D086"
+   ],
+   "url": "https://www.ocbj.com/real-estate/santa-ana-bans-landlords-from-using-ai-apartment-rent-pricing-software/"
+  },
+  {
+   "category": "algorithmic_rent_setting",
+   "citation": "manifest link: https://www.publicceo.com/2026/02/santa-ana-city-council-continues-to-strengthen-tenant-protections-by-banning-anticompetitive-rent-setting-software/",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (enacted_news); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D087"
+   ],
+   "url": "https://www.publicceo.com/2026/02/santa-ana-city-council-continues-to-strengthen-tenant-protections-by-banning-anticompetitive-rent-setting-software/"
+  }
+ ],
+ "MA": [
+  {
+   "category": "rent_increase_limits",
+   "citation": "Mass. Gen. Laws ch. 40P, § 4",
+   "kind": "barred_by_law",
+   "note": "Bars or limits local rules on this topic in this state.",
+   "quote": "No city or town may enact, maintain or enforce rent control of any kind, except that any city or town that accepts this chapter may adopt rent control regulation that provides:",
+   "source_doc_ids": [
+    "D048"
+   ],
+   "url": null
+  },
+  {
+   "category": "rent_increase_limits",
+   "citation": "manifest link: https://www.wbur.org/news/2026/06/23/massachusetts-high-court-rent-control-ballot-question-struck",
+   "kind": "measure_failed",
+   "note": "From the manifest link only (failed_measure); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D059"
+   ],
+   "url": "https://www.wbur.org/news/2026/06/23/massachusetts-high-court-rent-control-ballot-question-struck"
+  }
+ ],
+ "NJ": [
+  {
+   "category": "algorithmic_rent_setting",
+   "citation": "manifest link: https://daypitney.com/new-jersey-enacts-fair-act-to-prohibit-algorithmic-rent-setting-practices",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (enacted_news); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D060"
+   ],
+   "url": "https://daypitney.com/new-jersey-enacts-fair-act-to-prohibit-algorithmic-rent-setting-practices"
+  },
+  {
+   "category": "rent_increase_limits",
+   "citation": "N.J.S.A. 2A:42-84.5",
+   "kind": "barred_by_law",
+   "note": "Bars or limits local rules on this topic in this state.",
+   "quote": "newly \nconstructed multiple dwellings shall be exempt from any local rent control ordinances for a period \nof 30 years following completion of construction of the building.",
+   "source_doc_ids": [
+    "D067"
+   ],
+   "url": null
+  },
+  {
+   "category": "screening_restrictions",
+   "citation": "manifest link: https://law.justia.com/codes/new-jersey/title-10/section-10-5-12/",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (law_text); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D061"
+   ],
+   "url": "https://law.justia.com/codes/new-jersey/title-10/section-10-5-12/"
+  }
+ ],
+ "NJ-HOBOKEN": [
+  {
+   "category": "algorithmic_rent_setting",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D032",
+    "D033",
+    "D034"
+   ],
+   "url": null
+  },
+  {
+   "category": "algorithmic_rent_setting",
+   "citation": "guide: known open questions in the law",
+   "kind": "open_question",
+   "note": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once it takes effect.",
+   "quote": null,
+   "source_doc_ids": [
+    "D069",
+    "S008"
+   ],
+   "url": null
+  },
+  {
+   "category": "application_screening_fees",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D032",
+    "D033",
+    "D034"
+   ],
+   "url": null
+  },
+  {
+   "category": "just_cause_eviction",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D032",
+    "D033",
+    "D034"
+   ],
+   "url": null
+  },
+  {
+   "category": "rent_increase_limits",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D032",
+    "D033",
+    "D034"
+   ],
+   "url": null
+  },
+  {
+   "category": "screening_restrictions",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D032",
+    "D033",
+    "D034"
+   ],
+   "url": null
+  },
+  {
+   "category": "security_deposits",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D032",
+    "D033",
+    "D034"
+   ],
+   "url": null
+  }
+ ],
+ "NJ-JERSEY-CITY": [
+  {
+   "category": "algorithmic_rent_setting",
+   "citation": "manifest link: https://hudsoncountyview.com/jersey-city-council-approves-realpage-ban-and-increasing-benefits-for-laborers/",
+   "kind": "not_in_corpus",
+   "note": "From the manifest link only (enacted_news); no text in the corpus.",
+   "quote": null,
+   "source_doc_ids": [
+    "D035"
+   ],
+   "url": "https://hudsoncountyview.com/jersey-city-council-approves-realpage-ban-and-increasing-benefits-for-laborers/"
+  },
+  {
+   "category": "algorithmic_rent_setting",
+   "citation": "guide: known open questions in the law",
+   "kind": "open_question",
+   "note": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once it takes effect.",
+   "quote": null,
+   "source_doc_ids": [
+    "D069",
+    "S001",
+    "S017"
+   ],
+   "url": null
+  }
+ ],
+ "NJ-NEWARK": [
+  {
+   "category": "algorithmic_rent_setting",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D070",
+    "D071",
+    "D072"
+   ],
+   "url": null
+  },
+  {
+   "category": "application_screening_fees",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D070",
+    "D071",
+    "D072"
+   ],
+   "url": null
+  },
+  {
+   "category": "just_cause_eviction",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D070",
+    "D071",
+    "D072"
+   ],
+   "url": null
+  },
+  {
+   "category": "rent_increase_limits",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D070",
+    "D071",
+    "D072"
+   ],
+   "url": null
+  },
+  {
+   "category": "screening_restrictions",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D070",
+    "D071",
+    "D072"
+   ],
+   "url": null
+  },
+  {
+   "category": "security_deposits",
+   "citation": null,
+   "kind": "not_in_corpus",
+   "note": "Only manifest links (no supplied text) for this jurisdiction.",
+   "quote": null,
+   "source_doc_ids": [
+    "D070",
+    "D071",
+    "D072"
+   ],
+   "url": null
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+{
+  "source_id": "S001",
+  "url": "https://cityofjerseycity.civicweb.net/document/429156/Ordinance%20Amending%20Chapter%20218%20creating%20section.pdf",
+  "retrieved_at": "2026-10-03T21:00:55.189844+00:00",
+  "retrieval_time_basis": "local downloaded artifact modification time; exact transfer start not logged",
+  "raw_path": "raw/S001-jersey-city-25-057.pdf",
+  "method": "curl",
+  "http_code": null,
+  "note": "HTTP headers not retained; status not reconstructed."
+}

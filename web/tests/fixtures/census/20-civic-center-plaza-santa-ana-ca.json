@@ -1,0 +1,149 @@
+{
+ "query": "20 Civic Center Plaza, Santa Ana, CA",
+ "status": 200,
+ "body": {
+  "result": {
+   "input": {
+    "address": {
+     "address": "20 Civic Center Plaza, Santa Ana, CA"
+    },
+    "vintage": {
+     "isDefault": true,
+     "id": "4",
+     "vintageName": "Current_Current",
+     "vintageDescription": "Current Vintage - Current Benchmark"
+    },
+    "benchmark": {
+     "isDefault": true,
+     "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+     "id": "4",
+     "benchmarkName": "Public_AR_Current"
+    }
+   },
+   "addressMatches": [
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "609056852"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "01779778",
+        "GEOID": "06",
+        "CENTLAT": "+37.1547616",
+        "AREAWATER": 20288534055,
+        "STATE": "06",
+        "BASENAME": "California",
+        "STUSAB": "CA",
+        "OID": "2749018475066",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+37.1626642",
+        "DIVISION": "9",
+        "NAME": "California",
+        "REGION": "4",
+        "OBJECTID": 6,
+        "CENTLON": "-119.5277735",
+        "AREALAND": 403676534536,
+        "INTPTLON": "-119.5713456",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "90050",
+        "GEOID": "0605990050",
+        "CENTLAT": "+33.8283006",
+        "AREAWATER": 4795772,
+        "STATE": "06",
+        "BASENAME": "Anaheim-Santa Ana-Garden Grove",
+        "OID": "276901136116695",
+        "LSADC": "22",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+33.8273863",
+        "NAME": "Anaheim-Santa Ana-Garden Grove CCD",
+        "OBJECTID": 15365,
+        "CENTLON": "-117.8591380",
+        "COUSUBCC": "Z5",
+        "AREALAND": 741789657,
+        "INTPTLON": "-117.8598848",
+        "MTFCC": "G4040",
+        "COUSUBNS": "01935009",
+        "COUNTY": "059"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 102922923.99517246,
+        "NECTAPCI": "N",
+        "GEOID": "0669000",
+        "CENTLAT": "+33.7366893",
+        "AREAWATER": 73362,
+        "BASENAME": "Santa Ana",
+        "STATE": "06",
+        "OID": "278901136120231",
+        "LSADC": "25",
+        "PLACE": "69000",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+33.7367874",
+        "NAME": "Santa Ana city",
+        "OBJECTID": 31894,
+        "PLACECC": "C1",
+        "CENTLON": "-117.8817818",
+        "STGEOMETRY_Length": 59236.16852951167,
+        "CBSAPCI": "Y",
+        "AREALAND": 70920035,
+        "INTPTLON": "-117.8829060",
+        "PLACENS": "02411814",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "06059",
+        "CENTLAT": "+33.6768290",
+        "AREAWATER": 405284100,
+        "STATE": "06",
+        "BASENAME": "Orange",
+        "OID": "275901136115782",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+33.6756872",
+        "NAME": "Orange County",
+        "OBJECTID": 304,
+        "CENTLON": "-117.7765477",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00277294",
+        "AREALAND": 2054502926,
+        "INTPTLON": "-117.7772068",
+        "MTFCC": "G4020",
+        "COUNTY": "059"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -117.872115090343,
+      "y": 33.751492719864
+     },
+     "addressComponents": {
+      "zip": "92701",
+      "streetName": "CIVIC CENTER",
+      "preType": "",
+      "city": "SANTA ANA",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "14",
+      "state": "CA",
+      "suffixType": "",
+      "toAddress": "42",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "20 CIVIC CENTER, SANTA ANA, CA, 92701"
+    }
+   ]
+  }
+ }
+}

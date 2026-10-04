@@ -1,0 +1,13 @@
+{
+  "source_id": "S013",
+  "url": "https://hobokennj.iqm2.com/Citizens/Detail_LegiFile.aspx?CssClass=&Frame=&ID=12291&MediaPosition=&MeetingID=2943",
+  "retrieved_at": "2026-10-03T21:03:22.474428+00:00",
+  "returncode": 28,
+  "error": "curl: (28) Failed to connect to hobokennj.iqm2.com port 443 after 8006 ms: Timeout was reached",
+  "raw_path": "raw/S013-hoboken-algorithmic-legifile-12291.html",
+  "url_effective": "https://hobokennj.iqm2.com/Citizens/Detail_LegiFile.aspx?CssClass=&Frame=&ID=12291&MediaPosition=&MeetingID=2943",
+  "http_code": 0,
+  "content_type": null,
+  "size_download": 0,
+  "time_total": 8.006736
+}

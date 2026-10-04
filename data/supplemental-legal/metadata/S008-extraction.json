@@ -1,0 +1,16 @@
+{
+  "source_id": "S008",
+  "raw_path": "raw/S008-hoboken-algorithmic-official-announcement.html",
+  "text_path": "text/S008.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "f7e3a545c0ab07fb1a8d4924cec4820a787c7d426b3aa24d6efa7be7f6c96ffc",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 4433,
+      "method": "htmlparser-visible-text",
+      "navigation_retained": true
+    }
+  ]
+}
