@@ -79,6 +79,15 @@ class Scores(unittest.TestCase):
                     self.assertTrue(x["low"] <= x["score"] <= x["high"], x)
 
 
+class RateDates(unittest.TestCase):
+    def test_rule_in_force_before_its_rate_date(self):
+        comps = {c["team_rule_id"]: c for c in json.loads((ROOT / "out" / "rules.compiled.json").read_text())}
+        for f in FX["in_force_before_rate_date"]:
+            with self.subTest(rule=f["rule"]):
+                eff = comps[f["rule"]]["effective"]
+                self.assertTrue(not eff["from"] or eff["from"] <= f["date"], f"{f['why']}: {eff}")
+
+
 class Whys(unittest.TestCase):
     """Every change between consecutive score dates: a why of at most WORDS words, no advice words, decided_by."""
     WORDS = 25

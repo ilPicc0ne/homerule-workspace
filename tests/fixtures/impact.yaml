@@ -42,3 +42,8 @@ scores:    # aggregated score: what a renter can count on (unknown topics at the
 open_questions:   # what answering one building fact does to an unknown topic (Cal. Civ. Code §1946.2(e))
   - {address: A0001, date: "2026-10-01", topic: just_cause_eviction, fact: owner_occupied, answer: false, level: strong, score: 100, why: "32-unit 1927 LA apartment, not subsidised: with the owner not living there, no §1946.2(e) exemption can hold (shared kitchen/bath, owner-occupied duplex or single-family home, new construction, separately sold unit), so just cause applies"}
   - {address: A0001, date: "2026-10-01", topic: just_cause_eviction, fact: owner_occupied, answer: true, level: unknown, score: 75, why: "an owner living there can still exempt the unit only if the tenant shares a kitchen or bath with them, which the data can't say"}
+
+in_force_before_rate_date:   # a yearly rate or new formula is not the start of the rule (written from the laws' dates)
+  - {rule: CA-SAN-FRANCISCO-RENT-37.3, date: "2025-12-31", why: "SF Rent Ordinance since 1979; 2026-03-01 starts the 1.6% allowable increase"}
+  - {rule: CA-LOS-ANGELES-RENT-151.06, date: "2025-12-31", why: "LA Rent Stabilization Ordinance since 1979; 2026-02-02 starts a new formula"}
+  - {rule: CA-FEE-1950.6, date: "2025-12-31", why: "Cal. Civ. Code 1950.6 since 1998; 2026-01-01 starts an update"}
