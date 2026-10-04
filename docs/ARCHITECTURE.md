@@ -35,7 +35,7 @@ Frozen before parallel work; changed only via PR with the other person tagged.
 | I1 | `contracts/jurisdictions.json`: 13 rule-bearing IDs (e.g. `NJ-HOBOKEN`) plus display-only county entries; each with legal name, level, `parent` (city → county → state), Census code (`census_geoid`; NJ/MA cities also `census_cousub_geoid`; counties optionally `county_law`), `schema_name` (the exact string the rule schema expects, e.g. "San Francisco, CA") and `aliases` ("Dorchester", "SF", "Jersey City NJ") | S → D, S | Only these IDs internally; `rules.json` writes `schema_name`; search resolves names and aliases through it |
 | I2 | `out/rules.json` + `out/rules.compiled.json` | D → S | Schema-valid; `jurisdiction` = the list's `schema_name`; status mapped to the schema values (`enacted_not_effective` → `not_yet_effective`; repealed rules are left out of `rules.json`, since `failed` means a measure that never became law); effective date or null (two dates kept when sources disagree); verbatim quote |
 | I3 | `out/addresses.resolved.json` (type `ResolvedFile` in `web/lib/resolve/types.ts`) | S → engine, D eval | All 500; jurisdiction IDs + `stack`, tree, coords, facts as ranges, source + confidence per field, `review` flags |
-| I4 | Engine CLI `build --as-of <date>` | S → eval, web | Deterministic; writes `lookups.json` and `changes.json` in the guide's shapes |
+| I4 | Engine CLI `make build AS_OF=<date>` (`python -m engine.build --as-of <date>`) | S → eval, web | Deterministic (byte-identical reruns); reads only I2, I3, I8; writes `outputs/lookups.json` and `outputs/changes.json` in the guide's shapes plus `out/lookups.full.json` for the web (shape in C) |
 | I5 | `/api/address/<id>?as_of=` | S → page, email, MCP | Same data as `lookups.json`; `as_of`, retrieval dates, `not_legal_advice: true` |
 | I6 | Per-address diff | S → changes, change log, email | One computation feeds all three |
 | I8 | `out/findings.json`: what is not a rule — `barred_by_law` (e.g. MA c.40P), `measure_failed` (e.g. IP 25-21), `not_in_corpus` (e.g. Hoboken ch. 158: manifest link, no text) per jurisdiction × category, with quote where one exists; `open_question` (the guide's known open questions, e.g. Berkeley's two published effective dates: our rule and its source next to each competing claim and its source) | D → S | Never emitted as rules; the page shows them ("No rent cap: barred by …") and they fill the 13 × 6 grid |
@@ -144,16 +144,45 @@ Requirements: PRD scoring (Address coverage); interface I4.
 
 A deterministic function of (rules, compiled predicates, resolved addresses, as-of date). The same input gives byte-identical output. Per address and rule:
 
-1. **Jurisdiction:** the rule's jurisdiction ID is in the address's stack, else the rule is not listed.
-2. **Status gate:** failed or repealed rules are never listed, nor rules whose `effective.until` is on or before as-of; pending → `pending`; an `effective.from` after as-of → `not_yet_effective`.
+Built as a thin adapter around one evaluator (`engine/evaluate.py`, the three-valued reference evaluator from the extraction work; `lab/schema_experiment/evaluate.py` re-exports it). `make build AS_OF=<date>` = `python -m engine.build --as-of <date>`:
+
+- `engine/rules.py` reads I2 (`out/rules.compiled.json`, `out/rules.json`) and I8 (`out/findings.json`) and turns each compiled record back into the evaluator's format (Nodes inverted from `compile.to_node`; dates only from `effective.from/until`; `effect` = bars local rules when an I8 `barred_by_law` finding has the same jurisdiction, category and citation). It never reads `out/extracted/`, so a clean checkout builds.
+- `engine/facts.py` turns each I3 record into the evaluator's facts (`address.city` = the city's `schema_name`, `built`, `units`, `use_class`, `subsidised`; a null fact is left out, so it counts as missing). Each fact keeps its I3 `source_detail` and named assumption for the explanation. `subsidised_housing` is read as `apartment` (assumption `subsidised_housing_counts_as_apartment`; the subsidy stays in `subsidised`).
+- `engine/explain.py` words each result in one or two sentences from the same conditions: the deciding facts with their source ("built 1926 (year_built, DataSF …), before the June 13, 1979 cutoff"), or for unknown the missing or undecidable fact and where to check it.
+
+Per address and rule:
+
+1. **Jurisdiction:** the rule's jurisdiction is the address's state or legal city, else the rule is not listed.
+2. **Status gate:** failed or repealed rules are never listed, nor rules whose `effective.until` is on or before as-of; pending → `pending`; an `effective.from` after as-of → `not_yet_effective` (on the day itself the rule is in force). A `from` with month or year precision: before it `not_yet_effective`, during that month/year `unknown` ("takes effect during <month>"), after it normal. Today all dates are day precision.
 3. **Coverage:** `applies_if ∧ ¬exempt_if` under three-valued logic over fact ranges. True → `applies`; unknown → `unknown` with the missing facts named; false → not listed. A building whose year equals a certificate-of-occupancy cutoff year is unknown.
 4. **Precedence**, per category:
    - A state rule that yields to local rules becomes `superseded` (governed by the local rule) when the local rule applies.
    - It becomes `unknown` when the local rule's coverage is unknown.
    - Without an extracted clause, both rules apply.
-5. **Conflicts:** `may_preempt_local` plus a local rule of the same category → `conflict_flag` on both.
+5. **Conflicts:** `may_preempt_local` plus a local rule of the same category → `conflict_flag` on both (also while the preempting law is not yet effective); never decided.
 
-Output: `out/lookups.json` in the challenge format, `{as_of, lookups: {address_id: [{team_rule_id, result, explanation, conflict_flag}]}}`, for all 500 addresses. Rules that don't apply are left out. Each result also carries a `confidence` (rule confidence × fact confidence) for the cards and the API; extra fields are dropped if the scorer rejects them.
+Outputs (byte-deterministic: sorted keys and order, no timestamp but `as_of`):
+
+- `outputs/lookups.json`: the challenge format `{as_of, lookups: {address_id: [{team_rule_id, result, explanation, conflict_flag}]}}`, all 500 addresses (an empty list is allowed), only rules in `rules.json` (a verbatim quote), only the template fields.
+- `outputs/changes.json`: T1–T5 (T6 once an ingested rule exists) through `extract/changes.py`, driven by the same evaluator and I3 facts.
+- `out/lookups.full.json` for the web:
+
+  ```
+  {as_of, not_legal_advice: true,
+   rules:    {team_rule_id: {jurisdiction_id, category, citation, title, source_url, source_doc_id, requirement_quote,
+                             retrieved, eff {from, until, precision, derived}, document_status, key_value,
+                             tenant_conditions, scored, confidence, origin}},
+   findings: {jurisdiction_id: [{category, kind, citation, quote, note, source_doc_ids, url}]},   // I8
+   addresses: {address_id: {stack, jurisdictions, facts, assumptions, review,
+                            results: [{team_rule_id, result, explanation, conflict_flag, jurisdiction, category,
+                                       scored, confidence, missing, assumptions, governed_by, conflict_with,
+                                       value, flags, invalid}]}}}
+  ```
+
+  `confidence` = rule confidence × jurisdiction confidence × the confidence of `built`/`units` when the rule tests them. `scored: false` marks rules without a verbatim quote (not in `lookups.json`). `value` is the key value or `{conditional, depends_on}`.
+- `out/build_summary.json`: counts per city × result; each build prints it with the deltas to the previous one and warns when a count halves.
+
+Tests: `make test` (adapter, determinism, guards on the scored file, as-of boundaries, J1–J3 and Dorchester); `make eval` uses the same rule loader and I3 facts.
 
 ## D · Change and diff
 

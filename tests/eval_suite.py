@@ -6,8 +6,11 @@
 4. Change tests T1-T5 over all 500 addresses, against the expected set sizes.
 5. Address questions: the 24 tuning questions and the 16 held-out ones.
 
-Address results use the reference evaluator in lab/schema_experiment/evaluate.py until the engine
-(interface I4) exists. Run: python3 -m tests.eval_suite [--supplemental]
+Address results come from the engine's inputs, so `make eval` checks what `make build` scores: rules from
+the committed I2 files via engine/rules.py, building facts from I3 (out/addresses.resolved.json) via
+engine/facts.py, the evaluator in engine/evaluate.py. Run: python3 -m tests.eval_suite [--supplemental]
+  --extracted   rules from out/extracted/ (compile.internal_rules) instead of out/rules.compiled.json
+  --lab-facts   the old test stand-in for I3 (lab/schema_experiment/facts.py), for comparison only
 """
 import datetime as dt
 import json
@@ -18,7 +21,7 @@ from collections import Counter, defaultdict
 import yaml
 
 from extract import changes as CH, compile as C, config
-from lab.schema_experiment import evaluate as E, facts as FA
+from engine import evaluate as E, facts as FX, rules as ER
 
 FIX = config.ROOT / "tests" / "fixtures"
 JURS = [j for j in C.JUR if j.get("rules")]
@@ -160,7 +163,7 @@ def matrix(rules, finds):
 def run_addresses(rules, addresses, dates):
     out = {}
     for aid, row in addresses.items():
-        f = FA.address_facts(row)
+        f = FX.address_facts(row)
         out[aid] = {d: E.evaluate(rules, f, d) for d in dates}
     return out
 
@@ -172,7 +175,7 @@ def ids_for(rules, key):
 
 
 def change_tests(rules, addresses, res):
-    city = {a: FA.address_facts(r)["address.city"].values[0] for a, r in addresses.items()}
+    city = {a: FX.address_facts(r)["address.city"].values[0] for a, r in addresses.items()}
     by_state = defaultdict(set)
     for a, c in city.items():
         by_state[c.split(", ")[-1]].add(a)
@@ -222,7 +225,7 @@ def change_tests(rules, addresses, res):
 # ---------- 4b changes.json in the guide's shape, T1-T6 ----------
 def changes_json(rules, finds, addresses, all_rules):
     tests = json.load(open(config.STARTER / "dev" / "change_tests.json"))
-    city = {a: FA.address_facts(r)["address.city"].values[0] for a, r in addresses.items()}
+    city = {a: FX.address_facts(r)["address.city"].values[0] for a, r in addresses.items()}
     in_state = lambda st: {a for a, c in city.items() if c.split(", ")[-1] == st}
     in_city = lambda c: {a for a, x in city.items() if x == c}
     expected = {"T1": (in_state("CA"), set()), "T2": (in_city("Hoboken, NJ") | in_city("Jersey City, NJ"), set()),
@@ -236,9 +239,9 @@ def changes_json(rules, finds, addresses, all_rules):
         tests.append({"test_id": "T6", "type": "ingest", "rules_before": before, "rules_after": after,
                       "dates": [(dt.date.fromisoformat(eff) + dt.timedelta(days=1)).isoformat()], "effective": eff})
         units = {a for a in in_city("Cambridge, MA") if (lambda f: f.known and f.lo >= 6)(
-            FA.address_facts(addresses[a]).get("units", FA.UNKNOWN))}
+            FX.address_facts(addresses[a]).get("units", FX.UNKNOWN))}
         expected["T6"] = (units, set())
-    out = CH.run_tests(tests, rules, finds, list(addresses), E.evaluate, lambda a: FA.address_facts(addresses[a]))
+    out = CH.run_tests(tests, rules, finds, list(addresses), E.evaluate, lambda a: FX.address_facts(addresses[a]))
     report = {}
     for tid, v in out.items():
         want, want_flags = expected.get(tid, (set(), set()))
@@ -285,17 +288,26 @@ def questions(rules, addresses, res, path):
 SUPPLEMENTAL = [False]
 
 
-def run(supplemental=False):
+def run(supplemental=False, extracted=False, lab_facts=False):
+    global FX
     SUPPLEMENTAL[0] = supplemental
+    if lab_facts:
+        from lab.schema_experiment import facts as FX
     dirs = [config.OUT / "extracted"]
-    all_rules = C.internal_rules(dirs[0])
-    rules = [r for r in all_rules if r["origin"] == "starter" or (supplemental and r["origin"] == "supplemental")]
-    rules = normalise_dates(rules)
-    finds = C.findings(rules)
-    addresses = FA.load()
+    if extracted:
+        all_rules = C.internal_rules(dirs[0])
+        rules = [r for r in all_rules if r["origin"] == "starter" or (supplemental and r["origin"] == "supplemental")]
+        rules = normalise_dates(rules)
+        finds = C.findings(rules)
+    else:       # what the engine reads (I2, I8); integrity still reads out/extracted/ when it exists
+        all_rules = ER.load()
+        rules = [r for r in all_rules if r["origin"] == "starter" or (supplemental and r["origin"] == "supplemental")]
+        finds = ER.load_findings()
+    addresses = FX.load()
     dates = ["2025-12-31", "2026-01-02", "2026-04-30", "2026-10-01", "2027-07-02", "2030-01-02"]
     res = run_addresses(rules, addresses, dates)
     report = {
+        "inputs": {"rules": "out/extracted/ (internal_rules)" if extracted else "out/rules.compiled.json (engine/rules.py)", "facts": "lab stand-in (facts.py)" if lab_facts else "I3 out/addresses.resolved.json (engine/facts.py)"},
         "rules": len(rules), "integrity": integrity(dirs), "scored_quotes": scored_quotes(),
         "prompts": prompt_checks(), "assertions": assertions(rules, finds),
         "matrix": {f"{k[0]}|{k[1]}": v for k, v in matrix(rules, finds).items()},
@@ -313,7 +325,7 @@ def run(supplemental=False):
 
 
 def markdown(rep):
-    L = ["# Eval report", ""]
+    L = ["# Eval report", "", f"**Inputs:** rules from {rep['inputs']['rules']}, facts from {rep['inputs']['facts']}.", ""]
     integ = rep["integrity"]
     q, ql = sum(r["quotes"] for r in integ), sum(r["quotes_located"] for r in integ)
     L += [f"**Integrity:** {len(integ)} units, {sum(r['obligations'] for r in integ)} obligations, quotes located "
@@ -352,5 +364,6 @@ def markdown(rep):
 
 
 if __name__ == "__main__":
-    rep = run(supplemental="--supplemental" in sys.argv)
+    rep = run(supplemental="--supplemental" in sys.argv, extracted="--extracted" in sys.argv,
+              lab_facts="--lab-facts" in sys.argv)
     print(markdown(rep))

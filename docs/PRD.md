@@ -94,7 +94,7 @@ This is the project's feature list; each build updates its status in the same co
 |---|---|---|---|
 | P0 | Extraction → `rules.json` | D | built (26/27 brief-named rules, T1-T5 pass, quotes 100% verbatim in `rules.json`, `make eval`, prompt lint + freeze, audit trail `out/audit.json`; Santa Ana has no text in the corpus: recorded as a finding) |
 | P0 | Jurisdiction list + address lookup (Census geocoder) | S | built (`make resolve`, 500/500) |
-| P0 | Engine → `lookups.json`, `changes.json`, per-address diff | S | planned |
+| P0 | Engine → `lookups.json`, `changes.json`, per-address diff | S | partial (`make build` → all 500 addresses, T1–T5 pass, J1–J3 as tests; per-address diff for the change log/email not built) |
 | P0 | Address page, one view (sticky bar with search + alert bell, next change, at a glance, six accordion tiles, coming up; sections 1–2, 4–8), JSON endpoint per address | S | planned |
 | P0 | Change log + email preview, triggered by a demo-only ingest | S | planned |
 | P0 | Rule page: quote in source, link to the law, audit trail with reasoning boundary | S (audit data from D) | planned |
