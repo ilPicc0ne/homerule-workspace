@@ -66,6 +66,10 @@
       "narration": "Ana rents in San Francisco and just got a rent increase. She types her address. HomeRule finds her building: built 1926, 21 units.",
       "actions": [
         {
+          "do": "pause",
+          "value": 600
+        },
+        {
           "do": "fill",
           "target": "role=combobox",
           "value": "3515 Fill"
@@ -73,6 +77,10 @@
         {
           "do": "wait",
           "target": "role=option"
+        },
+        {
+          "do": "pause",
+          "value": 1200
         },
         {
           "do": "click",
@@ -139,24 +147,24 @@
       "actions": [
         {
           "do": "goto",
-          "target": "https://yourhomerule.com/a/A0016"
+          "target": "https://yourhomerule.com/a/A0050"
         },
         {
-          "do": "fill",
-          "target": "header.bar input[role=combobox]",
-          "value": "36 Hoff"
-        },
-        {
-          "do": "click",
-          "target": "header.bar [role=option]"
-        },
-        {
-          "do": "wait",
-          "target": "#t-rent"
+          "do": "hover",
+          "target": "ul.facts"
         },
         {
           "do": "click",
           "target": "#t-rent .tile-btn"
+        },
+        {
+          "do": "scrollTo",
+          "target": "#t-rent",
+          "value": 110
+        },
+        {
+          "do": "hover",
+          "target": "#t-rent .t-line"
         }
       ]
     },
