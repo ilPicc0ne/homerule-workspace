@@ -1,0 +1,10 @@
+{
+ "source_id": "S020",
+ "method": "targeted_public_api_download",
+ "api": "https://webapi.legistar.com/v1/newark/matters/1591971 and /texts/1532730",
+ "public_page": "https://newark.legistar.com/ (File 17-0273)",
+ "downloaded_at": "2026-10-04T00:31:05.979369+00:00",
+ "text_normalisation": "MatterTextPlain; 1 U+FFFD restored to '\u00a7'; provenance header from the API's matter fields prepended",
+ "raw_sha256": "ea06151ae1c52db0adee5f9cf76059e56cfc2ec9815dafdd4036f4a715bb3bf7",
+ "text_sha256": "ee420b52fd089bd68414c37d0416697351da6c230d48ca62713fc52155cc5568"
+}

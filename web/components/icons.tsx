@@ -115,4 +115,11 @@ export const icons = {
       <path d="M10 20.5a2 2 0 0 0 4 0" />
     </Icon>
   ),
+  external: (
+    <Icon>
+      <path d="M13.5 5.5h5v5" />
+      <path d="m18.5 5.5-8 8" />
+      <path d="M17 13.5v4a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 5 17.5v-9A1.5 1.5 0 0 1 6.5 7H10.5" />
+    </Icon>
+  ),
 };

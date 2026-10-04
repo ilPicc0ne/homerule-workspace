@@ -1,0 +1,4322 @@
+{
+ "2025-12-31": {
+  "A0016": [
+   {
+    "rule_id": "SF-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Built 1926, before the Jun 13, 1979 cutoff. Allowable increase 1.4% (Mar 1, 2025 – Feb 28, 2026); 1.6% from Mar 1, 2026.",
+    "what_next": {
+     "label": "SF Rent Board: current allowable increase",
+     "url": "https://www.sf.gov/reports--current-rates-including-rent-increase-relocation-sec-deposit"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "superseded",
+    "governed_by": "SF-RENT-01",
+    "confidence": 0.88,
+    "explanation": "The building is covered by San Francisco rent control, which is stricter, so the state cap yields to it.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+    }
+   },
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Covered by the Rent Ordinance's eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "SF-JC-01",
+    "confidence": 0.86,
+    "explanation": "San Francisco's just-cause ordinance applies instead of the state rule (§ 1946.2(i)).",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 21 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "not_yet_effective",
+    "confidence": 0.85,
+    "explanation": "Enacted, takes effect Jan 1, 2026.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0081": [
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Built 2005: more than 15 years old, and too new for San Francisco rent control (Jun 13, 1979 cutoff). The state cap applies: 5% + inflation, at most 10% a year.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+    }
+   },
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Newer buildings are exempt from San Francisco's rent limits but still covered by its eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "SF-JC-01",
+    "confidence": 0.85,
+    "explanation": "San Francisco's just-cause ordinance applies instead of the state rule.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 69 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "not_yet_effective",
+    "confidence": 0.85,
+    "explanation": "Enacted, takes effect Jan 1, 2026.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0105": [
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Built 2019. Exempt from rent limits, but newer buildings stay covered by San Francisco's eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 7 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "not_yet_effective",
+    "confidence": 0.85,
+    "explanation": "Enacted, takes effect Jan 1, 2026.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0107": [
+   {
+    "rule_id": "LA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "Depends on whether the certificate of occupancy is on or before Oct 1, 1978. Built in 1978, so the year alone can't tell.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "If the RSO covers the building, the state cap yields to it; if not, the state cap applies. Same missing date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "LA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "RSO units are covered by the RSO's eviction rules. Depends on the certificate of occupancy date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "LA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "The JCO covers units that are not under the RSO. Either the RSO or the JCO protects this tenancy.",
+    "what_next": {
+     "label": "LAHD: Just Cause Ordinance",
+     "url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.75,
+    "explanation": "The state rule yields to a local just-cause ordinance; which one covers this building depends on the same date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 20 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "not_yet_effective",
+    "confidence": 0.85,
+    "explanation": "Enacted, takes effect Jan 1, 2026.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0258": [
+   {
+    "rule_id": "MA-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.92,
+    "explanation": "Dorchester is part of Boston; Massachusetts bars rent control, so no rent cap applies. Rent increases still need proper notice.",
+    "what_next": {
+     "label": "Read M.G.L. c. 40P, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-RENT-P1",
+    "category": "rent_increase_limits",
+    "result": "pending",
+    "confidence": 0.66,
+    "explanation": "A proposed ballot question on this date, not law.",
+    "what_next": {
+     "label": "News report (WBUR)",
+     "url": "https://www.wbur.org/news/2026/06/23/massachusetts-high-court-rent-control-ballot-question-struck"
+    }
+   },
+   {
+    "rule_id": "MA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "For a tenancy at will (no fixed-term lease): one rental period or 30 days' notice, whichever is longer. No just-cause rule in our sources.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 12",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12"
+    }
+   },
+   {
+    "rule_id": "MA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to written leases.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 11",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11"
+    }
+   },
+   {
+    "rule_id": "BOS-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to every landlord in Boston ending a tenancy.",
+    "what_next": {
+     "label": "Boston: Housing Stability Notification Act",
+     "url": "https://www.boston.gov/housing-stability-notification-act"
+    }
+   },
+   {
+    "rule_id": "MA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "At most the first month's rent.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Only first and last month's rent, a deposit and a lock-and-key charge may be required upfront.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-02",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Aug 1, 2025.",
+    "what_next": {
+     "label": "Read M.G.L. c. 112, § 87DDD½",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2"
+    }
+   },
+   {
+    "rule_id": "MA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.84,
+    "explanation": "Applies to rental accommodations statewide. This building is listed as Section 8 subsidised housing.",
+    "what_next": {
+     "label": "Read M.G.L. c. 151B, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"
+    }
+   },
+   {
+    "rule_id": "BOS-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "City (DND) funding or BPDA income-restricted units"
+    ],
+    "confidence": 0.6,
+    "explanation": "The building is listed as subsidised (Section 8), but the data doesn't say whether it has City funding or income-restricted units under the BPDA policy.",
+    "what_next": {
+     "label": "Ask the property manager or the City of Boston",
+     "url": "https://drive.google.com/file/d/1j4U3fDtmnYuwcUWhx5BMUcXc1bnKT8Ku/view?usp=sharing"
+    }
+   }
+  ],
+  "A0256": [
+   {
+    "rule_id": "NJ-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Hoboken's rent-control ordinance (not in our sources)",
+     "Year built (30-year new-construction exemption)"
+    ],
+    "confidence": 0.6,
+    "explanation": "New Jersey has no state rent cap; Hoboken sets its own rent control. Its ordinance text isn't in our sources yet, and new buildings are exempt for 30 years, but the year built is missing.",
+    "what_next": {
+     "label": "Ask the City of Hoboken whether the unit is rent-controlled",
+     "url": "https://www.hobokennj.gov"
+    }
+   },
+   {
+    "rule_id": "NJ-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.75,
+    "explanation": "Covers this building. The owner-occupied exception needs two or fewer rental units; the record lists about 20 (parsed from the use code).",
+    "what_next": {
+     "label": "NJ DCA: Truth in Renting guide (evictions)",
+     "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "At most 1.5 months' rent. The owner-occupied two- or three-family exception can't fit a building of about 20 units.",
+    "what_next": {
+     "label": "NJ DCA: Truth in Renting guide (security deposits)",
+     "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "The owner-occupied exception needs four units or fewer; this building has more.",
+    "what_next": {
+     "label": "NJ Division on Civil Rights: know your rights in housing",
+     "url": "https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-FEE-01",
+    "category": "application_screening_fees",
+    "result": "pending",
+    "confidence": 0.87,
+    "explanation": "A bill on this date. It was signed on Jan 20, 2026 and takes effect May 1, 2026.",
+    "what_next": {
+     "label": "Read P.L.2025, c.405",
+     "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "HOB-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.6,
+    "explanation": "Hoboken's ban covers rentals inside Hoboken. Quote pending: the ordinance text isn't in our sources yet.",
+    "what_next": {
+     "label": "City of Hoboken",
+     "url": "https://www.hobokennj.gov"
+    }
+   }
+  ],
+  "A0010": [
+   {
+    "rule_id": "MA-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.92,
+    "explanation": "Massachusetts bars rent control, so no rent cap applies. Rent increases still need proper notice.",
+    "what_next": {
+     "label": "Read M.G.L. c. 40P, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-RENT-P1",
+    "category": "rent_increase_limits",
+    "result": "pending",
+    "confidence": 0.66,
+    "explanation": "A proposed ballot question on this date, not law.",
+    "what_next": {
+     "label": "News report (WBUR)",
+     "url": "https://www.wbur.org/news/2026/06/23/massachusetts-high-court-rent-control-ballot-question-struck"
+    }
+   },
+   {
+    "rule_id": "MA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "For a tenancy at will (no fixed-term lease): one rental period or 30 days' notice, whichever is longer. No just-cause rule in our sources.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 12",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12"
+    }
+   },
+   {
+    "rule_id": "MA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to written leases.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 11",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11"
+    }
+   },
+   {
+    "rule_id": "CAM-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to tenancies in Cambridge.",
+    "what_next": {
+     "label": "Cambridge: tenant rights and resources",
+     "url": "https://www.cambridgema.gov/tenantrights"
+    }
+   },
+   {
+    "rule_id": "MA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "At most the first month's rent.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Only first and last month's rent, a deposit and a lock-and-key charge may be required upfront.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-02",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Aug 1, 2025.",
+    "what_next": {
+     "label": "Read M.G.L. c. 112, § 87DDD½",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2"
+    }
+   },
+   {
+    "rule_id": "MA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.84,
+    "explanation": "Applies to rental accommodations statewide.",
+    "what_next": {
+     "label": "Read M.G.L. c. 151B, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"
+    }
+   }
+  ],
+  "A0005": [
+   {
+    "rule_id": "BRK-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Year built (before 1980?)"
+    ],
+    "confidence": 0.75,
+    "explanation": "Rent control covers multifamily units built before 1980. Berkeley records have no year built.",
+    "what_next": {
+     "label": "Ask the Berkeley Rent Board (rent@berkeleyca.gov) or the landlord",
+     "url": "https://rentboard.berkeleyca.gov"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Year built"
+    ],
+    "confidence": 0.75,
+    "explanation": "If Berkeley rent control covers the unit, the state cap yields to it; otherwise the state cap applies unless the building is under 15 years old. Year built is missing.",
+    "what_next": {
+     "label": "Ask the Berkeley Rent Board",
+     "url": "https://rentboard.berkeleyca.gov"
+    }
+   },
+   {
+    "rule_id": "BRK-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "Multifamily units are covered for evictions whether built before or after 1980. The exempt types (golden duplex, shared kitchen, ADU) can't fit a 5+ unit building.",
+    "what_next": {
+     "label": "Berkeley Rent Board: just cause and other local rules",
+     "url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "BRK-JC-01",
+    "confidence": 0.78,
+    "explanation": "Berkeley's just-cause ordinance applies instead of the state rule.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 5 or more units (use code), so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. Berkeley's Rent Board lists $68.96 as the 2026 maximum.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "BRK-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to all Berkeley rental agreements.",
+    "what_next": {
+     "label": "Berkeley Rent Board: screening and application fees",
+     "url": "https://rentboard.berkeleyca.gov/laws-regulations/city-berkeley-ordinances-affecting-rental-properties/tenant-screening-and"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "BRK-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "The owner-occupied exemption needs 1–3 units; this building has 5 or more.",
+    "what_next": {
+     "label": "Berkeley Rent Board: Fair Chance ordinance",
+     "url": "https://rentboard.berkeleyca.gov/Fair_Chance"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "not_yet_effective",
+    "confidence": 0.85,
+    "explanation": "Enacted, takes effect Jan 1, 2026.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   },
+   {
+    "rule_id": "BRK-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "not_yet_effective",
+    "confidence": 0.66,
+    "explanation": "Adopted Dec 2, 2025. Both published effective dates (January 2026 and March 1, 2026) are later.",
+    "what_next": {
+     "label": "Read Ordinance 7,992-N.S.",
+     "url": "https://berkeleyca.gov/sites/default/files/documents/2025-12-02%20Item%2001%20Ordinance%207992.pdf"
+    }
+   }
+  ]
+ },
+ "2026-01-02": {
+  "A0016": [
+   {
+    "rule_id": "SF-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Built 1926, before the Jun 13, 1979 cutoff. Allowable increase 1.4% (Mar 1, 2025 – Feb 28, 2026); 1.6% from Mar 1, 2026.",
+    "what_next": {
+     "label": "SF Rent Board: current allowable increase",
+     "url": "https://www.sf.gov/reports--current-rates-including-rent-increase-relocation-sec-deposit"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "superseded",
+    "governed_by": "SF-RENT-01",
+    "confidence": 0.88,
+    "explanation": "The building is covered by San Francisco rent control, which is stricter, so the state cap yields to it.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+    }
+   },
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Covered by the Rent Ordinance's eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "SF-JC-01",
+    "confidence": 0.86,
+    "explanation": "San Francisco's just-cause ordinance applies instead of the state rule (§ 1946.2(i)).",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 21 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0081": [
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Built 2005: more than 15 years old, and too new for San Francisco rent control (Jun 13, 1979 cutoff). The state cap applies: 5% + inflation, at most 10% a year.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+    }
+   },
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Newer buildings are exempt from San Francisco's rent limits but still covered by its eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "SF-JC-01",
+    "confidence": 0.85,
+    "explanation": "San Francisco's just-cause ordinance applies instead of the state rule.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 69 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0105": [
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Built 2019. Exempt from rent limits, but newer buildings stay covered by San Francisco's eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 7 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0107": [
+   {
+    "rule_id": "LA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "Depends on whether the certificate of occupancy is on or before Oct 1, 1978. Built in 1978, so the year alone can't tell.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "If the RSO covers the building, the state cap yields to it; if not, the state cap applies. Same missing date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "LA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "RSO units are covered by the RSO's eviction rules. Depends on the certificate of occupancy date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "LA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "The JCO covers units that are not under the RSO. Either the RSO or the JCO protects this tenancy.",
+    "what_next": {
+     "label": "LAHD: Just Cause Ordinance",
+     "url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.75,
+    "explanation": "The state rule yields to a local just-cause ordinance; which one covers this building depends on the same date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 20 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0258": [
+   {
+    "rule_id": "MA-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.92,
+    "explanation": "Dorchester is part of Boston; Massachusetts bars rent control, so no rent cap applies. Rent increases still need proper notice.",
+    "what_next": {
+     "label": "Read M.G.L. c. 40P, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-RENT-P1",
+    "category": "rent_increase_limits",
+    "result": "pending",
+    "confidence": 0.66,
+    "explanation": "A proposed ballot question on this date, not law.",
+    "what_next": {
+     "label": "News report (WBUR)",
+     "url": "https://www.wbur.org/news/2026/06/23/massachusetts-high-court-rent-control-ballot-question-struck"
+    }
+   },
+   {
+    "rule_id": "MA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "For a tenancy at will (no fixed-term lease): one rental period or 30 days' notice, whichever is longer. No just-cause rule in our sources.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 12",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12"
+    }
+   },
+   {
+    "rule_id": "MA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to written leases.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 11",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11"
+    }
+   },
+   {
+    "rule_id": "BOS-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to every landlord in Boston ending a tenancy.",
+    "what_next": {
+     "label": "Boston: Housing Stability Notification Act",
+     "url": "https://www.boston.gov/housing-stability-notification-act"
+    }
+   },
+   {
+    "rule_id": "MA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "At most the first month's rent.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Only first and last month's rent, a deposit and a lock-and-key charge may be required upfront.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-02",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Aug 1, 2025.",
+    "what_next": {
+     "label": "Read M.G.L. c. 112, § 87DDD½",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2"
+    }
+   },
+   {
+    "rule_id": "MA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.84,
+    "explanation": "Applies to rental accommodations statewide. This building is listed as Section 8 subsidised housing.",
+    "what_next": {
+     "label": "Read M.G.L. c. 151B, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"
+    }
+   },
+   {
+    "rule_id": "BOS-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "City (DND) funding or BPDA income-restricted units"
+    ],
+    "confidence": 0.6,
+    "explanation": "The building is listed as subsidised (Section 8), but the data doesn't say whether it has City funding or income-restricted units under the BPDA policy.",
+    "what_next": {
+     "label": "Ask the property manager or the City of Boston",
+     "url": "https://drive.google.com/file/d/1j4U3fDtmnYuwcUWhx5BMUcXc1bnKT8Ku/view?usp=sharing"
+    }
+   }
+  ],
+  "A0256": [
+   {
+    "rule_id": "NJ-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Hoboken's rent-control ordinance (not in our sources)",
+     "Year built (30-year new-construction exemption)"
+    ],
+    "confidence": 0.6,
+    "explanation": "New Jersey has no state rent cap; Hoboken sets its own rent control. Its ordinance text isn't in our sources yet, and new buildings are exempt for 30 years, but the year built is missing.",
+    "what_next": {
+     "label": "Ask the City of Hoboken whether the unit is rent-controlled",
+     "url": "https://www.hobokennj.gov"
+    }
+   },
+   {
+    "rule_id": "NJ-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.75,
+    "explanation": "Covers this building. The owner-occupied exception needs two or fewer rental units; the record lists about 20 (parsed from the use code).",
+    "what_next": {
+     "label": "NJ DCA: Truth in Renting guide (evictions)",
+     "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "At most 1.5 months' rent. The owner-occupied two- or three-family exception can't fit a building of about 20 units.",
+    "what_next": {
+     "label": "NJ DCA: Truth in Renting guide (security deposits)",
+     "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "The owner-occupied exception needs four units or fewer; this building has more.",
+    "what_next": {
+     "label": "NJ Division on Civil Rights: know your rights in housing",
+     "url": "https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-FEE-01",
+    "category": "application_screening_fees",
+    "result": "pending",
+    "confidence": 0.87,
+    "explanation": "A bill on this date. It was signed on Jan 20, 2026 and takes effect May 1, 2026.",
+    "what_next": {
+     "label": "Read P.L.2025, c.405",
+     "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "HOB-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.6,
+    "explanation": "Hoboken's ban covers rentals inside Hoboken. Quote pending: the ordinance text isn't in our sources yet.",
+    "what_next": {
+     "label": "City of Hoboken",
+     "url": "https://www.hobokennj.gov"
+    }
+   }
+  ],
+  "A0010": [
+   {
+    "rule_id": "MA-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.92,
+    "explanation": "Massachusetts bars rent control, so no rent cap applies. Rent increases still need proper notice.",
+    "what_next": {
+     "label": "Read M.G.L. c. 40P, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-RENT-P1",
+    "category": "rent_increase_limits",
+    "result": "pending",
+    "confidence": 0.66,
+    "explanation": "A proposed ballot question on this date, not law.",
+    "what_next": {
+     "label": "News report (WBUR)",
+     "url": "https://www.wbur.org/news/2026/06/23/massachusetts-high-court-rent-control-ballot-question-struck"
+    }
+   },
+   {
+    "rule_id": "MA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "For a tenancy at will (no fixed-term lease): one rental period or 30 days' notice, whichever is longer. No just-cause rule in our sources.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 12",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12"
+    }
+   },
+   {
+    "rule_id": "MA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to written leases.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 11",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11"
+    }
+   },
+   {
+    "rule_id": "CAM-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to tenancies in Cambridge.",
+    "what_next": {
+     "label": "Cambridge: tenant rights and resources",
+     "url": "https://www.cambridgema.gov/tenantrights"
+    }
+   },
+   {
+    "rule_id": "MA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "At most the first month's rent.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Only first and last month's rent, a deposit and a lock-and-key charge may be required upfront.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-02",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Aug 1, 2025.",
+    "what_next": {
+     "label": "Read M.G.L. c. 112, § 87DDD½",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2"
+    }
+   },
+   {
+    "rule_id": "MA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.84,
+    "explanation": "Applies to rental accommodations statewide.",
+    "what_next": {
+     "label": "Read M.G.L. c. 151B, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"
+    }
+   }
+  ],
+  "A0005": [
+   {
+    "rule_id": "BRK-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Year built (before 1980?)"
+    ],
+    "confidence": 0.75,
+    "explanation": "Rent control covers multifamily units built before 1980. Berkeley records have no year built.",
+    "what_next": {
+     "label": "Ask the Berkeley Rent Board (rent@berkeleyca.gov) or the landlord",
+     "url": "https://rentboard.berkeleyca.gov"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Year built"
+    ],
+    "confidence": 0.75,
+    "explanation": "If Berkeley rent control covers the unit, the state cap yields to it; otherwise the state cap applies unless the building is under 15 years old. Year built is missing.",
+    "what_next": {
+     "label": "Ask the Berkeley Rent Board",
+     "url": "https://rentboard.berkeleyca.gov"
+    }
+   },
+   {
+    "rule_id": "BRK-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "Multifamily units are covered for evictions whether built before or after 1980. The exempt types (golden duplex, shared kitchen, ADU) can't fit a 5+ unit building.",
+    "what_next": {
+     "label": "Berkeley Rent Board: just cause and other local rules",
+     "url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "BRK-JC-01",
+    "confidence": 0.78,
+    "explanation": "Berkeley's just-cause ordinance applies instead of the state rule.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 5 or more units (use code), so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. Berkeley's Rent Board lists $68.96 as the 2026 maximum.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "BRK-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to all Berkeley rental agreements.",
+    "what_next": {
+     "label": "Berkeley Rent Board: screening and application fees",
+     "url": "https://rentboard.berkeleyca.gov/laws-regulations/city-berkeley-ordinances-affecting-rental-properties/tenant-screening-and"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "BRK-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "The owner-occupied exemption needs 1–3 units; this building has 5 or more.",
+    "what_next": {
+     "label": "Berkeley Rent Board: Fair Chance ordinance",
+     "url": "https://rentboard.berkeleyca.gov/Fair_Chance"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   },
+   {
+    "rule_id": "BRK-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "unknown",
+    "missing_facts": [
+     "Which published effective date is correct"
+    ],
+    "confidence": 0.5,
+    "explanation": "Two effective dates are published: January 2026 (law-firm alert) and March 1, 2026 (ordinance text). On this date it depends on which is right. Flagged for review.",
+    "what_next": {
+     "label": "Ask the Berkeley Rent Board",
+     "url": "https://rentboard.berkeleyca.gov"
+    }
+   }
+  ]
+ },
+ "2026-10-01": {
+  "A0016": [
+   {
+    "rule_id": "SF-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Built 1926, before the Jun 13, 1979 cutoff. Allowable increase 1.6% (Mar 1, 2026 – Feb 28, 2027).",
+    "what_next": {
+     "label": "SF Rent Board: current allowable increase",
+     "url": "https://www.sf.gov/reports--current-rates-including-rent-increase-relocation-sec-deposit"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "superseded",
+    "governed_by": "SF-RENT-01",
+    "confidence": 0.88,
+    "explanation": "The building is covered by San Francisco rent control, which is stricter, so the state cap yields to it.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+    }
+   },
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Covered by the Rent Ordinance's eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "SF-JC-01",
+    "confidence": 0.86,
+    "explanation": "San Francisco's just-cause ordinance applies instead of the state rule (§ 1946.2(i)).",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 21 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0081": [
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Built 2005: more than 15 years old, and too new for San Francisco rent control (Jun 13, 1979 cutoff). The state cap applies: 5% + inflation, at most 10% a year.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+    }
+   },
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Newer buildings are exempt from San Francisco's rent limits but still covered by its eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "SF-JC-01",
+    "confidence": 0.85,
+    "explanation": "San Francisco's just-cause ordinance applies instead of the state rule.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 69 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0105": [
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Built 2019. Exempt from rent limits, but newer buildings stay covered by San Francisco's eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 7 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0107": [
+   {
+    "rule_id": "LA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "Depends on whether the certificate of occupancy is on or before Oct 1, 1978. Built in 1978, so the year alone can't tell.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "If the RSO covers the building, the state cap yields to it; if not, the state cap applies. Same missing date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "LA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "RSO units are covered by the RSO's eviction rules. Depends on the certificate of occupancy date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "LA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "The JCO covers units that are not under the RSO. Either the RSO or the JCO protects this tenancy.",
+    "what_next": {
+     "label": "LAHD: Just Cause Ordinance",
+     "url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.75,
+    "explanation": "The state rule yields to a local just-cause ordinance; which one covers this building depends on the same date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 20 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0258": [
+   {
+    "rule_id": "MA-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.92,
+    "explanation": "Dorchester is part of Boston; Massachusetts bars rent control, so no rent cap applies. Rent increases still need proper notice.",
+    "what_next": {
+     "label": "Read M.G.L. c. 40P, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "For a tenancy at will (no fixed-term lease): one rental period or 30 days' notice, whichever is longer. No just-cause rule in our sources.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 12",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12"
+    }
+   },
+   {
+    "rule_id": "MA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to written leases.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 11",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11"
+    }
+   },
+   {
+    "rule_id": "BOS-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to every landlord in Boston ending a tenancy.",
+    "what_next": {
+     "label": "Boston: Housing Stability Notification Act",
+     "url": "https://www.boston.gov/housing-stability-notification-act"
+    }
+   },
+   {
+    "rule_id": "MA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "At most the first month's rent.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Only first and last month's rent, a deposit and a lock-and-key charge may be required upfront.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-02",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Aug 1, 2025.",
+    "what_next": {
+     "label": "Read M.G.L. c. 112, § 87DDD½",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2"
+    }
+   },
+   {
+    "rule_id": "MA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.84,
+    "explanation": "Applies to rental accommodations statewide. This building is listed as Section 8 subsidised housing.",
+    "what_next": {
+     "label": "Read M.G.L. c. 151B, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"
+    }
+   },
+   {
+    "rule_id": "BOS-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "City (DND) funding or BPDA income-restricted units"
+    ],
+    "confidence": 0.6,
+    "explanation": "The building is listed as subsidised (Section 8), but the data doesn't say whether it has City funding or income-restricted units under the BPDA policy.",
+    "what_next": {
+     "label": "Ask the property manager or the City of Boston",
+     "url": "https://drive.google.com/file/d/1j4U3fDtmnYuwcUWhx5BMUcXc1bnKT8Ku/view?usp=sharing"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P1",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in Senate Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow S.2983 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/S2983"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P2",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in House Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow H.5222 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/H5222"
+    }
+   }
+  ],
+  "A0256": [
+   {
+    "rule_id": "NJ-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Hoboken's rent-control ordinance (not in our sources)",
+     "Year built (30-year new-construction exemption)"
+    ],
+    "confidence": 0.6,
+    "explanation": "New Jersey has no state rent cap; Hoboken sets its own rent control. Its ordinance text isn't in our sources yet, and new buildings are exempt for 30 years, but the year built is missing.",
+    "what_next": {
+     "label": "Ask the City of Hoboken whether the unit is rent-controlled",
+     "url": "https://www.hobokennj.gov"
+    }
+   },
+   {
+    "rule_id": "NJ-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.75,
+    "explanation": "Covers this building. The owner-occupied exception needs two or fewer rental units; the record lists about 20 (parsed from the use code).",
+    "what_next": {
+     "label": "NJ DCA: Truth in Renting guide (evictions)",
+     "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "At most 1.5 months' rent. The owner-occupied two- or three-family exception can't fit a building of about 20 units.",
+    "what_next": {
+     "label": "NJ DCA: Truth in Renting guide (security deposits)",
+     "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "The owner-occupied exception needs four units or fewer; this building has more.",
+    "what_next": {
+     "label": "NJ Division on Civil Rights: know your rights in housing",
+     "url": "https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.8,
+    "explanation": "In force since May 1, 2026: at most $50 per application. Not for one- or two-family homes; this building is larger.",
+    "what_next": {
+     "label": "Read P.L.2025, c.405",
+     "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "HOB-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "conflict_with": [
+     "NJ-ALG-01"
+    ],
+    "confidence": 0.6,
+    "explanation": "Hoboken's ban covers rentals inside Hoboken. The state FAIR Act, once in force, bars conflicting city ordinances: possible conflict, flagged for human review.",
+    "what_next": {
+     "label": "City of Hoboken",
+     "url": "https://www.hobokennj.gov"
+    }
+   },
+   {
+    "rule_id": "NJ-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "not_yet_effective",
+    "conflict_with": [
+     "HOB-ALG-01"
+    ],
+    "confidence": 0.85,
+    "explanation": "Signed Jul 20, 2026; takes effect Jul 1, 2027. May conflict with Hoboken's own ban; flagged, not decided.",
+    "what_next": {
+     "label": "Read P.L.2026, c.43",
+     "url": "https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM"
+    }
+   }
+  ],
+  "A0010": [
+   {
+    "rule_id": "MA-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.92,
+    "explanation": "Massachusetts bars rent control, so no rent cap applies. Rent increases still need proper notice.",
+    "what_next": {
+     "label": "Read M.G.L. c. 40P, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "For a tenancy at will (no fixed-term lease): one rental period or 30 days' notice, whichever is longer. No just-cause rule in our sources.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 12",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12"
+    }
+   },
+   {
+    "rule_id": "MA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to written leases.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 11",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11"
+    }
+   },
+   {
+    "rule_id": "CAM-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to tenancies in Cambridge.",
+    "what_next": {
+     "label": "Cambridge: tenant rights and resources",
+     "url": "https://www.cambridgema.gov/tenantrights"
+    }
+   },
+   {
+    "rule_id": "MA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "At most the first month's rent.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Only first and last month's rent, a deposit and a lock-and-key charge may be required upfront.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-02",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Aug 1, 2025.",
+    "what_next": {
+     "label": "Read M.G.L. c. 112, § 87DDD½",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2"
+    }
+   },
+   {
+    "rule_id": "MA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.84,
+    "explanation": "Applies to rental accommodations statewide.",
+    "what_next": {
+     "label": "Read M.G.L. c. 151B, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P1",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in Senate Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow S.2983 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/S2983"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P2",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in House Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow H.5222 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/H5222"
+    }
+   }
+  ],
+  "A0005": [
+   {
+    "rule_id": "BRK-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Year built (before 1980?)"
+    ],
+    "confidence": 0.75,
+    "explanation": "Rent control covers multifamily units built before 1980. Berkeley records have no year built.",
+    "what_next": {
+     "label": "Ask the Berkeley Rent Board (rent@berkeleyca.gov) or the landlord",
+     "url": "https://rentboard.berkeleyca.gov"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Year built"
+    ],
+    "confidence": 0.75,
+    "explanation": "If Berkeley rent control covers the unit, the state cap yields to it; otherwise the state cap applies unless the building is under 15 years old. Year built is missing.",
+    "what_next": {
+     "label": "Ask the Berkeley Rent Board",
+     "url": "https://rentboard.berkeleyca.gov"
+    }
+   },
+   {
+    "rule_id": "BRK-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "Multifamily units are covered for evictions whether built before or after 1980. The exempt types (golden duplex, shared kitchen, ADU) can't fit a 5+ unit building.",
+    "what_next": {
+     "label": "Berkeley Rent Board: just cause and other local rules",
+     "url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "BRK-JC-01",
+    "confidence": 0.78,
+    "explanation": "Berkeley's just-cause ordinance applies instead of the state rule.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 5 or more units (use code), so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. Berkeley's Rent Board lists $68.96 as the 2026 maximum.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "BRK-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to all Berkeley rental agreements.",
+    "what_next": {
+     "label": "Berkeley Rent Board: screening and application fees",
+     "url": "https://rentboard.berkeleyca.gov/laws-regulations/city-berkeley-ordinances-affecting-rental-properties/tenant-screening-and"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "BRK-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "The owner-occupied exemption needs 1–3 units; this building has 5 or more.",
+    "what_next": {
+     "label": "Berkeley Rent Board: Fair Chance ordinance",
+     "url": "https://rentboard.berkeleyca.gov/Fair_Chance"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   },
+   {
+    "rule_id": "BRK-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.66,
+    "explanation": "Both published effective dates have passed. (They still disagree: January 2026 vs March 1, 2026.)",
+    "what_next": {
+     "label": "Read Ordinance 7,992-N.S.",
+     "url": "https://berkeleyca.gov/sites/default/files/documents/2025-12-02%20Item%2001%20Ordinance%207992.pdf"
+    }
+   }
+  ]
+ },
+ "2027-07-01": {
+  "A0016": [
+   {
+    "rule_id": "SF-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Built 1926, before the Jun 13, 1979 cutoff. The allowable increase for Mar 2027 – Feb 2028 is not in our sources yet.",
+    "what_next": {
+     "label": "SF Rent Board: current allowable increase",
+     "url": "https://www.sf.gov/reports--current-rates-including-rent-increase-relocation-sec-deposit"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "superseded",
+    "governed_by": "SF-RENT-01",
+    "confidence": 0.88,
+    "explanation": "The building is covered by San Francisco rent control, which is stricter, so the state cap yields to it.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+    }
+   },
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Covered by the Rent Ordinance's eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "SF-JC-01",
+    "confidence": 0.86,
+    "explanation": "San Francisco's just-cause ordinance applies instead of the state rule (§ 1946.2(i)).",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 21 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0081": [
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Built 2005: more than 15 years old, and too new for San Francisco rent control (Jun 13, 1979 cutoff). The state cap applies: 5% + inflation, at most 10% a year.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+    }
+   },
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Newer buildings are exempt from San Francisco's rent limits but still covered by its eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "SF-JC-01",
+    "confidence": 0.85,
+    "explanation": "San Francisco's just-cause ordinance applies instead of the state rule.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 69 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0105": [
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Built 2019. Exempt from rent limits, but newer buildings stay covered by San Francisco's eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 7 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0107": [
+   {
+    "rule_id": "LA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "Depends on whether the certificate of occupancy is on or before Oct 1, 1978. Built in 1978, so the year alone can't tell.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "If the RSO covers the building, the state cap yields to it; if not, the state cap applies. Same missing date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "LA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "RSO units are covered by the RSO's eviction rules. Depends on the certificate of occupancy date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "LA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "The JCO covers units that are not under the RSO. Either the RSO or the JCO protects this tenancy.",
+    "what_next": {
+     "label": "LAHD: Just Cause Ordinance",
+     "url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.75,
+    "explanation": "The state rule yields to a local just-cause ordinance; which one covers this building depends on the same date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 20 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0258": [
+   {
+    "rule_id": "MA-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.92,
+    "explanation": "Dorchester is part of Boston; Massachusetts bars rent control, so no rent cap applies. Rent increases still need proper notice.",
+    "what_next": {
+     "label": "Read M.G.L. c. 40P, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "For a tenancy at will (no fixed-term lease): one rental period or 30 days' notice, whichever is longer. No just-cause rule in our sources.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 12",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12"
+    }
+   },
+   {
+    "rule_id": "MA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to written leases.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 11",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11"
+    }
+   },
+   {
+    "rule_id": "BOS-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to every landlord in Boston ending a tenancy.",
+    "what_next": {
+     "label": "Boston: Housing Stability Notification Act",
+     "url": "https://www.boston.gov/housing-stability-notification-act"
+    }
+   },
+   {
+    "rule_id": "MA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "At most the first month's rent.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Only first and last month's rent, a deposit and a lock-and-key charge may be required upfront.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-02",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Aug 1, 2025.",
+    "what_next": {
+     "label": "Read M.G.L. c. 112, § 87DDD½",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2"
+    }
+   },
+   {
+    "rule_id": "MA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.84,
+    "explanation": "Applies to rental accommodations statewide. This building is listed as Section 8 subsidised housing.",
+    "what_next": {
+     "label": "Read M.G.L. c. 151B, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"
+    }
+   },
+   {
+    "rule_id": "BOS-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "City (DND) funding or BPDA income-restricted units"
+    ],
+    "confidence": 0.6,
+    "explanation": "The building is listed as subsidised (Section 8), but the data doesn't say whether it has City funding or income-restricted units under the BPDA policy.",
+    "what_next": {
+     "label": "Ask the property manager or the City of Boston",
+     "url": "https://drive.google.com/file/d/1j4U3fDtmnYuwcUWhx5BMUcXc1bnKT8Ku/view?usp=sharing"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P1",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in Senate Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow S.2983 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/S2983"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P2",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in House Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow H.5222 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/H5222"
+    }
+   }
+  ],
+  "A0256": [
+   {
+    "rule_id": "NJ-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Hoboken's rent-control ordinance (not in our sources)",
+     "Year built (30-year new-construction exemption)"
+    ],
+    "confidence": 0.6,
+    "explanation": "New Jersey has no state rent cap; Hoboken sets its own rent control. Its ordinance text isn't in our sources yet, and new buildings are exempt for 30 years, but the year built is missing.",
+    "what_next": {
+     "label": "Ask the City of Hoboken whether the unit is rent-controlled",
+     "url": "https://www.hobokennj.gov"
+    }
+   },
+   {
+    "rule_id": "NJ-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.75,
+    "explanation": "Covers this building. The owner-occupied exception needs two or fewer rental units; the record lists about 20 (parsed from the use code).",
+    "what_next": {
+     "label": "NJ DCA: Truth in Renting guide (evictions)",
+     "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "At most 1.5 months' rent. The owner-occupied two- or three-family exception can't fit a building of about 20 units.",
+    "what_next": {
+     "label": "NJ DCA: Truth in Renting guide (security deposits)",
+     "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "The owner-occupied exception needs four units or fewer; this building has more.",
+    "what_next": {
+     "label": "NJ Division on Civil Rights: know your rights in housing",
+     "url": "https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.8,
+    "explanation": "In force since May 1, 2026: at most $50 per application. Not for one- or two-family homes; this building is larger.",
+    "what_next": {
+     "label": "Read P.L.2025, c.405",
+     "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "HOB-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "conflict_with": [
+     "NJ-ALG-01"
+    ],
+    "confidence": 0.55,
+    "explanation": "Hoboken's ban still listed. The FAIR Act is now in force and bars conflicting city ordinances: possible conflict, flagged for human review.",
+    "what_next": {
+     "label": "City of Hoboken",
+     "url": "https://www.hobokennj.gov"
+    }
+   },
+   {
+    "rule_id": "NJ-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "conflict_with": [
+     "HOB-ALG-01"
+    ],
+    "confidence": 0.85,
+    "explanation": "In force since Jul 1, 2027 for every New Jersey address. Possible conflict with Hoboken's ban; flagged, not decided.",
+    "what_next": {
+     "label": "Read P.L.2026, c.43",
+     "url": "https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM"
+    }
+   }
+  ],
+  "A0010": [
+   {
+    "rule_id": "MA-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.92,
+    "explanation": "Massachusetts bars rent control, so no rent cap applies. Rent increases still need proper notice.",
+    "what_next": {
+     "label": "Read M.G.L. c. 40P, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "For a tenancy at will (no fixed-term lease): one rental period or 30 days' notice, whichever is longer. No just-cause rule in our sources.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 12",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12"
+    }
+   },
+   {
+    "rule_id": "MA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to written leases.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 11",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11"
+    }
+   },
+   {
+    "rule_id": "CAM-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to tenancies in Cambridge.",
+    "what_next": {
+     "label": "Cambridge: tenant rights and resources",
+     "url": "https://www.cambridgema.gov/tenantrights"
+    }
+   },
+   {
+    "rule_id": "MA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "At most the first month's rent.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Only first and last month's rent, a deposit and a lock-and-key charge may be required upfront.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-02",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Aug 1, 2025.",
+    "what_next": {
+     "label": "Read M.G.L. c. 112, § 87DDD½",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2"
+    }
+   },
+   {
+    "rule_id": "MA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.84,
+    "explanation": "Applies to rental accommodations statewide.",
+    "what_next": {
+     "label": "Read M.G.L. c. 151B, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P1",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in Senate Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow S.2983 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/S2983"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P2",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in House Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow H.5222 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/H5222"
+    }
+   }
+  ],
+  "A0005": [
+   {
+    "rule_id": "BRK-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Year built (before 1980?)"
+    ],
+    "confidence": 0.75,
+    "explanation": "Rent control covers multifamily units built before 1980. Berkeley records have no year built.",
+    "what_next": {
+     "label": "Ask the Berkeley Rent Board (rent@berkeleyca.gov) or the landlord",
+     "url": "https://rentboard.berkeleyca.gov"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Year built"
+    ],
+    "confidence": 0.75,
+    "explanation": "If Berkeley rent control covers the unit, the state cap yields to it; otherwise the state cap applies unless the building is under 15 years old. Year built is missing.",
+    "what_next": {
+     "label": "Ask the Berkeley Rent Board",
+     "url": "https://rentboard.berkeleyca.gov"
+    }
+   },
+   {
+    "rule_id": "BRK-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "Multifamily units are covered for evictions whether built before or after 1980. The exempt types (golden duplex, shared kitchen, ADU) can't fit a 5+ unit building.",
+    "what_next": {
+     "label": "Berkeley Rent Board: just cause and other local rules",
+     "url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "BRK-JC-01",
+    "confidence": 0.78,
+    "explanation": "Berkeley's just-cause ordinance applies instead of the state rule.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 5 or more units (use code), so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. Berkeley's Rent Board lists $68.96 as the 2026 maximum.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "BRK-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to all Berkeley rental agreements.",
+    "what_next": {
+     "label": "Berkeley Rent Board: screening and application fees",
+     "url": "https://rentboard.berkeleyca.gov/laws-regulations/city-berkeley-ordinances-affecting-rental-properties/tenant-screening-and"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "BRK-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "The owner-occupied exemption needs 1–3 units; this building has 5 or more.",
+    "what_next": {
+     "label": "Berkeley Rent Board: Fair Chance ordinance",
+     "url": "https://rentboard.berkeleyca.gov/Fair_Chance"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   },
+   {
+    "rule_id": "BRK-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.66,
+    "explanation": "Both published effective dates have passed. (They still disagree: January 2026 vs March 1, 2026.)",
+    "what_next": {
+     "label": "Read Ordinance 7,992-N.S.",
+     "url": "https://berkeleyca.gov/sites/default/files/documents/2025-12-02%20Item%2001%20Ordinance%207992.pdf"
+    }
+   }
+  ]
+ },
+ "2027-07-02": {
+  "A0016": [
+   {
+    "rule_id": "SF-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Built 1926, before the Jun 13, 1979 cutoff. The allowable increase for Mar 2027 – Feb 2028 is not in our sources yet.",
+    "what_next": {
+     "label": "SF Rent Board: current allowable increase",
+     "url": "https://www.sf.gov/reports--current-rates-including-rent-increase-relocation-sec-deposit"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "superseded",
+    "governed_by": "SF-RENT-01",
+    "confidence": 0.88,
+    "explanation": "The building is covered by San Francisco rent control, which is stricter, so the state cap yields to it.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+    }
+   },
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Covered by the Rent Ordinance's eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "SF-JC-01",
+    "confidence": 0.86,
+    "explanation": "San Francisco's just-cause ordinance applies instead of the state rule (§ 1946.2(i)).",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 21 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0081": [
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "Built 2005: more than 15 years old, and too new for San Francisco rent control (Jun 13, 1979 cutoff). The state cap applies: 5% + inflation, at most 10% a year.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1947.12"
+    }
+   },
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Newer buildings are exempt from San Francisco's rent limits but still covered by its eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "SF-JC-01",
+    "confidence": 0.85,
+    "explanation": "San Francisco's just-cause ordinance applies instead of the state rule.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 69 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0105": [
+   {
+    "rule_id": "SF-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Built 2019. Exempt from rent limits, but newer buildings stay covered by San Francisco's eviction rules.",
+    "what_next": {
+     "label": "SF Rent Board: overview of just-cause evictions",
+     "url": "https://sf.gov/information/overview-just-cause-evictions"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 7 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "SF-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "Whether the building is affordable housing"
+    ],
+    "confidence": 0.71,
+    "explanation": "Covers affordable housing only. Our data doesn't say whether this building is affordable housing.",
+    "what_next": {
+     "label": "Ask the landlord or the SF Human Rights Commission",
+     "url": "https://sf-hrc.org/fair-chance-ordinance"
+    }
+   },
+   {
+    "rule_id": "SF-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "In force since Oct 14, 2024 for all San Francisco rentals.",
+    "what_next": {
+     "label": "SF Rent Board: the algorithmic device law",
+     "url": "https://www.sf.gov/news/new-law-prohibits-algorithmic-devices-used-set-rents-san-francisco"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0107": [
+   {
+    "rule_id": "LA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "Depends on whether the certificate of occupancy is on or before Oct 1, 1978. Built in 1978, so the year alone can't tell.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "If the RSO covers the building, the state cap yields to it; if not, the state cap applies. Same missing date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "LA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "RSO units are covered by the RSO's eviction rules. Depends on the certificate of occupancy date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "LA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.8,
+    "explanation": "The JCO covers units that are not under the RSO. Either the RSO or the JCO protects this tenancy.",
+    "what_next": {
+     "label": "LAHD: Just Cause Ordinance",
+     "url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "unknown",
+    "missing_facts": [
+     "Certificate of occupancy date (on or before Oct 1, 1978?)"
+    ],
+    "confidence": 0.75,
+    "explanation": "The state rule yields to a local just-cause ordinance; which one covers this building depends on the same date.",
+    "what_next": {
+     "label": "Check RSO status on ZIMAS (zimas.lacity.org) or ask LAHD",
+     "url": "https://zimas.lacity.org"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 20 units, so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. The 2026 dollar figure is CPI-adjusted from $30 and not published as one official number.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   }
+  ],
+  "A0258": [
+   {
+    "rule_id": "MA-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.92,
+    "explanation": "Dorchester is part of Boston; Massachusetts bars rent control, so no rent cap applies. Rent increases still need proper notice.",
+    "what_next": {
+     "label": "Read M.G.L. c. 40P, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "For a tenancy at will (no fixed-term lease): one rental period or 30 days' notice, whichever is longer. No just-cause rule in our sources.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 12",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12"
+    }
+   },
+   {
+    "rule_id": "MA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to written leases.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 11",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11"
+    }
+   },
+   {
+    "rule_id": "BOS-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to every landlord in Boston ending a tenancy.",
+    "what_next": {
+     "label": "Boston: Housing Stability Notification Act",
+     "url": "https://www.boston.gov/housing-stability-notification-act"
+    }
+   },
+   {
+    "rule_id": "MA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "At most the first month's rent.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Only first and last month's rent, a deposit and a lock-and-key charge may be required upfront.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-02",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Aug 1, 2025.",
+    "what_next": {
+     "label": "Read M.G.L. c. 112, § 87DDD½",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2"
+    }
+   },
+   {
+    "rule_id": "MA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.84,
+    "explanation": "Applies to rental accommodations statewide. This building is listed as Section 8 subsidised housing.",
+    "what_next": {
+     "label": "Read M.G.L. c. 151B, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"
+    }
+   },
+   {
+    "rule_id": "BOS-SCR-01",
+    "category": "screening_restrictions",
+    "result": "unknown",
+    "missing_facts": [
+     "City (DND) funding or BPDA income-restricted units"
+    ],
+    "confidence": 0.6,
+    "explanation": "The building is listed as subsidised (Section 8), but the data doesn't say whether it has City funding or income-restricted units under the BPDA policy.",
+    "what_next": {
+     "label": "Ask the property manager or the City of Boston",
+     "url": "https://drive.google.com/file/d/1j4U3fDtmnYuwcUWhx5BMUcXc1bnKT8Ku/view?usp=sharing"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P1",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in Senate Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow S.2983 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/S2983"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P2",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in House Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow H.5222 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/H5222"
+    }
+   }
+  ],
+  "A0256": [
+   {
+    "rule_id": "NJ-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Hoboken's rent-control ordinance (not in our sources)",
+     "Year built (30-year new-construction exemption)"
+    ],
+    "confidence": 0.6,
+    "explanation": "New Jersey has no state rent cap; Hoboken sets its own rent control. Its ordinance text isn't in our sources yet, and new buildings are exempt for 30 years, but the year built is missing.",
+    "what_next": {
+     "label": "Ask the City of Hoboken whether the unit is rent-controlled",
+     "url": "https://www.hobokennj.gov"
+    }
+   },
+   {
+    "rule_id": "NJ-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.75,
+    "explanation": "Covers this building. The owner-occupied exception needs two or fewer rental units; the record lists about 20 (parsed from the use code).",
+    "what_next": {
+     "label": "NJ DCA: Truth in Renting guide (evictions)",
+     "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "At most 1.5 months' rent. The owner-occupied two- or three-family exception can't fit a building of about 20 units.",
+    "what_next": {
+     "label": "NJ DCA: Truth in Renting guide (security deposits)",
+     "url": "https://www.nj.gov/dca/codes/publications/pdf_lti/t_i_r.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "The owner-occupied exception needs four units or fewer; this building has more.",
+    "what_next": {
+     "label": "NJ Division on Civil Rights: know your rights in housing",
+     "url": "https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf"
+    }
+   },
+   {
+    "rule_id": "NJ-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.8,
+    "explanation": "In force since May 1, 2026: at most $50 per application. Not for one- or two-family homes; this building is larger.",
+    "what_next": {
+     "label": "Read P.L.2025, c.405",
+     "url": "https://pub.njleg.gov/bills/2024/PL25/405_.HTM"
+    }
+   },
+   {
+    "rule_id": "HOB-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "conflict_with": [
+     "NJ-ALG-01"
+    ],
+    "confidence": 0.55,
+    "explanation": "Hoboken's ban still listed. The FAIR Act is now in force and bars conflicting city ordinances: possible conflict, flagged for human review.",
+    "what_next": {
+     "label": "City of Hoboken",
+     "url": "https://www.hobokennj.gov"
+    }
+   },
+   {
+    "rule_id": "NJ-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "conflict_with": [
+     "HOB-ALG-01"
+    ],
+    "confidence": 0.85,
+    "explanation": "In force since Jul 1, 2027 for every New Jersey address. Possible conflict with Hoboken's ban; flagged, not decided.",
+    "what_next": {
+     "label": "Read P.L.2026, c.43",
+     "url": "https://pub.njleg.state.nj.us/Bills/2026/AL26/43_.HTM"
+    }
+   }
+  ],
+  "A0010": [
+   {
+    "rule_id": "MA-RENT-00",
+    "category": "rent_increase_limits",
+    "result": "applies",
+    "confidence": 0.92,
+    "explanation": "Massachusetts bars rent control, so no rent cap applies. Rent increases still need proper notice.",
+    "what_next": {
+     "label": "Read M.G.L. c. 40P, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40P/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "For a tenancy at will (no fixed-term lease): one rental period or 30 days' notice, whichever is longer. No just-cause rule in our sources.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 12",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section12"
+    }
+   },
+   {
+    "rule_id": "MA-JC-02",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to written leases.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 11",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section11"
+    }
+   },
+   {
+    "rule_id": "CAM-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to tenancies in Cambridge.",
+    "what_next": {
+     "label": "Cambridge: tenant rights and resources",
+     "url": "https://www.cambridgema.gov/tenantrights"
+    }
+   },
+   {
+    "rule_id": "MA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.88,
+    "explanation": "At most the first month's rent.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Only first and last month's rent, a deposit and a lock-and-key charge may be required upfront.",
+    "what_next": {
+     "label": "Read M.G.L. c. 186, § 15B",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartII/TitleI/Chapter186/Section15B"
+    }
+   },
+   {
+    "rule_id": "MA-FEE-02",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Aug 1, 2025.",
+    "what_next": {
+     "label": "Read M.G.L. c. 112, § 87DDD½",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXVI/Chapter112/Section87DDD%201~2"
+    }
+   },
+   {
+    "rule_id": "MA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.84,
+    "explanation": "Applies to rental accommodations statewide.",
+    "what_next": {
+     "label": "Read M.G.L. c. 151B, § 4",
+     "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleXXI/Chapter151B/Section4"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P1",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in Senate Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow S.2983 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/S2983"
+    }
+   },
+   {
+    "rule_id": "MA-ALG-P2",
+    "category": "algorithmic_rent_setting",
+    "result": "pending",
+    "confidence": 0.85,
+    "explanation": "A bill, not law: in House Ways and Means since Mar 12, 2026. Would cover every Massachusetts address if enacted.",
+    "what_next": {
+     "label": "Follow H.5222 on malegislature.gov",
+     "url": "https://malegislature.gov/Bills/194/H5222"
+    }
+   }
+  ],
+  "A0005": [
+   {
+    "rule_id": "BRK-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Year built (before 1980?)"
+    ],
+    "confidence": 0.75,
+    "explanation": "Rent control covers multifamily units built before 1980. Berkeley records have no year built.",
+    "what_next": {
+     "label": "Ask the Berkeley Rent Board (rent@berkeleyca.gov) or the landlord",
+     "url": "https://rentboard.berkeleyca.gov"
+    }
+   },
+   {
+    "rule_id": "CA-RENT-01",
+    "category": "rent_increase_limits",
+    "result": "unknown",
+    "missing_facts": [
+     "Year built"
+    ],
+    "confidence": 0.75,
+    "explanation": "If Berkeley rent control covers the unit, the state cap yields to it; otherwise the state cap applies unless the building is under 15 years old. Year built is missing.",
+    "what_next": {
+     "label": "Ask the Berkeley Rent Board",
+     "url": "https://rentboard.berkeleyca.gov"
+    }
+   },
+   {
+    "rule_id": "BRK-JC-01",
+    "category": "just_cause_eviction",
+    "result": "applies",
+    "confidence": 0.78,
+    "explanation": "Multifamily units are covered for evictions whether built before or after 1980. The exempt types (golden duplex, shared kitchen, ADU) can't fit a 5+ unit building.",
+    "what_next": {
+     "label": "Berkeley Rent Board: just cause and other local rules",
+     "url": "https://rentboard.berkeleyca.gov/laws-regulations/measure-bb-changes-berkeleys-rent-ordinance"
+    }
+   },
+   {
+    "rule_id": "CA-JC-01",
+    "category": "just_cause_eviction",
+    "result": "superseded",
+    "governed_by": "BRK-JC-01",
+    "confidence": 0.78,
+    "explanation": "Berkeley's just-cause ordinance applies instead of the state rule.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2"
+    }
+   },
+   {
+    "rule_id": "CA-DEP-01",
+    "category": "security_deposits",
+    "result": "applies",
+    "confidence": 0.9,
+    "explanation": "One month's rent. The two-month small-landlord exception needs four units or fewer; this building has 5 or more units (use code), so it can't apply.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.5"
+    }
+   },
+   {
+    "rule_id": "CA-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "Applies to every application. Berkeley's Rent Board lists $68.96 as the 2026 maximum.",
+    "what_next": {
+     "label": "Read the law on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1950.6"
+    }
+   },
+   {
+    "rule_id": "BRK-FEE-01",
+    "category": "application_screening_fees",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "Applies to all Berkeley rental agreements.",
+    "what_next": {
+     "label": "Berkeley Rent Board: screening and application fees",
+     "url": "https://rentboard.berkeleyca.gov/laws-regulations/city-berkeley-ordinances-affecting-rental-properties/tenant-screening-and"
+    }
+   },
+   {
+    "rule_id": "CA-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.87,
+    "explanation": "Applies to every rental in California.",
+    "what_next": {
+     "label": "California Civil Rights Department: housing",
+     "url": "https://calcivilrights.ca.gov/housing/"
+    }
+   },
+   {
+    "rule_id": "BRK-SCR-01",
+    "category": "screening_restrictions",
+    "result": "applies",
+    "confidence": 0.81,
+    "explanation": "The owner-occupied exemption needs 1–3 units; this building has 5 or more.",
+    "what_next": {
+     "label": "Berkeley Rent Board: Fair Chance ordinance",
+     "url": "https://rentboard.berkeleyca.gov/Fair_Chance"
+    }
+   },
+   {
+    "rule_id": "CA-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.85,
+    "explanation": "In force since Jan 1, 2026; applies to every California address.",
+    "what_next": {
+     "label": "Read AB 325 on the California Legislature site",
+     "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB325"
+    }
+   },
+   {
+    "rule_id": "BRK-ALG-01",
+    "category": "algorithmic_rent_setting",
+    "result": "applies",
+    "confidence": 0.66,
+    "explanation": "Both published effective dates have passed. (They still disagree: January 2026 vs March 1, 2026.)",
+    "what_next": {
+     "label": "Read Ordinance 7,992-N.S.",
+     "url": "https://berkeleyca.gov/sites/default/files/documents/2025-12-02%20Item%2001%20Ordinance%207992.pdf"
+    }
+   }
+  ]
+ }
+}

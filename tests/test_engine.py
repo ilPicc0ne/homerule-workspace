@@ -9,7 +9,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from engine import build as B, evaluate as E, facts as F, rules as R
+from engine import build as B, evaluate as E, explain as X, facts as F, rules as R
 from extract import compile as C
 
 AS_OF = "2026-10-01"
@@ -194,6 +194,48 @@ class Boundaries(unittest.TestCase):
         self.assertEqual(ch["T5"]["affected_address_ids"], [])
         for v in ch.values():
             self.assertEqual(set(v), {"affected_address_ids", "conflict_flag_address_ids", "notes"})
+
+
+class ValueBranches(unittest.TestCase):
+    """key_value_conditions: a branch whose condition is unknown never yields a flat value."""
+    SMALL = {"kind": "all", "children": [
+        {"kind": "fact", "fact": "owner_type", "op": "eq", "value": "natural_person"},
+        {"kind": "fact", "fact": "units", "op": "le", "value": 4}]}
+
+    def rule(self, *branches):
+        r = copy.deepcopy(BY_ID["CA-DEP-1950.5"])
+        r["key_value_conditions"] = [{"value": v, "when": w, "tenant_note": None} for v, w in branches]
+        return r
+
+    def run_rule(self, rule, aid):
+        facts = F.address_facts(ADDR[aid])
+        res = E.evaluate([rule], facts, AS_OF)[rule["id"]]
+        return res, X.explain(rule, res, facts, AS_OF, {rule["id"]: rule})
+
+    def test_open_branch_makes_value_conditional(self):
+        # A0398: TIC building, units null after a CSV/use-code conflict, owner unknown
+        res, text = self.run_rule(self.rule(("Two months' rent", self.SMALL)), "A0398")
+        self.assertEqual(res["result"], "applies")
+        self.assertIsInstance(res["value"], dict)
+        self.assertEqual(res["value"]["conditional"][1], "Two months' rent")
+        self.assertEqual(res["value"]["depends_on"], ["owner_type", "units"])
+        self.assertIn("amount is not settled", text)
+        self.assertIn("who owns the building", text)
+        self.assertIn("the unit count", text)
+
+    def test_decided_branches_stay_flat(self):
+        r = self.rule(("Two months' rent", self.SMALL))
+        res, text = self.run_rule(r, "A0016")          # 21 units: the branch is false whoever owns it
+        self.assertEqual(res["value"], r["key_value"])
+        self.assertNotIn("not settled", text)
+        res, _ = self.run_rule(self.rule(("X", {"kind": "always"})), "A0398")
+        self.assertEqual(res["value"], "X")
+
+    def test_open_branch_before_true_one_is_conditional(self):
+        res, _ = self.run_rule(self.rule(("Two months' rent", self.SMALL), ("X", {"kind": "always"})), "A0398")
+        self.assertEqual(res["value"]["conditional"], ["X", "Two months' rent"])
+        res, _ = self.run_rule(self.rule(("X", {"kind": "always"}), ("Two months' rent", self.SMALL)), "A0398")
+        self.assertEqual(res["value"], "X")             # first true branch wins; later ones are never reached
 
 
 class Journeys(unittest.TestCase):

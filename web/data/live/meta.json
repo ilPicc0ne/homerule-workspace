@@ -1,0 +1,23 @@
+{
+ "data_source": "live",
+ "label": "Live",
+ "note": "Rules extracted from the challenge corpus and supplemental sources; results computed by the rule engine (make build). Quotes are verbatim.",
+ "default_as_of": "2026-10-01",
+ "retrieved_at": "2026-10-01",
+ "as_of_dates": [
+  {
+   "date": "2026-10-01",
+   "label": "Engine run"
+  }
+ ],
+ "demo_address_ids": [
+  "A0016",
+  "A0081",
+  "A0105",
+  "A0107",
+  "A0258",
+  "A0256",
+  "A0010",
+  "A0005"
+ ]
+}

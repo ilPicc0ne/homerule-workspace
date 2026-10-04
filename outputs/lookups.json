@@ -158,6 +158,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -642,6 +660,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -781,6 +817,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -1203,6 +1257,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -1660,6 +1732,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -1719,6 +1809,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -2610,6 +2718,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -3458,6 +3584,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -3567,6 +3711,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -4510,6 +4672,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -5357,6 +5537,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -6312,6 +6510,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -6669,6 +6885,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -7286,6 +7520,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -7820,6 +8072,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -7879,6 +8149,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -8021,6 +8309,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -8337,6 +8643,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -8880,6 +9204,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -8995,6 +9337,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -9659,6 +10019,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -11626,6 +12004,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -12491,6 +12887,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -15236,6 +15650,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -16199,6 +16631,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -18180,6 +18630,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -18239,6 +18707,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -18820,6 +19306,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -19080,6 +19584,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -19207,6 +19729,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -20022,6 +20562,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -20184,6 +20742,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -20275,6 +20851,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -20644,6 +21238,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -20703,6 +21315,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -20971,6 +21601,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -21556,6 +22204,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -21883,6 +22549,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -22710,6 +23394,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -23342,6 +24044,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -23903,6 +24623,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -24547,6 +25285,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -25267,6 +26023,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -26241,6 +27015,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -27442,6 +28234,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -27501,6 +28311,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -28135,6 +28963,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,
@@ -29238,6 +30084,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -30150,6 +31014,24 @@
    },
    {
     "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
+   },
+   {
+    "conflict_flag": false,
     "explanation": "Statewide New Jersey rule in force (N.J.S.A. 2A:18-61.1 et seq.); no building condition in it excludes this address.",
     "result": "applies",
     "team_rule_id": "NJ-RENT-2A:18-61.1"
@@ -30533,6 +31415,24 @@
     "explanation": "N.J. Stat. § 46:8-18.1(a) covers this address: apartment building (NJ class 4C (apartments, 5+ units)).",
     "result": "applies",
     "team_rule_id": "NJ-FEE-46:8-18.1"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-14); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-EVICT-19:2-14"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since June 9, 2026 (Newark Code § 19:2-18.3); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3"
+   },
+   {
+    "conflict_flag": false,
+    "explanation": "Citywide Newark rule in force since October 8, 2024 (Newark Code § 19:2-22(a)); no building condition in it excludes this address.",
+    "result": "applies",
+    "team_rule_id": "NJ-NEWARK-RENT-19:2-22"
    },
    {
     "conflict_flag": false,

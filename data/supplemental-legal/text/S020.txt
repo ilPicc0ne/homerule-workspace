@@ -1,0 +1,65 @@
+SOURCE: https://newark.legistar.com (Legistar Web API matter 1591971)
+RETRIEVED: 2026-10-04 00:31 UTC
+File: 17-0273 | Type: Ordinance | Status: Adopted | Introduced: 2017-02-10 | Passed: 2017-03-07
+Name: Rent Control Amendment - maximum rent increase
+
+..Title
+AN ORDINANCE FURTHER AMENDING TITLE 19, CHAPTER 2, RENT CONTROL REGULATIONS, RENT CONTROL BOARD, OF THE REVISED GENERAL ORDINANCES OF THE CITY OF NEWARK, NEW JERSEY, 2000, AS AMENDED AND SUPPLEMENTED, BY INCORPORATING A NEW PROCEDURE FOR CALCULATING THE MAXIMUM RENT INCREASE AND REMOVING ALL APPEALS TO THE MUNICIPAL COUNCIL IN FAVOR OF APPEALS TO THE SUPERIOR COURT OF NEW JERSEY.
+Deferred 6PSF-d 030117
+
+..body
+
+      WHEREAS, the Municipal Council adopted Ordinance, 6PSF-d, May 20, 2014, which amended and supplemented Title 19, Chapter 2, Rent Control Regulations, Rent Control Board to include provisions relating to major new improvements and other amendments; and
+      
+      WHEREAS, the Municipal Council further adopted Resolution 7R9-h(AS) dated August 6, 2014, which clarified the intent of the amendments previously adopted, inclusive of utilizing the Consumer Price Index-Urban (CPI-U), as provided by the United States Department of Labor, Bureau of Labor Statistics, for the City of Newark, located within the New York-Northern New Jersey-Long Island, NY-NJ-CT-PA consolidated area; and
+
+	WHEREAS, the Municipal Council is desirous of amending certain provisions of the Revised General Ordinances of the City of Newark, New Jersey, 2000, more specifically, Title 19, Chapter 2, Rent Control Regulations, incorporating a new procedure for calculating the maximum rent increase; and
+
+      WHEREAS, the Municipal Council is desirous of amending the Revised General Ordinances of the City of Newark, New Jersey, 2000, more specifically, Title 19, to remove all appeals to the Municipal Council in favor of appeals to the Superior Court of New Jersey.
+      
+      NOW, THEREFORE, BE IT ORDAINED BY THE MUNICIPAL COUNCIL OF THE CITY OF NEWARK, NEW JERSEY, THAT: 
+      
+SECTION 1.  Title 19, Chapter 2, Rent Control Regulations, Rent Control Board, of the Revised General Ordinances of the City of Newark, New Jersey, 2000, are hereby amended and supplemented as follows:
+Editor's Note: Additions are shown as underlined and bold.  Deletions are strikethroughs.
+
+19:2-2. Definitions.
+
+***
+Substantial Rehabilitation shall mean that the actual housing space/unit undergoes a substantial rehabilitation above normal apartment readiness, i.e. more than routine requirements, and/or cosmetic work, painting, cleaning or items that would fall under normal property maintenance.
+
+***
+
+19:2-18.4. Substantially Rehabilitated Vacant Apartment Units.
+
+a. Maximum Rent Increase. Any landlord that rehabilitates a vacant apartment unit by spending a total amount equal to at least eight (8) months of actual monthly rent per unit will be entitled to a maximum of twenty percent (20%) increase in the actual monthly rent; or by spending a total amount equal to at least six (6) months of actual monthly rent per unit will be entitled to a maximum of fifteen (15%) increase in the actual monthly rent or spending a total amount equal to at least four (4) months of actual monthly rent per unit will be entitled to a maximum of ten percent (10%) increase in the actual monthly rent.
+Apartment units which become vacant and in which the landlord spends a total amount of money equal to or in excess of five thousand ($5.000.00) dollars multiplied by the number of rooms in the apartment for the purpose of rehabilitating the apartment unit may have their rent increased up to a maximum of twenty (20%) percent of the prior actual rent charged for each apartment.
+
+	b.	Application for Increase. The application for an increase shall be supported by an affidavit describing the amount expended on each room of the apartment and stating that such expenses are reasonable, necessary and complete for the purpose of rehabilitating the apartment unit.  Expenses described in this application shall not be used to support any other application before the Board.
+	c.	Notice of Application Posted. A notice of any application for a rent increase under this section shall be posted in a conspicuous place in the apartment building by the landlord on the date of the application.
+	d.	Objections Heard. The determination to grant such increase shall be made by the Administrator, unless an objection is filed by the prior tenant.  If an objection is duly filed by the prior tenant, the application shall be set down for a hearing before the Board.
+	e.	Calculation of Credit. In calculating the total amount spent on rehabilitation, credit may be given to the landlord for labor provided by him/her.  The amounts credited for labor may equal up to one hundred (100%) percent of the actual cost of materials for painting and plastering, and up to fifty (50%) percent of the cost of materials and equipment for all other types of rehabilitation work.
+	f.	e. Inspection; Abatement of Violations. An inspection by the Division of Inspections and Enforcement in the Department of Neighborhood and Recreational Services of the City of Newark shall be completed prior to granting an application.  Any code violations found to exist, including the absence and/or inadequacy of required smoke and fire alarm devices, shall be abated prior to granting the application.
+	g.	f. Number of Increases Limited. The landlord may be granted only one (1) increase under this section for the same apartment unit in any twelve (12) month period.
+	h.	g. Unlawful Entry; Penalty. Any landlord, who shall gain access to an apartment by forcibly evicting a tenant contrary to the provisions of N.J.S.A. 2A:18-61.1 et seq. for the purpose of vacating and rehabilitating the apartment shall be guilty of an unlawful entry and detainer, as defined in N.J.S.A. 2A:39-2, and may be subject to treble damages pursuant to N.J.S.A. 2A:39-8. 
+
+SECTION 2.  Title 19, Chapter 2, Rent Control Regulations, Rent Control Board, of the Revised General Ordinances of the City of Newark, New Jersey, 2000, are hereby amended and supplemented as follows:
+
+Editor's Note: Additions are shown as underlined and bold.  Deletions are strikethroughs.
+
+19:2-5.4.      Appeals.
+Any party dissatisfied with the ruling of the Rent Control Board on a Tax Surcharge Application may appeal the matter to the Municipal Council. (Ord. 6 PSF-D, 5-20-14) the matter to the Superior Court of New Jersey Essex County Vicinage within forty-five (45) days.  
+* *  * 
+
+19:2-7.4.      Appeals.
+Either landlord or tenant may appeal the findings or order of the Rent Control Board regarding a major new improvement application to the Municipal Council by filing a notice of appeal with the City Clerk. The appeal shall be based upon the record of the Rent Control Board  below, and no additional testimony shall be taken. (Ord. 6 PSF-D, 5-20-14) to the Superior Court of New Jersey Essex County Vicinage within forty-five (45) days.  
+
+* *  * 
+
+19:2-15.     APPEAL JUDICIAL REVIEW.
+A landlord or tenant aggrieved by any action, regulation or determination of the Rent Control Board may appeal in a court of appropriate jurisdiction; or following the appeal to Municipal Council regarding a major new improvement or a tax surcharge application. Either landlord or tenant may appeal the findings or order of the Rent Control Board regarding a major new improvement application to the Municipal Council by filing a notice of appeal with the City Clerk. The appeal shall be based upon the record of the Rent Control Board below, and no additional testimony shall be taken to the Superior Court of New Jersey Essex County Vicinage within forty-five (45) days. 
+ (R.O. 1966 C.S. § 15:9B-14; Ord. 6 PSF-D, 5-20-14)
+
+
+STATEMENT
+
+This ordinance further amends Title 19, Chapter 2, Rent Control Regulations. Rent Control Board, by incorporating a new procedure for calculating the maximum rent increase and removes all appeals to the Municipal Council in favor of appeals to the Superior Court of New Jersey.
