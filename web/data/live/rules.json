@@ -477,7 +477,7 @@
   "level": "state",
   "kind": "rule",
   "category": "just_cause_eviction",
-  "title": "Just cause required to terminate tenancy",
+  "title": "Just cause required for covered tenancies",
   "status": "in_force",
   "effective_date": "2024-04-01",
   "status_history": [
@@ -495,22 +495,21 @@
   "source_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1946.2",
   "source_kind": "official",
   "retrieved_at": "2026-10-01 22:35 UTC",
-  "quoted_span": "after a tenant has continuously and lawfully occupied a residential real property for 12 months, the owner of the residential real property shall not terminate a tenancy without just cause, which shall be stated in the written notice to terminate tenancy.",
-  "summary": "After the applicable continuous-occupancy period, an owner may not terminate a tenancy without just cause, and must state the cause in the written termination notice. Just cause includes the listed at-fault and no-fault grounds.",
+  "quoted_span": "after a tenant has continuously and lawfully occupied a residential real property for 12 months, the owner of the residential real property shall not terminate a tenancy without just cause",
+  "summary": "After a tenant has continuously and lawfully occupied a covered residential property for 12 months, the owner may not terminate the tenancy without just cause. If additional adult tenants are added before an existing tenant has occupied for 24 months, the specified 12- or 24-month occupancy tests apply.",
   "key_value": null,
-  "coverage_in_words": "Subject to the building and local-rule exclusions; the occupancy-duration threshold and qualifying cause are tenant/tenancy conditions.",
+  "coverage_in_words": "Subject to the statutory exclusions and qualifying local-ordinance rules.",
   "coverage_facts": [
    "owner_occupied",
-   "owner_type",
    "subsidised",
    "units",
    "use_class"
   ],
-  "exemptions": "Includes statutory exemptions for specified housing and circumstances, including qualifying local just-cause ordinances. Transient occupancy and owner-shared bathroom or kitchen facilities are circumstances not expressible as building facts.",
+  "exemptions": "Specified institutional and shared-facility housing; certain owner-occupied properties; qualifying newer housing; qualifying separately alienable property; restricted or subsidised affordable housing; mobilehome homeowners; and property covered by qualifying local just-cause ordinances.",
   "interaction": {
    "type": "yields_to_local",
    "note": "Steps back where a stricter local rule covers the building.",
-   "quote": "This section does not apply to the following residential real property:"
+   "quote": "Residential real property subject to a local ordinance requiring just cause for termination of a residential tenancy adopted on or before September 1, 2019, in which case the local ordinance shall apply."
   },
   "what_next": {
    "label": "Read the law at its official source",
@@ -519,8 +518,8 @@
   "audit": {
    "model_extracted": {
     "category": "just_cause_eviction",
-    "requirement": "After the applicable continuous-occupancy period, an owner may not terminate a tenancy without just cause, and must state the cause in the written termination notice. Just cause includes the listed at-fault and no-fault grounds.",
-    "key_value": null,
+    "requirement": "After a tenant has continuously and lawfully occupied a covered residential property for 12 months, the owner may not terminate the tenancy without just cause. If additional adult tenants are added before an existing tenant has occupied for 24 months, the specified 12- or 24-month occupancy tests apply.",
+    "key_value": "12 months; if additional adult tenants are added, either all tenants have occupied for 12 months or more, or at least one tenant has occupied for 24 months or more",
     "effect": "protection_or_duty",
     "quote_found_in_source": true,
     "confidence": 0.9
@@ -528,7 +527,7 @@
    "code_decided": [
     "Jurisdiction: listed only for addresses whose state or legal city is CA.",
     "Dates: in force from 2024-04-01 until 2030-01-01; before that, not yet in force.",
-    "Coverage: tested against whether the building is subsidised, what the building is used for, whether the owner lives in the building, the number of units, who owns the building (a person or a company); a missing fact gives \"unknown\", never a guess.",
+    "Coverage: tested against what the building is used for, the number of units, whether the building is subsidised, whether the owner lives in the building; a missing fact gives \"unknown\", never a guess.",
     "Precedence: replaced where a stricter local rule covers the building; unknown when the local rule's coverage is unknown."
    ]
   }
@@ -591,8 +590,8 @@
  {
   "rule_id": "CA-LOS-ANGELES-EVICT-165.03",
   "jurisdiction_id": "CA-LOS-ANGELES",
-  "schema_name": "Los Angeles, CA",
-  "level": "city",
+  "schema_name": null,
+  "level": "state",
   "kind": "rule",
   "category": "just_cause_eviction",
   "title": "Termination of tenancy requires just cause",
@@ -613,12 +612,12 @@
   "source_url": "https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco",
   "source_kind": "official",
   "retrieved_at": "2026-10-01 22:36 UTC",
-  "quoted_span": "It prohibits terminations of tenancies without just cause",
-  "summary": "A landlord may not terminate a covered tenancy without just cause; the JCO applies after the tenant has lived in the unit for at least six months or the original lease has expired, whichever comes first.",
+  "quoted_span": null,
+  "summary": "The text of this rule has not been summarised yet.",
   "key_value": null,
-  "coverage_in_words": "Most residential properties in the City of Los Angeles not regulated by the RSO; the JCO may cover newer buildings and single-family dwellings.",
+  "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [],
-  "exemptions": "Specific exceptions include transient hotels, licensed care facilities, certain cooperatives and some government-owned properties.",
+  "exemptions": null,
   "interaction": {
    "type": "none"
   },
@@ -629,10 +628,10 @@
   "audit": {
    "model_extracted": {
     "category": "just_cause_eviction",
-    "requirement": "A landlord may not terminate a covered tenancy without just cause; the JCO applies after the tenant has lived in the unit for at least six months or the original lease has expired, whichever comes first.",
+    "requirement": null,
     "key_value": null,
-    "effect": "protection_or_duty",
-    "quote_found_in_source": true,
+    "effect": null,
+    "quote_found_in_source": false,
     "confidence": 0.9
    },
    "code_decided": [
@@ -1572,8 +1571,8 @@
  {
   "rule_id": "MA-CAMBRIDGE-EVICT-8.71",
   "jurisdiction_id": "MA-CAMBRIDGE",
-  "schema_name": "Cambridge, MA",
-  "level": "city",
+  "schema_name": null,
+  "level": "state",
   "kind": "rule",
   "category": "just_cause_eviction",
   "title": "Offer the tenants’ rights and resources Guide when taking legal steps to terminate a tenancy",
@@ -1590,16 +1589,12 @@
   "source_url": "https://www.cambridgema.gov/tenantrights",
   "source_kind": "official",
   "retrieved_at": "2026-10-01 22:36 UTC",
-  "quoted_span": "The Ordinance also requires that a landlord provide the Guide to tenants when legal steps to terminate a tenancy are taken (ex. Notice to Quit or Summary Process).",
-  "summary": "Owners, landlords, and management companies must offer the Guide to tenants when legal steps to terminate a tenancy are taken.",
+  "quoted_span": null,
+  "summary": "The text of this rule has not been summarised yet.",
   "key_value": null,
-  "coverage_in_words": "Applies to residential rental agreements in Cambridge, including a single residential dwelling unit.",
-  "coverage_facts": [
-   "subsidised",
-   "units",
-   "use_class"
-  ],
-  "exemptions": "Rental units in specified health or nonprofit treatment facilities, and short-term rental units.",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [],
+  "exemptions": null,
   "interaction": {
    "type": "none"
   },
@@ -1610,16 +1605,16 @@
   "audit": {
    "model_extracted": {
     "category": "just_cause_eviction",
-    "requirement": "Owners, landlords, and management companies must offer the Guide to tenants when legal steps to terminate a tenancy are taken.",
+    "requirement": null,
     "key_value": null,
-    "effect": "protection_or_duty",
-    "quote_found_in_source": true,
+    "effect": null,
+    "quote_found_in_source": false,
     "confidence": 0.9
    },
    "code_decided": [
     "Jurisdiction: listed only for addresses whose state or legal city is MA-CAMBRIDGE.",
     "Dates: no effective date in the text; treated as in force.",
-    "Coverage: tested against what the building is used for, the number of units, whether the building is subsidised; a missing fact gives \"unknown\", never a guess."
+    "Coverage: no building condition the data can test; conditions in words stay with the text."
    ]
   }
  },
@@ -2126,11 +2121,14 @@
   "source_kind": "official",
   "retrieved_at": "2026-10-01 22:37 UTC",
   "quoted_span": "No residential landlord may evict or fail to renew a \nlease, whether it is a written or an oral lease without good cause. The landlord must be able to \nprove in court that he has grounds for an eviction.",
-  "summary": "A residential landlord may not evict a tenant or fail to renew a lease without good cause, and must be able to prove the grounds in court.",
+  "summary": "A residential landlord may not evict a tenant or fail to renew a written or oral lease without good cause, which the landlord must prove in court.",
   "key_value": null,
-  "coverage_in_words": "Applies to most residential rental properties; stated exceptions are recorded as tenant conditions.",
-  "coverage_facts": [],
-  "exemptions": "Possible exceptions include certain owner-occupied premises, transient or seasonal guests, and a specified family trust unit.",
+  "coverage_in_words": "Conditions not extracted yet.",
+  "coverage_facts": [
+   "owner_occupied",
+   "units"
+  ],
+  "exemptions": "May not apply to two- or three-unit owner-occupied premises with two or fewer rental units.",
   "interaction": {
    "type": "none"
   },
@@ -2141,7 +2139,7 @@
   "audit": {
    "model_extracted": {
     "category": "just_cause_eviction",
-    "requirement": "A residential landlord may not evict a tenant or fail to renew a lease without good cause, and must be able to prove the grounds in court.",
+    "requirement": "A residential landlord may not evict a tenant or fail to renew a written or oral lease without good cause, which the landlord must prove in court.",
     "key_value": null,
     "effect": "protection_or_duty",
     "quote_found_in_source": true,
@@ -2150,7 +2148,7 @@
    "code_decided": [
     "Jurisdiction: listed only for addresses whose state or legal city is NJ.",
     "Dates: no effective date in the text; treated as in force.",
-    "Coverage: no building condition the data can test; conditions in words stay with the text."
+    "Coverage: tested against whether the owner lives in the building, the number of units; a missing fact gives \"unknown\", never a guess."
    ]
   }
  },
@@ -2268,8 +2266,8 @@
  {
   "rule_id": "NJ-HOBOKEN-RENT-10:54",
   "jurisdiction_id": "NJ-HOBOKEN",
-  "schema_name": "Hoboken, NJ",
-  "level": "city",
+  "schema_name": null,
+  "level": "state",
   "kind": "rule",
   "category": "rent_increase_limits",
   "title": "Tenant request for legal rent calculation",
@@ -2286,8 +2284,8 @@
   "source_url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf",
   "source_kind": "official",
   "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
-  "quoted_span": "A tenant may request a legal rent calculation where the\ntenant's rent is believed to be in excess of the legal rent as established\npursuant to the ordinance.",
-  "summary": "A tenant may request a legal rent calculation when the tenant believes the rent exceeds the legal rent.",
+  "quoted_span": null,
+  "summary": "The text of this rule has not been summarised yet.",
   "key_value": "Right to request a legal rent calculation",
   "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [],
@@ -2302,10 +2300,10 @@
   "audit": {
    "model_extracted": {
     "category": "rent_increase_limits",
-    "requirement": "A tenant may request a legal rent calculation when the tenant believes the rent exceeds the legal rent.",
-    "key_value": "Right to request a legal rent calculation",
-    "effect": "protection_or_duty",
-    "quote_found_in_source": true,
+    "requirement": null,
+    "key_value": null,
+    "effect": null,
+    "quote_found_in_source": false,
     "confidence": 0.9
    },
    "code_decided": [
@@ -2368,8 +2366,8 @@
  {
   "rule_id": "NJ-HOBOKEN-RENT-18:66",
   "jurisdiction_id": "NJ-HOBOKEN",
-  "schema_name": "Hoboken, NJ",
-  "level": "city",
+  "schema_name": null,
+  "level": "state",
   "kind": "rule",
   "category": "rent_increase_limits",
   "title": "Timely vacancy-decontrol certificate",
@@ -2390,10 +2388,10 @@
   "source_url": "https://cdn.prod.website-files.com/58407e2ebca0e34c30a2d39c/6aa82c0b0e7d549e67d280fc_Regulations%20to%20Chapter%20155-%20Revision%2008.2026.pdf",
   "source_kind": "official",
   "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
-  "quoted_span": "A Landlord of any dwelling subject to the provisions of this chapter may file a Certificate\npursuant to Section 155-33 for any year where the landlord legally owned the dwelling, provided\nthe Certificate is filed no later than the latter of either one (1) year from when the vacancy\noccurred or one (1) year from when the apartment was first rented to a replacement Tenant after\na vacancy",
-  "summary": "A landlord may file a decontrol certificate for a year it legally owned the dwelling, no later than one year after the later of the vacancy or first rental to a replacement tenant; the dwelling must be registered, and filing must precede a legal-rent-calculation request for the certificate to be used in a legal rent determination.",
+  "quoted_span": null,
+  "summary": "The text of this rule has not been summarised yet.",
   "key_value": "No later than one year after the later of vacancy or first rental to a replacement tenant",
-  "coverage_in_words": "The dwelling must be registered when the certificate is filed; certificate use in a legal rent determination also requires filing before a request for a legal rent calculation.",
+  "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [],
   "exemptions": null,
   "interaction": {
@@ -2406,10 +2404,10 @@
   "audit": {
    "model_extracted": {
     "category": "rent_increase_limits",
-    "requirement": "A landlord may file a decontrol certificate for a year it legally owned the dwelling, no later than one year after the later of the vacancy or first rental to a replacement tenant; the dwelling must be registered, and filing must precede a legal-rent-calculation request for the certificate to be used in a legal rent determination.",
-    "key_value": "No later than one year after the later of vacancy or first rental to a replacement tenant",
-    "effect": "protection_or_duty",
-    "quote_found_in_source": true,
+    "requirement": null,
+    "key_value": null,
+    "effect": null,
+    "quote_found_in_source": false,
     "confidence": 0.9
    },
    "code_decided": [
@@ -2586,8 +2584,8 @@
  {
   "rule_id": "NJ-JERSEY-CITY-RENT-JerseyCityLa",
   "jurisdiction_id": "NJ-JERSEY-CITY",
-  "schema_name": "Jersey City, NJ",
-  "level": "city",
+  "schema_name": null,
+  "level": "state",
   "kind": "rule",
   "category": "rent_increase_limits",
   "title": "Right to file an illegal rent petition",
@@ -2604,8 +2602,8 @@
   "source_url": "https://www.jerseycitynj.gov/landlordtenant",
   "source_kind": "official",
   "retrieved_at": "2026-10-01 22:36 UTC",
-  "quoted_span": "A tenant claiming the rent they are being charged is illegal may file an Illegal Rent Petition:",
-  "summary": "A tenant who claims they are being charged illegal rent may file an Illegal Rent Petition.",
+  "quoted_span": null,
+  "summary": "The text of this rule has not been summarised yet.",
   "key_value": null,
   "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [],
@@ -2620,10 +2618,10 @@
   "audit": {
    "model_extracted": {
     "category": "rent_increase_limits",
-    "requirement": "A tenant who claims they are being charged illegal rent may file an Illegal Rent Petition.",
+    "requirement": null,
     "key_value": null,
-    "effect": "protection_or_duty",
-    "quote_found_in_source": true,
+    "effect": null,
+    "quote_found_in_source": false,
     "confidence": 0.5
    },
    "code_decided": [
@@ -2640,7 +2638,7 @@
   "level": "city",
   "kind": "rule",
   "category": "just_cause_eviction",
-  "title": "Prohibit eviction actions in reprisal for exercising chapter rights",
+  "title": "Prohibit retaliatory possession actions",
   "status": "in_force",
   "effective_date": "2024-10-08",
   "status_history": [
@@ -2659,7 +2657,7 @@
   "source_kind": "official",
   "retrieved_at": "2026-10-04T00:30:06.128858+00:00",
   "quoted_span": "No landlord shall bring any action to recover possession of a dwelling unit as a reprisal for the tenant's efforts to secure or enforce any right under this chapter.",
-  "summary": "A landlord may not bring an action to recover possession of a dwelling unit in reprisal for a tenant's efforts to secure or enforce rights under the chapter.",
+  "summary": "A landlord may not bring an action to recover possession of a dwelling unit in reprisal for the tenant's efforts to secure or enforce a right under the chapter.",
   "key_value": null,
   "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [],
@@ -2674,7 +2672,7 @@
   "audit": {
    "model_extracted": {
     "category": "just_cause_eviction",
-    "requirement": "A landlord may not bring an action to recover possession of a dwelling unit in reprisal for a tenant's efforts to secure or enforce rights under the chapter.",
+    "requirement": "A landlord may not bring an action to recover possession of a dwelling unit in reprisal for the tenant's efforts to secure or enforce a right under the chapter.",
     "key_value": null,
     "effect": "protection_or_duty",
     "quote_found_in_source": true,
@@ -2745,7 +2743,7 @@
   "rule_id": "NJ-NEWARK-EVICT-19:2-18.4",
   "jurisdiction_id": "NJ-NEWARK",
   "schema_name": null,
-  "level": "city",
+  "level": "state",
   "kind": "rule",
   "category": "just_cause_eviction",
   "title": "Newark, N.J., Code § 19:2-18.4(h)",
@@ -2767,7 +2765,7 @@
   "source_kind": "official",
   "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
   "quoted_span": null,
-  "summary": "A landlord must not gain access to an apartment by forcibly evicting a tenant contrary to New Jersey's eviction statute for the purpose of vacating and rehabilitating the apartment.",
+  "summary": "The text of this rule has not been summarised yet.",
   "key_value": null,
   "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [],
@@ -2782,10 +2780,10 @@
   "audit": {
    "model_extracted": {
     "category": "just_cause_eviction",
-    "requirement": "A landlord must not gain access to an apartment by forcibly evicting a tenant contrary to New Jersey's eviction statute for the purpose of vacating and rehabilitating the apartment.",
+    "requirement": null,
     "key_value": null,
-    "effect": "protection_or_duty",
-    "quote_found_in_source": true,
+    "effect": null,
+    "quote_found_in_source": false,
     "confidence": 0
    },
    "code_decided": [
@@ -2802,7 +2800,7 @@
   "level": "city",
   "kind": "rule",
   "category": "rent_increase_limits",
-  "title": "Qualifying substantially rehabilitated dwellings may have unrestricted initial rent",
+  "title": "Allow unrestricted initial rent after qualifying substantial rehabilitation",
   "status": "in_force",
   "effective_date": "2026-06-09",
   "status_history": [
@@ -2820,12 +2818,12 @@
   "source_url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)",
   "source_kind": "official",
   "retrieved_at": "2026-10-04T00:30:06.128858+00:00",
-  "quoted_span": "Substantially reconstructed or rehabilitated dwellings shall not be restricted in initial rent charged, if the Rent Control Board has made the following determinations: \na. The Board shall determine that the cost of reconstruction or rehabilitation during a twelve-month period exceeds 50% of the fair market value of the property.",
-  "summary": "Substantially reconstructed or rehabilitated dwellings are not restricted in the initial rent charged if the Rent Control Board makes the required determinations, including that rehabilitation costs during a twelve-month period exceed 50% of fair market value.",
+  "quoted_span": "Substantially reconstructed or rehabilitated dwellings shall not be restricted in initial rent charged, if the Rent Control Board has made the following determinations:",
+  "summary": "A substantially reconstructed or rehabilitated dwelling is not restricted in its initial rent only if the Rent Control Board makes the required determinations, including qualifying costs exceeding 50% of fair market value during a 12-month period and required appraisal and occupancy-certificate findings.",
   "key_value": "not restricted in initial rent charged",
-  "coverage_in_words": "The unrestricted initial rent applies only if the Rent Control Board makes the determinations required by § 19:2-18.3.",
+  "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [],
-  "exemptions": null,
+  "exemptions": "Only dwellings for which the Rent Control Board makes the specified determinations qualify.",
   "interaction": {
    "type": "none"
   },
@@ -2836,8 +2834,8 @@
   "audit": {
    "model_extracted": {
     "category": "rent_increase_limits",
-    "requirement": "Substantially reconstructed or rehabilitated dwellings are not restricted in the initial rent charged if the Rent Control Board makes the required determinations, including that rehabilitation costs during a twelve-month period exceed 50% of fair market value.",
-    "key_value": "not restricted in initial rent charged",
+    "requirement": "A substantially reconstructed or rehabilitated dwelling is not restricted in its initial rent only if the Rent Control Board makes the required determinations, including qualifying costs exceeding 50% of fair market value during a 12-month period and required appraisal and occupancy-certificate findings.",
+    "key_value": "Unrestricted initial rent if statutory determinations are met",
     "effect": "protection_or_duty",
     "quote_found_in_source": true,
     "confidence": 0.9
@@ -2875,7 +2873,7 @@
   "source_kind": "official",
   "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
   "quoted_span": null,
-  "summary": "For a vacant apartment unit that is rehabilitated, the permitted maximum increase depends on the rehabilitation expenditure: at least eight months of actual monthly rent per unit permits up to 20%; at least six months permits up to 15%; at least four months permits up to 10%. Spending at least $5,000 multiplied by the number of rooms permits an increase of up to 20% of the prior actual rent.",
+  "summary": "A landlord rehabilitating a vacant apartment unit may increase its rent by no more than the applicable amount based on rehabilitation spending: 10%, 15%, or 20% of actual monthly rent under the monthly-rent spending thresholds, or up to 20% of prior actual rent under the per-room spending threshold.",
   "key_value": "Up to 20%",
   "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [],
@@ -2890,8 +2888,8 @@
   "audit": {
    "model_extracted": {
     "category": "rent_increase_limits",
-    "requirement": "For a vacant apartment unit that is rehabilitated, the permitted maximum increase depends on the rehabilitation expenditure: at least eight months of actual monthly rent per unit permits up to 20%; at least six months permits up to 15%; at least four months permits up to 10%. Spending at least $5,000 multiplied by the number of rooms permits an increase of up to 20% of the prior actual rent.",
-    "key_value": "Up to 20%",
+    "requirement": "A landlord rehabilitating a vacant apartment unit may increase its rent by no more than the applicable amount based on rehabilitation spending: 10%, 15%, or 20% of actual monthly rent under the monthly-rent spending thresholds, or up to 20% of prior actual rent under the per-room spending threshold.",
+    "key_value": "20% maximum increase",
     "effect": "protection_or_duty",
     "quote_found_in_source": true,
     "confidence": 0
@@ -2929,13 +2927,11 @@
   "source_kind": "official",
   "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
   "quoted_span": null,
-  "summary": "For the specified rehabilitated units receiving Section 8 subsidies or federal housing vouchers, rent may be raised but must not exceed HUD-established fair market rents while the unit remains in the specified program.",
+  "summary": "Rent for qualifying rehabilitated units receiving Section 8 subsidies or federal housing vouchers may be increased, but must not exceed HUD fair market rents.",
   "key_value": "Fair market rents as established by the United States Department of Housing and Urban Development",
   "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [
-   "subsidised",
-   "units",
-   "use_class"
+   "subsidised"
   ],
   "exemptions": null,
   "interaction": {
@@ -2948,8 +2944,8 @@
   "audit": {
    "model_extracted": {
     "category": "rent_increase_limits",
-    "requirement": "For the specified rehabilitated units receiving Section 8 subsidies or federal housing vouchers, rent may be raised but must not exceed HUD-established fair market rents while the unit remains in the specified program.",
-    "key_value": "Fair market rents as established by the United States Department of Housing and Urban Development",
+    "requirement": "Rent for qualifying rehabilitated units receiving Section 8 subsidies or federal housing vouchers may be increased, but must not exceed HUD fair market rents.",
+    "key_value": "HUD fair market rents",
     "effect": "protection_or_duty",
     "quote_found_in_source": true,
     "confidence": 0
@@ -2957,14 +2953,14 @@
    "code_decided": [
     "Jurisdiction: listed only for addresses whose state or legal city is NJ-NEWARK.",
     "Dates: in force from 2023-08-22 until 2024-10-08 (New Jersey municipal default: 20 days after final passage 2023-08-02 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later); before that, not yet in force.",
-    "Coverage: tested against whether the building is subsidised, what the building is used for, the number of units; a missing fact gives \"unknown\", never a guess."
+    "Coverage: tested against whether the building is subsidised; a missing fact gives \"unknown\", never a guess."
    ]
   }
  },
  {
   "rule_id": "NJ-NEWARK-RENT-19:2-22",
   "jurisdiction_id": "NJ-NEWARK",
-  "schema_name": "Newark, NJ",
+  "schema_name": null,
   "level": "city",
   "kind": "rule",
   "category": "rent_increase_limits",
@@ -2986,8 +2982,8 @@
   "source_url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)",
   "source_kind": "official",
   "retrieved_at": "2026-10-04T00:30:06.128858+00:00",
-  "quoted_span": "the Rent Control Board shall not grant increases exceeding twenty-five (25%) percent in any one (1) year for any tenant.",
-  "summary": "The Rent Control Board must not grant an increase exceeding 25% in any one year for any tenant.",
+  "quoted_span": null,
+  "summary": "The Board may not grant a rent increase exceeding 25% for any tenant in a year. For that limit, increases under §§ 19:2-3, 19:2-7, and 19:2-8 during the preceding 12 months must be added together.",
   "key_value": "25% in any one year",
   "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [],
@@ -3002,8 +2998,8 @@
   "audit": {
    "model_extracted": {
     "category": "rent_increase_limits",
-    "requirement": "The Rent Control Board must not grant an increase exceeding 25% in any one year for any tenant.",
-    "key_value": "25% in any one year",
+    "requirement": "The Board may not grant a rent increase exceeding 25% for any tenant in a year. For that limit, increases under §§ 19:2-3, 19:2-7, and 19:2-8 during the preceding 12 months must be added together.",
+    "key_value": "25% in any one-year period",
     "effect": "protection_or_duty",
     "quote_found_in_source": true,
     "confidence": 0.9
@@ -3019,7 +3015,7 @@
   "rule_id": "NJ-NEWARK-RENT-19:2-22-2",
   "jurisdiction_id": "NJ-NEWARK",
   "schema_name": null,
-  "level": "city",
+  "level": "state",
   "kind": "rule",
   "category": "rent_increase_limits",
   "title": "Newark, N.J., Rev. Gen. Ordinances § 19:2-22(a)",
@@ -3041,7 +3037,7 @@
   "source_kind": "official",
   "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
   "quoted_span": null,
-  "summary": "The Board may not grant rent increases exceeding 25% in any one year for any tenant.",
+  "summary": "The text of this rule has not been summarised yet.",
   "key_value": "25% in any one year",
   "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [],
@@ -3056,10 +3052,10 @@
   "audit": {
    "model_extracted": {
     "category": "rent_increase_limits",
-    "requirement": "The Board may not grant rent increases exceeding 25% in any one year for any tenant.",
-    "key_value": "25% in any one year",
-    "effect": "protection_or_duty",
-    "quote_found_in_source": true,
+    "requirement": null,
+    "key_value": null,
+    "effect": null,
+    "quote_found_in_source": false,
     "confidence": 0
    },
    "code_decided": [
@@ -3183,7 +3179,7 @@
   "level": "state",
   "kind": "rule",
   "category": "screening_restrictions",
-  "title": "No discrimination in housing based on protected characteristics",
+  "title": "No discrimination based on lawful income or payment source",
   "status": "in_force",
   "effective_date": null,
   "status_history": [
@@ -3197,15 +3193,15 @@
   "source_url": "https://www.nj.gov/oag/dcr/downloads/kyrhousing02.pdf",
   "source_kind": "official",
   "retrieved_at": "2026-10-01 22:37 UTC",
-  "quoted_span": "The NJ Law Against Discrimination (LAD) prohibits\ndiscrimination on the bases of race, creed (religion),\ncolor, national origin, sex, gender identity or expression,\nmarital status, civil union status, ancestry, actual or\nperceived physical or mental disability, nationality,\naffectional or sexual orientation, familial status, and\ndomestic partner status.",
-  "summary": "A landlord may not discriminate in housing on the bases of race, creed (religion), color, national origin, sex, gender identity or expression, marital status, civil union status, ancestry, actual or perceived physical or mental disability, nationality, affectional or sexual orientation, familial status, or domestic partner status.",
+  "quoted_span": "The LAD also prohibits housing discrimination  based\non the source of lawful income or source of lawful rent\nor mortgage payment a tenant or purchaser uses.",
+  "summary": "A landlord may not discriminate in housing based on the lawful income or lawful rent or mortgage payment source used by a tenant or purchaser, including by denying a lawful Section 8 voucher recipient the right to rent solely because of that income source.",
   "key_value": null,
   "coverage_in_words": "Conditions not extracted yet.",
   "coverage_facts": [
    "owner_occupied",
    "use_class"
   ],
-  "exemptions": "The brochure states exceptions for certain owner-occupied two-family and one-family rentals; familial-status discrimination is excepted for housing for older persons.",
+  "exemptions": "The brochure states exceptions for certain owner-occupied two-family and one-family rentals.",
   "interaction": {
    "type": "none"
   },
@@ -3216,7 +3212,7 @@
   "audit": {
    "model_extracted": {
     "category": "screening_restrictions",
-    "requirement": "A landlord may not discriminate in housing on the bases of race, creed (religion), color, national origin, sex, gender identity or expression, marital status, civil union status, ancestry, actual or perceived physical or mental disability, nationality, affectional or sexual orientation, familial status, or domestic partner status.",
+    "requirement": "A landlord may not discriminate in housing based on the lawful income or lawful rent or mortgage payment source used by a tenant or purchaser, including by denying a lawful Section 8 voucher recipient the right to rent solely because of that income source.",
     "key_value": null,
     "effect": "protection_or_duty",
     "quote_found_in_source": true,

@@ -66,8 +66,8 @@
   "doc_id": "D023",
   "offset": 1278,
   "before": "… by Stats. 1988, Ch. 160, Sec. 14. )\nPART 4. OBLIGATIONS ARISING FROM PARTICULAR TRANSACTIONS [1738 - 3273.91]\n( Part 4 enacted 1872. )\nTITLE 5. HIRING [1925 - 1997.270]\n( Title 5 enacted 1872. )\nCHAPTER 2. Hiring of Real Property [1940 - 1954.071]\n( Chapter 2 enacted 1872. )\n1946.2.\n(a) Notwithstanding any other law, ",
-  "quote": "after a tenant has continuously and lawfully occupied a residential real property for 12 months, the owner of the residential real property shall not terminate a tenancy without just cause, which shall be stated in the written notice to terminate tenancy.",
-  "after": " If any additional adult tenants are added to the lease before an existing tenant has continuously and lawfully occupied the residential real property for 24 months, then this subdivision shall only apply if either of the following are satisfied:\n(1) All of the tenants have continuously and lawfully occupied the…"
+  "quote": "after a tenant has continuously and lawfully occupied a residential real property for 12 months, the owner of the residential real property shall not terminate a tenancy without just cause",
+  "after": ", which shall be stated in the written notice to terminate tenancy. If any additional adult tenants are added to the lease before an existing tenant has continuously and lawfully occupied the residential real property for 24 months, then this subdivision shall only apply if either of the following are satisfied:\n(1)…"
  },
  "CA-FEE-1950.6": {
   "doc_id": "D026",
@@ -75,13 +75,6 @@
   "before": "… or their agent may include, but is not limited to, personal reference checks and consumer credit reports produced by consumer credit reporting agencies as defined in Section 1785.3. A landlord or their agent may, but is not required to, accept and rely upon a consumer credit report presented by an applicant.\n(b) ",
   "quote": "The amount of the application screening fee shall not be greater than the actual\nout-of-pocket costs of gathering information concerning the applicant, including, but not limited to, the cost of using a tenant screening service or a consumer credit reporting service, and the reasonable value of time spent by the landlord or their agent in obtaining information on the applicant. In no case shall the amount of the application screening fee charged by the landlord or their agent be greater than thirty dollars ($30) per applicant.",
   "after": " The thirty dollar ($30) application screening fee may be adjusted annually by the landlord or their agent commensurate with an increase in the Consumer Price Index, beginning on January 1, 1998.\n(c) (1) A landlord or their agent shall not charge an applicant an application screening fee when they know or should have…"
- },
- "CA-LOS-ANGELES-EVICT-165.03": {
-  "doc_id": "D040",
-  "offset": 570,
-  "before": "…\nJust Cause For Eviction Ordinance (JCO)\nBack\nPrint\nSeptember 10th, 2026\n|\nClick\nhere\nfor FAQs and information about the JCO/Just Cause Enforcement fee exemptions\nJust Cause For Eviction Ordinance (JCO)\nIf you own rental property in the City of Los Angeles, it may be subject to the\nJust Cause Ordinance\n(JCO).  ",
-  "quote": "It prohibits terminations of tenancies without just cause",
-  "after": " and requires relocation assistance for no-fault evictions.\nRental Units Covered Under JCO\nThe JCO covers most residential properties in the City of Los Angeles that are not regulated by the City’s Rent Stabilization Ordinance (RSO).\nIn order to apply to a tenancy, it requires that the tenant either has lived in the…"
  },
  "CA-LOS-ANGELES-RENT-151.06": {
   "doc_id": "D041",
@@ -202,13 +195,6 @@
   "quote": "In the City of Boston, it’s illegal to discriminate when renting, buying, selling, or securing financing for any housing.",
   "after": "\nYou can’t discriminate someone based on their:\nRace\nColor\nReligion\nDisability\nNational Origin\nAncestry\nSex\nGender Identity\nGender Expression\nAge\nSexual Orientation\nMarital Status\nRental Assistance\n*\nFamily Status\n**\nMilitary Status\n*\nFor example renters using Section 8 voucher\n**\nFor example, a landlord can’t…"
  },
- "MA-CAMBRIDGE-EVICT-8.71": {
-  "doc_id": "D031",
-  "offset": 1545,
-  "before": "… Questions\nWhat is the timing of when I must provide the information?\nIt is required to provide this Guide at the inception and termination of tenancies. For new tenancies, the Guide must be provided when a tenant signs a lease or enters into a tenancy agreement for the first time or tenders the first month’s rent. ",
-  "quote": "The Ordinance also requires that a landlord provide the Guide to tenants when legal steps to terminate a tenancy are taken (ex. Notice to Quit or Summary Process).",
-  "after": "\nIf I am renewing a lease with an existing tenant do I need to do anything?\nIt is good practice to provide the this Guide during renewals, but you are not required to offer materials at each renewal.\nDo I need to supply the informational material to a tenant at will?\nYes, all tenants and lawful occupants must be…"
- },
  "MA-CAMBRIDGE-SCREEN-14.04": {
   "doc_id": "D029",
   "offset": 6660,
@@ -293,20 +279,6 @@
   "quote": "they can no longer use software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental prices, lease terms, or occupancy levels among competing landlords.",
   "after": "\n“Every Hoboken resident deserves access to a fair and competitive housing market, free from manipulation by secret algorithms or corporate collusion,” said Mayor Bhalla. “This new law sends a clear message: we will not tolerate artificial rent inflation that puts profit over people. By protecting transparency and…"
  },
- "NJ-HOBOKEN-RENT-10:54": {
-  "doc_id": "S012",
-  "offset": 2641,
-  "before": "… 981, and August 23, 1984 are hereby rescinded and\n     repealed. In their place and stead the Council of the Mayor and Council of the City of Hoboken,\n     hereby adopts the following:\n\n\f\nRegulation 10:54(A)\n\n01 -\n\n02 -\n\nAdopted:\n\nThe Rent Board Administrator shall have the jurisdiction to calculate\nlegal rents, ",
-  "quote": "A tenant may request a legal rent calculation where the\ntenant's rent is believed to be in excess of the legal rent as established\npursuant to the ordinance.",
-  "after": " Section 18:56(B). The tenant shall provide\nthe Administrator with a statement explaining the reason for the\ncalculation request and shall supply any supporting materials deemed\nnecessary to the resolution of the matter. Likewise, a landlord may\nrequest a legal rent calculation where it has insufficient information…"
- },
- "NJ-HOBOKEN-RENT-18:66": {
-  "doc_id": "S012",
-  "offset": 17145,
-  "before": "… to the Rent Leveling and\nStabilization Office.\nIn no event shall the Rent Leveling and Stabilization Office grant more than three adjournments\nto the same party.\n\n\f\nRegulations to Chapter 155 as amended by the Board between 2022 and 2025\n\nREG. 18:66 FILING OF CERTIFICATE FOR DECONTROLLED UNITS (4/22/2009)\n\n",
-  "quote": "A Landlord of any dwelling subject to the provisions of this chapter may file a Certificate\npursuant to Section 155-33 for any year where the landlord legally owned the dwelling, provided\nthe Certificate is filed no later than the latter of either one (1) year from when the vacancy\noccurred or one (1) year from when the apartment was first rented to a replacement Tenant after\na vacancy",
-  "after": ", and the dwelling must have been registered at the time of the filing in compliance\nwith Section 155-31. Such filing shall be considered timely under Article VII of this Chapter and\nmay be utilized in any legal rent determination conducted by the Rent Control Office and the\nRent Leveling and Stabilization Board,…"
- },
  "NJ-HOBOKEN-RENT-3": {
   "doc_id": "S012",
   "offset": 14001,
@@ -328,13 +300,6 @@
   "quote": "Any landlord must include, with any lease or written notice of rent increase for a residential dwelling unit, a sworn\ndisclosure statement, executed under penalty of perjury, in substantially the following form:",
   "after": "\n\n        MANDATORY ALGORITHMIC RENT-SETTING DISCLOSURE\n\n        Pursuant to Jersey City Code § 218-12\n\nI, the undersigned, being the landlord or an authorized agent of the landlord for the property located at\n____________________, for dwelling unit ______, hereby certify under the penalty of perjury that:\n\n        …"
  },
- "NJ-JERSEY-CITY-RENT-JerseyCityLa": {
-  "doc_id": "D036",
-  "offset": 6390,
-  "before": "… Application Affidavit\nContact Info\nphone\n(201) 547-4821\nOffice of Landlord/Tenant Relations\n3 Jackson Square\n(aka 342 Martin Luther King Drive)\nJersey City, New Jersey, 07305\nOffice Hours:\nMonday - Friday : 8:30 AM - 4:30 PM\nLast Walk-In:\nMonday - Friday : 3:30 PM\nDirections\n[email protected]\nTENANT PETITIONS\n",
-  "quote": "A tenant claiming the rent they are being charged is illegal may file an Illegal Rent Petition:",
-  "after": "\nIllegal Rent Petition\nA tenant seeking a rent reduction due to the conditions of the building and/or apartment may file a Failure to Maintain Service Petition:\nFailure to Maintain Service Petition\nThe Landlord must be provided with a copy of the Petition and all documents. A completed Proof of Service form, Petition,…"
- },
  "NJ-NEWARK-EVICT-19:2-14": {
   "doc_id": "S018",
   "offset": 59901,
@@ -346,15 +311,8 @@
   "doc_id": "S019",
   "offset": 18374,
   "before": "… normal maintenance, those costs shall be disallowed in computing the cost of rehabilitation. \nThe determination of the Board shall also take into account an inspection conducted by a representative from the Department of Engineering after the date of the application. \n\n§ 19:2-18.3. Substantial Rehabilitation. \n",
-  "quote": "Substantially reconstructed or rehabilitated dwellings shall not be restricted in initial rent charged, if the Rent Control Board has made the following determinations: \na. The Board shall determine that the cost of reconstruction or rehabilitation during a twelve-month period exceeds 50% of the fair market value of the property.",
-  "after": " The fair market value shall be established by an appraisal issued by a member of an appraisal institute such as the American Institute of Real Estate Appraisers, The Society of Real Estate Appraisers, The American Society of Appraisers, or the Independent Order of Fee Appraisers. The appraisal is to be completed…"
- },
- "NJ-NEWARK-RENT-19:2-22": {
-  "doc_id": "S018",
-  "offset": 85309,
-  "before": "… This chapter shall continue in full force and effect from October 19, 1988. \n      \n      19:2-22.\tLIMITATION ON INCREASES.\n      \n      \ta.\tSince an immediate rent increase of more than twenty-five (25%) percent above the prior monthly rent may be considered unconscionable and imposes a hardship on a tenant, ",
-  "quote": "the Rent Control Board shall not grant increases exceeding twenty-five (25%) percent in any one (1) year for any tenant.",
-  "after": "\n      \n      \tb.\tFor the purpose of determining whether the rent increase exceeds twenty-five (25%) percent of the monthly rent, all increases pursuant to Section 19:2-3, Rent Increases, 19:2-7, Major New Improvements and 19:2-8, Landlord Hardships, occurring within twelve (12) months prior to the effective date of…"
+  "quote": "Substantially reconstructed or rehabilitated dwellings shall not be restricted in initial rent charged, if the Rent Control Board has made the following determinations:",
+  "after": " \na. The Board shall determine that the cost of reconstruction or rehabilitation during a twelve-month period exceeds 50% of the fair market value of the property. The fair market value shall be established by an appraisal issued by a member of an appraisal institute such as the American Institute of Real Estate…"
  },
  "NJ-RENT-2A:18-61.1": {
   "doc_id": "D067",
@@ -372,10 +330,10 @@
  },
  "NJ-SCREEN-10:5-12": {
   "doc_id": "D068",
-  "offset": 2940,
-  "before": "… The Division\ninvestigator serves the complaint to the individual and/or\nentity (respondent) alleged to have discriminated against\n1. What does the Division on Civil Rights enforce?\nThe Division on Civil Rights enforces the New Jersey\nLaw Against Discrimination.\n2. What does the NJ Law Against Discrimination\nprohibit?\n",
-  "quote": "The NJ Law Against Discrimination (LAD) prohibits\ndiscrimination on the bases of race, creed (religion),\ncolor, national origin, sex, gender identity or expression,\nmarital status, civil union status, ancestry, actual or\nperceived physical or mental disability, nationality,\naffectional or sexual orientation, familial status, and\ndomestic partner status.",
-  "after": " “ Familial status ” means\nfamilies with a child or children under 18 years old and/\nor pregnant women, and “ disability” is used to include\npersons afflicted with AIDS or HIV or thought to be\nafflicted with AIDS.\nThe LAD also prohibits housing discrimination  based\non the source of lawful income or source of lawful…"
+  "offset": 3509,
+  "before": "… disability, nationality,\naffectional or sexual orientation, familial status, and\ndomestic partner status. “ Familial status ” means\nfamilies with a child or children under 18 years old and/\nor pregnant women, and “ disability” is used to include\npersons afflicted with AIDS or HIV or thought to be\nafflicted with AIDS.\n",
+  "quote": "The LAD also prohibits housing discrimination  based\non the source of lawful income or source of lawful rent\nor mortgage payment a tenant or purchaser uses.",
+  "after": " This\nmeans, for example, that a landlord cannot deny the\nlawful recipient of a Section 8 HUD voucher the right to\nrent an apartment based solely on that source of lawful\nincome.\n3. What does this mean to me?\n• All persons, regardless of their membership in one\nof the protected classes stated above or source of\nlawful…"
  },
  "NJ-SCREEN-46:8-55": {
   "doc_id": "D065",
