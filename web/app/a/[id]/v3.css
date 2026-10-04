@@ -454,3 +454,8 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .bell-w{display:none}
 @media(min-width:900px){.v3 .bell-w{display:inline}.v3 .bell-s{display:none}}
 .v3 .ahead-alert{margin-top:6px}
+/* Links from Coming up into the change log (/changes/[id]). */
+.v3 .ev-lk{display:inline-flex;align-items:center;gap:5px;min-height:44px;font-size:.9375rem;font-weight:700}
+.v3 .ev-lk .icon{width:16px;height:16px}
+.v3 .ahead-log{margin-top:-6px;padding-left:38px}
+.v3 .ahead-log .src .icon{width:18px;height:18px}

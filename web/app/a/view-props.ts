@@ -1,6 +1,7 @@
 import "server-only";
 import { ancestry, getDataset, jurisdictionById } from "@/lib/data";
 import { buildAddressView } from "@/lib/address-view";
+import { changes } from "@/lib/changes/data.ts";
 import { builtYear, unitsText } from "@/lib/format";
 import { cityOutline, mapCaption } from "@/lib/outlines";
 import type { Address, Dataset, Result, Rule } from "@/lib/types";
@@ -13,6 +14,14 @@ import type { PageProps as ViewProps } from "./[id]/address-page";
 
 export function searchIndex(data: Dataset) {
   return data.addresses.map((a) => ({ id: a.address_id, street: a.street, city: a.postal_city, st: a.state_code }));
+}
+
+/** The address's change log (/changes/[id]) and the rules it lists, so dated items can link to their old → new entry. */
+export function changeLogFor(id: string): { href: string; rules: string[] } | null {
+  const rec = changes.addresses[id];
+  if (!rec) return null;
+  const rules = new Set(rec.entries.flatMap((e) => e.changes.map((c) => c.team_rule_id)));
+  return { href: `/changes/${encodeURIComponent(id)}`, rules: [...rules] };
 }
 
 export function viewProps(data: Dataset, address: Address, results: Result[], extra?: { typed?: boolean; legalNote?: string }): ViewProps {
@@ -57,6 +66,7 @@ export function viewProps(data: Dataset, address: Address, results: Result[], ex
     map: { coords: address.coords, outline, caption: mapCap, label: address.street },
     index: searchIndex(data),
     typed: !!extra?.typed,
+    changeLog: extra?.typed ? null : changeLogFor(address.address_id),
   };
 }
 
