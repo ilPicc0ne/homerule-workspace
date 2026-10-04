@@ -276,5 +276,20 @@ class Journeys(unittest.TestCase):
         self.assertEqual(later["NJ-HOBOKEN-ALG-Hobokenordin"]["result"], "applies")   # flagged, not decided
 
 
+class ScoredRules(unittest.TestCase):
+    def test_source_doc_id_is_a_manifest_doc_or_null(self):
+        import csv
+        from extract import config
+        corpus = {row["doc_id"] for row in csv.DictReader(open(config.MANIFEST, encoding="utf-8"))}
+        src = {r["team_rule_id"]: r for r in json.loads((R.OUT / "rules.json").read_text())["rules"]}
+        out = json.loads((built()[2] / "rules.json").read_text())["rules"]
+        self.assertEqual(sorted(src), sorted(r["team_rule_id"] for r in out))
+        for r in out:
+            d = src[r["team_rule_id"]]["source_doc_id"]
+            self.assertEqual(r["source_doc_id"], d if d in corpus else None, r["team_rule_id"])
+            self.assertEqual({k: v for k, v in r.items() if k != "source_doc_id"},
+                             {k: v for k, v in src[r["team_rule_id"]].items() if k != "source_doc_id"})
+
+
 if __name__ == "__main__":
     unittest.main()
