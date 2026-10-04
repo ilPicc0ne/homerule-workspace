@@ -1,6 +1,5 @@
 /* Icon sprite from mockup v3 (lab/ui-proposal/v3/index.html); use with <Ic id="i-rent" />. */
 const SYMBOLS = `
-<symbol id="i-logo" viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v9h11v-9"/><path d="M9.5 15h5"/></symbol>
 <symbol id="i-rent" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M12 17.5v-6"/><path d="m9.5 14 2.5-2.5 2.5 2.5"/></symbol>
 <symbol id="i-door" viewBox="0 0 24 24"><path d="M13 4H6.5A1.5 1.5 0 0 0 5 5.5v13A1.5 1.5 0 0 0 6.5 20H13"/><path d="M10 12h10"/><path d="m16.5 8.5 3.5 3.5-3.5 3.5"/></symbol>
 <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M10 10h4v4h-4z"/><path d="M9.5 2.5V6M14.5 2.5V6M9.5 18v3.5M14.5 18v3.5M2.5 9.5H6M2.5 14.5H6M18 9.5h3.5M18 14.5h3.5"/></symbol>
