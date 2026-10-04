@@ -96,8 +96,16 @@ type Compiled = { team_rule_id: string; jurisdiction: string; level: "state"|"ci
              effect: "protection_or_duty"|"bars_or_limits_local_rules";
              cap_pct_low: number|null; cap_pct_high: number|null;   // rent caps: the evaluator compares them to
                                                                     // decide whether a local cap supersedes the state's
-             status_evidence: object|null; origin: "starter"|"supplemental"|"ingested"; stub: boolean} };
+             status_evidence: object|null; origin: "starter"|"supplemental"|"ingested"; stub: boolean};
+  renter_impact: {direction: "protects"|"limits"|"neutral";            // extract/impact.py: code from effect,
+                  how: string; confidence: number;                      // a Jev review overrides at p >= 0.9
+                  strength: {value: number; unit: string; lower_is_better: boolean}|null;  // rent %, months, $
+                  kind: "grounds"|"procedure"|"ban"|"disclosure"|null; kind_confidence: number|null} };
 ```
+
+### Renter-protection score (`engine/score.py`, `out/scores.json`)
+
+One aggregated score per address, city and state on each date in `contracts/impact.json`, broken down per topic. A topic's level (strong 1.0 / basic 0.5 / none 0 / unknown) comes from the strongest protecting rule that applies (its `renter_impact` strength against the thresholds; eviction and algorithmic rules by kind: grounds or ban = strong, procedure or disclosure = basic); a limiting rule that applies caps the topic. Score = 100 × weighted mean of the known topics (weights in the contract: rent and eviction 25% each, the other four 12.5%), with `low`/`high` for the unknown topics at their extremes and `unknown_topics` listed apart. Cities: median of their sample addresses; states: the statewide floor (state rules only). Each change in the per-address diff (I6) gets `renter_impact.verdict`: better / worse / unchanged / unclear from the topic level before and after (unclear when unknowns move or a conflict flag changes). Display: S. Tests: `tests/test_impact.py` against `tests/fixtures/impact.yaml`.
 
 ## B · Address resolution
 

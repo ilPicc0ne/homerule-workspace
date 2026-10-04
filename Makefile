@@ -2,7 +2,7 @@
 AS_OF ?= 2026-10-01
 PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
-.PHONY: all extract resolve resolve-live build test eval check freeze ingest rehearse demo-change rerun web
+.PHONY: all extract resolve resolve-live build score test eval check freeze ingest rehearse demo-change rerun web
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
@@ -30,6 +30,9 @@ resolve-live:                            ## B · same, calling Census for reques
 build:                                   ## C+D · engine -> outputs/lookups.json, outputs/changes.json, out/lookups.full.json, out/changes.full.json (Silvan)
 	$(PY) -m engine.build --as-of $(AS_OF)
 
+score:                                   ## renter-protection score per address, city and state, per date, and change verdicts -> out/scores.json (contracts/impact.json)
+	$(PY) -m engine.score
+
 test:                                    ## engine unit tests, guards and the PRD journeys (python -m unittest)
 	$(PY) -m unittest discover -s tests -p "test_*.py" -t .
 
@@ -39,6 +42,7 @@ eval:                                    ## assertion suite, T1-T6, trap address
 check:                                   ## full suite after any change to extract/, engine/ or tests/: re-extract (samples + vote, cached), build, engine tests, eval, parity, hour-16 rehearsal
 	$(MAKE) extract
 	$(MAKE) build
+	$(MAKE) score
 	$(MAKE) test
 	$(PY) -m tests.eval_suite --supplemental > /dev/null
 	$(PY) -m tests.parity

@@ -105,7 +105,7 @@ This is the project's feature list; each build updates its status in the same co
 | P0 | Hour-16 ingest in one command | D | built (`make ingest`, `make rehearse`, `make rerun`; rehearsal 45/45 addresses in ~24 s) |
 | P1 | Real email sending (double opt-in) via Resend from `alerts@yourhomerule.com`; deliverability: HTML + text, unsubscribe link and header, warm-up | S | partial (domain verified, test mail sent) |
 | P0 | Coming-soon landing page on yourhomerule.com | S | WIP (`s/landing`, preview) |
-| P1 | Renter-protection score + compare picked addresses (no ranking, no rent levels, unknown counted apart) | S | planned |
+| P1 | Renter-protection score + compare picked addresses (no ranking, no rent levels, unknown counted apart) | D (data), S (display) | data built (`out/scores.json`: score 0-100 per address, city median and statewide floor per date, per-topic levels, unknown topics apart with a low/high range, method from `contracts/impact.json`; change-log entries carry better/worse); display: S |
 | P1 | Renter-protection map: the overall protection score as colours on the map, by **area** (city, later neighbourhood), unknown shown separately; building dots only around the user's own address, never a map of every building's level (would work as an exemption finder, see Never) | S | idea |
 | P2 | Protection map over time: the same map for past, today and future dates (e.g. 2025 → 2026 → after 01.07.2027) to show how protection is changing | S | idea |
 | P0 | Contacts per tile (J7): hand-checked table per city × topic (rent board, housing department, tenant hotline, legal aid; link + phone, free or not, source + retrieval date) in `contracts/contacts.json`; every tile's first next step is one human contact | D (data), S (display) | planned |

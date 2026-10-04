@@ -77,7 +77,15 @@
     "quote": "A lease provision that limits a \nprevailing tenant from obtaining attorneys’ fees shall not be enforceable against a \ntenant’s claim for attorneys’ fees that arises under this subsection 13.63.040(B).",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "ban",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "CA-BERKELEY-SCREEN-13.106",
@@ -206,7 +214,15 @@
     "quote": "Housing providers must include the following Notice to Rental Applicants and Tenants prominently on their application materials, websites, and at any locations under their control that are frequently visited by Applicants:",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-BERKELEY-FEE-13.78",
@@ -300,7 +316,19 @@
     "quote": "Any provision of an existing rental agreement or lease that violates the provisions of this chapter are unenforceable.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.98)",
+   "confidence": 0.98,
+   "strength": {
+    "value": 68.96,
+    "unit": "$",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-BERKELEY-EVICT-BerkeleyMuni",
@@ -412,7 +440,15 @@
     "quote": "The additional relocation assistance payment for qualifying households will increase to\n$6,471",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.92)",
+   "confidence": 0.92,
+   "strength": null,
+   "kind": "grounds",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "CA-BERKELEY-RENT-13.76.110A",
@@ -476,7 +512,19 @@
     "quote": "adopted the Annual General Adjustment (AGA) Order for Year 2026 which will allow \neligible landlords to increase the 2025 permanent rent ceilings by 1.0% no earlier than \nJanuary 1, 2026.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.96)",
+   "confidence": 0.96,
+   "strength": {
+    "value": 5.0,
+    "unit": "%/year",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-BERKELEY-EVICT-BerkeleyRent",
@@ -513,7 +561,15 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "procedure",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "CA-BERKELEY-DEP-BerkeleyRent",
@@ -625,7 +681,15 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.93)",
+   "confidence": 0.93,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "MA-BOSTON-SCREEN-BostonFairCh",
@@ -738,7 +802,15 @@
     "quote": "The Agent shall treat all \nsensitive or confidential information with utmost care and return any and all documents \ncontaining such information to the applicant promptly after review.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "MA-BOSTON-SCREEN-BostonFairHo",
@@ -777,7 +849,15 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "MA-BOSTON-EVICT-10-11.7",
@@ -890,7 +970,15 @@
     "quote": "The requirements of this Ordinance may not be waived, and any term of any\nlease, contract, or other agreement that purports to waive or limit a tenant’s or\nformer homeowner’s substantive or procedural rights under this Ordinance are\ncontrary to public policy, unenforceable, and void.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.83)",
+   "confidence": 0.83,
+   "strength": null,
+   "kind": "procedure",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "MA-BOSTON-RENT-3744",
@@ -929,7 +1017,15 @@
    "origin": "starter",
    "stub": true
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.77)",
+   "confidence": 0.77,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-SCREEN-12955",
@@ -1106,7 +1202,15 @@
     "quote": "Housing providers have a duty to correct and end discriminatory housing practices, including harassment, committed not only by the housing provider but also by third parties (such as other tenants, other residents, or contractors hired by the housing provider) when the housing provider has the legal responsibility or authority to correct it.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-ALG-16729",
@@ -1152,7 +1256,15 @@
     "quote": "It shall be unlawful for a person to use or distribute a common pricing algorithm if the person coerces another person to set or adopt a recommended price or commercial term recommended by the common pricing algorithm for the same or similar products or services in the jurisdiction of this state.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.96)",
+   "confidence": 0.96,
+   "strength": null,
+   "kind": "ban",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "CA-EVICT-1946.2",
@@ -1519,7 +1631,15 @@
     "quote": "An owner who attempts to recover possession of a rental unit in material violation of this section shall be liable to the tenant in a civil action for all of the following:",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "grounds",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "CA-RENT-1947.12",
@@ -1832,7 +1952,19 @@
     "quote": "Any waiver of the rights under this section shall be void as contrary to public policy.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.98)",
+   "confidence": 0.98,
+   "strength": {
+    "value": 10.0,
+    "unit": "%/year",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-DEP-1950.5",
@@ -2202,7 +2334,19 @@
     "quote": "A lease or rental agreement shall not contain a provision characterizing any security as “nonrefundable.”",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.99)",
+   "confidence": 0.99,
+   "strength": {
+    "value": 1.0,
+    "unit": "months of rent",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-FEE-1950.6",
@@ -2328,7 +2472,19 @@
     "quote": "If an application screening fee has been paid by the applicant, the landlord or their agent shall provide a copy of the consumer credit report to the applicant who is the subject of that report by personal delivery, mail, or email within seven days of the landlord or their agent receiving the report.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.99)",
+   "confidence": 0.99,
+   "strength": {
+    "value": 30.0,
+    "unit": "$",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "MA-CAMBRIDGE-SCREEN-14.04",
@@ -2395,7 +2551,15 @@
     "quote": "refusing to reasonably accommodate a person with a  disability if the accommodation would not cause an undue hardship to the landlord",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.84)",
+   "confidence": 0.84,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-LOS-ANGELES-RENT-151.06",
@@ -2513,7 +2677,19 @@
     "quote": "All Properties with RSO rental units must post a notification.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.96)",
+   "confidence": 0.96,
+   "strength": {
+    "value": 3.0,
+    "unit": "%/year",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-LOS-ANGELES-EVICT-LosAngelesMu",
@@ -2714,7 +2890,15 @@
     "quote": "Right of First Refusal to the new \nbuilding for some tenants",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "grounds",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "MA-ALG-5222",
@@ -2751,7 +2935,15 @@
    "origin": "starter",
    "stub": true
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.99)",
+   "confidence": 0.99,
+   "strength": null,
+   "kind": "ban",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "MA-ALG-2983",
@@ -2788,7 +2980,15 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "ban",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "MA-RENT-40P",
@@ -2833,7 +3033,15 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "limits",
+   "how": "code: effect bars_or_limits_local_rules",
+   "confidence": 1.0,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "MA-SCREEN-151B",
@@ -3054,7 +3262,15 @@
     "quote": "to sexually harass any tenant, prospective tenant, purchaser or prospective purchaser of property.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.99)",
+   "confidence": 0.99,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "MA-EVICT-186",
@@ -3110,7 +3326,15 @@
     "quote": "shall, if all rent due with interest and costs of suit has been tendered to the landlord within such time, treat the tenancy as not having been terminated",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.43)",
+   "confidence": 0.43,
+   "strength": null,
+   "kind": "procedure",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "MA-DEP-186",
@@ -3446,7 +3670,19 @@
     "quote": "Any provision of a lease which conflicts with any provision of this section and any waiver by a tenant or prospective tenant of any provision of this section shall be deemed to be against public policy and therefore void and unenforceable.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": {
+    "value": 1.0,
+    "unit": "months of rent",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "MA-FEE-186",
@@ -3483,7 +3719,15 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "MA-FEE-112",
@@ -3537,7 +3781,15 @@
     "quote": "A licensed broker or salesperson may solely contract with a prospective tenant to find rental residential real property for a tenant and present an offer to lease to the landlord or landlord's agent and negotiate on behalf of the tenant or may solely contract with a landlord or landlord's agent to find a tenant for a property.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.96)",
+   "confidence": 0.96,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-SCREEN-46:8-55",
@@ -3734,7 +3986,15 @@
     "quote": "so long as the\nhousing provider provides the applicant with at least 45 days’ notice prior to\nthe eviction;",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-SCREEN-46:8-56",
@@ -3786,7 +4046,15 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-SCREEN-46:8-58",
@@ -3838,7 +4106,15 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-SCREEN-46:8-60",
@@ -3888,7 +4164,15 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-FEE-46:8-18.1",
@@ -3947,7 +4231,19 @@
     "quote": "Following the proceedings, the amount\nwrongfully charged shall be taken from the collected penalty and shall be\nremitted to the applicant or prospective tenant.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.99)",
+   "confidence": 0.99,
+   "strength": {
+    "value": 50.0,
+    "unit": "$",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-DEP-46:8-21.2",
@@ -4217,7 +4513,19 @@
     "quote": "If a tenant invokes the remedy of constructive eviction, and \nthe landlord is found to be negligent in maintaining the rental unit, the tenant is entitled t o the \nreturn of the security deposit",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.99)",
+   "confidence": 0.99,
+   "strength": {
+    "value": 1.5,
+    "unit": "months of rent",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-RENT-2A:42-84.5",
@@ -4365,7 +4673,15 @@
     "quote": "If the tenant believes the rent increase is unconscionable, they may withhold a \nportion of the rent. They may withhold the difference between the old rent rate and the \nnew increased rate.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "limits",
+   "how": "code: effect bars_or_limits_local_rules",
+   "confidence": 1.0,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-RENT-2A:18-61.1",
@@ -4410,7 +4726,15 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.99)",
+   "confidence": 0.99,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-EVICT-2A:18-61.1",
@@ -4821,7 +5145,15 @@
     "quote": "Every landlord of a senior citizen housing project and every landlord of a unit within a \nsenior citizen housing project that is a planned unit development, shall, upon sig ning or renewal \nof a lease, give a copy of the Truth-In-Renting Statement and the Landlord Identity Statement",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "grounds",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "NJ-SCREEN-10:5-12",
@@ -4940,7 +5272,15 @@
     "quote": null,
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-ALG-56:9-23",
@@ -5018,7 +5358,15 @@
     "quote": "any agent or representative of a coordinator or\nsubcontractor thereof to engage in parallel pricing coordination;",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.94)",
+   "confidence": 0.94,
+   "strength": null,
+   "kind": "ban",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "CA-SAN-DIEGO-EVICT-98.0704",
@@ -5517,7 +5865,15 @@
     "quote": "a landlord’s failure to comply with any provision of this Division shall \nrender void any notice of termination required by this Division.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "grounds",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "CA-SAN-DIEGO-ALG-98.1103",
@@ -5604,7 +5960,15 @@
     "quote": "The remedies under section 98.1104 are cumulative and are in addition to\nany other remedies in this Division or at law, statute, or ordinance.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "ban",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "CA-SAN-FRANCISCO-EVICT-37.9",
@@ -5693,7 +6057,15 @@
     "quote": "3/01/26 – 2/28/27\n$446.00/day (plus actual moving expenses)",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "grounds",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "CA-SAN-FRANCISCO-RENT-37.3",
@@ -5738,7 +6110,19 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.98)",
+   "confidence": 0.98,
+   "strength": {
+    "value": 1.6,
+    "unit": "%/year",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-SAN-FRANCISCO-ALG-37.10C",
@@ -5784,7 +6168,15 @@
     "quote": "The law prohibits the sale or use of algorithmic devices to set rents or manage occupancy levels for residential units in San Francisco.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "ban",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "CA-SAN-FRANCISCO-DEP-37.6",
@@ -5823,7 +6215,15 @@
    "origin": "starter",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.98)",
+   "confidence": 0.98,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-SANTA-ANA-RENT-SantaAnaRent",
@@ -5954,7 +6354,19 @@
     "quote": "If a landlord charges a tenant a pass-through fee greater than $50, the landlord shall reimburse the tenant for the registration fee pass-through overpayment.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.99)",
+   "confidence": 0.99,
+   "strength": {
+    "value": 3.0,
+    "unit": "%/year",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "CA-SANTA-ANA-EVICT-SantaAnaJust",
@@ -6164,7 +6576,15 @@
     "quote": "Property owners must provide notice to existing tenants before December 19, 2021, or at commencement or renewal of their lease of the Just Cause Eviction Ordinance protections.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "grounds",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "NJ-JERSEY-CITY-ALG-218-12",
@@ -6210,7 +6630,15 @@
     "quote": "No service provider shall facilitate an agreement not to compete among real estate lessors with respect to any\naspect of residential dwelling units, including rental pricing, fees, or any other rental terms.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "ban",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "NJ-HOBOKEN-ALG-Hobokenordin",
@@ -6247,7 +6675,15 @@
    "origin": "supplemental",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "ban",
+   "kind_confidence": 1
+  }
  },
  {
   "team_rule_id": "NJ-HOBOKEN-RENT-18:54",
@@ -6386,7 +6822,15 @@
     "quote": "In the event a tenant vacates after a vacancy decontrol certificate was rejected for the\nreasons described in the preceding paragraph, a landlord may properly file a vacancy\ndecontrol certificate relating to the departure of that tenant, provided said certificate is\nfiled within six (6) years of the departure",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.87)",
+   "confidence": 0.87,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-HOBOKEN-RENT-3",
@@ -6425,7 +6869,15 @@
    "origin": "supplemental",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.14)",
+   "confidence": 0.14,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-JERSEY-CITY-ALG-218-12.3",
@@ -6464,7 +6916,15 @@
    "origin": "supplemental",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.70)",
+   "confidence": 0.7,
+   "strength": null,
+   "kind": "disclosure",
+   "kind_confidence": 0.99
+  }
  },
  {
   "team_rule_id": "NJ-NEWARK-RENT-19:2-18.3",
@@ -6582,7 +7042,15 @@
     "quote": "No owner or landlord shall be permitted to lease any rental unit without first registering with the Rent Control Office or Designee in accordance with this chapter and receiving a Certificate of Habitability as provided herein.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "limits",
+   "how": "jev review (p=1.00) over code (protection_or_duty)",
+   "confidence": 1,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-NEWARK-RENT-19:2-3.1",
@@ -7167,7 +7635,19 @@
     "quote": "The owner shall, at least thirty (30) days prior to the date of the termination of the exemption period afforded pursuant to this chapter, file with the Municipal Construction Official and the Office of Rent Control a notice of the date of termination of the exemption period for the affected multiple dwelling.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.98)",
+   "confidence": 0.98,
+   "strength": {
+    "value": 4.0,
+    "unit": "%/year",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-NEWARK-EVICT-19:2-14",
@@ -7215,7 +7695,15 @@
     "quote": "Any landlord, who shall gain access to an apartment by forcibly evicting a tenant contrary to the provisions of N.J.S.A. 2A:18-61.1 et seq. for the purpose of vacating and rehabilitating the apartment shall be guilty of an unlawful entry and detainer",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "grounds",
+   "kind_confidence": 0.97
+  }
  },
  {
   "team_rule_id": "NJ-NEWARK-RENT-19:2-2",
@@ -7274,7 +7762,15 @@
     "quote": "All multiple dwellings, as defined in Subsection 19:2-2, are subject to Rent Control pursuant to this Title XIX Rent Control.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.70)",
+   "confidence": 0.7,
+   "strength": null,
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-NEWARK-EVICT-19:2-14-2",
@@ -7313,7 +7809,15 @@
    "origin": "supplemental",
    "stub": false
   },
-  "details": []
+  "details": [],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=1.00)",
+   "confidence": 1,
+   "strength": null,
+   "kind": "grounds",
+   "kind_confidence": 0.97
+  }
  },
  {
   "team_rule_id": "NJ-NEWARK-RENT-19:2-22",
@@ -7809,7 +8313,19 @@
     "quote": "The owner of any multiple dwelling exempted from a rent control or rent leveling ordinance pursuant to this chapter, shall, prior to entering into any lease with a person(s) for tenancy of any premises located in the multiple dwelling, furnish the prospective tenant(s) with a written statement that the multiple dwelling in which the premises is located is exempt from rent control or rent leveling for such time as may remain in the exemption period.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.96)",
+   "confidence": 0.96,
+   "strength": {
+    "value": 25.0,
+    "unit": "%/year",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  },
  {
   "team_rule_id": "NJ-NEWARK-RENT-19:2-18.4",
@@ -7902,6 +8418,18 @@
     "quote": "The landlord may be granted only one (1) increase under this section for the same apartment unit in any twelve (12) month period.",
     "supporting": true
    }
-  ]
+  ],
+  "renter_impact": {
+   "direction": "protects",
+   "how": "code: effect protection_or_duty; jev agrees or unsure (p=0.40)",
+   "confidence": 0.4,
+   "strength": {
+    "value": 20.0,
+    "unit": "%/year",
+    "lower_is_better": true
+   },
+   "kind": null,
+   "kind_confidence": null
+  }
  }
 ]

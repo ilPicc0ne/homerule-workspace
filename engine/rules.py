@@ -80,6 +80,7 @@ def load(out_dir=None, origins=None):
             "tenant_conditions": c.get("tenant_conditions", []),
             "interactions": [] if inter.get("type") in (None, "none") else [{"type": inter["type"]}],
             "cap_low": x.get("cap_pct_low"), "cap_high": x.get("cap_pct_high"),
+            "renter_impact": c.get("renter_impact"),      # direction + strength (extract/impact.py), for the score
             "parse_status": c.get("parse_status"), "checks": c.get("checks", []),
             "origin": x.get("origin") or "starter", "unit": x.get("unit"), "source_doc_id": x.get("source_doc_id"),
             "retrieved": c.get("retrieved_at"),

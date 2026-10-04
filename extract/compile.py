@@ -444,6 +444,8 @@ def findings(rules):
 def build(extracted_dir=None, suffix=""):
     rules = internal_rules(extracted_dir)
     comps = compiled_all(rules)
+    from . import impact                   # renter impact per rule (direction, strength): the score is built on it
+    impact.annotate(rules, comps)
     starter = [rec for rec in (starter_record(r, c) for r, c in zip(rules, comps)) if rec]   # starter, supplemental, ingested
     (config.OUT / f"rules.compiled{suffix}.json").write_text(json.dumps(comps, indent=1, ensure_ascii=False))
     (config.OUT / f"rules{suffix}.json").write_text(json.dumps({"rules": starter}, indent=1, ensure_ascii=False))
