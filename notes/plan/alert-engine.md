@@ -3,6 +3,8 @@
 Build plan, **no code**, for after the hackathon freeze. Written 04.10.2026 on `s/plan-alert-engine`; revised the same day after the problem-critic review.
 Inputs: `docs/PRD.md` (Alerts rows, J4, CUJ table), `docs/ARCHITECTURE.md` (Email and alerts, Upstash keys, env vars), `web/lib/alerts/*`, `web/lib/changes/*`, `web/scripts/alerts.ts`, `engine/diff.py`, `engine/build.py`, `extract/changes.py`, open PRs #59, #71, #72, #75, #77 (issues #60, #69).
 
+> **Step 0 before a real launch — later (owner decision 04.10.).** The owner had the lifecycle engine (§2–§7, slimmed) built for the prototype anyway on `s/alert-engine`: triggers A/B/C + corrections, approval per rule, daily digest, Vercel Cron in dry run. Step 0 and the go/no-go below still decide whether it ever sends to real renters.
+>
 > **Verdict (problem-critic, 04.10.2026): don't build yet.** No demand evidence exists, and the current data would send almost nothing for 8 months. Order from here: (1) Step 0 with partners and real renters; (2) if go, model the **yearly allowed-increase announcements** first; (3) only then the lifecycle engine (§2–§7) and the .ics feed. §2–§7 stay as the design for phase 3, unchanged in substance.
 
 Goal: `Goal: none named for HomeRule beyond the hackathon demo · Q4 until Step 0 says go · why now: only because the send path exists and the owner wants it`. If Step 0 passes, it becomes Q2.

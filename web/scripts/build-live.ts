@@ -230,6 +230,8 @@ export function buildLive(root: string): Record<string, unknown> {
       exemptions: p.exemptions ?? null,
       interaction,
       ...(openQ ? { open_question: openQ.note } : {}),
+      // month/year precision only (day is the default): the alert engine words it "in July 2027", no day-exact reminder
+      ...(fr.eff?.precision && fr.eff.precision !== "day" ? { effective_precision: fr.eff.precision } : {}),
       what_next: url
         ? { label: official ? "Read the law at its official source" : "Read the source we have (news or law-firm page)", url }
         : { label: "Ask your city's housing office about this rule" },

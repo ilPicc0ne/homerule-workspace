@@ -2,7 +2,7 @@
 AS_OF ?= 2026-10-01
 PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
-.PHONY: notify alert all extract resolve resolve-live build score test eval check freeze ingest rehearse demo-change rerun web
+.PHONY: notify alert alerts-run alerts-approve all extract resolve resolve-live build score test eval check freeze ingest rehearse demo-change rerun web
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
@@ -86,3 +86,10 @@ alert:                                   ## demo hook, the last step once the pr
 	$(if $(SOURCE),,$(error SOURCE=<change source id> is required))
 	$(if $(RESET),cd web && node --env-file-if-exists=.env.local scripts/alerts.ts reset "$(SOURCE)")
 	cd web && node --env-file-if-exists=.env.local scripts/alerts.ts trigger "$(SOURCE)" $(if $(URL),--url $(URL))
+
+alerts-run:                              ## lifecycle alerts (one digest per subscriber per day): dry run for today; AS_OF=YYYY-MM-DD simulates a local date; SEND=1 sends (allowed subscribers only during the closed test); SIM=all|A0256,… fakes one subscriber per address (memory store, never sends), APPROVE_ALL=1 approves every rule in that simulation
+	cd web && node --env-file-if-exists=.env.local scripts/alerts.ts run $(if $(filter command line,$(origin AS_OF)),--date $(AS_OF)) $(if $(SEND),--send) $(if $(SIM),--simulate $(SIM)) $(if $(APPROVE_ALL),--approve-all) $(if $(VERBOSE),--verbose)
+
+alerts-approve:                          ## the once-per-rule gate before a rule's lifecycle alerts go out: make alerts-approve RULE=<rule_id> [UNDO=1]
+	$(if $(RULE),,$(error RULE=<rule_id> is required))
+	cd web && node --env-file-if-exists=.env.local scripts/alerts.ts $(if $(UNDO),unapprove,approve) "$(RULE)"
