@@ -17,7 +17,7 @@ export type DateControls = { selected: string; baseline: string; retrieved: stri
 export function addressDates(data: Dataset, address: Address, selected: string,
   options: { typed?: boolean; results?: Result[] } = {}): DateControls {
   const results = options.results ?? data.lookups[data.meta.default_as_of]?.[address.address_id] ?? [];
-  const { view } = addressPageData(data, address, results, { typed: options.typed });
+  const { view } = addressPageData(data, address, results, { typed: options.typed, historySince: MIN_DATE });
   return { selected, baseline: data.meta.default_as_of, retrieved: data.meta.retrieved_at,
     timeline: [...view.future, ...view.past] };
 }

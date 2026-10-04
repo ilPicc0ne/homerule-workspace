@@ -505,7 +505,20 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .timeline-limits{font-size:.75rem;line-height:1.5;color:var(--ink-2);margin:16px 0}
 .v3 .timeline-recovery{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
 
-.v3 .tl.interactive .ev::before{top:15px}
-.v3 .tl.interactive .now::before{top:12px}
-.v3 .ev.is-selected::before{left:5px;width:14px;height:14px;background:var(--blue);border:2px solid var(--blue);box-shadow:0 0 0 3px var(--wash),0 0 0 5px var(--blue-line)}
-.v3 .tl.interactive .now.not-selected::before{left:5px;top:15px;width:14px;height:14px;background:var(--surface);border:2px solid var(--slate);box-shadow:none}
+/* Real buttons replace decorative dots; the visible dot is 14px, its hit area is 44px. */
+.v3 .tl.interactive .ev:not(.nodate)::before,.v3 .tl.interactive .now::before{display:none}
+.v3 .timeline-dot{position:absolute;left:-10px;top:-12px;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer}
+.v3 .timeline-dot::before{content:"";display:block;position:absolute;left:15px;top:15px;width:14px;height:14px;border-radius:50%;background:var(--surface);border:2px solid var(--blue)}
+.v3 .past .timeline-dot::before{border-color:var(--slate)}
+.v3 .timeline-dot:hover::before{box-shadow:0 0 0 5px var(--blue-line)}
+.v3 .timeline-dot.selected::before{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0 3px var(--wash),0 0 0 5px var(--blue-line)}
+.v3 .timeline-dot:focus-visible{outline:3px solid #b76a00;outline-offset:-2px}
+.v3 .timeline-dot[aria-disabled=true]{opacity:.6;cursor:wait}
+.v3 .timeline-selected{display:inline-block;margin-left:8px;font-size:.75rem;font-weight:600;color:var(--blue-ink)}
+.v3 .timeline-more{min-height:44px;padding:4px 0;background:transparent;border:0;color:var(--blue-ink);text-decoration:underline;text-underline-offset:3px;font-weight:700;text-align:left}
+.v3 .timeline-more:hover{text-decoration-thickness:2px}
+.v3 .timeline-more:focus-visible{outline:3px solid #b76a00;outline-offset:3px}
+
+.v3 .timeline-day-changes{list-style:none;margin:8px 0 0;padding:0}
+.v3 .timeline-change + .timeline-change{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.v3 .timeline-count{margin-top:4px;font-size:.75rem;color:var(--ink-2)}

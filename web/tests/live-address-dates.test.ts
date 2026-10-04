@@ -5,6 +5,7 @@ import { execFileSync } from "node:child_process";
 import { liveAddressPayload, evaluateSample } from "../lib/live-address.ts";
 import { addressPageData } from "../lib/address-page-data.ts";
 import { addressDates, validAsOf, requestedDate } from "../lib/address-dates.ts";
+import { groupTimelineEvents } from "../lib/timeline-groups.ts";
 import { evaluateRecord } from "../lib/live-engine.ts";
 import type { Dataset } from "../lib/types.ts";
 const read = (name: string) => JSON.parse(readFileSync(new URL(`../data/live/${name}.json`, import.meta.url), "utf8"));
@@ -92,4 +93,28 @@ test("timeline navigation stays anchored to known changes after moving forward o
   }
   assert.ok(baseline.timeline.some(e => e.date === "2027-07-01"));
   assert.ok(baseline.timeline.some(e => e.date === "2026-05-01"));
+});
+
+
+test("expandable timeline includes older known starts without broadening the default card history", () => {
+  const address = data.addresses.find(a => a.address_id === "A0256")!;
+  const config = addressDates(data, address, "2026-10-01");
+  assert.ok(config.timeline.some(e => e.ruleId === "NJ-HOBOKEN-ALG-Hobokenordin" && e.date === "2025-07-29"));
+  assert.ok(config.timeline.some(e => e.ruleId === "NJ-SCREEN-46:8-55" && e.date === "2022-01-01"));
+  const normal = addressPageData(data, address, data.lookups[data.meta.default_as_of][address.address_id]);
+  assert.ok(normal.view.past.every(e => e.date >= "2025-10-01"));
+  const past = config.timeline.filter(e => e.date <= config.baseline).map(e => e.date);
+  assert.deepEqual(past, [...past].sort().reverse());
+});
+
+
+test("same-day changes have one date group without losing any rules", () => {
+  const address = data.addresses.find(a => a.address_id === "A0256")!;
+  const events = addressDates(data, address, "2026-10-01").timeline;
+  const groups = groupTimelineEvents(events);
+  const screening = groups.filter(g => g.date === "2022-01-01");
+  assert.equal(screening.length, 1);
+  assert.equal(screening[0].events.length, 4);
+  assert.equal(new Set(screening[0].events.map(e => e.ruleId)).size, 4);
+  assert.deepEqual(groups.flatMap(g => g.events), events);
 });

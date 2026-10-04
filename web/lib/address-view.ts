@@ -141,6 +141,7 @@ export function buildAddressView(args: {
   rules: Record<string, Rule>;
   asOf: string;
   cityName: string;
+  historySince?: string;
   findings: Record<string, Finding[]>;
   /** The diff's change sources (for `ending_rule_ids`) and this address's diff record (null for a typed address). */
   changes?: { sources: Record<string, Source>; rec: AddressChanges | null };
@@ -346,7 +347,7 @@ export function buildAddressView(args: {
   const listed = new Map(results.map((r) => [r.rule_id, r]));
   const future: TimelineEvent[] = [];
   const past: TimelineEvent[] = [];
-  const yearAgo = `${Number(asOf.slice(0, 4)) - 1}${asOf.slice(4)}`;
+  const yearAgo = args.historySince ?? `${Number(asOf.slice(0, 4)) - 1}${asOf.slice(4)}`;
   for (const r of listed.values()) {
     const rule = rules[r.rule_id];
     if (!rule?.effective_date || r.result === "pending") continue;
@@ -364,7 +365,7 @@ export function buildAddressView(args: {
   // Rules ending at this address (sunset or repeal). A version swap (a successor starting that day) is not an end:
   // the successor's start event says it replaces the earlier version instead.
   if (args.changes) {
-    const { ends, swaps } = ruleEnds({ asOf, results, rules, sources: args.changes.sources, rec: args.changes.rec });
+    const { ends, swaps } = ruleEnds({ asOf, historySince: args.historySince, results, rules, sources: args.changes.sources, rec: args.changes.rec });
     for (const e of ends) {
       const rule = rules[e.ruleId];
       if (!rule) continue;

@@ -1,5 +1,6 @@
 "use client";
 
+import { groupTimelineEvents, type TimelineGroup as DateGroup } from "@/lib/timeline-groups";
 import type { DateControls } from "@/lib/address-dates";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -444,20 +445,18 @@ const topicTitle = (id: string) => TOPICS.find((t) => t.id === id)?.title ?? "";
 const topicIcon = (id: string) => TOPICS.find((t) => t.id === id)?.icon ?? "i-info";
 
 type DateNavigation = { selected: string; pending: boolean; go: (date: string) => void };
-function TimelineDate({ date, label, nav }: { date: string; label: string; nav: DateNavigation }) {
+function TimelineDot({ date, nav }: { date: string; nav: DateNavigation }) {
   const selected = nav.selected === date;
-  return <button type="button" className={`timeline-date${selected ? " selected" : ""}`}
-    aria-label={`View rules as of ${formatDate(date)}`} aria-pressed={selected}
-    aria-disabled={nav.pending} onClick={() => { if (!nav.pending) nav.go(date); }}>
-    <span>{label}</span><span className="timeline-date-action">{selected ? "✓ Selected" : "View rules →"}</span>
-  </button>;
+  return <button type="button" className={`timeline-dot${selected ? " selected" : ""}`}
+    aria-label={`View rules as of ${formatDate(date)}`} title={`View rules as of ${formatDate(date)}`}
+    aria-describedby="timeline-hint" aria-pressed={selected}
+    aria-disabled={nav.pending} onClick={() => { if (!nav.pending) nav.go(date); }} />;
 }
 
-function Ev({ e, cls, log, nav }: { e: TimelineEvent; cls: string; log: PageProps["changeLog"]; nav?: DateNavigation }) {
+function TimelineChange({ e, log }: { e: TimelineEvent; log: PageProps["changeLog"] }) {
   const linked = log?.rules.includes(e.ruleId);
   return (
-    <li className={`ev ${cls}${nav?.selected === e.date ? " is-selected" : ""}`}>
-      <p className="ev-d">{nav ? <TimelineDate date={e.date} label={e.dateText} nav={nav} /> : e.dateText}</p>
+    <li className="timeline-change">
       <p className="ev-tp">
         <Ic id={topicIcon(e.topic)} />
         {topicTitle(e.topic)}
@@ -475,12 +474,26 @@ function Ev({ e, cls, log, nav }: { e: TimelineEvent; cls: string; log: PageProp
   );
 }
 
+function TimelineGroup({ group, cls, log, nav, baseline = false }: { group: DateGroup; cls: string; log: PageProps["changeLog"]; nav?: DateNavigation; baseline?: boolean }) {
+  return <li className={`ev ${cls}${nav?.selected === group.date ? " is-selected" : ""}`}>
+    {nav && <TimelineDot date={group.date} nav={nav} />}
+    <p className="ev-d">{baseline ? "Dataset date · " : ""}{formatDate(group.date)}
+      {nav?.selected === group.date && <span className="timeline-selected">Selected</span>}
+    </p>
+    {group.events.length > 1 && <p className="timeline-count">{group.events.length} changes on this date</p>}
+    {group.events.length > 0 && <ul className="timeline-day-changes">
+      {group.events.map(e => <TimelineChange key={`${e.ruleId}:${e.kind}`} e={e} log={log} />)}
+    </ul>}
+  </li>;
+}
+
 function Ahead({ id, v, onAlerts, log, dates }: { id: string; v: AddressView; onAlerts: () => void; log: PageProps["changeLog"]; dates?: DateControls }) {
   const router = useRouter();
   const path = usePathname();
   const params = useSearchParams();
   const [pending, startTransition] = useTransition();
   const [target, setTarget] = useState(v.asOf);
+  const [olderCount, setOlderCount] = useState(0);
   const nav: DateNavigation | undefined = dates ? { selected: v.asOf, pending, go: date => {
     setTarget(date);
     const query = new URLSearchParams(params.toString());
@@ -490,14 +503,19 @@ function Ahead({ id, v, onAlerts, log, dates }: { id: string; v: AddressView; on
       else router.push(`${path}?${query}`, { scroll: false });
     });
   } } : undefined;
-  const future = dates ? dates.timeline.filter(e => e.date > dates.baseline) : v.future;
-  const past = dates ? dates.timeline.filter(e => e.date <= dates.baseline) : v.past;
+  const future = groupTimelineEvents(dates ? dates.timeline.filter(e => e.date > dates.baseline) : v.future);
+  const past = groupTimelineEvents(dates ? dates.timeline.filter(e => e.date < dates.baseline) : v.past);
+  const recentSince = `${Number((dates?.baseline ?? v.asOf).slice(0, 4)) - 1}${(dates?.baseline ?? v.asOf).slice(4)}`;
+  const recent = past.filter(e => e.date >= recentSince);
+  const older = past.filter(e => e.date < recentSince);
+  // Reveal whole days, including the selected day when entering via Back or a shared link.
+  const shownOlder = Math.max(olderCount, older.findIndex(e => e.date === v.asOf) + 1);
   return (
     <>
       <h2 className="sec-h" id="h-ahead">
         {dates ? "Changes over time" : "Coming up"}
       </h2>
-      <p className="sec-sub">{dates ? "Select a date to see all six answers as they stood then." : "Dated changes for this address, and what changed in the last year."}</p>
+      <p className="sec-sub" id="timeline-hint">{dates ? "Click a timeline dot to see all six answers for that date." : "Dated changes for this address, and what changed in the last year."}</p>
       {dates && <p className="timeline-status" role="status" aria-live="polite">{pending
         ? `Loading ${formatDate(target)}… Answers still show ${v.asOfText}.`
         : `Showing rules as of ${v.asOfText}.`}</p>}
@@ -540,22 +558,28 @@ function Ahead({ id, v, onAlerts, log, dates }: { id: string; v: AddressView; on
       <ol className={`tl${dates ? " interactive" : ""}`} aria-busy={pending}>
         {dates && future.length > 0 && <li className="tl-lab">Scheduled changes</li>}
         {future.length ? (
-          future.map((e) => <Ev key={e.date + e.title} e={e} cls="future" log={log} nav={nav} />)
+          future.map(group => <TimelineGroup key={group.date} group={group} cls="future" log={log} nav={nav} />)
         ) : (
           <li className="ev nodate">
             <p className="ev-t">Nothing with a date yet</p>
             <p className="ev-b">No scheduled changes in the dataset for this address.</p>
           </li>
         )}
-        <li className={`now${dates && dates.baseline !== v.asOf ? " not-selected" : ""}`}>
-          {dates && nav ? <TimelineDate date={dates.baseline} label={`Dataset date · ${formatDate(dates.baseline)}`} nav={nav} /> : <>
+        {dates && nav ? <TimelineGroup
+          group={{ date: dates.baseline, events: dates.timeline.filter(e => e.date === dates.baseline) }}
+          cls="baseline" baseline log={log} nav={nav} /> : <li className="now">
             <span className="today-pill">Selected date</span><span className="today-d">{v.asOfText}</span>
-          </>}
-        </li>
-        {past.length > 0 && <li className="tl-lab">Earlier changes</li>}
-        {past.map((e) => (
-          <Ev key={e.date + e.title} e={e} cls="past" log={log} nav={nav} />
-        ))}
+          </li>}
+        {recent.length > 0 && <li className="tl-lab">Recent changes</li>}
+        {recent.map(group => <TimelineGroup key={group.date} group={group} cls="past" log={log} nav={nav} />)}
+        {shownOlder > 0 && <li className="tl-lab">Older changes</li>}
+        {older.slice(0, shownOlder).map(group => <TimelineGroup key={group.date} group={group} cls="past" log={log} nav={nav} />)}
+        {older.length > shownOlder && <li className="tl-lab">
+          <button type="button" className="timeline-more" onClick={() => setOlderCount(shownOlder + 3)}>
+            Show {shownOlder ? "more " : ""}older changes ({older.length - shownOlder} dates) ↓
+          </button>
+        </li>}
+        {older.length > 0 && shownOlder >= older.length && <li className="tl-lab">All available entries for this timeline are shown.</li>}
       </ol>
       {dates && <p className="timeline-limits">Dataset retrieved {formatDate(dates.retrieved)}. Future dates use scheduled changes and the same building facts. Later amendments may be missing.</p>}
       {log && (
