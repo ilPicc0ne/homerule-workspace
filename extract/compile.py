@@ -48,7 +48,8 @@ def effective(events, jurisdiction, provision=None):
                 continue
             d = e.get("date")
             if d and re.fullmatch(r"\d{4}-\d{2}-\d{2}", d):
-                cands.append((d, None, "day"))
+                cands.append((d, "the later of the published dates (open question)" if e.get("open_question") else None,
+                              "day"))
             elif d and re.fullmatch(r"\d{4}-\d{2}", d):
                 cands.append((d + "-01", None, "month"))
             elif e.get("relative_rule") == "first_day_of_nth_month_after_enactment" and enacted and e.get("n"):
@@ -133,7 +134,7 @@ def open_questions():
 
 def internal_rules(extracted_dir=None, as_of=AS_OF):
     """Headline rules in the internal format the reference evaluator and the tests use."""
-    rules, seen = [], set()
+    rules, seen = [], {}
     oq = open_questions()
     for f in sorted((extracted_dir or config.OUT / "extracted").glob("*.json")):
         r = json.load(open(f))
@@ -144,9 +145,12 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
             if not o["is_headline"] or o["effect"] == "procedure_or_admin":
                 continue
             key = (jur, o["category"], _core(o["citation"]), o["effect"])
-            if key in seen:
+            if key in seen:      # same citation: one record, the other headline provisions kept as its details
+                span = r["spans"].get(f".obligations[{n}].requirement_quote")
+                seen[key]["details"].append({"provision": o["provision"], "requirement": o["requirement"],
+                                             "key_value": o["key_value"], "source_doc_id": span["doc_id"] if span else None,
+                                             "quote": source_span(span) if span else None})
                 continue
-            seen.add(key)
             span = r["spans"].get(f".obligations[{n}].requirement_quote")
             doc_status, status_evidence, events = lu["document_status"], None, lu["events"]
             questions = oq.get((jur, o["category"]), [])
@@ -186,7 +190,8 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                 "interactions": o["interactions"], "parse_status": o.get("parse_status", "ok"),
                 "checks": o.get("checks", []) + o.get("gate_flags", []), "gate_flags": o.get("gate_flags", []),
                 "gate_status": r.get("gate_status"), "stub": o.get("stub", False),
-                "origin": {"S": "supplemental", "X": "ingested"}.get(r["doc_id"][0], "starter")})
+                "origin": {"S": "supplemental", "X": "ingested"}.get(r["doc_id"][0], "starter"), "details": []})
+            seen[key] = rules[-1]
     return rules
 
 
@@ -205,10 +210,14 @@ def compiled(rule):
                                  for b in rule["key_value_conditions"]],
         "interaction": ({"type": inter["type"], "target_category": inter["target_category"], "quote": inter["quote"]}
                         if inter else {"type": "none"}),
+        "interactions": [{"type": i["type"], "target_category": i["target_category"], "quote": i["quote"]}
+                         for i in rule["interactions"]],
         "retrieved_at": rule["retrieved"], "parse_status": rule["parse_status"], "checks": rule["checks"],
         "x_source": {"unit": rule["unit"], "source_doc_id": rule["source_doc_id"], "citation": rule["citation"],
+                     "effect": rule["effect"], "cap_pct_low": rule["cap_low"], "cap_pct_high": rule["cap_high"],
                      "status_evidence": rule.get("status_evidence"),
                      "origin": rule["origin"], "stub": rule["stub"]},
+        "details": rule.get("details", []),   # other headline provisions under the same citation
     }
 
 
@@ -274,7 +283,12 @@ def build(extracted_dir=None, suffix=""):
     starter = [rec for rec in (starter_record(r, c) for r, c in zip(rules, comps)) if rec]   # starter, supplemental, ingested
     (config.OUT / f"rules.compiled{suffix}.json").write_text(json.dumps(comps, indent=1, ensure_ascii=False))
     (config.OUT / f"rules{suffix}.json").write_text(json.dumps({"rules": starter}, indent=1, ensure_ascii=False))
-    (config.OUT / f"findings{suffix}.json").write_text(json.dumps(findings(rules), indent=1, ensure_ascii=False))
+    finds = findings(rules)
+    (config.OUT / f"findings{suffix}.json").write_text(json.dumps(finds, indent=1, ensure_ascii=False))
+    from . import audit                    # curated per-rule trail for the rule page, and one line per build
+    trail = audit.build(rules, comps, finds, open_questions())
+    (config.OUT / f"audit{suffix}.json").write_text(json.dumps(trail, indent=1, ensure_ascii=False))
+    audit.log_build(len(comps), len(finds))
     return rules, comps
 
 

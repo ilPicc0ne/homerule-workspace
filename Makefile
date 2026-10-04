@@ -2,7 +2,7 @@
 AS_OF ?= 2026-10-01
 PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
-.PHONY: all extract resolve resolve-live build test eval ingest rehearse rerun web
+.PHONY: all extract resolve resolve-live build test eval freeze ingest rehearse rerun web
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
@@ -28,6 +28,9 @@ test:                                    ## engine unit tests, guards and the PR
 
 eval:                                    ## assertion suite, T1-T6, trap addresses, quote check, disclaimer crawl
 	$(PY) -m tests.eval_suite --supplemental
+
+freeze:                                  ## before the hour-16 drop: lock the prompt digest (extract/PROMPTS.lock); make eval checks it
+	$(PY) -m extract.prompts --freeze
 
 ingest:                                  ## hour-16: make ingest DOC=<path> JUR="Cambridge, MA" [ID=X002]
 	$(PY) -m extract.ingest $(DOC) --jurisdiction "$(JUR)" --id $(or $(ID),X002)

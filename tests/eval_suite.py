@@ -86,6 +86,29 @@ def integrity(extracted_dirs):
     return rows
 
 
+def scored_quotes():
+    """PRD freeze check: 100% of quotes in the scored rules.json are verbatim in their pinned source."""
+    from extract.corpus import load_text
+    recs = json.load(open(config.OUT / "rules.json"))["rules"]
+    texts, missing = {}, []
+    for r in recs:
+        d = r["source_doc_id"]
+        if d not in texts:
+            path = config.INDEX / f"{d}.json"
+            texts[d] = load_text(json.load(open(path))) if path.exists() else ""
+        if not r["quoted_span"] or r["quoted_span"] not in texts[d]:
+            missing.append(r["team_rule_id"])
+    return {"records": len(recs), "verbatim": len(recs) - len(missing), "missing": missing}
+
+
+def prompt_checks():
+    """AGENTS.md: no test-suite value in a prompt; prompts frozen before the hour-16 drop."""
+    from extract import prompts
+    hits = prompts.lint()
+    return {**prompts.status(), "lint_violations": [h for h in hits if not h["allowed"]],
+            "lint_allowed": [h for h in hits if h["allowed"]]}
+
+
 # ---------- 2 assertions ----------
 def assertions(rules, finds):
     out = []
@@ -285,7 +308,8 @@ def run(supplemental=False, extracted=False, lab_facts=False):
     res = run_addresses(rules, addresses, dates)
     report = {
         "inputs": {"rules": "out/extracted/ (internal_rules)" if extracted else "out/rules.compiled.json (engine/rules.py)", "facts": "lab stand-in (facts.py)" if lab_facts else "I3 out/addresses.resolved.json (engine/facts.py)"},
-        "rules": len(rules), "integrity": integrity(dirs), "assertions": assertions(rules, finds),
+        "rules": len(rules), "integrity": integrity(dirs), "scored_quotes": scored_quotes(),
+        "prompts": prompt_checks(), "assertions": assertions(rules, finds),
         "matrix": {f"{k[0]}|{k[1]}": v for k, v in matrix(rules, finds).items()},
         "changes": change_tests(rules, addresses, res),
         "changes_json": changes_json(rules, finds, addresses, all_rules),
@@ -307,6 +331,13 @@ def markdown(rep):
     L += [f"**Integrity:** {len(integ)} units, {sum(r['obligations'] for r in integ)} obligations, quotes located "
           f"{ql}/{q} ({100 * ql / max(q, 1):.1f}%), parse_status failed {sum(r['failed'] for r in integ)}, "
           f"partial {sum(r['partial'] for r in integ)}. Headline rules compiled: {rep['rules']}.", ""]
+    sq, pc = rep["scored_quotes"], rep["prompts"]
+    L += [f"**Scored quotes (rules.json):** {sq['verbatim']}/{sq['records']} verbatim in the pinned source"
+          + (f"; missing: {', '.join(sq['missing'])}" if sq["missing"] else "") + ".", "",
+          f"**Prompts:** lint violations {len(pc['lint_violations'])} (reviewed exceptions {len(pc['lint_allowed'])}); "
+          f"digest {pc['digest'][:12]}; " + (f"frozen, {'matches' if pc['matches_lock'] else 'DOES NOT MATCH'} the lock"
+                                             if pc["frozen"] else "not frozen yet (make freeze)") + ".", ""]
+    L += [f"- LINT {h['test']}: `{h['pattern']}` in {h['where']}" for h in pc["lint_violations"]]
     a = rep["assertions"]
     L += [f"## Assertions (A1): {sum(x['ok'] for x in a)}/{len(a)}", "", "| id | want | got | notes |", "|---|---|---|---|"]
     L += [f"| {x['id']} | {x['want']} | {'✓ ' if x['ok'] else '✗ '}{x['got']} | {'; '.join(x['checks'])} |" for x in a]

@@ -1,0 +1,194 @@
+PUBLIC NOTICE
+CITY OF JERSEY CITY
+Ord. 25-057
+
+AMENDING AND SUPPLEMENTING CHAPTER 218 (MULTIPLE DWELLINGS), OF
+THE CODE OF ORDINANCES OF THE CITY OF JERSEY CITY BY ADDING NEW
+SECTION 12, ENTITLED “PREVENTING ALGORITHMIC RENT-FIXING IN THE
+RENTAL HOUSING MARKET”
+
+Ordinance Amending and Supplementing Chapter 218 (Multiple Dwellings), if the Code of
+Ordinances of the City of Jersey City by Adding New Section 12, Entitled “Preventing
+Algorithmic Rent-Fixing in the Rental Housing Market”
+
+Whereas, Jersey City has seen an immense amount of development over the last two decades and
+has seen immense increases in property values;
+
+Whereas, Jersey City is facing an affordability crisis with rents increasing dramatically annually
+and thousands of residents receiving eviction notices;
+
+Whereas, across the country, including in Jersey City, landlords are using software algorithms
+and other information exchanges between competitors to raise rents, artificially constrain supply,
+and further exacerbate the housing crisis;
+
+Whereas, corporations sell software or access to information exchanges that promises to boost
+landlord profits by 1) collecting sensitive data from landlords across regional housing markets and
+2) processing sensitive data and public data to recommend rent increases and create artificial
+scarcity by leaving a certain percentage of housing units vacant;
+
+Whereas, the problem is exacerbated by a trend toward consolidation primarily in local rental
+housing markets, as more units wind up in the hands of Jarge, institutional landlords and rental
+property managers;
+
+Whereas, access to affordable housing and fair and transparent rental housing prices is a critical
+issue for the residents of Jersey City;
+
+Whereas, by adopting Preventing Algorithmic Rent Fixing in the Rental Housing Market, the city
+can further its commitment to keeping Jersey City affordable and fair.
+
+NOW, THEREFORE, BE IT ORDAINED BY THE CITY COUNCIL OF THE CITY OF
+JERSEY CITY THAT: that Chapter 218 (Fees and Charges) of the Municipal Code shall be
+
+
+amended by adding subsection 12 (Preventing Algorithmic Rent-Fixing in the Rental Housing
+Market) which reads as follows:
+
+§218-12 Preventing Algorithmic Rent Fixing in the Rental Housing Market:
+1. Definitions
+a. The following terms, as used in this ordinance, shall have the following meanings:
+
+i. “Coordinate” or “coordinating” mean, with respect to a service provider,
+collecting of historical or contemporaneous prices, price changes, supply
+levels, occupancy rates, or lease or rental contract termination and renewal
+dates of residential dwelling units from two or more real estate lessors or
+from public databases;
+
+1. analyzing or processing of the information described in
+subparagraph (1)(a)(i) using a system, software, or process that uses
+computation; and :
+
+2. recommending rental prices, lease terms, or occupancy levels to a
+real estate lessor.
+
+3. Licensed Real Estate Agents are not included in this definition so
+long as they are operating in accordance with all applicable state
+regulations.
+
+ii. “Person” means any natural person, corporation, partnership, limited
+liability company, firm, or association.
+
+iii. “Residential dwelling unit” means any house, apartment, accessory unit,
+or other unit intended to be used as a person’s primary residence; and does
+not include inpatient medical care, licensed long-term care, and detention
+or correctional facilities.
+
+iv. “Real estate lessor” means any individual, corporation, partnership,
+association, joint-stock company, trust, or unincorporated organization that
+owns real property and leases such property or any portion thereof in the
+form of a residential dwelling unit.
+
+
+vy. “Service provider” means any person that performs a coordination
+function, as defined in Section 1(a)(i)(1) of this Act, for any real estate
+lessor or rentor.
+1. Licensed Real Estate Agents are not included in this definition so
+long as they are operating in accordance with all applicable state
+regulations.
+
+2. Unlawful Conduct
+
+a. Itis unlawful for any real estate lessor, agent, or subcontractor thereof, to subscribe
+to, contract with, or otherwise exchange anything of value in return for the services
+of a service provider.
+
+b: No service provider shall facilitate an agreement not to compete among real estate
+lessors with respect to any aspect of residential dwelling units, including rental
+pricing, fees, or any other rental terms.
+
+3. Enforcement
+
+a. Public Enforcement. The Attorney General or any municipal or county attorney
+may bring a civil action, as parens patriae, in any court of competent jurisdiction,
+to secure relief as provided in this section for injury sustained by natural persons to
+their property by reason of a violation of this chapter.
+
+i. City administration: The Office of Landlord-Tenant Affairs and Office of
+Code Compliance will be empowered to enforce this section.
+
+1. Persons (including residents) who have evidence that a landlord is
+using a service provider or is in any way violating the terms of this
+section report this to the Office of Landlord/Tenant Relations, which
+will compile said complaints.
+
+2. The Office of Landlord/Tenant Relations is empowered to cooperate
+with the Office of Code Compliance to investigate such complaints
+or refer them for prosecution to the municipal prosecutor, Attorney
+General, or other appropriate law enforcement offices.
+
+b. Private Right of Action. Any person who is injured by a violation of this chapter
+may sue in any court of competent jurisdiction in the county where the defendant
+
+
+resides or is found, or any agent of the defendant resides or is found, or where
+service may be obtained, without respect to the amount in controversy.
+
+c. Violations and Penalties:
+
+i. A first violation of § 218-12 shall be punishable as provided in Chapter I,
+General Provisions, Art. I, § 1-25. Subsequent violations shall be punished
+by a fine of not less than $100 and up to $2000, as provided in Chapter 1,
+General Provisions, Art. I, § 1-25. Each day during which an owner is in
+violation of § 218-12 shall constitute a separate violation hereunder.
+
+d. Attorneys Fees and Costs. In the case of any successful action to enforce liability
+pursuant to this Act, the court shall award plaintiff the costs of the action together
+with reasonable attorney fees as determined by the court. Costs and attorney fees
+shall be awarded to the attorney general or a city, county, or district attorney in all
+actions where the attorney general or the city, county, or district attorney
+successfully enforces this article.
+
+4. Severability. If any provision of this ordinance or application thereof to any person(s) or
+circumstances is judged invalid by a court of competent jurisdiction, the invalidity shall
+not affect other provisions or applications of the ordinance that can be given effect without
+the invalidated provision or application and to this end the provisions of this ordinance are
+declared severable.
+
+§ 218-4213. - Exempt dwellings.
+No changes
+
+§ 218-4314. - Occupancy required.
+No changes
+
+§ 218-4415. - Extension of time period.
+No Changes
+
+§ 218-4516. - Violations and penalties
+No Changes
+
+§ 218-4617. - Conflicts with state law.
+No Changes
+
+
+§ 218-4418. - Findings.
+No Changes
+
+§ 218-4819. - Seating requirements.
+
+PUBLIC NOTICE
+CITY OF JERSEY CITY
+
+NOTICE IS HEREBY GIVEN that the foregoing proposed ordinance was introduced and
+passed on First Reading at a meeting of the Municipal Council of the City of Jersey City, in the
+County of Hudson, State of New Jersey, held on Wednesday, May 7, 2025 and that said
+ordinance will be taken up for further consideration for final passage at a meeting of said
+Municipal Council to be held in the Anna and Anthony R. Cucci Memorial Council Chambers
+280 Grove Street Jersey City, New Jersey on Wednesday, May 21, 2025 at 6:00 p.m. or as soon
+thereafter as said matter can be reached, at which time and place all persons who may be
+interested therein will be given the opportunity to be heard concerning the same. A copy of this
+ordinance has been posted on the bulletin board upon which public notices are customarily
+posted on in City Hall in the City of Jersey City, and a copy is available up to and including the
+time of such meeting to the members of the public who shall request such copies, at the Office of
+the City Clerk, in said City Hall, in Jersey City, New Jersey.
+
+By order of the Municipal Council of the City of Jersey City
+
+Insert Date: Tuesday, May 13, 2025
+Account #: 1510902
+
+/S/Sean J. Gallagher
+City Clerk
+
+The City of Jersey City
+County of Hudson
+State of New Jersey
+

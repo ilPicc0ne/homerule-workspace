@@ -1,40 +1,47 @@
 # Resume
 
-**Updated:** 2026-10-03T22:20Z
+**Updated:** 2026-10-04T01:15Z
 **Branch:** main
-**Last commit:** 172c2f0 — Ignore .worktrees/
-**Working tree:** clean (before this wrap-up commit)
+**Last commit:** Wrap-up: address, engine, change-log PRs
+**Working tree:** clean (`.claude/worktrees/` = subagent worktrees, git-ignored)
 
 ## Pick up next
 
-1. Address resolver (#7, #10): fresh session in `.worktrees/address` (branch `s/address-lookup`), paste the kickoff prompt (goal, decisions, tests-first). Edge cases: `lab/resolve-edge-cases/README.md` on that branch.
-2. Demo site: agent was building on `s/demo-site` in `/Users/silvan/claude/code/personal/homerule-demo`; no commits pushed at wrap-up time. Check if it finished; review (light only, "Demo data | Live" toggle, quote check), PR, merge, `vercel deploy --prod` from `web/`; then `git worktree move ../homerule-demo .worktrees/demo`.
-3. Dimitar: issue #27 (task split), then #2 grid triage, #3 Jev test, #4 extraction.
-4. Discord answers → PRD open questions. Email warm-up: mark `alerts@yourhomerule.com` not-spam.
+State 04.10. ~03:15. Freeze 12:00, submission 15:00. Open PRs, merge in this order:
+**#30** extraction (Dimitar; approved, must merge main in first) → **#29** address resolver + /where (`s/address-lookup`, worktree `.worktrees/address`) → **#36** engine `make build` (`s/engine`, stacked on #29+#30) → **#45** change log + email preview (`s/changes`, stacked on #36).
 
-5. Housekeeping: kill leftover automation Chromes once the address session is done (`pkill -f "disable-field-trial-config"`; closes only Playwright-launched browsers), and stop the local dev servers on ports 3100 (demo) and 3210 (address) when no longer needed.
+1. Merge chain above; after each merge, merge main into the next branch. Then on `main`: `make resolve && make build AS_OF=2026-10-01`, commit `outputs/lookups.json` + `changes.json`. (35 scored points)
+2. `make eval` on main → fix list. Known: H01 Berkeley state cap (superseded vs expected unknown), state-cap counts differ from Dimitar's README — both with Dimitar (#36).
+3. `make demo-change` (J4) needs OPENROUTER_API_KEY or Dimitar's warm build/cache.
+4. #41 data into web/; address page reads `out/lookups.full.json` + I3, not its own demo data (135 rows of facts disagree). Link `/changes/[id]`.
+5. Merging s/demo-site breaks `/where` (icons moved to `components/`): fix the import.
+6. Hour-16 watch (~07:00–11:00), sleep split with Dimitar. 12:00–15:00 submission (#13).
+7. Housekeeping: after merges `git worktree remove` the 4 `.claude/worktrees/agent-*`; `pkill -f "disable-field-trial-config"`; move `../homerule-demo` to `.worktrees/demo`.
 
 ## Open questions
 
-- Hour-16 drop time and format; score.py / dev key release — context: posted to Discord.
-- Do use-code unit ranges count as known in the key? — context: we treat them as known behind a switch.
+- Hour-16 drop time; score.py / dev key; how unknowns score — context: Discord.
+- Phone numbers in contacts are unverified.
+- Starter-pack licence "TBD by organizers" — context: public repo publishes `out/` intermediates, not `data/`.
 
 ## Recent decisions
 
-- Address iteration goal: live search on the site → jurisdiction tree; one TypeScript resolver for site and batch — *why:* visible, scalability proof, no drift.
-- Tree Federal › State › County › City / Township / unincorporated; legislative districts P2 — *why:* NJ/MA municipalities are county subdivisions; unincorporated areas fall to county law.
-- Use-code units ("5+", NJ class 4C) as known facts behind a switch — *why:* settles small-building exemptions for nearly all 500.
-- Worktrees under git-ignored `.worktrees/` — *why:* keep `code/personal/` free of repo-lookalike folders.
-- PRD master in docs/, contracts I1/I7, files as data store, no own chatbot, yourhomerule.com + Resend — see SESSIONS.
+- No feature without asking first (PRD rule) — *why:* scope creep before the freeze.
+- One engine: I3 adapter + CLI around Dimitar's evaluator; dates from compiled `effective.from/until`; month precision → unknown inside the window — *why:* agreed on #30.
+- I3 assumes `subsidised: false` without an affordability code and Boston A/ = 7+ units, tagged per record — *why:* otherwise the APT5 guard is never true (0 → 468 rows).
+- Tree levels: rules in HomeRule · not covered · no rules at this level; `county_law` in I1 (MA counties none, LA County unincorporated only) — *why:* "not covered" mixed missing law with absent law.
+- Autocomplete over own data (500 + places); Google Places = idea (PRD) — *why:* no key/terms/cost for the demo.
+- Subscription store Upstash Redis; one-view renter page (v3); real map MapLibre + TIGER (other session).
 
 ## Surprises / gotchas
 
-- East LA: postal "Los Angeles" but unincorporated — *avoid:* never trust postal city; use Census place.
-- Brookline: town with no Census place — *avoid:* county subdivision as municipality in NJ/MA.
-- Census one-line returns no match for place-only input ("Boston, MA", ZIPs) — *avoid:* resolve via jurisdiction list/aliases.
-- Vercel deploy uploads only `web/` — *avoid:* sync contracts into web/ with a drift test.
-- `!` commands are non-interactive; first test mail went to spam.
+- Census fuzzy-matches another city silently ("1 Main St, Los Angeles" → La Selva Beach) — *avoid:* typed-city warning.
+- `npm run resolve` synced contracts after the batch → stale output — *avoid:* sync before and after (fixed).
+- Dimitar's `out/extracted/` + `build/cache` exist only on his machine — *avoid:* engine reads committed `out/rules.compiled.json`.
+- Parallel sessions share one Playwright browser — *avoid:* don't run browser checks in two sessions at once.
+- `vercel install` adds agent skills silently — *avoid:* /vet after marketplace installs.
+- Dimitar pushes to main often — *avoid:* merge main into branches before pushing.
 
 ## Long-form
 
-See `.claude/SESSIONS.md`, `docs/decisions/`, `docs/PRD.md`, `docs/ARCHITECTURE.md`.
+See `.claude/SESSIONS.md`, `docs/PRD.md`, `docs/ARCHITECTURE.md`, `docs/decisions/`.

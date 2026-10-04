@@ -89,8 +89,14 @@ type Compiled = { team_rule_id: string; jurisdiction: string; level: "state"|"ci
   key_value_conditions: {value: string; when: Node; tenant_note: string|null}[];  // alternative amounts, e.g. the
                                         // small-landlord deposit cap; coverage is unaffected
   interaction: {type: "none"|"yields_to_local"|"coexists"|"may_preempt_local", target_category?: string, quote?: string};
+  interactions: {type: string; target_category: string; quote: string}[];  // all of them; `interaction` is the first
   retrieved_at: string; parse_status: "ok"|"partial"|"failed";
-  checks: string[] };                   // names of failed extraction checks; empty when parse_status is ok
+  checks: string[];                     // names of failed extraction checks; empty when parse_status is ok
+  x_source: {unit: string; source_doc_id: string; citation: string;
+             effect: "protection_or_duty"|"bars_or_limits_local_rules";
+             cap_pct_low: number|null; cap_pct_high: number|null;   // rent caps: the evaluator compares them to
+                                                                    // decide whether a local cap supersedes the state's
+             status_evidence: object|null; origin: "starter"|"supplemental"|"ingested"; stub: boolean} };
 ```
 
 ## B · Address resolution
@@ -218,13 +224,13 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
   - Later `/api/mcp`, the same functions behind `mcp-handler`.
 - **As-of dates:** the engine runs at build time for a fixed list: 2025-12-31 and 2026-01-02 (T1), 2026-10-01 (default), and each effective date in the rules ±1 day. The picker snaps to this list.
 - **Email (P1):** Resend (EU region), domain `yourhomerule.com` verified (DKIM on `resend._domainkey`, SPF and bounce MX on `send.`, DMARC `p=none`); sender `HomeRule <alerts@yourhomerule.com>`. Subscriptions per address ID with double opt-in; sent after a rebuild from the diff. Deliverability: HTML + text part, unsubscribe link and `List-Unsubscribe` header, a warm-up of a few mails to our own inboxes. The first test landed in Outlook spam (new domain, no reputation yet). Use a dedicated sending-only API key for the app, not the account-wide one.
-- **Subscription store (Silvan):** Upstash Redis from the Vercel Marketplace, free tier [assumed]. Keys: `sub:<address_id>` = set of confirmed emails; `pending:<token>` = email + address ID with a 48 h expiry for double opt-in. Nothing else is stored. Swap for Neon Postgres if we ever need queries beyond "who follows this address".
+- **Subscription store (Silvan):** Upstash Redis `homerule-subscriptions` (Vercel Marketplace, free plan, created 04.10.2026), connected to project `homerule` for production, preview and development; credentials only as Vercel env vars (`KV_REST_API_URL`, `KV_REST_API_TOKEN`, `KV_REST_API_READ_ONLY_TOKEN`, `KV_URL`, `REDIS_URL`), pulled locally with `vercel env pull` into git-ignored `.env.local`. No database for law or address data: Dimitar pushes output files to git, we deploy from here. Keys: `sub:<address_id>` = set of confirmed emails; `pending:<token>` = email + address ID with a 48 h expiry for double opt-in. Nothing else is stored. Swap for Neon Postgres if we ever need queries beyond "who follows this address".
 
 ## Audit and evaluation
 
 Requirements: PRD scoring (Responsible design), [Done by the 12:00 freeze](PRD.md#done-by-the-1200-freeze), [Never](PRD.md#never).
 
-- **Audit log**, `audit/*.jsonl`, append-only: one line per model call and per build (stage, document, model, prompt hash, input hash, verdicts, rule IDs, cost, git SHA). Raw model outputs sit in `audit/raw/`.
+- **Audit log**, `audit/*.jsonl` (git-ignored, append-only): `calls.jsonl` one line per model call (stage, document, model, request hash, seconds, cost, usage), `builds.jsonl` one line per build. Raw model responses sit in `build/cache/` keyed by request hash.
 - **`make eval`** runs, and writes one report:
   - the assertion suite: brief-named rules with status and date;
   - the jurisdiction × category grid;
@@ -232,7 +238,8 @@ Requirements: PRD scoring (Responsible design), [Done by the 12:00 freeze](PRD.m
   - the trap addresses;
   - the quote check;
   - a crawl for "not legal advice".
-- **Prompt lint:** no citation, date or key value from the assertion suite appears in any prompt. Prompts are frozen before the hour-16 drop (hash checked).
+- **Prompt lint** (`extract/prompts.py`, in `make eval`): no citation, date or key value from the test suite (`tests/fixtures/`, `dev/change_tests.json`) appears in any prompt literal; reviewed exceptions are listed with a reason. **Freeze:** `make freeze` writes the prompt digest to `extract/PROMPTS.lock` before the hour-16 drop; `make eval` reports whether the prompts still match it.
+- **Curated audit trail** `out/audit.json` (D → S, for the rule page), one entry per `team_rule_id`: `source` (version, URL, retrieved, verbatim quote), `model` (what Luna extracted, dates as stated), `checks` (code checks, Jev overrides, gate answers with confidence, triaged conditions), `code` (status, effective dates and how they were derived, status evidence, open questions), `calls` (stage, model, request hash, cost). The `model` / `code` split is the reasoning boundary. `audit/builds.jsonl` gets one line per build (git SHA, prompt digest, counts).
 - **Promotion rule:** a change to prompts or the engine is kept only if no eval component drops.
 
 ## Scaling to a new jurisdiction

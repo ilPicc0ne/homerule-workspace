@@ -1,0 +1,38 @@
+{
+  "checked_on": "2026-10-04",
+  "source_url": "https://www.jerseycitynj.gov/common/pages/GetFile.ashx?key=3949AR0g",
+  "http_status": 200,
+  "sha256": "9593df811dd1e38a201122e0f3c8381d076d21df6fd48d7e11b9b43e4709b885",
+  "document_status": "first_reading_draft_not_final_enactment",
+  "use_as_enacted_rule": false,
+  "ocr_method": "pdftoppm 220 dpi; tesseract --psm 3 per page",
+  "ocr_review_required": true,
+  "findings": [
+    "Page 5 announces first reading May 7, 2025 and future final hearing May 21, 2025.",
+    "Draft differs from S001 signed text: definition of coordinating lacks the final nonpublic competitor information clause and same-owner exemption.",
+    "Cannot substitute this PDF for the adopted ordinance."
+  ],
+  "signed_document_url": "https://cityofjerseycity.civicweb.net/document/429156/Ordinance%20Amending%20Chapter%20218%20creating%20section.pdf",
+  "signed_document_portal": "https://cityofjerseycity.civicweb.net/filepro/documents/414231/",
+  "signed_document_existing_source_id": "S001",
+  "amendment_leads": [
+    {
+      "ordinance": "25-076",
+      "topic": "amends unlawful-conduct language",
+      "adoption_lead": "2025-07-16",
+      "url": "https://cityofjerseycity.civicweb.net/document/435240/",
+      "status": "signed adopted PDF acquired by agent-assisted browser download; see manifest",
+      "source_id": "S016"
+    },
+    {
+      "ordinance": "25-098",
+      "topic": "adds mandatory rent-increase disclosure",
+      "status": "signed adopted PDF acquired by agent-assisted browser download; see manifest",
+      "source_id": "S017"
+    }
+  ],
+  "pipeline_changed": false,
+  "previous_acquisition_hold": "Unchanged pending user browser download or independent delivery; do not relabel agent-assisted browsing as manual human acquisition.",
+  "acquisition_decision": "Targeted agent-assisted browser download from official public portal, which explicitly offers downloads. No applicable prohibition on this limited download/AI use was identified in the reviewed portal policies. Robots disallows default crawlers (named search engines have exceptions); no crawling permission inferred. This is a limited project decision, not blanket legal clearance or organizer approval.",
+  "signed_browser_download_record": "metadata/S001-browser-reacquisition.json"
+}

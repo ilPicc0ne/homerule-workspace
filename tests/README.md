@@ -4,7 +4,8 @@
 
 | Section | Checks |
 |---|---|
-| Integrity | Every quote is found verbatim in the pinned source text |
+| Integrity | Every quote is found verbatim in the pinned source text; every `quoted_span` in the scored `rules.json` too (PRD: 100%) |
+| Prompts | Lint: no test-suite citation, date or key value in a prompt; digest vs `extract/PROMPTS.lock` |
 | Assertions | 27 rules the brief, the guide and `change_tests.json` name: present, right status, key value, effective date (`fixtures/assertions.yaml`) |
 | Coverage matrix | 13 jurisdictions × 6 categories: rule / finding ("no rule", backed by text) / gap (sources exist, no rule) / empty |
 | Change tests | T1-T5 from `dev/change_tests.json` against the sample addresses; T6 when an ingested document exists |

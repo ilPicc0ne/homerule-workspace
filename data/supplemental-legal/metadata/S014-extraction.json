@@ -1,0 +1,25 @@
+{
+  "source_id": "S014",
+  "raw_path": "excluded/raw/S014-jersey-city-ch260.docx",
+  "text_path": "excluded/text/S014.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "9e051d99ad0b12286c5ae8c2803af3db10a58a514f0608fc02dd108ac591b842",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 57115,
+      "method": "docx-xml-paragraphs",
+      "part": "word/document.xml",
+      "numbering_note": "No w:numPr elements in document.xml. Section and subsection labels are literal text and retained. Formatting and footnote anchors are not reconstructed."
+    },
+    {
+      "page_or_part": 2,
+      "start_char": 57118,
+      "end_char": 57761,
+      "method": "docx-xml-paragraphs",
+      "part": "word/footnotes.xml",
+      "numbering_note": "No w:numPr elements in document.xml. Section and subsection labels are literal text and retained. Formatting and footnote anchors are not reconstructed."
+    }
+  ]
+}
