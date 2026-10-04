@@ -43,3 +43,4 @@ data/supplemental-legal/raw/S010-newark-rent-control-office.html
 # Claude Code subagent worktrees (Agent isolation)
 .claude/worktrees/
 out/extracted_*.log
+out/check.log

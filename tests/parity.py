@@ -19,7 +19,7 @@ def run(as_of="2026-10-01"):
         return 0
     from engine import rules as A
     internal = [r for r in C.internal_rules() if r["origin"] in ("starter", "supplemental")]
-    idmap = {r["id"]: c["team_rule_id"] for r, c in zip(internal, (C.compiled(r) for r in internal))}
+    idmap = {r["id"]: c["team_rule_id"] for r, c in zip(internal, C.compiled_all(internal, quiet=True))}
     internal = T.normalise_dates(internal)
     eng = A.load()
     diff, example = Counter(), {}

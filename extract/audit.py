@@ -93,6 +93,12 @@ def build(rules, comps, findings, open_questions):
     return out
 
 
+def one_per_line(d):
+    """A JSON object with one key per line (sorted), so a rebuild diffs by changed entries, not reshuffled lines."""
+    return "{\n" + ",\n".join(f"{json.dumps(k, ensure_ascii=False)}: {json.dumps(d[k], ensure_ascii=False, sort_keys=True)}"
+                              for k in sorted(d)) + "\n}\n"
+
+
 def log_build(n_rules, n_findings):
     config.AUDIT.mkdir(exist_ok=True)
     with open(config.AUDIT / "builds.jsonl", "a") as f:

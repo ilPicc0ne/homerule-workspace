@@ -2,14 +2,21 @@
 AS_OF ?= 2026-10-01
 PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
-.PHONY: all extract resolve resolve-live build test eval freeze ingest rehearse demo-change rerun web
+.PHONY: all extract resolve resolve-live build test eval check freeze ingest rehearse demo-change rerun web
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
-extract:                                 ## A · corpus -> out/rules.json, out/rules.compiled.json, out/findings.json (Dimitar)
+SAMPLES ?= s0 s1 s2
+
+extract:                                 ## A · corpus -> out/rules.json, out/rules.compiled.json, out/findings.json (Dimitar); $(SAMPLES) extracted in parallel, majority vote
 	$(PY) -m extract.corpus
-	$(PY) -m extract.luna_pass $$(ls out/index | grep "^[DS]" | sed "s/.json//")
-	$(PY) -m extract.gate
+	@for s in $(SAMPLES); do \
+	  run=$$( [ $$s = s0 ] || echo $$s ); \
+	  ( EXTRACT_DIR=$$s EXTRACT_RUN=$$run $(PY) -m extract.luna_pass $$(ls out/index | grep "^[DSX]" | sed "s/.json//") > out/extracted_$$s.log 2>&1 \
+	    && EXTRACT_DIR=$$s EXTRACT_RUN=$$run $(PY) -m extract.gate >> out/extracted_$$s.log 2>&1 \
+	    || echo "sample $$s failed: see out/extracted_$$s.log" ) & \
+	done; wait
+	$(PY) -m extract.vote $(SAMPLES)
 	$(PY) -m extract.links
 	$(PY) -m extract.open_questions
 	$(PY) -m extract.compile
@@ -29,10 +36,12 @@ test:                                    ## engine unit tests, guards and the PR
 eval:                                    ## assertion suite, T1-T6, trap addresses, quote check, disclaimer crawl
 	$(PY) -m tests.eval_suite --supplemental
 
-check:                                   ## full suite after any change to extract/, engine/ or tests/: re-extract (cached), eval, engine parity, hour-16 rehearsal
+check:                                   ## full suite after any change to extract/, engine/ or tests/: re-extract (samples + vote, cached), build, engine tests, eval, parity, hour-16 rehearsal
 	$(MAKE) extract
-	python3 -m tests.eval_suite --supplemental | tail -0
-	python3 -m tests.parity
+	$(MAKE) build
+	$(MAKE) test
+	$(PY) -m tests.eval_suite --supplemental > /dev/null
+	$(PY) -m tests.parity
 	$(MAKE) rehearse
 	@grep -E "^\*\*|^## (Assert|questions)|^\| T[1-6] \| [0-9]+ \|" out/eval/report_supplemental.md
 
@@ -46,7 +55,7 @@ ingest:                                  ## hour-16: make ingest DOC=<path> JUR=
 rehearse:                                ## hour-16 dry run on the fictional tests/fixtures/synthetic/X001.txt; removed afterwards
 	$(PY) -m extract.ingest tests/fixtures/synthetic/X001.txt --jurisdiction "Cambridge, MA" --id X001
 	$(PY) -m tests.eval_suite --supplemental
-	rm -f out/index/X001.json out/extracted/X001.json
+	rm -f out/index/X001.json out/extracted*/X001.json
 	$(PY) -m extract.compile
 	$(PY) -m tests.eval_suite --supplemental > /dev/null
 

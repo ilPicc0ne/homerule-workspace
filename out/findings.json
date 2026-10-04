@@ -213,11 +213,11 @@
    {
     "value": "March 1, 2026",
     "iso_date": "2026-03-01",
-    "source": "Berkeley ordinance text, Chapter 13.63",
+    "source": "Berkeley ordinance text, ch. 13.63",
     "source_doc_id": "D001",
     "url": "https://berkeleyca.gov/sites/default/files/documents/2025-12-02%20Item%2001%20Ordinance%207992.pdf",
     "matched_by": "same date as our rule",
-    "match_confidence": 0.52
+    "match_confidence": 0.58
    },
    {
     "value": "January 2026",
@@ -256,34 +256,34 @@
   "category": "algorithmic_rent_setting",
   "kind": "open_question",
   "question_kind": "may_be_preempted",
-  "note": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once it takes effect.",
+  "note": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once the state law takes effect.",
   "claims": [
+   {
+    "value": "Jersey City’s ordinance prohibits algorithmic rent-fixing.",
+    "iso_date": null,
+    "source": "Jersey City Code § 218-12(2)(a); Ordinance 25-057",
+    "source_doc_id": null,
+    "url": null,
+    "matched_by": null,
+    "match_confidence": 0.5
+   },
+   {
+    "value": "Hoboken’s ordinance prohibits software, algorithms, or data-sharing platforms from coordinating, recommending, or implementing rental pricing.",
+    "iso_date": null,
+    "source": "Hoboken ordinance (citation not stated); source S008",
+    "source_doc_id": null,
+    "url": null,
+    "matched_by": null,
+    "match_confidence": 0.21
+   },
    {
     "value": "The FAIR Act may preempt the Jersey City and Hoboken ordinances once it takes effect.",
     "iso_date": null,
-    "source": "Challenge guide, section 9",
+    "source": "Challenge guide, § 9; New Jersey P.L. 2026, c.043",
     "source_doc_id": null,
     "url": null,
     "matched_by": null,
-    "match_confidence": 0.73
-   },
-   {
-    "value": "Jersey City prohibits specified subscriptions, contracts, or exchanges involving algorithmic rent-fixing.",
-    "iso_date": null,
-    "source": "Jersey City Code § 218-12(2)(a), Ord. 25-057",
-    "source_doc_id": null,
-    "url": null,
-    "matched_by": null,
-    "match_confidence": 0.58
-   },
-   {
-    "value": "Hoboken prohibits landlords from using software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental pricing.",
-    "iso_date": null,
-    "source": "Hoboken ordinance; citation not stated",
-    "source_doc_id": null,
-    "url": null,
-    "matched_by": null,
-    "match_confidence": 0.3
+    "match_confidence": 0.89
    }
   ],
   "citation": "guide: known open questions in the law",
@@ -340,34 +340,34 @@
   "category": "algorithmic_rent_setting",
   "kind": "open_question",
   "question_kind": "may_be_preempted",
-  "note": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once it takes effect.",
+  "note": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once the state law takes effect.",
   "claims": [
+   {
+    "value": "Jersey City’s ordinance prohibits algorithmic rent-fixing.",
+    "iso_date": null,
+    "source": "Jersey City Code § 218-12(2)(a); Ordinance 25-057",
+    "source_doc_id": null,
+    "url": null,
+    "matched_by": null,
+    "match_confidence": 0.5
+   },
+   {
+    "value": "Hoboken’s ordinance prohibits software, algorithms, or data-sharing platforms from coordinating, recommending, or implementing rental pricing.",
+    "iso_date": null,
+    "source": "Hoboken ordinance (citation not stated); source S008",
+    "source_doc_id": null,
+    "url": null,
+    "matched_by": null,
+    "match_confidence": 0.21
+   },
    {
     "value": "The FAIR Act may preempt the Jersey City and Hoboken ordinances once it takes effect.",
     "iso_date": null,
-    "source": "Challenge guide, section 9",
+    "source": "Challenge guide, § 9; New Jersey P.L. 2026, c.043",
     "source_doc_id": null,
     "url": null,
     "matched_by": null,
-    "match_confidence": 0.73
-   },
-   {
-    "value": "Jersey City prohibits specified subscriptions, contracts, or exchanges involving algorithmic rent-fixing.",
-    "iso_date": null,
-    "source": "Jersey City Code § 218-12(2)(a), Ord. 25-057",
-    "source_doc_id": null,
-    "url": null,
-    "matched_by": null,
-    "match_confidence": 0.58
-   },
-   {
-    "value": "Hoboken prohibits landlords from using software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental pricing.",
-    "iso_date": null,
-    "source": "Hoboken ordinance; citation not stated",
-    "source_doc_id": null,
-    "url": null,
-    "matched_by": null,
-    "match_confidence": 0.3
+    "match_confidence": 0.89
    }
   ],
   "citation": "guide: known open questions in the law",
@@ -410,7 +410,7 @@
   "category": "rent_increase_limits",
   "kind": "open_question",
   "question_kind": "dates_disagree",
-  "note": "Published sources give different effective dates for Los Angeles’s new RSO rent-increase formula.",
+  "note": "Sources publish different effective dates for Los Angeles’s new Rent Stabilization Ordinance formula.",
   "claims": [
    {
     "value": "2026-02-02",
@@ -419,7 +419,7 @@
     "source_doc_id": "D041",
     "url": "https://housing.lacity.gov/residents/rso-overview",
     "matched_by": "same date as our rule",
-    "match_confidence": 0.38
+    "match_confidence": 0.41
    },
    {
     "value": "2026-01-24",
@@ -434,24 +434,10 @@
   "citation": "guide: known open questions in the law",
   "quote": null,
   "source_doc_ids": [
-   "D040",
    "D041",
    "D044"
   ],
   "our_rules": [
-   {
-    "id": "D040+D041+D042+D043:9:state-rent-cap",
-    "citation": "Cal. Civ. Code § 1947.12",
-    "source_doc_id": "D040",
-    "effective": {
-     "from": "2024-08-01",
-     "until": null,
-     "precision": "day",
-     "derived": null
-    },
-    "key_value": "5% plus the percentage change in cost of living, capped at 10%",
-    "quote": "A\nnnual rent increases are limited to no more than 5% plus the percentage change in the cost of living for the region in which the property is located, or 10% whichever is lower)."
-   },
    {
     "id": "D040+D041+D042+D043:10:rso-rent-increase-frequency",
     "citation": "LAMC § 151.06",
@@ -472,25 +458,16 @@
   "category": "application_screening_fees",
   "kind": "open_question",
   "question_kind": "no_official_value",
-  "note": "California’s screening-fee limit is tied to allowable costs, but no single official dollar figure for 2026 is identified in the sources.",
+  "note": "California’s screening-fee cap is tied to statutory cost and adjustment rules, but no single official 2026 statewide dollar figure is published.",
   "claims": [
    {
-    "value": "A landlord may not charge an application screening fee above actual out-of-pocket costs and the reasonable value of time spent.",
+    "value": "No single official 2026 dollar figure is published.",
     "iso_date": null,
-    "source": "Cal. Civ. Code § 1950.6, as summarized in the rules extracted so far",
+    "source": "Challenge guide, § 9; Cal. Civ. Code § 1950.6",
     "source_doc_id": null,
     "url": null,
     "matched_by": null,
-    "match_confidence": 0.57
-   },
-   {
-    "value": "There is no single official 2026 dollar figure.",
-    "iso_date": null,
-    "source": "Challenge guide, section 9",
-    "source_doc_id": null,
-    "url": null,
-    "matched_by": null,
-    "match_confidence": 0.97
+    "match_confidence": 0.56
    }
   ],
   "citation": "guide: known open questions in the law",

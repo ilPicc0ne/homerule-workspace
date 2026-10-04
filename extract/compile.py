@@ -265,7 +265,30 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
             main["details"].append({"provision": o["provision"], "requirement": o["requirement"],
                                     "key_value": o["key_value"], "source_doc_id": span["doc_id"] if span else None,
                                     "quote": source_span(span) if span else None, "supporting": True})
-    return attribute(replaced(rules, chains))
+    return attribute([local_exemption_to_interaction(r) for r in replaced(rules, chains)])
+
+
+LOCAL_REFS = ("local_rent_control", "local_just_cause")
+
+
+def local_exemption_to_interaction(r):
+    """A state rule exempting units 'covered by local rent control / just cause' says the same as 'yields to a
+    stricter local rule': the model writes it either way. One encoding, so results don't depend on the wording:
+    the exemption branch becomes a yields_to_local interaction (the engine then reports superseded, not nothing)."""
+    if ", " in r["jurisdiction"]:
+        return r
+    ex = r["exempt_if"]
+    branches = ex.get("children") or [] if ex.get("kind") == "any" else [ex]
+    local = [b for b in branches if b.get("kind") == "ref" and b.get("ref") in LOCAL_REFS]
+    if not local:
+        return r
+    rest = [b for b in branches if b not in local]
+    r = {**r, "exempt_if": {**ex, "children": rest} if ex.get("kind") == "any" and rest else
+         (rest[0] if len(rest) == 1 and ex.get("kind") != "any" else {"kind": "never"} if not rest else {**ex, "children": rest})}
+    if not any(i["type"] == "yields_to_local" for i in r["interactions"]):
+        r["interactions"] = r["interactions"] + [{"type": "yields_to_local", "target_category": r["category"],
+                                                  "quote": local[0].get("quote") or "exemption for locally controlled units"}]
+    return r
 
 
 def attribute(rules):
@@ -310,6 +333,20 @@ def compiled(rule):
                      "origin": rule["origin"], "stub": rule["stub"]},
         "details": rule.get("details", []),   # other headline provisions under the same citation
     }
+
+
+def compiled_all(rules, quiet=False):
+    """compiled() for every rule; team_rule_id made unique: a repeat (e.g. an older version of the same section)
+    gets a deterministic suffix and a warning, never aborts a run."""
+    comps, seen = [compiled(r) for r in rules], {}
+    for c in comps:
+        n = seen.get(c["team_rule_id"], 0)
+        seen[c["team_rule_id"]] = n + 1
+        if n:
+            if not quiet:
+                print(f"warning: duplicate team_rule_id {c['team_rule_id']} -> suffix -{n + 1}")
+            c["team_rule_id"] = f"{c['team_rule_id']}-{n + 1}"
+    return comps
 
 
 STARTER_STATUS = {"in_force": "in_force", "enacted_not_effective": "not_yet_effective", "pending": "pending",
@@ -364,14 +401,7 @@ def findings(rules):
 
 def build(extracted_dir=None, suffix=""):
     rules = internal_rules(extracted_dir)
-    comps = [compiled(r) for r in rules]
-    seen = {}
-    for c in comps:          # team_rule_id must be unique: a repeat gets a deterministic suffix, never aborts a run
-        n = seen.get(c["team_rule_id"], 0)
-        seen[c["team_rule_id"]] = n + 1
-        if n:
-            print(f"warning: duplicate team_rule_id {c['team_rule_id']} -> suffix -{n + 1}")
-            c["team_rule_id"] = f"{c['team_rule_id']}-{n + 1}"
+    comps = compiled_all(rules)
     starter = [rec for rec in (starter_record(r, c) for r, c in zip(rules, comps)) if rec]   # starter, supplemental, ingested
     (config.OUT / f"rules.compiled{suffix}.json").write_text(json.dumps(comps, indent=1, ensure_ascii=False))
     (config.OUT / f"rules{suffix}.json").write_text(json.dumps({"rules": starter}, indent=1, ensure_ascii=False))
@@ -379,7 +409,7 @@ def build(extracted_dir=None, suffix=""):
     (config.OUT / f"findings{suffix}.json").write_text(json.dumps(finds, indent=1, ensure_ascii=False))
     from . import audit                    # curated per-rule trail for the rule page, and one line per build
     trail = audit.build(rules, comps, finds, open_questions())
-    (config.OUT / f"audit{suffix}.json").write_text(json.dumps(trail, indent=1, ensure_ascii=False))
+    (config.OUT / f"audit{suffix}.json").write_text(audit.one_per_line(trail))   # one rule per line: small diffs
     audit.log_build(len(comps), len(finds))
     return rules, comps
 
