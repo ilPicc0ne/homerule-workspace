@@ -92,7 +92,7 @@ def normalize(rules):
     for doc_id, items in targets.items():
         qs = {}
         for i, (r, n) in enumerate(items):
-            q = _quote(n)[:600]
+            q = _quote(n)
             qs[f"o{i}"] = {"type": "choice", "criteria": OWNER,
                            "instructions": f'Consider this exemption from the law: "{q}". Does it apply only when the '
                                            "owner lives in the building or on the property?"}
@@ -107,7 +107,9 @@ def normalize(rules):
                                            "is true. Could the exemption itself be true for an ordinary multifamily "
                                            "apartment building of five or more residential units rented to tenants, "
                                            "that is not subsidised or affordable housing? Judge it as written."}
-        answers, _ = llm.jev(_text(doc_id)[:60000], qs, stage="jev_exemptions", ref=doc_id)
+        text = _text(doc_id)
+        at = next((s[0] for _, n in items for s in [locate(text, _quote(n))] if s), None)
+        answers, _ = llm.jev(llm.fit(text, at), qs, stage="jev_exemptions", ref=doc_id)
         for i, (r, n) in enumerate(items):
             ex = r["exempt_if"]
             kids = ex["children"] if ex["kind"] == "any" else None

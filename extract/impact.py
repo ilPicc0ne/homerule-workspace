@@ -6,7 +6,8 @@ Added to every record of out/rules.compiled.json as `renter_impact`:
    "strength": {"value": float, "unit": str, "lower_is_better": bool} | null}
 
 - direction: code from what extraction already decided (effect: a rule that bars or limits local rules limits a
-  protection; a protection or duty protects). One batched Jev call reviews every protecting rule with its quote
+  protection; a protection or duty protects). Jev reviews every protecting rule with its full quote, one call per
+  source document with the whole document as context
   ("for tenants, does this provision add a protection, take one away or limit it, or neither?") and overrides the
   code default only at p >= 0.9, e.g. an exemption from a rent cap filed as a protection.
 - kind (eviction, algorithmic pricing, application fees): a Jev label in the same call - does the rule limit the
@@ -87,23 +88,39 @@ def strength(comp):
 
 
 def annotate(rules, comps):
-    """rules: internal records (quotes); comps: the compiled records, annotated in place."""
-    qs, idx = {}, {}
+    """rules: internal records (quotes); comps: the compiled records, annotated in place. One Jev call per source
+    document, with the full document as context (llm.fit) and each rule's full quote."""
+    from concurrent.futures import ThreadPoolExecutor
+    from .exemptions import _text
+    from .luna_pass import locate
+    by_doc = {}
     for i, (r, c) in enumerate(zip(rules, comps)):
-        if (c.get("x_source") or {}).get("effect", r.get("effect")) == "protection_or_duty":
-            quote = " ".join((r.get("requirement_quote") or r.get("requirement") or "").split())[:400]
-            qs[f"r{i}"] = {"type": "choice", "criteria": DIRECTION,
-                           "instructions": f'For tenants, what does this provision do: "{quote}" '
-                                           f'(cited as {r["citation"]}, topic {r["category"]})?'}
-            idx[f"r{i}"] = i
-            if r["category"] in KIND:
-                ask = KIND_QUESTION.get(r["category"], "What kind of tenant protection is this provision")
-                qs[f"k{i}"] = {"type": "choice", "criteria": KIND[r["category"]],
-                               "instructions": f'{ask}: "{quote}" (cited as {r["citation"]})?'}
+        if (c.get("x_source") or {}).get("effect", r.get("effect")) != "protection_or_duty":
+            continue
+        quote = " ".join((r.get("requirement_quote") or r.get("requirement") or "").split())
+        qs = by_doc.setdefault(r.get("source_doc_id"), {})
+        qs[f"r{i}"] = {"type": "choice", "criteria": DIRECTION,
+                       "instructions": f'For tenants, what does this provision do: "{quote}" '
+                                       f'(cited as {r["citation"]}, topic {r["category"]})?'}
+        if r["category"] in KIND:
+            ask = KIND_QUESTION.get(r["category"], "What kind of tenant protection is this provision")
+            qs[f"k{i}"] = {"type": "choice", "criteria": KIND[r["category"]],
+                           "instructions": f'{ask}: "{quote}" (cited as {r["citation"]})?'}
+    summary = "\n".join(f"- {r['citation']}: {r['requirement']}" for r in rules)
+
+    def one(item):
+        doc_id, qs = item
+        text = _text(doc_id) if doc_id else ""
+        if not text:
+            return llm.jev(llm.fit(summary), qs, stage="jev_renter_impact", ref="rules")[0]
+        first = rules[int(next(iter(qs))[1:])]
+        span = locate(text, first.get("requirement_quote") or "")
+        return llm.jev(llm.fit(text, span[0] if span else None), qs, stage="jev_renter_impact", ref=doc_id)[0]
+
     answers = {}
-    if qs:
-        state = "\n".join(f"- {r['citation']}: {r['requirement']}" for r in rules)
-        answers, _ = llm.jev(state[:60000], qs, stage="jev_renter_impact", ref="rules")
+    with ThreadPoolExecutor(8) as ex:
+        for a in ex.map(one, sorted(by_doc.items(), key=lambda x: x[0] or "")):
+            answers.update(a)
     for i, (r, c) in enumerate(zip(rules, comps)):
         effect = (c.get("x_source") or {}).get("effect", r.get("effect"))
         direction = "limits" if effect == "bars_or_limits_local_rules" else "protects"
