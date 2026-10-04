@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Sets the alert env vars everywhere at once, without ever printing a secret.
 #   scripts/alerts-env.sh            reuse DEMO_TOKEN from web/.env.local if present, else generate one
-#   scripts/alerts-env.sh --rotate   always generate a new DEMO_TOKEN
+#   scripts/alerts-env.sh --rotate   always generate a new DEMO_TOKEN (and CRON_SECRET)
 # Writes: web/.env.local (local dev + the dispatch script), Vercel production + preview.
+# CRON_SECRET (production only): lets the daily Vercel Cron call GET /api/alerts/cron. The run stays a DRY RUN:
+# ALERTS_CRON_SEND is never set here (set it to 1 by hand in Vercel only when real lifecycle mails should start).
 # RESEND_API_KEY is not touched (set once by hand from the Resend dashboard).
 set -euo pipefail
 
@@ -42,18 +44,30 @@ else
   echo "DEMO_TOKEN: reusing the one in $ENV_FILE"
 fi
 
+cron="$(grep -E '^CRON_SECRET=' "$ENV_FILE" | head -1 | cut -d= -f2- || true)"
+if [ "${1:-}" = "--rotate" ] || [ -z "$cron" ]; then
+  cron="$(openssl rand -hex 32)"
+  echo "CRON_SECRET: generated a new one"
+else
+  echo "CRON_SECRET: reusing the one in $ENV_FILE"
+fi
+
 set_local DEMO_TOKEN "$token"
+set_local CRON_SECRET "$cron"
 set_local ALERTS_SITE_URL "$SITE_URL_LOCAL"
-echo "  local: $ENV_FILE updated (DEMO_TOKEN, ALERTS_SITE_URL)"
+echo "  local: $ENV_FILE updated (DEMO_TOKEN, CRON_SECRET, ALERTS_SITE_URL)"
 
 for env in production preview; do
   set_vercel DEMO_TOKEN "$token" "$env" --sensitive
 done
 set_vercel ALERTS_SITE_URL "$SITE_URL_PROD" production
+set_vercel CRON_SECRET "$cron" production --sensitive
 
-unset token
+unset token cron
 echo
 echo "Now in Vercel (names only):"
-$VERCEL env ls 2>/dev/null | grep -E 'DEMO_TOKEN|ALERTS_SITE_URL|RESEND_API_KEY' | awk '{print "  " $1 " (" $4 ")"}'
+$VERCEL env ls 2>/dev/null | grep -E 'DEMO_TOKEN|CRON_SECRET|ALERTS_CRON_SEND|ALERTS_SITE_URL|RESEND_API_KEY' | awk '{print "  " $1 " (" $4 ")"}'
 echo
 echo "Takes effect with the next deploy (push to production / new preview)."
+echo "Cron check after that deploy: Vercel → homerule → Settings → Cron Jobs → Run; the log line says DRY RUN."
+echo "ALERTS_CRON_SEND is not set, so the daily run never sends."

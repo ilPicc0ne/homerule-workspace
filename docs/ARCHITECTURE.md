@@ -301,6 +301,10 @@ Built 04.10.2026 for the prototype (owner decision; the demand test in `notes/pl
 - **Idempotency:** `sent:<event_id>:<hash>` and the `told:` record are written only after Resend answers 2xx; a failure is retried on the next run. `digest:<hash>:<date>` keeps it to one digest a day (a second run that day defers to tomorrow). A dry run sends and writes nothing.
 - **Runs:** Vercel Cron (`web/vercel.json`, `0 14 * * *` = after local midnight in both zones) → `GET /api/alerts/cron` with `Authorization: Bearer $CRON_SECRET` (Vercel adds it when the variable is set; `DEMO_TOKEN` also works for manual calls; 401 otherwise). **Dry run unless `ALERTS_CRON_SEND=1`**; `?date=YYYY-MM-DD` (simulated day) and `?dry=1` are always dry. Locally: `make alerts-run [SEND=1] [AS_OF=YYYY-MM-DD] [SIM=all|ids] [APPROVE_ALL=1]` (SIM: one fake subscriber per address in a memory store, never sends).
 - **Not built:** person-level unsubscribe and preferences, an approval queue key and operator mail (the dry run is the queue), a Resend `Idempotency-Key`, the yearly allowed-increase announcements, bills opt-in, .ics feed.
+- **Technical debt (fix before `ALERTS_CRON_SEND=1`; harmless in the closed test, review of #90, 04.10.2026):**
+  - One unreadable `told:` field (bad JSON) throws in `corrections()` and fails the whole run with a 500, for every subscriber. Parse per field and skip a bad one with a log line.
+  - The run walks subscribers one by one with several Redis round trips each. At a few hundred subscribers it can hit the Vercel function time limit. A timeout after Resend accepted a digest but before its `sent:`/`digest:` keys are written sends that digest again on the next run. Fix: write the `digest:` key first (claim), batch Redis calls (pipeline), and pass Resend's `Idempotency-Key` per digest.
+  - Without a jurisdiction (a correction for a rule that left the data), the time zone falls back to New York, so a Los Angeles subscriber's "today" can be off by one day for that line.
 
 ### Subscription store (Upstash Redis)
 
@@ -330,7 +334,7 @@ Built 04.10.2026 for the prototype (owner decision; the demand test in `notes/pl
 | `DEMO_TOKEN` | Vercel production, `.env.local` (`scripts/alerts-env.sh`) | `POST /api/alerts/dispatch`, `make alert` |
 | `ALERTS_SITE_URL` | Vercel production, `.env.local` | Links in emails (`web/lib/alerts/server.ts`); falls back to the request origin |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` (+ `KV_REST_API_READ_ONLY_TOKEN`, `KV_URL`, `REDIS_URL` from the integration) | Vercel production, preview, development; `vercel env pull` → `.env.local` | `storeFromEnv()` |
-| `CRON_SECRET` | Vercel production (**not set yet**) | Vercel Cron sends it as Bearer to `GET /api/alerts/cron`; without it the daily cron gets 401 and does nothing |
+| `CRON_SECRET` | Vercel production (**not set yet**; `scripts/alerts-env.sh` sets it) | Vercel Cron sends it as Bearer to `GET /api/alerts/cron`; without it the daily cron gets 401 and does nothing |
 | `ALERTS_CRON_SEND` | Vercel production (**not set**; `1` = send) | `web/lib/alerts/cron.ts`: anything else keeps the daily run a dry run |
 | `NEXT_PUBLIC_DATA_SOURCE` | optional | `live` (default) or `demo` |
 | `OPENROUTER_API_KEY` | `.env.local` only | Extraction and `make demo-change` (not needed on Vercel) |
