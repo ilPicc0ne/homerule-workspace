@@ -4,13 +4,13 @@
 import type { AddressChanges, ChangesFile, Change, Entry } from "./types.ts";
 import { esc } from "../alerts/html.ts";
 import { footerHtml, footerText } from "../alerts/disclaimer.ts";
-import { button, C, layout, link } from "../alerts/layout.ts";
+import { BADGE_STYLE, badgeHtml, badgeText, button, C, layout, link, topicHtml } from "../alerts/layout.ts";
 import { featuredEntry, longDate } from "./wording.ts";
 import { PLAIN, TOPICS } from "../plain.ts";
 import { formatDate } from "../format.ts";
 import rulesData from "../../data/live/rules.json" with { type: "json" };
 import { badgeFor, endsIn, firstLine } from "./impact.ts";
-import type { Badge, BadgeKind } from "./impact.ts";
+import type { Badge } from "./impact.ts";
 
 export const FROM = "HomeRule <alerts@yourhomerule.com>";
 export const SITE = "https://yourhomerule.com";
@@ -67,12 +67,8 @@ export function unsubscribeHeaders(site: string, addressId: string, token: strin
   return { "List-Unsubscribe": `<${oneClickUrl(site, addressId, token)}>`, "List-Unsubscribe-Post": "List-Unsubscribe=One-Click" };
 }
 
-/** Badge colours (light; dark mode via the layout's vb-* classes). Arrow + text always, never colour alone. AA on their tint. */
-export const BADGE_STYLE: Record<BadgeKind, { cls: string; color: string; bg: string }> = {
-  adds: { cls: "vb-up", color: "#11643D", bg: "#E2F2E8" },
-  narrows: { cls: "vb-dn", color: "#9B2C2C", bg: "#FBE9E7" },
-  unclear: { cls: "vb-un", color: "#4D5256", bg: "#ECEDEE" },
-};
+/** Badge colours and markup live in the shared layout (lib/alerts/layout.ts), so the lifecycle digest uses the same. */
+export { BADGE_STYLE };
 
 type RuleRec = { rule_id: string; category?: string; summary?: string; title?: string };
 const RULES = new Map((rulesData as unknown as RuleRec[]).map((r) => [r.rule_id, r]));
@@ -127,7 +123,7 @@ export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEma
     intro,
     "",
     ...items.flatMap((i) => [
-      `• ${i.topic} — ${i.sentence}${i.badge ? ` (${i.badge.arrow} ${i.badge.text}. Your unit may differ.)` : ""}`,
+      `• ${i.topic} — ${i.sentence}${i.badge ? ` (${badgeText(i.badge)})` : ""}`,
       ...(i.badge?.why ? [`  Summary: ${i.badge.why} · see the law text: ${quote(i)}`] : []),
     ]),
     "",
@@ -139,18 +135,13 @@ export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEma
     ...footerText(),
   ].join("\n");
 
-  const badge = (i: PlainChange) => {
-    if (!i.badge) return "";
-    const st = BADGE_STYLE[i.badge.kind];
-    return `<span class="${st.cls}" title="${esc(i.badge.label)}" aria-label="${esc(i.badge.label)}" style="display:inline-block;margin:0 0 6px;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:600;color:${st.color};background:${st.bg}"><span aria-hidden="true">${i.badge.arrow}</span> ${esc(i.badge.text)}</span><br>`;
-  };
   const why = (i: PlainChange) =>
     i.badge?.why
       ? `<br><span class="mu" style="font-size:14px;color:${C.muted}">Summary: ${esc(i.badge.why)} &middot; ${link(quote(i), "see the law text", C.muted)}</span>`
       : "";
   const htmlItems = items
     .map(
-      (i) => `<tr><td class="tx ln" style="padding:12px 0;border-top:1px solid ${C.line};font-size:16px;line-height:1.5;color:${C.text}">${badge(i)}<strong>${esc(i.topic)}</strong> &mdash; ${esc(i.sentence)}${why(i)}</td></tr>`,
+      (i) => `<tr><td class="tx ln" style="padding:12px 0;border-top:1px solid ${C.line};font-size:16px;line-height:1.5;color:${C.text}">${topicHtml(i.topic)}${badgeHtml(i.badge)}${esc(i.sentence)}${why(i)}</td></tr>`,
     )
     .join("\n");
 
