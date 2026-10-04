@@ -57,3 +57,14 @@
 
 **Next:**
 - Review v3 → rebuild address page locally; address session results; engine with I2 + I8.
+
+## 2026-10-04T00:16Z — Subscription store
+
+**Decisions:**
+- Upstash Redis `homerule-subscriptions` (free) for email alerts, env vars only in Vercel; no Neon — *why:* law/address data stay files in git, Dimitar pushes, we deploy.
+
+**Surprises:**
+- Vercel CLI marketplace install added two Upstash agent skills without asking; vetted after the fact (Markdown only), PR #42.
+
+**Next:**
+- Unchanged: review v3 → rebuild address page locally; address session; engine with I2 + I8.

@@ -1,8 +1,8 @@
 # Resume
 
-**Updated:** 2026-10-04T00:08Z
+**Updated:** 2026-10-04T00:16Z
 **Branch:** main
-**Last commit:** 511b4b6 — Merge pull request #38 from ilPicc0ne/s/prd-dedupe-map
+**Last commit:** fdd8921 — Merge pull request #42 from ilPicc0ne/s/subscription-store
 **Working tree:** clean except `.claude/worktrees/` (untracked, likely from the address session; not touched)
 
 ## Pick up next
@@ -20,6 +20,8 @@
 
 ## Recent decisions
 
+- Subscription store Upstash Redis `homerule-subscriptions` (free) connected to Vercel project `homerule`; no Neon — *why:* Dimitar pushes output files to git, we deploy from here; only subscriptions are mutable.
+
 - One-view renter page: sticky address bar with "Get alerts" bell, "Next change" line, map, six accordion tiles with three levels (plain → next step → "Show the law"), labels "There's a rule" / "We're missing one fact" / "No local rule — state basics only" — *why:* renter critique (5–6/10 on v2), not for lawyers.
 - Never invite comparing the renter's number to a cap; state facts, let the reader conclude; grade 6–8 words — *why:* legal-advice risk found by the critique ("1.6%").
 - J7 "Take action": contact on every tile (P0, data Dimitar #32), action helpers (P1), legal-aid finder (P2).
@@ -28,6 +30,8 @@
 - Design work iterative, not one deep pass — *why:* the owner's eye is the test; deep-work took ~45 min for v2.
 
 ## Surprises / gotchas
+
+- `vercel install <integration>` silently adds project-scoped agent skills (web/.agents/skills + .claude/skills symlinks, web/skills-lock.json) — *avoid:* check and /vet after every marketplace install (Upstash ones vetted: docs only).
 
 - Agents can stay "running" in the panel via leftover background children — *avoid:* TaskStop when the report is in.
 - Dimitar pushes to main often — *avoid:* pull/rebase before pushing; docs changes via small PRs.
