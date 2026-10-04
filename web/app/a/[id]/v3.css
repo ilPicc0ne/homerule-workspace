@@ -142,10 +142,10 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .today{grid-column:1;grid-row:3;margin-top:12px}
 .v3 .ahead{grid-column:2;grid-row:2 / span 2;align-self:start}
 }
-.v3 .hero{display:grid;grid-template-columns:104px minmax(0,1fr);grid-template-areas:"h1 h1" "nxt nxt" "map where" "facts facts" "src src";column-gap:14px;row-gap:8px;align-items:start}
+.v3 .hero{display:grid;grid-template-columns:104px minmax(0,1fr);grid-template-areas:"h1 h1" "nxt nxt" "map where" "facts facts" "src src" "ww ww";column-gap:14px;row-gap:8px;align-items:start}
 @media(min-width:640px){.v3 .hero{grid-template-columns:132px minmax(0,1fr);column-gap:18px}
 }
-@media(min-width:1000px){.v3 .hero{grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto auto auto auto auto 1fr;grid-template-areas:"h1 map" "nxt map" "where map" "facts map" "src map" ". map";column-gap:56px;row-gap:10px}
+@media(min-width:1000px){.v3 .hero{grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto auto auto auto auto 1fr;grid-template-areas:"h1 map" "nxt map" "where map" "facts map" "src map" "ww map";column-gap:56px;row-gap:10px}
 }
 .v3 .addr{grid-area:h1;margin-bottom:4px;font-size:clamp(1.75rem,1.4rem + 1.8vw,3rem);line-height:1.05;letter-spacing:-.02em;font-weight:800;text-wrap:balance;max-width:none;margin-inline:0}
 @media(min-width:1000px){.v3 .addr{margin-bottom:6px}
@@ -356,7 +356,10 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .ahead{background:var(--wash);border-radius:var(--r-lg);padding:22px 16px 14px}
 @media(min-width:640px){.v3 .ahead{padding:24px 22px 16px}
 }
-@media(min-width:1000px) and (min-height:760px){.v3 .ahead{position:sticky;top:calc(var(--stick) + 20px)}
+/* From 900px the bar is taller than --stick assumed (search label + 48px field + 2×12px padding = 94px); the sidebar sat partly under it. */
+@media(min-width:900px){.v3{--stick:94px}}
+/* Sticky only with its own scroll: capped to the viewport below the bar, so the whole timeline is reachable while the left column is mid-page. */
+@media(min-width:1000px) and (min-height:640px){.v3 .ahead{position:sticky;top:calc(var(--stick) + 20px);overscroll-behavior:contain;max-height:calc(100vh - var(--stick) - 40px);max-height:calc(100dvh - var(--stick) - 40px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--faint) transparent}
 }
 .v3 .tl{position:relative;margin-top:20px}
 .v3 .tl::before{content:"";position:absolute;left:11px;top:8px;bottom:10px;width:2px;border-radius:2px;background:var(--line)}
@@ -449,7 +452,7 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 @media(min-width:1000px){.v3 .map-card .addr-map,.v3 .map-card .addr-map-loading{height:214px}.v3 .map-card .addr-map-hint{display:inline-block}.v3 .map-card .map-caption{font-size:.8125rem}}
 .v3 .map-card .addr-map.addr-map-3d{height:200px}
 /* below the two-column layout the 3D view takes the full width (a 104 px thumbnail clips the Google logo) */
-@media(max-width:999px){.v3 .hero:has(.addr-map-views[data-view="3d"]){grid-template-areas:"h1 h1" "nxt nxt" "map map" "where where" "facts facts" "src src"}}
+@media(max-width:999px){.v3 .hero:has(.addr-map-views[data-view="3d"]){grid-template-areas:"h1 h1" "nxt nxt" "map map" "where where" "facts facts" "src src" "ww ww"}}
 /* narrow card (phone): the switch sits under the map so it never covers the pin */
 @media(max-width:639px){.v3 .map-card .addr-map-views{display:flex;flex-direction:column}.v3 .map-card .addr-map-views .map-seg{position:static;order:2;align-self:flex-start;margin-top:4px;box-shadow:none}}
 @media(min-width:640px){.v3 .map-card .addr-map.addr-map-3d{height:240px}}
@@ -487,3 +490,6 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .ev-lk .icon{width:16px;height:16px}
 .v3 .ahead-log{margin-top:-6px;padding-left:38px}
 .v3 .ahead-log .src .icon{width:18px;height:18px}
+/* "Works with ChatGPT · Claude" entry to /connect, under the building facts (components/works-with.tsx). */
+.v3 .hero-ww{grid-area:ww;justify-self:start;margin-top:6px}
+.v3 .hero-ww a{color:var(--blue-ink)}

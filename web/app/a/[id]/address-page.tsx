@@ -9,6 +9,7 @@ import AddressMap from "@/components/address-map";
 import BrandMark from "@/components/brand-mark";
 import AlertForm from "@/components/alerts/alert-form";
 import AskChatbot from "@/components/ask-chatbot";
+import WorksWith from "@/components/works-with";
 import ExampleAlert from "@/components/alerts/example-alert";
 import type { MapProps } from "@/components/address-map-gl";
 import { glanceSummary, TILE_STATUS_WORDS, type AddressView, type Helper, type RuleRow, type Tile, type TileStatus, type TimelineEvent } from "@/lib/address-view";
@@ -650,6 +651,7 @@ export default function AddressPageView(p: PageProps) {
               ))}
             </ul>
             <p className="fact-src">{hero.factSrc}</p>
+            <WorksWith className="hero-ww" />
           </section>
 
           {p.evidence && <BuildingEvidencePanel key={p.id} evidence={p.evidence} />}

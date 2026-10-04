@@ -1858,3 +1858,65 @@ html:has(.addr-map-3d-dialog:modal) {
   font-size: 0.7rem;
   white-space: nowrap;
 }
+
+/* "Works with ChatGPT · Claude" pill (components/works-with.tsx): the entry point to /connect near the top. */
+.works-with {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0 0.35rem 0 0.75rem;
+  min-height: 36px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--ink-2);
+  font-size: 0.875rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.works-with-icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.works-with-l {
+  color: var(--muted);
+}
+.works-with a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  font-weight: 650;
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.works-with a:hover {
+  background: #fff;
+  text-decoration-color: currentColor;
+}
+.works-with-sep {
+  color: var(--muted);
+  margin: 0 -0.15rem;
+}
+.hero .works-with-row {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+/* The pill sits in the hero's top padding, so the headline doesn't move down. */
+.hero:has(> .works-with-row) {
+  padding-top: 2.5rem;
+}
+@media (min-width: 640px) {
+  .hero:has(> .works-with-row) {
+    padding-top: 4.5rem;
+  }
+}

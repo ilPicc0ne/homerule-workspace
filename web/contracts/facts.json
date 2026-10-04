@@ -39,10 +39,10 @@
       "type": "bool",
       "ops": ["eq"],
       "value_type": "true / false",
-      "source": "use_description (\"SUBSD HOUSING\", NJ \"AFFORDABL\") → true; a record with no affordability code → false [assumption no_recorded_affordability_restriction, mirrors the extraction's APT5 guard]; later HUD LIHTC / multifamily assisted lists (P1)",
+      "source": "use_description (\"SUBSD HOUSING\", NJ \"AFFORDABL\") → true; no affordability code → unknown (null), never inferred false; false requires explicit supporting evidence; later HUD LIHTC / multifamily assisted lists (P1)",
       "example_condition": {"fact": "subsidised", "op": "eq", "value": true},
       "example_value": null,
-      "null_means": "not known: no use code or description to read"
+      "null_means": "not known: no explicit evidence establishes subsidy status"
     },
     {
       "name": "owner_type",

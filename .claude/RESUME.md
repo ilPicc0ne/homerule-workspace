@@ -1,43 +1,44 @@
 # Resume
 
-**Updated:** 2026-10-04T06:00Z (08:00 CEST)
+**Updated:** 2026-10-04T10:35Z (12:35 CEST)
 **Branch:** main
-**Last commit:** 0f3c8fb — Merge pull request #86 (rehearsal done)
-**Production:** `f8c33fd` on yourhomerule.com (verified: NJ rule pages 200, J2 fix live)
-**Working tree:** clean apart from untracked `lab/ui-proposal/release/` (screenshot) and local `.claude/REHEARSAL.md`
+**Last commit:** a13588a — Merge pull request #132 (wrap-up)
+**Production:** `1b914bd` = main `284a379` (verdicts ↑/↓/= everywhere, failed-measure chip, MCP aliases + contacts, connect pill, sidebar scroll)
+**Working tree:** clean apart from untracked `lab/ui-proposal/release/` (another session's)
 
 ## Pick up next
 
-Freeze 12:00, submission 15:00.
+Freeze passed (12:00), submission 15:00.
 
-1. **Alert lifecycle engine** (deep-work agent, branch `s/alert-engine`, worktree `.worktrees/alert-engine`, timebox ~10:20): triggers found / takes effect / ends (30 days ahead + on the day), approval per rule, daily digest, corrections, cron route dry-run by default. Review → merge → production on Silvan's go; `ALERTS_CRON_SEND=1` only on his go.
-2. **Dimitar** (issue #81): #53 hold (scored results worse: applies 4240→4004, owner_occupied unknowns 245→301, drops LA 165.03, Hoboken 10:54/18:66, Jersey City rent, Cambridge 8.71); #59 then #55 after #53; #75 + #68 merge-ready; #48 close. Final `make build` of all three scored files after his hour-16 ingest (`outputs/rules.json` = placeholder copy, #74). Silvan decides: merge #75/#68, close #48, post findings on #81. His Vercel previews are blocked (author not a project member).
-3. **Video:** 15–20 s style clip, Gemini voice Iapetus, `/Users/silvan/claude/code/tools/demo-video/out/homerule/clip.mp4` (agent running); full film only after the remaining features. First film kept as `demo-0714.mp4`.
-4. **Demo:** script doc https://claude.ai/code/artifact/a0d324be-07ad-44f7-b862-588cdacc61ed (private; share with Dimitar); full version `notes/demo/`. Live take of the email beat = Dimitar's hour-16 source; rehearsed path done (2/2 on production 04.10. 07:45/07:50).
-5. Postal address for the email footer (placeholder in `web/lib/alerts/disclaimer.ts`).
+1. **Submission (#13):** three videos, ≤ 60 s each (`docs/VIDEO.md`). Demo = `/Users/silvan/claude/code/tools/demo-video/out/homerule-demo60/demo_v3_matilda.mp4` (57.7 s, Matilda, music a), thumbnail `demo_v3_matilda_thumbnail.png`. Plus README, method note, `outputs/`.
+2. Dimitar's OK for his name and photo on the end card (Hack-Nation may publish it).
+3. Live demo: run the four MCP prompts once on production and check the wording (`notes/demo/MCP-DEMO.md`).
+4. Teach video (Dimitar, #93, extraction beat #95). Docs pass after his architecture script.
+5. Merge #90 (alert engine, cron dry run; `CRON_SECRET` set, `ALERTS_CRON_SEND` not). Afterwards its digest adopts #121's badge layout (`badgeFor`, `badgeHtml`, `topicHtml`).
 
 ## Open questions
 
-- Hour-16 drop time — context: Discord.
-- Starter-pack licence "TBD by organizers"; `web/` holds short source excerpts — before the public repo goes public.
-- Contact phone numbers unverified (shown as "not yet checked by us").
+- The 1-minute rule came as "World Bank Challenge Clarification" — does it apply to RealPage? Planned for 60 s anyway.
+- Team photo on the end card: blurry people in the window reflection — blur if it bothers.
+- Dimitar's #122 (neutral badge) duplicates #121 (live) — close with him; #91 email design, #92/#94 docs, his #48/#55/#68/#123.
 
 ## Recent decisions
 
-- Vercel: root `web`, previews per PR and `main`, production only by pushing to branch `production` — *why:* nothing goes live by accident.
-- Law data stay files in git, only subscriptions are mutable (Upstash); no Neon — *why:* deterministic builds, one source of truth.
-- Alert recipients are flags on the subscriber (`allowed`, `demo`), unsubscribe = random token per subscription — *why:* Silvan's proposal, fewer secrets, no redeploy.
-- UI option A: navy for UI, green/clay/grey only as status colours; icon roof scales — *why:* green is the renter signal.
-- Plain alert email, one sentence per change, button to the address page — *why:* the legal-style mail was unreadable.
-- Build the alert engine for the prototype; critic's Step 0 (partners, 10 renters) = before a real launch, later — *why:* owner decision 04.10.
+- Demo video as a free Remotion composition (`demo-video/experiments/homerule-demo60/`), not the template pipeline — *why:* the template recycled the expense demo's hook, music and look.
+- Story: problem hook "layers" → Lena (Fillmore vs Hoff St) → product intro → LA unknown → Boston (barred, pending, failed) → ↑/↓ verdict + alert → chatbot → team end card; Jersey City and the quote line cut — *why:* 60 s limit, the verdict story is the key beat.
+- Every dated change carries a verdict ↑/↓/=/grey (#119 data, #121 web + email) — *why:* a missing badge read as missing, not as "no change".
+- Rent caps set by a formula read "of at most N%" (`engine/score.py`) — *why:* "A 10% cap" was wrong for 5% + CPI.
+- MCP answers name the per-topic contact and end with "Not legal advice"; no ranking (#104).
+- Production deploys as a commit with main's tree and two parents (main + production) — *why:* fast-forward, no force push.
 
 ## Surprises / gotchas
 
-- Auto mode blocks secret-store writes, creating/pushing `production` without an explicit go, and merges without a first-hand review — *avoid:* Silvan runs `scripts/alerts-env.sh`; read the diff before `gh pr merge`.
-- Subagents die on connection drops (ECONNREFUSED) — *avoid:* commit and push each deliverable as soon as it exists.
-- A `/goal` whose last step needs the user's approval makes the Stop hook loop — *avoid:* goals only for steps the agent can finish alone.
-- Dimitar's #53 passes eval (assertions, T1–T5, holdout) yet worsens scored lookups — *avoid:* check `out/build_summary.json` deltas, not only eval.
+- zsh reads `"$C:r"` as a modifier — *avoid:* `"${C}:refs/heads/production"`.
+- Production also gets deploys from others (was `402ac1b`, not ours) — *avoid:* always parent the deploy commit on the current `origin/production`.
+- Old tabs keep the old JS after a deploy (the "missing ×") — *avoid:* hard-reload before reporting a UI bug.
+- Agents may not read `.env`; a script that reads the key itself runs when Silvan asks directly.
+- Merging #90 is blocked for Claude (cron = production deploy); Silvan merges.
 
 ## Long-form
 
-See `.claude/SESSIONS.md`, `docs/PRD.md` (CUJ table), `docs/ARCHITECTURE.md`, `docs/decisions/`, `notes/demo/`, `notes/plan/alert-engine.md`.
+See `.claude/SESSIONS.md`, `docs/decisions/`, `docs/VIDEO.md`, `notes/demo/video/STORY.md`.

@@ -46,4 +46,8 @@ Prompts are linted (no test-suite value may appear in a prompt) and frozen by ha
 provision counts as a law's main rule and some coverage conditions vary between runs; the three-sample vote reduces,
 not removes, this. Building facts are often missing (no year built for Berkeley and San Diego), so many answers
 are honestly unknown; facts about the tenant (length of tenancy, household) are notes, never inputs. Coverage is
-3 states, 10 cities.
+3 states, 10 cities. Building-level answers exist for the 500 sample addresses only: their building facts come from the
+challenge's sample file. Any other address in the three states is resolved to its legal city live and gets the
+state and city rules, but with every building fact unknown. Fixable without changing the engine: the sample was
+drawn from public parcel datasets (New Jersey's covers the whole state), and a parcel lookup at the address gives
+the same facts the engine already evaluates.
