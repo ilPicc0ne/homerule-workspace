@@ -48,6 +48,17 @@ export default function Home() {
             </li>
           ))}
         </ul>
+        <p className="scope-note" role="note">
+          <svg className="scope-note-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9.25" />
+            <path d="M12 11v5.5" />
+            <circle cx="12" cy="7.75" r="0.6" className="dot" />
+          </svg>
+          <span>
+            <strong>Hackathon prototype:</strong> full answers for 500 sample addresses in 3 states (10 cities). Other addresses in
+            those places get their city&rsquo;s or state&rsquo;s rules, without building facts.
+          </span>
+        </p>
       </section>
 
       <section className="wrap landing-section" aria-labelledby="questions-title">
@@ -83,6 +94,9 @@ export default function Home() {
           ))}
           <br />
           <span className="muted">3 states and 10 cities. Anything else says &ldquo;not covered&rdquo;, never a guess.</span>
+        </p>
+        <p className="muted" style={{ textAlign: "center" }}>
+          Use Claude or ChatGPT? <Link href="/connect">Make your chatbot rent-law aware</Link>.
         </p>
         <p className="tagline">A model has a training cutoff. A law has an effective date.</p>
       </section>

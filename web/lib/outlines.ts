@@ -1,6 +1,7 @@
 import "server-only";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import type { Footprint } from "./footprint";
 
 /*
   Legal city limits of the 10 covered cities, from Census TIGER/Line places,
@@ -30,4 +31,34 @@ export function mapCaption(cityName: string | null, countyName: string | undefin
   if (!cityName) return `Outside any city: unincorporated ${countyName ?? "county"}`;
   const inside = `Inside ${cityName} city limits`;
   return postalCity && postalCity !== cityName ? `${inside} (mailing address says ${postalCity})` : inside;
+}
+
+let footprints: Record<string, Footprint | null> | undefined;
+
+/** The OSM building outline matched to a sample address (scripts/build-building-footprints.ts); null when none. */
+export function buildingFootprint(addressId: string): Footprint | null {
+  if (!footprints) {
+    const file = path.join(process.cwd(), "data", "building-footprints.json");
+    try {
+      footprints = (JSON.parse(readFileSync(file, "utf8")) as { footprints: Record<string, Footprint | null> }).footprints;
+    } catch {
+      footprints = {};
+    }
+  }
+  return footprints[addressId] ?? null;
+}
+
+let elevations: Record<string, number> | undefined;
+
+/** Ground elevation (m above sea level) at the 3D camera target of a sample address (scripts/build-elevations.ts); null when none. */
+export function groundElevation(addressId: string): number | null {
+  if (!elevations) {
+    const file = path.join(process.cwd(), "data", "elevations.json");
+    try {
+      elevations = (JSON.parse(readFileSync(file, "utf8")) as { elevations: Record<string, number> }).elevations;
+    } catch {
+      elevations = {};
+    }
+  }
+  return elevations[addressId] ?? null;
 }

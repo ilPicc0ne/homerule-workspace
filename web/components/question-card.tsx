@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { withAsOf } from "@/lib/links";
-import { confidenceWord, formatDate, formatRetrieved, percent } from "@/lib/format";
-import { LEVEL_WORDS, QUESTION, RESULT_WORDS, STATUS_WORDS, ruleStatusOn, type Card } from "@/lib/law";
+import { confidenceWord, formatRetrieved, percent } from "@/lib/format";
+import { datesLine, LEVEL_WORDS, QUESTION, RESULT_WORDS, type Card } from "@/lib/law";
 import type { Finding, Result, Rule } from "@/lib/types";
 import { Dot, type DotKind } from "./status";
 
@@ -58,16 +58,7 @@ export function ruleHref(ruleId: string, addressId: string | null, asOf: string,
   return withAsOf(addressId ? `/r/${ruleId}?a=${addressId}` : `/r/${ruleId}`, asOf, fallback);
 }
 
-export function datesLine(rule: Rule, asOf: string): string {
-  if (rule.effective_dates_disputed?.length) {
-    return `Effective date disputed: ${rule.effective_dates_disputed.map((d) => formatDate(d.date)).join(" or ")}`;
-  }
-  const st = ruleStatusOn(rule, asOf);
-  if (st === "pending") return "Proposed, not law";
-  if (st === "failed") return "Failed, never became law";
-  if (rule.effective_date) return `${st === "not_yet_effective" ? "Takes effect" : "In force since"} ${formatDate(rule.effective_date)}`;
-  return st ? STATUS_WORDS[st] : "";
-}
+export { datesLine };
 
 export function QuoteBlock({ rule }: { rule: Rule }) {
   if (rule.quoted_span) {

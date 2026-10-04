@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import LiveUnavailable from "@/components/live-unavailable";
 import SourceTag from "@/components/source-tag";
-import { ancestry, childrenOf, getDataset, jurisdictionById, jurisdictions } from "@/lib/data";
+import { childrenOf, getDataset, jurisdictionById, jurisdictions } from "@/lib/data";
+import { jurisdictionPageData } from "@/lib/jurisdiction-view.ts";
 import type { Jurisdiction } from "@/lib/types";
 import RulesByQuestion from "./rules-by-question";
 
@@ -30,15 +31,8 @@ export default async function JurisdictionPage(props: PageProps<"/j/[id]">) {
   const data = getDataset();
   if (!data) return <LiveUnavailable />;
 
-  const chain = ancestry(id);
-  const stackIds = new Set(j.level === "county" ? chain.filter((x) => x.level === "state").map((x) => x.id) : chain.map((x) => x.id));
-  const rules = data.rules
-    .filter((r) => stackIds.has(r.jurisdiction_id))
-    .sort((a, b) => (a.level === b.level ? 0 : a.level === "city" ? -1 : 1));
-
-  const children = childrenOf(id);
-  const inPlace = data.addresses.filter((a) => Object.values(a.jurisdictions).includes(id));
-  const demo = inPlace.filter((a) => a.demo);
+  // Same data as the MCP get_jurisdiction (lib/jurisdiction-view.ts).
+  const { chain, rules, children, inPlace, demo } = jurisdictionPageData(data, id)!;
 
   return (
     <main className="wrap narrow" style={{ maxWidth: "52rem" }}>

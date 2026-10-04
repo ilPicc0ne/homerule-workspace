@@ -1,9 +1,8 @@
 import "server-only";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import jurisdictionsFile from "@/data/jurisdictions.json";
 import { DATA_SOURCE } from "./config";
-import type { Address, Dataset, Excerpt, Finding, Jurisdiction, LookupsByDate, Meta, Rule } from "./types";
+import type { Address, Dataset, Excerpt, Finding, LookupsByDate, Meta, Rule } from "./types";
 
 /*
   Server-side loader. Reads web/data/<source>/*.json, where <source> comes from
@@ -45,32 +44,7 @@ export function getDataset(): Dataset | null {
   return cached;
 }
 
-export const jurisdictions = (jurisdictionsFile as { jurisdictions: Jurisdiction[] }).jurisdictions;
+export { ancestry, childrenOf, jurisdictionById, jurisdictions } from "./jurisdiction-tree.ts";
 
-export function jurisdictionById(id: string): Jurisdiction | undefined {
-  return jurisdictions.find((j) => j.id === id);
-}
-
-/** State › County › City for a jurisdiction, top first. */
-export function ancestry(id: string): Jurisdiction[] {
-  const out: Jurisdiction[] = [];
-  let cur = jurisdictionById(id);
-  while (cur) {
-    out.unshift(cur);
-    cur = cur.parent ? jurisdictionById(cur.parent) : undefined;
-  }
-  return out;
-}
-
-export function childrenOf(id: string): Jurisdiction[] {
-  return jurisdictions.filter((j) => j.parent === id);
-}
-
-/** Snap a requested date to the published list: the latest listed date on or before it. */
-export function snapAsOf(meta: Meta, requested: string | null | undefined): string {
-  const dates = meta.as_of_dates.map((d) => d.date);
-  if (!requested) return meta.default_as_of;
-  if (dates.includes(requested)) return requested;
-  const earlier = dates.filter((d) => d <= requested);
-  return earlier.length ? earlier[earlier.length - 1] : dates[0];
-}
+/** Snap a requested date to the published list (shared with the API payload). */
+export { snapAsOf } from "./address-payload.ts";

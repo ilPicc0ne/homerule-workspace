@@ -2,6 +2,7 @@
 
 Inputs: out/rules.compiled.json + out/rules.json + out/findings.json (I2, I8), out/addresses.resolved.json (I3).
 Outputs (byte-deterministic: sorted keys and order, no timestamp but as_of):
+- outputs/rules.json     out/rules.json for submission: source_doc_id null where the source isn't in the corpus manifest
 - outputs/lookups.json   the template shape {as_of, lookups: {address_id: [{team_rule_id, result, explanation, conflict_flag}]}}
 - outputs/changes.json   T1-T5 (T6 when an ingested document exists) via extract/changes.py, same evaluation
 - out/lookups.full.json  the same results with confidence, missing facts, governed_by, conflict_with, value,
@@ -14,6 +15,7 @@ inputs and words its outputs.
 """
 import argparse
 import datetime as dt
+import copy
 import json
 import sys
 from collections import Counter, defaultdict
@@ -50,6 +52,38 @@ def gate(rule, res, as_of):
     return res, {}
 
 
+def _trials(as_of):
+    """Values to try for a missing building fact: one per way the law tends to split on it."""
+    y = int(as_of[:4])
+    return {"owner_occupied": [True, False], "subsidised": [True, False],
+            "owner_type": ["individual", "corporation", "reit", "public"],
+            "use_class": ["apartment", "condo", "co_op", "two_family", "single_family", "mixed_use"],
+            "built": [{"from": f"{v}-01-01", "to": f"{v}-12-31"} for v in (1900, 1975, 1990, 2005, y - 1)],
+            "units": [{"min": v, "max": v} for v in (1, 2, 3, 4, 5, 20, 100)]}
+
+
+def deciding_facts(rules, rec, as_of, rows):
+    """For each unknown row: the missing building facts that, answered alone, could change its result (the engine
+    re-run with that fact set to each value it can take). `missing` keeps every unknown fact the evaluator met,
+    including ones an and/or around them already settles (e.g. owner-occupied in a duplex-only exemption of a
+    16-unit building); the page asks only about these."""
+    unknown = [r for r in rows if r["result"] == "unknown"]
+    trials = _trials(as_of)
+    wanted = {m for r in unknown for m in r["missing"] if m in trials}
+    results = {}
+    for f in sorted(wanted):
+        for v in trials[f]:
+            r2 = copy.deepcopy(rec)
+            r2["facts"][f] = v
+            raw = E.evaluate(rules, F.address_facts(r2), as_of)
+            results[(f, json.dumps(v))] = {rid: x["result"] for rid, x in raw.items()}
+    for r in unknown:
+        r["missing_deciding"] = sorted(
+            m for m in r["missing"] if m in trials
+            and any(results[(m, json.dumps(v))].get(r["team_rule_id"], "unknown") != "unknown" for v in trials[m]))
+    return rows
+
+
 def evaluate_address(rules, rec, as_of, rules_by_id):
     facts = F.address_facts(rec)
     raw = E.evaluate(rules, facts, as_of)
@@ -83,7 +117,7 @@ def evaluate_address(rules, rec, as_of, rules_by_id):
             "governed_by": res["governed_by"], "conflict_with": sorted(res["conflict_with"]),
             "value": res["value"], "flags": row["flags"], "invalid": res["invalid"],
         })
-    return out
+    return deciding_facts(rules, rec, as_of, out)
 
 
 def _uses(rule, key):
@@ -104,6 +138,20 @@ def lookups_json(full, as_of):
     return {"as_of": as_of,
             "lookups": {aid: [{k: row[k] for k in TEMPLATE_FIELDS} for row in rows if row["scored"]]
                         for aid, rows in full.items()}}
+
+
+def rules_json():
+    """The scored rules.json: out/rules.json, with source_doc_id null for a source outside corpus_manifest.csv (the
+    schema's doc_id field). Such a rule (an official text we saved, e.g. a city ordinance the manifest lists as link
+    only) keeps its source_url and verbatim quote; it doesn't count toward the citation metric (organizers, 04.10.)."""
+    import csv
+    from extract import config
+    corpus = {row["doc_id"] for row in csv.DictReader(open(config.MANIFEST, encoding="utf-8"))}
+    recs = json.loads((R.OUT / "rules.json").read_text(encoding="utf-8"))
+    for r in recs["rules"]:
+        if r.get("source_doc_id") not in corpus:
+            r["source_doc_id"] = None
+    return recs
 
 
 def full_json(full, rules, addresses, findings, as_of):
@@ -186,6 +234,8 @@ def run(as_of, out_dir=None, outputs_dir=None, with_changes=True, quiet=False):
     full = build_lookups(rules, addresses, as_of)
     outputs_dir.mkdir(parents=True, exist_ok=True)
     (outputs_dir / "lookups.json").write_text(dump(lookups_json(full, as_of)), encoding="utf-8")
+    (outputs_dir / "rules.json").write_text(json.dumps(rules_json(), indent=1, ensure_ascii=False),
+                                             encoding="utf-8")      # out/rules.json's format
     (out_dir / "lookups.full.json").write_text(dump(full_json(full, rules, addresses, findings, as_of)), encoding="utf-8")
     if with_changes:
         (outputs_dir / "changes.json").write_text(dump(changes(rules, findings, addresses)), encoding="utf-8")

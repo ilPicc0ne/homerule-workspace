@@ -50,6 +50,9 @@ if (cmd === "seed") {
 } else if (cmd === "notify") {
   const file = loadChanges();
   const send = args.includes("--send");
+  // Sending needs one named source: the diff now also holds historic repeals (2017, 2024) and the 2030 sunset,
+  // which must never go out as "news" because someone sent without --source.
+  if (send && !flag("--source")) die(`--send needs --source <id>. Known: ${Object.keys(file.sources).join(", ")}`);
   const sources = flag("--source") ? [flag("--source")!] : Object.keys(file.sources);
   const mailer = send ? (mailerFromEnv() ?? die("No RESEND_API_KEY: nothing sent.")) : null;
   const store = needStore();
