@@ -23,7 +23,7 @@ export const PLAIN: Record<string, Plain> = {
     expl: "The reason has to be written in the notice. Some buildings are exempt. Your unit may differ.",
   },
   "CA-DEP-1950.5": {
-    line: "California's deposit limit is one month's rent.",
+    line: "California generally limits deposits to one month’s rent; a small-landlord exception allows two.",
     expl: "In effect since Jul 1, 2024. Small landlords with few units have an exception.",
   },
   "CA-FEE-1950.6": {

@@ -10,6 +10,7 @@ import json
 import re
 
 from . import config, status as S
+from .conditional_values import add_detail
 
 AS_OF = config.DEFAULT_AS_OF
 JUR = json.load(open(config.ROOT / "contracts" / "jurisdictions.json"))["jurisdictions"]
@@ -253,9 +254,8 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                     continue
                 # same citation: one record, the other headline provisions kept as its details
                 span = r["spans"].get(f".obligations[{n}].requirement_quote")
-                prev["details"].append({"provision": o["provision"], "requirement": o["requirement"],
-                                        "key_value": o["key_value"], "source_doc_id": span["doc_id"] if span else None,
-                                        "quote": source_span(span) if span else None})
+                add_detail(prev, o, {"source_doc_id": span["doc_id"] if span else None,
+                                     "quote": source_span(span) if span else None}, same_section=True)
                 continue
             rules.append(record(n, o))
             seen[key] = rules[-1]
@@ -265,9 +265,9 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
             if o["is_headline"] or o["effect"] != "protection_or_duty" or not main:
                 continue
             span = r["spans"].get(f".obligations[{n}].requirement_quote")
-            main["details"].append({"provision": o["provision"], "requirement": o["requirement"],
-                                    "key_value": o["key_value"], "source_doc_id": span["doc_id"] if span else None,
-                                    "quote": source_span(span) if span else None, "supporting": True})
+            add_detail(main, o, {"source_doc_id": span["doc_id"] if span else None,
+                                 "quote": source_span(span) if span else None, "supporting": True},
+                       same_section=_core(main["citation"]) == _core(o["citation"]))
     rules = attribute([local_exemption_to_interaction(r) for r in replaced(rules, chains)])
     from . import exemptions               # text-only exemptions: rejoin split parts, owner-occupied, triage
     for citation, quote, how in exemptions.normalize(rules):
@@ -355,6 +355,19 @@ def attribute(rules):
     return out
 
 
+def compiled_detail(detail):
+    """Compact predicates on details use the same representation as the headline."""
+    out = {k: v for k, v in detail.items() if k not in (
+        "applies_if", "exempt_if", "key_value_conditions", "tenant_conditions") and v is not None}
+    out["applies_if"] = to_node(detail["applies_if"]) if detail.get("applies_if") else True
+    out["exempt_if"] = to_node(detail["exempt_if"]) if detail.get("exempt_if") else False
+    if detail.get("tenant_conditions"):
+        out["tenant_conditions"] = [t["text"] for t in detail["tenant_conditions"]]
+    if detail.get("key_value_conditions"):
+        out["key_value_conditions"] = [{**b, "when": to_node(b["when"])} for b in detail["key_value_conditions"]]
+    return out
+
+
 def compiled(rule):
     j = BY_SCHEMA.get(rule["jurisdiction"], {})
     eff = effective(rule["events"], rule["jurisdiction"], rule.get("provision"))
@@ -366,7 +379,8 @@ def compiled(rule):
         "applies_if": to_node(rule["applies_if"]), "exempt_if": to_node(rule["exempt_if"]),
         "tenant_conditions": [t["text"] for t in rule["tenant_conditions"]],
         "key_value": rule["key_value"],
-        "key_value_conditions": [{"value": b["value"], "when": to_node(b["when"]), "tenant_note": b.get("tenant_note")}
+        "key_value_conditions": [{"value": b["value"], "when": to_node(b["when"]), "tenant_note": b.get("tenant_note"),
+                                  **({"evidence": b["evidence"]} if b.get("evidence") else {})}
                                  for b in rule["key_value_conditions"]],
         "interaction": ({"type": inter["type"], "target_category": inter["target_category"], "quote": inter["quote"]}
                         if inter else {"type": "none"}),
@@ -377,7 +391,7 @@ def compiled(rule):
                      "effect": rule["effect"], "cap_pct_low": rule["cap_low"], "cap_pct_high": rule["cap_high"],
                      "status_evidence": rule.get("status_evidence"),
                      "origin": rule["origin"], "stub": rule["stub"]},
-        "details": rule.get("details", []),   # other headline provisions under the same citation
+        "details": [compiled_detail(d) for d in rule.get("details", [])],   # other headline provisions under the same citation
     }
 
 

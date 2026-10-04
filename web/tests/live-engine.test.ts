@@ -83,3 +83,13 @@ test("endpoint uses server configuration and only sends preview bypass to this d
     return new Response(JSON.stringify(good));
   }});
 });
+
+
+test("conditional deposit values survive validation and the live mapping", async () => {
+  const deposit = good.results.find((r: EngineRow) => r.team_rule_id === "CA-DEP-1950.5")!;
+  const value = { conditional: ["One month's rent", "Two months' rent"], depends_on: ["owner_type"],
+    qualifications: ["The exception does not apply to a service member."] };
+  const result = await liveEngine(resolver, rules, day, {env, fetch:answer({...good,
+    results: good.results.map((r: EngineRow) => r === deposit ? {...r, value} : r)})});
+  assert.deepEqual(result?.results.find(r => r.rule_id === deposit.team_rule_id)?.value, value);
+});

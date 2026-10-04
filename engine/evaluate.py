@@ -184,7 +184,7 @@ def select_value(rule, vctx):
     conditional: every value still possible (the open branches', then the deciding one or the default),
     and the facts it depends on. A branch whose condition is unknown never yields a flat value.
     """
-    open_, decided, depends = [], None, set()
+    open_, decided, depends, qualifications = [], None, set(), set()
     for b in rule.get("key_value_conditions", []):
         bctx = Ctx(vctx.facts, vctx.as_of, vctx.refs)
         t = ev(b["when"], bctx)
@@ -197,10 +197,19 @@ def select_value(rule, vctx):
         if t is U:
             open_.append(v)
             depends |= bctx.missing
+            def collect(n):
+                if ev(n, Ctx(vctx.facts, vctx.as_of, vctx.refs)) is not U:
+                    return
+                if n.get("kind") == "unparsed" and n.get("quote"):
+                    qualifications.add(n["quote"])
+                for child in n.get("children") or []:
+                    collect(child)
+            collect(b["when"])
     fallback = rule.get("key_value") if decided is None else decided
     if not open_:
         return fallback
-    return {"conditional": list(dict.fromkeys([fallback] + open_)), "depends_on": sorted(depends)}
+    return {"conditional": list(dict.fromkeys([fallback] + open_)), "depends_on": sorted(depends),
+            "qualifications": sorted(qualifications)}
 
 
 def evaluate(rules, facts, as_of):
