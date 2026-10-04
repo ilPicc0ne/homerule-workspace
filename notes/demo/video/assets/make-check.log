@@ -1,0 +1,369 @@
+/Applications/Xcode.app/Contents/Developer/usr/bin/make extract
+../building-evidence-ui/.venv/bin/python -m extract.corpus
+D001 primary_text 14 2 1 False
+D003 official_summary 1 7 1 False
+D004 official_summary 0 4 5 False
+D005 official_summary 1 5 0 False
+D006 official_summary 5 6 4 False
+D007 official_summary 1 6 8 False
+D008 official_summary 0 5 7 False
+D009 primary_text 2 4 3 False
+D010 official_summary 0 29 3 False
+D011 primary_text 0 6 19 False
+D012 official_summary 0 6 0 False
+D013 official_summary 0 9 0 False
+D014 official_summary 0 8 2 False
+D016 official_summary 0 30 0 False
+D022 primary_text 19 4 13 False
+D023 primary_text 131 2 21 False
+D024 primary_text 81 2 27 False
+D025 primary_text 87 2 6 False
+D026 primary_text 21 2 2 False
+D027 primary_text 28 2 1 False
+D029 official_summary 0 14 0 False
+D031 official_summary 0 7 2 False
+D036 official_summary 1 8 3 False
+D039 primary_text 0 4 3 False
+D040 official_summary 5 8 11 False
+D041 official_summary 0 14 16 False
+D042 official_summary 0 7 5 False
+D043 official_summary 9 2 15 False
+D045 primary_text 0 4 3 False
+D046 primary_text 0 5 4 False
+D047 official_record 0 5 4 False
+D048 primary_text 6 1 0 False
+D049 primary_text 26 1 0 False
+D050 primary_text 3 1 0 False
+D051 primary_text 3 1 0 False
+D052 primary_text 45 1 4 False
+D053 primary_text 3 1 0 False
+D057 primary_text 4 1 4 False
+D058 primary_text 5 1 0 False
+D065 primary_text 71 1 1 False
+D066 primary_text 4 3 1 False
+D067 official_summary 46 18 0 False
+D068 official_summary 0 10 0 False
+D069 primary_text 32 1 1 False
+D073 primary_text 130 4 8 False
+D076 primary_text 22 6 18 False
+D078 official_summary 0 10 15 False
+D079 official_summary 0 7 1 False
+D080 official_summary 0 2 11 False
+D081 official_summary 0 1 2 False
+D082 official_summary 0 5 84 False
+D083 official_summary 0 7 39 False
+D084 official_summary 1 1 2 False
+D085 official_summary 0 7 15 False
+supplemental indexed: S001 S002 S008 S009 S011 S012 S015 S016 S017 S018 S019 S020 S021 S022 S023 | held: S003(excluded_replaced_core_provision) S004(reviewed_download_robot_conflict) S005(hold_platform_ai_terms) S006(hold_platform_ai_terms) S007(hold_platform_ai_terms) S010(hold_platform_ai_terms) S014(excluded_current_ai_restriction)
+../building-evidence-ui/.venv/bin/python -m extract.vote s0 s1 s2
+exemption San Diego Municipal Code § 98.0704: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)
+exemption Berkeley Rent Stabilization and Eviction for Just Cause Ordinance: 'Unit where the owner shares a kitchen or bath with the tenan': owner lives there (jev p=0.92)
+exemption Cal. Civ. Code § 1947.12(a)(1): 'exempt_if': 1 'unless' clause(s) negated
+exemption San Diego Municipal Code § 98.0704: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)
+exemption Cal. Civil Code § 1946.2: 'Residential real property, including a mobilehome, that is a': parts of one exemption (document structure); false for 5+ unit apartments (jev p=0.80)
+exemption San Diego Municipal Code § 98.0704: '(h) residential rental property in which the tenant shares b': owner lives there (jev p=0.99)
+exemption Berkeley Rent Stabilization and Eviction for Just Cause Ordinance: 'Unit where the owner shares a kitchen or bath with the tenan': owner lives there (jev p=0.92)
+exemption San Diego Municipal Code § 98.0704: 'residential rental property in which the tenant shares bathr': owner lives there (jev p=0.98)
+{"samples": ["s0", "s1", "s2"], "units": 49, "rule_keys": 62, "kept": 59, "dropped_minority": 3, "unanimous": 35}
+  Berkeley, CA     application_screening_ Berkeley Municipal Code § 13 in ['s0', 's1'] -> kept from s0 (agree: ['s0', 's1'])
+  Berkeley, CA     just_cause_eviction    Berkeley Municipal Code, Ren in ['s0', 's1'] -> kept from s0 (agree: ['s0', 's1'])
+  Berkeley, CA     just_cause_eviction    Berkeley Rent Stabilization  in ['s0', 's1', 's2'] -> kept from s0 (agree: ['s0', 's1'])
+  Berkeley, CA     rent_increase_limits   Berkeley Municipal Code § 13 in ['s0', 's1', 's2'] -> kept from s0 (agree: ['s0', 's2'])
+  Berkeley, CA     security_deposits      Berkeley Rent Stabilization  in ['s0', 's2'] -> kept from s0 (agree: ['s0', 's2'])
+  CA               just_cause_eviction    Cal. Civil Code § 1946.2     in ['s0', 's1', 's2'] -> kept from s1 (agree: ['s1'])
+  CA               just_cause_eviction    Cal. Gov. Code § 12955(f)    in ['s1'] -> dropped: found in a minority of samples
+  CA               rent_increase_limits   Cal. Civ. Code § 1947.12     in ['s0', 's1', 's2'] -> kept from s0 (agree: ['s0'])
+  Hoboken, NJ      rent_increase_limits   Hoboken Code § 155-27; Regul in ['s2'] -> dropped: found in a minority of samples
+  Hoboken, NJ      rent_increase_limits   Hoboken Rent Control Regulat in ['s0', 's1'] -> kept from s0 (agree: ['s0', 's1'])
+  Hoboken, NJ      rent_increase_limits   Hoboken Rent Control Regulat in ['s0', 's1'] -> kept from s0 (agree: ['s0'])
+  Jersey City, NJ  algorithmic_rent_setti Jersey City Code § 218-12(2) in ['s0', 's1', 's2'] -> kept from s0 (agree: ['s0', 's2'])
+  Los Angeles, CA  just_cause_eviction    LAMC § 165.03                in ['s0', 's1', 's2'] -> kept from s1 (agree: ['s1'])
+  Los Angeles, CA  rent_increase_limits   LAMC § 151.06                in ['s0', 's1', 's2'] -> kept from s1 (agree: ['s1', 's2'])
+  NJ               application_screening_ N.J. Stat. § 46:8-18.1(a)    in ['s0', 's1', 's2'] -> kept from s0 (agree: ['s0', 's1'])
+  NJ               just_cause_eviction    N.J.S.A. 2A:18-61.1          in ['s0', 's1', 's2'] -> kept from s1 (agree: ['s1'])
+  NJ               rent_increase_limits   N.J.S.A. 2A:42-84.5          in ['s0', 's1'] -> kept from s0 (agree: ['s0', 's1'])
+  NJ               screening_restrictions N.J. Stat. Ann. § 46:8-58(a) in ['s0', 's2'] -> kept from s0 (agree: ['s0', 's2'])
+  NJ               screening_restrictions N.J.S.A. 10:5-12             in ['s0', 's2'] -> kept from s0 (agree: ['s0', 's2'])
+  NJ               security_deposits      N.J.S.A. 46:8-21.2           in ['s0', 's1', 's2'] -> kept from s0 (agree: ['s0', 's1'])
+  Newark, NJ       just_cause_eviction    Newark, N.J., Rev. Gen. Ordi in ['s0', 's2'] -> kept from s0 (agree: ['s0'])
+  Newark, NJ       rent_increase_limits   Newark Code § 19:2-2         in ['s0', 's1', 's2'] -> kept from s0 (agree: ['s0', 's2'])
+  Newark, NJ       rent_increase_limits   Newark Code § 19:2-22        in ['s1'] -> dropped: found in a minority of samples
+  Newark, NJ       rent_increase_limits   Newark Code § 19:2-3.1       in ['s0', 's2'] -> kept from s0 (agree: ['s0'])
+  Newark, NJ       rent_increase_limits   Newark, N.J., Rev. Gen. Ordi in ['s0', 's1', 's2'] -> kept from s0 (agree: ['s0', 's1'])
+  San Francisco, C algorithmic_rent_setti San Francisco Rent Ordinance in ['s0', 's1', 's2'] -> kept from s0 (agree: ['s0', 's2'])
+  San Francisco, C just_cause_eviction    San Francisco Rent Ordinance in ['s0', 's1', 's2'] -> kept from s0 (agree: ['s0', 's2'])
+../building-evidence-ui/.venv/bin/python -m extract.links
+CA just_cause_eviction not_in_corpus 0.64 https://law.justia.com/codes/california/code-civ/division-3/part-4/title-5/chapter-2/secti
+CA security_deposits not_in_corpus 0.77 https://law.justia.com/codes/california/code-civ/division-3/part-4/title-5/chapter-2/secti
+CA screening_restrictions not_in_corpus 0.9 https://law.justia.com/codes/california/code-gov/title-2/division-3/part-2-8/chapter-6/art
+CA algorithmic_rent_setting not_in_corpus 0.95 https://www.clearygottlieb.com/news-and-insights/publication-listing/californias-antitrust
+NJ-JERSEY-CITY algorithmic_rent_setting not_in_corpus 0.98 https://hudsoncountyview.com/jersey-city-council-approves-realpage-ban-and-increasing-bene
+CA-LOS-ANGELES security_deposits not_in_corpus 0.75 https://members.aagla.org/news/city-of-la-security-deposit-interest-requirement
+MA rent_increase_limits measure_failed 1 https://www.wbur.org/news/2026/06/23/massachusetts-high-court-rent-control-ballot-question
+NJ algorithmic_rent_setting not_in_corpus 1 https://daypitney.com/new-jersey-enacts-fair-act-to-prohibit-algorithmic-rent-setting-prac
+NJ screening_restrictions not_in_corpus 0.63 https://law.justia.com/codes/new-jersey/title-10/section-10-5-12/
+CA-SAN-DIEGO algorithmic_rent_setting not_in_corpus 1 https://gocodebook.com/library/us/ca/san-diego-zoning/division-11-prohibition-of-anti-comp
+CA-SAN-DIEGO screening_restrictions not_in_corpus 1 https://gocodebook.com/library/us/ca/san-diego-zoning/division-8-prohibition-of-discrimina
+CA-SANTA-ANA algorithmic_rent_setting not_in_corpus 1 https://www.ocbj.com/real-estate/santa-ana-bans-landlords-from-using-ai-apartment-rent-pri
+CA-SANTA-ANA algorithmic_rent_setting not_in_corpus 0.95 https://www.publicceo.com/2026/02/santa-ana-city-council-continues-to-strengthen-tenant-pr
+../building-evidence-ui/.venv/bin/python -m extract.open_questions
+exemption San Diego Municipal Code § 98.0704: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)
+exemption Berkeley Rent Stabilization and Eviction for Just Cause Ordinance: 'Unit where the owner shares a kitchen or bath with the tenan': owner lives there (jev p=0.92)
+exemption Cal. Civil Code § 1946.2: 'Residential real property, including a mobilehome, that is a': parts of one exemption (document structure); false for 5+ unit apartments (jev p=0.80)
+CA-BERKELEY algorithmic_rent_setting dates_disagree | ours: [('Berkeley Mun. Code § 13.63.030(B)', None)] | claims: [('March 1, 2026', '2026-03-01', 'D001'), ('January 2026', '2026-01-01', 'D002')]
+NJ-JERSEY-CITY algorithmic_rent_setting may_be_preempted | ours: [('Jersey City Code § 218-12(2)(a)', '2025-06-10'), ('Jersey City Code § 218-12.3(a)', '2025-10-15'), ('N.J. Stat. Ann. § 56:9-23(e)', '2027-07-01')] | claims: [('The FAIR Act may preempt the Jersey City', None, None)]
+NJ-HOBOKEN algorithmic_rent_setting may_be_preempted | ours: [('Hoboken ordinance (citation not stated)', '2025-07-29'), ('N.J. Stat. Ann. § 56:9-23(e)', '2027-07-01')] | claims: [('The FAIR Act may preempt the Jersey City', None, None)]
+CA-LOS-ANGELES rent_increase_limits dates_disagree | ours: [('Los Angeles Municipal Code § 151.06', None)] | claims: [('2026-02-02', '2026-02-02', None), ('2026-01-24', '2026-01-24', 'D044')]
+CA application_screening_fees no_official_value | ours: [('Cal. Civ. Code § 1950.6', '2026-01-01')] | claims: [('A landlord may not charge an application', None, 'D026')]
+../building-evidence-ui/.venv/bin/python -m extract.compile
+exemption San Diego Municipal Code § 98.0704: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)
+exemption Berkeley Rent Stabilization and Eviction for Just Cause Ordinance: 'Unit where the owner shares a kitchen or bath with the tenan': owner lives there (jev p=0.92)
+exemption Cal. Civil Code § 1946.2: 'Residential real property, including a mobilehome, that is a': parts of one exemption (document structure); false for 5+ unit apartments (jev p=0.80)
+start date Cal. Civ. Code § 1950.6: 2026-01-01 starts a new amount or wording (jev p=0.92); start now None
+start date Los Angeles Municipal Code § 151.06: 2026-02-02 starts a new amount or wording (jev p=0.94); start now None
+start date San Francisco Rent Ordinance § 37.3: 2026-03-01 starts a new amount or wording (jev p=0.91); start now None
+start date San Francisco Rent Ordinance § 37.6: 2026-03-01 starts a new amount or wording (jev p=0.95); start now None
+warning: duplicate team_rule_id NJ-NEWARK-EVICT-19:2-14 -> suffix -2
+59 compiled rules; Counter({'in_force': 51, 'repealed': 4, 'pending': 3, 'enacted_not_effective': 1}) Counter({'ok': 53, 'failed': 6})
+/Applications/Xcode.app/Contents/Developer/usr/bin/make build
+../building-evidence-ui/.venv/bin/python -m engine.build --as-of 2026-10-01
+as_of 2026-10-01: 500 addresses, 5101 results
+city                     addresses     applies     unknown  superseded not_yet_eff     pending conflict_fl
+CA-BERKELEY                     40         400          80          40           0           0           0
+CA-LOS-ANGELES                  80         392         100          68           0           0           0
+CA-SAN-DIEGO                    50         250         150           0           0           0           0
+CA-SAN-FRANCISCO                80         631          10         150           0           0           0
+MA-BOSTON                       60         386          94           0           0         180           0
+MA-CAMBRIDGE                    50         300           0           0           0         100           0
+NJ-HOBOKEN                      40         434           6           0          40           0          80
+NJ-JERSEY-CITY                  50         550           0           0          50           0         150
+NJ-NEWARK                       50         600           0           0          50           0           0
+/Applications/Xcode.app/Contents/Developer/usr/bin/make score
+../building-evidence-ui/.venv/bin/python -m engine.score
+CA {'2025-12-31': 38.0, '2026-10-01': 50.0, '2027-07-02': 50.0, '2030-01-02': 50.0}
+MA {'2025-12-31': 50.0, '2026-10-01': 50.0, '2027-07-02': 50.0, '2030-01-02': 50.0}
+NJ {'2025-12-31': 56.0, '2026-10-01': 69.0, '2027-07-02': 81.0, '2030-01-02': 81.0}
+CA-BERKELEY {'2025-12-31': 88.0, '2026-10-01': 100.0, '2027-07-02': 100.0, '2030-01-02': 100.0}
+CA-LOS-ANGELES {'2025-12-31': 62.0, '2026-10-01': 75.0, '2027-07-02': 75.0, '2030-01-02': 75.0}
+CA-SAN-DIEGO {'2025-12-31': 50.0, '2026-10-01': 50.0, '2027-07-02': 50.0, '2030-01-02': 50.0}
+CA-SAN-FRANCISCO {'2025-12-31': 100.0, '2026-10-01': 100.0, '2027-07-02': 100.0, '2030-01-02': 100.0}
+MA-BOSTON {'2025-12-31': 50.0, '2026-10-01': 50.0, '2027-07-02': 50.0, '2030-01-02': 50.0}
+MA-CAMBRIDGE {'2025-12-31': 50.0, '2026-10-01': 50.0, '2027-07-02': 50.0, '2030-01-02': 50.0}
+NJ-HOBOKEN {'2025-12-31': 69.0, '2026-10-01': 81.0, '2027-07-02': 81.0, '2030-01-02': 81.0}
+NJ-JERSEY-CITY {'2025-12-31': 69.0, '2026-10-01': 81.0, '2027-07-02': 81.0, '2030-01-02': 81.0}
+NJ-NEWARK {'2025-12-31': 69.0, '2026-10-01': 69.0, '2027-07-02': 81.0, '2030-01-02': 81.0}
+/Applications/Xcode.app/Contents/Developer/usr/bin/make test
+../building-evidence-ui/.venv/bin/python -m unittest discover -s tests -p "test_*.py" -t .
+......<workspace>/engine/build.py:149: ResourceWarning: unclosed file <_io.TextIOWrapper name='<workspace>/data/realpage-starter/corpus/corpus_manifest.csv' mode='r' encoding='utf-8'>
+  corpus = {row["doc_id"] for row in csv.DictReader(open(config.MANIFEST, encoding="utf-8"))}
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+........................................<workspace>/tests/test_engine.py:323: ResourceWarning: unclosed file <_io.TextIOWrapper name='<workspace>/data/realpage-starter/corpus/corpus_manifest.csv' mode='r' encoding='utf-8'>
+  corpus = {row["doc_id"] for row in csv.DictReader(open(config.MANIFEST, encoding="utf-8"))}
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+..............................................................
+----------------------------------------------------------------------
+Ran 108 tests in 98.151s
+
+OK
+../building-evidence-ui/.venv/bin/python -m tests.eval_suite --supplemental > /dev/null
+../building-evidence-ui/.venv/bin/python -m tests.parity
+exemption San Diego Municipal Code § 98.0704: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)
+exemption Berkeley Rent Stabilization and Eviction for Just Cause Ordinance: 'Unit where the owner shares a kitchen or bath with the tenan': owner lives there (jev p=0.92)
+exemption Cal. Civil Code § 1946.2: 'Residential real property, including a mobilehome, that is a': parts of one exemption (document structure); false for 5+ unit apartments (jev p=0.80)
+parity at 2026-10-01: 0 differences between eval and engine inputs
+/Applications/Xcode.app/Contents/Developer/usr/bin/make rehearse
+../building-evidence-ui/.venv/bin/python -m extract.ingest tests/fixtures/synthetic/X001.txt --jurisdiction "Cambridge, MA" --id X001
+exemption San Diego Municipal Code § 98.0704: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)
+exemption Berkeley Rent Stabilization and Eviction for Just Cause Ordinance: 'Unit where the owner shares a kitchen or bath with the tenan': owner lives there (jev p=0.92)
+exemption Cal. Civil Code § 1946.2: 'Residential real property, including a mobilehome, that is a': parts of one exemption (document structure); false for 5+ unit apartments (jev p=0.80)
+exemption San Diego Municipal Code § 98.0704: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)
+exemption Berkeley Rent Stabilization and Eviction for Just Cause Ordinance: 'Unit where the owner shares a kitchen or bath with the tenan': owner lives there (jev p=0.92)
+exemption Cal. Civ. Code § 1947.12(a)(1): 'exempt_if': 1 'unless' clause(s) negated
+exemption San Diego Municipal Code § 98.0704: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)
+exemption Cal. Civil Code § 1946.2: 'Residential real property, including a mobilehome, that is a': parts of one exemption (document structure); false for 5+ unit apartments (jev p=0.80)
+exemption San Diego Municipal Code § 98.0704: '(h) residential rental property in which the tenant shares b': owner lives there (jev p=0.99)
+exemption Berkeley Rent Stabilization and Eviction for Just Cause Ordinance: 'Unit where the owner shares a kitchen or bath with the tenan': owner lives there (jev p=0.92)
+exemption San Diego Municipal Code § 98.0704: 'residential rental property in which the tenant shares bathr': owner lives there (jev p=0.98)
+exemption San Diego Municipal Code § 98.0704: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)
+exemption Berkeley Rent Stabilization and Eviction for Just Cause Ordinance: 'Unit where the owner shares a kitchen or bath with the tenan': owner lives there (jev p=0.92)
+exemption Cal. Civil Code § 1946.2: 'Residential real property, including a mobilehome, that is a': parts of one exemption (document structure); false for 5+ unit apartments (jev p=0.80)
+exemption San Diego Municipal Code § 98.0704: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)
+exemption Berkeley Rent Stabilization and Eviction for Just Cause Ordinance: 'Unit where the owner shares a kitchen or bath with the tenan': owner lives there (jev p=0.92)
+exemption Cal. Civil Code § 1946.2: 'Residential real property, including a mobilehome, that is a': parts of one exemption (document structure); false for 5+ unit apartments (jev p=0.80)
+start date Cal. Civ. Code § 1950.6: 2026-01-01 starts a new amount or wording (jev p=0.92); start now None
+start date LAMC § 151.06: 2026-02-02 starts a new amount or wording (jev p=0.94); start now None
+start date San Francisco Rent Ordinance § 37.3: 2026-03-01 starts a new amount or wording (jev p=0.91); start now None
+start date San Francisco Rent Ordinance § 37.6: 2026-03-01 starts a new amount or wording (jev p=0.95); start now None
+warning: duplicate team_rule_id NJ-NEWARK-EVICT-19:2-14 -> suffix -2
+X001: 1 rule(s), effective ['2027-03-01'], 2.1 s
+  application_screening_fees | Cambridge Municipal Code § 8.99.010(a) | A landlord may not charge a prospective tenant a fee for a rental application, tenant screening, or  | key: No fee for a rental application, tenant screening, or credit check
+../building-evidence-ui/.venv/bin/python -m tests.eval_suite --supplemental
+# Eval report
+
+**Inputs:** rules from out/rules.compiled.json (engine/rules.py), facts from I3 out/addresses.resolved.json (engine/facts.py).
+
+**Integrity:** 50 units, 971 obligations, quotes located 2526/2548 (99.1%), parse_status failed 8, partial 10. Headline rules compiled: 59.
+
+**Scored quotes (rules.json):** 55/55 verbatim in the pinned source.
+
+**Prompts:** lint violations 0 (reviewed exceptions 1); digest 1f1ed5a0894a; frozen, matches the lock; I7 vocabulary matches the contract.
+
+## Assertions (A1): 26/27
+
+| id | want | got | notes |
+|---|---|---|---|
+| A01 | in_force | ✓ in_force |  |
+| A02 | in_force | ✓ in_force |  |
+| A03 | in_force | ✓ in_force |  |
+| A04 | finding | ✓ finding |  |
+| A05 | in_force | ✓ in_force |  |
+| A06 | in_force | ✓ in_force |  |
+| A07 | in_force | ✓ in_force |  |
+| A08 | in_force | ✓ in_force |  |
+| A09 | in_force | ✓ in_force |  |
+| A10 | in_force | ✓ in_force |  |
+| A11 | in_force | ✓ in_force |  |
+| A12 | in_force | ✓ in_force |  |
+| A13 | in_force | ✓ in_force |  |
+| A14 | in_force | ✓ in_force |  |
+| A15 | in_force | ✓ in_force |  |
+| A16 | in_force | ✓ in_force |  |
+| A17 | in_force | ✓ in_force |  |
+| A18 | in_force | ✓ in_force |  |
+| A19 | in_force | ✓ in_force |  |
+| A20 | in_force | ✓ in_force |  |
+| A21 | in_force | ✗ missing |  |
+| A22 | in_force | ✓ in_force |  |
+| A23 | in_force | ✓ in_force |  |
+| A24 | not_yet_effective | ✓ not_yet_effective |  |
+| A25 | pending | ✓ pending |  |
+| A26 | pending | ✓ pending |  |
+| A27 | finding | ✓ finding |  |
+
+## Coverage matrix: rule 42, finding 1, gap 3, empty 32 (of 78)
+
+| jurisdiction | rent | just | security | application | screening | algorithmic |
+|---|---|---|---|---|---|---|
+| CA | rule | rule | rule | rule | rule | rule |
+| NJ | rule | rule | rule | rule | rule | rule |
+| MA | finding | rule | rule | rule | rule | rule |
+| CA-LOS-ANGELES | rule | rule | gap | empty | empty | empty |
+| CA-SAN-FRANCISCO | rule | rule | rule | empty | empty | rule |
+| CA-SAN-DIEGO | empty | rule | empty | empty | gap | rule |
+| CA-BERKELEY | rule | rule | rule | rule | rule | rule |
+| CA-SANTA-ANA | rule | rule | empty | empty | empty | gap |
+| NJ-JERSEY-CITY | empty | empty | empty | empty | empty | rule |
+| NJ-HOBOKEN | rule | empty | empty | empty | empty | rule |
+| NJ-NEWARK | rule | rule | empty | empty | empty | empty |
+| MA-BOSTON | rule | rule | empty | empty | rule | empty |
+| MA-CAMBRIDGE | empty | empty | empty | empty | rule | empty |
+
+## Change tests
+
+| test | expected | got |
+|---|---|---|
+| T1 | 250 | ✓ 250 |
+| T2 | Hoboken 40 / Jersey City 50 / Newark 0 | ✓ Hoboken 40 (+0 wrong) / Jersey City 50 (+0 wrong) / Newark 0 |
+| T3 | 140 flip, 90 conflict flags | ✓ 140 flip, 90 flags (+0 wrong) |
+| T4 | 110 | ✓ 110 |
+| T5 | 0 | ✓ 0 |
+
+## changes.json (guide shape), T1-T6
+
+| test | expected addresses | got | missing | extra | flags (exp/got/extra) | shape | notes |
+|---|---|---|---|---|---|---|---|
+| T1 | 250 | ✓ 250 | 0 | 0 | 0/0/0 | ✓ | key rule IDs -> ours: {'CA-ALG-01': ['CA-ALG-16729']} |
+| T2 | 90 | ✓ 90 | 0 | 0 | 0/0/0 | ✓ | key rule IDs -> ours: {'HOB-ALG-01': ['NJ-HOBOKEN-ALG-Hobokenordin'], 'JC-ALG-01': ['NJ-JERSEY-CITY-ALG-218-12']} |
+| T3 | 140 | ✓ 140 | 0 | 0 | 90/90/0 | ✓ | key rule IDs -> ours: {'NJ-ALG-01': ['NJ-ALG-56:9-23']} |
+| T4 | 110 | ✓ 110 | 0 | 0 | 0/0/0 | ✓ | key rule IDs -> ours: {'MA-ALG-P1': ['MA-ALG-5222'], 'MA-ALG-P2': ['MA-ALG-2983']}; pending today at 110 addresses; affe |
+| T5 | 0 | ✓ 0 | 0 | 0 | 0/0/0 | ✓ | key rule IDs -> ours: {'MA-RENT-P1': 'finding:measure_failed'}; measure recorded as measure_failed (manifest link: https |
+| T6 | 45 | ✓ 45 | 0 | 0 | 0/0/0 | ✓ | key rule IDs -> ours: {}; new document effective 2027-03-01; compared at ['2027-03-02'] |
+
+## questions tuning: 23/24, values 2/3
+
+| id | expect | got |
+|---|---|---|
+| Q1-rent-state | superseded | ✓ superseded |
+| Q1-rent-local | applies | ✓ applies |
+| Q1-deposit | applies | ✓ applies |
+| Q2-rent-state | applies | ✗ unknown |
+| Q2-rent-local | none | ✓ none |
+| Q3-rent-state | none | ✓ none |
+| Q3-rent-local | none | ✓ none |
+| Q4-rent-local | unknown | ✓ unknown |
+| Q4-rent-state | unknown | ✓ unknown |
+| Q5-rent-local | applies | ✓ applies |
+| Q5-rent-state | superseded | ✓ superseded |
+| Q6-boston-cap | none | ✓ none |
+| Q7-camb-cap | none | ✓ none |
+| Q7-camb-s2983 | pending | ✓ pending |
+| Q7-camb-h5222 | pending | ✓ pending |
+| Q8-T1-before | not_yet_effective | ✓ not_yet_effective |
+| Q8-T1-after | applies | ✓ applies |
+| Q9-T3-today | not_yet_effective | ✓ not_yet_effective |
+| Q9-T3-later | applies | ✓ applies |
+| Q10-newark | not_yet_effective | ✓ not_yet_effective |
+| Q11-tic-deposit | applies | ✓ applies (value ✗) |
+| Q12-berk-deposit | applies | ✓ applies |
+| Q13-repealed | none | ✓ none |
+| Q14-tic-rent | applies | ✓ applies |
+
+## questions holdout: 16/16, values 2/2
+
+| id | expect | got |
+|---|---|---|
+| H01-berk-state-cap | unknown | ✓ unknown |
+| H02-sd-state-cap | unknown | ✓ unknown |
+| H03-sd-alg | applies | ✓ applies |
+| H04-berk-alg | applies | ✓ applies |
+| H05-sf-alg | applies | ✓ applies |
+| H06-nj-deposit | applies | ✓ applies |
+| H07-ma-deposit-camb | applies | ✓ applies |
+| H08-nj-fee-now | applies | ✓ applies |
+| H09-nj-fee-before | not_yet_effective | ✓ not_yet_effective |
+| H10-ma-broker | applies | ✓ applies |
+| H11-ca-soi | applies | ✓ applies |
+| H12-nj-fair-chance | applies | ✓ applies |
+| H13-nj-eviction | applies | ✓ applies |
+| H14-la-deposit | applies | ✓ applies |
+| H15-boston-deposit | applies | ✓ applies |
+| H16-sf-just-cause | applies | ✓ applies |
+../building-evidence-ui/.venv/bin/python -m tests.hour16_question X001
+X001: 1 rule(s), effective 2027-03-01; compared on 2027-03-02: 45 address(es) affected
+
+Q: What changes for 322-322.5 Western Ave, Cambridge (A0009) on 2027-03-02?
+A (engine, as on the address page):
+- Cambridge Municipal Code § 8.99.010(a): not listed -> unknown. Unknown whether Cambridge Municipal Code § 8.99.010(a) covers this address: depends on whether the owner lives there (not in the data). Check whether the owner lives in the building (ask the landlord).
+  For the renter: unchanged. No change in application fee protection: Mass. Gen. Laws ch. 186, § 15B(1)(b) already gives this protection.
+
+A (chatbot, Cambridge, MA, application_screening_fees):
+As of 2027-03-02, Massachusetts law limits what a landlord may require you to pay before a tenancy, and HomeRule has no verified Cambridge application-fee ban in its records. A landlord may require first month’s rent, last month’s rent, and a qualifying security deposit—but not an extra application, screening, or credit-check fee (Mass. Gen. Laws ch. 186, § 15B(1)(b)). A broker’s fee may be paid only by the party who originally engaged and contracted with the broker (Mass. Gen. Laws ch. 112, § 87DDD½). The Cambridge no-fee entry is sourced to a document explicitly marked fictional, so I can’t treat it as law.
+
+Status on 2027-03-02 (HomeRule records): In force: Cambridge Municipal Code § 8.99.010(a); Mass. Gen. Laws ch. 112, § 87DDD½; Mass. Gen. Laws ch. 186, § 15B(1)(b).
+rm -f out/index/X001.json out/extracted*/X001.json
+../building-evidence-ui/.venv/bin/python -m extract.compile
+exemption San Diego Municipal Code § 98.0704: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)
+exemption Berkeley Rent Stabilization and Eviction for Just Cause Ordinance: 'Unit where the owner shares a kitchen or bath with the tenan': owner lives there (jev p=0.92)
+exemption Cal. Civil Code § 1946.2: 'Residential real property, including a mobilehome, that is a': parts of one exemption (document structure); false for 5+ unit apartments (jev p=0.80)
+start date Cal. Civ. Code § 1950.6: 2026-01-01 starts a new amount or wording (jev p=0.92); start now None
+start date LAMC § 151.06: 2026-02-02 starts a new amount or wording (jev p=0.94); start now None
+start date San Francisco Rent Ordinance § 37.3: 2026-03-01 starts a new amount or wording (jev p=0.91); start now None
+start date San Francisco Rent Ordinance § 37.6: 2026-03-01 starts a new amount or wording (jev p=0.95); start now None
+warning: duplicate team_rule_id NJ-NEWARK-EVICT-19:2-14 -> suffix -2
+59 compiled rules; Counter({'in_force': 51, 'repealed': 4, 'pending': 3, 'enacted_not_effective': 1}) Counter({'ok': 53, 'failed': 6})
+../building-evidence-ui/.venv/bin/python -m tests.eval_suite --supplemental > /dev/null
+**Inputs:** rules from out/rules.compiled.json (engine/rules.py), facts from I3 out/addresses.resolved.json (engine/facts.py).
+**Integrity:** 49 units, 968 obligations, quotes located 2513/2535 (99.1%), parse_status failed 8, partial 10. Headline rules compiled: 59.
+**Scored quotes (rules.json):** 54/54 verbatim in the pinned source.
+**Prompts:** lint violations 0 (reviewed exceptions 1); digest 1f1ed5a0894a; frozen, matches the lock; I7 vocabulary matches the contract.
+## Assertions (A1): 26/27
+| T1 | 250 | ✓ 250 |
+| T4 | 110 | ✓ 110 |
+| T5 | 0 | ✓ 0 |
+| T1 | 250 | ✓ 250 | 0 | 0 | 0/0/0 | ✓ | key rule IDs -> ours: {'CA-ALG-01': ['CA-ALG-16729']} |
+| T2 | 90 | ✓ 90 | 0 | 0 | 0/0/0 | ✓ | key rule IDs -> ours: {'HOB-ALG-01': ['NJ-HOBOKEN-ALG-Hobokenordin'], 'JC-ALG-01': ['NJ-JERSEY-CITY-ALG-218-12']} |
+| T3 | 140 | ✓ 140 | 0 | 0 | 90/90/0 | ✓ | key rule IDs -> ours: {'NJ-ALG-01': ['NJ-ALG-56:9-23']} |
+| T4 | 110 | ✓ 110 | 0 | 0 | 0/0/0 | ✓ | key rule IDs -> ours: {'MA-ALG-P1': ['MA-ALG-5222'], 'MA-ALG-P2': ['MA-ALG-2983']}; pending today at 110 addresses; affe |
+| T5 | 0 | ✓ 0 | 0 | 0 | 0/0/0 | ✓ | key rule IDs -> ours: {'MA-RENT-P1': 'finding:measure_failed'}; measure recorded as measure_failed (manifest link: https |
+## questions tuning: 23/24, values 2/3
+## questions holdout: 16/16, values 2/2

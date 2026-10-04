@@ -1,0 +1,12 @@
+{
+  "tested_revision": "62814964321aa2df260d4f57eaba63d173279519",
+  "tested_prs": [
+    135,
+    123
+  ],
+  "run_date": "2026-10-04",
+  "command": "PYTHONPATH=/tmp/homerule-audit/deps make check PY=../building-evidence-ui/.venv/bin/python",
+  "exit_code": 0,
+  "rendering": "3-second static terminal excerpt rendered from the actual saved stdout/stderr, not a recording of the full command runtime",
+  "log_sha256": "4c7e799bbef2d03faf5756d66dbaaccad2ad36e3ea4b80a79c946edd9d6e09fd"
+}

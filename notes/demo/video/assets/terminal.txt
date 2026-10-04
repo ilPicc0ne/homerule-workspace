@@ -1,0 +1,18 @@
+$ make check
+
+Ran 108 tests in 98.151s
+OK
+parity at 2026-10-01: 0 differences between eval and engine inputs
+
+Change tests (excerpt: expected / affected / dropped / changed / conflicts / status)
+T1  |  250  |  ✓ 250  |  0  |  0  |  0/0/0  |  ✓
+T2  |  90  |  ✓ 90  |  0  |  0  |  0/0/0  |  ✓
+T3  |  140  |  ✓ 140  |  0  |  0  |  90/90/0  |  ✓
+T4  |  110  |  ✓ 110  |  0  |  0  |  0/0/0  |  ✓
+T5  |  0  |  ✓ 0  |  0  |  0  |  0/0/0  |  ✓
+
+Scored quotes (rules.json): 54/54 verbatim in the pinned source.
+Assertions (A1): 26/27
+questions tuning: 23/24, values 2/3
+
+Repository checks, not an organizer score. Known gaps remain.
