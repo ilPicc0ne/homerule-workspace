@@ -5720,9 +5720,18 @@
      }
     },
     {
-     "fact": "owner_occupied",
-     "op": "eq",
-     "value": true
+     "all": [
+      {
+       "fact": "owner_occupied",
+       "op": "eq",
+       "value": true
+      },
+      {
+       "fact": "units",
+       "op": "le",
+       "value": 2
+      }
+     ]
     },
     {
      "all": [
@@ -5769,7 +5778,9 @@
   "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
-  "checks": [],
+  "checks": [
+   "exempt_if: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)"
+  ],
   "x_source": {
    "unit": "D073",
    "source_doc_id": "D073",
