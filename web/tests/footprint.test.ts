@@ -53,11 +53,15 @@ test("height: OSM height, else levels × 3 m, else 12 m", () => {
 test("pick: containing building wins; else nearest within 30 m; else null", () => {
   const a = { id: 1, ring: sq(-74.041, 40.738) };
   const b = { id: 2, ring: sq(-74.0405, 40.738) };
-  assert.equal(pickFootprint([-74.0409, 40.7381], [b, a])!.osm_id, 1);
+  const inside = pickFootprint([-74.0409, 40.7381], [b, a])!;
+  assert.equal(inside.osm_id, 1);
+  assert.equal(inside.contains, true);
+  assert.equal(inside.distance_m, 0);
   // On the street 11 m south of a, further from b.
   const near = pickFootprint([-74.0409, 40.7379], [a, b])!;
   assert.equal(near.osm_id, 1);
   assert.ok(near.distance_m > 10 && near.distance_m < 12);
+  assert.equal(near.contains, false);
   // 0.0004° (~44 m) south: nothing within MAX_MATCH_M.
   assert.equal(MAX_MATCH_M, 30);
   assert.equal(pickFootprint([-74.0409, 40.7376], [a, b]), null);
@@ -84,6 +88,8 @@ test("committed footprints file: one entry per sample address, each ring closed 
     assert.deepEqual(first, last, id);
     assert.ok(f.distance_m >= 0 && f.distance_m <= MAX_MATCH_M, id);
     assert.ok(f.height_m > 0, id);
+    assert.equal(f.contains, f.distance_m === 0, id);
   }
   assert.equal(n, doc.matched);
+  assert.equal(ids.filter((id) => doc.footprints[id]?.contains).length, doc.contains);
 });

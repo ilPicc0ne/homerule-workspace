@@ -4,6 +4,7 @@ import { buildAddressView } from "@/lib/address-view";
 import { changes } from "@/lib/changes/data.ts";
 import { builtYear, unitsText } from "@/lib/format";
 import { buildingFootprint, cityOutline, mapCaption } from "@/lib/outlines";
+import { sureFootprint } from "@/lib/map-view";
 import type { Address, Dataset, Result, Rule } from "@/lib/types";
 import type { PageProps as ViewProps } from "./[id]/address-page";
 
@@ -68,7 +69,8 @@ export function viewProps(data: Dataset, address: Address, results: Result[], ex
       outline,
       caption: mapCap,
       label: address.street,
-      footprint: extra?.typed ? null : buildingFootprint(address.address_id),
+      // Only sure matches (geocode inside the outline) reach the browser; the rest get the approximate circle.
+      footprint: extra?.typed ? null : sureFootprint(buildingFootprint(address.address_id)),
     },
     index: searchIndex(data),
     typed: !!extra?.typed,

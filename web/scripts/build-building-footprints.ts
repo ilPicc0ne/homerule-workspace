@@ -4,6 +4,7 @@
 //   ODbL. Only `building=*` ways (no multipolygon relations), within 30 m of the Census geocode.
 // The geocode is interpolated along the street, so it usually sits in front of the building: we take
 //   the building that contains it, else the nearest one within 30 m (lib/footprint.ts). No match → null.
+//   `contains: true` marks the sure matches (geocode inside the outline); only those are drawn.
 // Polite: one request at a time, batched per city (≤ 40 points per query), a pause between requests,
 //   raw responses cached in $TMPDIR so a rerun doesn't hit the server again.
 //
@@ -84,13 +85,15 @@ for (const [city, list] of byCity) {
 
 const ids = Object.keys(out).sort();
 const matched = ids.filter((id) => out[id]).length;
+const contained = ids.filter((id) => out[id]?.contains).length;
 const doc = {
   source: "OpenStreetMap contributors (ODbL), via Overpass API; building=* ways within 30 m of the Census geocode",
   attribution: "Building outline © OpenStreetMap contributors",
   retrieved: new Date().toISOString().slice(0, 10),
   matched,
+  contains: contained,
   total: ids.length,
   footprints: Object.fromEntries(ids.map((id) => [id, out[id]])),
 };
 writeFileSync(OUT, JSON.stringify(doc) + "\n");
-console.error(`matched ${matched}/${ids.length} → ${OUT}`);
+console.error(`matched ${matched}/${ids.length}, geocode inside ${contained} → ${OUT}`);

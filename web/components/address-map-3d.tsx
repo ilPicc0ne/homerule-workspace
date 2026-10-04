@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { importLibrary, setOptions } from "@googlemaps/js-api-loader";
 import type { MapProps } from "./address-map-gl";
-import { FOOTPRINT_ATTRIBUTION, MAP3D_TIMEOUT_MS, buildingCamera, cityCamera, outerRings, pinPoint } from "@/lib/map-view";
+import { APPROX_CAPTION, FOOTPRINT_ATTRIBUTION, MAP3D_TIMEOUT_MS, buildingCamera, cityCamera, highlightFor, outerRings } from "@/lib/map-view";
 
 /* Google Maps JavaScript 3D view (Map3DElement). Loaded only after the visitor picks "3D":
    this module and the Google script are fetched on first switch, never on page load.
@@ -14,8 +14,8 @@ const KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
 const STROKE = "#0f766e";
 const FILL = "rgba(15, 118, 110, 0.10)";
 const BLDG_FILL = "rgba(20, 184, 166, 0.6)";
-/** With a building outline drawn, also show the pin above it (false: the outline alone marks it). */
-const PIN_WITH_FOOTPRINT = false;
+const APPROX_FILL = "rgba(20, 184, 166, 0.28)";
+const APPROX_STROKE = "rgba(15, 118, 110, 0.6)";
 const FLY_MS = 4000;
 const ORBIT_MS = 24000;
 
@@ -56,7 +56,8 @@ export default function AddressMap3D({ coords: geocode, outline, footprint, capt
     if (!KEY) return fail("no key");
     if (!hasWebGL()) return fail("no WebGL");
 
-    const coords = pinPoint(geocode, footprint);
+    const hl = highlightFor(geocode, footprint);
+    const coords = hl ? hl.center : null;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const rings = outerRings(outline?.geometry as never);
     const end = coords ? buildingCamera(coords) : null;
@@ -91,7 +92,7 @@ export default function AddressMap3D({ coords: geocode, outline, footprint, capt
       }
       const lib = await timeout(importLibrary("maps3d"), MAP3D_TIMEOUT_MS);
       if (done) return;
-      const { Map3DElement, Marker3DElement, Polygon3DElement } = lib;
+      const { Map3DElement, Polygon3DElement } = lib;
       const first = reduce && end ? end : start;
       map = new Map3DElement({
         ...first,
@@ -113,10 +114,10 @@ export default function AddressMap3D({ coords: geocode, outline, footprint, capt
         poly.path = ring.map(([lng, lat]) => ({ lat, lng }));
         map.append(poly);
       }
-      if (footprint) {
-        // The building itself: its OSM outline extruded to its height, visible through other buildings.
-        // A few metres above the OSM height so the roof cap clears Google's own building mesh.
-        const h = footprint.height_m + 3;
+      if (hl?.kind === "building") {
+        // Sure match: the building itself, its OSM outline extruded to its height, visible through
+        // other buildings. A few metres above the OSM height so the roof clears Google's mesh.
+        const h = hl.footprint.height_m + 3;
         const bldg = new Polygon3DElement({
           strokeColor: STROKE,
           strokeWidth: 4,
@@ -125,17 +126,19 @@ export default function AddressMap3D({ coords: geocode, outline, footprint, capt
           extruded: true,
           drawsOccludedSegments: true,
         });
-        bldg.path = footprint.ring.map(([lng, lat]) => ({ lat, lng, altitude: h }));
+        bldg.path = hl.ring.map(([lng, lat]) => ({ lat, lng, altitude: h }));
         map.append(bldg);
-      }
-      if (coords && (!footprint || PIN_WITH_FOOTPRINT)) {
-        const pin = new Marker3DElement({
-          position: { lat: coords.lat, lng: coords.lon, altitude: (footprint?.height_m ?? 0) + 30 },
-          altitudeMode: "RELATIVE_TO_GROUND",
-          extruded: true,
-          label,
+      } else if (hl?.kind === "approx") {
+        // No sure building: a soft circle around the geocode, draped on the ground.
+        const circle = new Polygon3DElement({
+          strokeColor: APPROX_STROKE,
+          strokeWidth: 2,
+          fillColor: APPROX_FILL,
+          altitudeMode: "CLAMP_TO_GROUND",
+          drawsOccludedSegments: true,
         });
-        map.append(pin);
+        circle.path = hl.ring.map(([lng, lat]) => ({ lat, lng }));
+        map.append(circle);
       }
       el.append(map);
 
@@ -177,6 +180,7 @@ export default function AddressMap3D({ coords: geocode, outline, footprint, capt
     };
   }, [geocode, outline, footprint, label]);
 
+  const building = highlightFor(geocode, footprint)?.kind === "building";
   const where = geocode ? `3D map: ${label}. ${caption}.` : `3D map of city limits. ${caption}.`;
   return (
     <figure className="addr-map-figure">
@@ -184,7 +188,8 @@ export default function AddressMap3D({ coords: geocode, outline, footprint, capt
       <figcaption className="map-caption">
         <strong>{caption}</strong>
         {!geocode && <> · no pin: the geocoder found no location for this address</>}
-        {footprint && <span className="map-osm-attr">{FOOTPRINT_ATTRIBUTION}</span>}
+        {geocode && !building && <> · {APPROX_CAPTION}</>}
+        {building && <span className="map-osm-attr">{FOOTPRINT_ATTRIBUTION}</span>}
       </figcaption>
     </figure>
   );

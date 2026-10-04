@@ -1,7 +1,8 @@
 // Map · 3D switch (#64): which view opens, and the 3D camera path from city outline to building.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { DEFAULT_MAP_VIEW, buildingCamera, cityCamera, initialMapView, outerRings, parseMapView, pinPoint } from "../lib/map-view.ts";
+import { DEFAULT_MAP_VIEW, buildingCamera, cityCamera, initialMapView, outerRings, highlightFor, parseMapView, sureFootprint } from "../lib/map-view.ts";
+import { distanceToRing, type Footprint } from "../lib/footprint.ts";
 
 test("MapLibre is the default view unless NEXT_PUBLIC_DEFAULT_MAP_VIEW says 3d", () => {
   assert.equal(DEFAULT_MAP_VIEW, parseMapView(process.env.NEXT_PUBLIC_DEFAULT_MAP_VIEW));
@@ -47,11 +48,34 @@ test("final shot: the building at ~300 m, tilt 50°", () => {
   assert.deepEqual(cam, { center: { lat: 37.8, lng: -122.43, altitude: 0 }, range: 300, tilt: 50, heading: 0 });
 });
 
-test("pin goes on the building's centroid when we have its outline, else on the geocode", () => {
-  const geocode = { lon: -74.0412, lat: 40.7385 };
-  assert.deepEqual(pinPoint(geocode, null), geocode);
-  assert.equal(pinPoint(null, undefined), null);
-  const ring: [number, number][] = [[-74.041, 40.738], [-74.040, 40.738], [-74.040, 40.739], [-74.041, 40.739], [-74.041, 40.738]];
-  const p = pinPoint(geocode, { ring, height_m: 12, height_src: "default", distance_m: 3, osm_id: 1 })!;
-  assert.ok(Math.abs(p.lon - -74.0405) < 1e-9 && Math.abs(p.lat - 40.7385) < 1e-9);
+const ring: [number, number][] = [[-74.041, 40.738], [-74.040, 40.738], [-74.040, 40.739], [-74.041, 40.739], [-74.041, 40.738]];
+const fp = (contains: boolean): Footprint => ({ ring, height_m: 12, height_src: "default", distance_m: contains ? 0 : 6, contains, osm_id: 1 });
+
+test("sure match (geocode inside the outline): the building, centred on its centroid", () => {
+  const h = highlightFor({ lon: -74.0405, lat: 40.7385 }, fp(true));
+  assert.equal(h?.kind, "building");
+  assert.ok(Math.abs(h!.center.lon - -74.0405) < 1e-9 && Math.abs(h!.center.lat - 40.7385) < 1e-9);
+  assert.equal(sureFootprint(fp(true))?.osm_id, 1);
+});
+
+test("nearest-building match or no match: a ~25 m circle around the geocode, no building", () => {
+  const geocode = { lon: -74.0412, lat: 40.7378 };
+  for (const f of [fp(false), null, undefined]) {
+    const h = highlightFor(geocode, f);
+    assert.equal(h?.kind, "approx");
+    assert.deepEqual(h!.center, geocode);
+    const r = h!.ring;
+    assert.deepEqual(r[0], r[r.length - 1]);
+    // Every vertex ~25 m from the centre: distance from the centre to a tiny ring around one vertex.
+    for (const v of r.slice(0, -1)) {
+      const d = distanceToRing([geocode.lon, geocode.lat], [v, [v[0] + 1e-9, v[1]], v]);
+      assert.ok(Math.abs(d - 25) < 0.3, `vertex at ${d} m`);
+    }
+  }
+  assert.equal(sureFootprint(fp(false)), null);
+});
+
+test("no geocode and no sure building: nothing to highlight", () => {
+  assert.equal(highlightFor(null, fp(false)), null);
+  assert.equal(highlightFor(null, null), null);
 });

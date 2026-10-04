@@ -1,7 +1,7 @@
 /* Map · 3D switch on the address page: which view opens, and the 3D camera path.
    Pure functions (no DOM, no Google), so the logic is testable with node --test. */
 
-import { ringCentroid, type Footprint } from "./footprint.ts";
+import { APPROX_RADIUS_M, circleRing, ringCentroid, type Footprint, type LonLat } from "./footprint.ts";
 
 export type MapView = "map" | "3d";
 
@@ -19,16 +19,33 @@ export const DEFAULT_MAP_VIEW: MapView = parseMapView(process.env.NEXT_PUBLIC_DE
 /** Shown wherever an OSM building outline is drawn. */
 export const FOOTPRINT_ATTRIBUTION = "Building outline © OpenStreetMap contributors";
 
-/** Where the pin goes: the building's centroid when we have its outline, else the geocode. */
-export function pinPoint(
-  geocode: { lon: number; lat: number } | null,
-  footprint: Footprint | null | undefined,
-): { lon: number; lat: number } | null {
-  if (footprint && footprint.ring.length >= 4) {
-    const [lon, lat] = ringCentroid(footprint.ring);
-    return { lon, lat };
+/** Only a sure match (the geocode lies inside the outline) is drawn as the building. */
+export function sureFootprint(footprint: Footprint | null | undefined): Footprint | null {
+  return footprint && footprint.contains && footprint.ring.length >= 4 ? footprint : null;
+}
+
+export const APPROX_CAPTION = "Approximate location";
+
+/**
+ * What marks the address on the map:
+ * - "building": the OSM outline the geocode lies in; the camera and pin go to its centroid;
+ * - "approx": a soft ~25 m circle around the geocode (nearest-building or no match), which is
+ *   interpolated along the street, so we don't pretend to know the building;
+ * - null: no geocode.
+ */
+export type Highlight =
+  | { kind: "building"; ring: LonLat[]; center: { lon: number; lat: number }; footprint: Footprint }
+  | { kind: "approx"; ring: LonLat[]; center: { lon: number; lat: number }; radius_m: number }
+  | null;
+
+export function highlightFor(geocode: { lon: number; lat: number } | null, footprint: Footprint | null | undefined): Highlight {
+  const sure = sureFootprint(footprint);
+  if (sure) {
+    const [lon, lat] = ringCentroid(sure.ring);
+    return { kind: "building", ring: sure.ring, center: { lon, lat }, footprint: sure };
   }
-  return geocode;
+  if (!geocode) return null;
+  return { kind: "approx", ring: circleRing([geocode.lon, geocode.lat]), center: geocode, radius_m: APPROX_RADIUS_M };
 }
 
 /** localStorage key for the visitor's last choice. */

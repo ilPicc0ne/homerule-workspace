@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { FOOTPRINT_ATTRIBUTION, pinPoint } from "@/lib/map-view";
+import { APPROX_CAPTION, FOOTPRINT_ATTRIBUTION, highlightFor } from "@/lib/map-view";
 import type { Footprint } from "@/lib/footprint";
 
 /* Real base map: MapLibre GL + OpenFreeMap vector tiles (Positron, no key). */
@@ -46,15 +46,18 @@ function useMap(
   useEffect(() => {
     const el = container.current;
     if (!el || !active) return;
-    // With a building outline, the pin goes on the building, not on the street-interpolated geocode.
-    const coords = pinPoint(geocode, footprint);
+    // Sure building match: outline + pin on its centroid. Otherwise a soft circle around the
+    // street-interpolated geocode, pin on the geocode.
+    const hl = highlightFor(geocode, footprint);
+    const coords = hl ? hl.center : null;
+    const building = hl?.kind === "building";
     const map = new maplibregl.Map({
       container: el,
       style: STYLE,
       center: coords ? [coords.lon, coords.lat] : [-98, 39],
       zoom: coords ? 13 : 3,
       interactive,
-      attributionControl: { compact: false, customAttribution: footprint ? FOOTPRINT_ATTRIBUTION : undefined },
+      attributionControl: { compact: false, customAttribution: building ? FOOTPRINT_ATTRIBUTION : undefined },
       cooperativeGestures: false,
     });
     if (interactive) map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
@@ -70,13 +73,23 @@ function useMap(
           paint: { "line-color": ACCENT, "line-width": 2, "line-opacity": 0.85 },
         });
       }
-      if (footprint) {
-        map.addSource("bldg", {
+      if (hl) {
+        map.addSource("hl", {
           type: "geojson",
-          data: { type: "Feature", properties: {}, geometry: { type: "Polygon", coordinates: [footprint.ring] } },
+          data: { type: "Feature", properties: {}, geometry: { type: "Polygon", coordinates: [hl.ring] } },
         });
-        map.addLayer({ id: "bldg-fill", type: "fill", source: "bldg", paint: { "fill-color": BLDG, "fill-opacity": 0.25 } });
-        map.addLayer({ id: "bldg-line", type: "line", source: "bldg", paint: { "line-color": BLDG, "line-width": 2 } });
+        map.addLayer({
+          id: "hl-fill",
+          type: "fill",
+          source: "hl",
+          paint: { "fill-color": BLDG, "fill-opacity": building ? 0.25 : 0.18 },
+        });
+        map.addLayer({
+          id: "hl-line",
+          type: "line",
+          source: "hl",
+          paint: building ? { "line-color": BLDG, "line-width": 2 } : { "line-color": BLDG, "line-width": 1, "line-opacity": 0.5 },
+        });
       }
     });
     if (coords) new maplibregl.Marker({ color: ACCENT }).setLngLat([coords.lon, coords.lat]).addTo(map);
@@ -84,8 +97,8 @@ function useMap(
     // Frame: the building at neighbourhood zoom, so a part of the city line shows nearby.
     // Without a pin, the whole (land-only) city outline.
     if (coords) {
-      // The enlarged map opens close enough to see the building outline when we have one.
-      map.jumpTo({ center: [coords.lon, coords.lat], zoom: interactive ? (footprint ? 16 : 12.5) : 11.8 });
+      // The enlarged map opens close enough to see the building outline or the approximate circle.
+      map.jumpTo({ center: [coords.lon, coords.lat], zoom: interactive ? 16 : 11.8 });
     } else if (outline) {
       map.fitBounds(outlineBounds(outline), { padding: interactive ? 40 : 16, animate: false });
     }
@@ -103,7 +116,8 @@ function useMap(
 }
 
 export default function AddressMapGL(props: MapProps) {
-  const { caption, label, coords, outline } = props;
+  const { caption, label, coords, outline, footprint } = props;
+  const approx = highlightFor(coords, footprint)?.kind === "approx";
   const small = useRef<HTMLDivElement>(null);
   const large = useRef<HTMLDivElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -135,6 +149,7 @@ export default function AddressMapGL(props: MapProps) {
       </div>
       <figcaption className="map-caption">
         <strong>{caption}</strong>
+        {approx && <> · {APPROX_CAPTION}</>}
         {!coords && <> · no pin: the geocoder found no location for this address</>}
       </figcaption>
       <dialog ref={dialog} className="addr-map-dialog" onClose={() => setOpen(false)} aria-label={`Larger map: ${label}`}>

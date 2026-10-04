@@ -14,6 +14,8 @@ export type Footprint = {
   height_src: "height" | "levels" | "default";
   /** Metres from the geocode to the footprint (0 = the point is inside it). */
   distance_m: number;
+  /** The geocode lies inside this footprint: a sure match. Only these are drawn as the building. */
+  contains: boolean;
   /** OSM way id, for the attribution trail. */
   osm_id: number;
 };
@@ -103,7 +105,8 @@ export function pickFootprint(p: LonLat, candidates: Candidate[]): Footprint | n
     if (!best || d < best.d || (d === best.d && c.id < best.c.id)) best = { c, d };
   }
   if (!best || best.d > MAX_MATCH_M) return null;
-  return { ring: best.c.ring, ...heightFromTags(best.c.tags), distance_m: Math.round(best.d * 10) / 10, osm_id: best.c.id };
+  const distance_m = Math.round(best.d * 10) / 10;
+  return { ring: best.c.ring, ...heightFromTags(best.c.tags), distance_m, contains: best.d === 0, osm_id: best.c.id };
 }
 
 /** Drop near-duplicate vertices and round to 6 decimals (~0.1 m) so the committed file stays small. */
@@ -117,4 +120,20 @@ export function compactRing(ring: LonLat[]): LonLat[] {
   }
   if (out.length && (out[0][0] !== out[out.length - 1][0] || out[0][1] !== out[out.length - 1][1])) out.push(out[0]);
   return out;
+}
+
+/** Radius of the "approximate location" circle drawn when we have no sure building match. */
+export const APPROX_RADIUS_M = 25;
+
+/** A closed circle ring of `radiusM` metres around p ([lon, lat]), `n` segments. */
+export function circleRing(p: LonLat, radiusM = APPROX_RADIUS_M, n = 48): LonLat[] {
+  const dLat = (radiusM / R) * (180 / Math.PI);
+  const dLon = dLat / Math.cos(rad(p[1]));
+  const ring: LonLat[] = [];
+  for (let i = 0; i < n; i++) {
+    const a = (2 * Math.PI * i) / n;
+    ring.push([p[0] + dLon * Math.cos(a), p[1] + dLat * Math.sin(a)]);
+  }
+  ring.push(ring[0]);
+  return ring;
 }
