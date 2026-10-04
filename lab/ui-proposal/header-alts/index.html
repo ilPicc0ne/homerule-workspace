@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Header alternatives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--page:#fff;--wash:#F4F6F9;--ink:#15222E;--ink-2:#3A4855;--muted:#5B6875;--faint:#AEB9C4;--line:#DCE3EA;--line-soft:#E9EEF2;
+--blue:#1E5E6A;--blue-ink:#154A54;--blue-tint:#EAF2F3;--blue-line:#C7DCE0;
+--amber:#B7793A;--amber-ink:#7A4A1C;--amber-tint:#F6EADB;--amber-line:#E6CFB3;--slate-tint:#ECEDEE;--slate-ink:#4D5256;
+--ui:"Atkinson Hyperlegible Next",ui-sans-serif,system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:#E9EDF1;color:var(--ink);font:400 16px/1.55 var(--ui);-webkit-font-smoothing:antialiased}
+.doc{max-width:1680px;margin:0 auto;padding:32px 24px 64px}
+.doc>h1{font-size:1.5rem;margin:0 0 4px}
+.doc>p{margin:0 0 28px;color:var(--muted);max-width:70ch}
+.variant{margin:0 0 48px}
+.variant>h2{font-size:1.125rem;margin:0 0 2px}
+.variant>p{margin:0 0 14px;color:var(--ink-2);font-size:.9375rem;max-width:90ch}
+.row{display:flex;gap:24px;align-items:flex-start}
+.frame{background:var(--page);border-radius:14px;box-shadow:0 1px 2px rgb(21 34 46/.06),0 12px 30px -18px rgb(21 34 46/.3);overflow:hidden;container-type:inline-size;flex:none}
+.frame.d{width:1180px}.frame.m{width:390px}
+.cap{font-size:.75rem;color:var(--muted);margin:0 0 6px}
+@media(max-width:1640px){.row{flex-wrap:wrap}}
+@media(max-width:1240px){.frame.d{width:100%}}
+@media(max-width:430px){.frame.m{width:100%}}
+
+/* shared bar */
+.bar{display:flex;align-items:center;gap:14px;padding:10px 24px;border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.125rem}
+.logo i{width:28px;height:28px;border-radius:8px;background:var(--ink);color:#fff;display:grid;place-items:center;font-style:normal;font-size:.8rem}
+.search{flex:1;min-height:44px;border:1.5px solid #8593A1;border-radius:12px;display:flex;align-items:center;padding:0 12px;color:var(--ink-2);font-size:.9375rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.trust{font-size:.75rem;color:var(--muted);white-space:nowrap}
+svg.ic{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@container (max-width:600px){.bar{padding:10px 16px;gap:10px;flex-wrap:wrap}.trust{display:none}.search{order:3;flex-basis:100%}}
+
+/* shared hero */
+.hero{display:grid;grid-template-columns:1fr 400px;gap:56px;padding:36px 32px 32px}
+.map{height:220px;border-radius:14px;border:1px solid var(--line);position:relative;overflow:hidden;
+background:linear-gradient(115deg,transparent 48%,var(--blue) 48.5%,var(--blue) 49.2%,transparent 49.8%) ,repeating-linear-gradient(20deg,#E4E8EB 0 1px,transparent 1px 26px),repeating-linear-gradient(110deg,#E4E8EB 0 1px,transparent 1px 30px),#F3F4F5}
+.map b{position:absolute;left:52%;top:38%;width:22px;height:22px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--blue);box-shadow:0 0 0 4px #fff inset}
+.map span{position:absolute;left:10px;top:10px;background:#fff;border-radius:999px;padding:2px 10px;font-size:.8rem;color:var(--ink-2)}
+.mapcap{margin:8px 0 0;font-size:.875rem;font-weight:700;color:var(--muted)}
+@container (max-width:600px){.hero{grid-template-columns:1fr;gap:20px;padding:24px 16px}.map{height:170px}}
+
+/* ===== CURRENT ===== */
+.v0 .bell{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 14px;border:1.5px solid var(--blue-line);border-radius:12px;background:var(--blue-tint);color:var(--blue-ink);font-weight:700;white-space:nowrap}
+.v0 .addr{font-size:3.6rem;line-height:1.02;font-weight:800;letter-spacing:-.025em;margin:0 0 20px}
+.v0 .next{display:flex;gap:10px;padding:14px 18px;border:1px solid var(--blue-line);background:var(--blue-tint);border-radius:12px;font-size:1.05rem;color:var(--ink-2);margin:0 0 20px}
+.v0 .next svg{color:var(--blue-ink);margin-top:4px}
+.v0 .next strong{color:var(--blue-ink)}
+.v0 .crumb{display:flex;align-items:center;gap:6px;font-weight:700;margin:0}
+.v0 .crumb .sep{color:var(--faint);font-weight:400}
+.v0 .inside{margin:2px 0 18px;font-size:1.125rem;color:var(--ink-2)}
+.v0 .facts{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px;padding:0;list-style:none}
+.v0 .facts li{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:var(--slate-tint);color:var(--ink-2);font-weight:700;font-size:1.05rem}
+.v0 .facts li.unk{background:var(--amber-tint);border:1.5px dashed var(--amber-line);color:var(--amber-ink);background:#FBF6EF}
+.v0 .src{font-size:.875rem;color:var(--muted);margin:0}
+@container (max-width:600px){.v0 .addr{font-size:2.4rem}.v0 .bell-w{display:none}}
+@container (min-width:601px){.v0 .bell-s{display:none}}
+
+/* neutral UI accent per alternative (green/clay/grey reserved for status) */
+.va{--blue:#2B3B4E;--blue-ink:#1E2B3A;--blue-line:#CBD2DA;--blue-tint:#EEF1F4}
+.vb{--blue:#3B3733;--blue-ink:#2A2724;--blue-line:#D6D2CD;--blue-tint:#F2F0EE}
+.vc{--blue:#15222E;--blue-ink:#15222E;--blue-line:#C9CFD5;--blue-tint:#EEF0F2}
+.sw{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:0 0 14px;font-size:.8125rem;color:var(--ink-2)}
+.sw b{font-weight:700;color:var(--muted);margin-right:-4px}
+.sw span{display:inline-flex;align-items:center;gap:6px}
+.sw i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.sw .gap{width:1px;height:16px;background:var(--faint);margin:0 4px}
+/* ===== A quiet ===== */
+.va .bell{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border:1.5px solid var(--line);border-radius:12px;background:transparent;color:var(--blue-ink);font-weight:700;white-space:nowrap}
+.va .addr{font-size:3rem;line-height:1.05;font-weight:800;letter-spacing:-.02em;margin:0 0 10px}
+.va .next{display:flex;align-items:baseline;gap:10px;margin:0 0 22px;color:var(--ink-2);font-size:1rem;max-width:62ch}
+.va .next::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--blue);transform:translateY(-1px)}
+.va .next strong{color:var(--ink)}
+.va .crumb{display:flex;gap:6px;margin:0;font-weight:700;font-size:.9375rem;color:var(--ink-2)}
+.va .crumb .sep{color:var(--faint);font-weight:400}
+.va .inside{margin:0 0 6px;color:var(--muted);font-size:.9375rem}
+.va .facts{margin:0 0 4px;font-size:.9375rem;color:var(--ink-2)}
+.va .facts .dot{color:var(--faint);margin:0 8px}
+.va .facts .unk{color:var(--muted);font-style:italic}
+.va .facts .q{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;border:1px solid var(--amber);color:var(--amber-ink);font-size:.6875rem;font-style:normal;font-weight:700;margin-right:6px;transform:translateY(-1px)}
+.va .src{font-size:.8125rem;color:var(--muted);margin:0}
+@container (max-width:600px){.va .addr{font-size:2.1rem}}
+
+/* ===== B card ===== */
+.vb .bell{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:12px;background:transparent;color:var(--blue-ink);position:relative}
+.vb .bell:hover,.vb .bell.show{background:var(--wash)}
+.vb .tip{position:absolute;top:calc(100% + 6px);right:0;background:var(--ink);color:#fff;font-size:.75rem;font-weight:700;padding:4px 8px;border-radius:6px;white-space:nowrap}
+.vb .card{border:1px solid var(--line-soft);background:#FAFBFC;border-radius:16px;padding:22px 24px}
+.vb .addr{font-size:2.5rem;line-height:1.08;font-weight:800;letter-spacing:-.02em;margin:0 0 6px}
+.vb .crumb{display:flex;gap:6px;margin:0 0 2px;font-weight:700;font-size:.9375rem;color:var(--ink-2)}
+.vb .crumb .sep{color:var(--faint);font-weight:400}
+.vb .inside{margin:0 0 16px;color:var(--muted);font-size:.9375rem}
+.vb .facts{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;margin:0;padding:14px 0 0;border-top:1px solid var(--line);font-size:.9375rem}
+.vb .facts dt{color:var(--muted)}
+.vb .facts dd{margin:0;font-weight:700;color:var(--ink-2)}
+.vb .facts dd.unk{font-weight:400;font-style:italic;color:var(--amber-ink)}
+.vb .src{font-size:.8125rem;color:var(--muted);margin:10px 0 0}
+.vb .next{margin:18px 0 0;padding:2px 0 2px 14px;border-left:3px solid var(--blue);color:var(--ink-2);font-size:.9375rem;max-width:66ch}
+.vb .next strong{color:var(--ink)}
+@container (max-width:600px){.vb .addr{font-size:1.9rem}.vb .card{padding:18px}.vb .tip{display:none}}
+
+/* ===== C editorial ===== */
+.vc .bell{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 4px;border:0;background:none;color:var(--blue-ink);font-weight:700;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;white-space:nowrap}
+.vc .bell svg{width:16px;height:16px}
+.vc .crumb{display:flex;gap:6px;margin:0 0 8px;font-variant-caps:all-small-caps;letter-spacing:.05em;font-size:1.0625rem;font-weight:700;color:var(--muted)}
+.vc .crumb .sep{color:var(--faint)}
+.vc .addr{font-size:2.75rem;line-height:1.08;font-weight:400;letter-spacing:-.01em;margin:0 0 10px}
+.vc .next{margin:0 0 26px;color:var(--muted);font-size:1rem;max-width:64ch}
+.vc .next strong{color:var(--ink)}
+.vc .inside{margin:0 0 4px;color:var(--ink-2);font-size:.9375rem}
+.vc .facts{margin:0 0 4px;color:var(--ink-2);font-size:.9375rem}
+.vc .facts .unk{color:var(--muted)}
+.vc .facts .unk em{font-style:normal;border-bottom:1px dotted var(--amber)}
+.vc .src{font-size:.8125rem;color:var(--muted);margin:0}
+@container (max-width:600px){.vc .addr{font-size:2rem}}
+</style></head>
+<body><div class="doc">
+<h1>Address header: three calmer alternatives</h1>
+<p>Same content and wording in every version; only the visual treatment changes. Each variant shows the sticky bar plus top section at desktop width and in a 390px column. Current uses the PR #58 teal for chrome. A/B/C move all UI chrome (buttons, links, Next change, map pin and outline) to a neutral ink, so green stays reserved for “There’s a rule”, clay for “missing one fact”, grey for “no local rule”.</p>
+<div id="out"></div>
+</div>
+<svg width="0" height="0" style="position:absolute"><symbol id="bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></symbol>
+<symbol id="cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="gov" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10M19 21V10M9 21V10M15 21V10M2 10l10-6 10 6"/></symbol>
+<symbol id="bld" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"/></symbol></svg>
+<script>
+const I=id=>`<svg class="ic"><use href="#${id}"/></svg>`;
+const ADDR="834-836 Raymond Blvd", MAP=`<div><div class="map"><span>Tap to enlarge</span><b></b></div><p class="mapcap">Inside Newark city limits</p></div>`;
+const NEXT=`<strong>Next change: Jul 1, 2027</strong> — software that sets rents: From Jul 1, 2027, landlords can’t use software that sets rents in New Jersey.`;
+const CRUMB=`New Jersey <span class="sep">›</span> Essex County <span class="sep">›</span> Newark`;
+const INSIDE=`Inside Newark city limits — city and state rules apply.`;
+const SRC=`<p class="src">Building facts from NJOGIS Parcels &amp; MOD-IV Composite.</p>`;
+const bar=bell=>`<header class="bar"><span class="logo"><i>H</i>HomeRule</span><span class="search">834-836 Raymond Blvd, 07102, NJ</span>${bell}<span class="trust">Demo data · Not legal advice · Law as of Oct 1, 2026</span></header>`;
+const V=[
+{c:"v0",acc:["#1E5E6A","Teal (brand = close to status green)"],t:"Current",d:"As on PR #58: heavy 800 title, tinted bordered Next-change box, crumb with icon, two pills (dashed clay for the unknown), filled tinted alerts button.",
+ bell:`<button class="bell">${I("bell")}<span class="bell-w">Alerts for ${ADDR}</span><span class="bell-s">Get alerts</span></button>`,
+ body:`<div><h1 class="addr">834-836<br>Raymond Blvd</h1><div class="next">${I("cal")}<div>${NEXT}</div></div><p class="crumb">${I("gov")} ${CRUMB}</p><p class="inside">${INSIDE}</p><ul class="facts"><li class="unk">? Year built: not in our data</li><li>${I("bld")} 5 or more units</li></ul>${SRC}</div>`},
+{c:"va",acc:["#2B3B4E","Slate navy"],t:"A · Quiet",d:"No boxes at all. Next change is one inline line led by a small ink dot; facts become plain text separated by a middot, the unknown one muted italic with a small clay ring “?”. Alerts: outline/ghost button, bell + “Get alerts”.",
+ bell:`<button class="bell">${I("bell")}Get alerts</button>`,
+ body:`<div><h1 class="addr">834-836 Raymond Blvd</h1><p class="next"><span>${NEXT}</span></p><p class="crumb">${CRUMB}</p><p class="inside">${INSIDE}</p><p class="facts"><span class="unk"><span class="q">?</span>Year built: not in our data</span><span class="dot">·</span>5 or more units</p>${SRC}</div>`},
+{c:"vb",acc:["#3B3733","Warm charcoal"],t:"B · Card",d:"Title, place and facts gathered in one faint card (facts as a small two-column list, unknown in clay italic). Next change sits below as a slim charcoal left-rule note. Alerts: icon-only bell, tooltip on desktop hover (shown here).",
+ bell:`<button class="bell show" aria-label="Alerts for ${ADDR}">${I("bell")}<span class="tip">Alerts for ${ADDR}</span></button>`,
+ body:`<div><div class="card"><h1 class="addr">834-836 Raymond Blvd</h1><p class="crumb">${CRUMB}</p><p class="inside">${INSIDE}</p><dl class="facts"><dt>Year built</dt><dd class="unk">? not in our data</dd><dt>Units</dt><dd>5 or more units</dd></dl>${SRC}</div><p class="next">${NEXT}</p></div>`},
+{c:"vc",acc:["#15222E","Ink (near-black)"],t:"C · Editorial",d:"Breadcrumb in small caps above a regular-weight title; Next change directly under the title as a muted sentence with the date in bold. Facts as one text line, unknown with a dotted clay underline. Alerts: a plain text link in the bar.",
+ bell:`<button class="bell">${I("bell")}Get alerts</button>`,
+ body:`<div><p class="crumb">${CRUMB}</p><h1 class="addr">834-836 Raymond Blvd</h1><p class="next">${NEXT}</p><p class="inside">${INSIDE}</p><p class="facts"><span class="unk"><em>Year built: not in our data</em></span>, 5 or more units</p>${SRC}</div>`}
+];
+const sw=v=>`<div class="sw"><b>UI accent</b><span><i style="background:${v.acc[0]}"></i>${v.acc[1]} ${v.acc[0]}</span><span class="gap"></span><b>Status colours</b><span><i style="background:#1C8150"></i>There’s a rule</span><span><i style="background:#B7793A"></i>Missing one fact</span><span><i style="background:#868B8F"></i>No local rule</span></div>`;
+const fr=(v,cls,lab)=>`<div><p class="cap">${lab}</p><div class="frame ${cls} ${v.c}">${bar(v.bell)}<section class="hero">${v.body}${MAP}</section></div></div>`;
+document.getElementById("out").innerHTML=V.map(v=>`<section class="variant"><h2>${v.t}</h2><p>${v.d}</p>${sw(v)}<div class="row">${fr(v,"d","Desktop 1180px")}${fr(v,"m","Mobile 390px")}</div></section>`).join("");
+</script></body></html>
