@@ -2,7 +2,7 @@
 
 How HomeRule is built. What it must do, and why, is in [PRD.md](PRD.md); this file is the how. Code and committed-data snapshot: 04.10.2026, `origin/main` at `fcff56b` (through #75, #115, #116 and #119). Open-branch implementations are listed separately below. This audit checked repository contents and remote branch state, not running services or deployment environment values.
 
-Integration update 04.10.2026: #128 combines #130 and #138 with main at `6a212cd`, preserving #135 subsidy uncertainty and #123 evidence review. Local checks pass; hosted live/fallback acceptance remains with Silvan before merge.
+Integration update 04.10.2026: #128 merged as `49a82cf`, including #130 and #138, while preserving #135 subsidy uncertainty and #123 evidence review. Silvan approved the tested commit; Dimitar explicitly waived hosted acceptance for merging to main. Hosted live/fallback verification remains required before production deployment. Scored outputs were rebuilt on main at `49a82cf`.
 
 > **Not legal advice.** HomeRule shows which published housing rules may apply to an address, with quotes and dates.
 
@@ -39,7 +39,7 @@ The engine is Python (`engine/`, `extract/`); the website and the address resolv
 |---|---|---|
 | Extraction, compiled predicates, scored lookups, dated diffs, scores, verdict badges, positive / neutral / negative rating, start and end-date history | Merged | `extract/`, `engine/`, `web/lib/changes/`; #106, #109, #110, #113, #116, #119 |
 | Address and jurisdiction pages, source/audit views, JSON API, MCP, 2D/3D maps, subscription and explicit email dispatch | Merged; deployment configuration is a separate concern | `web/` |
-| Live address engine, clickable timeline and conditional deposits | Combined in #128 from #130 and #138; hosted live/fallback acceptance pending | `web/api/engine.py`, `web/lib/live-address.ts`, `extract/conditional_values.py` |
+| Live address engine, clickable timeline and conditional deposits | Merged in #128 from #130 and #138; hosted live/fallback verification required before production | `web/api/engine.py`, `web/lib/live-address.ts`, `extract/conditional_values.py` |
 | Official-source monitor | Merged ([PR #75](https://github.com/ilPicc0ne/homerule-workspace/pull/75)): a Newark prototype run by hand; no scheduler, not deployed | `monitor/`; see source monitoring below |
 | Public building evidence and next-fact investigation planner | Review-only sample-address panel and pinned offline planner merged in [PR #123](https://github.com/ilPicc0ne/homerule-workspace/pull/123), refreshed after #135; broader acquisition pipeline remains in draft #68 | `web/components/building-evidence.tsx`, `web/scripts/building-evidence/`; see building evidence below |
 | Lifecycle alert engine and daily digest | Open [PR #90](https://github.com/ilPicc0ne/homerule-workspace/pull/90); not the merged dispatch path | `s/alert-engine`: lifecycle triggers, approval gate, digest and dry-run cron |
@@ -79,7 +79,7 @@ next build     web/ only; reads web/data/live/ and web/data/changes.full.json at
 - **`out/`** = everything the pipeline produces, including the web's richer files (`*.full.json`, `audit.json`). **`outputs/`** = the scored files only, committed from a build on `main`. `make build` writes all three. Its `engine.build.rules_json()` projection sets `source_doc_id` to null for supplemental sources outside the starter manifest, preserving their URL and quote (#116). Do not overwrite it with a direct copy of `out/rules.json`.
 - **`web/data/live/`** is generated, never hand-edited; `web/tests/contracts-sync.test.ts` fails when a copy drifts. `excerpts.json` keeps only ~320 characters around each quote (the corpus licence is unclear, so no full source texts in `web/`). `web/data/demo/` is the older hand-prepared data set, served only when `NEXT_PUBLIC_DATA_SOURCE=demo`; the live site serves `live`.
 - Run web commands from `web/`. `npm run sync` runs before `next dev` and `next build`. On Vercel only `web/` is uploaded, so the committed copies in `web/` are what ships: **a pipeline change reaches the site only after `npm run sync` and a commit of the synced files.**
-- `web/data/live/meta.json` carries one saved as-of date (2026-10-01). In the combined #128 branch (including #130 and #138; hosted acceptance pending), address pages and I5 compute any valid requested date from 1900 through 2100 using the live engine. The saved snapshot is an explicitly labelled fallback only for that same date. City/rule pages, score datasets, saved change-log pairs and MCP retain their existing date behavior.
+- `web/data/live/meta.json` carries one saved as-of date (2026-10-01). Since merged #128 (including #130 and #138), address pages and I5 compute any valid requested date from 1900 through 2100 using the live engine. The saved snapshot is an explicitly labelled fallback only for that same date. City/rule pages, score datasets, saved change-log pairs and MCP retain their existing date behavior.
 
 ## Shared vocabulary: the jurisdiction list
 
@@ -481,7 +481,7 @@ Source roles are distinct: law text feeds extraction; address/property evidence 
 
 Skipped: Alameda County (no public building data, so Berkeley stays unknown, stated as a known limit) · Open States (LegiScan is enough) · data.boston.gov (blocked from Switzerland).
 
-### Live engine endpoint (combined #128; hosted acceptance pending)
+### Live engine endpoint (merged #128; hosted verification pending before production)
 
 `POST /api/engine` is a Vercel Python 3.12 function in `web/api/engine.py`, alongside the Next.js App Router endpoints. `npm run sync` copies the six canonical engine modules, I2 rule files, I8 findings, and jurisdiction/fact contracts into `web/api/_homerule/`. The endpoint loads them once per cold start. A content digest identifies the engine and inputs. Copy-drift tests keep this deployment bundle aligned with the canonical files.
 
@@ -489,7 +489,7 @@ The handler accepts `{as_of, record}` with an I3-shaped record, validates covere
 
 `web/lib/live-engine.ts` calls the current deployment's `VERCEL_URL` (or server-configured `LIVE_ENGINE_ORIGIN` for local development). It validates the response and date, then `engineRows()` maps it through the same function used by `build-live.ts` for samples. A three-second deadline, invalid response, non-200 response or disabled endpoint keeps the previous provisional results. `LIVE_ENGINE_DISABLED=1` is the rollback/test switch. Sample pages, typed pages and I5 use it. Generated sample results remain the exact-date fallback; they retain unknown subsidy facts and conditional deposit values. The displayed live-path note is user-facing guidance, not a claim about implementation details.
 
-Local Vercel standalone build verified the Python function alongside existing Next API functions. GitHub reports a successful preview for `34c85e7`, but the preview redirects unauthenticated requests to Vercel login. Hosted live/fallback acceptance is still required for the integrated commit. Local HTTP comparison: all 500 records produce exactly their committed `lookups.full.json` rows on 2026-10-01. This is request-time evaluation, not live acquisition of building facts or new law. See `web/api/README.md` for operation, verification and limitations.
+Local Vercel standalone build verified the Python function alongside existing Next API functions. GitHub reports a successful preview for `34c85e7`, but the preview redirects unauthenticated requests to Vercel login. Hosted live/fallback verification is still required before production deployment of the integrated commit. Local HTTP comparison: all 500 records produce exactly their committed `lookups.full.json` rows on 2026-10-01. This is request-time evaluation, not live acquisition of building facts or new law. See `web/api/README.md` for operation, verification and limitations.
 
 
 ### Address date exploration (#130 carried into #128)

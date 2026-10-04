@@ -73,8 +73,9 @@ is exposed to the client. `LIVE_ENGINE_DISABLED=1` forces the existing fallback.
   page remains usable with its existing provisional banner and results.
 - The live-date follow-up makes `/a/A0107?as_of=2027-07-02` and I5 use the live engine too. Typing that sample preserves its selected date on redirect.
 
-Repeat the live/fallback checks on the integrated Vercel preview before merging
-or deploying. GitHub reports the earlier `34c85e7` preview as Ready, but
+Repeat the live/fallback checks on the integrated Vercel preview before production
+deployment. #128 merged after Silvan approved the tested commit and Dimitar
+explicitly waived this check for the main merge only. GitHub reports the earlier `34c85e7` preview as Ready, but
 unauthenticated requests redirect to Vercel login. Successful deployment and local
 tests do not establish hosted acceptance. Record the checked commit and both
 live/fallback results on #128.
