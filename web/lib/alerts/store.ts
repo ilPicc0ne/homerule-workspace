@@ -1,34 +1,38 @@
 // Alert subscriptions in Upstash Redis (store `homerule-subscriptions`), over its REST API with plain fetch.
 // Keys (all under "alerts:"):
-//   alerts:sub:<token>            JSON Subscription (pending or confirmed; the token is also the unsubscribe key)
-//   alerts:key:<email>|<address>  token, so a second signup for the same pair reuses the first
-//   alerts:pending / alerts:confirmed  sets of tokens
-// Nothing else is stored. No expiry: pending requests from the closed test are kept for the owner.
+//   alerts:pending:<token>                     JSON Pending, expires after 48 h (double opt-in not finished)
+//   alerts:sub:<address_id>                    hash: email -> JSON Subscriber (confirmed only)
+//   alerts:sent:<source>:<address_id>:<hash>   "1" once Resend accepted that alert (idempotency; hash = sha256(email)[:16]), 90 days
+//   alerts:rl:<ip>:<window>                    signup counter per IP, expires with its window
+// Nothing else is stored. Unsubscribe tokens are HMACs (unsub.ts), not keys.
 
-export type Status = "pending" | "confirmed";
-
-export type Subscription = {
-  token: string;
-  email: string;
-  address_id: string;
-  label: string;
-  status: Status;
-  created_at: string;
-  confirmed_at: string | null;
-  /** Whether the email was on ALERTS_ALLOWLIST when the request came in (a confirmation mail was attempted). */
-  allowlisted: boolean;
-};
+export type Pending = { email: string; address_id: string; label: string; created_at: string };
+export type Subscriber = { email: string; address_id: string; label: string; confirmed_at: string };
 
 export interface Store {
-  get(token: string): Promise<Subscription | null>;
-  tokenFor(email: string, addressId: string): Promise<string | null>;
-  save(sub: Subscription): Promise<void>;
-  remove(token: string): Promise<Subscription | null>;
-  confirmed(): Promise<Subscription[]>;
+  putPending(token: string, p: Pending, ttlSec: number): Promise<void>;
+  /** Reads and deletes a pending request (null when unknown or expired). */
+  takePending(token: string): Promise<Pending | null>;
+  addSubscriber(s: Subscriber): Promise<void>;
+  subscribers(addressId: string): Promise<Subscriber[]>;
+  removeSubscriber(addressId: string, email: string): Promise<boolean>;
+  isSent(key: string): Promise<boolean>;
+  markSent(key: string): Promise<void>;
+  /** Deletes the given keys; returns how many existed. */
+  clear(keys: string[]): Promise<number>;
+  /** Increments a counter that expires ttlSec after its first hit; returns the new count. */
+  hit(key: string, ttlSec: number): Promise<number>;
 }
 
-const pairKey = (email: string, addressId: string) => `alerts:key:${email.toLowerCase()}|${addressId}`;
-const subKey = (token: string) => `alerts:sub:${token}`;
+export const K = {
+  pending: (t: string) => `alerts:pending:${t}`,
+  sub: (addressId: string) => `alerts:sub:${addressId}`,
+  sent: (source: string, addressId: string, hash: string) => `alerts:sent:${source}:${addressId}:${hash}`,
+  rl: (ip: string, window: number) => `alerts:rl:${ip}:${window}`,
+};
+
+/** How long an idempotency key lives: long enough for any rehearsal or rerun, short enough to clean itself up. */
+export const SENT_TTL = 60 * 60 * 24 * 90;
 
 type Fetch = typeof fetch;
 type Cmd = (string | number)[];
@@ -58,61 +62,71 @@ export function redisStore(url: string, token: string, f: Fetch = fetch): Store 
     if (bad) throw new Error(`Redis: ${bad.error}`);
     return j.map((x) => x.result);
   };
-  const parse = (s: unknown) => (typeof s === "string" ? (JSON.parse(s) as Subscription) : null);
 
   return {
-    get: async (t) => parse(await one<string | null>(["GET", subKey(t)])),
-    tokenFor: async (email, addressId) => (await one<string | null>(["GET", pairKey(email, addressId)])) ?? null,
-    async save(sub) {
-      const [from, to] = sub.status === "confirmed" ? ["alerts:pending", "alerts:confirmed"] : ["alerts:confirmed", "alerts:pending"];
-      await pipe([
-        ["SET", subKey(sub.token), JSON.stringify(sub)],
-        ["SET", pairKey(sub.email, sub.address_id), sub.token],
-        ["SREM", from, sub.token],
-        ["SADD", to, sub.token],
-      ]);
+    putPending: async (t, p, ttl) => void (await one(["SET", K.pending(t), JSON.stringify(p), "EX", ttl])),
+    async takePending(t) {
+      const [v] = await pipe([["GET", K.pending(t)], ["DEL", K.pending(t)]]);
+      return typeof v === "string" ? (JSON.parse(v) as Pending) : null;
     },
-    async remove(t) {
-      const sub = parse(await one<string | null>(["GET", subKey(t)]));
-      if (!sub) return null;
-      await pipe([
-        ["DEL", subKey(t)],
-        ["DEL", pairKey(sub.email, sub.address_id)],
-        ["SREM", "alerts:pending", t],
-        ["SREM", "alerts:confirmed", t],
-      ]);
-      return sub;
+    addSubscriber: async (s) => void (await one(["HSET", K.sub(s.address_id), s.email, JSON.stringify(s)])),
+    async subscribers(a) {
+      const flat = (await one<string[] | null>(["HGETALL", K.sub(a)])) ?? [];
+      const out: Subscriber[] = [];
+      for (let i = 1; i < flat.length; i += 2) out.push(JSON.parse(flat[i]) as Subscriber);
+      return out;
     },
-    async confirmed() {
-      const tokens = (await one<string[]>(["SMEMBERS", "alerts:confirmed"])) ?? [];
-      if (!tokens.length) return [];
-      const vals = (await one<(string | null)[]>(["MGET", ...tokens.map(subKey)])) ?? [];
-      return vals.map(parse).filter((s): s is Subscription => !!s && s.status === "confirmed");
+    removeSubscriber: async (a, email) => ((await one<number>(["HDEL", K.sub(a), email])) ?? 0) > 0,
+    isSent: async (k) => ((await one<number>(["EXISTS", k])) ?? 0) > 0,
+    markSent: async (k) => void (await one(["SET", k, "1", "EX", SENT_TTL])),
+    clear: async (keys) => (keys.length ? ((await one<number>(["DEL", ...keys])) ?? 0) : 0),
+    async hit(k, ttl) {
+      // SET NX starts the window with its expiry; INCR keeps that expiry.
+      const [, n] = await pipe([["SET", k, "0", "EX", ttl, "NX"], ["INCR", k]]);
+      return Number(n);
     },
   };
 }
 
-/** In-memory store for tests and local runs without Redis. */
-export function memoryStore(): Store & { all(): Subscription[] } {
-  const subs = new Map<string, Subscription>();
-  const keys = new Map<string, string>();
-  return {
-    get: async (t) => subs.get(t) ?? null,
-    tokenFor: async (e, a) => keys.get(pairKey(e, a)) ?? null,
-    async save(s) {
-      subs.set(s.token, { ...s });
-      keys.set(pairKey(s.email, s.address_id), s.token);
-    },
-    async remove(t) {
-      const s = subs.get(t);
-      if (!s) return null;
-      subs.delete(t);
-      keys.delete(pairKey(s.email, s.address_id));
-      return s;
-    },
-    confirmed: async () => [...subs.values()].filter((s) => s.status === "confirmed"),
-    all: () => [...subs.values()],
+/** In-memory store for tests and local runs without Redis. `now` (ms) drives expiry. */
+export function memoryStore(now: () => number = Date.now) {
+  const kv = new Map<string, { v: string; exp: number }>();
+  const subs = new Map<string, Map<string, Subscriber>>();
+  const get = (k: string) => {
+    const e = kv.get(k);
+    if (!e) return null;
+    if (e.exp <= now()) {
+      kv.delete(k);
+      return null;
+    }
+    return e.v;
   };
+  const store: Store & { keys(): string[]; all(): Subscriber[] } = {
+    putPending: async (t, p, ttl) => void kv.set(K.pending(t), { v: JSON.stringify(p), exp: now() + ttl * 1000 }),
+    async takePending(t) {
+      const v = get(K.pending(t));
+      kv.delete(K.pending(t));
+      return v ? (JSON.parse(v) as Pending) : null;
+    },
+    async addSubscriber(s) {
+      if (!subs.has(s.address_id)) subs.set(s.address_id, new Map());
+      subs.get(s.address_id)!.set(s.email, { ...s });
+    },
+    subscribers: async (a) => [...(subs.get(a)?.values() ?? [])],
+    removeSubscriber: async (a, e) => subs.get(a)?.delete(e) ?? false,
+    isSent: async (k) => get(k) !== null,
+    markSent: async (k) => void kv.set(k, { v: "1", exp: now() + SENT_TTL * 1000 }),
+    clear: async (keys) => keys.filter((k) => get(k) !== null && kv.delete(k)).length,
+    async hit(k, ttl) {
+      const cur = get(k);
+      const n = Number(cur ?? 0) + 1;
+      kv.set(k, { v: String(n), exp: cur === null ? now() + ttl * 1000 : kv.get(k)!.exp });
+      return n;
+    },
+    keys: () => [...kv.keys()].filter((k) => get(k) !== null),
+    all: () => [...subs.values()].flatMap((m) => [...m.values()]),
+  };
+  return store;
 }
 
 /** The store from env, or null when Redis is not configured. */

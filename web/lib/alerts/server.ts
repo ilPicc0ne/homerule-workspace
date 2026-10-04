@@ -1,7 +1,7 @@
 import "server-only";
 import { getDataset } from "@/lib/data";
 import { longDate } from "@/lib/changes/wording.ts";
-import { allowlist, mailerFromEnv } from "./mail.ts";
+import { closedTest, demoRecipients, mailerFromEnv } from "./mail.ts";
 import type { Deps } from "./service.ts";
 import { storeFromEnv } from "./store.ts";
 
@@ -20,8 +20,23 @@ export function asOfText(): string {
   return longDate(getDataset()?.meta.default_as_of ?? null);
 }
 
+/** The caller's IP for the signup rate limit (Vercel sets x-forwarded-for). */
+export function clientIp(req: Request): string {
+  return req.headers.get("x-forwarded-for")?.split(",")[0].trim() || req.headers.get("x-real-ip") || "unknown";
+}
+
+/** Everything the alert functions need, from env. Null when Redis or the HMAC secret is missing. */
 export function depsFor(req: Request): Deps | null {
   const store = storeFromEnv();
-  if (!store) return null;
-  return { store, mailer: mailerFromEnv(), allow: allowlist(), site: siteFor(req), asOfText: asOfText() };
+  const secret = process.env.ALERTS_HMAC_SECRET ?? "";
+  if (!store || !secret) return null;
+  return {
+    store,
+    mailer: mailerFromEnv(),
+    allow: demoRecipients(),
+    closed: closedTest(),
+    secret,
+    site: siteFor(req),
+    asOfText: asOfText(),
+  };
 }

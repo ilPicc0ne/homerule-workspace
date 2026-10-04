@@ -1,11 +1,11 @@
-import { addressLabel, depsFor } from "@/lib/alerts/server";
+import { addressLabel, clientIp, depsFor } from "@/lib/alerts/server";
 import { subscribe } from "@/lib/alerts/service";
 
 /*
   POST /api/subscribe  {email, address_id}
-  Saves a pending subscription (Upstash Redis) and sends the double opt-in email, but only to addresses on
-  ALERTS_ALLOWLIST (closed test). Returns {status, preview}: the preview is the confirmation email with a
-  non-working link, for the simulated view on the page.
+  Saves a pending request (Upstash Redis, 48 h) and sends the double opt-in email; during the closed test only to
+  DEMO_RECIPIENTS. Rate-limited per IP. Never says whether the email is already subscribed. Returns {status, preview}:
+  the preview is the confirmation email with a non-working link, for the simulated view on the page.
 */
 export async function POST(req: Request) {
   let body: { email?: unknown; address_id?: unknown };
@@ -21,8 +21,8 @@ export async function POST(req: Request) {
   const deps = depsFor(req);
   if (!deps) return Response.json({ status: "unavailable", error: "Alerts are not set up here." }, { status: 503 });
   try {
-    const r = await subscribe({ email, addressId, label }, deps);
-    return Response.json(r, { status: r.status === "invalid" ? 400 : 200 });
+    const r = await subscribe({ email, addressId, label, ip: clientIp(req) }, deps);
+    return Response.json(r, { status: r.status === "invalid" ? 400 : r.status === "rate_limited" ? 429 : 200 });
   } catch (e) {
     console.error("subscribe failed", (e as Error).message);
     return Response.json({ status: "unavailable", error: "Something went wrong. Please try later." }, { status: 503 });

@@ -1,9 +1,10 @@
 // The alert email for one address and one change source, rendered from the same diff as the change log
 // (I6). Plain on purpose: one sentence per change (the same words as the address page) and a link to the page.
-// Rendering only: sending is `make notify SEND=1` (web/scripts/notify.ts), never automatic.
+// Rendering only: sending is dispatchAlerts (web/lib/alerts/dispatch.ts), triggered after a deploy, never on its own.
 import type { AddressChanges, ChangesFile, Change, Entry } from "./types.ts";
 import { esc } from "../alerts/html.ts";
 import { footerHtml, footerText } from "../alerts/disclaimer.ts";
+import { button, C, layout, link } from "../alerts/layout.ts";
 import { featuredEntry, longDate } from "./wording.ts";
 import { PLAIN, TOPICS } from "../plain.ts";
 import { formatDate } from "../format.ts";
@@ -48,9 +49,20 @@ export function addressChange(file: ChangesFile, addressId: string, source?: str
 
 export { esc };
 
-/** The one-click unsubscribe link for a subscription token (URL-encoded). */
-export function unsubscribeUrl(site: string, token: string): string {
-  return `${site.replace(/\/$/, "")}/api/unsubscribe?token=${encodeURIComponent(token)}`;
+const q = (addressId: string, token: string) => `a=${encodeURIComponent(addressId)}&t=${encodeURIComponent(token)}`;
+
+/** The unsubscribe page for one address (one button that POSTs). `token` is the HMAC from alerts/unsub.ts. */
+export function unsubscribeUrl(site: string, addressId: string, token: string): string {
+  return `${site.replace(/\/$/, "")}/unsubscribe?${q(addressId, token)}`;
+}
+
+/** The RFC 8058 one-click endpoint for the List-Unsubscribe header (mail apps POST to it). */
+export function oneClickUrl(site: string, addressId: string, token: string): string {
+  return `${site.replace(/\/$/, "")}/api/unsubscribe?${q(addressId, token)}`;
+}
+
+export function unsubscribeHeaders(site: string, addressId: string, token: string) {
+  return { "List-Unsubscribe": `<${oneClickUrl(site, addressId, token)}>`, "List-Unsubscribe-Post": "List-Unsubscribe=One-Click" };
 }
 
 /** Renter-facing impact from the classifier: "impact" or "renter_impact" on the change or the rule record. */
@@ -95,7 +107,7 @@ export function plainChange(c: Change, asOf: string, rules: Map<string, RuleRec>
 export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEmail {
   const site = (opts.site ?? SITE).replace(/\/$/, "");
   const token = opts.token ?? UNSUBSCRIBE_TOKEN;
-  const unsubscribe = unsubscribeUrl(site, token);
+  const unsubscribe = unsubscribeUrl(site, ac.address_id, token);
   const page = `${site}/a/${encodeURIComponent(ac.address_id)}`;
   const log = `${site}/changes/${encodeURIComponent(ac.address_id)}`;
   const demo = ac.entry.demo_label;
@@ -121,36 +133,34 @@ export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEma
     ...footerText(),
   ].join("\n");
 
-  const ink = "#2B3B4E";
-  const font = "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif";
   const badge = (i: PlainChange) =>
     i.impact && i.impact !== "neutral"
-      ? `<span style="display:inline-block;margin:0 0 6px;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;color:${IMPACT_LABEL[i.impact].color};background:${IMPACT_LABEL[i.impact].bg}">${esc(IMPACT_LABEL[i.impact].text)}</span><br>`
+      ? `<span style="display:inline-block;margin:0 0 6px;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:600;color:${IMPACT_LABEL[i.impact].color};background:${IMPACT_LABEL[i.impact].bg}">${esc(IMPACT_LABEL[i.impact].text)}</span><br>`
       : "";
   const htmlItems = items
     .map(
-      (i) => `<tr><td style="padding:12px 0;border-top:1px solid #e8ebee">${badge(i)}<p style="margin:0;font-size:16px;line-height:1.5"><strong>${esc(i.topic)}</strong> &mdash; ${esc(i.sentence)}</p></td></tr>`,
+      (i) => `<tr><td class="tx ln" style="padding:12px 0;border-top:1px solid ${C.line};font-size:16px;line-height:1.5;color:${C.text}">${badge(i)}<strong>${esc(i.topic)}</strong> &mdash; ${esc(i.sentence)}</td></tr>`,
     )
     .join("\n");
 
-  const html = `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${esc(subject)}</title></head>
-<body style="margin:0;background:#ffffff;color:${ink};${font}">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;padding:20px 16px">
-${banner ? `<tr><td style="padding:8px 12px;background:#f3f4f6;color:#5b6573;border-radius:8px;font-size:13px">${esc(banner)}</td></tr>` : ""}
-<tr><td style="padding:16px 0 8px;font-size:16px;line-height:1.5">${esc(greeting)}</td></tr>
+  const html = layout({
+    title: subject,
+    preheader: items.length === 1 ? `${items[0].topic}: ${items[0].sentence}` : `${items.length} housing rules change for ${short}.`,
+    banner,
+    site,
+    rows: `<tr><td class="tx" style="padding:16px 0 8px;font-size:16px;line-height:1.5;color:${C.text}">${esc(greeting)}</td></tr>
 ${htmlItems}
-<tr><td style="padding:20px 0 8px"><a href="${esc(page)}" style="display:inline-block;background:${ink};color:#ffffff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:600;font-size:16px">${esc(cta)}</a></td></tr>
-<tr><td style="padding:0 0 24px;font-size:13px"><a href="${esc(log)}" style="color:${ink}">See the full change log</a></td></tr>
-<tr><td style="padding:16px 0 0;border-top:1px solid #e8ebee;font-size:11px;line-height:1.5;color:#8a939e">You get this because you asked for alerts on ${esc(ac.label)}. <a href="${esc(unsubscribe)}" style="color:#8a939e">Unsubscribe</a>.<br>Not legal advice &middot; data as of ${esc(asOf)}<br>${footerHtml()}</td></tr>
-</table></body></html>`;
+<tr><td style="padding:20px 0 10px">${button(page, cta)}</td></tr>
+<tr><td style="padding:0 0 24px;font-size:14px">${link(log, "See the full change log")}</td></tr>`,
+    footer: `You get this because you asked for alerts on ${esc(ac.label)}. ${link(unsubscribe, "Unsubscribe", C.faint)} in one click.<br>Not legal advice &middot; data as of ${esc(asOf)}<br>${footerHtml()}`,
+  });
 
   return {
     from: FROM,
     subject,
     html,
     text,
-    headers: { "List-Unsubscribe": `<${unsubscribe}>`, "List-Unsubscribe-Post": "List-Unsubscribe=One-Click" },
+    headers: unsubscribeHeaders(site, ac.address_id, token),
     unsubscribe_url: unsubscribe,
   };
 }
