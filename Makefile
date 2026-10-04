@@ -25,6 +25,13 @@ build:                                   ## C+D · engine -> outputs/lookups.jso
 eval:                                    ## assertion suite, T1-T6, trap addresses, quote check, disclaimer crawl
 	python3 -m tests.eval_suite --supplemental
 
+check:                                   ## full suite after any change to extract/, engine/ or tests/: re-extract (cached), eval, engine parity, hour-16 rehearsal
+	$(MAKE) extract
+	python3 -m tests.eval_suite --supplemental | tail -0
+	python3 -m tests.parity
+	$(MAKE) rehearse
+	@grep -E "^\*\*|^## (Assert|questions)|^\| T[1-6] \| [0-9]+ \|" out/eval/report_supplemental.md
+
 freeze:                                  ## before the hour-16 drop: lock the prompt digest (extract/PROMPTS.lock); make eval checks it
 	python3 -m extract.prompts --freeze
 

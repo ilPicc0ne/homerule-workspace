@@ -324,7 +324,9 @@ def markdown(rep):
           + (f"; missing: {', '.join(sq['missing'])}" if sq["missing"] else "") + ".", "",
           f"**Prompts:** lint violations {len(pc['lint_violations'])} (reviewed exceptions {len(pc['lint_allowed'])}); "
           f"digest {pc['digest'][:12]}; " + (f"frozen, {'matches' if pc['matches_lock'] else 'DOES NOT MATCH'} the lock"
-                                             if pc["frozen"] else "not frozen yet (make freeze)") + ".", ""]
+                                             if pc["frozen"] else "not frozen yet (make freeze)") + "; I7 vocabulary "
+          + (f"DRIFTED from contracts/facts.json: {pc['vocabulary_drift']}" if pc["vocabulary_drift"] else "matches the contract")
+          + ".", ""]
     L += [f"- LINT {h['test']}: `{h['pattern']}` in {h['where']}" for h in pc["lint_violations"]]
     a = rep["assertions"]
     L += [f"## Assertions (A1): {sum(x['ok'] for x in a)}/{len(a)}", "", "| id | want | got | notes |", "|---|---|---|---|"]

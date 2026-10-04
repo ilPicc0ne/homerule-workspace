@@ -11,7 +11,10 @@ from concurrent.futures import ThreadPoolExecutor
 from . import config, llm, jev_pass, jev_check, parts as P
 from .corpus import load_text
 
-I7 = json.load(open(config.ROOT / "contracts" / "facts.json"))
+# The prompt renders I7 from a pinned snapshot, so an edit to the contract's descriptions doesn't change every
+# Luna request (and silently re-extract the corpus); tests/eval_suite.py fails if the vocabulary drifts from
+# contracts/facts.json. Refresh the snapshot only with a deliberate re-extraction.
+I7 = json.load(open(config.ROOT / "extract" / "facts.prompt.json"))
 FACT_NAMES = [f["name"] for f in I7["facts"]]
 CATEGORIES = list(jev_pass.CATEGORIES)[:-1]
 EVENT_KINDS = ["enacted", "effective", "operative", "repealed", "introduced", "failed", "struck"]
