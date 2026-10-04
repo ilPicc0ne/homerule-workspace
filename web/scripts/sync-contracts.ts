@@ -9,7 +9,15 @@ import { LIVE_DIR, buildLive, liveInputsPresent, serialise } from "./build-live.
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
+// The Python function is deployed from web/; these are exact copies, never a fork.
+export const ENGINE_FILES = [
+  ...["__init__", "rules", "evaluate", "explain", "facts", "build"].map(name => `engine/${name}.py`),
+  "out/rules.compiled.json", "out/rules.json", "out/findings.json",
+  "contracts/jurisdictions.json", "contracts/facts.json",
+];
+
 export const SYNCED = [
+  ...ENGINE_FILES.map(from => ({ from, to: `web/api/_homerule/${from}` })),
   { from: "contracts/jurisdictions.json", to: "web/contracts/jurisdictions.json" },
   { from: "contracts/facts.json", to: "web/contracts/facts.json" },
   { from: "contracts/contacts.json", to: "web/contracts/contacts.json" },

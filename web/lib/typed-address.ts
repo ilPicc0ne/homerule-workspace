@@ -4,10 +4,10 @@ import type { Address, Result, Rule } from "./types.ts";
 
 /*
   A typed address outside the 500 samples (/a/at?q=…): the resolver's answer turned into the address and the
-  provisional results the one-view page renders. Shared by /a/at and the MCP tool get_address, so the two
-  can't disagree. Pure (relative imports only).
+  provisional results used as /a/at's fallback and by MCP get_address. The page
+  attempts the live engine first. Pure (relative imports only).
 
-  PROVISIONAL, until the engine evaluates typed addresses: there is no property record, so every
+  PROVISIONAL fallback: there is no property record, so every
   building fact is unknown. A rule with no building condition applies; a rule that tests a
   building fact is "unknown" with that fact named. This is the engine's three-valued result for
   all-unknown facts, without its precedence step (a state rule that yields to a local rule stays

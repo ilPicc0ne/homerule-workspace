@@ -4,6 +4,7 @@ import LiveUnavailable from "@/components/live-unavailable";
 import { getDataset } from "@/lib/data";
 import { resolveQuery } from "@/lib/resolve/resolve.ts";
 import { sampleIndex } from "@/lib/resolve/samples.ts";
+import { liveEngine } from "@/lib/live-engine.ts";
 import { flagGap, typedAddress } from "@/lib/typed-address.ts";
 import AddressPageView from "../[id]/address-page";
 import "../[id]/v3.css";
@@ -14,8 +15,8 @@ import { viewProps } from "../view-props";
   /a/at?q=<typed address>: the same one-view page for an address outside the 500 samples
   (e.g. 4801 E 3rd St, East LA, unincorporated). The resolver (Census) finds the legal
   jurisdictions; a sample address redirects to its own page; anything else that isn't an
-  address in our 3 states goes to /where. The provisional results come from lib/typed-address.ts
-  (shared with the MCP tool get_address).
+  address in our 3 states goes to /where. The live Python engine evaluates unknown
+  building facts; lib/typed-address.ts supplies the existing fallback on failure.
 */
 
 export const metadata: Metadata = { title: "Address" };
@@ -33,11 +34,12 @@ export default async function TypedAddressPage(props: PageProps<"/a/at">) {
 
   const t = typedAddress(r, data.rules, q);
   if (!t) redirect(`/where?q=${encodeURIComponent(q)}`);
-  const vp = viewProps(data, t.address, t.results, { typed: true, legalNote: t.legalNote });
+  const live = await liveEngine(r, data.rules, data.meta.default_as_of);
+  const vp = viewProps(data, t.address, live?.results ?? t.results, { typed: true, legalNote: t.legalNote });
   flagGap(vp.view, t.gap);
   return (
     <div className={fontVars}>
-      <AddressPageView {...vp} />
+      <AddressPageView {...vp} liveEngine={live?.engine} />
     </div>
   );
 }

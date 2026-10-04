@@ -29,6 +29,7 @@ export type PageProps = {
   map: MapProps;
   index: { id: string; street: string; city: string; st: string }[];
   typed: boolean;
+  liveEngine?: string;
   /** This address's change log and the rules in it; null when nothing changed between the compared dates. */
   changeLog: { href: string; rules: string[] } | null;
 };
@@ -590,8 +591,10 @@ export default function AddressPageView(p: PageProps) {
             <p className="typed-note" role="note">
               <Ic id="i-info" />
               <span>
+                {p.liveEngine ? <>Some answers depend on details about your building. We’ll show you what to check.</> : <>
                 <b>Provisional answer.</b> Not one of our 500 sample addresses: we found its jurisdiction with the US Census, but have
                 no building facts for it.
+                </>}
               </span>
             </p>
           </div>

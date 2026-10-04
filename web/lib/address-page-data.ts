@@ -9,7 +9,8 @@ import type { Address, Dataset, Result, Rule } from "./types.ts";
   Everything the one-view address page shows except the map and the search index: the view model (tiles,
   timeline, proposed bills), the hero (jurisdiction crumb, legal vs postal city, building facts and their
   source) and the change-log link. Pure, so /a/[id], /a/at (via app/a/view-props.ts) and the MCP tool
-  get_address build from one function and can't disagree.
+  get_address share presentation. Their typed-address result acquisition differs:
+  /a/at attempts the live engine; MCP still uses the provisional fallback.
 */
 
 export type Hero = { crumb: string[]; cap: string; capSub?: string; facts: { icon: string; text: string; cls?: string }[]; factSrc: string; state: string };

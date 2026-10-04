@@ -11,6 +11,8 @@
 // starter pack's licence is "TBD by organizers" and data/ is not in .publish-paths.
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { engineRows, FACT_WORDS, type EngineRow } from "../lib/engine-rows.ts";
+import type { Rule } from "../lib/types.ts";
 
 type J = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 
@@ -31,15 +33,6 @@ export const LIVE_FILES = ["meta.json", "rules.json", "lookups.json", "addresses
 const FEATURED = ["A0016", "A0081", "A0105", "A0107", "A0258", "A0256", "A0010", "A0005"];
 
 const CONTEXT = 320;
-
-const FACT_WORDS: Record<string, string> = {
-  built: "the year the building was built",
-  units: "the number of units",
-  use_class: "what the building is used for",
-  subsidised: "whether the building is subsidised",
-  owner_type: "who owns the building (a person or a company)",
-  owner_occupied: "whether the owner lives in the building",
-};
 
 const INTERACTION_NOTE: Record<string, string> = {
   yields_to_local: "Steps back where a stricter local rule covers the building.",
@@ -261,7 +254,6 @@ export function buildLive(root: string): Record<string, unknown> {
       }
     }
   }
-  const ruleIds = new Set(rules.map((r) => r.rule_id));
 
   // ---- addresses (I3 → page shape) ----
   const datasetByCity = new Map<string, string>();
@@ -311,28 +303,7 @@ export function buildLive(root: string): Record<string, unknown> {
   // ---- lookups (engine results → page shape), one date ----
   const byAddress: Record<string, J[]> = {};
   for (const [aid, a] of Object.entries(full.addresses as Record<string, J>).sort(([x], [y]) => x.localeCompare(y))) {
-    byAddress[aid] = (a.results as J[])
-      .filter((r) => ruleIds.has(r.team_rule_id))
-      .map((r) => {
-        const rule = rules.find((x) => x.rule_id === r.team_rule_id)!;
-        // only the facts that could change this result (engine: missing_deciding); older builds: every unknown fact
-        const missing = ((r.missing_deciding ?? r.missing) as string[]).filter((m) => !m.startsWith("unparsed")).map((m) => FACT_WORDS[m] ?? m);
-        const out: J = {
-          rule_id: r.team_rule_id,
-          category: r.category,
-          result: r.result,
-          confidence: r.confidence ?? 0,
-          explanation: r.explanation,
-          what_next:
-            r.result === "unknown" && missing.length
-              ? { label: `Ask your landlord or the city's housing office about ${missing.join(" and ")}` }
-              : rule.what_next,
-        };
-        if (r.governed_by) out.governed_by = r.governed_by;
-        if (r.conflict_with?.length) out.conflict_with = r.conflict_with;
-        if (missing.length) out.missing_facts = missing;
-        return out;
-      });
+    byAddress[aid] = engineRows(a.results as EngineRow[], rules as Rule[]);
   }
 
   const meta = {
