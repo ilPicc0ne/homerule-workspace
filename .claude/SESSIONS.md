@@ -68,3 +68,20 @@
 
 **Next:**
 - Unchanged: review v3 → rebuild address page locally; address session; engine with I2 + I8.
+
+## 2026-10-04T01:15Z — Address resolver, engine, change log (#7, #10, #8, #11)
+
+**Decisions:**
+- Resolver in TypeScript (`web/lib/resolve/`) for batch and web; Census cache committed; `/where` + `/api/resolve`; autocomplete over own data — *why:* one implementation, offline determinism.
+- Three level states + `county_law` in I1; federal note "applies everywhere" — *why:* honest "no rules" vs "not covered".
+- I3 aligned with the extraction's APT5 guard (subsidised false / Boston A 7+, tagged) — *why:* 0 → 468 rows decidable.
+- Engine = adapter + CLI around Dimitar's evaluator (#36); change log + email from one diff (#45); `out/` intermediates published, `data/` not (licence TBD).
+- No feature without asking first.
+
+**Surprises:**
+- Census silently matches other cities; range normalisation alone fixed A0009.
+- Pressure test found the subsidy blocker before the engine was built.
+- Parallel subagents in isolated worktrees merged fast-forward without conflicts.
+
+**Next:**
+- Merge #30 → #29 → #36 → #45, build outputs on main, `make eval`, demo-site on real data.
