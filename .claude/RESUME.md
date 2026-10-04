@@ -1,19 +1,19 @@
 # Resume
 
-**Updated:** 2026-10-04T04:50Z (06:50 CEST)
+**Updated:** 2026-10-04T05:50Z (07:50 CEST)
 **Branch:** main
 **Production:** `8e7c326` on yourhomerule.com (main is ahead: docs, outputs/rules.json, rule-page fix)
 **Working tree:** clean apart from git-ignored worktrees and the local `.claude/REHEARSAL.md`
 
 ## Pick up next
 
-Freeze 12:00, submission 15:00.
+State 04.10. 07:50 CEST. Production = `f8c33fd` (everything merged through #84, verified: NJ rule pages 200, J2 fix live). Freeze 12:00, submission 15:00.
 
-1. **Dimitar, first thing:** paste him the note (session log 04.10. night): `outputs/rules.json` is a placeholder copy (#74) → after his hour-16 ingest, one final `make build` on main and commit all three scored files together. Also: `NJ-NEWARK-RENT-19:2-18.3` is an exemption tagged `protection_or_duty` (page works around it, #63); prompt lock mismatch; `renter_impact` field for the email badge (`more_protection` / `less_protection` / `neutral`).
-2. **Email rehearsal (Silvan's phone):** runbook `.claude/REHEARSAL.md` (local, not in git). Demo inbox seeded for A0011, real NJ source `asof:2026-10-01..2027-07-02`, dry run = exactly 1 recipient. Re-run the dry run before each take; send = `make alert SOURCE=… URL=https://yourhomerule.com`; reset between takes. Live take = Dimitar's hour-16 change.
-3. **Demo package** (deep-work agent, restarted 06:45 after a connection drop): `notes/demo/DEMO.md`, `GAPS.md`, `PRODUCT-REVIEW.md`, `video/script.json` + storyboard on branch `s/demo-script` (PR "Demo script, product review script, gaps"). English video rendered with `/Users/silvan/claude/code/tools/demo-video` (MP4 stays in the tool's `out/`). Then publish DEMO.md as a private claude.ai page for Silvan + Dimitar.
-4. **Production push** of current main after a look at the main preview (`git push origin <main sha>:refs/heads/production`).
-5. Open PRs from other sessions (not reviewed here): #77/#72/#71 sunsets + change verdict (stacked), #75, #68, #59, #55, #53, #48 (contacts already on main via #56 → close).
+1. **Email rehearsal:** take 1 sent 07:45:23 via production to the demo inbox (A0011, NJ source `asof:2026-10-01..2027-07-02`), "1 sent". Silvan confirms arrival on the phone, then take 2: `make notify SOURCE='asof:2026-10-01..2027-07-02'` (must say 1 would_send) → `make alert SOURCE='asof:2026-10-01..2027-07-02' RESET=1 URL=https://yourhomerule.com`. Runbook `.claude/REHEARSAL.md` (local). Then the /goal email-journey is done.
+2. **Alert lifecycle engine** (owner decision: build for the prototype; critic's Step 0 = "before a real launch, later"): deep-work agent on `s/alert-engine` (worktree `.worktrees/alert-engine`), PR against main, timebox ~10:20. Cron route dry-run by default; `ALERTS_CRON_SEND=1` only on Silvan's go. Review + merge + production on Silvan's go.
+3. **Dimitar** (issue #81 + review findings): #53 makes scored results worse (applies 4240→4004, owner_occupied unknowns 245→301, drops LA 165.03, Hoboken 10:54/18:66, Jersey City rent, Cambridge 8.71) → hold until he explains; #59 after #53 (0× "worse" is expected: no window reaches a sunset); #55 after both, needs re-extraction; #75 + #68 merge-ready (independent); #48 close. Vercel previews of his branches are blocked ("Git author must have access") — add him to the Vercel project or ignore. Final `make build` for all three scored files after his hour-16 ingest (`outputs/rules.json` is a placeholder copy, #74). Open decision for Silvan: merge #75/#68, close #48, comment findings on #81.
+4. **Demo:** script doc https://claude.ai/code/artifact/a0d324be-07ad-44f7-b862-588cdacc61ed (private; share with Dimitar), full version `notes/demo/` (DEMO, GAPS, PRODUCT-REVIEW, video). Film `/Users/silvan/claude/code/tools/demo-video/out/homerule/demo.mp4` (116 s, Gemini voice; re-render after production changes ~7 min; ElevenLabs key in `/Users/silvan/claude/code/.env` if the voice should change — pipeline support not built yet).
+5. Open PRs from the other session: #71/#72/#77 (sunsets + change verdict, wait on #59).
 
 ## Open questions
 
