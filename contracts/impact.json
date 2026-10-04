@@ -1,0 +1,28 @@
+{
+  "_comment": "Renter-protection score (engine/score.py, out/scores.json). Owner D (data), S (display). Every number here is a product choice, shown next to the score on the page. Levels: strong 1.0, basic 0.5, none 0, unknown = counted at its lowest in the score (what a renter can count on), at its highest in `high`, and listed apart. A topic's level comes from the strongest protecting rule that applies to the address on the date; a limiting rule that applies (e.g. an exemption) caps the topic at basic.",
+  "levels": {"strong": 1.0, "basic": 0.5, "none": 0.0},
+  "weights": {
+    "rent_increase_limits": 0.25,
+    "just_cause_eviction": 0.25,
+    "security_deposits": 0.125,
+    "application_screening_fees": 0.125,
+    "screening_restrictions": 0.125,
+    "algorithmic_rent_setting": 0.125
+  },
+  "weights_why": "Rent increases and eviction protection decide whether a renter can stay; the other four protect money and fair access.",
+  "thresholds": {
+    "rent_increase_limits": {"unit": "%/year", "strong_at_most": 5, "basic_at_most": 10},
+    "security_deposits": {"unit": "months of rent", "strong_at_most": 1, "basic_at_most": 2},
+    "application_screening_fees": {"unit": "$", "strong_at_most": 50, "basic_at_most": 100}
+  },
+  "without_a_number": "basic",
+  "presence_topics_level": "strong",
+  "presence_topics": ["just_cause_eviction", "screening_restrictions", "algorithmic_rent_setting"],
+  "kind_levels": {
+    "just_cause_eviction": {"grounds": "strong", "procedure": "basic", "default": "basic"},
+    "algorithmic_rent_setting": {"ban": "strong", "disclosure": "basic", "default": "basic"}
+  },
+  "limiting_rule_caps_at": "basic",
+  "dates": ["2025-12-31", "2026-10-01", "2027-07-02", "2030-01-02"],
+  "not_legal_advice": true
+}

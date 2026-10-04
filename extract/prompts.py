@@ -21,7 +21,7 @@ import yaml
 
 from . import config
 
-MODULES = ["luna_pass", "jev_pass", "jev_check", "gate", "links", "open_questions", "status"]
+MODULES = ["luna_pass", "jev_pass", "jev_check", "gate", "links", "open_questions", "status", "impact", "exemptions"]
 LOCK = config.ROOT / "extract" / "PROMPTS.lock"
 FIX = config.ROOT / "tests" / "fixtures"
 MIN_LEN = 30
@@ -48,8 +48,24 @@ def literals():
     return [x for x in out if (x[0], x[2]) not in docstrings]
 
 
+def rendered():
+    """Prompt text assembled at run time from outside the code (e.g. the I7 fact list in Luna's system prompt)."""
+    from . import luna_pass
+    return [luna_pass.SYSTEM]
+
+
 def digest():
-    return hashlib.sha256("\n\x00".join(t for _, _, t in sorted(literals())).encode()).hexdigest()
+    parts = [t for _, _, t in sorted(literals())] + rendered()
+    return hashlib.sha256("\n\x00".join(parts).encode()).hexdigest()
+
+
+def vocabulary_drift():
+    """Fact names, types, operators and values in the prompt's snapshot vs the live contract (must be equal)."""
+    from . import luna_pass
+    key = lambda f: {k: f.get(k) for k in ("name", "type", "ops", "values", "value_type")}
+    live = json.load(open(config.ROOT / "contracts" / "facts.json"))["facts"]
+    return [] if [key(f) for f in luna_pass.I7["facts"]] == [key(f) for f in live] else \
+        [f["name"] for f in live if key(f) not in [key(g) for g in luna_pass.I7["facts"]]]
 
 
 def _dates(iso):
@@ -96,7 +112,8 @@ def lint():
 def status():
     locked = LOCK.read_text().strip() if LOCK.exists() else None
     now = digest()
-    return {"digest": now, "locked": locked, "frozen": locked is not None, "matches_lock": locked == now if locked else None}
+    return {"digest": now, "locked": locked, "frozen": locked is not None, "matches_lock": locked == now if locked else None,
+            "vocabulary_drift": vocabulary_drift()}
 
 
 if __name__ == "__main__":

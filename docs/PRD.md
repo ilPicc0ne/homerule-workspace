@@ -109,7 +109,7 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 | P1 | Chatbot scoreboard: ~20 dated questions, plain vs web search vs HomeRule | D | built as a measurement (#39, #43, `scoreboard/`): plain 16/20 (4 wrong), plain + web search 20/20, HomeRule 18/20 (0 wrong); not a headline number, not on the site |
 | P1 | Show the guide's four open legal questions as flags with both sources | D (data), S (display) | built (`out/findings.json` kind `open_question`, `extract/open_questions.py`; shown on the tiles) |
 | P1 | Card answers per card question (`out/cards.json`) + card audit | D | WIP (PR #55): fixes wrong headline values, e.g. LA rent "3% for Jul 2025–Jun 2026" shown as current |
-| P1 | Renter-protection score: impact per rule, one score with per-topic breakdown | D | WIP (PR #59, stacked on #53) |
+| P1 | Renter-protection score: impact per rule, one score with per-topic breakdown | D | built (#59): `renter_impact` per rule and per change (verdict better / worse / unchanged / unclear, `why`, `decided_by`), `out/scores.json` per address / city / state and date with per-topic levels and "what would settle this"; display: S (no 0-100 on the page) |
 | P1 | Extra data: next useful building fact + public evidence pilot | D | WIP (draft PR #68) |
 | P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-to-extend-coverage-p1-checked-04102026)) | D | planned (only TIGER/Line places used, for the map outline) |
 

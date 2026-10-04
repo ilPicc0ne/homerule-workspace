@@ -6,6 +6,7 @@ B · Address resolution, C · Engine, D · Change and diff → `outputs/lookups.
 |---|---|
 | `make resolve` | B · `out/addresses.resolved.json` (I3), offline from `engine/cache/census` |
 | `make build AS_OF=2026-10-01` | C+D · `outputs/lookups.json`, `outputs/changes.json`, `out/lookups.full.json`, `out/build_summary.json` |
+| `make score` | `out/scores.json`: one aggregated score per address / city / state and date, per-topic breakdown |
 | `make test` | adapter, determinism, guards, boundaries, journeys |
 
 | Module | Does |
@@ -14,6 +15,7 @@ B · Address resolution, C · Engine, D · Change and diff → `outputs/lookups.
 | `rules.py` | I2 + I8 → the evaluator's rule records |
 | `facts.py` | I3 → the evaluator's facts, with source and assumption per fact |
 | `explain.py` | One or two plain sentences per result |
+| `score.py` | Renter-protection score per address, city and state per date (`make score` → `out/scores.json`, method in `contracts/impact.json`); better / worse verdict on each diff change |
 | `build.py` | CLI, status gate for month/year precision, output files, summary |
 
 Python: `python3 -m venv .venv && .venv/bin/pip install pyyaml` (only the eval needs pyyaml); the Makefile uses `.venv/bin/python` when it exists.
