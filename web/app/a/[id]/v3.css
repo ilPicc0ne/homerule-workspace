@@ -480,6 +480,7 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .vb.adds{background:var(--green-tint);color:var(--green-ink);border-color:var(--green-line)}
 .v3 .vb.narrows{background:var(--red-tint);color:var(--red-ink);border-color:var(--red-line)}
 .v3 .vb.unclear{background:var(--slate-tint);color:var(--slate-ink);border-color:var(--slate-line)}
+.v3 .vb.same{background:transparent;color:var(--ink-2);border-color:var(--line)}
 .v3 .vb-why{margin-top:4px;font-size:.875rem;color:var(--ink-2)}
 .v3 .ev-lk{display:inline-flex;align-items:center;gap:5px;min-height:44px;font-size:.9375rem;font-weight:700}
 .v3 .ev-lk .icon{width:16px;height:16px}

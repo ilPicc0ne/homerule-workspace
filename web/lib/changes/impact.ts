@@ -1,7 +1,8 @@
 // Renter impact of one change, shown as a badge: "This change adds / narrows renter protection".
 // The verdict is computed by the engine (engine/score.py annotate_changes, from the topic level at this address
-// before vs after), never here: this file only MAPS it to a badge and never guesses one. No verdict, an
-// "unchanged" verdict or a pending bill (not law) -> no badge.
+// before vs after), never here: this file only MAPS it to a badge and never guesses one. "unchanged" -> the neutral
+// "= No change in protection here" badge (another rule already covers the home, #117), apart from the grey "depends".
+// No verdict or a pending bill (not law) -> no badge.
 import type { AddressChanges, Change } from "./types.ts";
 import { formatDate } from "../format.ts";
 
@@ -16,12 +17,12 @@ export type RenterImpact = {
   why?: string | null;
 };
 
-export type BadgeKind = "adds" | "narrows" | "unclear";
+export type BadgeKind = "adds" | "narrows" | "unclear" | "same";
 
 export type Badge = {
   kind: BadgeKind;
   /** Always shown next to the text: never colour alone. */
-  arrow: "↑" | "↓" | "?";
+  arrow: "↑" | "↓" | "?" | "=";
   text: string;
   /** aria-label and tooltip: the text plus "Your unit may differ." */
   label: string;
@@ -42,10 +43,11 @@ export const BADGE_TEXT: Record<BadgeKind | "unclear_conflict", string> = {
   adds: "This change adds renter protection",
   narrows: "This change narrows renter protection",
   unclear: "Depends on a fact we don't have",
+  same: "No change in protection here",
   unclear_conflict: "May conflict with another rule, not decided",
 };
 
-const ARROW: Record<BadgeKind, Badge["arrow"]> = { adds: "↑", narrows: "↓", unclear: "?" };
+const ARROW: Record<BadgeKind, Badge["arrow"]> = { adds: "↑", narrows: "↓", unclear: "?", same: "=" };
 
 /** Words a shown summary may never contain (advice, verdicts on the reader's case). */
 export const BANNED = /\b(you|your|yours|illegal|compliant|must|should|recommend|advise)\b/i;
@@ -70,12 +72,13 @@ export function impactOf(c: Change): RenterImpact | null {
   return v === "better" || v === "worse" || v === "unchanged" || v === "unclear" ? (ri as RenterImpact) : null;
 }
 
-/** The badge for one diff change, or null (missing / unchanged / unknown value / pending). */
+/** The badge for one diff change, or null (missing / unknown value / pending). */
 export function badgeFor(c: Change): Badge | null {
   if (isPending(c)) return null;
   const ri = impactOf(c);
   if (!ri) return null;
-  const kind: BadgeKind | null = ri.verdict === "better" ? "adds" : ri.verdict === "worse" ? "narrows" : ri.verdict === "unclear" ? "unclear" : null;
+  const kind: BadgeKind | null =
+    ri.verdict === "better" ? "adds" : ri.verdict === "worse" ? "narrows" : ri.verdict === "unclear" ? "unclear" : ri.verdict === "unchanged" ? "same" : null;
   if (!kind) return null;
   const conflict = kind === "unclear" && (c.conflict_flag_changed || !!c.after?.conflict_flag || !!c.before?.conflict_flag);
   const text = conflict ? BADGE_TEXT.unclear_conflict : BADGE_TEXT[kind];
@@ -119,7 +122,8 @@ export function endBadge(rec: AddressChanges | null | undefined, ruleId: string,
 
 /**
  * The email's first line (fixed rule). All ↑ -> adds; all ↓ -> narrows; ↑ and ↓ together -> "some add, some narrow".
- * Anything else (only grey, ↑ or ↓ with grey, no badge at all) -> the neutral "Rules change at …" line: the
+ * Anything else (only grey, ↑ or ↓ with grey, no badge at all) -> the neutral "Rules change at …" line ("=" badges
+ * count as no direction): the
  * per-item badges carry the detail, and the line never claims a direction the data doesn't show.
  * Past only (every date on or before the as-of date) -> "has changed … since <date>".
  */
@@ -131,7 +135,7 @@ export function firstLine(
   win?: { before_as_of: string; after_as_of: string } | null,
 ): string {
   const live = changes.filter((c) => !isPending(c));
-  const kinds = new Set(live.map(badgeFor).filter((b): b is Badge => !!b).map((b) => b.kind));
+  const kinds = new Set(live.map(badgeFor).filter((b): b is Badge => !!b && b.kind !== "same").map((b) => b.kind));
   const dates = (live.length ? live : changes).map((c) => changeDate(c, win)).filter((d): d is string => !!d).sort();
   const earliest = dates[0] ?? fallbackDate ?? null;
   const past = dates.length > 0 ? dates.every((d) => d <= asOf) : !!earliest && earliest <= asOf;

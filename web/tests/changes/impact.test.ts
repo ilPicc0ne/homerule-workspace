@@ -37,8 +37,15 @@ test("unclear -> grey: a missing fact, or a conflict flag involved", () => {
   assert.equal(conflict.text, "May conflict with another rule, not decided");
 });
 
-test("unchanged, missing, malformed or old-style values -> no badge (never guess)", () => {
-  assert.equal(badgeFor(withRi({ verdict: "unchanged" })), null);
+test("unchanged -> the neutral '=' badge with its why, apart from grey (#117)", () => {
+  const same = badgeFor(withRi({ verdict: "unchanged", why: "No change in eviction protection: Cal. Civ. Code § 1946.2 already gives this protection." }))!;
+  assert.deepEqual([same.kind, same.arrow, same.text], ["same", "=", "No change in protection here"]);
+  assert.equal(same.label, "No change in protection here. Your unit may differ.");
+  assert.match(same.why ?? "", /already gives this protection/);
+  assert.notEqual(BADGE_STYLE.same.bg, BADGE_STYLE.unclear.bg);
+});
+
+test("missing, malformed or old-style values -> no badge (never guess)", () => {
   assert.equal(badgeFor(withRi(undefined)), null);
   assert.equal(badgeFor(withRi(null)), null);
   assert.equal(badgeFor(withRi({})), null);
@@ -111,6 +118,9 @@ test("first line: all ↑, ↑ + grey, only grey, no verdicts", () => {
   const grey = withRi({ verdict: "unclear" }, { team_rule_id: "G" });
   assert.equal(firstLine([up], "X St", AS_OF), "A change adds renter protection at X St from Mar 1, 2027.");
   assert.equal(firstLine([up, grey], "X St", AS_OF), "Rules change at X St from Mar 1, 2027.");
+  const same = withRi({ verdict: "unchanged" }, { team_rule_id: "S" });
+  assert.equal(firstLine([up, same], "X St", AS_OF), "A change adds renter protection at X St from Mar 1, 2027.");   // "=" is no direction
+  assert.equal(firstLine([same], "X St", AS_OF), "Rules change at X St from Mar 1, 2027.");
   assert.equal(firstLine([grey], "X St", AS_OF), "Rules change at X St from Mar 1, 2027.");
   assert.equal(firstLine([withRi(undefined)], "X St", AS_OF), "Rules change at X St from Mar 1, 2027.");
   assert.equal(firstLine([withRi({ verdict: "worse" }, { effective_from: "2026-01-01" })], "X St", AS_OF),

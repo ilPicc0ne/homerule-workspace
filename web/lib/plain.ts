@@ -138,7 +138,7 @@ export const PLAIN: Record<string, Plain> = {
   "NJ-HOBOKEN-RENT-18:66": { line: "Hoboken sets rules for when a unit leaves rent control after a move-out.", weak: true },
   "NJ-HOBOKEN-RENT-3": { line: "Hoboken sets rules for when a unit leaves rent control after a move-out.", weak: true },
   "NJ-JERSEY-CITY-ALG-218-12": { line: "Jersey City bans landlords from paying for rent-setting services." },
-  "NJ-JERSEY-CITY-ALG-218-12.3": { line: "In Jersey City, a rent increase must come with a sworn statement that no rent-setting software was used." },
+  "NJ-JERSEY-CITY-ALG-218-12.3": { line: "In Jersey City, a rent increase needs a sworn statement that no rent-setting software was used." },
   "NJ-JERSEY-CITY-RENT-JerseyCityLa": { line: "Jersey City has rent control, and tenants can file a rent petition with the city." },
   // ---- Newark (the change log and alert email show these too, incl. versions that have ended)
   "NJ-NEWARK-RENT-19:2-22": { line: "In Newark, the Rent Control Board can't approve a rent increase of more than 25% in one year." },

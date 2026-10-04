@@ -72,6 +72,7 @@ export const BADGE_STYLE: Record<BadgeKind, { cls: string; color: string; bg: st
   adds: { cls: "vb-up", color: "#11643D", bg: "#E2F2E8" },
   narrows: { cls: "vb-dn", color: "#9B2C2C", bg: "#FBE9E7" },
   unclear: { cls: "vb-un", color: "#4D5256", bg: "#ECEDEE" },
+  same: { cls: "vb-eq", color: "#4D5256", bg: "#FFFFFF" },
 };
 
 type RuleRec = { rule_id: string; category?: string; summary?: string; title?: string };
@@ -100,7 +101,8 @@ export function plainChange(
   if (endsIn(c, win)) line = `${(c.effective_until ?? "") > asOf ? "Ends" : "Ended"} on ${formatDate(c.effective_until)}: ${line}`;
   else if (c.change === "removed") line = `This rule no longer shows for your address: ${line}`;
   else if (date && !line.includes(date)) line = `${(c.effective_from ?? "") > asOf ? "From" : "Since"} ${date}: ${line}`;
-  return { rule_id: c.team_rule_id, topic, sentence: line, badge: badgeFor(c) };
+  const b = badgeFor(c);
+  return { rule_id: c.team_rule_id, topic, sentence: line, badge: b?.kind === "same" ? null : b };   // email unchanged by #117 (see #118)
 }
 
 export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEmail {

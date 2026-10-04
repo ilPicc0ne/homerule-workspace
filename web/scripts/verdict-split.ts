@@ -1,6 +1,6 @@
 // Change verdict badges across all 500 sample addresses, and a random sample to hand-check against their quotes.
 // Reads a changes file (default web/data/changes.full.json, the synced diff) and maps each change exactly as the
-// site does (lib/changes/impact.ts badgeFor): no badge for unchanged, missing or pending. Prints Markdown for the PR.
+// site does (lib/changes/impact.ts badgeFor): "=" for unchanged (#117), no badge for missing or pending. Prints Markdown for the PR.
 //
 //   node scripts/verdict-split.ts [--changes P] [--sample N] [--seed S]
 import { readFileSync } from "node:fs";
@@ -22,8 +22,8 @@ const ids = (JSON.parse(readFileSync(`${here}data/addresses.resolved.json`, "utf
   (a) => a.address_id,
 );
 
-const SYM: Record<BadgeKind | "none", string> = { adds: "↑", narrows: "↓", unclear: "grey", none: "none" };
-const perChange: Record<string, number> = { "↑": 0, "↓": 0, grey: 0, none: 0 };
+const SYM: Record<BadgeKind | "none", string> = { adds: "↑", narrows: "↓", unclear: "grey", same: "=", none: "none" };
+const perChange: Record<string, number> = { "↑": 0, "↓": 0, grey: 0, "=": 0, none: 0 };
 const perAddress: Record<string, number> = {};
 const verdicts: Record<string, number> = {};
 const badged: { id: string; label: string; source: string; c: Change; kind: BadgeKind; text: string }[] = [];
