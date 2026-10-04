@@ -255,7 +255,7 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .note .icon{width:16px;height:16px}
 .v3 .n-depends,.v3 .n-flag{color:var(--amber-ink);border-color:var(--amber-line);background:var(--amber-soft)}
 .v3 .n-date{color:var(--blue-ink);border-color:var(--blue-line);background:var(--blue-tint)}
-.v3 .n-proposed{border-style:dashed;border-color:var(--faint);color:var(--slate-ink)}
+.v3 .n-proposed,.v3 .n-failed{border-style:dashed;border-color:var(--faint);color:var(--slate-ink)}
 .v3 .n-replaced{color:var(--slate-ink)}
 .v3 .t-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s var(--ease)}
 .v3 .tile.open .t-body{grid-template-rows:1fr}

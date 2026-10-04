@@ -52,7 +52,7 @@ export type Tile = {
   short: string;
   status: TileStatus;
   line: string;
-  notes: { kind: "depends" | "date" | "proposed" | "flag"; text: string }[];
+  notes: { kind: "depends" | "date" | "proposed" | "failed" | "flag"; text: string }[];
   from: string;
   fromCity: boolean;
   expl: string;
@@ -197,6 +197,10 @@ export function buildAddressView(args: {
       notes.push({ kind: "date", text: `New ${rule.level} rule from ${formatDate(rule.effective_date)}` });
     }
     if (pending.length) notes.push({ kind: "proposed", text: `${pending.length === 1 ? "1 bill" : `${pending.length} bills`} proposed, not law` });
+    // A ballot question, bill or measure the sources report as failed or struck (findings.json, from a news link):
+    // shown so "no rule" reads as checked, not missing. Its text is not in our sources, so no quote.
+    const failed = (args.findings[state] ?? []).filter((f) => f.kind === "measure_failed" && f.category === t.cat);
+    if (failed.length) notes.push({ kind: "failed", text: `${failed.length === 1 ? "1 measure" : `${failed.length} measures`} failed or struck, not law` });
     const conflict = inCat.find((r) => r.conflict_with?.length);
     if (conflict) notes.push({ kind: "flag", text: "Possible overlap between state and city, flagged" });
 
@@ -226,6 +230,10 @@ export function buildAddressView(args: {
       const rule = rules[r.rule_id];
       return `${whereName(rule, cityName)}'s rule (${rule.citation}) is replaced here by the ${rules[r.governed_by ?? ""]?.level ?? "local"} rule.`;
     });
+    if (failed.length)
+      lawNotes.push(
+        `Our sources report ${failed.length === 1 ? "a ballot question, bill or measure" : `${failed.length} ballot questions, bills or measures`} on this that failed or was struck. It never became law, so it adds no rule here. Its text is not in our sources; the report is the only source.`,
+      );
 
     const flag = conflict
       ? {

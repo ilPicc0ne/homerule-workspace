@@ -37,7 +37,7 @@ const ST: Record<TileStatus, { w: string; g: string }> = {
 };
 
 const RST_ICON: Record<RuleRow["st"], string> = { applies: "g-check", replaced: "i-turn", depends: "g-q", starts: "i-cal", proposed: "i-dash" };
-const NOTE_ICON = { depends: "g-q", flag: "i-flag", date: "i-cal", proposed: "i-dash" } as const;
+const NOTE_ICON = { depends: "g-q", flag: "i-flag", date: "i-cal", proposed: "i-dash", failed: "i-dash" } as const;
 
 const Mark = ({ st }: { st: TileStatus }) => (
   <span className="mark">
