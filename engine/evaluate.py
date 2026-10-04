@@ -164,13 +164,8 @@ def coverage(rule, ctx):
 REF_CATEGORY = {"local_rent_control": "rent_increase_limits", "local_just_cause": "just_cause_eviction"}
 
 
-def evaluate(rules, facts, as_of):
-    """Results for every rule whose jurisdiction is in the address's stack."""
-    city = facts["address.city"].values[0]
-    state = facts["address.state"].values[0]
-    stack = [r for r in rules if r["jurisdiction"] in (state, city)]
-    out = {}
-    cov = {}
+def local_refs(stack, city, facts, as_of):
+    """ref nodes (local_rent_control, local_just_cause): the coverage of the city's in-force rules of that topic."""
     refs = {}
     for name, cat in REF_CATEGORY.items():      # local rules first: refs are their coverage
         truths = []
@@ -179,6 +174,17 @@ def evaluate(rules, facts, as_of):
                 if status(r, as_of)[0] == "in_force":
                     truths.append(coverage(r, Ctx(facts, as_of)))
         refs[name] = T if T in truths else U if U in truths else F
+    return refs
+
+
+def evaluate(rules, facts, as_of):
+    """Results for every rule whose jurisdiction is in the address's stack."""
+    city = facts["address.city"].values[0]
+    state = facts["address.state"].values[0]
+    stack = [r for r in rules if r["jurisdiction"] in (state, city)]
+    out = {}
+    cov = {}
+    refs = local_refs(stack, city, facts, as_of)
     for r in stack:
         ctx = Ctx(facts, as_of, refs)
         st, how = status(r, as_of)

@@ -77,7 +77,7 @@ This is the project's feature list; each build updates its status in the same co
 |---|---|---|---|
 | P0 | Extraction → `rules.json` | D | partial (`d/extract-slice`: full corpus + cleared supplemental sources, 26/27 assertions, T1-T5 all pass, quotes 99.2% verbatim, eval suite; open: Santa Ana text, Jersey City effective dates) |
 | P0 | Jurisdiction list + address lookup (Census geocoder) | S | built (`make resolve`, 500/500) |
-| P0 | Engine → `lookups.json`, `changes.json`, per-address diff | S | planned |
+| P0 | Engine → `lookups.json`, `changes.json`, per-address diff | S | partial (`s/engine`: `make build` → all 500 addresses, T1–T5 pass, J1–J3 as tests; per-address diff for the change log/email not built) |
 | P0 | Address page (sections 1–3, 5–10), JSON endpoint per address | S | planned |
 | P0 | Change log + email preview, triggered by a demo-only ingest | S | planned |
 | P0 | Rule page: quote in source, link to the law, audit trail with reasoning boundary | S (audit data from D) | planned |
