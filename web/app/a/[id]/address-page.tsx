@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useId, useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import AddressMap from "@/components/address-map";
 import BrandMark from "@/components/brand-mark";
 import AlertForm from "@/components/alerts/alert-form";
@@ -171,13 +171,21 @@ function SearchField({ current, index }: { current: string; index: PageProps["in
 const icon = (id: string) => <Ic id={id} />;
 
 function Alerts({ id, street, open, setOpen }: { id: string; street: string; open: boolean; setOpen: (o: boolean) => void }) {
+  const bell = useRef<HTMLButtonElement>(null);
+  const close = useCallback(
+    (refocus: boolean) => {
+      setOpen(false);
+      if (refocus) bell.current?.focus();
+    },
+    [setOpen],
+  );
   return (
     <div className="alwrap">
-      <button type="button" className="bell" aria-expanded={open} aria-label={`Get alerts for ${street}`} onClick={() => setOpen(!open)}>
+      <button ref={bell} type="button" className="bell" aria-expanded={open} aria-label={`Get alerts for ${street}`} onClick={() => setOpen(!open)}>
         <Ic id="i-bell" />
         <span className="bell-l">Get alerts</span>
       </button>
-      <AlertForm addressId={id} street={street} open={open} onClose={() => setOpen(false)} icon={icon} />
+      <AlertForm addressId={id} street={street} open={open} onClose={close} icon={icon} />
     </div>
   );
 }

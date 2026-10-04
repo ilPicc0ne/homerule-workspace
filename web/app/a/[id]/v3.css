@@ -107,6 +107,8 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 }
 .v3 .alert{position:absolute;right:0;top:calc(100% + 10px);z-index:41;width:min(400px,calc(100vw - 32px));padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh-2);animation:pop .16s var(--ease)}
 .v3 .alert[hidden]{display:none}
+.v3 .al-top{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:-10px -10px 0 0}
+.v3 .al-top .fld-l{margin:0}
 .v3 .al-row{display:flex;gap:8px}
 .v3 .al-row .fld{flex:1;min-width:0}
 .v3 .al-btn{min-height:48px;padding:0 16px;border:0;border-radius:var(--r-md);background:var(--blue);color:#fff;font-weight:700;white-space:nowrap}
