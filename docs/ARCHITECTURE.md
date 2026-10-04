@@ -198,6 +198,27 @@ A change is either a new document (ingest) or a second date (as-of query).
   - the alert email (preview in P0, sending in P1).
 - Change tests T1–T5 come from `dev/change_tests.json`; T6 is the hour-16 ordinance, run through the same ingest.
 
+**Built (`s/changes`, issue #11):**
+
+- `engine/diff.py` is the one diff (I6). It compares two engine evaluations (the same rows as `lookups.json`) per address by `team_rule_id`: added, removed, or changed (result or conflict flag). Each change carries old → new result and explanation, both conflict flags, and the rule's title, citation, verbatim quote, effective date and official source.
+- `make build` writes `out/changes.full.json` with the change sources it can compute from the committed files: the brief's as_of tests (`asof:2025-12-31..2026-01-02` for T1, `asof:2026-10-01..2027-07-02` for T3/J3), plus `ingest:<doc>@<as_of>` for each ingested document already in I2 (`origin: ingested`). Deterministic. Only addresses with a change are listed:
+
+  ```
+  {as_of, not_legal_advice: true,
+   sources:   {source_id: {kind: as_of|ingest, title, test_id?, before {as_of}, after {as_of}, document, demo_label,
+                           affected_address_ids, rule_ids}},
+   addresses: {address_id: {label, jurisdictions,
+                            entries: [{source, kind, title, before_as_of, after_as_of, demo_label,
+                                       changes: [{team_rule_id, change: added|removed|changed,
+                                                  before|after: {result, conflict_flag, explanation} | null,
+                                                  result_changed, conflict_flag_changed, scored, title, citation,
+                                                  requirement_quote, source_url, effective_from, jurisdiction_id,
+                                                  category, document_status, origin}]}]}}}
+  ```
+- `changes.json` is still computed by `extract/changes.py` (Dimitar's, also used by `make eval`); `tests/test_diff.py` asserts that both agree: T1 and T3 affected and conflict-flag sets are equal, T2 equals the diff's before side, T4 rules never flip by date, T5 has no MA rent-cap change, and the T6 ingest mechanics agree on a test-only in-memory rule. Sharing one function was left out: not small enough before the freeze.
+- Change log + email: `/changes/[id]` reads `web/data/changes.full.json` (synced) and shows every entry old → new, dated, then the alert email preview from `web/lib/changes/email.ts` (`render(addressChange)` → `{from, subject, html, text, headers: List-Unsubscribe, List-Unsubscribe-Post}`; HTML in a sandboxed iframe). Nothing is sent.
+- `make demo-change [DOC=… JUR=… ID=…]` (default the fictional `tests/fixtures/synthetic/X001.txt`): ingest (extraction, cached by request hash) → the new rules compiled to I2 in memory → engine before/after at `AS_OF` → diff → `out/changes.full.json` → web sync → prints the changed addresses and the preview URL. It never writes `outputs/` or the committed I2 files and removes the document's index and extraction records afterwards; anything from a fictional document is labelled "Demo: fictional ordinance" in the log and the email. `make build` drops the demo source again. It needs `OPENROUTER_API_KEY` or a warm `build/cache`; without either it stops and says so (no faked extraction).
+
 ## Web and API
 
 Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [priorities](PRD.md#priorities-and-feature-status), [user journeys](PRD.md#user-journeys).

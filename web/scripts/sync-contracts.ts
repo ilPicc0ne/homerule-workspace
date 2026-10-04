@@ -11,6 +11,7 @@ export const SYNCED = [
   { from: "contracts/jurisdictions.json", to: "web/contracts/jurisdictions.json" },
   { from: "contracts/facts.json", to: "web/contracts/facts.json" },
   { from: "out/addresses.resolved.json", to: "web/data/addresses.resolved.json" },
+  { from: "out/changes.full.json", to: "web/data/changes.full.json" },
 ];
 
 export function sync(): string[] {
