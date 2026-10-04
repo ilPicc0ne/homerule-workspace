@@ -1,0 +1,673 @@
+{
+  "_comment": "Who-to-ask contacts per jurisdiction x topic (issue #32). Pointers, not legal advice. Lookup: city+topic, city+*, state+topic, state+*. As-of 2026-10-04. Do not label a service free unless its description says so; eligibility is not a guarantee of representation. Display phone_display including any extension; phone is the E.164 base number.",
+  "entries": [
+    {
+      "jurisdiction": "CA",
+      "category": "*",
+      "contacts": [
+        {
+          "name": "California Attorney General, Public Inquiry Unit",
+          "kind": "consumer_protection",
+          "what_for": "General consumer questions and referrals, including housing and antitrust complaints",
+          "url": "https://oag.ca.gov/contact",
+          "phone": "+18009525225",
+          "phone_display": "(800) 952-5225",
+          "eligibility": null,
+          "source_url": "https://www.oag.ca.gov/contact",
+          "source_quote": "(Toll-free in California) (800) 952-5225",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA",
+      "category": "algorithmic_rent_setting",
+      "contacts": [
+        {
+          "name": "California Attorney General, Public Inquiry Unit",
+          "kind": "consumer_protection",
+          "what_for": "General consumer questions and referrals, including housing and antitrust complaints",
+          "url": "https://oag.ca.gov/contact",
+          "phone": "+18009525225",
+          "phone_display": "(800) 952-5225",
+          "eligibility": null,
+          "source_url": "https://www.oag.ca.gov/contact",
+          "source_quote": "(Toll-free in California) (800) 952-5225",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA",
+      "category": "screening_restrictions",
+      "contacts": [
+        {
+          "name": "California Civil Rights Department",
+          "kind": "civil_rights_agency",
+          "what_for": "Housing discrimination and complaint intake, including discriminatory tenant screening",
+          "url": "https://calcivilrights.ca.gov/complaintprocess/how-to-file-a-complaint/",
+          "phone": "+18008841684",
+          "phone_display": "800-884-1684",
+          "eligibility": null,
+          "source_url": "https://calcivilrights.ca.gov/complaintprocess/how-to-file-a-complaint/",
+          "source_quote": "Call our Contact Center at 800-884-1684 (voice)",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday through Friday from 8 am to 5 pm, except on state holidays"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "NJ",
+      "category": "*",
+      "contacts": [
+        {
+          "name": "Legal Services of New Jersey, LSNJLAW Hotline",
+          "kind": "legal_aid",
+          "what_for": "Free civil legal assistance and referrals for housing and other tenant questions",
+          "url": "https://lsnjlawhotline.org/",
+          "phone": "+18885765529",
+          "phone_display": "1-888-576-5529",
+          "eligibility": "Low-income New Jersey residents; financial eligibility is required.",
+          "source_url": "https://www.lsnj.org/about-us/contact-us",
+          "source_quote": "1-888-LSNJ-LAW (1-888-576-5529)",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "NJ",
+      "category": "screening_restrictions",
+      "contacts": [
+        {
+          "name": "New Jersey Division on Civil Rights",
+          "kind": "civil_rights_agency",
+          "what_for": "Fair Chance in Housing questions and complaint intake concerning criminal-history screening",
+          "url": "https://www.njoag.gov/about/divisions-and-offices/division-on-civil-rights-home/division-on-civil-rights-about/contact-dcr/",
+          "phone": "+18336532748",
+          "phone_display": "833-653-2748",
+          "eligibility": null,
+          "source_url": "https://www.njoag.gov/about/divisions-and-offices/division-on-civil-rights-home/know-the-law/fair-chance-in-housing-act/",
+          "source_quote": "1.833.NJDCR4U (833-653-2748)",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA",
+      "category": "*",
+      "contacts": [
+        {
+          "name": "Massachusetts Attorney General, Consumer Hotline",
+          "kind": "consumer_protection",
+          "what_for": "Consumer questions and referrals, including landlord-tenant concerns",
+          "url": "https://www.mass.gov/orgs/office-of-the-attorney-general",
+          "phone": "+16177278400",
+          "phone_display": "(617) 727-8400",
+          "eligibility": null,
+          "source_url": "https://www.mass.gov/orgs/office-of-the-attorney-general",
+          "source_quote": "Speak with a Consumer Specialist (617) 727-8400",
+          "retrieved_at": "2026-10-04",
+          "hours": "8am to 4pm, Monday through Friday"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA",
+      "category": "algorithmic_rent_setting",
+      "contacts": [
+        {
+          "name": "Massachusetts Attorney General, Consumer Hotline",
+          "kind": "consumer_protection",
+          "what_for": "Consumer questions and referrals, including landlord-tenant concerns",
+          "url": "https://www.mass.gov/orgs/office-of-the-attorney-general",
+          "phone": "+16177278400",
+          "phone_display": "(617) 727-8400",
+          "eligibility": null,
+          "source_url": "https://www.mass.gov/orgs/office-of-the-attorney-general",
+          "source_quote": "Speak with a Consumer Specialist (617) 727-8400",
+          "retrieved_at": "2026-10-04",
+          "hours": "8am to 4pm, Monday through Friday"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA",
+      "category": "screening_restrictions",
+      "contacts": [
+        {
+          "name": "Massachusetts Commission Against Discrimination",
+          "kind": "civil_rights_agency",
+          "what_for": "Housing discrimination complaint intake",
+          "url": "https://www.mass.gov/how-to/how-to-file-a-complaint-of-discrimination",
+          "phone": "+16179946000",
+          "phone_display": "(617) 994-6000",
+          "eligibility": null,
+          "source_url": "https://www.mass.gov/how-to/how-to-file-a-complaint-of-discrimination",
+          "source_quote": "Main at (617) 994-6000",
+          "retrieved_at": "2026-10-04",
+          "hours": "M-F 9am-5pm"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-LOS-ANGELES",
+      "category": "rent_increase_limits",
+      "contacts": [
+        {
+          "name": "Los Angeles Housing Department",
+          "kind": "housing_department",
+          "what_for": "Questions about local rent stabilization and eviction protections",
+          "url": "https://housing.lacity.gov/highlights/renter-protection",
+          "phone": "+18665577368",
+          "phone_display": "866-557-7368",
+          "eligibility": null,
+          "source_url": "https://housing.lacity.gov/highlights/renter-protection",
+          "source_quote": "866-557-RENT OR 866-557-7368",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday – Friday, between the hours of 8:30 AM to 4:30 PM"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-LOS-ANGELES",
+      "category": "just_cause_eviction",
+      "contacts": [
+        {
+          "name": "Los Angeles Housing Department",
+          "kind": "housing_department",
+          "what_for": "Questions about local rent stabilization and eviction protections",
+          "url": "https://housing.lacity.gov/highlights/renter-protection",
+          "phone": "+18665577368",
+          "phone_display": "866-557-7368",
+          "eligibility": null,
+          "source_url": "https://housing.lacity.gov/highlights/renter-protection",
+          "source_quote": "866-557-RENT OR 866-557-7368",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday – Friday, between the hours of 8:30 AM to 4:30 PM"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-SAN-FRANCISCO",
+      "category": "rent_increase_limits",
+      "contacts": [
+        {
+          "name": "San Francisco Rent Board",
+          "kind": "rent_board",
+          "what_for": "Counseling on the Rent Ordinance, rent increases, evictions, and deposit information",
+          "url": "https://sf.gov/speak-rent-board-counselor",
+          "phone": "+14152524600",
+          "phone_display": "415-252-4600",
+          "eligibility": null,
+          "source_url": "https://www.sf.gov/departments/rent-board",
+          "source_quote": "Phone Counseling 415-252-4600",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday to Friday 9 am to 12 pm and 1 pm to 4 pm"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-SAN-FRANCISCO",
+      "category": "just_cause_eviction",
+      "contacts": [
+        {
+          "name": "San Francisco Rent Board",
+          "kind": "rent_board",
+          "what_for": "Counseling on the Rent Ordinance, rent increases, evictions, and deposit information",
+          "url": "https://sf.gov/speak-rent-board-counselor",
+          "phone": "+14152524600",
+          "phone_display": "415-252-4600",
+          "eligibility": null,
+          "source_url": "https://www.sf.gov/departments/rent-board",
+          "source_quote": "Phone Counseling 415-252-4600",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday to Friday 9 am to 12 pm and 1 pm to 4 pm"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-SAN-FRANCISCO",
+      "category": "security_deposits",
+      "contacts": [
+        {
+          "name": "San Francisco Rent Board",
+          "kind": "rent_board",
+          "what_for": "Counseling on the Rent Ordinance, rent increases, evictions, and deposit information",
+          "url": "https://sf.gov/speak-rent-board-counselor",
+          "phone": "+14152524600",
+          "phone_display": "415-252-4600",
+          "eligibility": null,
+          "source_url": "https://www.sf.gov/departments/rent-board",
+          "source_quote": "Phone Counseling 415-252-4600",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday to Friday 9 am to 12 pm and 1 pm to 4 pm"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-SAN-DIEGO",
+      "category": "rent_increase_limits",
+      "contacts": [
+        {
+          "name": "Legal Aid Society of San Diego",
+          "kind": "legal_aid",
+          "what_for": "Free legal help with landlord-tenant issues and housing referrals",
+          "url": "https://www.lassd.org/resources/",
+          "phone": "+18775342524",
+          "phone_display": "1-877-534-2524",
+          "eligibility": "Serves low-income and vulnerable San Diego County residents; service eligibility applies.",
+          "source_url": "https://www.lassd.org/resources/",
+          "source_quote": "For legal help: 1-877-534-2524",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday - Friday 9am to 5pm"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-SAN-DIEGO",
+      "category": "just_cause_eviction",
+      "contacts": [
+        {
+          "name": "Legal Aid Society of San Diego",
+          "kind": "legal_aid",
+          "what_for": "Free legal help with landlord-tenant issues and housing referrals",
+          "url": "https://www.lassd.org/resources/",
+          "phone": "+18775342524",
+          "phone_display": "1-877-534-2524",
+          "eligibility": "Serves low-income and vulnerable San Diego County residents; service eligibility applies.",
+          "source_url": "https://www.lassd.org/resources/",
+          "source_quote": "For legal help: 1-877-534-2524",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday - Friday 9am to 5pm"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-SAN-DIEGO",
+      "category": "security_deposits",
+      "contacts": [
+        {
+          "name": "Legal Aid Society of San Diego",
+          "kind": "legal_aid",
+          "what_for": "Free legal help with landlord-tenant issues and housing referrals",
+          "url": "https://www.lassd.org/resources/",
+          "phone": "+18775342524",
+          "phone_display": "1-877-534-2524",
+          "eligibility": "Serves low-income and vulnerable San Diego County residents; service eligibility applies.",
+          "source_url": "https://www.lassd.org/resources/",
+          "source_quote": "For legal help: 1-877-534-2524",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday - Friday 9am to 5pm"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-SAN-DIEGO",
+      "category": "application_screening_fees",
+      "contacts": [
+        {
+          "name": "Legal Aid Society of San Diego",
+          "kind": "legal_aid",
+          "what_for": "Free legal help with landlord-tenant issues and housing referrals",
+          "url": "https://www.lassd.org/resources/",
+          "phone": "+18775342524",
+          "phone_display": "1-877-534-2524",
+          "eligibility": "Serves low-income and vulnerable San Diego County residents; service eligibility applies.",
+          "source_url": "https://www.lassd.org/resources/",
+          "source_quote": "For legal help: 1-877-534-2524",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday - Friday 9am to 5pm"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-SAN-DIEGO",
+      "category": "screening_restrictions",
+      "contacts": [
+        {
+          "name": "Legal Aid Society of San Diego",
+          "kind": "legal_aid",
+          "what_for": "Free legal help with landlord-tenant issues and housing referrals",
+          "url": "https://www.lassd.org/resources/",
+          "phone": "+18775342524",
+          "phone_display": "1-877-534-2524",
+          "eligibility": "Serves low-income and vulnerable San Diego County residents; service eligibility applies.",
+          "source_url": "https://www.lassd.org/resources/",
+          "source_quote": "For legal help: 1-877-534-2524",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday - Friday 9am to 5pm"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-BERKELEY",
+      "category": "rent_increase_limits",
+      "contacts": [
+        {
+          "name": "Berkeley Rent Board, Housing Counselors",
+          "kind": "rent_board",
+          "what_for": "Free counseling on the Rent Ordinance and related housing laws, petitions, and mediation",
+          "url": "https://rentboard.berkeleyca.gov/services/aboutcontact-us",
+          "phone": "+15109817368",
+          "phone_display": "(510) 981-7368 Ext. 1",
+          "eligibility": null,
+          "source_url": "https://rentboard.berkeleyca.gov/services/aboutcontact-us",
+          "source_quote": "Phone: (510) 981-7368 Ext. 1",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-BERKELEY",
+      "category": "just_cause_eviction",
+      "contacts": [
+        {
+          "name": "Berkeley Rent Board, Housing Counselors",
+          "kind": "rent_board",
+          "what_for": "Free counseling on the Rent Ordinance and related housing laws, petitions, and mediation",
+          "url": "https://rentboard.berkeleyca.gov/services/aboutcontact-us",
+          "phone": "+15109817368",
+          "phone_display": "(510) 981-7368 Ext. 1",
+          "eligibility": null,
+          "source_url": "https://rentboard.berkeleyca.gov/services/aboutcontact-us",
+          "source_quote": "Phone: (510) 981-7368 Ext. 1",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-BERKELEY",
+      "category": "security_deposits",
+      "contacts": [
+        {
+          "name": "Berkeley Rent Board, Housing Counselors",
+          "kind": "rent_board",
+          "what_for": "Free counseling on the Rent Ordinance and related housing laws, petitions, and mediation",
+          "url": "https://rentboard.berkeleyca.gov/services/aboutcontact-us",
+          "phone": "+15109817368",
+          "phone_display": "(510) 981-7368 Ext. 1",
+          "eligibility": null,
+          "source_url": "https://rentboard.berkeleyca.gov/services/aboutcontact-us",
+          "source_quote": "Phone: (510) 981-7368 Ext. 1",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-SANTA-ANA",
+      "category": "rent_increase_limits",
+      "contacts": [
+        {
+          "name": "Santa Ana Rent Stabilization Office",
+          "kind": "housing_department",
+          "what_for": "Questions about the Rent Stabilization and Just Cause Eviction program",
+          "url": "https://santa-ana.gov/contact-the-rent-stabilization-office/",
+          "phone": "+17146672209",
+          "phone_display": "(714) 667-2209",
+          "eligibility": null,
+          "source_url": "https://santa-ana.gov/contact-the-rent-stabilization-office/",
+          "source_quote": "give us a call at at (714) 667-2209.",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-SANTA-ANA",
+      "category": "just_cause_eviction",
+      "contacts": [
+        {
+          "name": "Santa Ana Rent Stabilization Office",
+          "kind": "housing_department",
+          "what_for": "Questions about the Rent Stabilization and Just Cause Eviction program",
+          "url": "https://santa-ana.gov/contact-the-rent-stabilization-office/",
+          "phone": "+17146672209",
+          "phone_display": "(714) 667-2209",
+          "eligibility": null,
+          "source_url": "https://santa-ana.gov/contact-the-rent-stabilization-office/",
+          "source_quote": "give us a call at at (714) 667-2209.",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "NJ-JERSEY-CITY",
+      "category": "rent_increase_limits",
+      "contacts": [
+        {
+          "name": "Jersey City Office of Landlord/Tenant Relations",
+          "kind": "housing_department",
+          "what_for": "Rent-control questions, tenant information, and referrals",
+          "url": "https://www.jerseycitynj.gov/cityhall/HousingAndDevelopment/housingpreservation/landlordtenantrelations",
+          "phone": "+12015474821",
+          "phone_display": "(201) 547-4821",
+          "eligibility": null,
+          "source_url": "https://www.jerseycitynj.gov/cms/one.aspx?pageId=9290189",
+          "source_quote": "phone (201) 547-4821",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday - Friday : 8:30 AM - 4:30 PM"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "NJ-HOBOKEN",
+      "category": "rent_increase_limits",
+      "contacts": [
+        {
+          "name": "Hoboken Rent Leveling and Stabilization Office",
+          "kind": "rent_board",
+          "what_for": "Questions about local rent control, rent calculations, and adjustment appeals",
+          "url": "https://www.hobokennj.gov/departments/rent-leveling-and-stabilization-office",
+          "phone": "+12014202000",
+          "phone_display": "(201) 420-2000x1721",
+          "eligibility": null,
+          "source_url": "https://www.hobokennj.gov/departments/rent-leveling-and-stabilization-office",
+          "source_quote": "Phone: (201) 420-2000x1721",
+          "retrieved_at": "2026-10-04",
+          "hours": "M – F: 9 am – 4 pm"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA-BOSTON",
+      "category": "rent_increase_limits",
+      "contacts": [
+        {
+          "name": "Boston Office of Housing Stability",
+          "kind": "housing_department",
+          "what_for": "Housing questions, eviction prevention, and referrals to tenant legal resources",
+          "url": "https://www.boston.gov/departments/housing/office-housing-stability",
+          "phone": "+16176354200",
+          "phone_display": "617-635-4200",
+          "eligibility": null,
+          "source_url": "https://www.boston.gov/departments/housing/office-housing-stability",
+          "source_quote": "Housing Stability 617-635-4200",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday through Friday, 9 a.m. - 5 p.m."
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA-BOSTON",
+      "category": "just_cause_eviction",
+      "contacts": [
+        {
+          "name": "Boston Office of Housing Stability",
+          "kind": "housing_department",
+          "what_for": "Housing questions, eviction prevention, and referrals to tenant legal resources",
+          "url": "https://www.boston.gov/departments/housing/office-housing-stability",
+          "phone": "+16176354200",
+          "phone_display": "617-635-4200",
+          "eligibility": null,
+          "source_url": "https://www.boston.gov/departments/housing/office-housing-stability",
+          "source_quote": "Housing Stability 617-635-4200",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday through Friday, 9 a.m. - 5 p.m."
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA-BOSTON",
+      "category": "security_deposits",
+      "contacts": [
+        {
+          "name": "Boston Office of Housing Stability",
+          "kind": "housing_department",
+          "what_for": "Housing questions, eviction prevention, and referrals to tenant legal resources",
+          "url": "https://www.boston.gov/departments/housing/office-housing-stability",
+          "phone": "+16176354200",
+          "phone_display": "617-635-4200",
+          "eligibility": null,
+          "source_url": "https://www.boston.gov/departments/housing/office-housing-stability",
+          "source_quote": "Housing Stability 617-635-4200",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday through Friday, 9 a.m. - 5 p.m."
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA-BOSTON",
+      "category": "application_screening_fees",
+      "contacts": [
+        {
+          "name": "Boston Office of Housing Stability",
+          "kind": "housing_department",
+          "what_for": "Housing questions, eviction prevention, and referrals to tenant legal resources",
+          "url": "https://www.boston.gov/departments/housing/office-housing-stability",
+          "phone": "+16176354200",
+          "phone_display": "617-635-4200",
+          "eligibility": null,
+          "source_url": "https://www.boston.gov/departments/housing/office-housing-stability",
+          "source_quote": "Housing Stability 617-635-4200",
+          "retrieved_at": "2026-10-04",
+          "hours": "Monday through Friday, 9 a.m. - 5 p.m."
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA-BOSTON",
+      "category": "screening_restrictions",
+      "contacts": [
+        {
+          "name": "Boston Office of Fair Housing and Equity",
+          "kind": "civil_rights_agency",
+          "what_for": "Housing discrimination questions and complaint intake",
+          "url": "https://www.boston.gov/departments/fair-housing-and-equity",
+          "phone": "+16176352500",
+          "phone_display": "617-635-2500",
+          "eligibility": null,
+          "source_url": "https://www.boston.gov/departments/fair-housing-and-equity",
+          "source_quote": "Contact 617-635-2500",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA-CAMBRIDGE",
+      "category": "rent_increase_limits",
+      "contacts": [
+        {
+          "name": "Cambridge Housing Services Center",
+          "kind": "housing_department",
+          "what_for": "Tenant-rights information, eviction prevention, and housing referrals",
+          "url": "https://www.cambridgema.gov/Departments/officeofthehousingliaison",
+          "phone": "+16173496340",
+          "phone_display": "617-349-6340",
+          "eligibility": "Cambridge residents with housing-related needs.",
+          "source_url": "https://www.cambridgema.gov/Departments/officeofthehousingliaison",
+          "source_quote": "Contact the Housing Services Center at 617-349-6340",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA-CAMBRIDGE",
+      "category": "just_cause_eviction",
+      "contacts": [
+        {
+          "name": "Cambridge Housing Services Center",
+          "kind": "housing_department",
+          "what_for": "Tenant-rights information, eviction prevention, and housing referrals",
+          "url": "https://www.cambridgema.gov/Departments/officeofthehousingliaison",
+          "phone": "+16173496340",
+          "phone_display": "617-349-6340",
+          "eligibility": "Cambridge residents with housing-related needs.",
+          "source_url": "https://www.cambridgema.gov/Departments/officeofthehousingliaison",
+          "source_quote": "Contact the Housing Services Center at 617-349-6340",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA-CAMBRIDGE",
+      "category": "security_deposits",
+      "contacts": [
+        {
+          "name": "Cambridge Housing Services Center",
+          "kind": "housing_department",
+          "what_for": "Tenant-rights information, eviction prevention, and housing referrals",
+          "url": "https://www.cambridgema.gov/Departments/officeofthehousingliaison",
+          "phone": "+16173496340",
+          "phone_display": "617-349-6340",
+          "eligibility": "Cambridge residents with housing-related needs.",
+          "source_url": "https://www.cambridgema.gov/Departments/officeofthehousingliaison",
+          "source_quote": "Contact the Housing Services Center at 617-349-6340",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA-CAMBRIDGE",
+      "category": "application_screening_fees",
+      "contacts": [
+        {
+          "name": "Cambridge Housing Services Center",
+          "kind": "housing_department",
+          "what_for": "Tenant-rights information, eviction prevention, and housing referrals",
+          "url": "https://www.cambridgema.gov/Departments/officeofthehousingliaison",
+          "phone": "+16173496340",
+          "phone_display": "617-349-6340",
+          "eligibility": "Cambridge residents with housing-related needs.",
+          "source_url": "https://www.cambridgema.gov/Departments/officeofthehousingliaison",
+          "source_quote": "Contact the Housing Services Center at 617-349-6340",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "MA-CAMBRIDGE",
+      "category": "screening_restrictions",
+      "contacts": [
+        {
+          "name": "Cambridge Human Rights Commission",
+          "kind": "civil_rights_agency",
+          "what_for": "Housing discrimination questions and complaint intake",
+          "url": "https://www.cambridgema.gov/Departments/humanrightscommission",
+          "phone": "+16173494396",
+          "phone_display": "617-349-4396",
+          "eligibility": null,
+          "source_url": "https://www.cambridgema.gov/departments/humanrightscommission",
+          "source_quote": "PHONE: 617-349-4396",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "jurisdiction": "CA-SAN-FRANCISCO",
+      "category": "screening_restrictions",
+      "contacts": [
+        {
+          "name": "San Francisco Human Rights Commission",
+          "kind": "civil_rights_agency",
+          "what_for": "Housing discrimination complaints and Fair Chance protections in affordable housing decisions.",
+          "url": "https://www.sf.gov/information--affordable-housing-protections-people-criminal-history/",
+          "phone": "+14152522500",
+          "phone_display": "415-252-2500",
+          "eligibility": null,
+          "source_url": "https://www.sf.gov/departments/human-rights-commission",
+          "source_quote": "Phone 415-252-2500",
+          "retrieved_at": "2026-10-04"
+        }
+      ]
+    }
+  ]
+}
