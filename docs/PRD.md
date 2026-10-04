@@ -115,7 +115,7 @@ This is the project's feature list; each build updates its status in the same co
 | P2 | Typed address outside the sample, e.g. Santa Ana (brief stretch goal "new jurisdiction live") | S | planned |
 | P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-to-extend-coverage-p1-checked-04102026)) | D | planned |
 | P2 | MCP route | D | planned |
-| P2 | Compare view · city outline on the map | S | planned |
+| P2 | Compare view | S | planned |
 | P3 | ChatGPT custom GPT on the JSON endpoint | D | planned |
 | Idea | Own chatbot · addresses outside the 500 · neighbourhood comparison · repairs card | — | idea |
 
