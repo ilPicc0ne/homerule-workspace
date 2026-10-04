@@ -1,3 +1,4 @@
+import type { Badge } from "./changes/impact.ts";
 import contactsFile from "@/contracts/contacts.json";
 import { formatDate } from "./format";
 import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain";
@@ -64,7 +65,9 @@ export type Tile = {
   rules: RuleRow[];
 };
 
-export type TimelineEvent = { date: string; dateText: string; topic: TopicId; title: string; body?: string; ruleId: string };
+/** `badge`: the renter-impact badge of this rule's diff change at this address (lib/changes/impact.ts eventBadge), set by
+ *  view-props only when PAGE_BADGES is on; never derived from the event itself. */
+export type TimelineEvent = { date: string; dateText: string; topic: TopicId; title: string; body?: string; ruleId: string; badge?: Badge | null };
 
 export type AddressView = {
   street: string;

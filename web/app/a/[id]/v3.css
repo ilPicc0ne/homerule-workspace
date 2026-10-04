@@ -15,6 +15,7 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
   --green:#1C8150; --green-ink:#11643D; --green-tint:#E2F2E8; --green-soft:#F5FAF7; --green-line:#C9E5D3;
   --amber:#B7793A; --amber-ink:#7A4A1C; --amber-tint:#F6EADB; --amber-soft:#FBF6EF; --amber-line:#E6CFB3;
   --slate:#868B8F; --slate-ink:#4D5256; --slate-tint:#ECEDEE; --slate-soft:#F7F7F8; --slate-line:#DCDEE0;
+  --red-ink:#9B2C2C; --red-tint:#FBE9E7; --red-line:#F0C9C4; /* only the "narrows renter protection" change badge */
   --r-lg:20px; --r-md:12px; --r-sm:8px;
   --sh-1:0 1px 2px rgb(21 34 46/.05);
   --sh-2:0 1px 2px rgb(21 34 46/.04),0 18px 40px -20px rgb(21 34 46/.30);
@@ -454,6 +455,13 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 @media(max-width:999px){.v3 .map-card .maplibregl-ctrl-attrib{font-size:7px;line-height:1.1;padding:0 3px;max-width:100%}}
 .v3 .ahead-alert{margin-top:6px}
 /* Links from Coming up into the change log (/changes/[id]). */
+.v3 .vb{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:3px 10px;border-radius:999px;border:1px solid transparent;font-size:.875rem;font-weight:700;line-height:1.35}
+.v3 .vb-a{font-size:1rem;line-height:1}
+.v3 .vb.adds{background:var(--green-tint);color:var(--green-ink);border-color:var(--green-line)}
+.v3 .vb.narrows{background:var(--red-tint);color:var(--red-ink);border-color:var(--red-line)}
+.v3 .vb.unclear{background:var(--slate-tint);color:var(--slate-ink);border-color:var(--slate-line)}
+.v3 .vb-why{margin-top:4px;font-size:.875rem;color:var(--ink-2)}
+.v3 .tl-note{margin-top:10px;font-size:.875rem;color:var(--muted)}
 .v3 .ev-lk{display:inline-flex;align-items:center;gap:5px;min-height:44px;font-size:.9375rem;font-weight:700}
 .v3 .ev-lk .icon{width:16px;height:16px}
 .v3 .ahead-log{margin-top:-6px;padding-left:38px}

@@ -2,6 +2,7 @@ import "server-only";
 import { ancestry, getDataset, jurisdictionById } from "@/lib/data";
 import { buildAddressView } from "@/lib/address-view";
 import { changes } from "@/lib/changes/data.ts";
+import { eventBadge, PAGE_BADGES } from "@/lib/changes/impact.ts";
 import { builtYear, unitsText } from "@/lib/format";
 import { cityOutline, mapCaption } from "@/lib/outlines";
 import type { Address, Dataset, Result, Rule } from "@/lib/types";
@@ -36,6 +37,11 @@ export function viewProps(data: Dataset, address: Address, results: Result[], ex
   const asOf = data.meta.default_as_of;
 
   const view = buildAddressView({ address, results, rules, asOf, cityName: cityName ?? "", findings: data.findings });
+  // A history event gets a badge only from the same rule's diff change at this address (off until #59 is checked).
+  if (PAGE_BADGES && !extra?.typed) {
+    const rec = changes.addresses[address.address_id];
+    for (const e of [...view.future, ...view.past]) e.badge = eventBadge(rec, e.ruleId, e.date);
+  }
 
   const crumb = (city ? ancestry(city.id) : [state, county].filter((j) => !!j)).map((j) => j!.legal_name.replace(/ city$/, ""));
   if (!city && county) crumb.push("Unincorporated area");
