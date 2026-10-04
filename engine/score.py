@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CFG = json.loads((ROOT / "contracts" / "impact.json").read_text(encoding="utf-8"))
 LEVEL = CFG["levels"]
 ORDER = ["none", "basic", "strong"]
+PREFIX = {"states": "state", "cities": "city", "addresses": "address"}
 
 
 def rule_level(rule):
@@ -148,7 +149,7 @@ def write(res):
              '"not_legal_advice": true']
     for part in ("states", "cities", "addresses"):
         for k in sorted(res[part]):
-            lines.append(f'"{part[:-1] if part != "addresses" else "address"}:{k}": {json.dumps(res[part][k], sort_keys=True)}')
+            lines.append(f'"{PREFIX[part]}:{k}": {json.dumps(res[part][k], sort_keys=True)}')
     (ROOT / "out" / "scores.json").write_text("{\n" + ",\n".join(lines) + "\n}\n")
 
 
