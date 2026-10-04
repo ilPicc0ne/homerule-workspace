@@ -6,6 +6,7 @@ Outputs (byte-deterministic: sorted keys and order, no timestamp but as_of):
 - outputs/changes.json   T1-T5 (T6 when an ingested document exists) via extract/changes.py, same evaluation
 - out/lookups.full.json  the same results with confidence, missing facts, governed_by, conflict_with, value,
                          and the I8 findings per jurisdiction x category, for the web (ARCHITECTURE C)
+- out/changes.full.json  the per-address diff (I6, engine/diff.py) for the change log and the alert email
 - out/build_summary.json counts per city x result; the previous one is diffed on stdout
 
 One evaluator (engine/evaluate.py, Dimitar's three-valued reference evaluator); this module only adapts its
@@ -188,6 +189,9 @@ def run(as_of, out_dir=None, outputs_dir=None, with_changes=True, quiet=False):
     (out_dir / "lookups.full.json").write_text(dump(full_json(full, rules, addresses, findings, as_of)), encoding="utf-8")
     if with_changes:
         (outputs_dir / "changes.json").write_text(dump(changes(rules, findings, addresses)), encoding="utf-8")
+        from engine import diff as D     # I6: the per-address diff for the change log and the email
+        srcs = D.build_sources(rules, addresses, as_of, base_full=full)
+        (out_dir / "changes.full.json").write_text(D.dump(D.assemble(srcs, addresses, as_of)), encoding="utf-8")
     cur = summary(full, addresses)
     sp = out_dir / "build_summary.json"
     prev = json.loads(sp.read_text(encoding="utf-8"))["cities"] if sp.exists() else None
