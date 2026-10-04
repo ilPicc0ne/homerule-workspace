@@ -6,6 +6,8 @@ import AsOfTimeline from "@/components/as-of-timeline";
 import { icons } from "@/components/icons";
 import QuestionCard, { ruleHref, QuoteBlock } from "@/components/question-card";
 import { Dot } from "@/components/status";
+import SourceTag from "@/components/source-tag";
+import { DATA_SOURCE } from "@/lib/config";
 import { useAsOf, useHydrated } from "@/lib/as-of";
 import { formatDate } from "@/lib/format";
 import {
@@ -18,7 +20,7 @@ import {
   ruleStatusOn,
   type ChangeEntry,
 } from "@/lib/law";
-import type { Address, Result, ResultValue, Rule, RuleStatus } from "@/lib/types";
+import type { Address, Finding, Result, ResultValue, Rule, RuleStatus } from "@/lib/types";
 
 type Props = {
   address: Address;
@@ -28,6 +30,7 @@ type Props = {
   fallback: string;
   retrieved: string;
   simulation?: Rule;
+  findings: Finding[];
   rail: { map: ReactNode; where: ReactNode; facts: ReactNode };
 };
 
@@ -55,7 +58,7 @@ function simulatedResult(rule: Rule, asOf: string): Result {
   };
 }
 
-export default function Dashboard({ address, lookups, rules, stops, fallback, retrieved, simulation, rail }: Props) {
+export default function Dashboard({ address, lookups, rules, stops, fallback, retrieved, simulation, findings, rail }: Props) {
   const dates = stops.map((s) => s.date);
   const asOf = useAsOf(dates, fallback);
   const hydrated = useHydrated();
@@ -122,7 +125,7 @@ export default function Dashboard({ address, lookups, rules, stops, fallback, re
       <div className="dash-head page-head">
         <h1>{address.street}</h1>
         <p className="page-sub">
-          {city}, {address.state_code} <span className="tag tag-demo">Demo data</span>
+          {city}, {address.state_code} <SourceTag />
         </p>
       </div>
 
@@ -192,6 +195,7 @@ export default function Dashboard({ address, lookups, rules, stops, fallback, re
               asOf={asOf}
               fallback={fallback}
               addressId={address.address_id}
+              findings={findings.filter((f) => f.category === card.category)}
             />
           ))}
         </div>
@@ -298,7 +302,9 @@ export default function Dashboard({ address, lookups, rules, stops, fallback, re
               ask the agency named on each card or a lawyer.
             </p>
             <p className="muted small">
-              Demo data: these results are hand-prepared from the challenge brief. The rule engine will replace them.
+              {DATA_SOURCE === "demo"
+                ? "Demo data: these results are hand-prepared from the challenge brief. The rule engine will replace them."
+                : `Results from the HomeRule rule engine, run for ${formatDate(fallback)}. Sources retrieved ${formatDate(retrieved)}.`}
             </p>
           </div>
         </section>

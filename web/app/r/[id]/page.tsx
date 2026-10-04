@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import LiveUnavailable from "@/components/live-unavailable";
+import SourceTag from "@/components/source-tag";
+import { DATA_SOURCE } from "@/lib/config";
 import { datesLine } from "@/components/question-card";
 import { ancestry, getDataset, jurisdictionById } from "@/lib/data";
 import { formatDate, formatRetrieved, percent } from "@/lib/format";
@@ -106,7 +108,7 @@ export default async function RulePage(props: PageProps<"/r/[id]">) {
           <span style={{ marginLeft: "0.75rem" }} className="tag">
             {LEVEL_WORDS[rule.level]}
           </span>{" "}
-          <span className="tag tag-demo">Demo data</span>
+          <SourceTag />
         </p>
         <p className="q-summary" style={{ marginTop: "1rem" }}>
           {rule.summary}
@@ -260,7 +262,11 @@ export default async function RulePage(props: PageProps<"/r/[id]">) {
         <div className="audit">
           <div>
             <h3>Extracted by the model</h3>
-            <p className="audit-sub">Demo data: hand-prepared in the shape the extraction will produce.</p>
+            <p className="audit-sub">
+              {DATA_SOURCE === "demo"
+                ? "Demo data: hand-prepared in the shape the extraction will produce."
+                : "What the model read from the source text, checked by code (the quote must appear word for word)."}
+            </p>
             <dl className="kv">
               {Object.entries(extracted).map(([k, v]) => (
                 <div key={k}>

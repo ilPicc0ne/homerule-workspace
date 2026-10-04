@@ -11,7 +11,7 @@ import Dashboard from "./dashboard";
 
 export function generateStaticParams() {
   const data = getDataset();
-  return data ? data.meta.demo_address_ids.map((id) => ({ id })) : [];
+  return data ? data.addresses.filter((a) => a.demo).map((a) => ({ id: a.address_id })) : [];
 }
 
 export async function generateMetadata(props: PageProps<"/a/[id]">): Promise<Metadata> {
@@ -53,7 +53,7 @@ function Facts({ a }: { a: Address }) {
           {units ? (
             <>
               {units}
-              {a.fact_sources.units?.source.startsWith("parsed") && <small>Read from the use code, lower confidence</small>}
+              {(a.fact_sources.units?.source.startsWith("parsed") || (a.fact_sources.units?.confidence ?? 1) < 0.9) && <small>Read from the use code, lower confidence</small>}
             </>
           ) : (
             <Unknown why="Not in the public record" />
@@ -117,6 +117,7 @@ export default async function AddressPage(props: PageProps<"/a/[id]">) {
   const cityPanel = { id: address.jurisdictions.city, label: address.postal_city, state: address.jurisdictions.state, cities: [address.jurisdictions.city] };
   const frame = projectPanel(cityPanel, data.addresses, 300, 12, 220);
   const simulation = data.meta.simulation?.address_id === id ? data.meta.simulation?.rule : undefined;
+  const findings = [...stack].flatMap((j) => data.findings[j] ?? []);
 
   return (
     <Dashboard
@@ -127,6 +128,7 @@ export default async function AddressPage(props: PageProps<"/a/[id]">) {
       fallback={data.meta.default_as_of}
       retrieved={data.meta.retrieved_at}
       simulation={simulation}
+      findings={findings}
       rail={{
         map: <PinMap frame={frame} pinId={address.address_id} label={address.street} />,
         where: <Where a={address} />,

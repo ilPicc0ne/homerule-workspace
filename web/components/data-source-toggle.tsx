@@ -6,7 +6,7 @@ import { DATA_SOURCE, DATA_SOURCE_LABEL, type DataSource } from "@/lib/config";
 */
 const HINT: Record<DataSource, string> = {
   demo: "Demo data: hand-prepared from the challenge brief",
-  live: "Live data arrives with the rule engine",
+  live: "Live: rules read from the law, results computed by the rule engine",
 };
 
 export default function DataSourceToggle() {

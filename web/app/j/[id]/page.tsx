@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import LiveUnavailable from "@/components/live-unavailable";
+import SourceTag from "@/components/source-tag";
 import { ancestry, childrenOf, getDataset, jurisdictionById, jurisdictions } from "@/lib/data";
 import type { Jurisdiction } from "@/lib/types";
 import RulesByQuestion from "./rules-by-question";
@@ -55,7 +56,7 @@ export default async function JurisdictionPage(props: PageProps<"/j/[id]">) {
         <p className="page-sub">
           {LEVEL_SUB[j.level]}
           {j.aliases.length > 0 && j.level === "city" ? `. Includes ${j.aliases.filter((a) => a.length > 3).slice(0, 6).join(", ")}` : ""}{" "}
-          <span className="tag tag-demo">Demo data</span>
+          <SourceTag />
         </p>
 
         {j.level === "county" && (
