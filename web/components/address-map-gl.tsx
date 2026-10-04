@@ -3,11 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { FOOTPRINT_ATTRIBUTION, pinPoint } from "@/lib/map-view";
+import type { Footprint } from "@/lib/footprint";
 
 /* Real base map: MapLibre GL + OpenFreeMap vector tiles (Positron, no key). */
 
 const STYLE = "https://tiles.openfreemap.org/styles/positron";
 const ACCENT = "#2B3B4E";
+const BLDG = "#0f766e";
 
 // Worker files are copied to /public/maplibre by scripts/copy-maplibre-worker.mjs.
 maplibregl.setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
@@ -19,6 +22,8 @@ export type MapProps = {
   outline: GeoJSON.Feature | null;
   caption: string;
   label: string;
+  /** OSM building outline matched to the address (sample addresses only); null/absent → pin on the geocode. */
+  footprint?: Footprint | null;
 };
 
 type Ring = number[][];
@@ -34,20 +39,22 @@ function outlineBounds(outline: GeoJSON.Feature): maplibregl.LngLatBounds {
 
 function useMap(
   container: React.RefObject<HTMLDivElement | null>,
-  { coords, outline }: Pick<MapProps, "coords" | "outline">,
+  { coords: geocode, outline, footprint }: Pick<MapProps, "coords" | "outline" | "footprint">,
   interactive: boolean,
   active: boolean,
 ) {
   useEffect(() => {
     const el = container.current;
     if (!el || !active) return;
+    // With a building outline, the pin goes on the building, not on the street-interpolated geocode.
+    const coords = pinPoint(geocode, footprint);
     const map = new maplibregl.Map({
       container: el,
       style: STYLE,
       center: coords ? [coords.lon, coords.lat] : [-98, 39],
       zoom: coords ? 13 : 3,
       interactive,
-      attributionControl: { compact: false },
+      attributionControl: { compact: false, customAttribution: footprint ? FOOTPRINT_ATTRIBUTION : undefined },
       cooperativeGestures: false,
     });
     if (interactive) map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
@@ -63,13 +70,22 @@ function useMap(
           paint: { "line-color": ACCENT, "line-width": 2, "line-opacity": 0.85 },
         });
       }
+      if (footprint) {
+        map.addSource("bldg", {
+          type: "geojson",
+          data: { type: "Feature", properties: {}, geometry: { type: "Polygon", coordinates: [footprint.ring] } },
+        });
+        map.addLayer({ id: "bldg-fill", type: "fill", source: "bldg", paint: { "fill-color": BLDG, "fill-opacity": 0.25 } });
+        map.addLayer({ id: "bldg-line", type: "line", source: "bldg", paint: { "line-color": BLDG, "line-width": 2 } });
+      }
     });
     if (coords) new maplibregl.Marker({ color: ACCENT }).setLngLat([coords.lon, coords.lat]).addTo(map);
 
     // Frame: the building at neighbourhood zoom, so a part of the city line shows nearby.
     // Without a pin, the whole (land-only) city outline.
     if (coords) {
-      map.jumpTo({ center: [coords.lon, coords.lat], zoom: interactive ? 12.5 : 11.8 });
+      // The enlarged map opens close enough to see the building outline when we have one.
+      map.jumpTo({ center: [coords.lon, coords.lat], zoom: interactive ? (footprint ? 16 : 12.5) : 11.8 });
     } else if (outline) {
       map.fitBounds(outlineBounds(outline), { padding: interactive ? 40 : 16, animate: false });
     }
@@ -83,7 +99,7 @@ function useMap(
       ro.disconnect();
       map.remove();
     };
-  }, [container, coords, outline, interactive, active]);
+  }, [container, geocode, outline, footprint, interactive, active]);
 }
 
 export default function AddressMapGL(props: MapProps) {

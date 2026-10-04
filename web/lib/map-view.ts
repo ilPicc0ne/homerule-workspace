@@ -1,10 +1,35 @@
 /* Map · 3D switch on the address page: which view opens, and the 3D camera path.
    Pure functions (no DOM, no Google), so the logic is testable with node --test. */
 
+import { ringCentroid, type Footprint } from "./footprint.ts";
+
 export type MapView = "map" | "3d";
 
-/** The view a first-time visitor sees. Flip to "3d" to make the Google 3D view the default. */
-export const DEFAULT_MAP_VIEW: MapView = "map";
+/** "3d" only when the setting says exactly that; anything else is the MapLibre map. */
+export function parseMapView(v: string | null | undefined): MapView {
+  return v === "3d" ? "3d" : "map";
+}
+
+/**
+ * The view a first-time visitor sees: the `NEXT_PUBLIC_DEFAULT_MAP_VIEW` setting ("map" | "3d",
+ * inlined at build time), else "map". A visitor's own choice and `?map=` still win.
+ */
+export const DEFAULT_MAP_VIEW: MapView = parseMapView(process.env.NEXT_PUBLIC_DEFAULT_MAP_VIEW);
+
+/** Shown wherever an OSM building outline is drawn. */
+export const FOOTPRINT_ATTRIBUTION = "Building outline © OpenStreetMap contributors";
+
+/** Where the pin goes: the building's centroid when we have its outline, else the geocode. */
+export function pinPoint(
+  geocode: { lon: number; lat: number } | null,
+  footprint: Footprint | null | undefined,
+): { lon: number; lat: number } | null {
+  if (footprint && footprint.ring.length >= 4) {
+    const [lon, lat] = ringCentroid(footprint.ring);
+    return { lon, lat };
+  }
+  return geocode;
+}
 
 /** localStorage key for the visitor's last choice. */
 export const MAP_VIEW_STORAGE_KEY = "homerule.mapView";
@@ -41,9 +66,9 @@ export type Camera = {
 
 const M_PER_DEG_LAT = 111_320;
 
-/** Final shot: the building from ~250 m at 60° tilt. */
+/** Final shot: the building from ~300 m at 50° tilt (steep enough that its roof isn't hidden by the next row). */
 export function buildingCamera(coords: { lon: number; lat: number }): Camera {
-  return { center: { lat: coords.lat, lng: coords.lon, altitude: 0 }, range: 250, tilt: 60, heading: 0 };
+  return { center: { lat: coords.lat, lng: coords.lon, altitude: 0 }, range: 300, tilt: 50, heading: 0 };
 }
 
 /**

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { importLibrary, setOptions } from "@googlemaps/js-api-loader";
 import type { MapProps } from "./address-map-gl";
-import { MAP3D_TIMEOUT_MS, buildingCamera, cityCamera, outerRings } from "@/lib/map-view";
+import { FOOTPRINT_ATTRIBUTION, MAP3D_TIMEOUT_MS, buildingCamera, cityCamera, outerRings, pinPoint } from "@/lib/map-view";
 
 /* Google Maps JavaScript 3D view (Map3DElement). Loaded only after the visitor picks "3D":
    this module and the Google script are fetched on first switch, never on page load.
@@ -13,6 +13,9 @@ import { MAP3D_TIMEOUT_MS, buildingCamera, cityCamera, outerRings } from "@/lib/
 const KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
 const STROKE = "#0f766e";
 const FILL = "rgba(15, 118, 110, 0.10)";
+const BLDG_FILL = "rgba(20, 184, 166, 0.6)";
+/** With a building outline drawn, also show the pin above it (false: the outline alone marks it). */
+const PIN_WITH_FOOTPRINT = false;
 const FLY_MS = 4000;
 const ORBIT_MS = 24000;
 
@@ -33,7 +36,7 @@ function timeout<T>(p: Promise<T>, ms: number): Promise<T> {
 
 export type Map3DProps = MapProps & { onFail: (reason: string) => void };
 
-export default function AddressMap3D({ coords, outline, caption, label, onFail }: Map3DProps) {
+export default function AddressMap3D({ coords: geocode, outline, footprint, caption, label, onFail }: Map3DProps) {
   const host = useRef<HTMLDivElement>(null);
   const failRef = useRef(onFail);
   useEffect(() => {
@@ -53,6 +56,7 @@ export default function AddressMap3D({ coords, outline, caption, label, onFail }
     if (!KEY) return fail("no key");
     if (!hasWebGL()) return fail("no WebGL");
 
+    const coords = pinPoint(geocode, footprint);
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const rings = outerRings(outline?.geometry as never);
     const end = coords ? buildingCamera(coords) : null;
@@ -109,9 +113,24 @@ export default function AddressMap3D({ coords, outline, caption, label, onFail }
         poly.path = ring.map(([lng, lat]) => ({ lat, lng }));
         map.append(poly);
       }
-      if (coords) {
+      if (footprint) {
+        // The building itself: its OSM outline extruded to its height, visible through other buildings.
+        // A few metres above the OSM height so the roof cap clears Google's own building mesh.
+        const h = footprint.height_m + 3;
+        const bldg = new Polygon3DElement({
+          strokeColor: STROKE,
+          strokeWidth: 4,
+          fillColor: BLDG_FILL,
+          altitudeMode: "RELATIVE_TO_GROUND",
+          extruded: true,
+          drawsOccludedSegments: true,
+        });
+        bldg.path = footprint.ring.map(([lng, lat]) => ({ lat, lng, altitude: h }));
+        map.append(bldg);
+      }
+      if (coords && (!footprint || PIN_WITH_FOOTPRINT)) {
         const pin = new Marker3DElement({
-          position: { lat: coords.lat, lng: coords.lon, altitude: 30 },
+          position: { lat: coords.lat, lng: coords.lon, altitude: (footprint?.height_m ?? 0) + 30 },
           altitudeMode: "RELATIVE_TO_GROUND",
           extruded: true,
           label,
@@ -156,15 +175,16 @@ export default function AddressMap3D({ coords, outline, caption, label, onFail }
       } catch {}
       map?.remove();
     };
-  }, [coords, outline, label]);
+  }, [geocode, outline, footprint, label]);
 
-  const where = coords ? `3D map: ${label}. ${caption}.` : `3D map of city limits. ${caption}.`;
+  const where = geocode ? `3D map: ${label}. ${caption}.` : `3D map of city limits. ${caption}.`;
   return (
     <figure className="addr-map-figure">
       <div ref={host} className="addr-map addr-map-3d" role="img" aria-label={where} />
       <figcaption className="map-caption">
         <strong>{caption}</strong>
-        {!coords && <> · no pin: the geocoder found no location for this address</>}
+        {!geocode && <> · no pin: the geocoder found no location for this address</>}
+        {footprint && <span className="map-osm-attr">{FOOTPRINT_ATTRIBUTION}</span>}
       </figcaption>
     </figure>
   );

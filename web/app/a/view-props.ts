@@ -3,7 +3,7 @@ import { ancestry, getDataset, jurisdictionById } from "@/lib/data";
 import { buildAddressView } from "@/lib/address-view";
 import { changes } from "@/lib/changes/data.ts";
 import { builtYear, unitsText } from "@/lib/format";
-import { cityOutline, mapCaption } from "@/lib/outlines";
+import { buildingFootprint, cityOutline, mapCaption } from "@/lib/outlines";
 import type { Address, Dataset, Result, Rule } from "@/lib/types";
 import type { PageProps as ViewProps } from "./[id]/address-page";
 
@@ -63,7 +63,13 @@ export function viewProps(data: Dataset, address: Address, results: Result[], ex
     id: address.address_id,
     view,
     hero: { crumb, cap, capSub, facts, factSrc, state: address.state_code },
-    map: { coords: address.coords, outline, caption: mapCap, label: address.street },
+    map: {
+      coords: address.coords,
+      outline,
+      caption: mapCap,
+      label: address.street,
+      footprint: extra?.typed ? null : buildingFootprint(address.address_id),
+    },
     index: searchIndex(data),
     typed: !!extra?.typed,
     changeLog: extra?.typed ? null : changeLogFor(address.address_id),
