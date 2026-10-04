@@ -86,6 +86,8 @@ Bonus the guide offers: show its four open legal questions (e.g. Berkeley's ban 
 
 ## Priorities and feature status
 
+Architecture and the pipeline rows noted below were checked against `fcff56b` on 04.10.2026; older live-site observations retain their original timestamps. See [implementation boundaries](ARCHITECTURE.md#implementation-boundaries) for unmerged work.
+
 This is the project's feature list; each build updates its status in the same commit. Statuses: built · partial · experimental · WIP (branch/PR) · planned · idea · not specified.
 
 **No feature without asking first.** Nobody (person or agent) builds a feature that isn't in this table or its issue. A new idea goes into the table as `idea` and gets agreed before any code.
@@ -96,13 +98,13 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 
 | Prio | Feature | Owner | Status · evidence |
 |---|---|---|---|
-| P0 | Extraction → `out/rules.json` + `out/rules.compiled.json` | D | built (#30, #31, #35, #40, #46, #51): 58 rules in `out/rules.json`, quotes verbatim, `make eval`, audit trail `out/audit.json`; Santa Ana has no text in the corpus (a finding). Brief-named rule count and T1–T5 as reported by `make eval`, not re-run for this check |
-| P0 | Stable extraction: three samples + majority vote, `make check` | D | WIP (PR #53) |
-| P0 | Prompt lint + freeze (`make freeze`, `extract/PROMPTS.lock`) | D | partial (#35): lint and lock built, but the current prompt digest does **not** match the lock (`extract.prompts.status()` → `matches_lock: False`); re-freeze or explain before hour 16 |
+| P0 | Extraction → `out/rules.json` + `out/rules.compiled.json` | D | built (#30, #31, #35, #40, #46, #51): 54 scored rules in `out/rules.json` at `fcff56b`, quotes verbatim, `make eval`, audit trail `out/audit.json`; Santa Ana has no text in the corpus (a finding). Brief-named rule count and T1–T5 as reported by `make eval`, not re-run for this check |
+| P0 | Stable extraction: three samples + majority vote, `make check` | D | built (merged #53): `Makefile`, `extract/vote.py`; three extraction/gate samples, majority selection and `out/vote.json` |
+| P0 | Prompt lint + freeze (`make freeze`, `extract/PROMPTS.lock`) | D | built (#35, later prompt updates through #106): lint, vocabulary-drift check and committed lock; run `python -m extract.prompts` before hour 16 to verify the current digest. The earlier mismatch observation is historical, not a current check |
 | P0 | Jurisdiction list + address resolution (Census geocoder, offline cache) | S | built (#29): `make resolve`, 500/500, `out/addresses.resolved.json` |
 | P0 | Engine → `outputs/lookups.json`, `outputs/changes.json`, `out/lookups.full.json` | S | built (#36, #40, #47): `make build`, all 500 addresses, T1–T5 in `outputs/changes.json` (T6 needs the hour-16 document), J1–J3 + Dorchester as tests (`tests/test_engine.py`) |
-| P0 | Per-address diff (I6) → `out/changes.full.json` | S | built (#45): `engine/diff.py`; two as-of sources today (`asof:2025-12-31..2026-01-02`, `asof:2026-10-01..2027-07-02`), 390 addresses with an entry; `tests/test_diff.py` checks agreement with `changes.json` |
-| P0 | `outputs/` holds the three scored files | S | partial: `outputs/` has `lookups.json` and `changes.json`; `rules.json` is only in `out/` so far (submission checklist step) |
+| P0 | Per-address diff (I6) → `out/changes.full.json` | S | built (#45, #113, #119): `engine/diff.py`; 9 as-of sources including rule start and end dates, 390 addresses with an entry, 1,514 changes at `fcff56b`; per-change verdict, `rating` (positive / neutral / negative) and why; `tests/test_diff.py` checks agreement with `changes.json` |
+| P0 | `outputs/` holds the three scored files | S | built (#110): all three committed; `outputs/rules.json` matches `out/rules.json`. The release copy remains explicit after a build on main |
 | P0 | Hour-16 ingest in one command | D | built (#30): `make ingest`, `make rehearse`, `make rerun` |
 | P0 | Demo change for beat 6: `make demo-change` (fictional X001 ingest → before/after → diff → web sync) | S | partial (#45): built, never run; X001 extraction needs `OPENROUTER_API_KEY` or a warm `build/cache`, so `out/changes.full.json` has no `ingest:` source yet |
 | P0 | Live data sync: `npm run sync` copies contracts + `out/` into `web/` and builds `web/data/live/` (rules, findings, per-address results, quote excerpts ±320 chars), drift test | S | built (#41/#50, #54): `web/scripts/sync-contracts.ts`, `web/scripts/build-live.ts`, `web/tests/contracts-sync.test.ts`; header shows "Live" (one build = one source via `NEXT_PUBLIC_DATA_SOURCE`, the "Demo data" option is shown disabled) |
@@ -112,9 +114,20 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 | P1 | Renter-protection score: impact per rule, one score with per-topic breakdown | D | built (#59): `renter_impact` per rule and per change (verdict better / worse / unchanged / unclear, `rating` positive / neutral / negative, `why`, `decided_by`); per address and date `change_from_previous.rating` (no weights: only which way the topics that surely moved went), `out/scores.json` per address / city / state and date with per-topic levels and "what would settle this"; display: S, the three-way rating only (no 0-100 number or per-topic weights on the page; Silvan 04.10.) |
 | P1 | Change verdict on the page, change log and email: ↑ "adds renter protection" / ↓ "narrows" / grey "depends on a fact we don't have", from the diff's `renter_impact` (#72), and protections ending ("Ends: …" in the history, sunset sources in the diff, `effective_until` in rules and API, #71 + #77) | S | built (PR "Verdicts: #71 + #72 + #77 on #110"): `PAGE_BADGES` on; verdicts after rebuild 270 better · 28 worse · 838 unchanged · 98 unclear; Hoff St A0050 "Ends Jan 1, 2030" ↓, Newark FAIR Act ↑. Before production: Silvan's 15-badge hand check (`node web/scripts/verdict-split.ts`) |
 | P1 | Extra data: next useful building fact + public evidence pilot | D | WIP (draft PR #68) |
-| P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-to-extend-coverage-p1-checked-04102026)) | D | planned (only TIGER/Line places used, for the map outline) |
+| P1 | Official-source monitoring: discover law updates, preserve versions, extract changes and preview affected addresses | D | built, on `main` ([#60](https://github.com/ilPicc0ne/homerule-workspace/issues/60), [PR #75](https://github.com/ilPicc0ne/homerule-workspace/pull/75)): Newark prototype run by hand, review before publication; no scheduler, not deployed, not part of the scored outputs. See [Keeping the law data fresh](#keeping-the-law-data-fresh-issue-60) |
+| P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-and-remaining-expansion)) | D | partial: approved supplemental law feeds extraction; additional building records and planner implemented in draft #68, not promoted to I3. Map assets are separate; see architecture |
 
-| P1 | Proactive source monitoring: approved official routes, new-document discovery, version snapshots, isolated extraction, before/after address-impact previews and effective-date checks; no automatic legal promotion or emails | D | built, on `main` (#75, issue #60): Newark prototype on its legislative records, run by hand (`monitor/README.md`); candidate previews require review; no scheduler, not deployed, not part of the scored outputs |
+### Keeping the law data fresh (issue #60)
+
+The official-source monitor checks for new and revised housing-law documents so HomeRule can detect changes after the initial corpus was collected. **On `main` since [PR #75](https://github.com/ilPicc0ne/homerule-workspace/pull/75): a Newark prototype run by hand; not scheduled or deployed.**
+
+1. **Check approved sources.** The current live-source pilot polls Newark's documented Legistar API every six hours while the worker is running. It revisits six known rent-control matters and discovers housing-related titles. This is bounded discovery, not complete coverage of Newark or all ten cities. Additional official text, HTML and embedded-text PDF routes can use the document adapter after source review.
+2. **Preserve evidence and detect changes.** Keep immutable source snapshots and retrieval details, compare document versions, and queue new or changed text. Unchanged responses do not trigger extraction. Failed fetches and incomplete discovery stay visible in the report; old evidence is retained.
+3. **Extract and preview the impact.** With extraction enabled, run the existing Jev/Luna pipeline on each changed whole document, check its supporting quotes, and evaluate candidate before/after rules across the 500 sample addresses. Show changed answers and coverage, including future effective and end dates. Also check accepted rules for date-driven changes without needing a new source publication.
+4. **Review before publishing.** Candidate impacts require review and promotion through the existing corpus/build pipeline before reaching the site or alerts. A changed page is not proof that a law took effect; a missing provision is not proof of repeal. Keep discovery, publisher modification and legal effective dates separate. The monitor itself does not overwrite accepted rules or scored outputs, or send emails.
+
+**Operation:** `make monitor` runs one bounded poll; `make monitor EXTRACT=1` also processes queued changes; `make monitor-watch EXTRACT=1` keeps the foreground worker running; `make monitor-report` opens access to its local report. No scheduler is installed automatically. Deploying an ongoing worker and adding reviewed sources are remaining rollout steps. Requests respect reviewed source routes, robots rules, rate limits and retry delays. Details: [monitor/README.md](../monitor/README.md).
+
 
 ### Site (live at yourhomerule.com)
 
