@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fixtureFetch, repoRoot } from "./helpers.ts";
-import { coverage, findPlace, getRules, type ToolAnswer, type ToolDeps } from "../lib/mcp/tools.ts";
+import { coverage, findPlace, getRules, HOW_TO_PRESENT, INSTRUCTIONS, type ToolAnswer, type ToolDeps } from "../lib/mcp/tools.ts";
 import { sampleIndex } from "../lib/resolve/samples.ts";
 import type { Dataset } from "../lib/types.ts";
 
@@ -78,6 +78,49 @@ test("get_rules by address_id: the same results as /api/address/[id], with link"
   );
   assert.ok(results.some((r) => r.rule_id === "CA-SAN-FRANCISCO-RENT-37.3" && r.result === "applies"));
   assert.equal(a.payload.link, "https://yourhomerule.com/a/A0016");
+});
+
+type ContactOut = { category: string; topic: string; name: string; phone: string | null; url: string; checked: boolean; check_note?: string; source_url: string };
+
+test("get_rules by address_id: per-topic contacts as on the address page, also in the text summary", () => {
+  const a = getRules(deps(), { address_id: "A0016" });
+  assertEnvelope(a);
+  assert.match(a.summary, /Not legal advice\.$/);
+  const contacts = a.payload.contacts as ContactOut[];
+  const rent = contacts.find((c) => c.category === "rent_increase_limits");
+  assert.ok(rent, "SF rent topic has a contact");
+  assert.equal(rent.name, "San Francisco Rent Board");
+  assert.equal(rent.checked, false);
+  assert.match(String(rent.check_note), /not yet checked by us/);
+  assert.match(rent.source_url, /^https:\/\//);
+  // Only topics in the answer, each once.
+  const cats = new Set((a.payload.results as { rule_id: string }[]).map((r) => data.rules.find((x) => x.rule_id === r.rule_id)!.category));
+  assert.deepEqual(new Set(contacts.map((c) => c.category)), cats);
+  assert.match(a.summary, /To confirm before acting, ask: .*San Francisco Rent Board/);
+  assert.match(a.summary, /not yet checked by us/);
+});
+
+test("get_rules by jurisdiction carries contacts too; state-only answers use state contacts", () => {
+  const sf = getRules(deps(), { jurisdiction_id: "CA-SAN-FRANCISCO" });
+  assert.equal((sf.payload.contacts as ContactOut[]).find((c) => c.category === "rent_increase_limits")?.name, "San Francisco Rent Board");
+  const ca = getRules(deps(), { jurisdiction_id: "CA" });
+  assertEnvelope(ca);
+  const names = new Set((ca.payload.contacts as ContactOut[]).map((c) => c.name));
+  assert.ok(!names.has("San Francisco Rent Board"));
+  assert.match(ca.summary, /To confirm before acting, ask:/);
+});
+
+test("instructions: end with not legal advice, point to the topic contact, no ranking, old rules kept", () => {
+  for (const t of [HOW_TO_PRESENT, INSTRUCTIONS]) {
+    assert.match(t, /End every answer with: 'Not legal advice\.'/);
+    assert.match(t, /confirm with the contact HomeRule returns for that topic/);
+    assert.match(t, /not yet checked, say so/);
+    assert.match(t, /Don't rank places or say one is better protected; report each address's rules side by side/);
+    assert.match(t, /Quote the law and give its date/);
+    assert.match(t, /never say compliant or illegal/);
+    assert.match(t, /compare the user's own numbers/);
+  }
+  assert.match(INSTRUCTIONS, /never fill a gap from memory/);
 });
 
 test("get_rules by address_id names the missing facts when a result is unknown", () => {
