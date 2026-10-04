@@ -13,3 +13,4 @@ contracts/
 Makefile
 AGENTS.md
 CLAUDE.md
+scoreboard/

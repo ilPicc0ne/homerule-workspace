@@ -39,7 +39,7 @@ Model calls are cached by request hash (`build/cache/`), so a rerun of `make ext
 | `gate.py` | Verification gate G1-G4 |
 | `open_questions.py` | The guide's known open questions (starter README) → `open_question` findings: our rule and source next to each competing claim, the claim's source matched to a manifest row by Jev. A law that two sources give effective dates for counts as adopted (the later date applies) |
 | `links.py` | One Jev call over link-only manifest rows → `out/link_findings.json` (failed measures, bans with no corpus text) |
-| `compile.py` | `out/rules.compiled.json` (all rules), `out/rules.json` (the scored file: every rule with a verbatim quote, from the starter corpus, cleared supplemental sources or an ingested document), `out/findings.json`. Effective dates with no date in the text use the statutory default: California statutes January 1 after enactment, New Jersey municipal ordinances 20 days after final passage |
+| `compile.py` | `out/rules.compiled.json` (all rules; other headline provisions under the same citation as `details`), `out/rules.json` (the scored file: every rule with a verbatim quote, from the starter corpus, cleared supplemental sources or an ingested document), `out/findings.json`. Effective dates with no date in the text use the statutory default: California statutes January 1 after enactment, New Jersey municipal ordinances 20 days after final passage |
 | `changes.py` | `changes.json` in the guide's shape from the same evaluation as the lookups |
 | `ingest.py` | Hour-16 ingest |
 | `llm.py` | OpenRouter client with cache and audit log |

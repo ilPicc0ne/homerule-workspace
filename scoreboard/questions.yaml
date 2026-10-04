@@ -1,0 +1,191 @@
+# Chatbot scoreboard question set (issue #20). Written 04.10.2026 before either chatbot was run; never edited
+# after seeing an answer. Questions: the six card questions of the address page (docs/PRD.md, "The six
+# questions"), asked for a city on a date. Answer key from the challenge's own material only: participant guide
+# (data/realpage-starter/README.md §7, §9), dev/change_tests.json, and the brief's rule table as encoded in
+# tests/fixtures/assertions.yaml. Not from HomeRule's outputs.
+#
+# key.correct: what an answer must say to count as correct (status on that date, and the deciding facts).
+# key.wrong:   statements that make an answer wrong regardless of the rest.
+# Grading: Jev, blind to which chatbot answered, against this key: correct / partly / wrong.
+# Changes after the first run are listed per question under key_correction and apply to every arm.
+
+- id: R1-boston-rent
+  city: "Boston, MA"
+  as_of: "2026-10-01"
+  card: "How much can my rent go up?"
+  key:
+    correct: "There is no rent cap or rent control in Boston. State law bars local rent control, and the 2026 statewide rent-control ballot question was struck before the vote, so no cap applies."
+    wrong: "States or implies that a rent cap or rent control limit applies in Boston (e.g. a percentage cap from the ballot question)."
+  source: "guide §7 T5 (struck 2026-06-23); brief: state law bars local rent control (assertions A04, A27)"
+
+- id: R2-cambridge-rent
+  city: "Cambridge, MA"
+  as_of: "2026-10-01"
+  card: "How much can my rent go up?"
+  key:
+    correct: "There is no rent cap or rent control in Cambridge. State law bars local rent control, and the 2026 ballot question was struck."
+    wrong: "States or implies that a rent cap or rent control limit applies in Cambridge."
+  source: "guide §7 T5; assertions A04, A27"
+
+- id: R3-sf-rent
+  city: "San Francisco, CA"
+  as_of: "2026-10-01"
+  card: "How much can my rent go up?"
+  key:
+    correct: "It depends on the building. The San Francisco Rent Ordinance limits annual increases for covered units (mostly buildings first occupied before mid-1979); for units it doesn't cover, California's statewide cap (Civil Code 1947.12: 5% plus inflation, at most 10% a year) applies to buildings older than 15 years, with exemptions."
+    wrong: "Says there is no limit at all, or gives one number for every San Francisco unit without saying it depends on the building."
+  source: "assertions A01 (CA 1947.12), A02 (SF Rent Ordinance); PRD jurisdiction page example (certificate of occupancy before 13.06.1979)"
+
+- id: R4-sd-rent
+  city: "San Diego, CA"
+  as_of: "2026-10-01"
+  card: "How much can my rent go up?"
+  key:
+    correct: "San Diego has no local rent control. California's statewide cap (Civil Code 1947.12: 5% plus inflation, at most 10% a year) applies to most buildings older than 15 years, with exemptions (e.g. some single-family homes)."
+    wrong: "Says San Diego has its own local rent control ordinance, or that no limit applies to any unit."
+  source: "assertions A01; brief: San Diego's local law in scope is the algorithmic ban"
+
+- id: E1-sf-eviction
+  city: "San Francisco, CA"
+  as_of: "2026-10-01"
+  card: "When can they end my tenancy?"
+  key:
+    correct: "Only for a just cause listed in the San Francisco Rent Ordinance (Admin. Code 37.9) for covered units, with notice and relocation payments for no-fault evictions; California's statewide just-cause law (Civil Code 1946.2) covers most other tenancies after 12 months."
+    wrong: "Says a landlord can end a tenancy without cause in San Francisco."
+  source: "assertions A05, A07"
+
+- id: E2-newark-eviction
+  city: "Newark, NJ"
+  as_of: "2026-10-01"
+  card: "When can they end my tenancy?"
+  key:
+    correct: "Only for one of the good causes listed in New Jersey's Anti-Eviction Act (N.J.S.A. 2A:18-61.1), which applies statewide to most residential tenancies, with notice requirements."
+    wrong: "Says a landlord can end a tenancy without cause, e.g. simply by not renewing the lease."
+  source: "assertion A06"
+
+- id: D1-sd-deposit
+  city: "San Diego, CA"
+  as_of: "2026-10-01"
+  card: "How much deposit can they ask?"
+  key:
+    correct: "At most one month's rent (California Civil Code 1950.5 as amended by AB 12, in effect since 1 July 2024), with an exception allowing two months for certain small landlords."
+    wrong: "Gives two or three months' rent as the general limit (the pre-July 2024 rule)."
+  source: "assertion A08 (AB 12, eff. 2024-07-01)"
+
+- id: D2-newark-deposit
+  city: "Newark, NJ"
+  as_of: "2026-10-01"
+  card: "How much deposit can they ask?"
+  key:
+    correct: "At most one and a half months' rent (N.J.S.A. 46:8-21.2)."
+    wrong: "Gives a different general maximum (e.g. one month or two months)."
+  source: "assertion A09"
+
+- id: D3-cambridge-deposit
+  city: "Cambridge, MA"
+  as_of: "2026-10-01"
+  card: "How much deposit can they ask?"
+  key:
+    correct: "At most the first month's rent (Massachusetts G.L. c.186 §15B)."
+    wrong: "Gives a higher general maximum."
+  source: "assertion A10"
+
+- id: F1-jc-fee-before
+  city: "Jersey City, NJ"
+  as_of: "2026-04-30"
+  card: "What can they charge me to apply?"
+  key:
+    correct: "On 30 April 2026 New Jersey's $50 cap on rental application fees (P.L.2025, c.405) is not yet in effect; it takes effect on 1 May 2026."
+    wrong: "Says the $50 cap already applies on 30 April 2026, or does not know of the cap at all."
+  source: "assertion A12 (eff. 2026-05-01)"
+
+- id: F2-hoboken-fee
+  city: "Hoboken, NJ"
+  as_of: "2026-10-01"
+  card: "What can they charge me to apply?"
+  key:
+    correct: "New Jersey caps rental application fees at $50 (P.L.2025, c.405, in effect since 1 May 2026)."
+    wrong: "Says there is no limit on application fees in New Jersey."
+  source: "assertion A12"
+
+- id: F3-boston-fee
+  city: "Boston, MA"
+  as_of: "2026-10-01"
+  card: "What can they charge me to apply?"
+  key:
+    correct: "Under G.L. c.186 §15B a landlord may charge at the start of a tenancy only first month's rent, last month's rent, a security deposit (at most one month) and the cost of a new lock; an application fee is not among them. Since 1 August 2025 the landlord's broker fee is paid by whoever hired the broker."
+    wrong: "Says a landlord may charge an application fee of some amount in Massachusetts."
+  source: "assertions A13 (upfront charges), A14 (broker fee, 2025-08-01)"
+
+- id: S1-jc-screening
+  city: "Jersey City, NJ"
+  as_of: "2026-10-01"
+  card: "What can they check about me?"
+  key:
+    correct: "New Jersey's Fair Chance in Housing Act (2021) bars asking about criminal history on the initial application; a landlord may check it only after a conditional offer, within limits on which offenses and how far back."
+    wrong: "Says a landlord may ask about or screen out any criminal record at any point."
+  source: "assertion A15"
+
+- id: S2-la-screening
+  city: "Los Angeles, CA"
+  as_of: "2026-10-01"
+  card: "What can they check about me?"
+  key:
+    correct: "California's fair housing law (FEHA, Gov. Code 12955) bars discrimination by source of income, including housing vouchers such as Section 8 (SB 329), so a landlord can't refuse an applicant for paying with a voucher."
+    wrong: "Says a landlord may refuse Section 8 or other voucher holders."
+  source: "assertion A16"
+
+- id: A1-la-alg-before
+  city: "Los Angeles, CA"
+  as_of: "2025-12-31"
+  card: "Can rent-setting software be used on my rent?"
+  key:
+    correct: "On 31 December 2025 California's ban on common pricing algorithms (AB 325, Cartwright Act) is enacted but not yet in effect; it takes effect on 1 January 2026."
+    wrong: "Says the statewide ban already applies on 31 December 2025, or that no such law exists."
+  source: "guide §7 T1; assertion A17"
+
+- id: A2-la-alg-after
+  city: "Los Angeles, CA"
+  as_of: "2026-01-02"
+  card: "Can rent-setting software be used on my rent?"
+  key:
+    correct: "Since 1 January 2026 California law (AB 325, Cartwright Act Bus. & Prof. Code 16729) makes it unlawful to use or distribute a common pricing algorithm as part of a contract, combination or conspiracy to restrain trade, or to coerce someone into adopting its recommended rent; an answer may say this is not a ban on every use of such software."
+    wrong: "Says there is no law on it in Los Angeles on 2 January 2026, or that it is not yet in effect."
+  source: "guide §7 T1; assertion A17; Bus. & Prof. Code 16729(a)-(b)"
+  key_correction: "Corrected after the first run (04.10.2026): the first key said AB 325 'bans using a common pricing algorithm to set rents', which overstates 16729(a). All arms re-graded against the corrected key."
+
+- id: A3-jc-alg
+  city: "Jersey City, NJ"
+  as_of: "2026-10-01"
+  card: "Can rent-setting software be used on my rent?"
+  key:
+    correct: "Jersey City's own ordinance (2025) bans algorithmic rent-setting and is in force. New Jersey's statewide FAIR Act is enacted but takes effect only on 1 July 2027, and may then preempt the local ordinance."
+    wrong: "Says the FAIR Act is already in effect on 1 October 2026, or that nothing restricts it in Jersey City."
+  source: "guide §7 T2, T3, §9; assertion A22, A24"
+
+- id: A4-newark-alg
+  city: "Newark, NJ"
+  as_of: "2026-10-01"
+  card: "Can rent-setting software be used on my rent?"
+  key:
+    correct: "No ban is in force in Newark on 1 October 2026: Newark has no local ban, and New Jersey's FAIR Act takes effect only on 1 July 2027."
+    wrong: "Says a ban already applies in Newark on 1 October 2026 (the Jersey City or Hoboken ordinances do not reach Newark)."
+  source: "guide §7 T2, T3"
+
+- id: A5-newark-alg-2027
+  city: "Newark, NJ"
+  as_of: "2027-07-02"
+  card: "Can rent-setting software be used on my rent?"
+  key:
+    correct: "Yes, it is restricted: New Jersey's FAIR Act is in effect since 1 July 2027 and applies statewide, including Newark."
+    wrong: "Says no ban applies in Newark on 2 July 2027."
+  source: "guide §7 T3 (enacted 2026-07-20, effective 2027-07-01)"
+
+- id: A6-cambridge-alg
+  city: "Cambridge, MA"
+  as_of: "2026-10-01"
+  card: "Can rent-setting software be used on my rent?"
+  key:
+    correct: "No law bans it in Cambridge on 1 October 2026. Two Massachusetts bills (S.2983 and H.5222) would restrict it but are pending, not enacted."
+    wrong: "Says a Massachusetts or Cambridge ban is in force."
+  source: "guide §7 T4; assertions A25, A26"
