@@ -1,37 +1,47 @@
 # Resume
 
-**Updated:** 2026-10-03T20:00Z
+**Updated:** 2026-10-04T01:15Z
 **Branch:** main
-**Last commit:** c427b24 — No mentor for the challenge: questions go to Discord, D8 dropped
-**Working tree:** clean
+**Last commit:** Wrap-up: address, engine, change-log PRs
+**Working tree:** clean (`.claude/worktrees/` = subagent worktrees, git-ignored)
 
 ## Pick up next
 
-1. Dimitar accepts the invite (github.com/ilPicc0ne/homerule-workspace), clones, copies the starter pack into `data/realpage-starter/` (git-ignored).
-2. M0: calibrate output formats against `schema/` and `submission_templates/` (the participant pack has no score.py, no dev key).
-3. 22:00 spike: extraction baseline, geocoding, freeze the predicate AST schema (see `docs/PRD.md` Technical requirements and `docs/ARCHITECTURE.md`).
-4. Ask in the Discord challenge channel: score.py release, hour-16 time and format, how "unknown" counts, starter-pack licensing for a public repo.
-5. Share the review page https://claude.ai/artifact/ARbRPgGyA4ndhd7LvbztSu with Dimitar as Editor; settle D1–D7 (D7 = renter, tentative).
-6. Sun ~14:00: `scripts/publish.sh`, read the leak check, `--push`, flip `ilPicc0ne/homerule` to public.
+State 04.10. ~03:15. Freeze 12:00, submission 15:00. Open PRs, merge in this order:
+**#30** extraction (Dimitar; approved, must merge main in first) → **#29** address resolver + /where (`s/address-lookup`, worktree `.worktrees/address`) → **#36** engine `make build` (`s/engine`, stacked on #29+#30) → **#45** change log + email preview (`s/changes`, stacked on #36).
+
+1. Merge chain above; after each merge, merge main into the next branch. Then on `main`: `make resolve && make build AS_OF=2026-10-01`, commit `outputs/lookups.json` + `changes.json`. (35 scored points)
+2. `make eval` on main → fix list. Known: H01 Berkeley state cap (superseded vs expected unknown), state-cap counts differ from Dimitar's README — both with Dimitar (#36).
+3. `make demo-change` (J4) needs OPENROUTER_API_KEY or Dimitar's warm build/cache.
+4. #41 data into web/; address page reads `out/lookups.full.json` + I3, not its own demo data (135 rows of facts disagree). Link `/changes/[id]`.
+5. Merging s/demo-site breaks `/where` (icons moved to `components/`): fix the import.
+6. Hour-16 watch (~07:00–11:00), sleep split with Dimitar. 12:00–15:00 submission (#13).
+7. Housekeeping: after merges `git worktree remove` the 4 `.claude/worktrees/agent-*`; `pkill -f "disable-field-trial-config"`; move `../homerule-demo` to `.worktrees/demo`.
 
 ## Open questions
 
-- D1 self-repair loop tier, D2 TypeScript vs Python engine, D3 tagline "Your rights as a renter, for your exact address." (Dimitar may veto), D4 demo hero, D5 MCP, D6 measured contrast.
-- Exact time of the hour-16 ordinance (somewhere 07:00–11:00 CEST?).
+- Hour-16 drop time; score.py / dev key; how unknowns score — context: Discord.
+- Phone numbers in contacts are unverified.
+- Starter-pack licence "TBD by organizers" — context: public repo publishes `out/` intermediates, not `data/`.
 
 ## Recent decisions
 
-- c2 RealPage, product HomeRule — *why:* both funnel runs said yes; fits retrieval/evals + prop-tech; 75% scored by script.
-- Rules as filtered data, not RAG; conflicts flagged, never decided by a model — *why:* deterministic, auditable, avoids legal-advice drift (docs/decisions/0002, 0003).
-- Private workspace + filtered public export (`.publish-paths`, git filter-repo) — *why:* public repo with build history, notes never leak.
+- No feature without asking first (PRD rule) — *why:* scope creep before the freeze.
+- One engine: I3 adapter + CLI around Dimitar's evaluator; dates from compiled `effective.from/until`; month precision → unknown inside the window — *why:* agreed on #30.
+- I3 assumes `subsidised: false` without an affordability code and Boston A/ = 7+ units, tagged per record — *why:* otherwise the APT5 guard is never true (0 → 468 rows).
+- Tree levels: rules in HomeRule · not covered · no rules at this level; `county_law` in I1 (MA counties none, LA County unincorporated only) — *why:* "not covered" mixed missing law with absent law.
+- Autocomplete over own data (500 + places); Google Places = idea (PRD) — *why:* no key/terms/cost for the demo.
+- Subscription store Upstash Redis; one-view renter page (v3); real map MapLibre + TIGER (other session).
 
 ## Surprises / gotchas
 
-- Participant pack lacks score.py and the dev key — *avoid:* rely on the brief-derived assertion suite.
-- Address traps: Boston neighbourhood names as city, ~83 NJ ZIPs are owner mailing ZIPs, San Ysidro = San Diego — *avoid:* neighbourhood table, never geocode NJ ZIPs.
-- No mentor or judge assigned to this challenge — questions go to Discord.
-- Chrome extension timed out twice — *avoid:* do browser tasks by hand.
+- Census fuzzy-matches another city silently ("1 Main St, Los Angeles" → La Selva Beach) — *avoid:* typed-city warning.
+- `npm run resolve` synced contracts after the batch → stale output — *avoid:* sync before and after (fixed).
+- Dimitar's `out/extracted/` + `build/cache` exist only on his machine — *avoid:* engine reads committed `out/rules.compiled.json`.
+- Parallel sessions share one Playwright browser — *avoid:* don't run browser checks in two sessions at once.
+- `vercel install` adds agent skills silently — *avoid:* /vet after marketplace installs.
+- Dimitar pushes to main often — *avoid:* merge main into branches before pushing.
 
 ## Long-form
 
-See `.claude/SESSIONS.md`, `docs/decisions/`, `notes/plan/`, `notes/meetings/`.
+See `.claude/SESSIONS.md`, `docs/PRD.md`, `docs/ARCHITECTURE.md`, `docs/decisions/`.

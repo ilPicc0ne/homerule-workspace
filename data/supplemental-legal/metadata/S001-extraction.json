@@ -1,0 +1,44 @@
+{
+  "source_id": "S001",
+  "raw_path": "raw/S001-jersey-city-25-057.pdf",
+  "text_path": "text/S001.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "4383916e7da48f94e279c76042f61bb4fe4dda17e825c29d414668f7b56a33f8",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 3127,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 2,
+      "start_char": 3130,
+      "end_char": 7065,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 3,
+      "start_char": 7068,
+      "end_char": 9010,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 4,
+      "start_char": 9013,
+      "end_char": 12124,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 5,
+      "start_char": 12127,
+      "end_char": 13414,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    }
+  ]
+}

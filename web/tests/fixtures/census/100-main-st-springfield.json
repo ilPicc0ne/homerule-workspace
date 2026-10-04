@@ -1,0 +1,881 @@
+{
+ "query": "100 Main St, Springfield",
+ "status": 200,
+ "body": {
+  "result": {
+   "input": {
+    "address": {
+     "address": "100 Main St, Springfield"
+    },
+    "vintage": {
+     "isDefault": true,
+     "id": "4",
+     "vintageName": "Current_Current",
+     "vintageDescription": "Current Vintage - Current Benchmark"
+    },
+    "benchmark": {
+     "isDefault": true,
+     "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+     "id": "4",
+     "benchmarkName": "Public_AR_Current"
+    }
+   },
+   "addressMatches": [
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "138123463"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "01779779",
+        "GEOID": "08",
+        "CENTLAT": "+38.9976180",
+        "AREAWATER": 1185174048,
+        "STATE": "08",
+        "BASENAME": "Colorado",
+        "STUSAB": "CO",
+        "OID": "2749086215995",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+38.9937536",
+        "DIVISION": "8",
+        "NAME": "Colorado",
+        "REGION": "4",
+        "OBJECTID": 18,
+        "CENTLON": "-105.5478280",
+        "AREALAND": 268419335627,
+        "INTPTLON": "-105.5087407",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "93477",
+        "GEOID": "0800993477",
+        "CENTLAT": "+37.4344625",
+        "AREAWATER": 4960434,
+        "STATE": "08",
+        "BASENAME": "Springfield",
+        "OID": "27690100104771",
+        "LSADC": "22",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+37.4208335",
+        "NAME": "Springfield CCD",
+        "OBJECTID": 27136,
+        "CENTLON": "-102.6118523",
+        "COUSUBCC": "Z5",
+        "AREALAND": 1326799777,
+        "INTPTLON": "-102.6053111",
+        "MTFCC": "G4040",
+        "COUSUBNS": "01935576",
+        "COUNTY": "009"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 4631201.767274159,
+        "NECTAPCI": "N",
+        "GEOID": "0873330",
+        "CENTLAT": "+37.4049137",
+        "AREAWATER": 0,
+        "BASENAME": "Springfield",
+        "STATE": "08",
+        "OID": "27890100108167",
+        "LSADC": "43",
+        "PLACE": "73330",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+37.4049137",
+        "NAME": "Springfield town",
+        "OBJECTID": 12122,
+        "PLACECC": "C1",
+        "CENTLON": "-102.6188979",
+        "STGEOMETRY_Length": 18756.368681618595,
+        "CBSAPCI": "N",
+        "AREALAND": 2917170,
+        "INTPTLON": "-102.6188979",
+        "PLACENS": "02413324",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "08009",
+        "CENTLAT": "+37.3191050",
+        "AREAWATER": 6142192,
+        "STATE": "08",
+        "BASENAME": "Baca",
+        "OID": "27590100102454",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+37.3097802",
+        "NAME": "Baca County",
+        "OBJECTID": 355,
+        "CENTLON": "-102.5604802",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00198120",
+        "AREALAND": 6617400568,
+        "INTPTLON": "-102.5437412",
+        "MTFCC": "G4020",
+        "COUNTY": "009"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -102.61642983432,
+      "y": 37.41346972508
+     },
+     "addressComponents": {
+      "zip": "81073",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "SPRINGFIELD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "198",
+      "state": "CO",
+      "suffixType": "ST",
+      "toAddress": "100",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, SPRINGFIELD, CO, 81073"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "4024664"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "67000",
+        "GEOID": "2501367000",
+        "CENTLAT": "+42.1155016",
+        "AREAWATER": 3133757,
+        "STATE": "25",
+        "BASENAME": "Springfield",
+        "OID": "27690249177293",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.1154540",
+        "NAME": "Springfield city",
+        "OBJECTID": 3830,
+        "CENTLON": "-072.5395244",
+        "COUSUBCC": "C5",
+        "AREALAND": 82543177,
+        "INTPTLON": "-072.5399783",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619388",
+        "COUNTY": "013"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 3,
+        "STGEOMETRY_Area": 155809849.83497116,
+        "NECTAPCI": "N",
+        "GEOID": "2567000",
+        "CENTLAT": "+42.1155016",
+        "AREAWATER": 3133757,
+        "BASENAME": "Springfield",
+        "STATE": "25",
+        "OID": "27890249188595",
+        "LSADC": "25",
+        "PLACE": "67000",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1154540",
+        "NAME": "Springfield city",
+        "OBJECTID": 31323,
+        "PLACECC": "C5",
+        "CENTLON": "-072.5395244",
+        "STGEOMETRY_Length": 54878.76472966909,
+        "CBSAPCI": "Y",
+        "AREALAND": 82543177,
+        "INTPTLON": "-072.5399783",
+        "PLACENS": "00619388",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25013",
+        "CENTLAT": "+42.1353421",
+        "AREAWATER": 44414591,
+        "STATE": "25",
+        "BASENAME": "Hampden",
+        "OID": "27590249163642",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.1361961",
+        "NAME": "Hampden County",
+        "OBJECTID": 1286,
+        "CENTLON": "-072.6315157",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606933",
+        "AREALAND": 1598038032,
+        "INTPTLON": "-072.6356452",
+        "MTFCC": "G4020",
+        "COUNTY": "013"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.505593954851,
+      "y": 42.159937933515
+     },
+     "addressComponents": {
+      "zip": "01151",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "SPRINGFIELD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "150",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, SPRINGFIELD, MA, 01151"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "4062867"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "00606926",
+        "GEOID": "25",
+        "CENTLAT": "+42.1618490",
+        "AREAWATER": 7130555467,
+        "STATE": "25",
+        "BASENAME": "Massachusetts",
+        "STUSAB": "MA",
+        "OID": "27490203627104",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1565196",
+        "DIVISION": "1",
+        "NAME": "Massachusetts",
+        "REGION": "1",
+        "OBJECTID": 44,
+        "CENTLON": "-071.4975238",
+        "AREALAND": 20204495062,
+        "INTPTLON": "-071.4895915",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "67000",
+        "GEOID": "2501367000",
+        "CENTLAT": "+42.1155016",
+        "AREAWATER": 3133757,
+        "STATE": "25",
+        "BASENAME": "Springfield",
+        "OID": "27690249177293",
+        "LSADC": "25",
+        "FUNCSTAT": "F",
+        "INTPTLAT": "+42.1154540",
+        "NAME": "Springfield city",
+        "OBJECTID": 3830,
+        "CENTLON": "-072.5395244",
+        "COUSUBCC": "C5",
+        "AREALAND": 82543177,
+        "INTPTLON": "-072.5399783",
+        "MTFCC": "G4040",
+        "COUSUBNS": "00619388",
+        "COUNTY": "013"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 3,
+        "STGEOMETRY_Area": 155809849.83497116,
+        "NECTAPCI": "N",
+        "GEOID": "2567000",
+        "CENTLAT": "+42.1155016",
+        "AREAWATER": 3133757,
+        "BASENAME": "Springfield",
+        "STATE": "25",
+        "OID": "27890249188595",
+        "LSADC": "25",
+        "PLACE": "67000",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+42.1154540",
+        "NAME": "Springfield city",
+        "OBJECTID": 31323,
+        "PLACECC": "C5",
+        "CENTLON": "-072.5395244",
+        "STGEOMETRY_Length": 54878.76472966909,
+        "CBSAPCI": "Y",
+        "AREALAND": 82543177,
+        "INTPTLON": "-072.5399783",
+        "PLACENS": "00619388",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "25013",
+        "CENTLAT": "+42.1353421",
+        "AREAWATER": 44414591,
+        "STATE": "25",
+        "BASENAME": "Hampden",
+        "OID": "27590249163642",
+        "LSADC": "06",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+42.1361961",
+        "NAME": "Hampden County",
+        "OBJECTID": 1286,
+        "CENTLON": "-072.6315157",
+        "COUNTYCC": "H4",
+        "COUNTYNS": "00606933",
+        "AREALAND": 1598038032,
+        "INTPTLON": "-072.6356452",
+        "MTFCC": "G4020",
+        "COUNTY": "013"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.57898548405,
+      "y": 42.089532937819
+     },
+     "addressComponents": {
+      "zip": "01105",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "SPRINGFIELD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "2",
+      "state": "MA",
+      "suffixType": "ST",
+      "toAddress": "108",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, SPRINGFIELD, MA, 01105"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "28466701"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "01779792",
+        "GEOID": "31",
+        "CENTLAT": "+41.5381095",
+        "AREAWATER": 1378181126,
+        "STATE": "31",
+        "BASENAME": "Nebraska",
+        "STUSAB": "NE",
+        "OID": "2749072488932",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.5433050",
+        "DIVISION": "4",
+        "NAME": "Nebraska",
+        "REGION": "2",
+        "OBJECTID": 36,
+        "CENTLON": "-099.7949779",
+        "AREALAND": 198950728991,
+        "INTPTLON": "-099.8118641",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "93065",
+        "GEOID": "3115393065",
+        "CENTLAT": "+41.0993599",
+        "AREAWATER": 0,
+        "STATE": "31",
+        "BASENAME": "Springfield",
+        "OID": "27690306492951",
+        "LSADC": "29",
+        "FUNCSTAT": "N",
+        "INTPTLAT": "+41.1072455",
+        "NAME": "Springfield precinct",
+        "OBJECTID": 7814,
+        "CENTLON": "-096.1406899",
+        "COUSUBCC": "Z1",
+        "AREALAND": 4190722,
+        "INTPTLON": "-096.1485390",
+        "MTFCC": "G4040",
+        "COUSUBNS": "01929308",
+        "COUNTY": "153"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 7386552.62527842,
+        "NECTAPCI": "N",
+        "GEOID": "3146520",
+        "CENTLAT": "+41.0993599",
+        "AREAWATER": 0,
+        "BASENAME": "Springfield",
+        "STATE": "31",
+        "OID": "27890306501792",
+        "LSADC": "25",
+        "PLACE": "46520",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.1072455",
+        "NAME": "Springfield city",
+        "OBJECTID": 15561,
+        "PLACECC": "C1",
+        "CENTLON": "-096.1406899",
+        "STGEOMETRY_Length": 21809.924420699648,
+        "CBSAPCI": "N",
+        "AREALAND": 4190722,
+        "INTPTLON": "-096.1485390",
+        "PLACENS": "02395943",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "31153",
+        "CENTLAT": "+41.1129699",
+        "AREAWATER": 24664758,
+        "STATE": "31",
+        "BASENAME": "Sarpy",
+        "OID": "27590306483574",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+41.1150635",
+        "NAME": "Sarpy County",
+        "OBJECTID": 1604,
+        "CENTLON": "-096.1120332",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00835898",
+        "AREALAND": 616429135,
+        "INTPTLON": "-096.1091254",
+        "MTFCC": "G4020",
+        "COUNTY": "153"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -96.134550686475,
+      "y": 41.081851045534
+     },
+     "addressComponents": {
+      "zip": "68059",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "SPRINGFIELD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "NE",
+      "suffixType": "ST",
+      "toAddress": "198",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, SPRINGFIELD, NE, 68059"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "135014546"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "01085497",
+        "GEOID": "39",
+        "CENTLAT": "+40.4097282",
+        "AREAWATER": 10273801409,
+        "STATE": "39",
+        "BASENAME": "Ohio",
+        "STUSAB": "OH",
+        "OID": "2749046634335",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+40.4149297",
+        "DIVISION": "3",
+        "NAME": "Ohio",
+        "REGION": "2",
+        "OBJECTID": 40,
+        "CENTLON": "-082.7168529",
+        "AREALAND": 105824555281,
+        "INTPTLON": "-082.7119975",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "31703",
+        "GEOID": "3902331703",
+        "CENTLAT": "+39.8302927",
+        "AREAWATER": 465775,
+        "STATE": "39",
+        "BASENAME": "Green",
+        "OID": "27690474769475",
+        "LSADC": "44",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+39.8348370",
+        "NAME": "Green township",
+        "OBJECTID": 10894,
+        "CENTLON": "-083.7827000",
+        "COUSUBCC": "T1",
+        "AREALAND": 92088382,
+        "INTPTLON": "-083.7813249",
+        "MTFCC": "G4040",
+        "COUSUBNS": "01085852",
+        "COUNTY": "023"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 2,
+        "STGEOMETRY_Area": 752582.8905537092,
+        "NECTAPCI": "N",
+        "GEOID": "3916056",
+        "CENTLAT": "+39.7971867",
+        "AREAWATER": 5203,
+        "BASENAME": "Clifton",
+        "STATE": "39",
+        "OID": "27890470162912",
+        "LSADC": "47",
+        "PLACE": "16056",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+39.7972259",
+        "NAME": "Clifton village",
+        "OBJECTID": 2289,
+        "PLACECC": "C1",
+        "CENTLON": "-083.8257421",
+        "STGEOMETRY_Length": 3529.1254139185344,
+        "CBSAPCI": "N",
+        "AREALAND": 438508,
+        "INTPTLON": "-083.8254227",
+        "PLACENS": "02397648",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "39023",
+        "CENTLAT": "+39.9167411",
+        "AREAWATER": 14608568,
+        "STATE": "39",
+        "BASENAME": "Clark",
+        "OID": "27590290501876",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+39.9170315",
+        "NAME": "Clark County",
+        "OBJECTID": 3082,
+        "CENTLON": "-083.7843208",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "01074024",
+        "AREALAND": 1025322037,
+        "INTPTLON": "-083.7836760",
+        "MTFCC": "G4020",
+        "COUNTY": "023"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -83.824135068944,
+      "y": 39.799913839966
+     },
+     "addressComponents": {
+      "zip": "45502",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "SPRINGFIELD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "298",
+      "state": "OH",
+      "suffixType": "ST",
+      "toAddress": "2",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, SPRINGFIELD, OH, 45502"
+    },
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "178172672"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "01155107",
+        "GEOID": "41",
+        "CENTLAT": "+43.9396011",
+        "AREAWATER": 6168644112,
+        "STATE": "41",
+        "BASENAME": "Oregon",
+        "STUSAB": "OR",
+        "OID": "27490206508673",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+43.9717125",
+        "DIVISION": "9",
+        "NAME": "Oregon",
+        "REGION": "4",
+        "OBJECTID": 35,
+        "CENTLON": "-120.6109268",
+        "AREALAND": 248630762803,
+        "INTPTLON": "-120.6229578",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "91105",
+        "GEOID": "4103991105",
+        "CENTLAT": "+44.0498015",
+        "AREAWATER": 19400526,
+        "STATE": "41",
+        "BASENAME": "Eugene-Springfield",
+        "OID": "27690443585352",
+        "LSADC": "22",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+44.0498150",
+        "NAME": "Eugene-Springfield CCD",
+        "OBJECTID": 20329,
+        "CENTLON": "-123.1314544",
+        "COUSUBCC": "Z5",
+        "AREALAND": 443495494,
+        "INTPTLON": "-123.1308378",
+        "MTFCC": "G4040",
+        "COUSUBNS": "01938013",
+        "COUNTY": "039"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 80979747.23490568,
+        "NECTAPCI": "N",
+        "GEOID": "4169600",
+        "CENTLAT": "+44.0535597",
+        "AREAWATER": 0,
+        "BASENAME": "Springfield",
+        "STATE": "41",
+        "OID": "27890443624588",
+        "LSADC": "25",
+        "PLACE": "69600",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+44.0535597",
+        "NAME": "Springfield city",
+        "OBJECTID": 30109,
+        "PLACECC": "C1",
+        "CENTLON": "-122.9809237",
+        "STGEOMETRY_Length": 163887.12911784448,
+        "CBSAPCI": "Y",
+        "AREALAND": 41817536,
+        "INTPTLON": "-122.9809237",
+        "PLACENS": "02411961",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "41039",
+        "CENTLAT": "+43.9425622",
+        "AREAWATER": 436058217,
+        "STATE": "41",
+        "BASENAME": "Lane",
+        "OID": "27590248494493",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+43.9276422",
+        "NAME": "Lane County",
+        "OBJECTID": 2629,
+        "CENTLON": "-122.8752572",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "01135855",
+        "AREALAND": 11795044754,
+        "INTPTLON": "-122.8948576",
+        "MTFCC": "G4020",
+        "COUNTY": "039"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -123.024628767822,
+      "y": 44.046264135067
+     },
+     "addressComponents": {
+      "zip": "97477",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "SPRINGFIELD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "100",
+      "state": "OR",
+      "suffixType": "ST",
+      "toAddress": "110",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, SPRINGFIELD, OR, 97477"
+    },
+    {
+     "tigerLine": {
+      "side": "R",
+      "tigerLineId": "139275180"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "01779802",
+        "GEOID": "50",
+        "CENTLAT": "+44.0693369",
+        "AREAWATER": 1030604623,
+        "STATE": "50",
+        "BASENAME": "Vermont",
+        "STUSAB": "VT",
+        "OID": "27490227024193",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+44.0589536",
+        "DIVISION": "1",
+        "NAME": "Vermont",
+        "REGION": "1",
+        "OBJECTID": 29,
+        "CENTLON": "-072.6660621",
+        "AREALAND": 23872617229,
+        "INTPTLON": "-072.6710173",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "69550",
+        "GEOID": "5002769550",
+        "CENTLAT": "+43.2907369",
+        "AREAWATER": 1097226,
+        "STATE": "50",
+        "BASENAME": "Springfield",
+        "OID": "27690261449306",
+        "LSADC": "43",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+43.2920286",
+        "NAME": "Springfield town",
+        "OBJECTID": 23704,
+        "CENTLON": "-072.4809420",
+        "COUSUBCC": "T1",
+        "AREALAND": 127458772,
+        "INTPTLON": "-072.4804181",
+        "MTFCC": "G4040",
+        "COUSUBNS": "01462214",
+        "COUNTY": "027"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 3,
+        "STGEOMETRY_Area": 16840277.9306687,
+        "NECTAPCI": "N",
+        "GEOID": "5069475",
+        "CENTLAT": "+43.2952652",
+        "AREAWATER": 260547,
+        "BASENAME": "Springfield",
+        "STATE": "50",
+        "OID": "28090261496904",
+        "LSADC": "57",
+        "PLACE": "69475",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+43.2966413",
+        "NAME": "Springfield CDP",
+        "OBJECTID": 21897,
+        "PLACECC": "U1",
+        "CENTLON": "-072.4803712",
+        "STGEOMETRY_Length": 39206.94700465982,
+        "CBSAPCI": "N",
+        "AREALAND": 8656687,
+        "INTPTLON": "-072.4818698",
+        "PLACENS": "02378135",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "50027",
+        "CENTLAT": "+43.5793409",
+        "AREAWATER": 19365931,
+        "STATE": "50",
+        "BASENAME": "Windsor",
+        "OID": "27590261406059",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+43.5724467",
+        "NAME": "Windsor County",
+        "OBJECTID": 3228,
+        "CENTLON": "-072.5861474",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "01461770",
+        "AREALAND": 2510072157,
+        "INTPTLON": "-072.5988140",
+        "MTFCC": "G4020",
+        "COUNTY": "027"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -72.481583944403,
+      "y": 43.296920205623
+     },
+     "addressComponents": {
+      "zip": "05156",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "SPRINGFIELD",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "198",
+      "state": "VT",
+      "suffixType": "ST",
+      "toAddress": "70",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "100 MAIN ST, SPRINGFIELD, VT, 05156"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,19 @@
+HTTP/2 200 
+date: Sat, 03 Oct 2026 23:15:48 GMT
+content-type: application/pdf
+content-length: 227023
+server: cloudflare
+cache-control: private
+set-cookie: ASP.NET_SessionId=[redacted]; path=/; secure; HttpOnly; SameSite=Lax
+strict-transport-security: max-age=31536000; includeSubDomains
+x-host: www.jerseycitynj.gov
+x-resource: GetFile.ashx
+x-urlscheme: https
+content-security-policy: default-src * data:; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src * data: blob:; frame-ancestors 'self'; form-action 'self'
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-powered-by: ASP.NET
+content-disposition: inline;filename="May 7 2025 - 1st Reading Ad - Ord 25-057 - In Full.pdf"
+cf-cache-status: DYNAMIC
+cf-ray: a44fa6a00bf7a285-ZRH
+

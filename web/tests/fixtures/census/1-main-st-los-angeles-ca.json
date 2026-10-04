@@ -1,0 +1,149 @@
+{
+ "query": "1 Main St, Los Angeles, CA",
+ "status": 200,
+ "body": {
+  "result": {
+   "input": {
+    "address": {
+     "address": "1 Main St, Los Angeles, CA"
+    },
+    "vintage": {
+     "isDefault": true,
+     "id": "4",
+     "vintageName": "Current_Current",
+     "vintageDescription": "Current Vintage - Current Benchmark"
+    },
+    "benchmark": {
+     "isDefault": true,
+     "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+     "id": "4",
+     "benchmarkName": "Public_AR_Current"
+    }
+   },
+   "addressMatches": [
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "125513777"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "01779778",
+        "GEOID": "06",
+        "CENTLAT": "+37.1547616",
+        "AREAWATER": 20288534055,
+        "STATE": "06",
+        "BASENAME": "California",
+        "STUSAB": "CA",
+        "OID": "2749018475066",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+37.1626642",
+        "DIVISION": "9",
+        "NAME": "California",
+        "REGION": "4",
+        "OBJECTID": 6,
+        "CENTLON": "-119.5277735",
+        "AREALAND": 403676534536,
+        "INTPTLON": "-119.5713456",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "93590",
+        "GEOID": "0608793590",
+        "CENTLAT": "+36.9346838",
+        "AREAWATER": 97769487,
+        "STATE": "06",
+        "BASENAME": "Watsonville",
+        "OID": "27690343788183",
+        "LSADC": "22",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+36.9350139",
+        "NAME": "Watsonville CCD",
+        "OBJECTID": 14908,
+        "CENTLON": "-121.7986135",
+        "COUSUBCC": "Z5",
+        "AREALAND": 263652427,
+        "INTPTLON": "-121.8016326",
+        "MTFCC": "G4040",
+        "COUSUBNS": "01935364",
+        "COUNTY": "087"
+       }
+      ],
+      "Incorporated Places": [
+       {
+        "DISP_CLR": 2,
+        "STGEOMETRY_Area": 27949170.968452174,
+        "NECTAPCI": "N",
+        "GEOID": "0683668",
+        "CENTLAT": "+36.9216950",
+        "AREAWATER": 253182,
+        "BASENAME": "Watsonville",
+        "STATE": "06",
+        "OID": "27890343814838",
+        "LSADC": "25",
+        "PLACE": "83668",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+36.9235873",
+        "NAME": "Watsonville city",
+        "OBJECTID": 27145,
+        "PLACECC": "C1",
+        "CENTLON": "-121.7709886",
+        "STGEOMETRY_Length": 48175.504080656225,
+        "CBSAPCI": "Y",
+        "AREALAND": 17576473,
+        "INTPTLON": "-121.7723952",
+        "PLACENS": "02412194",
+        "MTFCC": "G4110"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "06087",
+        "CENTLAT": "+37.0215909",
+        "AREAWATER": 419720239,
+        "STATE": "06",
+        "BASENAME": "Santa Cruz",
+        "OID": "27590343736337",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+37.0121884",
+        "NAME": "Santa Cruz County",
+        "OBJECTID": 1630,
+        "CENTLON": "-122.0095723",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00277308",
+        "AREALAND": 1152818024,
+        "INTPTLON": "-122.0076879",
+        "MTFCC": "G4020",
+        "COUNTY": "087"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -121.751411103533,
+      "y": 36.905334351781
+     },
+     "addressComponents": {
+      "zip": "95076",
+      "streetName": "MAIN",
+      "preType": "",
+      "city": "LA SELVA BCH",
+      "preDirection": "",
+      "suffixDirection": "",
+      "fromAddress": "1",
+      "state": "CA",
+      "suffixType": "ST",
+      "toAddress": "99",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "1 MAIN ST, LA SELVA BCH, CA, 95076"
+    }
+   ]
+  }
+ }
+}

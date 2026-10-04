@@ -1249,6 +1249,101 @@ a:hover {
   max-width: 38rem;
 }
 
+/* ---------- address map (MapLibre) ---------- */
+
+.addr-map-wrap {
+  position: relative;
+}
+
+.addr-map {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: #f4f6f6;
+}
+
+.addr-map-loading {
+  height: 220px;
+}
+
+.addr-map-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  border-radius: 12px;
+}
+
+.addr-map .maplibregl-ctrl-bottom-right {
+  z-index: 3;
+}
+
+.addr-map .maplibregl-ctrl-attrib {
+  font-size: 10px;
+}
+
+.addr-map-hint {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  pointer-events: none;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink-2);
+  border: 1px solid var(--line-strong);
+}
+
+.addr-map-dialog {
+  width: min(960px, calc(100vw - 32px));
+  height: min(720px, calc(100dvh - 48px));
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.addr-map-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.addr-map-dialog::backdrop {
+  background: rgba(23, 38, 42, 0.45);
+}
+
+.addr-map-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.addr-map-close {
+  border: 1px solid var(--line-strong);
+  background: #fff;
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  cursor: pointer;
+}
+
+.addr-map-large {
+  flex: 1;
+  min-height: 0;
+}
+
 /* ---------- dot maps ---------- */
 
 .map {
@@ -1531,5 +1626,26 @@ a:hover {
   *::after {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+/* map placeholder until the first tiles have drawn */
+.addr-map[data-loading="true"],
+.addr-map-loading {
+  background: linear-gradient(100deg, #eef2f5 30%, #f7f9fb 50%, #eef2f5 70%) 0 0 / 300% 100%;
+  animation: addr-map-shimmer 1.4s linear infinite;
+}
+.addr-map[data-loading="true"] canvas {
+  opacity: 0;
+}
+@keyframes addr-map-shimmer {
+  to {
+    background-position: -150% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .addr-map[data-loading="true"],
+  .addr-map-loading {
+    animation: none;
   }
 }

@@ -1,0 +1,25 @@
+{
+  "source_id": "S006",
+  "raw_path": "raw/S006-newark-rent-control-2019-amendment.pdf",
+  "text_path": "text/S006.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "24ed5164962629c03f0bb9e181786d8fc65eb4cf7303fefcfa77059757a9bb4d",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 3118,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 80.99383067002,
+      "ocr_review_required": true
+    },
+    {
+      "page_or_part": 2,
+      "start_char": 3121,
+      "end_char": 5375,
+      "method": "tesseract-220dpi-psm3",
+      "mean_word_confidence": 84.82501171428571,
+      "ocr_review_required": true
+    }
+  ]
+}

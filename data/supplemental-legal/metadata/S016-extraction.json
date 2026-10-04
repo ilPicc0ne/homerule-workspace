@@ -1,0 +1,32 @@
+{
+  "source_id": "S016",
+  "raw_path": "raw/S016-jersey-city-25-076.pdf",
+  "text_path": "text/S016.txt",
+  "offset_unit": "Unicode code points; end-exclusive",
+  "text_sha256": "557f068ef7440e121e6e432c2ac78c9907b42ad70027f52e7625b733b8be8374",
+  "pages": [
+    {
+      "page_or_part": 1,
+      "start_char": 0,
+      "end_char": 2025,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 2,
+      "start_char": 2028,
+      "end_char": 4744,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    },
+    {
+      "page_or_part": 3,
+      "start_char": 4747,
+      "end_char": 6019,
+      "method": "pdftotext-layout",
+      "ocr_review_required": false
+    }
+  ],
+  "amendment_markup_review_required": true,
+  "render_review_notes": "Clarifies prohibited use of algorithmic rent-setting services. Page 1 includes deletions and insertions: plain text retains struck words and renumbering. Visually inspected pages 1 and 2."
+}
