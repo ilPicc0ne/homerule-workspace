@@ -38,7 +38,7 @@ The engine is Python (`engine/`, `extract/`); the website and the address resolv
 | Extraction, compiled predicates, scored lookups, dated diffs, scores, verdict badges, positive / neutral / negative rating, start and end-date history | Merged | `extract/`, `engine/`, `web/lib/changes/`; #106, #109, #110, #113, #116, #119 |
 | Address and jurisdiction pages, source/audit views, JSON API, MCP, 2D/3D maps, subscription and explicit email dispatch | Merged; deployment configuration is a separate concern | `web/` |
 | Official-source monitor | Merged ([PR #75](https://github.com/ilPicc0ne/homerule-workspace/pull/75)): a Newark prototype run by hand; no scheduler, not deployed | `monitor/`; see source monitoring below |
-| Public building evidence and next-fact investigation planner | Acquisition pipeline in draft [PR #68](https://github.com/ilPicc0ne/homerule-workspace/pull/68); review-only address panel implemented on `d/building-evidence-ui` (pending review) | `d/extra-data` + `d/building-evidence-ui`; see building evidence below |
+| Public building evidence and next-fact investigation planner | Review-only sample-address panel and pinned offline planner merged in [PR #123](https://github.com/ilPicc0ne/homerule-workspace/pull/123), refreshed after #135; broader acquisition pipeline remains in draft #68 | `web/components/building-evidence.tsx`, `web/scripts/building-evidence/`; see building evidence below |
 | Lifecycle alert engine and daily digest | Open [PR #90](https://github.com/ilPicc0ne/homerule-workspace/pull/90); not the merged dispatch path | `s/alert-engine`: lifecycle triggers, approval gate, digest and dry-run cron |
 | MCP task-shaped tools and badge parity | Merged ([PR #115](https://github.com/ilPicc0ne/homerule-workspace/pull/115)) | `web/lib/mcp/tools.ts`: five task-shaped tools; see MCP below |
 | Separate per-card answer artifact and audit | Open [PR #55](https://github.com/ilPicc0ne/homerule-workspace/pull/55) | `out/cards.json` is not a main-branch input |
@@ -66,14 +66,14 @@ make resolve   data/sample_addresses.csv → out/addresses.resolved.json (offlin
 make build     out/* → outputs/lookups.json, outputs/changes.json                                     (Python, S)
                      + out/lookups.full.json, out/changes.full.json (with verdicts), out/build_summary.json
 make score     I2 + I3 + contracts/impact.json → out/scores.json (separate multi-date artifact)
-copy rules     out/rules.json → outputs/rules.json (explicit release copy after the main build)
+make build     out/rules.json → outputs/rules.json (non-manifest source_doc_id becomes null)
 npm run sync   contracts/{jurisdictions,facts,contacts}.json, out/addresses.resolved.json, out/changes.full.json → web/contracts/, web/data/
                out/{lookups.full,rules,rules.compiled,audit}.json → web/data/live/ (rules, findings, addresses,
                lookups, excerpts, meta)                                                               (web/scripts/sync-contracts.ts, build-live.ts)
 next build     web/ only; reads web/data/live/ and web/data/changes.full.json at build time
 ```
 
-- **`out/`** = everything the pipeline produces, including the web's richer files (`*.full.json`, `audit.json`). **`outputs/`** = the scored files only, committed from a build on `main`. All three are committed. At this snapshot `outputs/rules.json` is byte-identical to `out/rules.json`; neither `make build` nor `make extract` copies it automatically. After a build on main, run `cp out/rules.json outputs/rules.json` before committing the release files.
+- **`out/`** = everything the pipeline produces, including the web's richer files (`*.full.json`, `audit.json`). **`outputs/`** = the scored files only, committed from a build on `main`. `make build` writes all three. Its `engine.build.rules_json()` projection sets `source_doc_id` to null for supplemental sources outside the starter manifest, preserving their URL and quote (#116). Do not overwrite it with a direct copy of `out/rules.json`.
 - **`web/data/live/`** is generated, never hand-edited; `web/tests/contracts-sync.test.ts` fails when a copy drifts. `excerpts.json` keeps only ~320 characters around each quote (the corpus licence is unclear, so no full source texts in `web/`). `web/data/demo/` is the older hand-prepared data set, served only when `NEXT_PUBLIC_DATA_SOURCE=demo`; the live site serves `live`.
 - Run web commands from `web/`. `npm run sync` runs before `next dev` and `next build`. On Vercel only `web/` is uploaded, so the committed copies in `web/` are what ships: **a pipeline change reaches the site only after `npm run sync` and a commit of the synced files.**
 - `web/data/live/meta.json` carries one as-of date (2026-10-01). The address-page dataset has one computed date, so there is no address-page date picker. The engine supports other as-of dates, `out/scores.json` holds multiple dates, and the change dataset holds before/after date pairs; those are separate artifacts.
@@ -317,9 +317,9 @@ reviewed official route → bounded poll → pinned snapshot + SQLite queue
 - **Review boundary:** discovery time, publisher modification and legal effect are separate dates. Missing provisions and conflicting baselines require reconciliation, not automatic repeal. Candidate impacts are previews; no automatic promotion, overwrite of scored files, deployment or email delivery occurs. Connecting reviewed changes to the accepted build and alert pipeline remains a rollout step.
 - **Operation:** `make monitor` (bounded poll), `make monitor EXTRACT=1` (also process queued versions), `make monitor-watch EXTRACT=1` (foreground worker), `make monitor-report` (local report server), `make monitor-replay [EXTRACT=1]` (labelled fictional replay). Installation starts no scheduler. The extraction option needs credentials or matching model cache entries.
 
-## Building evidence and investigation (draft PR #68)
+## Building evidence and investigation (#123 merged; acquisition draft #68)
 
-Implemented on `d/extra-data`, with [source snapshots and documentation](https://github.com/ilPicc0ne/homerule-workspace/blob/d/extra-data/data/building-evidence/README.md). This is separate from the merged `missing_deciding` heuristic. The review-only UI integration on `d/building-evidence-ui` consumes a selected-field snapshot regenerated against current rules; it is pending review, not deployed.
+Acquisition is implemented on `d/extra-data`, with [source snapshots and documentation](https://github.com/ilPicc0ne/homerule-workspace/blob/d/extra-data/data/building-evidence/README.md). This is separate from the merged `missing_deciding` heuristic. The review-only UI and pinned offline planner merged in #123 consume a selected-field snapshot regenerated against current rules and the corrected subsidy facts. Production deployment is a separate step.
 
 `engine/enrich_nj.py` / `engine/enrich_public.py` acquire bounded official API queries or downloads, pin metadata and response hashes, and write `data/building-evidence/public-evidence.json`. Sources include NJ MOD-IV, LA parcels, MassGIS, SF assessor records, San Diego parcels/approvals and HUD assistance/LIHTC. The branch reports matched or candidate records for 444/500 addresses and typed leads for 374/500; these are acquisition counts on that branch's baseline, not resolved unknowns or measured score improvements on current main.
 
@@ -476,7 +476,7 @@ Source roles are distinct: law text feeds extraction; address/property evidence 
 
 Skipped: Alameda County (no public building data, so Berkeley stays unknown, stated as a known limit) · Open States (LegiScan is enough) · data.boston.gov (blocked from Switzerland).
 
-### Building evidence in the address page (pending review)
+### Building evidence in the address page (merged #123)
 
 `web/scripts/building-evidence/` pins the offline planner from #68, alongside its public-evidence and research-route inputs in `data/building-evidence/`. `cd web && PYTHON=../.venv/bin/python npm run evidence:build` runs web sync, regenerates hypotheses with the current Python engine, verifies the input hashes, then writes a selected-field projection to `web/data/building-evidence.json`. The planner needs the repository's Python dependencies; deployed web builds only read the committed projection. Acquisition scripts and the full #68 pipeline remain on that separate branch.
 
@@ -484,4 +484,4 @@ The server binds the projection to the exact rules, addresses, lookups and defau
 
 The panel links next-fact questions to the relevant topic cards, explains the hypothetical branches, quotes their supporting rules, and offers copyable request wording and official lookup routes. Record leads retain match quality, differing current values, source links, source periods and retrieval dates. Parcel/project matches and tax-exemption proxies remain explicitly limited evidence. No record is promoted to I3, and no answer or renter rating is changed. This panel does not add evidence to the MCP/API payloads or accept renter answers yet.
 
-The refreshed snapshot at `050363b` contains plans for 500 sample addresses, with a useful next question at 148. Check `/a/A0107` for an occupancy-record request and `/a/A0366` for a construction-year discrepancy. Instructions and provenance: `web/scripts/building-evidence/README.md`.
+The refreshed snapshot at `1617e5b` contains plans for 500 sample addresses, with a useful next question at 209 after missing subsidy information became unknown. Existing public responses were replayed offline with source-hash and query checks; no facts were promoted. Check `/a/A0107` for an occupancy-record request and `/a/A0366` for a construction-year discrepancy. Instructions and provenance: `web/scripts/building-evidence/README.md`.
