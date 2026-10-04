@@ -44,18 +44,25 @@ def rule_level(rule):
     return "strong" if v <= t["strong_at_most"] else "basic" if v <= t["basic_at_most"] else "none"
 
 
+def _has_condition(rule):
+    """Does the rule name any building condition (coverage or exemption)?"""
+    return (rule.get("applies_if") or {}).get("kind") != "always" or (rule.get("exempt_if") or {}).get("kind") != "never"
+
+
 def topic_levels(rows, rules_by_id):
     """Engine rows for one address on one date -> {topic: {level, possible, rules, limited_by}}."""
     out = {}
     for cat in CFG["weights"]:
-        best, possible, used, limits = "none", "none", [], []
+        best, possible, used, limits, may_limit = "none", "none", [], [], []
         for row in rows:
             rule = rules_by_id[row["team_rule_id"]]
             if rule["category"] != cat:
                 continue
             direction = (rule.get("renter_impact") or {}).get("direction", "protects")
-            if direction == "limits" and row["result"] == "applies":
-                limits.append(rule["id"])
+            if direction == "limits" and row["result"] in ("applies", "unknown"):
+                # an exemption that names no building condition (or whose condition is unknown) only may limit
+                decided = row["result"] == "applies" and _has_condition(rule)
+                (limits if decided else may_limit).append(rule["id"])
             if direction != "protects":
                 continue
             lv = rule_level(rule)
@@ -65,10 +72,14 @@ def topic_levels(rows, rules_by_id):
                 used.append(rule["id"])
             if row["result"] in ("applies", "superseded", "unknown") and ORDER.index(lv) > ORDER.index(possible):
                 possible = lv
-        if limits and ORDER.index(best) > ORDER.index(CFG["limiting_rule_caps_at"]):
-            best = CFG["limiting_rule_caps_at"]
+        cap = CFG["limiting_rule_caps_at"]
+        if (limits or may_limit) and ORDER.index(best) > ORDER.index(cap):
+            best = cap
+        if limits and ORDER.index(possible) > ORDER.index(cap):
+            possible = cap
         level = best if possible == best else "unknown"
-        out[cat] = {"level": level, "at_least": best, "at_most": possible, "rules": sorted(used), "limited_by": limits}
+        out[cat] = {"level": level, "at_least": best, "at_most": possible, "rules": sorted(used), "limited_by": limits,
+                    "may_be_limited_by": sorted(may_limit)}
     return out
 
 
@@ -169,6 +180,9 @@ def why(cat, verdict, b, a, change, before_rows, after_rows, rules_by_id):
     if verdict == "unclear":
         if change.get("conflict_flag_changed"):
             return "A state law may limit the city rule here; this overlap is not decided."
+        maybe = sorted(set(a.get("may_be_limited_by", [])) - set(b.get("may_be_limited_by", [])))
+        if maybe:
+            return f"Depends on whether an exemption ({rules_by_id[maybe[0]]['citation']}) covers this building."
         return _missing_words(after_rows, cat, rules_by_id) if a["level"] == "unknown" else \
             _missing_words(before_rows, cat, rules_by_id)
     lb, la = _lead(b, rules_by_id), _lead(a, rules_by_id)
