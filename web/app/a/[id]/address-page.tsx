@@ -459,9 +459,11 @@ function Ahead({ id, v, onAlerts, log }: { id: string; v: AddressView; onAlerts:
           Get alerts when the law changes here
         </button>
       </p>
-      <p className="ahead-alert ex-alert">
+      {/* A div, not a p: ExampleAlert renders a <dialog>, which can't sit inside a <p> (the browser
+          closes the p early and React's hydration fails, error #418). */}
+      <div className="ahead-alert ex-alert">
         <ExampleAlert addressId={id} icon={icon} />
-      </p>
+      </div>
       {v.proposed.length > 0 && (
         <div className="prop">
           <h3 className="prop-h">

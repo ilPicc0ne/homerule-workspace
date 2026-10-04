@@ -1,4 +1,4 @@
-import type { Category } from "./types";
+import type { Category, Rule } from "./types";
 
 /*
   Plain-language words for the address page (mockup v3, PRD "Words"): grade 6–8, state the fact,
@@ -174,3 +174,9 @@ export const FACT_PLAIN: Record<string, { name: string; ask: string }> = {
   owner_type: { name: "Who owns the building", ask: "whether the owner is a person or a company" },
   owner_occupied: { name: "Whether the owner lives here", ask: "whether the owner lives in the building" },
 };
+
+/** A carve-out (an exemption or a loosening, e.g. "not restricted in initial rent") is not the
+ *  topic's main rule, even when extraction tags it a protection. It never leads a tile. */
+const CARVE_OUT = /\b(not (be )?restricted|unrestricted|exempt(s|ed|ion)?|do(es)? not apply|not subject to|excluded from)\b/i;
+export const isCarveOut = (rule: Pick<Rule, "title" | "key_value" | "audit">) =>
+  rule.audit?.model_extracted?.effect === "bars_or_limits_local_rules" || CARVE_OUT.test(`${rule.title} ${rule.key_value ?? ""}`);

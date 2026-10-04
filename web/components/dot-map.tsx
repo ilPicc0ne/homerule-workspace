@@ -18,8 +18,8 @@ export function PinMap({ frame, pinId, label }: { frame: PanelFrame; pinId: stri
         )}
         {pin && (
           <g>
-            <circle cx={pin.x} cy={pin.y} r="11" fill="var(--teal)" opacity="0.12" />
-            <circle cx={pin.x} cy={pin.y} r="5" fill="var(--teal)" stroke="#fff" strokeWidth="2" />
+            <circle cx={pin.x} cy={pin.y} r="11" fill="var(--accent)" opacity="0.12" />
+            <circle cx={pin.x} cy={pin.y} r="5" fill="var(--accent)" stroke="#fff" strokeWidth="2" />
           </g>
         )}
       </svg>

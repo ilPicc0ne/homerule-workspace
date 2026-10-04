@@ -1,6 +1,6 @@
 import contactsFile from "@/contracts/contacts.json";
 import { formatDate } from "./format";
-import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, type TopicId } from "./plain";
+import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain";
 import type { Address, Finding, Result, Rule } from "./types";
 
 /*
@@ -137,6 +137,7 @@ const isWeak = (id: string) => !!PLAIN[id]?.weak;
 const ORDER = Object.keys(PLAIN);
 const rank = (id: string) => (ORDER.indexOf(id) < 0 ? 999 : ORDER.indexOf(id));
 
+
 export function buildAddressView(args: {
   address: Address;
   results: Result[];
@@ -153,6 +154,7 @@ export function buildAddressView(args: {
   const tiles: Tile[] = TOPICS.map((t) => {
     const inCat = results.filter((r) => r.category === t.cat && rules[r.rule_id]);
     const cityFirst = (a: Result, b: Result) =>
+      Number(isCarveOut(rules[a.rule_id])) - Number(isCarveOut(rules[b.rule_id])) ||
       (rules[a.rule_id].level === "city" ? 0 : 1) - (rules[b.rule_id].level === "city" ? 0 : 1) || rank(a.rule_id) - rank(b.rule_id);
     const strong = inCat.filter((r) => r.result === "applies" && !isWeak(r.rule_id)).sort(cityFirst);
     const weak = inCat.filter((r) => r.result === "applies" && isWeak(r.rule_id)).sort(cityFirst);
@@ -173,7 +175,7 @@ export function buildAddressView(args: {
     const lines: string[] = [];
     const lead = strong[0] ?? unknown[0] ?? weak[0];
     if (lead) lines.push(plainLine(rules[lead.rule_id]));
-    if (status === "protect" && strong[1] && rules[strong[1].rule_id].level !== rules[strong[0].rule_id].level) {
+    if (status === "protect" && strong[1] && !isCarveOut(rules[strong[1].rule_id]) && rules[strong[1].rule_id].level !== rules[strong[0].rule_id].level) {
       lines.push(plainLine(rules[strong[1].rule_id]));
     }
     if (status === "none" && !lead) {
