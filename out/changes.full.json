@@ -648,7 +648,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -711,7 +711,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -1849,7 +1849,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -1912,7 +1912,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -2457,7 +2457,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -2520,7 +2520,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -3861,7 +3861,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -3924,7 +3924,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -4511,7 +4511,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -4708,7 +4708,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -5594,7 +5594,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -5657,7 +5657,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -6118,7 +6118,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -6181,7 +6181,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -7134,7 +7134,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -7331,7 +7331,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -8300,7 +8300,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -8363,7 +8363,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -8627,7 +8627,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -8993,7 +8993,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -9676,7 +9676,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -9739,7 +9739,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -10393,7 +10393,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -10456,7 +10456,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -11325,7 +11325,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -12519,7 +12519,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -12582,7 +12582,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -13125,7 +13125,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -13326,7 +13326,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -14497,7 +14497,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -14560,7 +14560,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -16467,7 +16467,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -16530,7 +16530,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -17747,7 +17747,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -17810,7 +17810,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -18074,7 +18074,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -19634,7 +19634,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -19697,7 +19697,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -21027,7 +21027,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -21090,7 +21090,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -21551,7 +21551,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -21614,7 +21614,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -22159,7 +22159,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -22222,7 +22222,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -23164,7 +23164,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -23227,7 +23227,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -24560,7 +24560,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -24623,7 +24623,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -25289,7 +25289,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -25352,7 +25352,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -27198,7 +27198,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -27261,7 +27261,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -27693,7 +27693,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -28646,7 +28646,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -29791,7 +29791,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -31403,7 +31403,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -31466,7 +31466,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -33330,7 +33330,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -33393,7 +33393,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -34623,7 +34623,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -39220,7 +39220,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -39283,7 +39283,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -39824,7 +39824,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -41864,7 +41864,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -41927,7 +41927,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -44994,7 +44994,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -46150,7 +46150,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -46213,7 +46213,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -46674,7 +46674,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -46737,7 +46737,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -47872,7 +47872,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -47935,7 +47935,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -48672,7 +48672,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -48735,7 +48735,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -49196,7 +49196,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -49259,7 +49259,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -49718,7 +49718,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -51756,7 +51756,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -51819,7 +51819,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -52680,7 +52680,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -52743,7 +52743,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -53281,7 +53281,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -53344,7 +53344,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -54406,7 +54406,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -54469,7 +54469,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -54930,7 +54930,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -54993,7 +54993,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -55842,7 +55842,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -55905,7 +55905,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -57604,7 +57604,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -57667,7 +57667,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -58120,7 +58120,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -58321,7 +58321,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -58715,7 +58715,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -58778,7 +58778,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -60801,7 +60801,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -60864,7 +60864,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -61415,7 +61415,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -62481,7 +62481,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -62544,7 +62544,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -63425,7 +63425,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -64370,7 +64370,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -64433,7 +64433,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -66335,7 +66335,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -66398,7 +66398,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -67156,7 +67156,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -68420,7 +68420,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -68483,7 +68483,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -70656,7 +70656,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -71050,7 +71050,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -71113,7 +71113,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -72524,7 +72524,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -72809,7 +72809,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -73404,7 +73404,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -74267,7 +74267,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -74330,7 +74330,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -74791,7 +74791,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -74854,7 +74854,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -75202,7 +75202,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -76747,7 +76747,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -76810,7 +76810,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -78404,7 +78404,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -78467,7 +78467,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -79129,7 +79129,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "worse",
-        "why": "A 10% yearly rent increase cap no longer covers this home (Cal. Civ. Code § 1947.12)."
+        "why": "A yearly rent increase cap of at most 10% no longer covers this home (Cal. Civ. Code § 1947.12)."
        },
        "requirement_quote": "an owner of residential real property shall not, over the course of any 12-month period, increase the gross rental rate for a dwelling or a unit more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower",
        "result_changed": true,
@@ -80987,7 +80987,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -81050,7 +81050,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
@@ -82468,7 +82468,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": null,
        "result_changed": true,
@@ -82531,7 +82531,7 @@
         "level_before": "basic",
         "topic": "rent_increase_limits",
         "verdict": "better",
-        "why": "The yearly rent increase cap goes from 25% to 4% (Newark Code § 19:2-3.1)."
+        "why": "The yearly rent increase cap goes from 25% to at most 4% (Newark Code § 19:2-3.1)."
        },
        "requirement_quote": "no landlord may request or receive an increase greater than the percentage increase in the Consumer Price Index (CPI) from the CPI fifteen (15) months prior to the month of the proposed rent increase to the CPI three (3) months prior to the month of the proposed rent increase. In no case shall the allowable rent increase exceed four (4%) percent.",
        "result_changed": true,
