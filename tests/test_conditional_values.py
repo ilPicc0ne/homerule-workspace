@@ -3,7 +3,6 @@ import copy
 import json
 import unittest
 
-from extract import compile as C
 from extract.conditional_values import add_detail, rent_months, scoped_condition
 from engine import evaluate as E, facts as F, rules as R, score as S
 
@@ -54,6 +53,10 @@ class ConditionalDeposits(unittest.TestCase):
         self.assertEqual(main['key_value_conditions'], [])
         add_detail(main, detail, {'quote': 'source'}, same_section=True)
         self.assertEqual(len(main['key_value_conditions']), 1)
+
+    def test_flat_unrelated_rule_keeps_extracted_strength(self):
+        rule = next(r for r in R.load() if r['id'] == 'NJ-DEP-46:8-21.2')
+        self.assertEqual(S.value_levels(rule, {'value': rule['key_value']}), ('basic', 'basic'))
 
     def test_rent_month_amount_grammar(self):
         for value, n in [("One month’s rent", 1), ("two months’ rent", 2), ("1.5 months of rent", 1.5)]:
