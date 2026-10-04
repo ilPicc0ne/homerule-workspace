@@ -1,10 +1,12 @@
 "use client";
 
+import { groupTimelineEvents, type TimelineGroup as DateGroup } from "@/lib/timeline-groups";
+import type { DateControls } from "@/lib/address-dates";
 import Link from "next/link";
 import BuildingEvidencePanel from "@/components/building-evidence";
 import type { EvidenceView } from "@/lib/building-evidence-types";
-import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useId, useMemo, useRef, useState, useTransition, type KeyboardEvent, type ReactNode } from "react";
 import AddressMap from "@/components/address-map";
 import BrandMark from "@/components/brand-mark";
 import AlertForm from "@/components/alerts/alert-form";
@@ -14,6 +16,7 @@ import ExampleAlert from "@/components/alerts/example-alert";
 import type { MapProps } from "@/components/address-map-gl";
 import { glanceSummary, TILE_STATUS_WORDS, type AddressView, type Helper, type RuleRow, type Tile, type TileStatus, type TimelineEvent } from "@/lib/address-view";
 import { DATA_SOURCE } from "@/lib/config";
+import { formatDate } from "@/lib/format";
 import { GROUPS, TOPICS } from "@/lib/plain";
 import { Ic, Sprite } from "./sprite";
 import { VerdictBadge } from "./verdict-badge";
@@ -32,6 +35,9 @@ export type PageProps = {
   map: MapProps;
   index: { id: string; street: string; city: string; st: string }[];
   typed: boolean;
+  liveEngine?: string;
+  dateControls?: DateControls;
+  snapshotFallback?: boolean;
   /** This address's change log and the rules in it; null when nothing changed between the compared dates. */
   changeLog: { href: string; rules: string[] } | null;
 };
@@ -442,11 +448,19 @@ function TileView({ t, open, onToggle, addressId }: { t: Tile; open: boolean; on
 const topicTitle = (id: string) => TOPICS.find((t) => t.id === id)?.title ?? "";
 const topicIcon = (id: string) => TOPICS.find((t) => t.id === id)?.icon ?? "i-info";
 
-function Ev({ e, cls, log }: { e: TimelineEvent; cls: string; log: PageProps["changeLog"] }) {
+type DateNavigation = { selected: string; pending: boolean; go: (date: string) => void };
+function TimelineDot({ date, nav }: { date: string; nav: DateNavigation }) {
+  const selected = nav.selected === date;
+  return <button type="button" className={`timeline-dot${selected ? " selected" : ""}`}
+    aria-label={`View rules as of ${formatDate(date)}`} title={`View rules as of ${formatDate(date)}`}
+    aria-describedby="timeline-hint" aria-pressed={selected}
+    aria-disabled={nav.pending} onClick={() => { if (!nav.pending) nav.go(date); }} />;
+}
+
+function TimelineChange({ e, log }: { e: TimelineEvent; log: PageProps["changeLog"] }) {
   const linked = log?.rules.includes(e.ruleId);
   return (
-    <li className={`ev ${cls}`}>
-      <p className="ev-d">{e.dateText}</p>
+    <li className="timeline-change">
       <p className="ev-tp">
         <Ic id={topicIcon(e.topic)} />
         {topicTitle(e.topic)}
@@ -464,13 +478,51 @@ function Ev({ e, cls, log }: { e: TimelineEvent; cls: string; log: PageProps["ch
   );
 }
 
-function Ahead({ id, v, onAlerts, log }: { id: string; v: AddressView; onAlerts: () => void; log: PageProps["changeLog"] }) {
+function TimelineGroup({ group, cls, log, nav, baseline = false }: { group: DateGroup; cls: string; log: PageProps["changeLog"]; nav?: DateNavigation; baseline?: boolean }) {
+  return <li className={`ev ${cls}${nav?.selected === group.date ? " is-selected" : ""}`}>
+    {nav && <TimelineDot date={group.date} nav={nav} />}
+    <p className="ev-d">{baseline ? "Dataset date · " : ""}{formatDate(group.date)}
+      {nav?.selected === group.date && <span className="timeline-selected">Selected</span>}
+    </p>
+    {group.events.length > 1 && <p className="timeline-count">{group.events.length} changes on this date</p>}
+    {group.events.length > 0 && <ul className="timeline-day-changes">
+      {group.events.map(e => <TimelineChange key={`${e.ruleId}:${e.kind}`} e={e} log={log} />)}
+    </ul>}
+  </li>;
+}
+
+function Ahead({ id, v, onAlerts, log, dates }: { id: string; v: AddressView; onAlerts: () => void; log: PageProps["changeLog"]; dates?: DateControls }) {
+  const router = useRouter();
+  const path = usePathname();
+  const params = useSearchParams();
+  const [pending, startTransition] = useTransition();
+  const [target, setTarget] = useState(v.asOf);
+  const [olderCount, setOlderCount] = useState(0);
+  const nav: DateNavigation | undefined = dates ? { selected: v.asOf, pending, go: date => {
+    setTarget(date);
+    const query = new URLSearchParams(params.toString());
+    query.set("as_of", date);
+    startTransition(() => {
+      if (date === v.asOf) router.refresh();
+      else router.push(`${path}?${query}`, { scroll: false });
+    });
+  } } : undefined;
+  const future = groupTimelineEvents(dates ? dates.timeline.filter(e => e.date > dates.baseline) : v.future);
+  const past = groupTimelineEvents(dates ? dates.timeline.filter(e => e.date < dates.baseline) : v.past);
+  const recentSince = `${Number((dates?.baseline ?? v.asOf).slice(0, 4)) - 1}${(dates?.baseline ?? v.asOf).slice(4)}`;
+  const recent = past.filter(e => e.date >= recentSince);
+  const older = past.filter(e => e.date < recentSince);
+  // Reveal whole days, including the selected day when entering via Back or a shared link.
+  const shownOlder = Math.max(olderCount, older.findIndex(e => e.date === v.asOf) + 1);
   return (
     <>
       <h2 className="sec-h" id="h-ahead">
-        Coming up
+        {dates ? "Changes over time" : "Coming up"}
       </h2>
-      <p className="sec-sub">Dated changes for this address, and what changed in the last year.</p>
+      <p className="sec-sub" id="timeline-hint">{dates ? "Click a timeline dot to see all six answers for that date." : "Dated changes for this address, and what changed in the last year."}</p>
+      {dates && <p className="timeline-status" role="status" aria-live="polite">{pending
+        ? `Loading ${formatDate(target)}… Answers still show ${v.asOfText}.`
+        : `Showing rules as of ${v.asOfText}.`}</p>}
       <p className="ahead-alert">
         <button type="button" className="linkbtn" onClick={onAlerts}>
           <Ic id="i-bell" />
@@ -507,24 +559,33 @@ function Ahead({ id, v, onAlerts, log }: { id: string; v: AddressView; onAlerts:
           </ul>
         </div>
       )}
-      <ol className="tl">
-        {v.future.length ? (
-          v.future.map((e) => <Ev key={e.date + e.title} e={e} cls="future" log={log} />)
+      <ol className={`tl${dates ? " interactive" : ""}`} aria-busy={pending}>
+        {dates && future.length > 0 && <li className="tl-lab">Scheduled changes</li>}
+        {future.length ? (
+          future.map(group => <TimelineGroup key={group.date} group={group} cls="future" log={log} nav={nav} />)
         ) : (
           <li className="ev nodate">
             <p className="ev-t">Nothing with a date yet</p>
-            <p className="ev-b">No change is scheduled for this address as of {v.asOfText}.</p>
+            <p className="ev-b">No scheduled changes in the dataset for this address.</p>
           </li>
         )}
-        <li className="now">
-          <span className="today-pill">Today</span>
-          <span className="today-d">{v.asOfText}</span>
-        </li>
-        {v.past.length > 0 && <li className="tl-lab">Recently changed</li>}
-        {v.past.map((e) => (
-          <Ev key={e.date + e.title} e={e} cls="past" log={log} />
-        ))}
+        {dates && nav ? <TimelineGroup
+          group={{ date: dates.baseline, events: dates.timeline.filter(e => e.date === dates.baseline) }}
+          cls="baseline" baseline log={log} nav={nav} /> : <li className="now">
+            <span className="today-pill">Selected date</span><span className="today-d">{v.asOfText}</span>
+          </li>}
+        {recent.length > 0 && <li className="tl-lab">Recent changes</li>}
+        {recent.map(group => <TimelineGroup key={group.date} group={group} cls="past" log={log} nav={nav} />)}
+        {shownOlder > 0 && <li className="tl-lab">Older changes</li>}
+        {older.slice(0, shownOlder).map(group => <TimelineGroup key={group.date} group={group} cls="past" log={log} nav={nav} />)}
+        {older.length > shownOlder && <li className="tl-lab">
+          <button type="button" className="timeline-more" onClick={() => setOlderCount(shownOlder + 3)}>
+            Show {shownOlder ? "more " : ""}older changes ({older.length - shownOlder} dates) ↓
+          </button>
+        </li>}
+        {older.length > 0 && shownOlder >= older.length && <li className="tl-lab">All available entries for this timeline are shown.</li>}
       </ol>
+      {dates && <p className="timeline-limits">Dataset retrieved {formatDate(dates.retrieved)}. Future dates use scheduled changes and the same building facts. Later amendments may be missing.</p>}
       {log && (
         <p className="ahead-log">
           <Link className="src" href={log.href}>
@@ -594,8 +655,10 @@ export default function AddressPageView(p: PageProps) {
             <p className="typed-note" role="note">
               <Ic id="i-info" />
               <span>
+                {p.liveEngine ? <>Some answers depend on details about your building. We’ll show you what to check.</> : <>
                 <b>Provisional answer.</b> Not one of our 500 sample addresses: we found its jurisdiction with the US Census, but have
                 no building facts for it.
+                </>}
               </span>
             </p>
           </div>
@@ -704,8 +767,9 @@ export default function AddressPageView(p: PageProps) {
 
           <section className="today" aria-labelledby="h-today">
             <h2 className="sec-h" id="h-today">
-              In effect today
+              In effect on {v.asOfText}
             </h2>
+            {p.snapshotFallback && <p role="note">Live calculation is unavailable. Showing the saved answers for exactly {v.asOfText}.</p>}
             <ul className="trust" aria-label="About these answers">
               <li>
                 <Ic id="i-quote" />
@@ -737,7 +801,7 @@ export default function AddressPageView(p: PageProps) {
           </section>
 
           <section className="ahead" aria-labelledby="h-ahead">
-            <Ahead id={p.id} v={v} onAlerts={openAlerts} log={p.changeLog} />
+            <Ahead id={p.id} v={v} onAlerts={openAlerts} log={p.changeLog} dates={p.dateControls} />
           </section>
         </div>
       </main>

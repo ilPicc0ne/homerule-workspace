@@ -40,6 +40,12 @@ test("typed/demo/numberless addresses never receive sample building evidence", (
   assert.equal(evidenceFor(data, { ...address, street: "999 Sherman Grove Ave" }).status, "unavailable");
 });
 
+test("timeline navigation does not show investigation outcomes calculated for another date", () => {
+  assert.equal(evidenceFor(data, address, false, snapshot, "2027-07-01").status, "unavailable");
+  assert.equal(evidenceFor(data, address, false, snapshot, "2025-01-01").status, "unavailable");
+  assert.equal(evidenceFor(data, address, false, snapshot, data.meta.default_as_of).status, "available");
+});
+
 test("Boston disagreement keeps the observed and current years plus source limitations", () => {
   const record = snapshot.addresses.A0366;
   const lead = record.leads.find(l => l.fact === "built" && l.source_id === "ma")!;

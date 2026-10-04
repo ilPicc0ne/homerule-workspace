@@ -1,11 +1,11 @@
 {
  "as_of": "2026-10-01",
- "dataset_sha256": "f6093f4f2e7cf21b7aacb82ac55889fff16ab5213d5f293de6f49e3ad48bc1b4",
+ "dataset_sha256": "eef2908cac76a8e40cf0bd3966ae209c290c7b5b6e22a4996f4e08052e5504b7",
  "source_commit": "76e20be6534de7aa3d87182c62e24bcc14e6f72f",
  "input_sha256": {
   "addresses.resolved.json": "9daa0337883d4ea5060bd726f315228b2d7b5700833db15a7806398636eb86a1",
   "findings.json": "fea6e2de1e34744571c3d05d0518bd00a81a93625d50ba11e73978a1b17f2f70",
-  "rules.compiled.json": "50097b67714bb67868b11771207c19d5e735a79eb0daed117674acc37675ffed",
+  "rules.compiled.json": "15fc9a63559dd43bd082d281300cae654aa891a814b5f6efbfb182011ff2deaa",
   "rules.json": "59023a56d3034fb32cd8fb9ce7529d3f28ba4edc7eb754fdb174575d7afe576e"
  },
  "addresses": {

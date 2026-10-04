@@ -112,3 +112,14 @@ test("email: a removed rule at its end date reads 'Ends on <date>', the first li
   assert.match(plainChange(c, AS_OF, undefined, other).sentence, /^This rule no longer shows for your address/);
   assert.equal(firstLine([c], "1 Test St", AS_OF, null, other), "Rules have changed at 1 Test St since Apr 1, 2024.");
 });
+
+
+test("expanded history retains old ends and version swaps beyond the default year", () => {
+  const expanded = ruleEnds({ asOf: "2032-01-01", historySince: "1900-01-01", results: [], rules: RULES, sources: changes.sources, rec: changes.addresses.A0019 });
+  assert.deepEqual(expanded.ends.map(e => e.ruleId).sort(), [...CA].sort());
+  assert.deepEqual(endsAt("A0019", "2032-01-01", []).ends, []);
+  const newark = ruleEnds({ asOf: AS_OF, historySince: "1900-01-01", results: [], rules: RULES, sources: changes.sources, rec: changes.addresses.A0003 });
+  for (const from of ["NJ-NEWARK-EVICT-19:2-14-2", "NJ-NEWARK-RENT-19:2-22"])
+    assert.ok(newark.swaps.some(s => s.from === from && s.date === "2024-10-08"));
+  assert.deepEqual(newark.ends, []);
+});

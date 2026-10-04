@@ -2,6 +2,7 @@ import type { Badge } from "./changes/impact.ts";
 import { ruleEnds } from "./changes/ends.ts";
 import type { AddressChanges, Source } from "./changes/types.ts";
 import { contactFor, type Contact } from "./contacts.ts";
+import { ruleStatusOn } from "./law.ts";
 import { formatDate } from "./format.ts";
 import { missingFacts } from "./missing.ts";
 import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain.ts";
@@ -120,8 +121,17 @@ function confWord(n: number): string {
   return n >= 0.85 ? "high" : n >= 0.65 ? "medium" : "low";
 }
 
-function plainLine(rule: Rule | undefined): string {
+function conditionalValue(result?: Result) {
+  return result?.value && typeof result.value === "object" ? result.value : null;
+}
+
+function plainLine(rule: Rule | undefined, result?: Result): string {
   if (!rule) return "";
+  const value = conditionalValue(result);
+  if (value) {
+    const amounts = value.conditional.filter((v): v is string => !!v).map((v) => v.split(/[;,]|\.(?:\s|$)/)[0].toLowerCase());
+    return `The limit may be ${amounts.join(" or ")}, depending on the exception.`;
+  }
   return PLAIN[rule.rule_id]?.line || rule.summary;
 }
 
@@ -140,6 +150,7 @@ export function buildAddressView(args: {
   rules: Record<string, Rule>;
   asOf: string;
   cityName: string;
+  historySince?: string;
   findings: Record<string, Finding[]>;
   /** The diff's change sources (for `ending_rule_ids`) and this address's diff record (null for a typed address). */
   changes?: { sources: Record<string, Source>; rec: AddressChanges | null };
@@ -162,7 +173,7 @@ export function buildAddressView(args: {
     const replaced = inCat.filter((r) => r.result === "superseded");
     // A state "no protection here" rule (e.g. MA bars rent control) the engine doesn't list as a result.
     if (!strong.length && !unknown.length && !weak.length) {
-      const basic = Object.values(rules).find((r) => r.category === t.cat && r.level === "state" && isWeak(r.rule_id) && r.status === "in_force");
+      const basic = Object.values(rules).find((r) => r.category === t.cat && r.level === "state" && isWeak(r.rule_id) && ruleStatusOn(r, asOf) === "in_force");
       if (basic)
         weak.push({ rule_id: basic.rule_id, category: basic.category, result: "applies", confidence: basic.audit.model_extracted.confidence, explanation: `Statewide ${stateName} rule (${basic.citation}).`, what_next: basic.what_next });
     }
@@ -172,9 +183,9 @@ export function buildAddressView(args: {
     // The plain answer: the lead rule's line; a second line only when it adds a level.
     const lines: string[] = [];
     const lead = strong[0] ?? unknown[0] ?? weak[0];
-    if (lead) lines.push(plainLine(rules[lead.rule_id]));
+    if (lead) lines.push(plainLine(rules[lead.rule_id], lead));
     if (status === "protect" && strong[1] && !isCarveOut(rules[strong[1].rule_id]) && rules[strong[1].rule_id].level !== rules[strong[0].rule_id].level) {
-      lines.push(plainLine(rules[strong[1].rule_id]));
+      lines.push(plainLine(rules[strong[1].rule_id], strong[1]));
     }
     if (status === "none" && !lead) {
       lines.push(
@@ -187,7 +198,9 @@ export function buildAddressView(args: {
       lines.push(`${pending.length === 1 ? "One bill is" : `${pending.length} bills are`} proposed; a bill is not law.`);
     }
 
+    const conditionalResults = [...strong, ...unknown, ...weak].filter(r => conditionalValue(r));
     const notes: Tile["notes"] = [];
+    if (conditionalResults.length) notes.push({ kind: "depends", text: "The amount depends on an exception we can’t verify" });
     if (unknown.length && status === "protect") notes.push({ kind: "depends", text: "One more rule depends on a missing fact" });
     for (const r of later) {
       const rule = rules[r.rule_id];
@@ -215,6 +228,10 @@ export function buildAddressView(args: {
     // Explanation: hand-written words for the lead rule, else the engine's own sentence.
     const leadRule = lead ? rules[lead.rule_id] : undefined;
     let expl = (leadRule && PLAIN[leadRule.rule_id]?.expl) || (lead?.explanation ?? "");
+    for (const r of conditionalResults) {
+      const detail = `${r.explanation} Possible amounts: ${conditionalValue(r)!.conditional.filter(Boolean).join(" Or: ")}`;
+      expl = r === lead ? detail : `${expl} ${detail}`;
+    }
     if (!lead && pending.length) expl = "If a bill passes, HomeRule shows it here with its date.";
     if (!lead && !pending.length) expl = `HomeRule found no ${cityName ? "city or " : ""}state rule on this topic for this address. That doesn't mean there are no rules at all: federal law and your lease still apply.`;
 
@@ -222,6 +239,15 @@ export function buildAddressView(args: {
     // approval date when the build year can't settle a cutoff, or an exception in the text.
     const contact = contactFor(city, state, t.cat);
     const missing: Tile["missing"] = missingFacts(unknown, rules, contact?.name ?? null);
+    for (const fact of new Set(conditionalResults.flatMap(r => conditionalValue(r)?.depends_on ?? []))) {
+      if (!fact.startsWith("unparsed: ")) missing.push({
+        fact: FACT_PLAIN[fact as keyof typeof FACT_PLAIN]?.name ?? fact,
+        why: "The amount depends on this fact, which our data cannot establish.",
+      });
+    }
+    for (const qualification of new Set(conditionalResults.flatMap(r => conditionalValue(r)?.qualifications ?? []))) {
+      missing.push({ fact: "Exception condition", why: qualification });
+    }
 
     const lawNotes = replaced.map((r) => {
       const rule = rules[r.rule_id];
@@ -309,7 +335,7 @@ export function buildAddressView(args: {
         st,
         stWord,
         quote: rule.quoted_span,
-        why: st === "applies" ? null : r.explanation,
+        why: st === "applies" && !conditionalValue(r) ? null : r.explanation,
         citation: rule.citation,
         sourceUrl: rule.source_url,
         sourceName: hostName(rule.source_url),
@@ -345,7 +371,7 @@ export function buildAddressView(args: {
   const listed = new Map(results.map((r) => [r.rule_id, r]));
   const future: TimelineEvent[] = [];
   const past: TimelineEvent[] = [];
-  const yearAgo = `${Number(asOf.slice(0, 4)) - 1}${asOf.slice(4)}`;
+  const yearAgo = args.historySince ?? `${Number(asOf.slice(0, 4)) - 1}${asOf.slice(4)}`;
   for (const r of listed.values()) {
     const rule = rules[r.rule_id];
     if (!rule?.effective_date || r.result === "pending") continue;
@@ -363,7 +389,7 @@ export function buildAddressView(args: {
   // Rules ending at this address (sunset or repeal). A version swap (a successor starting that day) is not an end:
   // the successor's start event says it replaces the earlier version instead.
   if (args.changes) {
-    const { ends, swaps } = ruleEnds({ asOf, results, rules, sources: args.changes.sources, rec: args.changes.rec });
+    const { ends, swaps } = ruleEnds({ asOf, historySince: args.historySince, results, rules, sources: args.changes.sources, rec: args.changes.rec });
     for (const e of ends) {
       const rule = rules[e.ruleId];
       if (!rule) continue;

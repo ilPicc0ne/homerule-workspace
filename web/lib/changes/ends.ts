@@ -23,6 +23,7 @@ export function endingRuleIds(sources: Record<string, Pick<Source, "ending_rule_
 
 export function ruleEnds(args: {
   asOf: string;
+  historySince?: string;
   results: EndResult[];
   rules: Record<string, EndRule>;
   sources: Record<string, Pick<Source, "ending_rule_ids">> | null | undefined;
@@ -30,7 +31,7 @@ export function ruleEnds(args: {
 }): { ends: RuleEnd[]; swaps: VersionSwap[] } {
   const { asOf, results, rules, sources, rec } = args;
   const ending = endingRuleIds(sources);
-  const yearAgo = `${Number(asOf.slice(0, 4)) - 1}${asOf.slice(4)}`;
+  const yearAgo = args.historySince ?? `${Number(asOf.slice(0, 4)) - 1}${asOf.slice(4)}`;
   const ends: RuleEnd[] = [];
   const swaps: VersionSwap[] = [];
   const seen = new Set<string>();

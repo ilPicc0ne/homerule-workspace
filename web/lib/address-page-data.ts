@@ -9,7 +9,8 @@ import type { Address, Dataset, Result, Rule } from "./types.ts";
   Everything the one-view address page shows except the map and the search index: the view model (tiles,
   timeline, proposed bills), the hero (jurisdiction crumb, legal vs postal city, building facts and their
   source) and the change-log link. Pure, so /a/[id], /a/at (via app/a/view-props.ts) and the MCP tool
-  get_address build from one function and can't disagree.
+  get_address share presentation. Their typed-address result acquisition differs:
+  /a/at attempts the live engine; MCP still uses the provisional fallback.
 */
 
 export type Hero = { crumb: string[]; cap: string; capSub?: string; facts: { icon: string; text: string; cls?: string }[]; factSrc: string; state: string };
@@ -32,7 +33,7 @@ export function changeLogFor(id: string): { href: string; rules: string[] } | nu
   return { href: `/changes/${encodeURIComponent(id)}`, rules: [...rules] };
 }
 
-export function addressPageData(data: Dataset, address: Address, results: Result[], extra?: { typed?: boolean; legalNote?: string }): AddressPageData {
+export function addressPageData(data: Dataset, address: Address, results: Result[], extra?: { typed?: boolean; legalNote?: string; asOf?: string; historySince?: string }): AddressPageData {
   const stack = new Set(Object.values(address.jurisdictions).filter(Boolean));
   const rules: Record<string, Rule> = {};
   for (const r of data.rules) if (stack.has(r.jurisdiction_id)) rules[r.rule_id] = r;
@@ -41,10 +42,10 @@ export function addressPageData(data: Dataset, address: Address, results: Result
   const county = jurisdictionById(address.jurisdictions.county);
   const state = jurisdictionById(address.jurisdictions.state);
   const cityName = city ? city.legal_name.replace(/ city$/, "") : null;
-  const asOf = data.meta.default_as_of;
+  const asOf = extra?.asOf ?? data.meta.default_as_of;
 
   const rec = extra?.typed ? null : (changes.addresses[address.address_id] ?? null);
-  const view = buildAddressView({ address, results, rules, asOf, cityName: cityName ?? "", findings: data.findings, changes: { sources: changes.sources, rec } });
+  const view = buildAddressView({ address, results, rules, asOf, historySince: extra?.historySince, cityName: cityName ?? "", findings: data.findings, changes: { sources: changes.sources, rec } });
   // A history event gets a badge only from the same rule's diff change at this address (PAGE_BADGES, #72); an ending gets endBadge (#77).
   if (PAGE_BADGES && !extra?.typed) {
     for (const e of [...view.future, ...view.past]) e.badge = e.kind === "end" ? endBadge(rec, e.ruleId, e.date) : eventBadge(rec, e.ruleId, e.date);
