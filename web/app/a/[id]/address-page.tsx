@@ -9,7 +9,7 @@ import AlertForm from "@/components/alerts/alert-form";
 import AskChatbot from "@/components/ask-chatbot";
 import ExampleAlert from "@/components/alerts/example-alert";
 import type { MapProps } from "@/components/address-map-gl";
-import type { AddressView, Helper, RuleRow, Tile, TileStatus, TimelineEvent } from "@/lib/address-view";
+import { glanceSummary, TILE_STATUS_WORDS, type AddressView, type Helper, type RuleRow, type Tile, type TileStatus, type TimelineEvent } from "@/lib/address-view";
 import { DATA_SOURCE } from "@/lib/config";
 import { GROUPS, TOPICS } from "@/lib/plain";
 import { Ic, Sprite } from "./sprite";
@@ -32,9 +32,9 @@ export type PageProps = {
 };
 
 const ST: Record<TileStatus, { w: string; g: string }> = {
-  protect: { w: "There’s a rule", g: "g-check" },
-  depends: { w: "We’re missing one fact", g: "g-q" },
-  none: { w: "No local rule — state basics only", g: "g-dot" },
+  protect: { w: TILE_STATUS_WORDS.protect, g: "g-check" },
+  depends: { w: TILE_STATUS_WORDS.depends, g: "g-q" },
+  none: { w: TILE_STATUS_WORDS.none, g: "g-dot" },
 };
 
 const RST_ICON: Record<RuleRow["st"], string> = { applies: "g-check", replaced: "i-turn", depends: "g-q", starts: "i-cal", proposed: "i-dash" };
@@ -537,14 +537,7 @@ export default function AddressPageView(p: PageProps) {
   const [alerts, setAlerts] = useState(false);
   const counts = { protect: 0, depends: 0, none: 0 } as Record<TileStatus, number>;
   v.tiles.forEach((t) => counts[t.status]++);
-  const n = (k: TileStatus, one: string, many: string) => `${counts[k]} ${counts[k] === 1 ? one : many}`;
-  const sum: string[] = [];
-  {
-    if (counts.protect === 6) sum.push("There’s a rule for each of the 6 topics at this address.");
-    else if (counts.protect) sum.push(`There’s a rule for ${n("protect", "topic", "topics")}.`);
-    if (counts.depends) sum.push(`For ${n("depends", "topic", "topics")}, we’re missing one fact.`);
-    if (counts.none) sum.push(`For ${n("none", "topic", "topics")}, there’s no local rule, so state basics apply.`);
-  }
+  const sum = glanceSummary(v.tiles);
 
   const goTile = (id: string) => {
     setOpenTile(id);

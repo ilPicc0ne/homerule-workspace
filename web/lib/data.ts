@@ -1,9 +1,8 @@
 import "server-only";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import jurisdictionsFile from "@/data/jurisdictions.json";
 import { DATA_SOURCE } from "./config";
-import type { Address, Dataset, Excerpt, Finding, Jurisdiction, LookupsByDate, Meta, Rule } from "./types";
+import type { Address, Dataset, Excerpt, Finding, LookupsByDate, Meta, Rule } from "./types";
 
 /*
   Server-side loader. Reads web/data/<source>/*.json, where <source> comes from
@@ -45,26 +44,7 @@ export function getDataset(): Dataset | null {
   return cached;
 }
 
-export const jurisdictions = (jurisdictionsFile as { jurisdictions: Jurisdiction[] }).jurisdictions;
-
-export function jurisdictionById(id: string): Jurisdiction | undefined {
-  return jurisdictions.find((j) => j.id === id);
-}
-
-/** State › County › City for a jurisdiction, top first. */
-export function ancestry(id: string): Jurisdiction[] {
-  const out: Jurisdiction[] = [];
-  let cur = jurisdictionById(id);
-  while (cur) {
-    out.unshift(cur);
-    cur = cur.parent ? jurisdictionById(cur.parent) : undefined;
-  }
-  return out;
-}
-
-export function childrenOf(id: string): Jurisdiction[] {
-  return jurisdictions.filter((j) => j.parent === id);
-}
+export { ancestry, childrenOf, jurisdictionById, jurisdictions } from "./jurisdiction-tree.ts";
 
 /** Snap a requested date to the published list (shared with the API payload). */
 export { snapAsOf } from "./address-payload.ts";
