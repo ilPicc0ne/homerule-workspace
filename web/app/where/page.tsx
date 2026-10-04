@@ -161,12 +161,6 @@ export default async function WherePage({ searchParams }: PageProps<"/where">) {
 
   return (
     <>
-      <header className="wrap top">
-        <Link href="/" className="brand">
-          <span className="brand-mark">{icons.home}</span>
-          HomeRule
-        </Link>
-      </header>
       <main className={`wrap ${s.main}`}>
         <h1 className={s.title}>Who makes the rules at your address?</h1>
         <p className={s.sub}>Federal, state, county and city: see which levels govern a place, and which of them HomeRule covers.</p>

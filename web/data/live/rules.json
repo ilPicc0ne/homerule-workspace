@@ -42,7 +42,7 @@
     "category": "algorithmic_rent_setting",
     "requirement": "A person must not use or distribute a common pricing algorithm as part of a contract, combination in the form of a trust, or conspiracy to restrain trade or commerce in violation of the chapter.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -97,7 +97,7 @@
     "category": "algorithmic_rent_setting",
     "requirement": "A landlord may not use a coordinated pricing algorithm described in subsection A when setting rents or occupancy levels for residential dwelling units in Berkeley.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -152,7 +152,7 @@
     "category": "security_deposits",
     "requirement": "The guide indicates that listed fully and partially covered unit types are covered for security deposit interest.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.5
    },
@@ -202,7 +202,7 @@
     "category": "just_cause_eviction",
     "requirement": "A landlord may not evict for nonpayment unless the tenant’s rental debt equals or exceeds one month of the applicable fair market rent.",
     "key_value": "At least one month of the applicable HUD Fair Market Rent",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -252,7 +252,7 @@
     "category": "just_cause_eviction",
     "requirement": "Owners must pay relocation assistance for owner move-in and Ellis Act evictions; the 2026 standard payment is $19,413.",
     "key_value": "$19,413 standard relocation assistance payment for 2026",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -302,7 +302,7 @@
     "category": "application_screening_fees",
     "requirement": "A landlord may charge no more than the stated maximum screening fee for 2026.",
     "key_value": "$68.96 for 2026",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -352,7 +352,7 @@
     "category": "rent_increase_limits",
     "requirement": "The Annual General Adjustment may not exceed 5%.",
     "key_value": "5%",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -405,7 +405,7 @@
     "category": "screening_restrictions",
     "requirement": "A housing provider may not inquire about a current or prospective tenant’s criminal history.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -459,7 +459,7 @@
     "category": "security_deposits",
     "requirement": "Except for the stated statutory exceptions, a landlord may not demand or receive security exceeding one month’s rent, in addition to first month’s rent paid on or before initial occupancy.",
     "key_value": "One month’s rent, in addition to any rent for the first month paid on or before initial occupancy.",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -521,7 +521,7 @@
     "category": "just_cause_eviction",
     "requirement": "After the applicable continuous-occupancy period, an owner may not terminate a tenancy without just cause, and must state the cause in the written termination notice. Just cause includes the listed at-fault and no-fault grounds.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -577,7 +577,7 @@
     "category": "application_screening_fees",
     "requirement": "A landlord may not charge an application screening fee above the actual out-of-pocket costs and reasonable value of time spent obtaining applicant information, and the fee may not exceed $30 per applicant, subject to the stated annual CPI adjustment.",
     "key_value": "$30 per applicant; adjusted annually commensurate with an increase in the Consumer Price Index beginning January 1, 1998",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -631,7 +631,7 @@
     "category": "just_cause_eviction",
     "requirement": "A landlord may not terminate a covered tenancy without just cause; the JCO applies after the tenant has lived in the unit for at least six months or the original lease has expired, whichever comes first.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -688,7 +688,7 @@
     "category": "rent_increase_limits",
     "requirement": "For covered RSO units, rent may be increased once every 12 months by the allowable rent-increase percentage; the reported rate for July 1, 2025 through June 30, 2026 is 3%.",
     "key_value": "3% for July 1, 2025 through June 30, 2026",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.5
    },
@@ -749,7 +749,7 @@
     "category": "rent_increase_limits",
     "requirement": "An owner may not increase the gross rental rate during any 12-month period by more than 5 percent plus the percentage change in the cost of living, or 10 percent, whichever is lower, calculated from the lowest gross rental rate charged during the prior 12 months. Accepted rent discounts, incentives, concessions, or credits are excluded from that lowest rate.",
     "key_value": "5% plus the percentage change in the cost of living, capped at 10%, whichever is lower",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -800,7 +800,7 @@
     "category": "algorithmic_rent_setting",
     "requirement": "A landlord may not use an algorithmic device to set rental rates or occupancy levels for residential rental property. The defined term excludes the specified reporting software and software used in accordance with affordable housing program guidelines.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -859,7 +859,7 @@
     "category": "just_cause_eviction",
     "requirement": "A landlord may not terminate a tenancy without just cause. The listed at-fault and good-faith no-fault reasons define the just cause grounds; additional stated conditions apply to particular no-fault grounds.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -913,7 +913,7 @@
     "category": "algorithmic_rent_setting",
     "requirement": "A person may not use an algorithmic device to set rents or manage occupancy levels for residential units in San Francisco. The described device analyzes nonpublic competitor rental data to recommend a rent for a vacant unit.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -967,7 +967,7 @@
     "category": "security_deposits",
     "requirement": "The security deposit interest rate for March 1, 2026 through February 28, 2027 is 4.2%.",
     "key_value": "4.2%",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1017,7 +1017,7 @@
     "category": "just_cause_eviction",
     "requirement": "A landlord must have a just-cause reason that is the dominant motive to evict a tenant. The listed reasons include nonpayment or habitual late payment, substantial breach, nuisance, illegal use, refusal of lawful access, specified owner or family occupancy, sale after an approved condominium conversion, demolition or rehabilitation, Ellis Act withdrawal, lead remediation, and specified development or temporary-tenancy circumstances. Mere expiration of a rental agreement or a change in ownership is not just cause.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1073,7 +1073,7 @@
     "category": "rent_increase_limits",
     "requirement": "For rent-controlled units, the annual allowable rent increase for March 1, 2026 through February 28, 2027 is 1.6%.",
     "key_value": "1.6%",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.5
    },
@@ -1131,7 +1131,7 @@
     "category": "just_cause_eviction",
     "requirement": "After 30 days, an owner may not terminate a tenancy without just cause.",
     "key_value": "30 days",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1190,7 +1190,7 @@
     "category": "rent_increase_limits",
     "requirement": "Limit annual rent increases to the lower of 3% or 80% of the percent change in the Consumer Price Index over the most recent 12-month period; if the CPI is negative, no increase is permitted.",
     "key_value": "Lower of 3% per year or 80% of the CPI change; 2.87% for September 1, 2026 through August 31, 2027",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1240,7 +1240,7 @@
     "category": "screening_restrictions",
     "requirement": "Housing providers must not discriminate against or harass tenants, residents, applicants, home seekers, or others because of a protected characteristic.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1290,7 +1290,7 @@
     "category": "algorithmic_rent_setting",
     "requirement": "Prohibits algorithmic rent setting.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1340,7 +1340,7 @@
     "category": "algorithmic_rent_setting",
     "requirement": "Pending bill: An Act relative to preventing algorithmic rent fixing in the rental housing market",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1398,7 +1398,7 @@
     "category": "just_cause_eviction",
     "requirement": "When planning to end a tenancy or post-foreclosure occupancy, landlords and applicable foreclosing owners must provide the Notice of Tenants’ Rights and Resources to the tenant or former owner at the same time as the Notice to Quit or notice of non-renewal.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1448,7 +1448,7 @@
     "category": "rent_increase_limits",
     "requirement": "Pending bill: An Act petition for a special law authorizing the city of Boston to implement rent stabilization and tenant eviction protections",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.5
    },
@@ -1504,7 +1504,7 @@
     "category": "screening_restrictions",
     "requirement": "Covered housing providers must not impose a blanket policy denying housing to anyone with arrests or convictions and must consider applicants case by case.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1558,7 +1558,7 @@
     "category": "screening_restrictions",
     "requirement": "Discrimination is illegal in Boston when renting, buying, selling, or securing financing for housing based on the listed protected characteristics.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1612,7 +1612,7 @@
     "category": "just_cause_eviction",
     "requirement": "Owners, landlords, and management companies must offer the Guide to tenants when legal steps to terminate a tenancy are taken.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1665,7 +1665,7 @@
     "category": "screening_restrictions",
     "requirement": "Landlords, sellers, and rental agents may use reasonable standards to select applicants only if they apply the standards equally and uniformly to all applicants.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1719,7 +1719,7 @@
     "category": "security_deposits",
     "requirement": "At or before the start of a tenancy, a lessor may not require payment of amounts beyond the listed first month's rent, last month's rent at the same rate, a compliant security deposit equal to the first month's rent, and the purchase and installation cost of a key and lock. A fee in lieu of a deposit may be authorized by regulation subject to the stated requirements.",
     "key_value": "Security deposit may not exceed the first month's rent",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1769,7 +1769,7 @@
     "category": "just_cause_eviction",
     "requirement": "To determine a written lease for nonpayment of rent, the landlord must give the tenant written notice to quit at least 14 days before termination.",
     "key_value": "14 days",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1823,7 +1823,7 @@
     "category": "application_screening_fees",
     "requirement": "A broker's fee may be paid only by the lessor or tenant who originally engaged and entered into a contract with the broker.",
     "key_value": "Only the party who originally engaged and contracted with the broker may pay the fee.",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1877,7 +1877,7 @@
     "category": "application_screening_fees",
     "requirement": "At or before the start of a tenancy, a lessor or the lessor’s agent may not require a tenant or prospective tenant to pay an amount beyond the charges permitted by this subsection.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1929,7 +1929,7 @@
     "category": "rent_increase_limits",
     "requirement": "Cities and towns may not enact, maintain, or enforce rent control, except as allowed for a city or town that accepts the chapter.",
     "key_value": null,
-    "effect": "bars_or_limits_local_rules",
+    "effect": "Bars or limits local rules",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -1983,7 +1983,7 @@
     "category": "screening_restrictions",
     "requirement": "Covered housing providers may not refuse to rent, lease, sell, negotiate for sale, or otherwise deny or withhold covered accommodations on the listed protected grounds.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.5
    },
@@ -2039,7 +2039,7 @@
     "category": "algorithmic_rent_setting",
     "requirement": "A person may not perform a coordinating function.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2093,7 +2093,7 @@
     "category": "security_deposits",
     "requirement": "A landlord who collects a security deposit may not collect more than one and one-half times one month’s rent.",
     "key_value": "1.5 times one month’s rent",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2143,7 +2143,7 @@
     "category": "just_cause_eviction",
     "requirement": "A residential landlord may not evict a tenant or fail to renew a lease without good cause, and must be able to prove the grounds in court.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2199,7 +2199,7 @@
     "category": "application_screening_fees",
     "requirement": "A landlord or agent may not require an application or similar fee exceeding the statutory limit to apply to lease or sublease a residential rental property for dwelling purposes.",
     "key_value": "$50",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2254,7 +2254,7 @@
     "category": "algorithmic_rent_setting",
     "requirement": "Landlords may not use software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental prices, lease terms, or occupancy levels among competing landlords.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2304,7 +2304,7 @@
     "category": "rent_increase_limits",
     "requirement": "A tenant may request a legal rent calculation when the tenant believes the rent exceeds the legal rent.",
     "key_value": "Right to request a legal rent calculation",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2354,7 +2354,7 @@
     "category": "rent_increase_limits",
     "requirement": "When service, care, or maintenance deterioration exists at the time of a rent-reduction application or existed within 60 days before filing, the Board must value the deterioration for the applicable period and reduce rent by that value over a period it determines.",
     "key_value": "An amount equal to the value of the deteriorated services",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": false,
     "confidence": 0
    },
@@ -2408,7 +2408,7 @@
     "category": "rent_increase_limits",
     "requirement": "A landlord may file a decontrol certificate for a year it legally owned the dwelling, no later than one year after the later of the vacancy or first rental to a replacement tenant; the dwelling must be registered, and filing must precede a legal-rent-calculation request for the certificate to be used in a legal rent determination.",
     "key_value": "No later than one year after the later of vacancy or first rental to a replacement tenant",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2462,7 +2462,7 @@
     "category": "rent_increase_limits",
     "requirement": "A landlord renting an apartment to multiple tenants may designate all members of the original tenant group as original tenants; vacancy is deemed to occur when the last original tenant leaves, allowing the landlord to seek available vacancy-decontrol relief.",
     "key_value": "Vacancy is deemed to occur when the last original tenant vacates",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2517,7 +2517,7 @@
     "category": "algorithmic_rent_setting",
     "requirement": "A real estate lessor, its agent, or its subcontractor may not subscribe to, contract with, or exchange anything of value for a service provider’s services.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2572,7 +2572,7 @@
     "category": "algorithmic_rent_setting",
     "requirement": "With any lease or written notice of rent increase for a residential dwelling unit, the landlord must provide a sworn disclosure statement, executed under penalty of perjury and substantially in the prescribed form. The form certifies that no entity exchanged anything of value for a Service Provider’s services in connection with the proposed rent, that the rent-increase methodology did not use shared non-public competitor data, and includes the stated acknowledgment concerning illegal deception, fraud, misrepresentation, or knowing failure or refusal to provide important information.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2622,7 +2622,7 @@
     "category": "rent_increase_limits",
     "requirement": "A tenant who claims they are being charged illegal rent may file an Illegal Rent Petition.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.5
    },
@@ -2674,7 +2674,7 @@
     "category": "rent_increase_limits",
     "requirement": "A rent increase must not be unconscionable and must comply with municipal ordinances governing rent increases.",
     "key_value": "Must not be unconscionable",
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2728,7 +2728,7 @@
     "category": "rent_increase_limits",
     "requirement": "Local rent control ordinances do not apply to newly constructed multiple dwellings for 30 years following completion of construction.",
     "key_value": "30 years following completion of construction",
-    "effect": "bars_or_limits_local_rules",
+    "effect": "Bars or limits local rules",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2782,7 +2782,7 @@
     "category": "screening_restrictions",
     "requirement": "A landlord may not discriminate in housing on the bases of race, creed (religion), color, national origin, sex, gender identity or expression, marital status, civil union status, ancestry, actual or perceived physical or mental disability, nationality, affectional or sexual orientation, familial status, or domestic partner status.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2839,7 +2839,7 @@
     "category": "screening_restrictions",
     "requirement": "A housing provider may not require an applicant to complete an application that includes criminal-record inquiries before making a conditional offer, except for the specified methamphetamine-related conviction and lifetime sex-offender registration inquiries.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2896,7 +2896,7 @@
     "category": "screening_restrictions",
     "requirement": "A housing provider may not evaluate an applicant based on arrests or charges without conviction, expunged or pardoned convictions, legally nullified convictions, juvenile delinquency adjudications, or sealed records, before or after a conditional offer.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -2953,7 +2953,7 @@
     "category": "screening_restrictions",
     "requirement": "A housing provider may not knowingly or purposefully publish an advertisement explicitly stating that applicants arrested or convicted of crimes will not be considered, except for the two specified criminal-history categories.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },
@@ -3010,7 +3010,7 @@
     "category": "screening_restrictions",
     "requirement": "A housing provider may not require an applicant to submit to a drug or alcohol test or request the applicant’s consent to obtain information from a drug abuse treatment facility.",
     "key_value": null,
-    "effect": "protection_or_duty",
+    "effect": "Protects renters or sets a duty",
     "quote_found_in_source": true,
     "confidence": 0.9
    },

@@ -41,6 +41,11 @@ const FACT_WORDS: Record<string, string> = {
   owner_occupied: "whether the owner lives in the building",
 };
 
+const EFFECT_WORDS: Record<string, string> = {
+  protection_or_duty: "Protects renters or sets a duty",
+  bars_or_limits_local_rules: "Bars or limits local rules",
+};
+
 const INTERACTION_NOTE: Record<string, string> = {
   yields_to_local: "Steps back where a stricter local rule covers the building.",
   may_preempt_local: "State law may limit local rules on this topic. HomeRule flags this for review and does not decide it.",
@@ -236,7 +241,7 @@ export function buildLive(root: string): Record<string, unknown> {
           category: model.category ?? fr.category,
           requirement: model.requirement ?? null,
           key_value: model.key_value ?? null,
-          effect: model.effect ?? c.x_source?.effect ?? null,
+          effect: EFFECT_WORDS[model.effect ?? c.x_source?.effect] ?? model.effect ?? c.x_source?.effect ?? null,
           quote_found_in_source: a.source?.quote_verbatim ?? quote !== null,
           confidence: typeof fr.confidence === "number" ? fr.confidence : 0,
         },
