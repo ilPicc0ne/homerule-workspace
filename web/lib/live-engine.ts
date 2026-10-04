@@ -18,7 +18,7 @@ const responseSchema = z.object({
     governed_by: z.string().nullable().optional(),
     conflict_with: z.array(z.string()),
     conflict_flag: z.boolean(),
-  })).min(1).max(256),
+  })).max(256),
 });
 
 /** Typed addresses have Census jurisdictions only, never facts borrowed from a sample. */
@@ -42,7 +42,7 @@ export function typedEngineRecord(r: AddressResult) {
   };
 }
 
-type EngineEnvironment = Record<string, string | undefined>;
+export type EngineEnvironment = Record<string, string | undefined>;
 
 /** Deployment URL comes from trusted server configuration, never request Host headers. */
 export function engineEndpoint(env: EngineEnvironment): string | null {
@@ -57,11 +57,10 @@ export function engineEndpoint(env: EngineEnvironment): string | null {
   } catch { return null; }
 }
 
-/** null preserves today's provisional page on every transport, validation or engine failure. */
-export async function liveEngine(r: AddressResult, rules: Rule[], asOf: string, options: {
+/** null signals transport, validation or engine failure; callers choose an explicitly dated fallback. */
+export async function evaluateRecord(record: unknown, rules: Rule[], asOf: string, options: {
   fetch?: typeof fetch; env?: EngineEnvironment; timeoutMs?: number;
 } = {}): Promise<{ results: Result[]; engine: string } | null> {
-  if (r.source !== "census" || r.sample || r.coverage === "not_covered") return null;
   const env = options.env ?? process.env;
   const endpoint = engineEndpoint(env);
   if (!endpoint) return null;
@@ -77,7 +76,7 @@ export async function liveEngine(r: AddressResult, rules: Rule[], asOf: string, 
       if (env.VERCEL_URL && endpoint === `https://${env.VERCEL_URL}/api/engine` && env.VERCEL_AUTOMATION_BYPASS_SECRET)
         headers["x-vercel-protection-bypass"] = env.VERCEL_AUTOMATION_BYPASS_SECRET;
       const response = await (options.fetch ?? fetch)(endpoint, {
-        method: "POST", headers, body: JSON.stringify({ as_of: asOf, record: typedEngineRecord(r) }),
+        method: "POST", headers, body: JSON.stringify({ as_of: asOf, record }),
         signal: controller.signal, cache: "no-store", redirect: "error",
       });
       if (!response.ok) return null;
@@ -91,4 +90,11 @@ export async function liveEngine(r: AddressResult, rules: Rule[], asOf: string, 
     return await Promise.race([request(), deadline]);
   } catch { return null; }
   finally { clearTimeout(timer); }
+}
+
+/** Typed pages never borrow sample facts. */
+export async function liveEngine(r: AddressResult, rules: Rule[], asOf: string,
+  options: Parameters<typeof evaluateRecord>[3] = {}) {
+  if (r.source !== "census" || r.sample || r.coverage === "not_covered") return null;
+  return evaluateRecord(typedEngineRecord(r), rules, asOf, options);
 }

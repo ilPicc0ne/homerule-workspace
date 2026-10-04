@@ -70,7 +70,7 @@ is exposed to the client. `LIVE_ENGINE_DISABLED=1` forces the existing fallback.
   depend on details about your building. We’ll show you what to check."
 - Disable the function or set `LIVE_ENGINE_DISABLED=1`, then reload: the same
   page remains usable with its existing provisional banner and results.
-- `/a/A0107` still reads the precomputed data; typing that sample redirects there.
+- The live-date follow-up makes `/a/A0107?as_of=2027-07-02` and I5 use the live engine too. Typing that sample preserves its selected date on redirect.
 
 Silvan needs to repeat the live/fallback checks on a Vercel preview before merging
 or deploying. This Git author's Vercel project access remains blocked, and the
@@ -85,3 +85,17 @@ is null and assumptions are empty. The endpoint is public/read-only with a 64 Ki
 body cap; it is not a production load-test or an unlimited-throughput claim.
 The local 500-request HTTP check is a warm sequential microbenchmark, not a
 Vercel cold-start latency measurement.
+
+
+## Exact-date follow-up (d/live-date-timeline)
+
+The address API and both address page routes now use the live evaluator at the requested date.
+Sample pages send their original I3 record; typed pages still send unknown building facts.
+The default date is the dataset date. Select another using the slider, date form or change shortcuts.
+Example: `/api/address/A0256?as_of=2027-07-02` returns `as_of: 2027-07-02`,
+`evaluation: live` and NJ-ALG-56:9-23 as `applies`.
+
+Stop the Python process: the dataset date can still show a labelled saved sample result,
+but a different date must return 503 (API) or an unavailable page, never October's answers.
+Only the dataset date can use the existing typed provisional fallback.
+MCP still uses its saved date behavior. No model inference is involved in evaluation.

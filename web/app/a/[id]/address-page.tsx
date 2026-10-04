@@ -1,5 +1,7 @@
 "use client";
 
+import AddressDateControl from "@/components/address-date-control";
+import type { DateControls } from "@/lib/address-dates";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
@@ -30,6 +32,8 @@ export type PageProps = {
   index: { id: string; street: string; city: string; st: string }[];
   typed: boolean;
   liveEngine?: string;
+  dateControls?: DateControls;
+  snapshotFallback?: boolean;
   /** This address's change log and the rules in it; null when nothing changed between the compared dates. */
   changeLog: { href: string; rules: string[] } | null;
 };
@@ -514,7 +518,7 @@ function Ahead({ id, v, onAlerts, log }: { id: string; v: AddressView; onAlerts:
           </li>
         )}
         <li className="now">
-          <span className="today-pill">Today</span>
+          <span className="today-pill">Selected date</span>
           <span className="today-d">{v.asOfText}</span>
         </li>
         {v.past.length > 0 && <li className="tl-lab">Recently changed</li>}
@@ -599,7 +603,7 @@ export default function AddressPageView(p: PageProps) {
             </p>
           </div>
         )}
-        <div className="wrap page">
+        <div className={`wrap page${p.dateControls ? " has-date-control" : ""}`}>
           <section className="hero" aria-labelledby="h-addr">
             <h1 className="addr" id="h-addr">
               {v.street}
@@ -653,6 +657,10 @@ export default function AddressPageView(p: PageProps) {
             <WorksWith className="hero-ww" />
           </section>
 
+          {p.dateControls && <div className="date-control-row">
+            <AddressDateControl key={p.id} config={p.dateControls} />
+            {p.snapshotFallback && <p role="note">Live calculation is unavailable. Showing the saved answers for exactly {v.asOfText}.</p>}
+          </div>}
           <section className="glance" aria-labelledby="h-glance">
             <div className="glance-sum">
               <h2 className="glance-h" id="h-glance">
@@ -701,7 +709,7 @@ export default function AddressPageView(p: PageProps) {
 
           <section className="today" aria-labelledby="h-today">
             <h2 className="sec-h" id="h-today">
-              In effect today
+              In effect on {v.asOfText}
             </h2>
             <ul className="trust" aria-label="About these answers">
               <li>

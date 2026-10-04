@@ -493,3 +493,11 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 /* "Works with ChatGPT · Claude" entry to /connect, under the building facts (components/works-with.tsx). */
 .v3 .hero-ww{grid-area:ww;justify-self:start;margin-top:6px}
 .v3 .hero-ww a{color:var(--blue-ink)}
+
+.v3 .date-control-row{grid-column:1 / -1}
+@media(min-width:1000px){
+.v3 .has-date-control .date-control-row{grid-row:2}
+.v3 .has-date-control .glance{grid-row:3}
+.v3 .has-date-control .today{grid-row:4}
+.v3 .has-date-control .ahead{grid-row:3 / span 2}
+}

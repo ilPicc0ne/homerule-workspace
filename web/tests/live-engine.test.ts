@@ -44,8 +44,8 @@ test("successful engine call uses the shared mapper and leaves provisional data 
   assert.equal(JSON.stringify(provisional), before);
 });
 
-test("errors, malformed rows, stale dates and empty responses retain the provisional fallback", async () => {
-  const cases = [answer({},503), answer(null), answer({...good,as_of:"2030-01-01"}), answer({...good,not_legal_advice:false}), answer({...good,results:[]}), answer({...good,results:[{}]}), answer({...good,results:[{...good.results[0],team_rule_id:"unknown"}]}), answer({...good,results:[good.results[0],good.results[0]]}), async () => {throw new Error("offline");}, async () => new Response("not json")];
+test("errors, malformed rows, stale dates and invalid responses retain the provisional fallback", async () => {
+  const cases = [answer({},503), answer(null), answer({...good,as_of:"2030-01-01"}), answer({...good,not_legal_advice:false}), answer({...good,results:[{}]}), answer({...good,results:[{...good.results[0],team_rule_id:"unknown"}]}), answer({...good,results:[good.results[0],good.results[0]]}), async () => {throw new Error("offline");}, async () => new Response("not json")];
   for (const fetch of cases) assert.equal(await liveEngine(resolver, rules, day, {env,fetch}), null);
   const expected = typedAddress(resolver,rules,resolver.query)!.results;
   const failed = await liveEngine(resolver,rules,day,{env,fetch:answer({},500)});

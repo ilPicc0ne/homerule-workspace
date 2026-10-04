@@ -1,0 +1,18 @@
+.control { border:1px solid #bccbd5; border-radius:16px; padding:22px; background:#f4f8fb; color:#172c3d; margin:0 0 24px; }
+.control h2 { font-size:20px; margin:0 0 6px; }
+.control p { margin:0; }
+.heading { display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px; }
+.heading p, .note { font-size:13px; line-height:1.5; }
+.form { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+.control input[type=date] { padding:8px; background:white; color:#172c3d; border:1px solid #879ba9; border-radius:6px; font:inherit; }
+.control .button { border:1px solid #214d68; border-radius:7px; background:#214d68; color:#fff; padding:9px 12px; font:inherit; font-size:13px; cursor:pointer; }
+.control .button:hover:not(:disabled) { background:#17374b; color:#fff; }
+.control .button:disabled { opacity:.55; cursor:default; }
+.control :focus-visible { outline:3px solid #b76a00; outline-offset:3px; }
+.sliderLabel { display:flex; justify-content:space-between; gap:12px; margin-top:20px; font-size:14px; font-weight:650; }
+.control input[type=range] { width:100%; accent-color:#214d68; margin:10px 0 2px; min-height:28px; cursor:pointer; }
+.bounds { display:flex; justify-content:space-between; font-size:12px; }
+.actions { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0; }
+.control .status { font-size:14px; font-weight:600; margin:10px 0; }
+.note { color:#455b6c; }
+@media(max-width:600px) { .control { padding:16px; } .form { width:100%; } .actions button { flex:1 1 auto; } }

@@ -2,6 +2,7 @@ import type { Badge } from "./changes/impact.ts";
 import { ruleEnds } from "./changes/ends.ts";
 import type { AddressChanges, Source } from "./changes/types.ts";
 import { contactFor, type Contact } from "./contacts.ts";
+import { ruleStatusOn } from "./law.ts";
 import { formatDate } from "./format.ts";
 import { missingFacts } from "./missing.ts";
 import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain.ts";
@@ -162,7 +163,7 @@ export function buildAddressView(args: {
     const replaced = inCat.filter((r) => r.result === "superseded");
     // A state "no protection here" rule (e.g. MA bars rent control) the engine doesn't list as a result.
     if (!strong.length && !unknown.length && !weak.length) {
-      const basic = Object.values(rules).find((r) => r.category === t.cat && r.level === "state" && isWeak(r.rule_id) && r.status === "in_force");
+      const basic = Object.values(rules).find((r) => r.category === t.cat && r.level === "state" && isWeak(r.rule_id) && ruleStatusOn(r, asOf) === "in_force");
       if (basic)
         weak.push({ rule_id: basic.rule_id, category: basic.category, result: "applies", confidence: basic.audit.model_extracted.confidence, explanation: `Statewide ${stateName} rule (${basic.citation}).`, what_next: basic.what_next });
     }

@@ -33,7 +33,7 @@ export function changeLogFor(id: string): { href: string; rules: string[] } | nu
   return { href: `/changes/${encodeURIComponent(id)}`, rules: [...rules] };
 }
 
-export function addressPageData(data: Dataset, address: Address, results: Result[], extra?: { typed?: boolean; legalNote?: string }): AddressPageData {
+export function addressPageData(data: Dataset, address: Address, results: Result[], extra?: { typed?: boolean; legalNote?: string; asOf?: string }): AddressPageData {
   const stack = new Set(Object.values(address.jurisdictions).filter(Boolean));
   const rules: Record<string, Rule> = {};
   for (const r of data.rules) if (stack.has(r.jurisdiction_id)) rules[r.rule_id] = r;
@@ -42,7 +42,7 @@ export function addressPageData(data: Dataset, address: Address, results: Result
   const county = jurisdictionById(address.jurisdictions.county);
   const state = jurisdictionById(address.jurisdictions.state);
   const cityName = city ? city.legal_name.replace(/ city$/, "") : null;
-  const asOf = data.meta.default_as_of;
+  const asOf = extra?.asOf ?? data.meta.default_as_of;
 
   const rec = extra?.typed ? null : (changes.addresses[address.address_id] ?? null);
   const view = buildAddressView({ address, results, rules, asOf, cityName: cityName ?? "", findings: data.findings, changes: { sources: changes.sources, rec } });
