@@ -17,8 +17,17 @@ export function generateStaticParams() {
   return getDataset()?.rules.map((r) => ({ id: r.rule_id })) ?? [];
 }
 
+/** The route param can arrive percent-encoded ("NJ-ALG-56%3A9-23"): NJ rule ids contain ':', so decode before matching. */
+function ruleId(raw: string): string {
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+}
+
 export async function generateMetadata(props: PageProps<"/r/[id]">): Promise<Metadata> {
-  const { id } = await props.params;
+  const id = ruleId((await props.params).id);
   const r = getDataset()?.rules.find((x) => x.rule_id === id);
   return { title: r ? r.title : "Rule" };
 }
@@ -45,7 +54,7 @@ function show(key: string, v: unknown): string {
 }
 
 export default async function RulePage(props: PageProps<"/r/[id]">) {
-  const { id } = await props.params;
+  const id = ruleId((await props.params).id);
   const data = getDataset();
   if (!data) return <LiveUnavailable />;
   const rule = data.rules.find((r) => r.rule_id === id);
