@@ -313,7 +313,8 @@ export function buildLive(root: string): Record<string, unknown> {
       .filter((r) => ruleIds.has(r.team_rule_id))
       .map((r) => {
         const rule = rules.find((x) => x.rule_id === r.team_rule_id)!;
-        const missing = (r.missing as string[]).filter((m) => !m.startsWith("unparsed")).map((m) => FACT_WORDS[m] ?? m);
+        // only the facts that could change this result (engine: missing_deciding); older builds: every unknown fact
+        const missing = ((r.missing_deciding ?? r.missing) as string[]).filter((m) => !m.startsWith("unparsed")).map((m) => FACT_WORDS[m] ?? m);
         const out: J = {
           rule_id: r.team_rule_id,
           category: r.category,
