@@ -638,6 +638,198 @@
       "terms_review_note": "Targeted agent-assisted browser download from official public portal, which explicitly offers downloads. No applicable prohibition on this limited download/AI use was identified in the reviewed portal policies. Robots disallows default crawlers (named search engines have exceptions); no crawling permission inferred. This is a limited project decision, not blanket legal clearance or organizer approval.",
       "use_for_rule_extraction": true,
       "terms_review_report": "TERMS-REVIEW.md"
+    },
+    {
+      "source_id": "S018",
+      "title": "Newark Ordinance 24-1160 (Sept. 18, 2024): Title XIX Chapter 2 rent control regulations, restated",
+      "jurisdiction": "Newark, NJ",
+      "category_hints": [
+        "rent_increase_limits"
+      ],
+      "source_kind": "municipal_enactment",
+      "related_starter_doc_ids": [
+        "D070",
+        "D071",
+        "D072"
+      ],
+      "relationship_to_starter": "same chapter (Title 19, ch. 2) as the starter's eCode360 links; official council record, not the publisher copy",
+      "url": "https://newark.legistar.com/ (File 24-1160, matter 1608659)",
+      "retrieved_at": "2026-10-04T00:30:06.128858+00:00",
+      "retrieval_time_basis": "API response time",
+      "raw_path": "raw/S018-newark-24-1160.legistar.json",
+      "raw_bytes": 189998,
+      "raw_sha256": "91026c08e6e5ecec922326c74c02583dce2a28c989d645ad0a44c7581e45aafe",
+      "text_path": "text/S018.txt",
+      "text_sha256": "daa6660cf24db4ce3f3c342be6a4ac89d9675fcba4d4356683f4eb7bfa3f7f7d",
+      "transfer_metadata": "metadata/S018-transfer.json",
+      "acquisition_status": "downloaded_and_text_extracted",
+      "use_for_rule_extraction": true,
+      "terms_review_status": "reviewed_targeted_api_download",
+      "currentness_as_of_2026_10_01": "not_verified",
+      "review_notes": "Newark Municipal Council's Legistar (Granicus), status Adopted. Not hosted on CivicPlus. Restates Chapter 19:2 as amended Sept. 18, 2024; amended by 26-0532 (S019).",
+      "version_chain": "Newark Title 19, Chapter 2 (rent control regulations)",
+      "version_date": "2024-09-18",
+      "version_kind": "restatement"
+    },
+    {
+      "source_id": "S019",
+      "title": "Newark Ordinance 26-0532 (May 20, 2026): rent control second amendment (registration, inspection)",
+      "jurisdiction": "Newark, NJ",
+      "category_hints": [
+        "rent_increase_limits"
+      ],
+      "source_kind": "municipal_enactment",
+      "related_starter_doc_ids": [
+        "D070",
+        "D071",
+        "D072"
+      ],
+      "relationship_to_starter": "same chapter (Title 19, ch. 2) as the starter's eCode360 links; official council record, not the publisher copy",
+      "url": "https://newark.legistar.com/ (File 26-0532, matter 1611524)",
+      "retrieved_at": "2026-10-04T00:30:06.128858+00:00",
+      "retrieval_time_basis": "API response time",
+      "raw_path": "raw/S019-newark-26-0532.legistar.json",
+      "raw_bytes": 73077,
+      "raw_sha256": "d48e9ff32b37800d0e2ea5be05778511a16bf349d9c28b0726944d540afb0d4c",
+      "text_path": "text/S019.txt",
+      "text_sha256": "baf88ae881d6c9ccc876039f20f95231e484bba9c32c66b88cf51e9cf3cc1af3",
+      "transfer_metadata": "metadata/S019-transfer.json",
+      "acquisition_status": "downloaded_and_text_extracted",
+      "use_for_rule_extraction": true,
+      "terms_review_status": "reviewed_targeted_api_download",
+      "currentness_as_of_2026_10_01": "not_verified",
+      "review_notes": "Newark Municipal Council's Legistar (Granicus), status Adopted. Not hosted on CivicPlus. Amends the Sept. 18, 2024 text (S018): registration and inspection.",
+      "version_chain": "Newark Title 19, Chapter 2 (rent control regulations)",
+      "version_date": "2026-05-20",
+      "version_kind": "amendment"
+    },
+    {
+      "source_id": "S020",
+      "title": "Newark Ordinance 17-0273 (2017-03-07): Rent Control Amendment - maximum rent increase",
+      "jurisdiction": "Newark, NJ",
+      "category_hints": [
+        "rent_increase_limits"
+      ],
+      "source_kind": "municipal_enactment",
+      "related_starter_doc_ids": [
+        "D070",
+        "D071",
+        "D072"
+      ],
+      "relationship_to_starter": "same chapter (Title 19, ch. 2) as the starter's eCode360 links; official council record, not the publisher copy",
+      "url": "https://newark.legistar.com/ (File 17-0273, matter 1591971)",
+      "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
+      "retrieval_time_basis": "API response time",
+      "raw_path": "raw/S020-newark-17-0273.legistar.json",
+      "raw_bytes": 21059,
+      "raw_sha256": "ea06151ae1c52db0adee5f9cf76059e56cfc2ec9815dafdd4036f4a715bb3bf7",
+      "text_path": "text/S020.txt",
+      "text_sha256": "ee420b52fd089bd68414c37d0416697351da6c230d48ca62713fc52155cc5568",
+      "transfer_metadata": "metadata/S020-transfer.json",
+      "acquisition_status": "downloaded_and_text_extracted",
+      "use_for_rule_extraction": true,
+      "terms_review_status": "reviewed_targeted_api_download",
+      "currentness_as_of_2026_10_01": "not_verified",
+      "review_notes": "Newark Municipal Council's Legistar (Granicus), status Adopted. Not hosted on CivicPlus.",
+      "version_chain": "Newark Title 19, Chapter 2 (rent control regulations)",
+      "version_date": "2017-03-07",
+      "version_kind": "amendment"
+    },
+    {
+      "source_id": "S021",
+      "title": "Newark Ordinance 17-1498 (2017-09-05): Initiative Ordinance - Rent Control Regulations",
+      "jurisdiction": "Newark, NJ",
+      "category_hints": [
+        "rent_increase_limits"
+      ],
+      "source_kind": "municipal_enactment",
+      "related_starter_doc_ids": [
+        "D070",
+        "D071",
+        "D072"
+      ],
+      "relationship_to_starter": "same chapter (Title 19, ch. 2) as the starter's eCode360 links; official council record, not the publisher copy",
+      "url": "https://newark.legistar.com/ (File 17-1498, matter 1593182)",
+      "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
+      "retrieval_time_basis": "API response time",
+      "raw_path": "raw/S021-newark-17-1498.legistar.json",
+      "raw_bytes": 156752,
+      "raw_sha256": "ca37f61d5aa5535b2847a993282b2508449ee6c98f638876e4cc4926d8759b1f",
+      "text_path": "text/S021.txt",
+      "text_sha256": "bdabcd8bba7bf3e4a359e491b619a6d3c6ef4b507bde84d419be1809f39eb733",
+      "transfer_metadata": "metadata/S021-transfer.json",
+      "acquisition_status": "downloaded_and_text_extracted",
+      "use_for_rule_extraction": true,
+      "terms_review_status": "reviewed_targeted_api_download",
+      "currentness_as_of_2026_10_01": "not_verified",
+      "review_notes": "Newark Municipal Council's Legistar (Granicus), status Adopted. Not hosted on CivicPlus.",
+      "version_chain": "Newark Title 19, Chapter 2 (rent control regulations)",
+      "version_date": "2017-09-05",
+      "version_kind": "replacement"
+    },
+    {
+      "source_id": "S022",
+      "title": "Newark Ordinance 19-1184 (2019-08-20): Ordinance: Amending Title XIX Rent Control to eliminate appeals to the Municipal Council (CAAW)",
+      "jurisdiction": "Newark, NJ",
+      "category_hints": [
+        "rent_increase_limits"
+      ],
+      "source_kind": "municipal_enactment",
+      "related_starter_doc_ids": [
+        "D070",
+        "D071",
+        "D072"
+      ],
+      "relationship_to_starter": "same chapter (Title 19, ch. 2) as the starter's eCode360 links; official council record, not the publisher copy",
+      "url": "https://newark.legistar.com/ (File 19-1184, matter 1598082)",
+      "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
+      "retrieval_time_basis": "API response time",
+      "raw_path": "raw/S022-newark-19-1184.legistar.json",
+      "raw_bytes": 12389,
+      "raw_sha256": "98199c38bff1de2a6a868ed976190a356fd6fa754b72b099c41a01f0a926f8c6",
+      "text_path": "text/S022.txt",
+      "text_sha256": "2704e955fe62752a9112763b3599129a5ed33494d415f1af22ac55e059432ad6",
+      "transfer_metadata": "metadata/S022-transfer.json",
+      "acquisition_status": "downloaded_and_text_extracted",
+      "use_for_rule_extraction": true,
+      "terms_review_status": "reviewed_targeted_api_download",
+      "currentness_as_of_2026_10_01": "not_verified",
+      "review_notes": "Newark Municipal Council's Legistar (Granicus), status Adopted. Not hosted on CivicPlus.",
+      "version_chain": "Newark Title 19, Chapter 2 (rent control regulations)",
+      "version_date": "2019-08-20",
+      "version_kind": "amendment"
+    },
+    {
+      "source_id": "S023",
+      "title": "Newark Ordinance 23-1048 (2023-08-02): Ordinance: Amedning Title XIX, Rent Contraol, Chapter 19, Rent Control Regulations, Rebt Control Board, Section 2-2, Definitions and Adding Applicability",
+      "jurisdiction": "Newark, NJ",
+      "category_hints": [
+        "rent_increase_limits"
+      ],
+      "source_kind": "municipal_enactment",
+      "related_starter_doc_ids": [
+        "D070",
+        "D071",
+        "D072"
+      ],
+      "relationship_to_starter": "same chapter (Title 19, ch. 2) as the starter's eCode360 links; official council record, not the publisher copy",
+      "url": "https://newark.legistar.com/ (File 23-1048, matter 1606502)",
+      "retrieved_at": "2026-10-04T00:31:05.979369+00:00",
+      "retrieval_time_basis": "API response time",
+      "raw_path": "raw/S023-newark-23-1048.legistar.json",
+      "raw_bytes": 11107,
+      "raw_sha256": "aaf70edd13f2d282c5f3e10a037ca38f3eda516dd92bda84e4019642448557d4",
+      "text_path": "text/S023.txt",
+      "text_sha256": "c7aa16d741e7ecf1c6a8fe0834b95aee7730ab71649430d8c97cea52b0f52800",
+      "transfer_metadata": "metadata/S023-transfer.json",
+      "acquisition_status": "downloaded_and_text_extracted",
+      "use_for_rule_extraction": true,
+      "terms_review_status": "reviewed_targeted_api_download",
+      "currentness_as_of_2026_10_01": "not_verified",
+      "review_notes": "Newark Municipal Council's Legistar (Granicus), status Adopted. Not hosted on CivicPlus.",
+      "version_chain": "Newark Title 19, Chapter 2 (rent control regulations)",
+      "version_date": "2023-08-02",
+      "version_kind": "amendment"
     }
   ],
   "terms_review": {

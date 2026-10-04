@@ -1,0 +1,10 @@
+{
+ "source_id": "S019",
+ "method": "targeted_public_api_download",
+ "api": "https://webapi.legistar.com/v1/newark/matters/1611524 and /texts/1559191",
+ "public_page": "https://newark.legistar.com/ (File 26-0532)",
+ "downloaded_at": "2026-10-04T00:30:06.128858+00:00",
+ "text_normalisation": "MatterTextPlain; 21 U+FFFD replacement characters restored to '\u00a7' (section sign in the RTF version); provenance header from the API's matter fields prepended",
+ "raw_sha256": "d48e9ff32b37800d0e2ea5be05778511a16bf349d9c28b0726944d540afb0d4c",
+ "text_sha256": "baf88ae881d6c9ccc876039f20f95231e484bba9c32c66b88cf51e9cf3cc1af3"
+}
