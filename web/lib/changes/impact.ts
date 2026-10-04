@@ -34,7 +34,7 @@ export type Badge = {
  * and Silvan has hand-checked 15 random badges against their quotes. The email mapping is on regardless:
  * it shows nothing until the synced diff carries `renter_impact`.
  */
-export const PAGE_BADGES = false;
+export const PAGE_BADGES = true;
 
 export const UNIT_MAY_DIFFER = "Your unit may differ.";
 
