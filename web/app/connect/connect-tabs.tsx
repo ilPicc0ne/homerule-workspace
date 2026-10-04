@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./connect.module.css";
 
 export function CopyField({ value, label, big, multiline }: { value: string; label: string; big?: boolean; multiline?: boolean }) {
@@ -37,6 +37,12 @@ function b64(s: string) {
 
 export default function ConnectTabs({ url }: { url: string }) {
   const [tab, setTab] = useState<Tab>("claude");
+  // /connect?tab=chatgpt (from the "Works with" pill) opens that tab; the page itself stays static.
+  useEffect(() => {
+    const want = new URLSearchParams(window.location.search).get("tab");
+    const hit = TABS.find((t) => t.id === want);
+    if (hit) setTab(hit.id); // eslint-disable-line react-hooks/set-state-in-effect -- one-time read of the URL after hydration
+  }, []);
   const cursor = `cursor://anysphere.cursor-deeplink/mcp/install?name=homerule&config=${b64(JSON.stringify({ url }))}`;
   const vscode = `vscode:mcp/install?${encodeURIComponent(JSON.stringify({ name: "homerule", type: "http", url }))}`;
   const json = JSON.stringify({ mcpServers: { homerule: { url } } }, null, 2);

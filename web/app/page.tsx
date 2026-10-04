@@ -2,6 +2,7 @@ import Link from "next/link";
 import { icons } from "@/components/icons";
 import LiveUnavailable from "@/components/live-unavailable";
 import SearchBox from "@/components/search-box";
+import WorksWith from "@/components/works-with";
 import { getDataset, jurisdictions } from "@/lib/data";
 import { buildIndex } from "@/lib/demo-search";
 import { CATEGORIES, QUESTION } from "@/lib/law";
@@ -35,6 +36,9 @@ export default function Home() {
   return (
     <main>
       <section className="wrap hero" aria-labelledby="hero-title">
+        <div className="works-with-row">
+          <WorksWith />
+        </div>
         <h1 id="hero-title">Your rights as a renter, for your exact address.</h1>
         <p className="hero-sub">See which housing rules apply to your home, today and next.</p>
         <SearchBox index={index} />
