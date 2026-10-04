@@ -206,8 +206,11 @@ def compiled(rule):
                                  for b in rule["key_value_conditions"]],
         "interaction": ({"type": inter["type"], "target_category": inter["target_category"], "quote": inter["quote"]}
                         if inter else {"type": "none"}),
+        "interactions": [{"type": i["type"], "target_category": i["target_category"], "quote": i["quote"]}
+                         for i in rule["interactions"]],
         "retrieved_at": rule["retrieved"], "parse_status": rule["parse_status"], "checks": rule["checks"],
         "x_source": {"unit": rule["unit"], "source_doc_id": rule["source_doc_id"], "citation": rule["citation"],
+                     "effect": rule["effect"], "cap_pct_low": rule["cap_low"], "cap_pct_high": rule["cap_high"],
                      "status_evidence": rule.get("status_evidence"),
                      "origin": rule["origin"], "stub": rule["stub"]},
     }

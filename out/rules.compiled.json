@@ -19,6 +19,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:44 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -26,6 +27,9 @@
    "unit": "D001",
    "source_doc_id": "D001",
    "citation": "Berkeley Mun. Code § 13.63.030(B)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": {
     "verdict": "adopted",
     "jev": "adopted",
@@ -88,6 +92,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -95,6 +100,9 @@
    "unit": "D003+D004+D005+D006+D007+D008",
    "source_doc_id": "D003",
    "citation": "Berkeley Municipal Code § 13.106",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -120,6 +128,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -127,6 +136,9 @@
    "unit": "D003+D004+D005+D006+D007+D008",
    "source_doc_id": "D005",
    "citation": "Berkeley Municipal Code § 13.78; Cal. Civ. Code § 1950.6",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -154,6 +166,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -161,6 +174,9 @@
    "unit": "D003+D004+D005+D006+D007+D008",
    "source_doc_id": "D006",
    "citation": "Berkeley Municipal Code, Rent Stabilization and Good Cause for Eviction Ordinance",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -188,6 +204,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -195,6 +212,9 @@
    "unit": "D003+D004+D005+D006+D007+D008",
    "source_doc_id": "D006",
    "citation": "Berkeley Municipal Code § 13.76.110A",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": 5,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -220,6 +240,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -227,6 +248,9 @@
    "unit": "D003+D004+D005+D006+D007+D008",
    "source_doc_id": "D004",
    "citation": "Berkeley Rent Stabilization and Good Cause for Eviction Ordinance; Berkeley Ellis Implementation Ordinance",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -284,6 +308,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -291,6 +316,9 @@
    "unit": "D003+D004+D005+D006+D007+D008",
    "source_doc_id": "D007",
    "citation": "Cal. Civ. Code § 1950.5",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -389,6 +417,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "failed",
   "checks": [
@@ -398,6 +427,9 @@
    "unit": "D009",
    "source_doc_id": "D009",
    "citation": "Berkeley Rent Stabilization and Eviction for Just Cause Ordinance",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -434,6 +466,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:44 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -441,6 +474,9 @@
    "unit": "D010+D012+D013+D014",
    "source_doc_id": "D010",
    "citation": "Boston Fair Chance Tenant Selection Policy",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -468,6 +504,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:44 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -475,6 +512,9 @@
    "unit": "D010+D012+D013+D014",
    "source_doc_id": "D012",
    "citation": "Boston Fair Housing Regulations",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -567,6 +607,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:44 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -574,6 +615,9 @@
    "unit": "D010+D012+D013+D014",
    "source_doc_id": "D014",
    "citation": "Boston City Ordinances § 10-11.7",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -599,6 +643,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "failed",
   "checks": [
@@ -608,6 +653,9 @@
    "unit": "D011",
    "source_doc_id": "D011",
    "citation": "Mass. H.3744",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": true
@@ -636,6 +684,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -643,6 +692,9 @@
    "unit": "D016",
    "source_doc_id": "D016",
    "citation": "Cal. Gov. Code § 12955",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -668,6 +720,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -675,6 +728,9 @@
    "unit": "D022",
    "source_doc_id": "D022",
    "citation": "Cal. Bus. & Prof. Code § 16729(a)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -778,6 +834,13 @@
    "target_category": "just_cause_eviction",
    "quote": "This section does not apply to the following residential real property:"
   },
+  "interactions": [
+   {
+    "type": "yields_to_local",
+    "target_category": "just_cause_eviction",
+    "quote": "This section does not apply to the following residential real property:"
+   }
+  ],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -785,6 +848,9 @@
    "unit": "D023",
    "source_doc_id": "D023",
    "citation": "Cal. Civil Code § 1946.2",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -922,6 +988,18 @@
    "target_category": "rent_increase_limits",
    "quote": "Housing subject to rent or price control through a public entity’s valid exercise of its police power consistent with Chapter 2.7 (commencing with Section 1954.50) that restricts annual increases in the rental rate to an amount less than that provided in subdivision (a)."
   },
+  "interactions": [
+   {
+    "type": "yields_to_local",
+    "target_category": "rent_increase_limits",
+    "quote": "Housing subject to rent or price control through a public entity’s valid exercise of its police power consistent with Chapter 2.7 (commencing with Section 1954.50) that restricts annual increases in the rental rate to an amount less than that provided in subdivision (a)."
+   },
+   {
+    "type": "coexists",
+    "target_category": "rent_increase_limits",
+    "quote": "This section is not intended to expand or limit the authority of local governments to establish local policies regulating rents consistent with Chapter 2.7"
+   }
+  ],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -929,6 +1007,9 @@
    "unit": "D024",
    "source_doc_id": "D024",
    "citation": "Cal. Civ. Code § 1947.12",
+   "effect": "protection_or_duty",
+   "cap_pct_low": 5,
+   "cap_pct_high": 10,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -958,6 +1039,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -965,6 +1047,9 @@
    "unit": "D025",
    "source_doc_id": "D025",
    "citation": "Cal. Civ. Code § 1950.5(c)(1)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -990,6 +1075,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -997,6 +1083,9 @@
    "unit": "D026",
    "source_doc_id": "D026",
    "citation": "Cal. Civ. Code § 1950.6",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1035,6 +1124,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:36 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1042,6 +1132,9 @@
    "unit": "D029+D031",
    "source_doc_id": "D029",
    "citation": "Cambridge Code of Ordinances ch. 14.04",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1134,6 +1227,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:36 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1141,6 +1235,9 @@
    "unit": "D029+D031",
    "source_doc_id": "D031",
    "citation": "Cambridge Municipal Code ch. 8.71",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1168,6 +1265,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:36 UTC",
   "parse_status": "failed",
   "checks": [
@@ -1177,6 +1275,9 @@
    "unit": "D036+S009",
    "source_doc_id": "D036",
    "citation": "Jersey City Landlord/Tenant Relations webpage",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1204,6 +1305,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:36 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1211,6 +1313,9 @@
    "unit": "D040+D041+D042+D043",
    "source_doc_id": "D040",
    "citation": "LAMC § 165.03",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1261,6 +1366,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:36 UTC",
   "parse_status": "failed",
   "checks": [
@@ -1270,6 +1376,9 @@
    "unit": "D040+D041+D042+D043",
    "source_doc_id": "D040",
    "citation": "Cal. Civ. Code § 1947.12",
+   "effect": "protection_or_duty",
+   "cap_pct_low": 5,
+   "cap_pct_high": 10,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1301,6 +1410,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:36 UTC",
   "parse_status": "ok",
   "checks": [
@@ -1310,6 +1420,9 @@
    "unit": "D040+D041+D042+D043",
    "source_doc_id": "D041",
    "citation": "LAMC § 151.06",
+   "effect": "protection_or_duty",
+   "cap_pct_low": 3,
+   "cap_pct_high": 3,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1335,6 +1448,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:36 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1342,6 +1456,9 @@
    "unit": "D045",
    "source_doc_id": "D045",
    "citation": "Mass. H.5222",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": true
@@ -1367,6 +1484,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:36 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1374,6 +1492,9 @@
    "unit": "D046",
    "source_doc_id": "D046",
    "citation": "Mass. S.2983",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1401,6 +1522,13 @@
    "target_category": "rent_increase_limits",
    "quote": "No city or town may enact, maintain or enforce rent control of any kind"
   },
+  "interactions": [
+   {
+    "type": "may_preempt_local",
+    "target_category": "rent_increase_limits",
+    "quote": "No city or town may enact, maintain or enforce rent control of any kind"
+   }
+  ],
   "retrieved_at": "2026-10-01 22:36 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1408,6 +1536,9 @@
    "unit": "D048",
    "source_doc_id": "D048",
    "citation": "Mass. Gen. Laws ch. 40P, § 4",
+   "effect": "bars_or_limits_local_rules",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1446,6 +1577,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "failed",
   "checks": [
@@ -1455,6 +1587,9 @@
    "unit": "D049",
    "source_doc_id": "D049",
    "citation": "Mass. Gen. Laws ch. 151B, § 4(6)(a)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1482,6 +1617,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1489,6 +1625,9 @@
    "unit": "D050",
    "source_doc_id": "D050",
    "citation": "Mass. Gen. Laws ch. 186, § 11",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1516,6 +1655,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1523,6 +1663,9 @@
    "unit": "D052",
    "source_doc_id": "D052",
    "citation": "Mass. Gen. Laws ch. 186, § 15B",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1548,6 +1691,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1555,6 +1699,9 @@
    "unit": "D052",
    "source_doc_id": "D052",
    "citation": "Mass. Gen. Laws ch. 186, § 15B(1)(b)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1580,6 +1727,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:56 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1587,6 +1735,9 @@
    "unit": "D057",
    "source_doc_id": "D057",
    "citation": "Mass. Gen. Laws ch. 112, § 87DDD½",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1627,6 +1778,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1634,6 +1786,9 @@
    "unit": "D065",
    "source_doc_id": "D065",
    "citation": "N.J. Stat. Ann. § 46:8-55(a)(1)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1674,6 +1829,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1681,6 +1837,9 @@
    "unit": "D065",
    "source_doc_id": "D065",
    "citation": "N.J. Stat. Ann. § 46:8-56(a)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1721,6 +1880,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1728,6 +1888,9 @@
    "unit": "D065",
    "source_doc_id": "D065",
    "citation": "N.J. Stat. Ann. § 46:8-58(a)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1766,6 +1929,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1773,6 +1937,9 @@
    "unit": "D065",
    "source_doc_id": "D065",
    "citation": "N.J. Stat. Ann. § 46:8-60",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1811,6 +1978,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1818,6 +1986,9 @@
    "unit": "D066",
    "source_doc_id": "D066",
    "citation": "N.J. Stat. § 46:8-18.1(a)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1867,6 +2038,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1874,6 +2046,9 @@
    "unit": "D067",
    "source_doc_id": "D067",
    "citation": "N.J.S.A. 46:8-21.2",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1901,6 +2076,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1908,6 +2084,9 @@
    "unit": "D067",
    "source_doc_id": "D067",
    "citation": "15 U.S.C.A. § 1681m",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1949,6 +2128,13 @@
    "target_category": "rent_increase_limits",
    "quote": "newly constructed multiple dwellings shall be exempt from any local rent control ordinances for a period of 30 years"
   },
+  "interactions": [
+   {
+    "type": "may_preempt_local",
+    "target_category": "rent_increase_limits",
+    "quote": "newly constructed multiple dwellings shall be exempt from any local rent control ordinances for a period of 30 years"
+   }
+  ],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1956,6 +2142,9 @@
    "unit": "D067",
    "source_doc_id": "D067",
    "citation": "N.J.S.A. 2A:42-84.5",
+   "effect": "bars_or_limits_local_rules",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -1983,6 +2172,13 @@
    "target_category": "rent_increase_limits",
    "quote": "must comply with any municipal ordinances governing rent increases."
   },
+  "interactions": [
+   {
+    "type": "coexists",
+    "target_category": "rent_increase_limits",
+    "quote": "must comply with any municipal ordinances governing rent increases."
+   }
+  ],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -1990,6 +2186,9 @@
    "unit": "D067",
    "source_doc_id": "D067",
    "citation": "N.J.S.A. 2A:18-61.1 et seq.",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -2018,6 +2217,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -2025,6 +2225,9 @@
    "unit": "D067",
    "source_doc_id": "D067",
    "citation": "N.J.S.A. 2A:18-61.1",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -2084,6 +2287,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -2091,6 +2295,9 @@
    "unit": "D068",
    "source_doc_id": "D068",
    "citation": "N.J.S.A. 10:5-12",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -2118,6 +2325,13 @@
    "target_category": "algorithmic_rent_setting",
    "quote": "A municipality shall be prohibited from enacting an ordinance that conflicts with this act."
   },
+  "interactions": [
+   {
+    "type": "may_preempt_local",
+    "target_category": "algorithmic_rent_setting",
+    "quote": "A municipality shall be prohibited from enacting an ordinance that conflicts with this act."
+   }
+  ],
   "retrieved_at": "2026-10-01 22:56 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -2125,6 +2339,9 @@
    "unit": "D069",
    "source_doc_id": "D069",
    "citation": "N.J. Stat. Ann. § 56:9-23(e)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -2203,6 +2420,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -2210,6 +2428,9 @@
    "unit": "D073",
    "source_doc_id": "D073",
    "citation": "San Diego Municipal Code § 98.0704",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -2235,6 +2456,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -2242,6 +2464,9 @@
    "unit": "D076",
    "source_doc_id": "D076",
    "citation": "San Diego Municipal Code § 98.1103(b)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": {
     "verdict": "adopted",
     "jev": "adopted",
@@ -2279,6 +2504,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -2286,6 +2512,9 @@
    "unit": "D078+D079+D080+D081+D082+D083",
    "source_doc_id": "D079",
    "citation": "San Francisco Rent Ordinance § 37.9(a)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -2317,6 +2546,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "failed",
   "checks": [
@@ -2326,6 +2556,9 @@
    "unit": "D078+D079+D080+D081+D082+D083",
    "source_doc_id": "D080",
    "citation": "San Francisco Rent Ordinance § 37.3",
+   "effect": "protection_or_duty",
+   "cap_pct_low": 1.6,
+   "cap_pct_high": 1.6,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -2351,6 +2584,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -2358,6 +2592,9 @@
    "unit": "D078+D079+D080+D081+D082+D083",
    "source_doc_id": "D081",
    "citation": "San Francisco Rent Ordinance § 37.10C",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -2385,6 +2622,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -2392,6 +2630,9 @@
    "unit": "D078+D079+D080+D081+D082+D083",
    "source_doc_id": "D083",
    "citation": "San Francisco Rent Ordinance § 37.6",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -2462,6 +2703,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -2469,6 +2711,9 @@
    "unit": "D084+D085",
    "source_doc_id": "D085",
    "citation": "Santa Ana Rent Stabilization Ordinance",
+   "effect": "protection_or_duty",
+   "cap_pct_low": 0,
+   "cap_pct_high": 3,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -2634,6 +2879,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
   "checks": [],
@@ -2641,6 +2887,9 @@
    "unit": "D084+D085",
    "source_doc_id": "D085",
    "citation": "Santa Ana Just Cause Eviction Ordinance",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "starter",
    "stub": false
@@ -2666,6 +2915,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-03T21:00:55.189844+00:00",
   "parse_status": "ok",
   "checks": [],
@@ -2673,6 +2923,9 @@
    "unit": "S001",
    "source_doc_id": "S001",
    "citation": "Jersey City Code § 218-12(2)(a)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
@@ -2698,6 +2951,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-03T21:02:42.249507+00:00",
   "parse_status": "ok",
   "checks": [],
@@ -2705,6 +2959,9 @@
    "unit": "S008+S011",
    "source_doc_id": "S008",
    "citation": "Hoboken ordinance (citation not stated)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
@@ -2733,6 +2990,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
   "parse_status": "ok",
   "checks": [],
@@ -2740,6 +2998,9 @@
    "unit": "S012",
    "source_doc_id": "S012",
    "citation": "Hoboken Rent Control Regulations § 10:54(A)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
@@ -2768,6 +3029,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
   "parse_status": "failed",
   "checks": [
@@ -2777,6 +3039,9 @@
    "unit": "S012",
    "source_doc_id": "S012",
    "citation": "Hoboken Rent Control Regulations § 18:54(H)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
@@ -2804,6 +3069,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
   "parse_status": "ok",
   "checks": [],
@@ -2811,6 +3077,9 @@
    "unit": "S012",
    "source_doc_id": "S012",
    "citation": "Hoboken Rent Control Regulations, Regulation #3: Vacancy Decontrol as to Multiple Tenants",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
@@ -2839,6 +3108,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-03T21:03:22.473970+00:00",
   "parse_status": "ok",
   "checks": [],
@@ -2846,6 +3116,9 @@
    "unit": "S012",
    "source_doc_id": "S012",
    "citation": "Hoboken Rent Control Regulations § 18:66",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
@@ -2873,6 +3146,7 @@
   "interaction": {
    "type": "none"
   },
+  "interactions": [],
   "retrieved_at": "2026-10-03T23:25:58.281553+00:00",
   "parse_status": "ok",
   "checks": [],
@@ -2880,6 +3154,9 @@
    "unit": "S017",
    "source_doc_id": "S017",
    "citation": "Jersey City Code § 218-12.3(a)",
+   "effect": "protection_or_duty",
+   "cap_pct_low": null,
+   "cap_pct_high": null,
    "status_evidence": null,
    "origin": "supplemental",
    "stub": false
