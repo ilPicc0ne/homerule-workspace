@@ -1,5 +1,6 @@
 import { buildAddressView, type AddressView } from "./address-view.ts";
 import { changes } from "./changes/data.ts";
+import { eventBadge, PAGE_BADGES } from "./changes/impact.ts";
 import { builtYear, unitsText } from "./format.ts";
 import { ancestry, jurisdictionById } from "./jurisdiction-tree.ts";
 import type { Address, Dataset, Result, Rule } from "./types.ts";
@@ -43,6 +44,11 @@ export function addressPageData(data: Dataset, address: Address, results: Result
   const asOf = data.meta.default_as_of;
 
   const view = buildAddressView({ address, results, rules, asOf, cityName: cityName ?? "", findings: data.findings });
+  // A history event gets a badge only from the same rule's diff change at this address (PAGE_BADGES, #72).
+  if (PAGE_BADGES && !extra?.typed) {
+    const rec = changes.addresses[address.address_id];
+    for (const e of [...view.future, ...view.past]) e.badge = eventBadge(rec, e.ruleId, e.date);
+  }
 
   const crumb = (city ? ancestry(city.id) : [state, county].filter((j) => !!j)).map((j) => j!.legal_name.replace(/ city$/, ""));
   if (!city && county) crumb.push("Unincorporated area");

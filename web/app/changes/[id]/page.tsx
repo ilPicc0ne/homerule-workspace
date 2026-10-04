@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { changes } from "@/lib/changes/data.ts";
 import { addressChange, render } from "@/lib/changes/email.ts";
 import type { Change, Entry, Side } from "@/lib/changes/types.ts";
+import { badgeFor, PAGE_BADGES } from "@/lib/changes/impact.ts";
 import { changeLine, entryHeading, longDate, resultWords, ruleName } from "@/lib/changes/wording.ts";
 import { formatDate } from "@/lib/format";
 import { getDataset } from "@/lib/data";
@@ -12,6 +13,7 @@ import { fontVars } from "../../a/fonts";
 import { searchIndex } from "../../a/view-props";
 import { StickyBar } from "../../a/[id]/address-page";
 import { Ic } from "../../a/[id]/sprite";
+import { VerdictBadge } from "../../a/[id]/verdict-badge";
 import "../../a/[id]/v3.css";
 import s from "./changes.module.css";
 
@@ -57,10 +59,12 @@ function Result({ side, old }: { side: Side | null; old?: boolean }) {
 function ChangeItem({ c, anchor }: { c: Change; anchor: boolean }) {
   const url = c.source_url && /^https?:\/\//.test(c.source_url) ? c.source_url : null;
   const why = c.after?.explanation ?? c.before?.explanation;
+  const badge = PAGE_BADGES ? badgeFor(c) : null;
   const flag = (c.conflict_flag_changed || c.after?.conflict_flag) && changeLine(c).split("; ").find((p) => p.includes("conflict"));
   return (
     <li className={s.change} id={anchor ? `c-${c.team_rule_id}` : undefined}>
       <p className="r-t">{ruleName(c)}</p>
+      {badge && <VerdictBadge b={badge} lawHref={url} />}
       <p className={s.flip}>
         <span className="sr">Before: </span>
         <Result side={c.before} old />

@@ -9,6 +9,8 @@ import { featuredEntry, longDate } from "./wording.ts";
 import { PLAIN, TOPICS } from "../plain.ts";
 import { formatDate } from "../format.ts";
 import rulesData from "../../data/live/rules.json" with { type: "json" };
+import { badgeFor, firstLine } from "./impact.ts";
+import type { Badge, BadgeKind } from "./impact.ts";
 
 export const FROM = "HomeRule <alerts@yourhomerule.com>";
 export const SITE = "https://yourhomerule.com";
@@ -65,32 +67,22 @@ export function unsubscribeHeaders(site: string, addressId: string, token: strin
   return { "List-Unsubscribe": `<${oneClickUrl(site, addressId, token)}>`, "List-Unsubscribe-Post": "List-Unsubscribe=One-Click" };
 }
 
-/** Renter-facing impact from the classifier: "impact" or "renter_impact" on the change or the rule record. */
-export type Impact = "more_protection" | "less_protection" | "neutral";
-
-export const IMPACT_LABEL: Record<Exclude<Impact, "neutral">, { text: string; color: string; bg: string }> = {
-  more_protection: { text: "More protection for renters", color: "#1F6B4A", bg: "#E6F2EC" },
-  less_protection: { text: "Less protection for renters", color: "#9A4A2E", bg: "#F7EAE3" },
+/** Badge colours (light; dark mode via the layout's vb-* classes). Arrow + text always, never colour alone. AA on their tint. */
+export const BADGE_STYLE: Record<BadgeKind, { cls: string; color: string; bg: string }> = {
+  adds: { cls: "vb-up", color: "#11643D", bg: "#E2F2E8" },
+  narrows: { cls: "vb-dn", color: "#9B2C2C", bg: "#FBE9E7" },
+  unclear: { cls: "vb-un", color: "#4D5256", bg: "#ECEDEE" },
 };
 
-type RuleRec = { rule_id: string; category?: string; summary?: string; title?: string; impact?: unknown; renter_impact?: unknown };
+type RuleRec = { rule_id: string; category?: string; summary?: string; title?: string };
 const RULES = new Map((rulesData as unknown as RuleRec[]).map((r) => [r.rule_id, r]));
-
-function impactOf(...recs: (object | undefined)[]): Impact | null {
-  for (const r of recs) {
-    const o = r as { impact?: unknown; renter_impact?: unknown } | undefined;
-    const v = o?.impact ?? o?.renter_impact;
-    if (v === "more_protection" || v === "less_protection" || v === "neutral") return v;
-  }
-  return null;
-}
 
 /** The short address for subject and button: the part before the first comma. */
 export function shortAddress(label: string): string {
   return label.split(",")[0].trim();
 }
 
-export type PlainChange = { topic: string; sentence: string; impact: Impact | null };
+export type PlainChange = { rule_id: string; topic: string; sentence: string; badge: Badge | null };
 
 /** One change in renter words: topic + the address page's plain line + the date. No titles, statuses or citations. */
 export function plainChange(c: Change, asOf: string, rules: Map<string, RuleRec> = RULES): PlainChange {
@@ -101,7 +93,7 @@ export function plainChange(c: Change, asOf: string, rules: Map<string, RuleRec>
   const date = formatDate(c.effective_from);
   if (c.change === "removed") line = `This rule no longer shows for your address: ${line}`;
   else if (date && !line.includes(date)) line = `${(c.effective_from ?? "") > asOf ? "From" : "Since"} ${date}: ${line}`;
-  return { topic, sentence: line, impact: impactOf(c, rule) };
+  return { rule_id: c.team_rule_id, topic, sentence: line, badge: badgeFor(c) };
 }
 
 export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEmail {
@@ -116,16 +108,23 @@ export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEma
   const subject = `${demo ? `[${demo}] ` : ""}Something changes for your rent rules at ${short}`;
   const items = ac.entry.changes.map((c) => plainChange(c, ac.as_of));
   const asOf = longDate(ac.as_of);
-  const greeting = `Hi, a housing rule for ${short} is changing. Here is what's new:`;
-  const cta = `See what this means for ${short}`;
+  const lead = firstLine(ac.entry.changes, short, ac.as_of, ac.entry.after_as_of);
+  const intro = "Here is what's new:";
+  const cta = "See the details";
+  const history = `${page}#h-ahead`;
+  const quote = (i: PlainChange) => `${log}#c-${encodeURIComponent(i.rule_id)}`;
 
   const text = [
     ...(banner ? [banner.toUpperCase(), ""] : []),
-    greeting,
+    lead,
+    intro,
     "",
-    ...items.flatMap((i) => [`• ${i.topic} — ${i.sentence}${i.impact && i.impact !== "neutral" ? ` (${IMPACT_LABEL[i.impact].text})` : ""}`]),
+    ...items.flatMap((i) => [
+      `• ${i.topic} — ${i.sentence}${i.badge ? ` (${i.badge.arrow} ${i.badge.text}. Your unit may differ.)` : ""}`,
+      ...(i.badge?.why ? [`  Summary: ${i.badge.why} · see the law text: ${quote(i)}`] : []),
+    ]),
     "",
-    `${cta}: ${page}`,
+    `${cta}: ${history}`,
     `Change log: ${log}`,
     "",
     `You get this because you asked for alerts on ${ac.label}. Unsubscribe: ${unsubscribe}`,
@@ -133,24 +132,29 @@ export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEma
     ...footerText(),
   ].join("\n");
 
-  const badge = (i: PlainChange) =>
-    i.impact && i.impact !== "neutral"
-      ? `<span style="display:inline-block;margin:0 0 6px;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:600;color:${IMPACT_LABEL[i.impact].color};background:${IMPACT_LABEL[i.impact].bg}">${esc(IMPACT_LABEL[i.impact].text)}</span><br>`
+  const badge = (i: PlainChange) => {
+    if (!i.badge) return "";
+    const st = BADGE_STYLE[i.badge.kind];
+    return `<span class="${st.cls}" title="${esc(i.badge.label)}" aria-label="${esc(i.badge.label)}" style="display:inline-block;margin:0 0 6px;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:600;color:${st.color};background:${st.bg}"><span aria-hidden="true">${i.badge.arrow}</span> ${esc(i.badge.text)}</span><br>`;
+  };
+  const why = (i: PlainChange) =>
+    i.badge?.why
+      ? `<br><span class="mu" style="font-size:14px;color:${C.muted}">Summary: ${esc(i.badge.why)} &middot; ${link(quote(i), "see the law text", C.muted)}</span>`
       : "";
   const htmlItems = items
     .map(
-      (i) => `<tr><td class="tx ln" style="padding:12px 0;border-top:1px solid ${C.line};font-size:16px;line-height:1.5;color:${C.text}">${badge(i)}<strong>${esc(i.topic)}</strong> &mdash; ${esc(i.sentence)}</td></tr>`,
+      (i) => `<tr><td class="tx ln" style="padding:12px 0;border-top:1px solid ${C.line};font-size:16px;line-height:1.5;color:${C.text}">${badge(i)}<strong>${esc(i.topic)}</strong> &mdash; ${esc(i.sentence)}${why(i)}</td></tr>`,
     )
     .join("\n");
 
   const html = layout({
     title: subject,
-    preheader: items.length === 1 ? `${items[0].topic}: ${items[0].sentence}` : `${items.length} housing rules change for ${short}.`,
+    preheader: lead,
     banner,
     site,
-    rows: `<tr><td class="tx" style="padding:16px 0 8px;font-size:16px;line-height:1.5;color:${C.text}">${esc(greeting)}</td></tr>
+    rows: `<tr><td class="tx" style="padding:16px 0 8px;font-size:16px;line-height:1.5;color:${C.text}"><strong>${esc(lead)}</strong><br>${esc(intro)}</td></tr>
 ${htmlItems}
-<tr><td style="padding:20px 0 10px">${button(page, cta)}</td></tr>
+<tr><td style="padding:20px 0 10px">${button(history, cta)}</td></tr>
 <tr><td style="padding:0 0 24px;font-size:14px">${link(log, "See the full change log")}</td></tr>`,
     footer: `You get this because you asked for alerts on ${esc(ac.label)}. ${link(unsubscribe, "Unsubscribe", C.faint)} in one click.<br>Not legal advice &middot; data as of ${esc(asOf)}<br>${footerHtml()}`,
   });
