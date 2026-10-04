@@ -114,6 +114,8 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 | P1 | Extra data: next useful building fact + public evidence pilot | D | WIP (draft PR #68) |
 | P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-to-extend-coverage-p1-checked-04102026)) | D | planned (only TIGER/Line places used, for the map outline) |
 
+| P1 | Proactive source monitoring: approved official routes, new-document discovery, version snapshots, isolated extraction, before/after address-impact previews and effective-date checks; no automatic legal promotion or emails | D | built, on `main` (#75, issue #60): Newark prototype on its legislative records, run by hand (`monitor/README.md`); candidate previews require review; no scheduler, not deployed, not part of the scored outputs |
+
 ### Site (live at yourhomerule.com)
 
 | Prio | Feature | Owner | Status · evidence |
@@ -186,7 +188,7 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 8. **No date slider** anywhere (one as-of date in the live data): J3 step 2 and demo beat 5 can't be shown as written; the change log `/changes/A0256` is the stand-in.
 9. `outputs/rules.json` missing (only `out/rules.json`).
 10. `DEMO_TOKEN` and `ALERTS_SITE_URL` are set in Vercel **production only**; `make alert` against a preview URL gets 401. [verified with `vercel env ls`]
-11. Open PRs not merged by the freeze stay out of the submission: #48 (contacts, data already on `main`), #53, #55, #59, #68.
+11. Open PRs not merged by the freeze stay out of the submission: #48 (contacts, data already on `main`), #55, #68. (#53, #59 and #75 are merged.)
 
 ## User journeys
 
