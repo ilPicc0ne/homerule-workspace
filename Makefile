@@ -58,7 +58,7 @@ rerun:                                   ## live re-extraction of one doc, fresh
 web:                                     ## local dev server
 	cd web && npm run dev
 
-notify:                                  ## change alerts, local: dry run lists who would get which email; SEND=1 sends (allowed subscribers only during the closed test; no DEMO_TOKEN needed)
+notify:                                  ## change alerts, local: dry run lists who would get which email; SEND=1 SOURCE=<id> sends one source (allowed subscribers only during the closed test; no DEMO_TOKEN needed)
 	cd web && node --env-file-if-exists=.env.local scripts/alerts.ts notify --changes $(or $(CHANGES),../out/changes.full.json) $(if $(SOURCE),--source $(SOURCE)) $(if $(SEND),--send)
 
 alert:                                   ## demo hook, the last step once the production deploy is Ready: make alert SOURCE=<id> [RESET=1] [URL=https://yourhomerule.com]

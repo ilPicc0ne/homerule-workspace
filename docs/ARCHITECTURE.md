@@ -201,7 +201,7 @@ A change is either a new document (ingest) or a second date (as-of query).
 **Built (`s/changes`, issue #11):**
 
 - `engine/diff.py` is the one diff (I6). It compares two engine evaluations (the same rows as `lookups.json`) per address by `team_rule_id`: added, removed, or changed (result or conflict flag). Each change carries old → new result and explanation, both conflict flags, and the rule's title, citation, verbatim quote, effective date and official source.
-- `make build` writes `out/changes.full.json` with the change sources it can compute from the committed files: the brief's as_of tests (`asof:2025-12-31..2026-01-02` for T1, `asof:2026-10-01..2027-07-02` for T3/J3), plus `ingest:<doc>@<as_of>` for each ingested document already in I2 (`origin: ingested`). Deterministic. Only addresses with a change are listed:
+- `make build` writes `out/changes.full.json` with the change sources it can compute from the committed files: the brief's as_of tests (`asof:2025-12-31..2026-01-02` for T1, `asof:2026-10-01..2027-07-02` for T3/J3), each rule end date `effective.until` ±1 day (`asof:2029-12-31..2030-01-02` for the CA sunsets; the source carries `ending_rule_ids`, each change `effective_until`), plus `ingest:<doc>@<as_of>` for each ingested document already in I2 (`origin: ingested`). Deterministic. Only addresses with a change are listed:
 
   ```
   {as_of, not_legal_advice: true,

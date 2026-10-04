@@ -9,6 +9,7 @@
   "title": "Prohibition on algorithm use or distribution in a restraint of trade",
   "status": "in_force",
   "effective_date": "2026-01-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -63,6 +64,7 @@
   "title": "Prohibition on landlords using coordinated pricing algorithms",
   "status": "in_force",
   "effective_date": "2026-03-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -118,6 +120,7 @@
   "title": "Security deposit interest coverage",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -173,6 +176,7 @@
   "title": "Minimum rent debt required for nonpayment eviction",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -223,6 +227,7 @@
   "title": "Pay adjusted standard relocation assistance",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -273,6 +278,7 @@
   "title": "Maximum tenant screening fee",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -323,6 +329,7 @@
   "title": "Cap the Annual General Adjustment at 5%",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -373,6 +380,7 @@
   "title": "Do not inquire about criminal history",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -426,6 +434,7 @@
   "title": "One-month security limit",
   "status": "in_force",
   "effective_date": "2024-07-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -480,6 +489,7 @@
   "title": "Just cause required to terminate tenancy",
   "status": "in_force",
   "effective_date": "2024-04-01",
+  "effective_until": "2030-01-01",
   "status_history": [
    {
     "from": null,
@@ -543,6 +553,7 @@
   "title": "Limit on application screening fees",
   "status": "in_force",
   "effective_date": "2026-01-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -598,6 +609,7 @@
   "title": "Termination of tenancy requires just cause",
   "status": "in_force",
   "effective_date": "2025-08-20",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -652,6 +664,7 @@
   "title": "Rent increase frequency and allowable percentage",
   "status": "in_force",
   "effective_date": "2026-02-02",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -709,6 +722,7 @@
   "title": "Limit on rent increases",
   "status": "in_force",
   "effective_date": "2024-04-01",
+  "effective_until": "2030-01-01",
   "status_history": [
    {
     "from": null,
@@ -771,6 +785,7 @@
   "title": "Prohibition on landlords using algorithmic devices",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -821,6 +836,7 @@
   "title": "Just cause required for termination of tenancy",
   "status": "in_force",
   "effective_date": "2023-06-24",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -880,6 +896,7 @@
   "title": "Use of algorithmic devices to set rents or manage occupancy prohibited",
   "status": "in_force",
   "effective_date": "2024-10-14",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -934,6 +951,7 @@
   "title": "Security deposit interest rate: March 2026–February 2027",
   "status": "in_force",
   "effective_date": "2026-03-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -988,6 +1006,7 @@
   "title": "Just cause required for eviction",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1038,6 +1057,7 @@
   "title": "Annual rent increase limit: March 2026–February 2027",
   "status": "in_force",
   "effective_date": "2026-03-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1094,6 +1114,7 @@
   "title": "Just cause required to terminate tenancy",
   "status": "in_force",
   "effective_date": "2021-11-19",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1152,6 +1173,7 @@
   "title": "Limit on residential rent increases",
   "status": "in_force",
   "effective_date": "2021-11-19",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1211,6 +1233,7 @@
   "title": "Do not discriminate or harass in housing",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1261,6 +1284,7 @@
   "title": "Prohibition on algorithmic rent setting",
   "status": "pending",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1311,6 +1335,7 @@
   "title": "An Act relative to preventing algorithmic rent fixing in the rental housing market",
   "status": "pending",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1361,6 +1386,7 @@
   "title": "Deliver tenant rights notice when ending tenancy",
   "status": "in_force",
   "effective_date": "2020-11-06",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1419,6 +1445,7 @@
   "title": "An Act petition for a special law authorizing the city of Boston to implement rent stabilization and tenant eviction pro",
   "status": "pending",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1469,6 +1496,7 @@
   "title": "No blanket criminal-record denials; individual review",
   "status": "in_force",
   "effective_date": "2020-11-06",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1525,6 +1553,7 @@
   "title": "Prohibit housing discrimination on protected grounds",
   "status": "in_force",
   "effective_date": "2020-11-06",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1579,6 +1608,7 @@
   "title": "Offer the tenants’ rights and resources Guide when taking legal steps to terminate a tenancy",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1633,6 +1663,7 @@
   "title": "Apply applicant-selection standards equally and uniformly",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1686,6 +1717,7 @@
   "title": "Limit on amounts charged at the start of a tenancy",
   "status": "in_force",
   "effective_date": "2025-08-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1740,6 +1772,7 @@
   "title": "Written 14-day notice to quit for nonpayment",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1790,6 +1823,7 @@
   "title": "Fee paid by the party that contracted with the broker",
   "status": "in_force",
   "effective_date": "2025-08-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1844,6 +1878,7 @@
   "title": "Limit on amounts required at the start of a tenancy",
   "status": "in_force",
   "effective_date": "2025-08-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1898,6 +1933,7 @@
   "title": "Prohibition on local rent control",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -1951,6 +1987,7 @@
   "title": "No discriminatory denial of covered housing",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2004,6 +2041,7 @@
   "title": "Performing a coordinating function prohibited",
   "status": "not_yet_effective",
   "effective_date": "2027-07-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2061,6 +2099,7 @@
   "title": "Security deposit cap",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2114,6 +2153,7 @@
   "title": "Eviction and nonrenewal require good cause",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2164,6 +2204,7 @@
   "title": "Application fee cap",
   "status": "in_force",
   "effective_date": "2026-05-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2220,6 +2261,7 @@
   "title": "Ban on algorithmic rent-fixing",
   "status": "in_force",
   "effective_date": "2025-07-29",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2275,6 +2317,7 @@
   "title": "Tenant request for legal rent calculation",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2325,6 +2368,7 @@
   "title": "Hoboken Rent Control Regulations § 18:54(H)",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2375,6 +2419,7 @@
   "title": "Timely vacancy-decontrol certificate",
   "status": "in_force",
   "effective_date": "2009-04-22",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2429,6 +2474,7 @@
   "title": "Original-tenant designation and vacancy decontrol",
   "status": "in_force",
   "effective_date": "2025-02-12",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2483,6 +2529,7 @@
   "title": "Ban on real estate lessors using service providers",
   "status": "in_force",
   "effective_date": "2025-06-10",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2538,6 +2585,7 @@
   "title": "Mandatory disclosure for rent increases",
   "status": "in_force",
   "effective_date": "2025-10-15",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2593,6 +2641,7 @@
   "title": "Right to file an illegal rent petition",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2643,6 +2692,7 @@
   "title": "Prohibit eviction actions in reprisal for exercising chapter rights",
   "status": "in_force",
   "effective_date": "2024-10-08",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2697,6 +2747,7 @@
   "title": "Newark, N.J., Rev. Gen. Ordinances § 19:2-14",
   "status": "in_force",
   "effective_date": "2017-09-25",
+  "effective_until": "2024-10-08",
   "status_history": [
    {
     "from": null,
@@ -2751,6 +2802,7 @@
   "title": "Newark, N.J., Code § 19:2-18.4(h)",
   "status": "in_force",
   "effective_date": "2017-03-27",
+  "effective_until": "2017-09-25",
   "status_history": [
    {
     "from": null,
@@ -2805,6 +2857,7 @@
   "title": "Qualifying substantially rehabilitated dwellings may have unrestricted initial rent",
   "status": "in_force",
   "effective_date": "2026-06-09",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -2859,6 +2912,7 @@
   "title": "Newark, N.J., Code § 19:2-18.4(a)",
   "status": "in_force",
   "effective_date": "2017-03-27",
+  "effective_until": "2017-09-25",
   "status_history": [
    {
     "from": null,
@@ -2913,6 +2967,7 @@
   "title": "Newark Code § 19:2-2",
   "status": "in_force",
   "effective_date": "2023-08-22",
+  "effective_until": "2024-10-08",
   "status_history": [
    {
     "from": null,
@@ -2971,6 +3026,7 @@
   "title": "Rent increases may not exceed 25% in one year",
   "status": "in_force",
   "effective_date": "2024-10-08",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -3025,6 +3081,7 @@
   "title": "Newark, N.J., Rev. Gen. Ordinances § 19:2-22(a)",
   "status": "in_force",
   "effective_date": "2017-09-25",
+  "effective_until": "2024-10-08",
   "status_history": [
    {
     "from": null,
@@ -3079,6 +3136,7 @@
   "title": "Rent increase may not be unconscionable",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -3131,6 +3189,7 @@
   "title": "Thirty-year exemption from local rent control for newly constructed multiple dwellings",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -3186,6 +3245,7 @@
   "title": "No discrimination in housing based on protected characteristics",
   "status": "in_force",
   "effective_date": null,
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -3239,6 +3299,7 @@
   "title": "Do not require pre-offer applications that inquire about criminal records",
   "status": "in_force",
   "effective_date": "2022-01-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -3296,6 +3357,7 @@
   "title": "Do not evaluate applicants using specified criminal records",
   "status": "in_force",
   "effective_date": "2022-01-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -3353,6 +3415,7 @@
   "title": "Do not publish categorical criminal-record exclusion advertisements",
   "status": "in_force",
   "effective_date": "2022-01-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
@@ -3410,6 +3473,7 @@
   "title": "Do not require drug or alcohol tests or request treatment-facility consent",
   "status": "in_force",
   "effective_date": "2022-01-01",
+  "effective_until": null,
   "status_history": [
    {
     "from": null,
