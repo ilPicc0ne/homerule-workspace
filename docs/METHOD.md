@@ -28,7 +28,10 @@ Newark rules): each keeps its official URL, retrieval date and verbatim quote, w
    superseded by a stricter local rule / unknown (naming the missing fact and where to check it). A state law
    that may override a city's rule is flagged, never decided.
 6. *Track:* the same engine at two dates, or without and with a new document, gives the per-address change log
-   and alerts; a new ordinance is one command (`make ingest`), no code or prompt change.
+   and alerts; a new ordinance is one command (`make ingest`), no code or prompt change. Each change is rated for renters
+   positive / neutral / negative, with one sentence why: positive when a protection got stronger and none weaker
+   (a part that depends on a missing fact is named), negative the reverse, neutral otherwise. No weights between
+   topics.
 
 **Reasoning boundary.** The model reads: it extracts text and labels with probabilities. Code decides: status,
 dates, coverage, precedence, and whether a change is better or worse for renters. Every model call is logged with

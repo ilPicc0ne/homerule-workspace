@@ -127,5 +127,42 @@ class Whys(unittest.TestCase):
         self.assertGreater(n, 0)
 
 
+class Ratings(unittest.TestCase):
+    """Positive / neutral / negative: no weights, only which way the topics that surely moved went."""
+    @staticmethod
+    def _levels(**lv):
+        t = {c: {"level": "basic", "at_least": "basic", "at_most": "basic"} for c in S.CFG["weights"]}
+        for c, (lo, hi) in lv.items():
+            t[c] = {"level": lo if lo == hi else "unknown", "at_least": lo, "at_most": hi}
+        return t
+
+    def test_verdict_cases(self):
+        cats = list(S.CFG["weights"])
+        base = self._levels()
+        cases = [({cats[0]: ("strong", "strong")}, "better"),
+                 ({cats[0]: ("strong", "strong"), cats[1]: ("basic", "strong")}, "better"),   # + an unclear topic
+                 ({cats[0]: ("none", "none"), cats[1]: ("basic", "strong")}, "worse"),
+                 ({cats[0]: ("strong", "strong"), cats[1]: ("none", "none")}, "mixed"),
+                 ({cats[1]: ("basic", "strong")}, "unclear"),
+                 ({}, "unchanged")]
+        for after, want in cases:
+            with self.subTest(after=after):
+                overall, _ = S.verdict(base, self._levels(**after))
+                self.assertEqual(overall, want)
+                self.assertEqual(S.rating(overall), {"better": "positive", "worse": "negative"}.get(want, "neutral"))
+
+    def test_on_the_sample(self):
+        res = S.build(S.CFG["dates"])
+        newark = res["addresses"]["A0003"]["2026-10-01"]["change_from_previous"]   # NJ $50 fee cap; rent unclear
+        self.assertEqual((newark["overall"], newark["rating"]), ("better", "positive"))
+        self.assertIn("rent_increase_limits", newark["unclear_topics"])
+        for aid, per_date in res["addresses"].items():
+            for d, x in per_date.items():
+                c = x.get("change_from_previous")
+                if c and c["overall"] == "mixed":
+                    with self.subTest(address=aid, date=d):
+                        self.assertTrue({"better", "worse"} <= set(c["topics"].values()), c)
+
+
 if __name__ == "__main__":
     unittest.main()
