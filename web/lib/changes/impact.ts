@@ -30,11 +30,11 @@ export type Badge = {
 };
 
 /**
- * Page badges (history column, change log) stay off until PR #59 is merged and `make build` has run on main,
- * and Silvan has hand-checked 15 random badges against their quotes. The email mapping is on regardless:
+ * Page badges (history column, change log): on since the verdict integration (#59 + #110 build, #71/#72/#77, 04.10.2026);
+ * Silvan hand-checks 15 random badges against their quotes (web/scripts/verdict-split.ts) before production. The email mapping is on regardless:
  * it shows nothing until the synced diff carries `renter_impact`.
  */
-export const PAGE_BADGES = false;
+export const PAGE_BADGES = true;
 
 export const UNIT_MAY_DIFFER = "Your unit may differ.";
 

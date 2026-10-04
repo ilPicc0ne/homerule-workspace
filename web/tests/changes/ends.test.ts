@@ -25,7 +25,7 @@ const endsAt = (id: string, asOf = AS_OF, results = LOOKUPS[id] ?? []) =>
 
 test("the engine marks the CA sunsets and the Newark version ends as ending", () => {
   const ids = endingRuleIds(changes.sources);
-  for (const id of [...CA, "NJ-NEWARK-RENT-19:2-22-2", "NJ-NEWARK-EVICT-19:2-14-2"]) assert.ok(ids.has(id), id);
+  for (const id of [...CA, "NJ-NEWARK-RENT-19:2-22", "NJ-NEWARK-EVICT-19:2-14-2"]) assert.ok(ids.has(id), id);
   assert.deepEqual(changes.sources[SUNSET].ending_rule_ids, CA);
 });
 
@@ -37,7 +37,8 @@ test("CA address (San Diego, both rules may apply): 'Ends' on Jan 1, 2030 for th
 });
 
 test("no end entry for a rule that does not apply here: LA's city rule replaces the state cap; Newark has no CA rule", () => {
-  assert.deepEqual(endsAt("A0001").ends, []);                 // CA-RENT-1947.12 is superseded at 6238 De Longpre Ave
+  // CA-RENT-1947.12 is superseded at 6238 De Longpre Ave (no end); the just-cause rule may apply there (unknown), so it shows
+  assert.deepEqual(endsAt("A0001").ends.map((e) => e.ruleId), ["CA-EVICT-1946.2"]);
   assert.deepEqual(endsAt("A0003").ends, []);                 // Newark: no CA rule, its own version ends are years back
   // a rule in ending_rule_ids but missing from this address's results never shows
   assert.deepEqual(endsAt("A0019", AS_OF, []).ends, []);
@@ -55,17 +56,17 @@ test("Newark version swap (successor starts the day the old version ends) is not
     swaps.map((s) => [s.from, s.to, s.date]).sort(),
     [
       ["NJ-NEWARK-EVICT-19:2-14-2", "NJ-NEWARK-EVICT-19:2-14", "2024-10-08"],
-      ["NJ-NEWARK-RENT-19:2-22-2", "NJ-NEWARK-RENT-19:2-22", "2024-10-08"],
+      ["NJ-NEWARK-RENT-19:2-22", "NJ-NEWARK-RENT-19:2-3.1", "2024-10-08"],
     ],
   );
   // without a successor at the address the same diff change is a real end
   const rec = changes.addresses.A0003;
   const alone: AddressChanges = {
     ...rec,
-    entries: rec.entries.map((e) => ({ ...e, changes: e.changes.filter((c) => c.team_rule_id !== "NJ-NEWARK-RENT-19:2-22") })),
+    entries: rec.entries.map((e) => ({ ...e, changes: e.changes.filter((c) => c.team_rule_id !== "NJ-NEWARK-RENT-19:2-3.1") })),
   };
   const r = ruleEnds({ asOf: "2025-03-01", results: [], rules: RULES, sources: changes.sources, rec: alone });
-  assert.deepEqual(r.ends.map((e) => [e.ruleId, e.when]), [["NJ-NEWARK-RENT-19:2-22-2", "past"]]);
+  assert.deepEqual(r.ends.map((e) => [e.ruleId, e.when]), [["NJ-NEWARK-RENT-19:2-22", "past"]]);
 });
 
 test("recently ended: from the diff's end change, within the last year only", () => {
@@ -76,7 +77,9 @@ test("recently ended: from the diff's end change, within the last year only", ()
 
 test("end badge: the verdict of that rule's end change only; no verdict in the data -> no badge", () => {
   const rec = changes.addresses.A0019;
-  assert.equal(endBadge(rec, "CA-RENT-1947.12", "2030-01-01"), null);   // #59 not merged: no renter_impact yet
+  // with #59 in the data: San Diego's cap end depends on facts we lack (grey), Hoff St's narrows protection (↓)
+  assert.equal(endBadge(rec, "CA-RENT-1947.12", "2030-01-01")?.kind, "unclear");
+  assert.equal(endBadge(changes.addresses.A0050, "CA-RENT-1947.12", "2030-01-01")?.kind, "narrows");
   const withVerdict: AddressChanges = {
     ...rec,
     entries: rec.entries.map((e) =>

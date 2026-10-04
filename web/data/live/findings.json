@@ -15,7 +15,7 @@
    "category": "application_screening_fees",
    "citation": "guide: known open questions in the law",
    "kind": "open_question",
-   "note": "California’s screening-fee limit is tied to allowable costs, but no single official dollar figure for 2026 is identified in the sources.",
+   "note": "California’s screening-fee cap is tied to statutory cost and adjustment rules, but no single official 2026 statewide dollar figure is published.",
    "quote": null,
    "source_doc_ids": [
     "D026"
@@ -75,10 +75,9 @@
    "category": "rent_increase_limits",
    "citation": "guide: known open questions in the law",
    "kind": "open_question",
-   "note": "Published sources give different effective dates for Los Angeles’s new RSO rent-increase formula.",
+   "note": "Sources publish different effective dates for Los Angeles’s new Rent Stabilization Ordinance formula.",
    "quote": null,
    "source_doc_ids": [
-    "D040",
     "D041",
     "D044"
    ],
@@ -208,7 +207,7 @@
    "category": "algorithmic_rent_setting",
    "citation": "guide: known open questions in the law",
    "kind": "open_question",
-   "note": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once it takes effect.",
+   "note": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once the state law takes effect.",
    "quote": null,
    "source_doc_ids": [
     "D069",
@@ -233,7 +232,7 @@
    "category": "algorithmic_rent_setting",
    "citation": "guide: known open questions in the law",
    "kind": "open_question",
-   "note": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once it takes effect.",
+   "note": "New Jersey’s FAIR Act may override the local algorithmic-rent-setting ordinances in Jersey City and Hoboken once the state law takes effect.",
    "quote": null,
    "source_doc_ids": [
     "D069",
