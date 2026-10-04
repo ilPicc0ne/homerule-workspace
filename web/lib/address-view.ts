@@ -134,6 +134,8 @@ function whereName(rule: Rule, cityName: string): string {
 }
 
 const isWeak = (id: string) => !!PLAIN[id]?.weak;
+const ORDER = Object.keys(PLAIN);
+const rank = (id: string) => (ORDER.indexOf(id) < 0 ? 999 : ORDER.indexOf(id));
 
 export function buildAddressView(args: {
   address: Address;
@@ -150,13 +152,20 @@ export function buildAddressView(args: {
 
   const tiles: Tile[] = TOPICS.map((t) => {
     const inCat = results.filter((r) => r.category === t.cat && rules[r.rule_id]);
-    const cityFirst = (a: Result, b: Result) => (rules[a.rule_id].level === "city" ? 0 : 1) - (rules[b.rule_id].level === "city" ? 0 : 1);
+    const cityFirst = (a: Result, b: Result) =>
+      (rules[a.rule_id].level === "city" ? 0 : 1) - (rules[b.rule_id].level === "city" ? 0 : 1) || rank(a.rule_id) - rank(b.rule_id);
     const strong = inCat.filter((r) => r.result === "applies" && !isWeak(r.rule_id)).sort(cityFirst);
     const weak = inCat.filter((r) => r.result === "applies" && isWeak(r.rule_id)).sort(cityFirst);
     const unknown = inCat.filter((r) => r.result === "unknown").sort(cityFirst);
     const pending = inCat.filter((r) => r.result === "pending");
     const later = inCat.filter((r) => r.result === "not_yet_effective");
     const replaced = inCat.filter((r) => r.result === "superseded");
+    // A state "no protection here" rule (e.g. MA bars rent control) the engine doesn't list as a result.
+    if (!strong.length && !unknown.length && !weak.length) {
+      const basic = Object.values(rules).find((r) => r.category === t.cat && r.level === "state" && isWeak(r.rule_id) && r.status === "in_force");
+      if (basic)
+        weak.push({ rule_id: basic.rule_id, category: basic.category, result: "applies", confidence: basic.audit.model_extracted.confidence, explanation: `Statewide ${stateName} rule (${basic.citation}).`, what_next: basic.what_next });
+    }
 
     const status: TileStatus = strong.length ? "protect" : unknown.length ? "depends" : "none";
 
@@ -212,7 +221,7 @@ export function buildAddressView(args: {
       const rule = rules[r.rule_id];
       const facts = r.missing_facts?.length ? r.missing_facts : null;
       if (facts) for (const f of facts) missing.push({ fact: f.charAt(0).toUpperCase() + f.slice(1), why: `${rule.title} depends on it, and our data doesn't say.` });
-      else missing.push({ fact: rule.title, why: r.explanation });
+      else missing.push({ fact: "An exception in the law’s text", why: `${rule.title}: the rule has an exception our building records can’t check. The office below can tell you.` });
     }
 
     const lawNotes = replaced.map((r) => {
@@ -343,7 +352,7 @@ export function buildAddressView(args: {
       title: PLAIN[rule.rule_id]?.line ?? rule.title,
     };
     if (rule.effective_date > asOf) future.push({ ...ev, title: `Takes effect: ${ev.title}` });
-    else if (rule.effective_date >= yearAgo && r.result !== "superseded") past.push({ ...ev, title: `Took effect: ${rule.title}`, body: `${whereName(rule, cityName)} · ${rule.citation}` });
+    else if (rule.effective_date >= yearAgo && r.result !== "superseded") past.push({ ...ev, body: `Took effect. ${whereName(rule, cityName)} · ${rule.citation}` });
   }
   future.sort((a, b) => a.date.localeCompare(b.date));
   past.sort((a, b) => b.date.localeCompare(a.date));

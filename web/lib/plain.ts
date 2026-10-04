@@ -106,6 +106,7 @@ export const PLAIN: Record<string, Plain> = {
   // ---- Boston, Cambridge
   "MA-BOSTON-EVICT-10-11.7": {
     line: "In Boston, every letter telling you to move out must come with a Notice of Tenant's Rights and Resources.",
+    expl: "The rule covers almost every Boston rental. It doesn't cover hospitals, nursing homes and some short-stay non-profit homes, and our records can't tell those apart. Our sources have no Massachusetts rule requiring a reason the law allows to evict.",
     weak: true,
   },
   "MA-BOSTON-SCREEN-BostonFairCh": {

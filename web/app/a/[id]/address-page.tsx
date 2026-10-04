@@ -173,7 +173,8 @@ function Alerts({ street, open, setOpen }: { street: string; open: boolean; setO
     <div className="alwrap">
       <button type="button" className="bell" aria-expanded={open} aria-label={`Get alerts for ${street}`} onClick={() => setOpen(!open)}>
         <Ic id="i-bell" />
-        <span className="bell-l">Get alerts</span>
+        <span className="bell-l bell-s">Get alerts</span>
+        <span className="bell-l bell-w">Alerts for {street}</span>
       </button>
       {open && (
         <form

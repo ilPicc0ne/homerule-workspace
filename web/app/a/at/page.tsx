@@ -82,9 +82,16 @@ export default async function TypedAddressPage(props: PageProps<"/a/at">) {
   const stack = new Set([state, city].filter(Boolean));
   const results = data.rules.filter((x) => stack.has(x.jurisdiction_id)).map(provisional);
 
+  // A level whose law exists but isn't in HomeRule (e.g. LA County's own rules for unincorporated areas): say so.
+  const gap = r.tree.find((l) => l.level !== "federal" && l.status === "not_covered" && l.note);
+  const vp = viewProps(data, address, results, { typed: true, legalNote: [r.notes[0], gap?.note].filter(Boolean).join(" ") });
+  if (gap) {
+    for (const t of vp.view.tiles)
+      if (t.id === "rent" || t.id === "evict") t.notes.unshift({ kind: "flag", text: `${gap.name} has its own rules here, not in HomeRule` });
+  }
   return (
     <div className={fontVars}>
-      <AddressPageView {...viewProps(data, address, results, { typed: true, legalNote: r.notes[0] })} />
+      <AddressPageView {...vp} />
     </div>
   );
 }
