@@ -433,6 +433,13 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .map-card .map-caption{margin-top:4px;font-size:.75rem;line-height:1.3;color:var(--muted)}
 @media(min-width:640px){.v3 .map-card .addr-map,.v3 .map-card .addr-map-loading{height:132px}}
 @media(min-width:1000px){.v3 .map-card .addr-map,.v3 .map-card .addr-map-loading{height:214px}.v3 .map-card .addr-map-hint{display:inline-block}.v3 .map-card .map-caption{font-size:.8125rem}}
+.v3 .map-card .addr-map.addr-map-3d{height:200px}
+/* below the two-column layout the 3D view takes the full width (a 104 px thumbnail clips the Google logo) */
+@media(max-width:999px){.v3 .hero:has(.addr-map-views[data-view="3d"]){grid-template-areas:"h1 h1" "nxt nxt" "map map" "where where" "facts facts" "src src"}}
+/* narrow card (phone): the switch sits under the map so it never covers the pin */
+@media(max-width:639px){.v3 .map-card .addr-map-views{display:flex;flex-direction:column}.v3 .map-card .addr-map-views .map-seg{position:static;order:2;align-self:flex-start;margin-top:4px;box-shadow:none}}
+@media(min-width:640px){.v3 .map-card .addr-map.addr-map-3d{height:240px}}
+@media(min-width:1000px){.v3 .map-card .addr-map.addr-map-3d{height:260px}}
 .v3 .rule .law-foot{margin-top:2px;font-size:.875rem}
 /* neutralise same-named classes from globals.css (landing page) */
 .v3 .tiles{margin:0;max-width:none;grid-template-columns:minmax(0,1fr);border:0}
