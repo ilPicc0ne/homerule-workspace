@@ -7,7 +7,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 /* Real base map: MapLibre GL + OpenFreeMap vector tiles (Positron, no key). */
 
 const STYLE = "https://tiles.openfreemap.org/styles/positron";
-const TEAL = "#0f766e";
+const ACCENT = "#2B3B4E";
 
 // Worker files are copied to /public/maplibre by scripts/copy-maplibre-worker.mjs.
 maplibregl.setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
@@ -55,16 +55,16 @@ function useMap(
     map.on("load", () => {
       if (outline) {
         map.addSource("city", { type: "geojson", data: outline });
-        map.addLayer({ id: "city-fill", type: "fill", source: "city", paint: { "fill-color": TEAL, "fill-opacity": 0.06 } });
+        map.addLayer({ id: "city-fill", type: "fill", source: "city", paint: { "fill-color": ACCENT, "fill-opacity": 0.06 } });
         map.addLayer({
           id: "city-line",
           type: "line",
           source: "city",
-          paint: { "line-color": TEAL, "line-width": 2, "line-opacity": 0.85 },
+          paint: { "line-color": ACCENT, "line-width": 2, "line-opacity": 0.85 },
         });
       }
     });
-    if (coords) new maplibregl.Marker({ color: TEAL }).setLngLat([coords.lon, coords.lat]).addTo(map);
+    if (coords) new maplibregl.Marker({ color: ACCENT }).setLngLat([coords.lon, coords.lat]).addTo(map);
 
     // Frame: the building at neighbourhood zoom, so a part of the city line shows nearby.
     // Without a pin, the whole (land-only) city outline.

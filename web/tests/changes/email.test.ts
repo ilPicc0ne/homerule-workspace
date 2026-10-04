@@ -2,7 +2,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { changes } from "../../lib/changes/data.ts";
-import { addressChange, esc, FROM, render } from "../../lib/changes/email.ts";
+import { addressChange, esc, FROM, plainChange, render } from "../../lib/changes/email.ts";
 import type { AddressChange } from "../../lib/changes/email.ts";
 import type { Change } from "../../lib/changes/types.ts";
 
@@ -12,31 +12,48 @@ const j3 = () => {
   return ac;
 };
 
-test("J3: Hoboken FAIR Act email shows old -> new, quote, citation, date and source", () => {
+test("J3: Hoboken FAIR Act email is one plain sentence and a link to the address page", () => {
   const ac = j3();
   const m = render(ac);
   assert.equal(m.from, FROM);
   assert.equal(m.from, "HomeRule <alerts@yourhomerule.com>");
-  assert.match(m.subject, /327 Jackson St, Hoboken, NJ/);
+  assert.equal(m.subject, "Something changes for your rent rules at 327 Jackson St");
   for (const part of [m.text, m.html]) {
     assert.match(part, /Not legal advice/);
     assert.match(part, /October 1, 2026/);                          // the as-of date
-    assert.match(part, /July 1, 2027/);                             // effective date
-    assert.match(part, /Performing a coordinating function prohibited/);
-    assert.match(part, /56:9-23/);
-    assert.match(part, /coordinating function/);
-    assert.match(part, /https:\/\/pub\.njleg\.state\.nj\.us\//);
-    assert.match(part, /not decided/);                              // the conflict is flagged, never resolved
+    assert.match(part, /Software that sets rents/);                 // topic name, as on the address page
+    assert.match(part, /Jul 1, 2027/);                              // effective date
+    assert.match(part, /https:\/\/yourhomerule\.com\/a\/A0256/);   // the button goes to the address page
+    assert.match(part, /\/changes\/A0256/);                       // secondary link to the change log
+    assert.match(part, /See what this means for 327 Jackson St/);
+    // no legal title, status jargon, citations or quotes
+    assert.doesNotMatch(part, /coordinating function|Enacted, not yet in effect|56:9-23|→|&rarr;|Citation|blockquote/);
   }
-  assert.match(m.text, /Enacted, not yet in effect → Applies/);
+});
+
+test("impact badge: shown from impact or renter_impact, hidden when neutral or absent", () => {
+  const base = j3();
+  const withImpact = (extra: object): AddressChange => ({
+    ...base, entry: { ...base.entry, changes: base.entry.changes.map((c) => ({ ...c, ...extra })) },
+  });
+  const absent = render(base);
+  for (const part of [absent.text, absent.html]) assert.doesNotMatch(part, /protection for renters/);
+  const more = render(withImpact({ impact: "more_protection" }));
+  assert.match(more.html, /More protection for renters/);
+  assert.match(more.text, /More protection for renters/);
+  assert.match(render(withImpact({ renter_impact: "less_protection" })).html, /Less protection for renters/);
+  assert.doesNotMatch(render(withImpact({ impact: "neutral" })).html, /protection for renters/);
+  assert.doesNotMatch(render(withImpact({ impact: "good" })).html, /protection for renters/);   // unknown values ignored
+  const rules = new Map([["NJ-ALG-56:9-23", { rule_id: "NJ-ALG-56:9-23", renter_impact: "more_protection" }]]);
+  assert.equal(plainChange(base.entry.changes[0], base.as_of, rules).impact, "more_protection");  // from the rule record
 });
 
 test("unsubscribe link and List-Unsubscribe header", () => {
   const m = render(j3(), { token: "abc" });
-  assert.equal(m.unsubscribe_url, "https://yourhomerule.com/api/unsubscribe?token=abc");
-  assert.equal(m.headers["List-Unsubscribe"], "<https://yourhomerule.com/api/unsubscribe?token=abc>");
-  assert.match(render(j3(), { token: "a+b/c=&d" }).unsubscribe_url, /token=a%2Bb%2Fc%3D%26d$/);   // tokens are URL-encoded
+  assert.equal(m.unsubscribe_url, "https://yourhomerule.com/unsubscribe?a=A0256&t=abc");
+  assert.equal(m.headers["List-Unsubscribe"], "<https://yourhomerule.com/api/unsubscribe?a=A0256&t=abc>");
   assert.equal(m.headers["List-Unsubscribe-Post"], "List-Unsubscribe=One-Click");
+  assert.match(render(j3(), { token: "a+b/c=&d" }).unsubscribe_url, /t=a%2Bb%2Fc%3D%26d$/);   // tokens are URL-encoded
   assert.ok(m.html.includes(esc(m.unsubscribe_url)));
   assert.ok(m.text.includes(m.unsubscribe_url));
   assert.match(render(j3()).unsubscribe_url, /%7B%7Bunsubscribe_token%7D%7D/);   // placeholder in the preview
@@ -76,11 +93,12 @@ test("a demo source is labelled in subject, text and html", () => {
   assert.match(m.subject, /^\[Demo: fictional ordinance\]/);
   assert.match(m.text, /DEMO: FICTIONAL ORDINANCE/);
   assert.match(m.html, /Demo: fictional ordinance/);
-  assert.match(m.text, /Not listed for this address → Enacted, not yet in effect/);
+  assert.match(m.text, /Application fees — From Mar 1, 2027: Takes effect later|Application fees — /);
+  assert.doesNotMatch(m.html, /<script>/);
 });
 
-test("html escapes the data and drops non-http links", () => {
-  const m = render(demo);
+test("html escapes the data and shows no source links or quotes", () => {
+  const m = render({ ...demo, label: "1 <script>x</script> St, Cambridge, MA" });
   assert.doesNotMatch(m.html, /<script>/);
   assert.doesNotMatch(m.html, /<b>\./);
   assert.doesNotMatch(m.html, /javascript:/);

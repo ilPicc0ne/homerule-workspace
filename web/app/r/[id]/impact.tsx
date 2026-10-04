@@ -138,7 +138,7 @@ export default function Impact({ ruleId, stops, fallback, retrieved, stateName, 
             {demo.map((d) => {
               const r = d.results[asOf];
               return (
-                <li key={d.id} style={from === d.id ? { background: "var(--teal-wash)", borderRadius: 10, padding: "0.4rem 0.6rem" } : undefined}>
+                <li key={d.id} style={from === d.id ? { background: "var(--accent-soft)", borderRadius: 10, padding: "0.4rem 0.6rem" } : undefined}>
                   <Dot kind={r ? r.result : "none"} />
                   <span>
                     <Link href={`/a/${d.id}${asOf === fallback ? "" : `?as_of=${asOf}`}`}>{d.street}</Link>, {d.city}:{" "}

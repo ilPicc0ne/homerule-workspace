@@ -2,20 +2,21 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import EmailPreview, { type EmailView } from "./email-preview";
+import { PRIVACY } from "@/lib/alerts/disclaimer";
 import "./alerts.css";
 
-type Status = "sent" | "closed_test" | "not_configured" | "already" | "failed" | "invalid" | "unavailable";
+type Status = "sent" | "closed_test" | "not_configured" | "failed" | "invalid" | "rate_limited" | "unavailable";
 type Result = { status: Status; preview?: EmailView; error?: string };
 
 export const SIMULATED = "Preview — simulated, nothing is sent";
 
 const SAY: Record<Status, string> = {
-  sent: "Check your email. Tap the link in it to turn alerts on.",
+  sent: "Check your inbox. Tap the button in the email to turn alerts on (it works for 48 hours).",
   closed_test: "Alerts are in a closed test right now — we saved your request.",
   not_configured: "Email is not set up yet — we saved your request.",
-  already: "Alerts are already on for this email and address.",
   failed: "We could not send the email. We saved your request.",
   invalid: "Please enter a valid email.",
+  rate_limited: "Too many tries. Please wait a few minutes.",
   unavailable: "Alerts are not working right now. Please try later.",
 };
 
@@ -62,7 +63,7 @@ export default function AlertForm({
     }
   }
 
-  const done = res && res.status !== "invalid" && res.status !== "unavailable";
+  const done = res && res.status !== "invalid" && res.status !== "unavailable" && res.status !== "rate_limited";
   return (
     <>
       {open && (
@@ -123,7 +124,7 @@ export default function AlertForm({
             </p>
           )}
           <p className="al-more" id="al-more">
-            One email per rule change for this address. We ask you to confirm first. Not legal advice.
+            One email per rule change for this address. We ask you to confirm first. Not legal advice. {PRIVACY}
           </p>
         </form>
       )}

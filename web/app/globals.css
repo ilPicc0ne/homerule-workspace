@@ -2,7 +2,9 @@
 
 /*
   HomeRule, light only.
-  White page, hairlines instead of panels, one teal for "applies", links and the chosen date.
+  White page, hairlines instead of panels. Teal means "applies" (status) and nothing else;
+  the slate-navy accent (option A, same as --blue in a/[id]/v3.css) is for links, buttons,
+  focus rings and the chosen date.
   Amber is reserved for "unknown": it carries meaning, never decoration.
   The one bold element is the as-of timeline: a law has an effective date.
 */
@@ -19,6 +21,9 @@
   --teal: #0f766e;
   --teal-ink: #0b5e57;
   --teal-wash: #eef7f5;
+  --accent: #2b3b4e;
+  --accent-ink: #1e2b3a;
+  --accent-soft: #eef1f4;
   --amber: #c8891c;
   --amber-ink: #8a5a08;
   --amber-wash: #fcf6ea;
@@ -47,19 +52,19 @@ body {
 }
 
 a {
-  color: var(--teal-ink);
+  color: var(--accent-ink);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  text-decoration-color: color-mix(in srgb, var(--teal) 35%, transparent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
 a:hover {
-  text-decoration-color: var(--teal);
+  text-decoration-color: var(--accent);
 }
 
 :focus-visible {
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -134,7 +139,7 @@ a:hover {
   width: 1.9rem;
   height: 1.9rem;
   border-radius: 9px;
-  background: var(--teal);
+  background: var(--accent);
   color: #fff;
 }
 
@@ -193,8 +198,8 @@ a:hover {
 }
 
 .seg-item[aria-pressed="true"] {
-  background: var(--teal-wash);
-  color: var(--teal-ink);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
   font-weight: 650;
 }
 
@@ -291,11 +296,11 @@ a:hover {
 }
 
 .search:focus-within {
-  border-color: var(--teal);
+  border-color: var(--accent);
 }
 
 .search > .icon {
-  color: var(--teal);
+  color: var(--accent);
 }
 
 .search input {
@@ -323,7 +328,7 @@ a:hover {
   height: 2.75rem;
   flex: none;
   border-radius: 999px;
-  background: var(--teal);
+  background: var(--accent);
   color: #fff;
   cursor: pointer;
 }
@@ -357,7 +362,7 @@ a:hover {
 }
 
 .suggest-item[aria-selected="true"] {
-  background: var(--teal-wash);
+  background: var(--accent-soft);
 }
 
 .suggest-main {
@@ -416,7 +421,7 @@ a:hover {
 }
 
 .try-chip:hover {
-  border-color: var(--teal);
+  border-color: var(--accent);
 }
 
 @media (max-width: 480px) {
@@ -465,7 +470,7 @@ a:hover {
 }
 
 .tile .icon {
-  color: var(--teal);
+  color: var(--accent);
   width: 1.4rem;
   height: 1.4rem;
 }
@@ -492,7 +497,7 @@ a:hover {
 .trust .icon {
   width: 1.5rem;
   height: 1.5rem;
-  color: var(--teal);
+  color: var(--accent);
 }
 
 .coverage {
@@ -557,8 +562,8 @@ a:hover {
 }
 
 .tag-demo {
-  color: var(--teal-ink);
-  border-color: color-mix(in srgb, var(--teal) 30%, white);
+  color: var(--accent-ink);
+  border-color: color-mix(in srgb, var(--accent) 30%, white);
 }
 
 .crumbs {
@@ -654,7 +659,7 @@ a:hover {
 }
 
 .stop:hover .stop-dot {
-  border-color: var(--teal);
+  border-color: var(--accent);
 }
 
 .stop[aria-pressed="true"] {
@@ -662,9 +667,9 @@ a:hover {
 }
 
 .stop[aria-pressed="true"] .stop-dot {
-  background: var(--teal);
-  border-color: var(--teal);
-  box-shadow: 0 0 0 4px var(--teal-wash);
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
 .stop-day {
@@ -871,7 +876,7 @@ a:hover {
 }
 
 .btn-primary {
-  background: var(--teal);
+  background: var(--accent);
   color: #fff;
 }
 
@@ -887,12 +892,12 @@ a:hover {
 }
 
 .btn-quiet:hover {
-  border-color: var(--teal);
+  border-color: var(--accent);
 }
 
 .status-msg {
   font-size: 0.875rem;
-  color: var(--teal-ink);
+  color: var(--accent-ink);
   min-height: 1.25rem;
 }
 
@@ -1540,7 +1545,7 @@ a:hover {
   content: counter(step);
   font-size: 0.75rem;
   font-weight: 650;
-  color: var(--teal-ink);
+  color: var(--accent-ink);
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   width: 1.3rem;
