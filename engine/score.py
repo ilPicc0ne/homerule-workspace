@@ -221,6 +221,17 @@ def annotate_changes(changes, before_rows, after_rows, rules_by_id):
     return changes
 
 
+def _full_text(rule, start):
+    """The engine names a text-only condition by its first 60 characters: the full text from the rule."""
+    def walk(n):
+        if isinstance(n, dict):
+            if n.get("kind") == "unparsed":
+                yield n.get("quote") or ""
+            for c in n.get("children") or []:
+                yield from walk(c)
+    return next((q for q in (*walk(rule.get("applies_if")), *walk(rule.get("exempt_if"))) if q.startswith(start)), start)
+
+
 def open_questions(rec, d, rows, topics, rules, by_id):
     """For each unknown topic: the building facts that would settle it, where to check each, and the topic level and
     score for each possible answer (the engine re-run with that one fact set; code only); the exemptions only the
@@ -235,7 +246,7 @@ def open_questions(rec, d, rows, topics, rules, by_id):
                 continue
             for m in row.get("missing") or []:
                 if m.startswith("unparsed: "):
-                    m = m[len("unparsed: "):]
+                    m = _full_text(by_id[row["team_rule_id"]], m[len("unparsed: "):])
                     if m not in text:
                         text.append(m)
                 elif m not in facts:
