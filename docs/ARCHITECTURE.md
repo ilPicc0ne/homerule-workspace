@@ -305,8 +305,9 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` (+ `KV_REST_API_READ_ONLY_TOKEN`, `KV_URL`, `REDIS_URL` from the integration) | Vercel production, preview, development; `vercel env pull` → `.env.local` | `storeFromEnv()` |
 | `NEXT_PUBLIC_DATA_SOURCE` | optional | `live` (default) or `demo` |
 | `OPENROUTER_API_KEY` | `.env.local` only | Extraction and `make demo-change` (not needed on Vercel) |
+| `NEXT_PUBLIC_GOOGLE_MAPS_KEY` | Vercel production, preview, development; `vercel env pull` → `.env.local` | `web/components/address-map-3d.tsx` (3D map view, loaded only after the visitor picks 3D). Browser key `homerule-maps-browser`: Maps JavaScript API only; referrers `yourhomerule.com/*`, `*.yourhomerule.com/*`, `*.vercel.app/*`, `localhost:*/*`, `127.0.0.1:*/*` (on 04.10.2026 the localhost entries were rejected in practice: RefererNotAllowedMapError from `localhost:3064` and `127.0.0.1:3064`); quota 500 map loads/day for 3D and 500 for 2D. Billed as Dynamic Maps (Essentials, US$7 per 1,000 loads after 10,000 free per month) [assumed: Google's usage page says 3D map loads count under Dynamic Maps; the price list has no separate 3D SKU] |
 
-There is no `DEMO_RECIPIENTS` variable. `scripts/alerts-env.sh` is meant to set `DEMO_TOKEN` and `ALERTS_SITE_URL` for preview too; on 04.10.2026 ~05:00 Vercel listed them for production only, so dispatch works only on production. `NEXT_PUBLIC_GOOGLE_MAPS_KEY` is also set in Vercel but no code on `main` reads it.
+There is no `DEMO_RECIPIENTS` variable. `scripts/alerts-env.sh` is meant to set `DEMO_TOKEN` and `ALERTS_SITE_URL` for preview too; on 04.10.2026 ~05:00 Vercel listed them for production only, so dispatch works only on production.
 
 ## Audit and evaluation
 

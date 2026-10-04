@@ -126,6 +126,7 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 | P0 | Typed address outside the 500 (`/a/at?q=`), resolved via Census, rules evaluated with unknown building facts | S | built (#52). Live: `/a/at?q=4801 E 3rd St, Los Angeles, CA` (unincorporated East LA: state rules only, "Los Angeles County's own rules … aren't in HomeRule") |
 | P0 | JSON per address: `/api/address/[id]` (`not_legal_advice`, `as_of`, results with rule, quote, what next) | S | built (#52). Live: `/api/address/A0016` |
 | P1 | Small real map: MapLibre GL + OpenFreeMap, pin, Census TIGER city outline, "Inside <city> city limits" / "Outside any city" caption | S | built (#49, #54). Live: `/a/A0016`; unincorporated caption via the typed East LA address (no sample address is unincorporated) |
+| P2 | 3D map view behind a `Map · 3D` switch on the map card (Google Maps JS `Map3DElement`): fly-in from the legal-city outline to the building, pin, same caption; MapLibre stays the default (`DEFAULT_MAP_VIEW`), `?map=3d` opens 3D; falls back to MapLibre on no key, key error, load failure (5 s) or no WebGL; nothing from Google loads before the switch. **Default view: open decision (Silvan, after the demo rehearsal)** | S | experimental (#64, PR open, not merged). Not verified on localhost: the key rejects `localhost` referrers (RefererNotAllowedMapError) |
 | P0 | Coming up: dated plain lines, recently changed, undated bills as "Proposed, not law" with "Follow" links | S | built (#52, #56). Live: `/a/A0256` (FAIR Act Jul 1, 2027), `/a/A0010` (Mass. S.2983, H.5222) |
 | P0 | Change log per address, old → new, dated, quoted; linked from Coming up ("See the full change log", "What changed, old → new") | S | built (#45, #56). Live: `/changes/A0256`. Addresses without a diff entry show an empty log (`/changes/A0010`) |
 | P0 | Email preview on the change log (From, Subject, `List-Unsubscribe`, plain-text part; "Preview only, nothing is sent") | S | built (#45, #61). Live: `/changes/A0256` |
@@ -165,7 +166,7 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 | P2 | MCP route (`/api/mcp`) | D | planned (no code) |
 | P3 | ChatGPT custom GPT on the JSON endpoint | D | planned |
 | Idea | Search typo tolerance ("Hobokn" → suggestion, never applied silently) | S | idea |
-| Idea | Google Places autocomplete for any US address (attribution and Maps terms apply) | S | idea (`NEXT_PUBLIC_GOOGLE_MAPS_KEY` exists in Vercel, no code on `main` uses it) |
+| Idea | Google Places autocomplete for any US address (attribution and Maps terms apply) | S | idea (`NEXT_PUBLIC_GOOGLE_MAPS_KEY` exists in Vercel; only the 3D map view reads it) |
 | Idea | Own chatbot · neighbourhood comparison · repairs card | — | idea |
 
 ### Known gaps before the freeze
