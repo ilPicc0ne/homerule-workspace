@@ -470,7 +470,6 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .vb.narrows{background:var(--red-tint);color:var(--red-ink);border-color:var(--red-line)}
 .v3 .vb.unclear{background:var(--slate-tint);color:var(--slate-ink);border-color:var(--slate-line)}
 .v3 .vb-why{margin-top:4px;font-size:.875rem;color:var(--ink-2)}
-.v3 .tl-note{margin-top:10px;font-size:.875rem;color:var(--muted)}
 .v3 .ev-lk{display:inline-flex;align-items:center;gap:5px;min-height:44px;font-size:.9375rem;font-weight:700}
 .v3 .ev-lk .icon{width:16px;height:16px}
 .v3 .ahead-log{margin-top:-6px;padding-left:38px}
