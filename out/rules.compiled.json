@@ -2511,7 +2511,7 @@
   "category": "application_screening_fees",
   "status": "in_force",
   "effective": {
-   "from": "2026-01-01",
+   "from": null,
    "until": null,
    "precision": "day",
    "derived": null
@@ -2527,7 +2527,9 @@
   "interactions": [],
   "retrieved_at": "2026-10-01 22:35 UTC",
   "parse_status": "ok",
-  "checks": [],
+  "checks": [
+   "effective: 2026-01-01 starts a new amount or wording, not the rule (jev p=0.92)"
+  ],
   "x_source": {
    "unit": "D026",
    "source_doc_id": "D026",
@@ -2738,7 +2740,7 @@
   "category": "rent_increase_limits",
   "status": "in_force",
   "effective": {
-   "from": "2026-02-02",
+   "from": null,
    "until": null,
    "precision": "day",
    "derived": null
@@ -2761,7 +2763,8 @@
   "retrieved_at": "2026-10-01 22:36 UTC",
   "parse_status": "ok",
   "checks": [
-   "key not supported by its quote (0.96)"
+   "key not supported by its quote (0.96)",
+   "effective: 2026-02-02 starts a new amount or wording, not the rule (jev p=0.94)"
   ],
   "x_source": {
    "unit": "D040+D041+D042+D043",
@@ -5717,9 +5720,18 @@
      }
     },
     {
-     "fact": "owner_occupied",
-     "op": "eq",
-     "value": true
+     "all": [
+      {
+       "fact": "owner_occupied",
+       "op": "eq",
+       "value": true
+      },
+      {
+       "fact": "units",
+       "op": "le",
+       "value": 2
+      }
+     ]
     },
     {
      "all": [
@@ -5766,7 +5778,9 @@
   "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
-  "checks": [],
+  "checks": [
+   "exempt_if: 'owner_occupied': owner-occupancy exemption scoped: le2 (jev p=0.98)"
+  ],
   "x_source": {
    "unit": "D073",
    "source_doc_id": "D073",
@@ -6417,7 +6431,7 @@
   "category": "rent_increase_limits",
   "status": "in_force",
   "effective": {
-   "from": "2026-03-01",
+   "from": null,
    "until": null,
    "precision": "day",
    "derived": null
@@ -6440,7 +6454,8 @@
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "failed",
   "checks": [
-   "applies_if: op le contradicts 'after' in its quote"
+   "applies_if: op le contradicts 'after' in its quote",
+   "effective: 2026-03-01 starts a new amount or wording, not the rule (jev p=0.91)"
   ],
   "x_source": {
    "unit": "D078+D079+D080+D081+D082+D083",
@@ -6542,7 +6557,7 @@
   "category": "security_deposits",
   "status": "in_force",
   "effective": {
-   "from": "2026-03-01",
+   "from": null,
    "until": null,
    "precision": "day",
    "derived": null
@@ -6560,7 +6575,9 @@
   "interactions": [],
   "retrieved_at": "2026-10-01 22:37 UTC",
   "parse_status": "ok",
-  "checks": [],
+  "checks": [
+   "effective: 2026-03-01 starts a new amount or wording, not the rule (jev p=0.95)"
+  ],
   "x_source": {
    "unit": "D078+D079+D080+D081+D082+D083",
    "source_doc_id": "D083",

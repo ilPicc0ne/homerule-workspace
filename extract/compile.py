@@ -447,6 +447,9 @@ def findings(rules):
 
 def build(extracted_dir=None, suffix=""):
     rules = internal_rules(extracted_dir)
+    from . import rate_dates               # after the vote: a date that only starts a new rate is not the rule's start
+    for citation, d, now, p in rate_dates.check(rules, effective):
+        print(f"start date {citation}: {d} starts a new amount or wording (jev p={p:.2f}); start now {now}")
     comps = compiled_all(rules)
     from . import impact                   # renter impact per rule (direction, strength): the score is built on it
     impact.annotate(rules, comps)

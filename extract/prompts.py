@@ -21,7 +21,7 @@ import yaml
 
 from . import config
 
-MODULES = ["luna_pass", "jev_pass", "jev_check", "gate", "links", "open_questions", "status", "impact", "exemptions"]
+MODULES = ["luna_pass", "jev_pass", "jev_check", "gate", "links", "open_questions", "status", "impact", "exemptions", "rate_dates"]
 LOCK = config.ROOT / "extract" / "PROMPTS.lock"
 FIX = config.ROOT / "tests" / "fixtures"
 MIN_LEN = 30

@@ -1,5 +1,5 @@
 {
- "run_at": "2026-10-04 07:30 UTC",
+ "run_at": "2026-10-04 00:17 UTC",
  "arms": {
   "plain": "openai/gpt-6-luna",
   "plain_web": "openai/gpt-6-luna:online",
@@ -24,8 +24,8 @@
    "model": "openai/gpt-6-luna"
   },
   "homerule": {
-   "correct": 19,
-   "partly": 1,
+   "correct": 18,
+   "partly": 2,
    "wrong": 0,
    "error": 0,
    "n": 20,
@@ -61,14 +61,14 @@
    "as_of": "2026-10-01",
    "card": "How much can my rent go up?",
    "arm": "homerule",
-   "text": "As of 2026-10-01, HomeRule’s records show no Boston rent-increase cap in force, so they provide no maximum percentage. Massachusetts law bars cities from enacting or enforcing rent control unless they accept the state chapter and meet its conditions (Mass. Gen. Laws ch. 40P, § 4). A Boston rent-stabilization bill was pending, not law, on that date (Mass. H.3744).\n\nStatus on 2026-10-01 (HomeRule records): In force: Mass. Gen. Laws ch. 40P, § 4. Mass. H.3744: a bill, not law. Mass. Gen. Laws ch. 40P, § 4 bars or limits local rules on this topic. A ballot question or bill on this topic failed or was struck (manifest link: https://www.wbur.org/news/2026/06/23/massachusetts-high-court-rent-control-ballot-question-struck).",
+   "text": "HomeRule’s records show no Boston rent-increase limit in force on October 1, 2026. Massachusetts law bars cities from enacting or enforcing rent control, except under the conditions for a city that accepts the state chapter (Mass. Gen. Laws ch. 40P, § 4). Boston’s rent-stabilization bill was still pending, not law (Mass. H.3744). The records don’t establish what other limits, if any, apply to your rent.",
    "model": "openai/gpt-6-luna",
    "records": {
-    "rules": 1,
+    "rules": 2,
     "findings": 2
    },
    "grade": "correct",
-   "grade_confidence": 0.91
+   "grade_confidence": 0.54
   },
   {
    "id": "R2-cambridge-rent",
@@ -98,14 +98,14 @@
    "as_of": "2026-10-01",
    "card": "How much can my rent go up?",
    "arm": "homerule",
-   "text": "HomeRule’s records show no Cambridge rent-increase cap in force on 2026-10-01; they don’t establish that Cambridge accepted the state law’s exception. Massachusetts generally bars cities from enacting or enforcing rent control, unless a city accepts the chapter and meets its conditions (Mass. Gen. Laws ch. 40P, § 4). The records don’t say how much a particular increase may be or cover other limits that might apply.\n\nStatus on 2026-10-01 (HomeRule records): In force: Mass. Gen. Laws ch. 40P, § 4. Mass. Gen. Laws ch. 40P, § 4 bars or limits local rules on this topic. A ballot question or bill on this topic failed or was struck (manifest link: https://www.wbur.org/news/2026/06/23/massachusetts-high-court-rent-control-ballot-question-struck).",
+   "text": "HomeRule’s records show **no rent-increase cap in force in Cambridge on 2026-10-01**. Massachusetts law bars cities from enacting or enforcing rent control, with a limited exception for a city that accepts the state chapter (Mass. Gen. Laws ch. 40P, § 4). The records don’t show that exception applying in Cambridge. This doesn’t establish that every rent increase is lawful; HomeRule doesn’t have other potentially relevant laws here.",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 1,
     "findings": 2
    },
    "grade": "correct",
-   "grade_confidence": 0.6
+   "grade_confidence": 0.71
   },
   {
    "id": "R3-sf-rent",
@@ -135,14 +135,14 @@
    "as_of": "2026-10-01",
    "card": "How much can my rent go up?",
    "arm": "homerule",
-   "text": "On October 1, 2026, a rent-controlled San Francisco unit can generally increase by **1.6%**; there is no single citywide percentage for every rental. (San Francisco Rent Ordinance § 37.3)\n\nFor a unit not covered by stricter local rent control, California’s cap generally applies to later increases: **5% plus the change in cost of living, or 10%, whichever is lower**, calculated from the lowest gross rent in the prior 12 months. The cap has statutory exemptions, and a new tenancy may start at an uncapped initial rent. (Cal. Civ. Code § 1947.12) The local summary says units first receiving a Certificate of Occupancy after June 13, 1979, are exempt from local rent-increase limits; coverage depends on the unit’s facts.\n\nStatus on 2026-10-01 (HomeRule records): In force: Cal. Civ. Code § 1947.12; San Francisco Rent Ordinance § 37.3.",
+   "text": "If your unit is **rent-controlled**, the allowable annual increase from March 1, 2026 through February 28, 2027 is **1.6%** (San Francisco Rent Ordinance § 37.3).\n\nIf it isn’t covered by San Francisco rent control, California’s limit is generally **5% plus the change in cost of living, capped at 10%**, measured against the lowest rent charged in the prior 12 months; statutory exemptions apply (Cal. Civ. Code § 1947.12). The records don’t give the cost-of-living figure needed to calculate that exact limit. Some units, including newly constructed rentals with a Certificate of Occupancy after June 13, 1979, are exempt from San Francisco rent-increase limits.",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 2,
     "findings": 0
    },
    "grade": "correct",
-   "grade_confidence": 0.65
+   "grade_confidence": 0.72
   },
   {
    "id": "R4-sd-rent",
@@ -172,14 +172,14 @@
    "as_of": "2026-10-01",
    "card": "How much can my rent go up?",
    "arm": "homerule",
-   "text": "As of 2026-10-01, California’s rent cap is in force: covered rent increases are limited to 5% plus the cost-of-living change, or 10%, whichever is lower. (Cal. Civ. Code § 1947.12)\n\nThe calculation uses the lowest gross rent charged in the prior 12 months; for a tenant who stays, increases may come in no more than two increments during that period. The cap applies to increases after the initial rent is set. (Cal. Civ. Code § 1947.12) Exceptions depend on factors such as the housing’s age, type, ownership, or affordable-housing restrictions. Stricter local controls would take precedence, but HomeRule’s records show no San Diego-specific rent limit.\n\nStatus on 2026-10-01 (HomeRule records): In force: Cal. Civ. Code § 1947.12.",
+   "text": "Generally, rent increases are capped at **5% plus the change in the cost of living, or 10%, whichever is lower**, measured against the lowest rent charged in the prior 12 months (Cal. Civ. Code § 1947.12). This applies after the initial rental rate is established and has statutory exemptions, including for certain newer or owner-occupied housing. If stricter local rent controls cover your unit, those local rules apply instead. HomeRule’s records list no San Diego-specific rent-increase limit.",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 1,
     "findings": 0
    },
    "grade": "correct",
-   "grade_confidence": 0.75
+   "grade_confidence": 0.91
   },
   {
    "id": "E1-sf-eviction",
@@ -209,14 +209,14 @@
    "as_of": "2026-10-01",
    "card": "When can they end my tenancy?",
    "arm": "homerule",
-   "text": "As of 2026-10-01, a San Francisco landlord generally may end a covered tenancy only for a just-cause reason; mere lease expiration or a change in ownership is not enough (San Francisco Rent Ordinance § 37.9(a)).\n\nThe cause must be the dominant motive and include a reason listed in the ordinance—such as nonpayment, a substantial lease breach, nuisance, certain owner or family move-ins, demolition or rehabilitation, or Ellis Act withdrawal (San Francisco Rent Ordinance § 37.9(a)). For covered properties, California law also requires just cause after the applicable 12- or 24-month occupancy test, subject to statutory exclusions; the cause must be stated in the written termination notice (Cal. Civil Code § 1946.2). Which rules cover your unit depends on its circumstances; the records don’t specify all local coverage criteria.\n\nStatus on 2026-10-01 (HomeRule records): In force: Cal. Civil Code § 1946.2; San Francisco Rent Ordinance § 37.9(a).",
+   "text": "For a unit covered by San Francisco’s Rent Ordinance, the landlord must have a listed just-cause reason, and that reason must be the dominant motive for eviction. Reasons include nonpayment, a substantial lease breach, nuisance, certain owner or family move-ins, demolition, and Ellis Act withdrawal. Lease expiration or a change in ownership alone is not just cause (San Francisco Rent Ordinance § 37.9(a)).\n\nCalifornia law also requires just cause after the applicable occupancy period—generally 12 months, with a special rule when adult tenants are added—and requires the cause in the written termination notice. It has housing and other exemptions, including for qualifying local ordinances, and yields where a local rule covers the unit (Cal. Civil Code § 1946.2). HomeRule’s records don’t specify which San Francisco units are covered.",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 2,
     "findings": 1
    },
-   "grade": "correct",
-   "grade_confidence": 0.42
+   "grade": "partly",
+   "grade_confidence": 0.28
   },
   {
    "id": "E2-newark-eviction",
@@ -246,14 +246,14 @@
    "as_of": "2026-10-01",
    "card": "When can they end my tenancy?",
    "arm": "homerule",
-   "text": "As of 2026-10-01, New Jersey’s good-cause eviction rule is in force: for most residential rentals, a landlord can end your tenancy only for good cause and must prove the grounds in court (N.J.S.A. 2A:18-61.1).\n\nThe general protection may not apply to some owner-occupied two- or three-unit properties with two or fewer rental units, or to transient or seasonal hotel and motel stays. Newark also bars eviction in reprisal for your efforts to enforce rights under the city chapter (Newark Code § 19:2-14). A landlord must use legal eviction proceedings; the records do not provide a complete list of qualifying good-cause grounds. (N.J.S.A. 2A:18-61.1)\n\nStatus on 2026-10-01 (HomeRule records): In force: N.J.S.A. 2A:18-61.1; Newark Code § 19:2-14. Newark, N.J., Rev. Gen. Ordinances § 19:2-14: no longer in force (ended 2024-10-08).",
+   "text": "As of 2026-10-01, New Jersey’s Anti-Eviction Act generally bars a landlord from evicting you or refusing to renew your lease without good cause, and the landlord must prove the grounds in court. The law lists specific grounds, but HomeRule’s records don’t include that list. (N.J.S.A. 2A:18-61.1)\n\nThe Act may not cover some two- or three-unit owner-occupied properties, transient or seasonal guests, or a specified family-trust unit. HomeRule’s records don’t include Newark local-law text, so I can’t confirm whether a Newark rule adds protections.",
    "model": "openai/gpt-6-luna",
    "records": {
-    "rules": 2,
-    "findings": 0
+    "rules": 1,
+    "findings": 1
    },
-   "grade": "partly",
-   "grade_confidence": 0.3
+   "grade": "correct",
+   "grade_confidence": 0.76
   },
   {
    "id": "D1-sd-deposit",
@@ -283,14 +283,14 @@
    "as_of": "2026-10-01",
    "card": "How much deposit can they ask?",
    "arm": "homerule",
-   "text": "As of October 1, 2026, California generally limits the security deposit to **one month’s rent**, in addition to first month’s rent. (Cal. Civ. Code § 1950.5(c)(1).)\n\nA qualifying small landlord may charge up to **two months’ rent**; eligibility depends on the landlord meeting the statute’s criteria. (Cal. Civ. Code § 1950.5(c)(5).) The law also permits advance payment of at least six months’ rent for a lease term of six months or longer. (Cal. Civ. Code § 1950.5(c)(2).)\n\nStatus on 2026-10-01 (HomeRule records): In force: Cal. Civ. Code § 1950.5(c)(1).",
+   "text": "As of October 1, 2026, the general limit is **one month’s rent as a security deposit**, in addition to first month’s rent paid on or before move-in (Cal. Civ. Code § 1950.5(c)(1)). Statutory exceptions apply, including those in § 1950.5(c)(2), (3), and (5); the records don’t provide their full details.",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 1,
     "findings": 1
    },
    "grade": "correct",
-   "grade_confidence": 0.92
+   "grade_confidence": 0.71
   },
   {
    "id": "D2-newark-deposit",
@@ -320,14 +320,14 @@
    "as_of": "2026-10-01",
    "card": "How much deposit can they ask?",
    "arm": "homerule",
-   "text": "As of 2026-10-01, a Newark landlord generally may require a security deposit of no more than 1½ months’ rent (N.J.S.A. 46:8-21.2). Pet deposits and prepaid funds held to secure future rent count toward that cap; the landlord may also require the first month’s rent, so the total at lease start may be up to 2½ months’ rent (N.J.S.A. 46:8-21.2). Yearly deposit increases may not exceed 10% of the current deposit (N.J.S.A. 46:8-21.2). The cap has an exception for owner-occupied two- or three-family homes unless the tenant requests in writing that the law apply and allows 30 days (N.J.S.A. 46:8-21.2).\n\nStatus on 2026-10-01 (HomeRule records): In force: N.J.S.A. 46:8-21.2.",
+   "text": "Generally, a landlord may ask for a security deposit of **up to 1½ months’ rent** in Newark (N.J.S.A. 46:8-21.2). Any pet deposit counts toward that combined limit. The limit has an exception for owner-occupied two- or three-family homes, unless the tenant makes a written request and allows 30 days for the law to apply. HomeRule’s records do not include Newark-specific law text.",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 1,
-    "findings": 0
+    "findings": 1
    },
    "grade": "correct",
-   "grade_confidence": 0.99
+   "grade_confidence": 0.82
   },
   {
    "id": "D3-cambridge-deposit",
@@ -357,14 +357,14 @@
    "as_of": "2026-10-01",
    "card": "How much deposit can they ask?",
    "arm": "homerule",
-   "text": "As of 2026-10-01, a Cambridge landlord may require a security deposit of no more than one month’s rent. (Mass. Gen. Laws ch. 186, § 15B)\n\nStatus on 2026-10-01 (HomeRule records): In force: Mass. Gen. Laws ch. 186, § 15B.",
+   "text": "In Cambridge, a landlord may ask for a security deposit no greater than one month’s rent. (Mass. Gen. Laws ch. 186, § 15B)",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 1,
     "findings": 0
    },
    "grade": "correct",
-   "grade_confidence": 0.96
+   "grade_confidence": 0.92
   },
   {
    "id": "F1-jc-fee-before",
@@ -394,14 +394,14 @@
    "as_of": "2026-04-30",
    "card": "What can they charge me to apply?",
    "arm": "homerule",
-   "text": "On April 30, 2026, HomeRule’s records show no application-fee limit in force in Jersey City. A New Jersey law limiting the fee to $50 takes effect May 1, 2026. (N.J. Stat. § 46:8-18.1(a))\n\nStatus on 2026-04-30 (HomeRule records): In force: no rule on this topic in HomeRule's records. N.J. Stat. § 46:8-18.1(a): not in force yet (starts 2026-05-01).",
+   "text": "On April 30, HomeRule’s records show no application-fee limit in force for Jersey City. New Jersey’s $50 cap starts May 1, 2026 (N.J. Stat. § 46:8-18.1(a)). It excludes one- or two-family dwellings offered for rent and certain real estate licensees.",
    "model": "openai/gpt-6-luna",
    "records": {
-    "rules": 0,
+    "rules": 1,
     "findings": 0
    },
    "grade": "correct",
-   "grade_confidence": 0.94
+   "grade_confidence": 0.96
   },
   {
    "id": "F2-hoboken-fee",
@@ -431,14 +431,14 @@
    "as_of": "2026-10-01",
    "card": "What can they charge me to apply?",
    "arm": "homerule",
-   "text": "As of 2026-10-01, the application fee cannot exceed $50 under N.J. Stat. § 46:8-18.1(a). This limit does not apply to a unit in a one- or two-family dwelling offered for rent, or to a New Jersey Real Estate Commission licensee unless the licensee is the landlord.\n\nStatus on 2026-10-01 (HomeRule records): In force: N.J. Stat. § 46:8-18.1(a).",
+   "text": "As of October 1, 2026, New Jersey law generally caps a rental application or similar fee at **$50**. The cap does not apply to a unit in a one- or two-family dwelling offered for rent, or to a New Jersey real estate licensee unless they are the landlord. *(N.J. Stat. § 46:8-18.1(a).)*\n\nHomeRule’s records don’t include Hoboken-specific law on application fees. This is information, not legal advice.",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 1,
-    "findings": 0
+    "findings": 1
    },
    "grade": "correct",
-   "grade_confidence": 0.86
+   "grade_confidence": 0.87
   },
   {
    "id": "F3-boston-fee",
@@ -468,14 +468,14 @@
    "as_of": "2026-10-01",
    "card": "What can they charge me to apply?",
    "arm": "homerule",
-   "text": "As of October 1, 2026, a landlord or the landlord’s agent may not require you to pay an application fee before a tenancy. (Mass. Gen. Laws ch. 186, § 15B(1)(b).)\n\nBefore the tenancy starts, they may require first month’s rent, last month’s rent, and a qualifying security deposit—but not an extra application charge. A broker’s fee is different: only the party who originally engaged and contracted with the broker may be charged it. (Mass. Gen. Laws ch. 112, § 87DDD½.)\n\nStatus on 2026-10-01 (HomeRule records): In force: Mass. Gen. Laws ch. 112, § 87DDD½; Mass. Gen. Laws ch. 186, § 15B(1)(b).",
+   "text": "In Boston, a landlord or their agent generally may not require an application fee: before a tenancy begins, they may not require payments beyond the charges allowed by state law, including first month’s rent, last month’s rent, and a qualifying security deposit. **Mass. Gen. Laws ch. 186, § 15B(1)(b).**\n\nA broker’s fee is different: it may be paid only by the party who originally engaged and contracted with the broker. So if you hired the broker, you may be responsible for that fee; if the landlord hired them, the fee may not be charged to you. **Mass. Gen. Laws ch. 112, § 87DDD½.**\n\nThis is information, not legal advice.",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 2,
     "findings": 0
    },
    "grade": "correct",
-   "grade_confidence": 0.91
+   "grade_confidence": 0.6
   },
   {
    "id": "S1-jc-screening",
@@ -505,14 +505,14 @@
    "as_of": "2026-10-01",
    "card": "What can they check about me?",
    "arm": "homerule",
-   "text": "As of 2026-10-01, New Jersey law limits criminal-background screening for covered rentals; HomeRule’s records don’t show rules about credit, employment, or rental-history checks.\n\nBefore a conditional offer, a provider generally may not ask about or require an application to disclose criminal history, with narrow exceptions for certain methamphetamine convictions at federally assisted housing and lifetime sex-offender registration (N.J. Stat. Ann. § 46:8-55(a)(1)). After an offer, only specified serious convictions and qualifying offenses within set lookback periods may be considered; arrests without conviction, expunged or pardoned convictions, legally nullified convictions, juvenile adjudications, and sealed records may not be used (N.J. Stat. Ann. § 46:8-56(a)–(b)). Providers may not require drug or alcohol tests (N.J. Stat. Ann. § 46:8-60). These rules exclude owner-occupied properties with four or fewer units.\n\nStatus on 2026-10-01 (HomeRule records): In force: N.J. Stat. Ann. § 46:8-55(a)(1); N.J. Stat. Ann. § 46:8-56(a); N.J. Stat. Ann. § 46:8-58(a); N.J. Stat. Ann. § 46:8-60; N.J.S.A. 10:5-12.",
+   "text": "As of 2026-10-01, New Jersey law limits criminal-history screening: before a conditional offer, a landlord generally cannot ask about or require criminal-record information, with narrow exceptions for specified methamphetamine-related convictions and lifetime sex-offender registration. After an offer, only specified convictions and qualifying offenses within set lookback periods may be considered. Arrests without conviction, sealed or expunged records, and other listed records cannot be used (§§ 46:8-55(a)(1), 46:8-56(a)). Landlords also cannot require drug/alcohol tests (§ 46:8-60).\n\nA landlord may check credit; if denied because of a credit report, you must be told which agency supplied it (15 U.S.C. § 1681m). These state-law protections exclude owner-occupied buildings with four or fewer units. HomeRule has no complete list of other checks or Jersey City-specific screening rules.",
    "model": "openai/gpt-6-luna",
    "records": {
-    "rules": 5,
+    "rules": 6,
     "findings": 1
    },
    "grade": "correct",
-   "grade_confidence": 0.94
+   "grade_confidence": 0.98
   },
   {
    "id": "S2-la-screening",
@@ -542,14 +542,14 @@
    "as_of": "2026-10-01",
    "card": "What can they check about me?",
    "arm": "homerule",
-   "text": "As of 2026-10-01, California fair-housing screening restrictions are in force in Los Angeles, but HomeRule’s records show no separate city screening limit. A housing provider may not use a blanket ban on applicants with criminal histories; a conviction used to deny you must be directly related to your ability to be a good tenant and not threaten health, safety, or property, considering the crime’s nature, severity, and how much time has passed. They may not consider arrests that did not lead to conviction, sealed or expunged records, or juvenile records. Discrimination based on protected characteristics or source of income is also prohibited. (Cal. Gov. Code § 12955.) HomeRule’s records do not specify what other checks a provider may conduct.\n\nStatus on 2026-10-01 (HomeRule records): In force: Cal. Gov. Code § 12955.",
+   "text": "HomeRule’s records don’t say which specific checks—such as criminal or rental-history checks—a Los Angeles landlord may run, or show a Los Angeles-specific limit on them.\n\nCalifornia law does prohibit housing providers from discriminating against applicants based on protected characteristics. (Cal. Gov. Code § 12955.) It also bars discrimination based on source of income. If you use a government rent subsidy and the landlord considers your credit history, they must let you offer lawful, verifiable alternative evidence of your ability to pay your share of the rent. (Cal. Gov. Code § 12955.)",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 1,
     "findings": 1
    },
    "grade": "correct",
-   "grade_confidence": 0.41
+   "grade_confidence": 0.46
   },
   {
    "id": "A1-la-alg-before",
@@ -579,14 +579,14 @@
    "as_of": "2025-12-31",
    "card": "Can rent-setting software be used on my rent?",
    "arm": "homerule",
-   "text": "As of 2025-12-31, HomeRule’s records show no Los Angeles limit or ban on rent-setting software in force. They do not establish that every use is permitted. A California rule begins 2026-01-01: it bars using or distributing a common pricing algorithm as part of an agreement or conspiracy that restrains trade in violation of the law. (Cal. Bus. & Prof. Code § 16729(a)) HomeRule lacks the text of an additional California antitrust-law item listed in its records, so it cannot assess that item’s effect. (manifest link: Cleary Gottlieb, “California’s Antitrust Law Amendments Kick In, Targeting Algorithmic Pricing”)\n\nStatus on 2025-12-31 (HomeRule records): In force: no rule on this topic in HomeRule's records. Cal. Bus. & Prof. Code § 16729(a): not in force yet (starts 2026-01-01).",
+   "text": "On **December 31, 2025**, HomeRule’s records show **no limit or ban on rent-setting software in force** for Los Angeles.\n\nA California law takes effect **January 1, 2026**. It prohibits certain uses of a common pricing algorithm—such as use in an unlawful agreement to restrain trade, or coercing someone to adopt its recommended price. It does not state a blanket ban on all rent-setting software. *(Cal. Bus. & Prof. Code § 16729(a)–(b))*",
    "model": "openai/gpt-6-luna",
    "records": {
-    "rules": 0,
+    "rules": 1,
     "findings": 1
    },
    "grade": "correct",
-   "grade_confidence": 0.79
+   "grade_confidence": 0.37
   },
   {
    "id": "A2-la-alg-after",
@@ -616,14 +616,14 @@
    "as_of": "2026-01-02",
    "card": "Can rent-setting software be used on my rent?",
    "arm": "homerule",
-   "text": "As of 2026-01-02, rent-setting software is not categorically banned in Los Angeles, but California law prohibits certain uses of common pricing algorithms. The law covers methods used by two or more people that use competitor data to influence prices or commercial terms. It prohibits using or distributing one as part of an agreement or conspiracy that restrains trade, and using or distributing one to coerce someone to adopt its recommended price or terms. (Cal. Bus. & Prof. Code § 16729(a)–(b).) HomeRule’s records show no Los Angeles-specific limit or ban in force on that date.\n\nStatus on 2026-01-02 (HomeRule records): In force: Cal. Bus. & Prof. Code § 16729(a).",
+   "text": "Not automatically prohibited. Since January 1, 2026, California law bars using or distributing a common pricing algorithm in an antitrust conspiracy to restrain trade, and bars it if someone coerces another to adopt its recommended rent or other term. A “common pricing algorithm” uses competitor data to influence prices or terms for two or more persons. (Cal. Bus. & Prof. Code § 16729(a)–(b), (d).)\n\nSo whether software may be used for your rent depends on how it works and how it is used. HomeRule’s records show no separate Los Angeles rule on this topic. This is information, not legal advice.",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 1,
     "findings": 1
    },
    "grade": "correct",
-   "grade_confidence": 0.86
+   "grade_confidence": 0.93
   },
   {
    "id": "A3-jc-alg",
@@ -653,14 +653,14 @@
    "as_of": "2026-10-01",
    "card": "Can rent-setting software be used on my rent?",
    "arm": "homerule",
-   "text": "**A landlord generally may not use rent-setting software that qualifies as a “Service Provider” performing a coordination function:** Jersey City bars lessors, agents, and subcontractors from paying for or contracting for those services (§ 218-12(2)(a)). The records don’t establish that every rent-setting program qualifies. Owners coordinating only properties they themselves control are exempt from the definition of “Coordinate”; compliant licensed real estate agents are excluded from “Service Provider.” With a lease or written rent-increase notice, the landlord must also provide a sworn disclosure (§ 218-12.3(a)). New Jersey’s state restriction does not start until **July 1, 2027** (N.J. Stat. Ann. § 56:9-23(e)); the records say it may then override local rules.\n\nStatus on 2026-10-01 (HomeRule records): In force: Jersey City Code § 218-12(2)(a); Jersey City Code § 218-12.3(a). N.J. Stat. Ann. § 56:9-23(e): not in force yet (starts 2027-07-01).",
+   "text": "Not all rent-setting software is banned. On 2026-10-01, Jersey City bars a lessor, agent, or subcontractor from paying for or using a “Service Provider” that performs a coordination function; a service provider also may not facilitate lessors’ agreements not to compete. **Jersey City Code § 218-12(2)(a).** The code exempts certain actions involving properties controlled by the same owner and licensed agents acting under state rules.\n\nWith a lease or written rent-increase notice, the landlord must also provide a sworn disclosure about the rent methodology and service-provider use. **Jersey City Code § 218-12.3(a).**\n\nNew Jersey’s FAIR Act is not effective until 2027-07-01, and may override local rules then. **N.J. Stat. Ann. § 56:9-23(e).**",
    "model": "openai/gpt-6-luna",
    "records": {
-    "rules": 2,
+    "rules": 3,
     "findings": 3
    },
    "grade": "correct",
-   "grade_confidence": 0.95
+   "grade_confidence": 0.27
   },
   {
    "id": "A4-newark-alg",
@@ -690,14 +690,14 @@
    "as_of": "2026-10-01",
    "card": "Can rent-setting software be used on my rent?",
    "arm": "homerule",
-   "text": "As of October 1, 2026, HomeRule’s records show no rent-setting-software ban or limit in force in Newark; they do not prohibit its use on your rent. New Jersey’s restriction on performing a “coordinating function” is not yet effective and starts July 1, 2027 (N.J. Stat. Ann. § 56:9-23(e)). HomeRule does not have the text of the related enacted law, so these records can’t establish whether other provisions or exceptions apply.\n\nStatus on 2026-10-01 (HomeRule records): In force: no rule on this topic in HomeRule's records. N.J. Stat. Ann. § 56:9-23(e): not in force yet (starts 2027-07-01).",
+   "text": "As of October 1, 2026, New Jersey’s prohibition on performing a “coordinating function” is **not yet in force**; it starts July 1, 2027. (N.J. Stat. Ann. § 56:9-23(e)) It does not establish a statewide ban on all rent-setting software for your rent on that date.\n\nHomeRule’s records don’t include Newark law on this topic, so I can’t determine whether a local rule limits the software’s use. I can’t give a definite yes or no.",
    "model": "openai/gpt-6-luna",
    "records": {
-    "rules": 0,
-    "findings": 1
+    "rules": 1,
+    "findings": 2
    },
-   "grade": "correct",
-   "grade_confidence": 0.99
+   "grade": "partly",
+   "grade_confidence": 0.45
   },
   {
    "id": "A5-newark-alg-2027",
@@ -727,14 +727,14 @@
    "as_of": "2027-07-02",
    "card": "Can rent-setting software be used on my rent?",
    "arm": "homerule",
-   "text": "As of 2027-07-02, New Jersey law bars certain algorithmic rent-setting coordination, but it does not ban all rent-setting software. (N.J. Stat. Ann. § 56:9-23(e).) The ban applies when a person performs a “coordinating function,” including using competitively sensitive information from two or more rental-property owners in an algorithm or automated process to set or recommend rents, material lease terms, or occupancy levels. The law also bars related conduct such as using a coordinator’s services in exchange for consideration. (N.J. Stat. Ann. § 56:9-23(e).) It may override conflicting local rules. The records do not establish whether particular software or its use on your rent falls within the ban.\n\nStatus on 2027-07-02 (HomeRule records): In force: N.J. Stat. Ann. § 56:9-23(e).",
+   "text": "Not automatically. New Jersey law in force since July 1, 2027, bars a person from performing a “coordinating function.” That includes certain uses of competitively sensitive information from multiple rental-property owners in software used to set or recommend rents, lease terms, or occupancy levels. Whether the software used on your rent falls within that definition depends on how it is used and what information it processes. N.J. Stat. Ann. § 56:9-23(e).\n\nHomeRule’s records do not include Newark’s local law on this topic. State law may override a conflicting local rule.",
    "model": "openai/gpt-6-luna",
    "records": {
     "rules": 1,
-    "findings": 1
+    "findings": 2
    },
    "grade": "correct",
-   "grade_confidence": 0.46
+   "grade_confidence": 0.28
   },
   {
    "id": "A6-cambridge-alg",
@@ -764,10 +764,10 @@
    "as_of": "2026-10-01",
    "card": "Can rent-setting software be used on my rent?",
    "arm": "homerule",
-   "text": "As of 2026-10-01, HomeRule’s records show no ban or limit on rent-setting software in force in Cambridge. Massachusetts bills H.5222 and S.2983, which address algorithmic rent setting, are pending and are not law on that date. (Mass. H.5222; Mass. S.2983)\n\nStatus on 2026-10-01 (HomeRule records): In force: no rule on this topic in HomeRule's records. Mass. H.5222: a bill, not law. Mass. S.2983: a bill, not law.",
+   "text": "As of October 1, 2026, HomeRule’s records show no ban on algorithmic rent-setting software in force in Cambridge. Two Massachusetts bills proposing restrictions were still pending, not law: H.5222 and S.2983. That doesn’t establish whether other laws or your lease affect your situation. (Mass. H.5222; Mass. S.2983)",
    "model": "openai/gpt-6-luna",
    "records": {
-    "rules": 0,
+    "rules": 2,
     "findings": 0
    },
    "grade": "correct",

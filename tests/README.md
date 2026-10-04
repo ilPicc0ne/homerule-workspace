@@ -48,6 +48,8 @@ extraction lands in the same place. Fresh extractions (new cache keys, every Lun
 | Fresh f0-f2 (Jev with full document context inside extraction) | 26/27 | 20/24 | 14/16 | pass |
 | Fresh g0-g2 (Jev context as shipped) | 25/27 | 24/24 | 15/16 | pass |
 | Vote over all nine samples | 26/27 | 24/24 | 16/16 | pass, but Newark § 19:2-3.1 dropped (4/9 samples mark it as the main rule) |
+| Fresh f0-f2, re-scored with the 10:00 code ("unless" clauses, rate dates, exemption scopes) | 26/27 | 21/24 | 16/16 | pass |
+| Fresh g0-g2, re-scored with the 10:00 code | 25/27 | 24/24 | 15/16 | pass |
 
 Recurring weak spots in fresh samples: which provision is marked the main rule when a law states several rent caps
 (Newark's 4% CPI cap vs the 25% ceiling for special increases), San Francisco's pre-1979 coverage (lost in most fresh
