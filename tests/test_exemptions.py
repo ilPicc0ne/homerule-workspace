@@ -25,6 +25,11 @@ class Unless(unittest.TestCase):
         out, n = X.negate_unless({**BASE, "kind": "all", "children": [fact("units", "ge", 1), guarded]})
         self.assertEqual((n, out["children"][1]["kind"], out["children"][1]["children"][0] is guarded), (1, "not", True))
 
+    def test_clause_the_model_already_negated_is_left_alone(self):
+        clause = {**BASE, "kind": "unparsed", "children": [], "quote": "unless the housing is a mobilehome"}
+        node = {**BASE, "kind": "all", "children": [fact("units", "ge", 1), {**BASE, "kind": "not", "children": [clause]}]}
+        self.assertEqual(X.negate_unless(node)[1], 0)
+
     def test_other_text_untouched(self):
         clause = {**BASE, "kind": "unparsed", "children": [], "quote": "the tenant shares a kitchen with the owner"}
         self.assertEqual(X.negate_unless(clause)[1], 0)

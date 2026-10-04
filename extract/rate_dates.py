@@ -4,8 +4,11 @@ A rent board's yearly notice ("the allowable increase from March 1, 2026 is 1.6%
 ordinance gives a date that extraction reads as the rule's start, so a rent-control law in force for decades looks
 new (and every address "gains" it on that date in the change log). Jev answers, with the whole document as context,
 what the date starts; code marks it amendment_only, like an amended version's date (compile.amendment_only), so
-the rule's start is the next earlier date, or none (in force before the documents we have). Only at p >= CONF.
+the rule's start is the next earlier date, or none (in force before the documents we have). Asked only for rules
+whose key value has an amount or rate (a new duty added to an old section, e.g. who pays a broker fee, keeps its
+date). Only at p >= CONF.
 """
+import re
 from concurrent.futures import ThreadPoolExecutor
 
 from . import llm
@@ -22,8 +25,8 @@ def check(rules, effective):
     """In place on internal rules; effective(events, jurisdiction, provision) as in compile. Returns changes."""
     by_doc = {}
     for i, r in enumerate(rules):
-        if r["effect"] != "protection_or_duty":
-            continue
+        if r["effect"] != "protection_or_duty" or not re.search(r"\d", r.get("key_value") or ""):
+            continue    # only rules with an amount or rate: a new rule inside an old section keeps its date
         d = effective(r["events"], r["jurisdiction"], r.get("provision"))["from"]
         if not d or not any(e.get("date") == d for e in r["events"]):
             continue

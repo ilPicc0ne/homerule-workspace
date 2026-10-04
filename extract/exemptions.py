@@ -140,8 +140,8 @@ def negate_unless(node):
         return node, 0
     if _unless(node) and not node.get("unless_negated"):
         return {**BASE, "kind": "not", "children": [node], "unless_negated": True}, 1
-    if node.get("kind") == "not" and node.get("unless_negated"):
-        return node, 0
+    if node.get("kind") == "not" and any(_unless(c) for c in node.get("children") or []):
+        return node, 0          # already negated (by the model, or here before)
     n = 0
     kids = []
     for c in node.get("children") or []:
