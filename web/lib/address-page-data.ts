@@ -1,5 +1,6 @@
 import { buildAddressView, type AddressView } from "./address-view.ts";
 import { changes } from "./changes/data.ts";
+import { endBadge, eventBadge, PAGE_BADGES } from "./changes/impact.ts";
 import { builtYear, unitsText } from "./format.ts";
 import { ancestry, jurisdictionById } from "./jurisdiction-tree.ts";
 import type { Address, Dataset, Result, Rule } from "./types.ts";
@@ -42,7 +43,12 @@ export function addressPageData(data: Dataset, address: Address, results: Result
   const cityName = city ? city.legal_name.replace(/ city$/, "") : null;
   const asOf = data.meta.default_as_of;
 
-  const view = buildAddressView({ address, results, rules, asOf, cityName: cityName ?? "", findings: data.findings });
+  const rec = extra?.typed ? null : (changes.addresses[address.address_id] ?? null);
+  const view = buildAddressView({ address, results, rules, asOf, cityName: cityName ?? "", findings: data.findings, changes: { sources: changes.sources, rec } });
+  // A history event gets a badge only from the same rule's diff change at this address (PAGE_BADGES, #72); an ending gets endBadge (#77).
+  if (PAGE_BADGES && !extra?.typed) {
+    for (const e of [...view.future, ...view.past]) e.badge = e.kind === "end" ? endBadge(rec, e.ruleId, e.date) : eventBadge(rec, e.ruleId, e.date);
+  }
 
   const crumb = (city ? ancestry(city.id) : [state, county].filter((j) => !!j)).map((j) => j!.legal_name.replace(/ city$/, ""));
   if (!city && county) crumb.push("Unincorporated area");

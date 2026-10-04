@@ -188,7 +188,8 @@ test("get_changes for Newark: aggregate over its sample addresses, grouped by ru
 });
 
 test("get_changes: date window and bad input", async () => {
-  const none = await getChanges(deps(), { address_id: "A0003", to: "2020-01-01" });
+  // before the first change source (#71 adds Newark version ends from 2017-09-25)
+  const none = await getChanges(deps(), { address_id: "A0003", to: "2017-01-01" });
   assert.equal((none.payload.entries as unknown[]).length, 0);
   assert.match(String(none.payload.empty), /No change recorded/);
   assert.equal((await getChanges(deps(), {})).error, true);

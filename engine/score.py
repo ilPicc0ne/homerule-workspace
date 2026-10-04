@@ -12,6 +12,7 @@ state's sample addresses. Changes between consecutive dates: better / worse / un
 out/scores.json, one entry per line. python3 -m engine.score
 """
 import json
+import re
 from pathlib import Path
 from statistics import median
 
@@ -148,12 +149,20 @@ def _numbered(topic, rules_by_id):
     return min(rs, key=lambda x: x[1]["value"]) if rs else None
 
 
+def _formula(rule):
+    """A cap set by a formula (CPI, cost of living, "lower of"): its number is a ceiling, not the cap itself."""
+    return bool(re.search(r"cost of living|CPI|inflation|lower of|whichever|plus", str(rule.get("key_value") or ""), re.I))
+
+
 def _cov(cat, rule):
     if cat in NOUN:
         st = (rule.get("renter_impact") or {}).get("strength")
         if st and st.get("from") == "kind: ban":
             return "A ban on application fees"
-        return f"A {_amount(st)} {NOUN[cat]}" if st else f"A {NOUN[cat]}"
+        if not st:
+            return f"A {NOUN[cat]}"
+        # a formula (CPI, cost of living, "lower of") is not a flat number: its value is the ceiling, say so
+        return f"A {NOUN[cat]} of at most {_amount(st)}" if _formula(rule) else f"A {_amount(st)} {NOUN[cat]}"
     kind = (rule.get("renter_impact") or {}).get("kind")
     return PRESENCE.get((cat, kind)) or PRESENCE.get((cat, None))
 
@@ -201,7 +210,8 @@ def why(cat, verdict, b, a, change, before_rows, after_rows, rules_by_id):
     if cat in NOUN and nb and nb[1].get("from") == "kind: ban" and not (na and na[1].get("from") == "kind: ban"):
         return f"Application fees are no longer banned for this home ({nb[0]['citation']})."
     if cat in NOUN and nb and na and nb[1]["value"] != na[1]["value"]:
-        return f"The {NOUN[cat]} goes from {_amount(nb[1])} to {_amount(na[1])} ({na[0]['citation']})."
+        amt = lambda r, st: f"{'at most ' if _formula(r) else ''}{_amount(st)}"
+        return f"The {NOUN[cat]} goes from {amt(*nb)} to {amt(*na)} ({na[0]['citation']})."
     if cat in NOUN and na and not nb and la and la["id"] == na[0]["id"]:
         return f"The {NOUN[cat]} is now {_amount(na[1])} ({na[0]['citation']})." if lb else \
             f"{_cov(cat, la)} now covers this home ({la['citation']})."

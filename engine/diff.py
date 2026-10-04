@@ -1,7 +1,8 @@
 """Per-address diff (interface I6): one computation for the change log, the alert email and changes.json.
 
 A change source is two engine evaluations (engine/build.py, the same rows as lookups.json):
-- as_of:  the same rules at two as-of dates (the brief's as_of change tests, e.g. T3 2026-10-01 -> 2027-07-02);
+- as_of:  the same rules at two as-of dates (the brief's as_of change tests, e.g. T3 2026-10-01 -> 2027-07-02,
+          and each rule end date effective.until ±1 day, e.g. 2029-12-31 -> 2030-01-02);
 - ingest: the rules without vs with one new document, at one as-of date (the hour-16 path; `make demo-change`).
 
 Per address the listed rows are compared by team_rule_id:
@@ -37,6 +38,7 @@ def _side(row):
 def _rule_info(rule):
     info = {k: rule.get(k) for k in RULE_FIELDS}
     info["effective_from"] = (rule.get("eff") or {}).get("from")
+    info["effective_until"] = (rule.get("eff") or {}).get("until")
     return info
 
 
@@ -107,6 +109,33 @@ def date_sources(rules, addresses, cache=None):
     return out
 
 
+def until_dates(rules):
+    """Each distinct effective.until (sunset or repeal) date -> the rules ending that day, sorted by date."""
+    out = {}
+    for r in rules:
+        until = (r.get("eff") or {}).get("until")
+        if until:
+            out.setdefault(until, []).append(r["id"])
+    return {d: sorted(ids) for d, ids in sorted(out.items())}
+
+
+def until_sources(rules, addresses, cache=None, skip=()):
+    """as_of sources across every rule end date, one day before -> one day after (asof:2029-12-31..2030-01-02),
+    so protections ending show up in the same diff as rules starting. skip: source IDs already computed."""
+    out = []
+    for until, ids in until_dates(rules).items():
+        d0, d1 = add_day(until, -1), add_day(until)
+        sid = f"asof:{d0}..{d1}"
+        if sid in skip:
+            continue
+        cites = sorted({next(r for r in rules if r["id"] == i).get("citation") or i for i in ids})
+        sid, meta, ch = source(sid, "as_of", f"Rules end on {until}: {'; '.join(cites)}", rules, rules, addresses,
+                               d0, d1, cache)
+        meta["ending_rule_ids"] = ids
+        out.append((sid, meta, ch))
+    return out
+
+
 def ingest_source(base_rules, new_rules, addresses, as_of, document, demo=False, cache=None):
     """Before/after one new document at one as-of date (both sides evaluated at as_of)."""
     sid = f"ingest:{document['doc_id']}@{as_of}"
@@ -154,9 +183,11 @@ def label(rec):
 
 
 def build_sources(rules, addresses, as_of, base_full=None):
-    """Everything make build precomputes: the as_of tests plus any ingested document already in I2."""
+    """Everything make build precomputes: the as_of tests, each rule end date (effective.until) ±1 day, plus
+    any ingested document already in I2."""
     cache = {("base", as_of): base_full} if base_full is not None else {}
     out = date_sources(rules, addresses, cache)
+    out += until_sources(rules, addresses, cache, skip={sid for sid, _, _ in out})
     for doc_id, new in sorted(ingested_documents(rules).items()):
         base = [r for r in rules if r.get("unit") != doc_id]
         out.append(ingest_source(base, new, addresses, as_of, {"doc_id": doc_id}, cache=cache))

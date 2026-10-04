@@ -214,6 +214,8 @@ export function buildLive(root: string): Record<string, unknown> {
       title: p.title ?? fr.title ?? fr.citation ?? id,
       status,
       effective_date: from,
+      // effective.until: the day the rule stops applying (sunset or repeal), null when the text gives none.
+      effective_until: until,
       status_history: history,
       citation: fr.citation ?? p.citation ?? id,
       source_doc_id: docId,

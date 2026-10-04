@@ -37,3 +37,16 @@ test("live data: every published quote sits verbatim in its excerpt, and no exce
     assert.ok(e.before.length <= 330 && e.after.length <= 330, `${r.rule_id}: excerpt context too long`);
   }
 });
+
+test("live data: effective_until carries each rule's effective.until (sunset or repeal), null when none", { skip: live ? false : "no inputs" }, () => {
+  const rules = live!["rules.json"] as { rule_id: string; effective_until?: string | null }[];
+  const compiled = JSON.parse(readFileSync(join(repoRoot, "out/rules.compiled.json"), "utf8")) as { team_rule_id: string; effective: { until: string | null } }[];
+  const until = new Map(compiled.map((c) => [c.team_rule_id, c.effective.until ?? null]));
+  for (const r of rules) {
+    assert.ok("effective_until" in r, `${r.rule_id}: effective_until missing`);
+    assert.equal(r.effective_until, until.get(r.rule_id) ?? null, r.rule_id);
+  }
+  const byId = new Map(rules.map((r) => [r.rule_id, r]));
+  assert.equal(byId.get("CA-RENT-1947.12")?.effective_until, "2030-01-01");
+  assert.equal(byId.get("CA-EVICT-1946.2")?.effective_until, "2030-01-01");
+});

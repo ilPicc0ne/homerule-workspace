@@ -13,6 +13,7 @@ import { glanceSummary, TILE_STATUS_WORDS, type AddressView, type Helper, type R
 import { DATA_SOURCE } from "@/lib/config";
 import { GROUPS, TOPICS } from "@/lib/plain";
 import { Ic, Sprite } from "./sprite";
+import { VerdictBadge } from "./verdict-badge";
 
 /*
   The one-view address page, built to mockup v3 (lab/ui-proposal/v3): sticky address bar with
@@ -446,6 +447,7 @@ function Ev({ e, cls, log }: { e: TimelineEvent; cls: string; log: PageProps["ch
       </p>
       <p className="ev-t">{e.title}</p>
       {e.body && <p className="ev-b">{e.body}</p>}
+      {e.badge && <VerdictBadge b={e.badge} lawHref={linked ? `${log!.href}#c-${encodeURIComponent(e.ruleId)}` : null} />}
       {linked && (
         <Link className="ev-lk" href={`${log!.href}#c-${encodeURIComponent(e.ruleId)}`}>
           What changed, old → new
