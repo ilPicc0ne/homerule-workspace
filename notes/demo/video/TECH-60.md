@@ -2,7 +2,7 @@
 
 Script for the visual pipeline. The video follows one law from text to answers, so a viewer understands each
 technical decision from the story itself. The scoring criteria are served quietly: each scene carries a small
-corner tag naming the criterion it earns, and a summary row sits just before the end card. Every number and
+corner tag naming the criterion it earns. Every number and
 record below is real: from `make check` on `main` (04.10.2026) and from the committed files in the source table.
 Do not add numbers that aren't here.
 
@@ -119,14 +119,7 @@ sixteen of sixteen."
 1. The finished diagram. Its right end fans into three icons: **website** · **API** · **AI assistant (MCP)**.
 2. A new city card slides in: "+ law texts + one list entry". No code icon appears.
 3. A faint dotted lane under the addresses: "next: public parcel data for any address", labelled **next**.
-4. **Summary row** (~1.5 s, small, above the end card): six quiet chips:
-   - `Extraction 26/27`
-   - `Address coverage 500/500`
-   - `Citations 54/54`
-   - `Change tracking T1–T5`
-   - `Responsible design: audit log`
-   - `Scalability: no per-city code`
-5. **End card:** the HomeRule logo · "Housing law, quoted and dated, for your exact address." · `yourhomerule.com` ·
+4. **End card:** the HomeRule logo · "Housing law, quoted and dated, for your exact address." · `yourhomerule.com` ·
    "Not legal advice".
 
 **Tag:** `Scalability`
@@ -149,7 +142,7 @@ sixteen of sixteen."
 
 ## Don'ts
 
-- No point values; criterion tags are names only.
+- No point values; criterion tags are names only. No summary row of criteria.
 - Don't say or show "compliant", "illegal" or "guarantee", and don't compare a renter's rent to a cap.
 - No chatbot comparisons. No `score.py` (not shared with participants). No T6 or "hour 16".
 - Don't present parcel lookups as built: today, building-level answers exist for the 500 sample addresses.
