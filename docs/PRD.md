@@ -113,9 +113,9 @@ Checked Sun 04.10.2026 ~05:00 CEST against `origin/main` (043672e) and the live 
 | P1 | Card answers per card question (`out/cards.json`) + card audit | D | WIP (PR #55): fixes wrong headline values, e.g. LA rent "3% for Jul 2025–Jun 2026" shown as current |
 | P1 | Renter-protection score: impact per rule, one score with per-topic breakdown | D | built (#59): `renter_impact` per rule and per change (verdict better / worse / unchanged / unclear, `rating` positive / neutral / negative, `why`, `decided_by`); per address and date `change_from_previous.rating` (no weights: only which way the topics that surely moved went), `out/scores.json` per address / city / state and date with per-topic levels and "what would settle this"; display: S, the three-way rating only (no 0-100 number or per-topic weights on the page; Silvan 04.10.) |
 | P1 | Change verdict on the page, change log and email: ↑ "adds renter protection" / ↓ "narrows" / grey "depends on a fact we don't have", from the diff's `renter_impact` (#72), and protections ending ("Ends: …" in the history, sunset sources in the diff, `effective_until` in rules and API, #71 + #77) | S | built (PR "Verdicts: #71 + #72 + #77 on #110"): `PAGE_BADGES` on; verdicts after rebuild 270 better · 28 worse · 838 unchanged · 98 unclear; Hoff St A0050 "Ends Jan 1, 2030" ↓, Newark FAIR Act ↑. Before production: Silvan's 15-badge hand check (`node web/scripts/verdict-split.ts`) |
-| P1 | Extra data: next useful building fact + public evidence pilot | D | WIP (draft PR #68 + `d/building-evidence-ui`): address page shows public-record leads, discrepancies and next-fact requests after full-address confirmation. Plans regenerated against current rules; no facts promoted and no score changes |
+| P1 | Extra data: next useful building fact + public evidence pilot | D | partial: review panel and pinned offline planner merged in #123, refreshed after #135; 209/500 sample addresses have a next-fact question. Full-address confirmation, public-record leads, discrepancies and request wording are built. Broader acquisition remains draft #68; no facts promoted |
 | P1 | Official-source monitoring: discover law updates, preserve versions, extract changes and preview affected addresses | D | built, on `main` ([#60](https://github.com/ilPicc0ne/homerule-workspace/issues/60), [PR #75](https://github.com/ilPicc0ne/homerule-workspace/pull/75)): Newark prototype run by hand, review before publication; no scheduler, not deployed, not part of the scored outputs. See [Keeping the law data fresh](#keeping-the-law-data-fresh-issue-60) |
-| P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-and-remaining-expansion)) | D | partial: approved supplemental law feeds extraction; additional building records and planner implemented in draft #68; `d/building-evidence-ui` adds a review-only panel for sample addresses, not promoted to I3. Map assets are separate; see architecture |
+| P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-and-remaining-expansion)) | D | partial (#22): approved supplemental law feeds extraction; the review-only panel and pinned building-record evidence are merged in #123. Acquisition tools remain draft #68; original California occupancy records are still missing and evidence is not promoted to I3. Map assets are separate |
 
 ### Keeping the law data fresh (issue #60)
 
@@ -201,7 +201,7 @@ The official-source monitor checks for new and revised housing-law documents so 
 8. **No date slider** anywhere (one as-of date in the live data): J3 step 2 and demo beat 5 can't be shown as written; the change log `/changes/A0256` is the stand-in.
 9. `outputs/rules.json` missing (only `out/rules.json`).
 10. `DEMO_TOKEN` and `ALERTS_SITE_URL` are set in Vercel **production only**; `make alert` against a preview URL gets 401. [verified with `vercel env ls`]
-11. Open PRs not merged by the freeze stay out of the submission: #48 (contacts, data already on `main`), #55, #68. (#53, #59 and #75 are merged.)
+11. Unmerged work remains separate: #55 and draft #68; live-engine #128 is awaiting its hosted smoke test, with #130 and #138 depending on it. Contacts #48 and neutral-badge #122 are closed as already integrated. #123's review panel, #135's subsidy correction and #129's video handoff are now on main; merge does not establish production deployment.
 
 ## User journeys
 
@@ -315,6 +315,8 @@ The interfaces between us (file shapes, the jurisdiction list) are in [ARCHITECT
 | Demo video, with the scores on screen | S | ≤ 60 s, follows `notes/demo/video/STORY.md` cut to 60 s ([docs/VIDEO.md](VIDEO.md)) |
 | Technical video (Teach): our own validation, the `make eval` report (no `score.py`: organizers 04.10.), T1–T5 results, the new-ordinance rehearsal (fictional X001, labelled), a live `make rerun DOC=` | D | ≤ 60 s, all four visible on screen ([docs/VIDEO.md](VIDEO.md)) |
 | One-page method note | S | Sources, pipeline, what code decides vs the model, limits |
+
+Teach handoff (#137) completed through #129: locked 107-word script, corrected engine/scaling visuals, and a three-second validation insert with its actual log under `notes/demo/video/assets/`. Final animation, voice, compositing, broader checklist coverage and upload remain part of submission issue #13. Current validation after #135: 26/27 assertions, 23/24 tuning coverage (Q2 correctly unknown with missing subsidy data), 16/16 holdout coverage, T1–T5 and 54/54 scored quotes pass. The benchmark expectations were not changed.
 
 ## Never
 
