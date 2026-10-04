@@ -55,6 +55,7 @@ export function layout(o: Layout): string {
  a{color:#c9d3df!important}
  .vb-up{background:#173D2A!important;color:#9BDDB7!important} .vb-dn{background:#45201F!important;color:#F6B5AE!important}
  .vb-un{background:#2A3036!important;color:#C7CDD4!important}
+ .vb-nt{background:#15191d!important;color:#C9D3DF!important;border-color:#5E6C7B!important}
 }
 </style></head>
 <body class="bg" style="margin:0;padding:0;background:${C.bg};color:${C.text};${FONT}">
@@ -72,10 +73,12 @@ ${o.rows}
 }
 
 /** Verdict badge colours (light; dark mode via the vb-* classes above). Arrow + text always, never colour alone; AA on
- *  their tint. The same three kinds as the site (lib/changes/impact.ts): ↑ adds, ↓ narrows, grey depends. */
-export const BADGE_STYLE: Record<BadgeKind, { cls: string; color: string; bg: string }> = {
+ *  their tint. The same four kinds as the site (lib/changes/impact.ts): ↑ adds, ↓ narrows, = no change (outlined slate),
+ *  grey depends. */
+export const BADGE_STYLE: Record<BadgeKind, { cls: string; color: string; bg: string; border?: string }> = {
   adds: { cls: "vb-up", color: "#11643D", bg: "#E2F2E8" },
   narrows: { cls: "vb-dn", color: "#9B2C2C", bg: "#FBE9E7" },
+  neutral: { cls: "vb-nt", color: "#1E2B3A", bg: "#FFFFFF", border: "#8D9AA9" },
   unclear: { cls: "vb-un", color: "#4D5256", bg: "#ECEDEE" },
 };
 
@@ -84,7 +87,7 @@ export const BADGE_STYLE: Record<BadgeKind, { cls: string; color: string; bg: st
 export function badgeHtml(b: Badge | null | undefined): string {
   if (!b) return "";
   const st = BADGE_STYLE[b.kind];
-  return `<span class="${st.cls}" title="${esc(b.label)}" aria-label="${esc(b.label)}" style="display:inline-block;margin:0 0 6px;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:600;color:${st.color};background:${st.bg}"><span aria-hidden="true">${b.arrow}</span> ${esc(b.text)}</span><br>`;
+  return `<span class="${st.cls}" title="${esc(b.label)}" aria-label="${esc(b.label)}" style="display:inline-block;margin:0 0 6px;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:600;color:${st.color};background:${st.bg}${st.border ? `;border:1px solid ${st.border}` : ""}"><span aria-hidden="true">${b.arrow}</span> ${esc(b.text)}</span><br>`;
 }
 
 /** The same badge in the text part: "↑ This change adds renter protection. Your unit may differ." */

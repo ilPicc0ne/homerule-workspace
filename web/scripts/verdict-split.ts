@@ -1,10 +1,14 @@
 // Change verdict badges across all 500 sample addresses, and a random sample to hand-check against their quotes.
 // Reads a changes file (default web/data/changes.full.json, the synced diff) and maps each change exactly as the
-// site does (lib/changes/impact.ts badgeFor): no badge for unchanged, missing or pending. Prints Markdown for the PR.
+// site does (lib/changes/impact.ts badgeFor): ↑ / ↓ / = (no change) / grey; no badge only for missing or pending.
+// Also counts the badges on the address page's dated history entries (lib/address-page-data.ts), which must all carry one.
+// Prints Markdown for the PR.
 //
 //   node scripts/verdict-split.ts [--changes P] [--sample N] [--seed S]
 import { readFileSync } from "node:fs";
 import { badgeFor } from "../lib/changes/impact.ts";
+import { addressPageData } from "../lib/address-page-data.ts";
+import type { Dataset } from "../lib/types.ts";
 import type { BadgeKind } from "../lib/changes/impact.ts";
 import type { Change, ChangesFile } from "../lib/changes/types.ts";
 
@@ -22,8 +26,8 @@ const ids = (JSON.parse(readFileSync(`${here}data/addresses.resolved.json`, "utf
   (a) => a.address_id,
 );
 
-const SYM: Record<BadgeKind | "none", string> = { adds: "↑", narrows: "↓", unclear: "grey", none: "none" };
-const perChange: Record<string, number> = { "↑": 0, "↓": 0, grey: 0, none: 0 };
+const SYM: Record<BadgeKind | "none", string> = { adds: "↑", narrows: "↓", neutral: "=", unclear: "grey", none: "none" };
+const perChange: Record<string, number> = { "↑": 0, "↓": 0, "=": 0, grey: 0, none: 0 };
 const perAddress: Record<string, number> = {};
 const verdicts: Record<string, number> = {};
 const badged: { id: string; label: string; source: string; c: Change; kind: BadgeKind; text: string }[] = [];
@@ -72,11 +76,27 @@ for (const x of pool) {
 const first = new Set(strata.values());
 const sample = [...first, ...pool.filter((x) => !first.has(x))].slice(0, sampleN);
 
+// Dated history entries on the address page (Coming up + Recently changed), built exactly as /a/[id] builds them.
+const live = (f: string) => JSON.parse(readFileSync(`${here}data/live/${f}`, "utf8"));
+const ds: Dataset = { meta: live("meta.json"), rules: live("rules.json"), lookups: live("lookups.json"), addresses: live("addresses.json"), excerpts: live("excerpts.json"), findings: live("findings.json") };
+const perHistory: Record<string, number> = { "↑": 0, "↓": 0, "=": 0, grey: 0, none: 0 };
+const unbadged: string[] = [];
+for (const a of ds.addresses) {
+  const core = addressPageData(ds, a, ds.lookups[ds.meta.default_as_of][a.address_id]);
+  for (const e of [...core.view.future, ...core.view.past]) {
+    if (!e.date) continue;
+    perHistory[SYM[e.badge?.kind ?? "none"]]++;
+    if (!e.badge) unbadged.push(`${a.address_id} ${e.ruleId} ${e.kind ?? "start"} ${e.date}`);
+  }
+}
+
 const out: string[] = [];
 out.push(`### Change verdict split (${file.replace(here, "web/")}, as of ${data.as_of})`, "");
 out.push(`${ids.length} addresses · ${Object.values(perChange).reduce((a, b) => a + b, 0)} changes · ${withRi} carry renter_impact`, "");
 out.push("| Engine verdict | Changes |", "|---|---|", ...Object.entries(verdicts).sort().map(([k, v]) => `| ${k} | ${v} |`), "");
 out.push("| Badge per change | Changes |", "|---|---|", ...Object.entries(perChange).map(([k, v]) => `| ${k} | ${v} |`), "");
+out.push("| Badge per dated history entry (address pages) | Entries |", "|---|---|", ...Object.entries(perHistory).map(([k, v]) => `| ${k} | ${v} |`), "");
+if (unbadged.length) out.push(`Dated history entries without a badge (first 20): ${unbadged.slice(0, 20).join("; ")}`, "");
 out.push("| Badges per address | Addresses |", "|---|---|", ...Object.entries(perAddress).sort().map(([k, v]) => `| ${k} | ${v} |`), "");
 out.push(`### ${Math.min(sampleN, badged.length)} badges to hand-check (every rule × badge × level once, then random; seed ${arg("--seed", "20261004")})`, "");
 out.push("Check each badge against the quote: does the change add / narrow renter protection at this address? More than 1 wrong → ship without page badges.", "");

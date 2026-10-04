@@ -26,7 +26,7 @@ export type Change = {
   origin: string;
   /** PR #59 (engine/score.py annotate_changes): better / worse / unchanged / unclear for this topic at this address.
    *  Optional until #59 is on main; the web app only maps it (lib/changes/impact.ts), never recomputes it. */
-  renter_impact?: { verdict: string; topic?: string; level_before?: string; level_after?: string; why?: string | null } | null;
+  renter_impact?: { verdict?: string; rating?: string; topic?: string; level_before?: string; level_after?: string; why?: string | null } | null;
 };
 
 export type Entry = {

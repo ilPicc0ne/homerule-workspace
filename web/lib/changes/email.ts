@@ -9,7 +9,7 @@ import { featuredEntry, longDate } from "./wording.ts";
 import { PLAIN, TOPICS } from "../plain.ts";
 import { formatDate } from "../format.ts";
 import rulesData from "../../data/live/rules.json" with { type: "json" };
-import { badgeFor, endsIn, firstLine } from "./impact.ts";
+import { badgeFor, EMAIL_BANNED, endsIn, firstLine, whyOk } from "./impact.ts";
 import type { Badge } from "./impact.ts";
 
 export const FROM = "HomeRule <alerts@yourhomerule.com>";
@@ -80,6 +80,17 @@ export function shortAddress(label: string): string {
 
 export type PlainChange = { rule_id: string; topic: string; sentence: string; badge: Badge | null };
 
+/** The rule's plain line for the email. A line that fails the email word lint (EMAIL_BANNED, e.g. Jersey City's
+ *  "must come with a sworn statement") is replaced by the change's lint-clean `why`, else a neutral fallback; never
+ *  dropped. Returns whether the why was used, so it is not repeated as the summary. */
+export function emailLine(c: Change, rule?: RuleRec): { line: string; fromWhy: boolean } {
+  const line = (PLAIN[c.team_rule_id]?.line ?? rule?.summary ?? "A rule for this address changed.").trim();
+  if (!EMAIL_BANNED.test(line)) return { line, fromWhy: false };
+  const why = c.renter_impact?.why;
+  if (whyOk(why) && !EMAIL_BANNED.test(why)) return { line: why.trim(), fromWhy: true };
+  return { line: "A rule for this address changed.", fromWhy: false };
+}
+
 /** One change in renter words: topic + the address page's plain line + the date. No titles, statuses or citations.
  *  `win`: the entry's before/after dates; a removed rule whose end date falls inside it reads "Ends on <date>". */
 export function plainChange(
@@ -90,13 +101,15 @@ export function plainChange(
 ): PlainChange {
   const rule = rules.get(c.team_rule_id);
   const topic = TOPICS.find((t) => t.cat === (c.category || rule?.category))?.title ?? "Housing rules";
-  let line = (PLAIN[c.team_rule_id]?.line ?? rule?.summary ?? "A rule for this address changed.").trim();
+  const picked = emailLine(c, rule);
+  let line = picked.line;
   if (!/[.!?]$/.test(line)) line += ".";
   const date = formatDate(c.effective_from);
   if (endsIn(c, win)) line = `${(c.effective_until ?? "") > asOf ? "Ends" : "Ended"} on ${formatDate(c.effective_until)}: ${line}`;
   else if (c.change === "removed") line = `This rule no longer shows for your address: ${line}`;
   else if (date && !line.includes(date)) line = `${(c.effective_from ?? "") > asOf ? "From" : "Since"} ${date}: ${line}`;
-  return { rule_id: c.team_rule_id, topic, sentence: line, badge: badgeFor(c) };
+  const badge = badgeFor(c);
+  return { rule_id: c.team_rule_id, topic, sentence: line, badge: picked.fromWhy && badge ? { ...badge, why: null } : badge };
 }
 
 export function render(ac: AddressChange, opts: RenderOptions = {}): RenderedEmail {

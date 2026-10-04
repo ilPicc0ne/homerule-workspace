@@ -479,6 +479,8 @@ body:has(.v3) > .site-header, body:has(.v3) > .site-footer{display:none}
 .v3 .vb-a{font-size:1rem;line-height:1}
 .v3 .vb.adds{background:var(--green-tint);color:var(--green-ink);border-color:var(--green-line)}
 .v3 .vb.narrows{background:var(--red-tint);color:var(--red-ink);border-color:var(--red-line)}
+/* "= No change in protection here": outlined slate-blue on white, distinct from the filled grey "depends" pill. */
+.v3 .vb.neutral{background:#fff;color:var(--blue-ink);border-color:#8D9AA9}
 .v3 .vb.unclear{background:var(--slate-tint);color:var(--slate-ink);border-color:var(--slate-line)}
 .v3 .vb-why{margin-top:4px;font-size:.875rem;color:var(--ink-2)}
 .v3 .ev-lk{display:inline-flex;align-items:center;gap:5px;min-height:44px;font-size:.9375rem;font-weight:700}

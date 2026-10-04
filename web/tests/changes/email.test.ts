@@ -46,21 +46,23 @@ test("renter-impact badge: from #59's renter_impact.verdict only; old impact str
   assert.match(render(withImpact({ renter_impact: { verdict: "worse" } })).html, /↓<\/span> This change narrows renter protection/);
   // the classifier strings the old impactOf read are not #59's shape: no badge
   assert.doesNotMatch(render(withImpact({ impact: "more_protection", renter_impact: "more_protection" })).html, /renter protection/);
-  assert.equal(plainChange(base.entry.changes[0], base.as_of).badge, null);
+  // the live FAIR Act change at A0256 is rated neutral (another rule already covers it): '= No change in protection here'
+  assert.equal(plainChange(base.entry.changes[0], base.as_of).badge?.kind, "neutral");
 });
 
 test("email: every change shows its topic label (as on the site) and the site's verdict badge, in HTML and text", () => {
   const ac0 = j3();
-  // no badge on the site (here: engine verdict "unchanged") -> no badge in the email, the topic label still shows
-  const none = render(ac0);
+  // no renter_impact -> no badge in the email (as on the site), the topic label still shows
+  const none = render({ ...ac0, entry: { ...ac0.entry, changes: ac0.entry.changes.map((c) => ({ ...c, renter_impact: null })) } });
   assert.ok(none.html.includes(">Software that sets rents</span>From Jul 1, 2027"), "topic label, no badge");
-  assert.doesNotMatch(none.html, /class="vb-(up|dn|un)"/);
+  assert.doesNotMatch(none.html, /class="vb-(up|dn|nt|un)"/);
   assert.match(none.text, /• Software that sets rents — From Jul 1, 2027[^\n(]*$/m);
   // ↑ / ↓ / grey: inline-styled pill (arrow + text, aria with 'Your unit may differ.'), same words in the text part
   // (the FAIR Act carries a conflict flag here: grey reads 'may conflict')
   const cases = [
     ["better", "↑", "This change adds renter protection", "vb-up", "#11643D", "#E2F2E8"],
     ["worse", "↓", "This change narrows renter protection", "vb-dn", "#9B2C2C", "#FBE9E7"],
+    ["unchanged", "=", "No change in protection here", "vb-nt", "#1E2B3A", "#FFFFFF;border:1px solid #8D9AA9"],
     ["unclear", "?", "May conflict with another rule, not decided", "vb-un", "#4D5256", "#ECEDEE"],
   ];
   for (const [verdict, arrow, text, cls, color, bg] of cases) {
@@ -80,8 +82,8 @@ test("email: every item of every live alert has its topic label, and a badge exa
       const badged = entry.changes.filter((c) => badgeFor(c)).length;
       const items = m.text.split("\n").filter((l) => l.startsWith("• "));
       assert.equal(items.length, entry.changes.length, `${id} ${entry.source}`);
-      assert.equal(items.filter((l) => /\((↑|↓|\?) [^)]*Your unit may differ\.\)$/.test(l)).length, badged, `${id} ${entry.source}`);
-      assert.equal((m.html.match(/class="vb-(up|dn|un)"/g) ?? []).length, badged, `${id} ${entry.source}`);
+      assert.equal(items.filter((l) => /\((↑|↓|=|\?) [^)]*Your unit may differ\.\)$/.test(l)).length, badged, `${id} ${entry.source}`);
+      assert.equal((m.html.match(/class="vb-(up|dn|nt|un)"/g) ?? []).length, badged, `${id} ${entry.source}`);
       assert.equal((m.html.match(/<span class="mu" style="display:block[^>]*>/g) ?? []).length, entry.changes.length, `${id} ${entry.source}`);
     }
   }
@@ -152,4 +154,29 @@ test("every changed address renders, as-of on every payload", () => {
     if (ac) assert.match(render(ac).text, new RegExp(`as of`));
   }
   assert.equal(addressChange(changes, "NOPE"), null);
+});
+
+test("NJ-JERSEY-CITY-ALG-218-12.3: the plain line fails the email word lint ('must'), so the email uses the change's lint-clean why", () => {
+  const RULE = "NJ-JERSEY-CITY-ALG-218-12.3";
+  const hits = Object.entries(changes.addresses).flatMap(([id, rec]) =>
+    rec.entries.filter((e) => e.changes.some((c) => c.team_rule_id === RULE)).map((entry) => ({ id, rec, entry })),
+  );
+  assert.ok(hits.length > 0, "the Jersey City start window is in the live diff");
+  for (const { id, rec, entry } of hits) {
+    const c = entry.changes.find((x) => x.team_rule_id === RULE)!;
+    const why = c.renter_impact?.why;
+    assert.ok(why && !/\bmust\b/i.test(why), "the data's why is lint-clean");
+    const item = plainChange(c, changes.as_of, undefined, entry);
+    assert.ok(item.sentence.includes(why.trim()), `${id}: the why replaces the plain line`);
+    assert.doesNotMatch(item.sentence, /sworn statement/);
+    assert.equal(item.badge?.kind, "neutral");
+    assert.equal(item.badge?.why, null, "not repeated as the summary");
+    const m = render({ address_id: id, label: rec.label, as_of: changes.as_of, entry });
+    for (const part of [m.subject, m.text, m.html]) assert.doesNotMatch(part, /\b(must|should|illegal|compliant)\b/i, id);
+    assert.ok(m.text.includes(why.trim()), `${id}: text part`);
+    assert.ok(m.html.includes(esc(why.trim())), `${id}: html part`);
+  }
+  // no lint-clean why -> a neutral fallback line, never the failing one
+  const bare = { ...hits[0].entry.changes.find((x) => x.team_rule_id === RULE)!, renter_impact: null };
+  assert.match(plainChange(bare, changes.as_of).sentence, /A rule for this address changed\./);
 });

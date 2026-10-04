@@ -1,27 +1,32 @@
 // Renter impact of one change, shown as a badge: "This change adds / narrows renter protection".
 // The verdict is computed by the engine (engine/score.py annotate_changes, from the topic level at this address
-// before vs after), never here: this file only MAPS it to a badge and never guesses one. No verdict, an
-// "unchanged" verdict or a pending bill (not law) -> no badge.
+// before vs after), never here: this file only MAPS it to a badge and never guesses one. Source: the three-way
+// `renter_impact.rating` (#119: positive / neutral / negative), else the older `verdict`. Every dated change gets a
+// badge: ↑ adds, ↓ narrows, = no change in protection (neutral), grey ? depends on a fact we don't have
+// (verdict "unclear", rated neutral). No renter_impact at all, or a pending bill (not law) -> no badge.
 import type { AddressChanges, Change } from "./types.ts";
 import { formatDate } from "../format.ts";
 
 export type Verdict = "better" | "worse" | "unchanged" | "unclear";
+/** The engine's three-way rating per change (#119, engine/score.py): no weights, "neutral" includes "unclear". */
+export type Rating = "positive" | "neutral" | "negative";
 
 /** What the engine writes on each diff change (`renter_impact`); `why` is optional data, shown only if it passes the lint. */
 export type RenterImpact = {
-  verdict: Verdict;
+  verdict?: Verdict;
+  rating?: Rating;
   topic?: string;
   level_before?: string;
   level_after?: string;
   why?: string | null;
 };
 
-export type BadgeKind = "adds" | "narrows" | "unclear";
+export type BadgeKind = "adds" | "narrows" | "neutral" | "unclear";
 
 export type Badge = {
   kind: BadgeKind;
   /** Always shown next to the text: never colour alone. */
-  arrow: "↑" | "↓" | "?";
+  arrow: "↑" | "↓" | "=" | "?";
   text: string;
   /** aria-label and tooltip: the text plus "Your unit may differ." */
   label: string;
@@ -41,15 +46,19 @@ export const UNIT_MAY_DIFFER = "Your unit may differ.";
 export const BADGE_TEXT: Record<BadgeKind | "unclear_conflict", string> = {
   adds: "This change adds renter protection",
   narrows: "This change narrows renter protection",
+  neutral: "No change in protection here",
   unclear: "Depends on a fact we don't have",
   unclear_conflict: "May conflict with another rule, not decided",
 };
 
-const ARROW: Record<BadgeKind, Badge["arrow"]> = { adds: "↑", narrows: "↓", unclear: "?" };
+const ARROW: Record<BadgeKind, Badge["arrow"]> = { adds: "↑", narrows: "↓", neutral: "=", unclear: "?" };
 
 /** Words a shown summary may never contain (advice, verdicts on the reader's case). */
 export const BANNED = /\b(you|your|yours|illegal|compliant|must|should|recommend|advise)\b/i;
 export const WHY_MAX = 140;
+/** The email word lint: words no alert email may contain (the guard in tests/changes/impact.test.ts). A rule's plain
+ *  line that trips it is replaced by the change's lint-clean `why` (lib/changes/email.ts plainChange). */
+export const EMAIL_BANNED = /\b(illegal|compliant|non-compliant|must|should|recommend|advise)\b/i;
 
 /** A data-supplied `why` is shown only if it is short, plain and carries no advice or verdict words. */
 export function whyOk(why: unknown): why is string {
@@ -63,19 +72,30 @@ export function isPending(c: Pick<Change, "document_status" | "after">): boolean
   return c.document_status === "pending" || c.after?.result === "pending";
 }
 
+const VERDICTS: readonly string[] = ["better", "worse", "unchanged", "unclear"];
+const RATINGS: readonly string[] = ["positive", "neutral", "negative"];
+
 export function impactOf(c: Change): RenterImpact | null {
-  const ri = c.renter_impact;
+  const ri = c.renter_impact as Record<string, unknown> | null | undefined;
   if (!ri || typeof ri !== "object") return null;
-  const v = ri.verdict;
-  return v === "better" || v === "worse" || v === "unchanged" || v === "unclear" ? (ri as RenterImpact) : null;
+  return VERDICTS.includes(ri.verdict as string) || RATINGS.includes(ri.rating as string) ? (ri as RenterImpact) : null;
 }
 
-/** The badge for one diff change, or null (missing / unchanged / unknown value / pending). */
+/** Badge kind: from `rating` when present (neutral + verdict "unclear" stays grey), else from the old `verdict`. */
+export function kindOf(ri: RenterImpact): BadgeKind | null {
+  const r = RATINGS.includes(ri.rating as string) ? ri.rating : null;
+  if (r === "positive") return "adds";
+  if (r === "negative") return "narrows";
+  if (r === "neutral") return ri.verdict === "unclear" ? "unclear" : "neutral";
+  return ri.verdict === "better" ? "adds" : ri.verdict === "worse" ? "narrows" : ri.verdict === "unclear" ? "unclear" : ri.verdict === "unchanged" ? "neutral" : null;
+}
+
+/** The badge for one diff change, or null (no renter_impact / unknown value / pending). */
 export function badgeFor(c: Change): Badge | null {
   if (isPending(c)) return null;
   const ri = impactOf(c);
   if (!ri) return null;
-  const kind: BadgeKind | null = ri.verdict === "better" ? "adds" : ri.verdict === "worse" ? "narrows" : ri.verdict === "unclear" ? "unclear" : null;
+  const kind = kindOf(ri);
   if (!kind) return null;
   const conflict = kind === "unclear" && (c.conflict_flag_changed || !!c.after?.conflict_flag || !!c.before?.conflict_flag);
   const text = conflict ? BADGE_TEXT.unclear_conflict : BADGE_TEXT[kind];
@@ -119,7 +139,7 @@ export function endBadge(rec: AddressChanges | null | undefined, ruleId: string,
 
 /**
  * The email's first line (fixed rule). All ↑ -> adds; all ↓ -> narrows; ↑ and ↓ together -> "some add, some narrow".
- * Anything else (only grey, ↑ or ↓ with grey, no badge at all) -> the neutral "Rules change at …" line: the
+ * Anything else (only grey, ↑ or ↓ with grey, only "=", no badge at all; "=" never counts) -> the neutral "Rules change at …" line: the
  * per-item badges carry the detail, and the line never claims a direction the data doesn't show.
  * Past only (every date on or before the as-of date) -> "has changed … since <date>".
  */
@@ -131,7 +151,8 @@ export function firstLine(
   win?: { before_as_of: string; after_as_of: string } | null,
 ): string {
   const live = changes.filter((c) => !isPending(c));
-  const kinds = new Set(live.map(badgeFor).filter((b): b is Badge => !!b).map((b) => b.kind));
+  // "= no change" carries no direction: the lead line reads as before neutral badges existed.
+  const kinds = new Set(live.map(badgeFor).filter((b): b is Badge => !!b && b.kind !== "neutral").map((b) => b.kind));
   const dates = (live.length ? live : changes).map((c) => changeDate(c, win)).filter((d): d is string => !!d).sort();
   const earliest = dates[0] ?? fallbackDate ?? null;
   const past = dates.length > 0 ? dates.every((d) => d <= asOf) : !!earliest && earliest <= asOf;
