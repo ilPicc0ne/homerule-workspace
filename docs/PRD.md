@@ -120,6 +120,7 @@ This is the project's feature list; each build updates its status in the same co
 | P1 | Spanish card summaries (brief stretch goal; quotes stay English) | S | planned |
 | P1 | "I rent / I own" wording toggle (sponsor's users) | S | planned |
 | P2 | Typed address outside the sample, e.g. Santa Ana (brief stretch goal "new jurisdiction live") | S | partial (jurisdiction tree on `/where`; rules need the engine) |
+| P1 | Proactive source monitoring: approved official routes, new-document discovery, version snapshots, isolated extraction, before/after address-impact previews and effective-date checks; no automatic legal promotion or emails | D | built (issue #60, `d/source-monitor`; bounded Newark pilot, candidate previews require review; foreground worker, not deployed) |
 | P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-to-extend-coverage-p1-checked-04102026)) | D | planned |
 | P2 | MCP route | D | planned |
 | P2 | Compare view | S | planned |

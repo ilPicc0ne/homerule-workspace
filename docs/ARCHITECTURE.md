@@ -299,3 +299,9 @@ Only the Census geocoder is P0. Nothing below runs before the P0 items are green
 | LA RSO lookup, SF Rent Board | Hand validation of ~5 addresses | Manual | 0.5 h |
 
 Skipped: Alameda County (no public building data, so Berkeley stays unknown, stated as a known limit) · Open States (LegiScan is enough) · data.boston.gov (blocked from Switzerland).
+
+## Proactive source monitoring (issue #60)
+
+`monitor/` polls reviewed routes with per-source schedules and a bounded request budget. SQLite under `build/source-monitor/` preserves snapshots and a retryable extraction queue. The Newark Legistar adapter discovers modified ordinances and revisits known matters; a generic one-level index adapter supports reviewed text/HTML/PDF routes. Failures and partial discovery are visible in the local report.
+
+Optional model processing runs the existing extraction/gate in isolated directories, then evaluates previous/candidate rules through the same address engine. Diffs include content changes even where applicability is unchanged. Accepted rules are also compared across dates without needing a source update. Reports carry dates, evidence and review reasons; the monitor never promotes candidates, writes scored outputs or sends email. See [monitor/README.md](../monitor/README.md) for commands, source review and the labelled replay.

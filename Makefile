@@ -60,3 +60,19 @@ web:                                     ## local dev server
 
 notify:                                  ## change alerts: dry run lists who would get which email; SEND=1 sends (allowlisted only). Never automatic
 	cd web && node --env-file-if-exists=.env.local scripts/notify.ts --changes $(or $(CHANGES),../out/changes.full.json) $(if $(SOURCE),--source $(SOURCE)) $(if $(SEND),--send)
+
+.PHONY: monitor monitor-watch monitor-report monitor-replay test-monitor
+monitor:                                ## one bounded official-source poll; EXTRACT=1 also queues real model processing
+	$(PY) -m monitor poll $(if $(filter 1,$(EXTRACT)),--extract)
+
+monitor-watch:                          ## foreground worker; six-hour source interval, daily effective-date checks
+	$(PY) -m monitor watch $(if $(filter 1,$(EXTRACT)),--extract)
+
+monitor-report:                         ## local monitor dashboard (only report files served)
+	$(PY) -m monitor serve
+
+monitor-replay:                         ## labelled fictional replay; EXTRACT=1 uses actual models and engine
+	$(PY) -m monitor replay --state build/monitor-replay $(if $(filter 1,$(EXTRACT)),--extract)
+
+test-monitor:
+	$(PY) -m unittest discover -s tests -p "test_monitor*.py" -t .
