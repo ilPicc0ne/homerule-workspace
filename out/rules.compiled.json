@@ -293,75 +293,6 @@
   ]
  },
  {
-  "team_rule_id": "CA-BERKELEY-DEP-1950.5",
-  "jurisdiction": "CA-BERKELEY",
-  "level": "city",
-  "category": "security_deposits",
-  "status": "in_force",
-  "effective": {
-   "from": "2024-07-01",
-   "until": null,
-   "precision": "day",
-   "derived": null
-  },
-  "applies_if": true,
-  "exempt_if": false,
-  "tenant_conditions": [],
-  "key_value": "One month’s rent",
-  "key_value_conditions": [
-   {
-    "value": "Two months’ rent",
-    "when": {
-     "all": [
-      {
-       "fact": "units",
-       "op": "le",
-       "value": 4
-      },
-      {
-       "unparsed": "landlords who own only two rental properties"
-      },
-      {
-       "any": [
-        {
-         "fact": "owner_type",
-         "op": "eq",
-         "value": "individual"
-        },
-        {
-         "unparsed": "family trust"
-        },
-        {
-         "unparsed": "limited liability company (LLC) where all members are natural persons"
-        }
-       ]
-      }
-     ]
-    },
-    "tenant_note": "The owner must own only two rental properties with no more than four residential units total, and ownership must be held by a natural person, family trust, or LLC whose members are all natural persons."
-   }
-  ],
-  "interaction": {
-   "type": "none"
-  },
-  "interactions": [],
-  "retrieved_at": "2026-10-01 22:35 UTC",
-  "parse_status": "ok",
-  "checks": [],
-  "x_source": {
-   "unit": "D003+D004+D005+D006+D007+D008",
-   "source_doc_id": "D007",
-   "citation": "Cal. Civ. Code § 1950.5",
-   "effect": "protection_or_duty",
-   "cap_pct_low": null,
-   "cap_pct_high": null,
-   "status_evidence": null,
-   "origin": "starter",
-   "stub": false
-  },
-  "details": []
- },
- {
   "team_rule_id": "CA-BERKELEY-DEP-BerkeleyRent",
   "jurisdiction": "CA-BERKELEY",
   "level": "city",
@@ -1434,70 +1365,6 @@
   "details": []
  },
  {
-  "team_rule_id": "CA-LOS-ANGELES-RENT-1947.12",
-  "jurisdiction": "CA-LOS-ANGELES",
-  "level": "city",
-  "category": "rent_increase_limits",
-  "status": "in_force",
-  "effective": {
-   "from": "2024-08-01",
-   "until": null,
-   "precision": "day",
-   "derived": null
-  },
-  "applies_if": {
-   "age_years": {
-    "op": "gt",
-    "n": 15
-   }
-  },
-  "exempt_if": {
-   "any": [
-    {
-     "age_years": {
-      "op": "lt",
-      "n": 15
-     }
-    },
-    {
-     "ref": "local_rent_control"
-    },
-    {
-     "fact": "subsidised",
-     "op": "eq",
-     "value": true
-    }
-   ]
-  },
-  "tenant_conditions": [
-   "A two-unit property is exempt only if the second unit was occupied by an owner throughout the tenancy.",
-   "The described single-family home and condominium exemption also requires written notice to the tenant and specified ownership circumstances."
-  ],
-  "key_value": "5% plus the percentage change in cost of living, capped at 10%",
-  "key_value_conditions": [],
-  "interaction": {
-   "type": "none"
-  },
-  "interactions": [],
-  "retrieved_at": "2026-10-01 22:36 UTC",
-  "parse_status": "failed",
-  "checks": [
-   "a city ordinance's coverage uses ref (circular): write which buildings it covers"
-  ],
-  "x_source": {
-   "unit": "D040+D041+D042+D043",
-   "source_doc_id": "D040",
-   "citation": "Cal. Civ. Code § 1947.12",
-   "effect": "protection_or_duty",
-   "cap_pct_low": 5,
-   "cap_pct_high": 10,
-   "status_evidence": null,
-   "origin": "starter",
-   "stub": false
-  },
-  "details": []
- },
- {
   "team_rule_id": "CA-LOS-ANGELES-RENT-151.06",
   "jurisdiction": "CA-LOS-ANGELES",
   "level": "city",
@@ -2220,45 +2087,6 @@
     "quote": "An owner or lessee may not require more than a sum equal to 1 1/2 times 1 month's rental"
    }
   ]
- },
- {
-  "team_rule_id": "NJ-SCREEN-15",
-  "jurisdiction": "NJ",
-  "level": "state",
-  "category": "screening_restrictions",
-  "status": "in_force",
-  "effective": {
-   "from": null,
-   "until": null,
-   "precision": "day",
-   "derived": null
-  },
-  "applies_if": true,
-  "exempt_if": false,
-  "tenant_conditions": [
-   "The disclosure duty applies when the rental application is denied due to the applicant’s credit report."
-  ],
-  "key_value": null,
-  "key_value_conditions": [],
-  "interaction": {
-   "type": "none"
-  },
-  "interactions": [],
-  "retrieved_at": "2026-10-01 22:37 UTC",
-  "parse_status": "ok",
-  "checks": [],
-  "x_source": {
-   "unit": "D067",
-   "source_doc_id": "D067",
-   "citation": "15 U.S.C.A. § 1681m",
-   "effect": "protection_or_duty",
-   "cap_pct_low": null,
-   "cap_pct_high": null,
-   "status_evidence": null,
-   "origin": "starter",
-   "stub": false
-  },
-  "details": []
  },
  {
   "team_rule_id": "NJ-RENT-2A:42-84.5",

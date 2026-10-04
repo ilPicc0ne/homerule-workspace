@@ -190,9 +190,28 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                 "interactions": o["interactions"], "parse_status": o.get("parse_status", "ok"),
                 "checks": o.get("checks", []) + o.get("gate_flags", []), "gate_flags": o.get("gate_flags", []),
                 "gate_status": r.get("gate_status"), "stub": o.get("stub", False),
+                "enacting_level": o.get("enacting_level"),
                 "origin": {"S": "supplemental", "X": "ingested"}.get(r["doc_id"][0], "starter"), "details": []})
             seen[key] = rules[-1]
-    return rules
+    return attribute(rules)
+
+
+def attribute(rules):
+    """Gate G5 (which government made the rule) decides where a rule belongs. A federal law is not a rule of any
+    jurisdiction here; a statewide state law described on a city's page is the state's rule: dropped when the
+    state rule is already extracted (same category and citation), else filed under the state."""
+    out = []
+    for r in rules:
+        lvl = r.get("enacting_level")
+        if lvl == "federal":
+            continue
+        if lvl == "state_statewide" and ", " in r["jurisdiction"]:
+            if any(x["jurisdiction"] == r["state"] and x["category"] == r["category"]
+                   and _core(x["citation"]) == _core(r["citation"]) and x["effect"] == r["effect"] for x in rules):
+                continue
+            r = {**r, "jurisdiction": r["state"], "refiled_from": r["jurisdiction"]}
+        out.append(r)
+    return out
 
 
 def compiled(rule):

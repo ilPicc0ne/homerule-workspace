@@ -244,7 +244,7 @@
      "from": "2026-03-01",
      "until": null,
      "precision": "day",
-     "derived": null
+     "derived": "the later of the published dates (open question)"
     },
     "key_value": null,
     "quote": "It shall be unlawful for a landlord to use a coordinated pricing algorithm described \nin subsection A when setting rents or occupancy levels for residential dwelling units in \nthe City of Berkeley."
@@ -299,10 +299,10 @@
     "citation": "Jersey City Code § 218-12(2)(a)",
     "source_doc_id": "S001",
     "effective": {
-     "from": null,
+     "from": "2025-06-10",
      "until": null,
      "precision": "day",
-     "derived": null
+     "derived": "New Jersey municipal default: 20 days after final passage 2025-05-21 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
     },
     "key_value": null,
     "quote": "It is unlawful for any real estate lessor, agent, or subcontractor thereof, to subscribe to, contract with, or otherwise\nexchange anything of value in return for the services of a Service Provider."
@@ -312,10 +312,10 @@
     "citation": "Jersey City Code § 218-12.3(a)",
     "source_doc_id": "S017",
     "effective": {
-     "from": null,
+     "from": "2025-10-15",
      "until": null,
      "precision": "day",
-     "derived": null
+     "derived": "New Jersey municipal default: 20 days after final passage 2025-09-25 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
     },
     "key_value": null,
     "quote": "Any landlord must include, with any lease or written notice of rent increase for a residential dwelling unit, a sworn\ndisclosure statement, executed under penalty of perjury, in substantially the following form:"
@@ -382,10 +382,10 @@
     "citation": "Hoboken ordinance (citation not stated)",
     "source_doc_id": "S008",
     "effective": {
-     "from": null,
+     "from": "2025-07-29",
      "until": null,
      "precision": "day",
-     "derived": null
+     "derived": "New Jersey municipal default: 20 days after final passage 2025-07-09 (N.J.S.A. 40:49-2(d), 40:69A-181(b)); mayoral approval or publication may make it later"
     },
     "key_value": null,
     "quote": "they can no longer use software, algorithms, or data-sharing platforms to coordinate, recommend, or implement rental prices, lease terms, or occupancy levels among competing landlords."

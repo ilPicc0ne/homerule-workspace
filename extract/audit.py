@@ -63,12 +63,12 @@ def build(rules, comps, findings, open_questions):
         o = rec["luna"]["obligations"][n]
         answers = (rec.get("gate") or {}).get("answers", {})
         gate = {k: {"choice": answers[k]["choice"], "confidence": answers[k]["confidence"]}
-                for k in (f"g1_req_{n}", f"g1_key_{n}", f"g2_{n}", "g4") if k in answers}
+                for k in (f"g1_req_{n}", f"g1_key_{n}", f"g2_{n}", "g4", f"g5_{n}") if k in answers}
         refs = set(rec["doc_ids"]) | {unit}
         mine = [x for x in calls if x["ref"] in refs or x["ref"].split(":")[0] in refs]
         out[c["team_rule_id"]] = {
             "team_rule_id": c["team_rule_id"], "internal_id": r["id"], "jurisdiction": c["jurisdiction"],
-            "category": c["category"], "citation": r["citation"],
+            "category": c["category"], "citation": r["citation"], "refiled_from": r.get("refiled_from"),
             "source": {"doc_id": r["source_doc_id"], "url": r["source_url"], "retrieved": r["retrieved"],
                        "version_id": rec["version_ids"][rec["doc_ids"].index(r["source_doc_id"])]
                        if r["source_doc_id"] in rec["doc_ids"] else None,
