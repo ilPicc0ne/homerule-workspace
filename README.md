@@ -35,5 +35,5 @@ Product docs: [docs/](docs/README.md).
 
 ## Setup
 
-1. The workspace includes the RealPage starter pack in [`data/realpage-starter/`](data/realpage-starter/README.md). Its 65 files match the downloaded ZIP; provenance and archive checksum are in `data/realpage-starter.provenance.json`. This version excludes the scoring script, dev answer key and hour-16 ordinance. In the filtered public submission copy, obtain the pack separately and place it at the same path.
+1. The workspace includes the RealPage starter pack in [`data/realpage-starter/`](data/realpage-starter/README.md). Its 65 files match the downloaded ZIP; provenance and archive checksum are in `data/realpage-starter.provenance.json`. This version excludes the scoring script, dev answer key and hour-16 ordinance. In the filtered public submission copy, obtain the pack separately and place it at the same path. `make build` and `make eval` run without it: the committed intermediates in `out/` (rules, findings, resolved addresses) are included. Only `make extract` and `make resolve` need the pack.
 2. Further steps follow as the build lands.

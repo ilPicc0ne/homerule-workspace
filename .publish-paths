@@ -13,3 +13,9 @@ contracts/
 Makefile
 AGENTS.md
 CLAUDE.md
+# Derived intermediates, so a fresh clone can run `make build` (rules, findings, resolved addresses).
+# The starter pack itself (data/) stays out: its licence is "TBD by organizers". make resolve / make extract need it.
+out/rules.compiled.json
+out/rules.json
+out/findings.json
+out/addresses.resolved.json
