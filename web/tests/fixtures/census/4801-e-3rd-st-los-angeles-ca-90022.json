@@ -1,0 +1,149 @@
+{
+ "query": "4801 E 3rd St, Los Angeles, CA 90022",
+ "status": 200,
+ "body": {
+  "result": {
+   "input": {
+    "address": {
+     "address": "4801 E 3rd St, Los Angeles, CA 90022"
+    },
+    "vintage": {
+     "isDefault": true,
+     "id": "4",
+     "vintageName": "Current_Current",
+     "vintageDescription": "Current Vintage - Current Benchmark"
+    },
+    "benchmark": {
+     "isDefault": true,
+     "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+     "id": "4",
+     "benchmarkName": "Public_AR_Current"
+    }
+   },
+   "addressMatches": [
+    {
+     "tigerLine": {
+      "side": "L",
+      "tigerLineId": "141637581"
+     },
+     "geographies": {
+      "States": [
+       {
+        "STATENS": "01779778",
+        "GEOID": "06",
+        "CENTLAT": "+37.1547616",
+        "AREAWATER": 20288534055,
+        "STATE": "06",
+        "BASENAME": "California",
+        "STUSAB": "CA",
+        "OID": "2749018475066",
+        "LSADC": "00",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+37.1626642",
+        "DIVISION": "9",
+        "NAME": "California",
+        "REGION": "4",
+        "OBJECTID": 6,
+        "CENTLON": "-119.5277735",
+        "AREALAND": 403676534536,
+        "INTPTLON": "-119.5713456",
+        "MTFCC": "G4000"
+       }
+      ],
+      "County Subdivisions": [
+       {
+        "COUSUB": "93155",
+        "GEOID": "0603793155",
+        "CENTLAT": "+33.9864781",
+        "AREAWATER": 1406128,
+        "STATE": "06",
+        "BASENAME": "South Gate-East Los Angeles",
+        "OID": "276901115259686",
+        "LSADC": "22",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+33.9865947",
+        "NAME": "South Gate-East Los Angeles CCD",
+        "OBJECTID": 28718,
+        "CENTLON": "-118.1871101",
+        "COUSUBCC": "Z5",
+        "AREALAND": 106732290,
+        "INTPTLON": "-118.1867700",
+        "MTFCC": "G4040",
+        "COUSUBNS": "01935318",
+        "COUNTY": "037"
+       }
+      ],
+      "Census Designated Places": [
+       {
+        "DISP_CLR": 1,
+        "STGEOMETRY_Area": 28194512.47517708,
+        "NECTAPCI": "N",
+        "GEOID": "0620802",
+        "CENTLAT": "+34.0326201",
+        "AREAWATER": 11013,
+        "BASENAME": "East Los Angeles",
+        "STATE": "06",
+        "OID": "280901115262499",
+        "LSADC": "57",
+        "PLACE": "20802",
+        "FUNCSTAT": "S",
+        "INTPTLAT": "+34.0315059",
+        "NAME": "East Los Angeles CDP",
+        "OBJECTID": 27596,
+        "PLACECC": "U1",
+        "CENTLON": "-118.1691472",
+        "STGEOMETRY_Length": 32311.41728700314,
+        "CBSAPCI": "N",
+        "AREALAND": 19303562,
+        "INTPTLON": "-118.1685666",
+        "PLACENS": "02408711",
+        "MTFCC": "G4210"
+       }
+      ],
+      "Counties": [
+       {
+        "GEOID": "06037",
+        "CENTLAT": "+34.1959609",
+        "AREAWATER": 1784884136,
+        "STATE": "06",
+        "BASENAME": "Los Angeles",
+        "OID": "275901063468976",
+        "LSADC": "06",
+        "FUNCSTAT": "A",
+        "INTPTLAT": "+34.1963983",
+        "NAME": "Los Angeles County",
+        "OBJECTID": 2976,
+        "CENTLON": "-118.2618084",
+        "COUNTYCC": "H1",
+        "COUNTYNS": "00277283",
+        "AREALAND": 10516107376,
+        "INTPTLON": "-118.2618616",
+        "MTFCC": "G4020",
+        "COUNTY": "037"
+       }
+      ]
+     },
+     "coordinates": {
+      "x": -118.160843082858,
+      "y": 34.033421039563
+     },
+     "addressComponents": {
+      "zip": "90022",
+      "streetName": "3RD",
+      "preType": "",
+      "city": "LOS ANGELES",
+      "preDirection": "E",
+      "suffixDirection": "",
+      "fromAddress": "4801",
+      "state": "CA",
+      "suffixType": "ST",
+      "toAddress": "4899",
+      "suffixQualifier": "",
+      "preQualifier": ""
+     },
+     "matchedAddress": "4801 E 3RD ST, LOS ANGELES, CA, 90022"
+    }
+   ]
+  }
+ }
+}

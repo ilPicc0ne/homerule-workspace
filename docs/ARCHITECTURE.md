@@ -32,9 +32,9 @@ Frozen before parallel work; changed only via PR with the other person tagged.
 
 | ID | Interface | From → to | Must hold |
 |---|---|---|---|
-| I1 | `contracts/jurisdictions.json`: 13 rule-bearing IDs (e.g. `NJ-HOBOKEN`) plus display-only county entries; each with legal name, level, `parent` (city → county → state), Census code, `schema_name` (the exact string the rule schema expects, e.g. "San Francisco, CA") and `aliases` ("Dorchester", "SF", "Jersey City NJ") | S → D, S | Only these IDs internally; `rules.json` writes `schema_name`; search resolves names and aliases through it |
+| I1 | `contracts/jurisdictions.json`: 13 rule-bearing IDs (e.g. `NJ-HOBOKEN`) plus display-only county entries; each with legal name, level, `parent` (city → county → state), Census code (`census_geoid`; NJ/MA cities also `census_cousub_geoid`; counties optionally `county_law`), `schema_name` (the exact string the rule schema expects, e.g. "San Francisco, CA") and `aliases` ("Dorchester", "SF", "Jersey City NJ") | S → D, S | Only these IDs internally; `rules.json` writes `schema_name`; search resolves names and aliases through it |
 | I2 | `out/rules.json` + `out/rules.compiled.json` | D → S | Schema-valid; `jurisdiction` = the list's `schema_name`; status mapped to the schema values (`enacted_not_effective` → `not_yet_effective`; repealed rules are left out of `rules.json`, since `failed` means a measure that never became law); effective date or null (two dates kept when sources disagree); verbatim quote |
-| I3 | `out/addresses.resolved.json` | S → engine, D eval | All 500; jurisdiction IDs, coords, facts as ranges, source + confidence |
+| I3 | `out/addresses.resolved.json` (type `ResolvedFile` in `web/lib/resolve/types.ts`) | S → engine, D eval | All 500; jurisdiction IDs + `stack`, tree, coords, facts as ranges, source + confidence per field, `review` flags |
 | I4 | Engine CLI `build --as-of <date>` | S → eval, web | Deterministic; writes `lookups.json` and `changes.json` in the guide's shapes |
 | I5 | `/api/address/<id>?as_of=` | S → page, email, MCP | Same data as `lookups.json`; `as_of`, retrieval dates, `not_legal_advice: true` |
 | I6 | Per-address diff | S → changes, change log, email | One computation feeds all three |
@@ -103,7 +103,7 @@ type Compiled = { team_rule_id: string; jurisdiction: string; level: "state"|"ci
 
 Requirements: PRD [scoring](PRD.md#what-we-must-get-right-scoring): Address coverage.
 
-Input: `data/sample_addresses.csv`. Output: `out/addresses.resolved.json`.
+Input: `data/sample_addresses.csv`. Output: `out/addresses.resolved.json`. Code: `web/lib/resolve/` (one TypeScript implementation for the batch run and the website), batch in `web/scripts/resolve-batch.ts`, `make resolve`.
 
 1. **Normalise** the street: strip leading zeros in ordinals ("05TH AV" → "5TH AVE"), take the first of double addresses ("600 JACKSON/601 HARRISON"), drop lot suffixes.
 2. **Census geocoder**, one geographies call per address (the batch endpoint returns no city name): street, city, state. The ZIP is sent for CA and MA but never for NJ, because the NJ ZIPs in the data are owners' mailing ZIPs.
@@ -112,8 +112,21 @@ Input: `data/sample_addresses.csv`. Output: `out/addresses.resolved.json`.
 5. **Building facts as ranges:**
    - year built y → [y-01-01, y-12-31];
    - units from `units`, else parsed from the use description ("5B-20U", "APT 7-30 UNITS", "(5+ units)");
+   - Boston land use "A/…" without a range of its own (LUXURY APARTMENT, SUBSD HOUSING, ELDERLY HOME) → 7+ units [assumed: `boston_land_use_A_is_7_plus`]; ELDERLY HOME counts as an apartment building [assumed: `boston_elderly_home_is_apartment`];
+   - subsidised: "SUBSD HOUSING" or an NJ description with "AFFORDABL" → true; no affordability code in the record → false [assumed: `no_recorded_affordability_restriction`];
    - conflicting facts → unknown plus a flag;
    - owner type is always unknown.
+
+   The assumptions mirror the extraction's APT5 guard (use_class in [apartment, mixed_use] ∧ units ≥ 5 ∧ subsidised = false, `extract/luna_pass.py`) and its stand-in `lab/schema_experiment/facts.py`. Each record names the ones it relies on in `assumptions`, its `source` says `assumption` for such a fact, and `source_detail` gives a short quotable origin per fact.
+
+**Jurisdiction tree** (`tree.ts`), the same for the batch and the website: Federal › State › County › Municipality. Each level has a status: `covered` (rules in HomeRule), `not_covered` (law exists there, HomeRule doesn't have it: federal law, an unchecked county, LA County for an unincorporated address) or `no_rules` (nothing to cover: no county government, county law only for unincorporated areas, no city government). Counties carry `county_law` in the list (`none` for Suffolk and Middlesex, `unincorporated_only` for LA County, ch. 8.52); unchecked counties stay `not_covered`.
+- Municipality = the Census incorporated place; else a county subdivision with an active government (Census `FUNCSTAT` A: NJ townships, MA towns such as Brookline town). CA county subdivisions are statistical CCDs and never count; a CDP is only a label.
+- No incorporated place and no town government → "unincorporated": the county governs, no city's law applies (4801 E 3rd St, postal "Los Angeles", is unincorporated East Los Angeles).
+- MA counties have no county government (`FUNCSTAT` N); the tree says so.
+
+**Census cache:** every raw Census response of the batch run is committed in `engine/cache/census/` (one file per request URL, layers limited to the tree's six). `make resolve` runs offline from it and is byte-identical on every run; `make resolve-live` fills missing requests.
+
+**Website search** (`/api/resolve`, `/where`): place-only input ("Boston, MA", "Dorchester", "Hudson County", "California") resolves through the list and its aliases, never Census; a ZIP alone gives its state (CA/NJ/MA only) and asks for the street; a street address that is one of the 500 answers from the batch file with its building facts; any other street address goes to Census. Several matches in different places → `ambiguous` with candidates; Census matching another city than the one typed → a warning; Census down or slow → `unavailable` (one retry, 8 s timeout).
 
 Further rules:
 - **Unknown, not omitted:** missing year or units, or a build year equal to a certificate-of-occupancy cutoff year (SF 1979, LA 1978), gives `unknown`.
@@ -121,9 +134,9 @@ Further rules:
 - **County:** resolved for display only. No county documents in the corpus; county tenant ordinances in scope cover unincorporated areas only [assumed, check LA County], and all 500 addresses are in incorporated cities. The page says "No county rules for addresses inside <city>".
 - **Tenant facts** (12 months' tenancy, owner-occupied duplex) are notes on the card, never inputs.
 
-Measured on all 500 (04.10.2026): 493 geocoded to the right city, 7 not geocodable to a point (6 without a house number, 1 unknown to Census) but certain from the postal city. Jurisdiction: 500/500.
+Measured on all 500 (04.10.2026, `make resolve`): 492 placed by Census in the expected city, 8 from the postal city (6 without a house number, 21 Guerrero St unknown to Census, 85-87 Sierra Rd no match), 0 contradictions after normalisation (A0009 matches Cambridge once "322-322.5" becomes "322"). 38 postal ≠ legal city (37 Boston neighbourhoods, San Ysidro). Units: 255 from the CSV, 242 from use codes (32 of them Boston land use A = 7+, assumed), 3 unknown, all 3 conflicts flagged (A0227, A0041, A0398). Subsidised: 27 true from the use code (26 SUBSD HOUSING, A0049 "AFFORDABL"), 473 false by assumption, 0 unknown. 468 rows meet the APT5 guard.
 
-Each record: `address_id`, `jurisdictions` (state, county, city IDs), `postal_city`, `coords` (or approximate), `facts {built, units, use_class, owner_type: null}`, `source` and `confidence` per field.
+Each record: `address_id`, `jurisdictions` (state, county, city IDs), `stack`, `tree`, `postal_city`, `legal_city`, `postal_differs`, `coords` (null when Census didn't place it), `census` (matched address, attempts), `facts {built, units, use_class, subsidised, owner_type: null, owner_occupied: null}`, `source`, `source_detail` and `confidence` per field, `assumptions` (sorted names), `review`. Unit ranges from use codes count as facts (`units_from_use_code`, switch `--no-use-code-units`); NJ class 4C = 5+ units, "3SB" is storeys and never units.
 
 ## C · Engine
 
@@ -176,7 +189,8 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
     - six question cards;
     - coming up and the change log.
   - `/j/[id]`: jurisdiction page for any level, rules with their conditions; `/api/jurisdiction/[id]?as_of=` read-only JSON.
-  - `/api/resolve?q=`: free text (address, city, neighbourhood, county, state) → address ID, jurisdiction ID, or `{covered: false}`.
+  - `/where?q=`: the jurisdiction tree for any US address or place (server-rendered, plain GET form; client-side autocomplete over the sample addresses and places from `lib/resolve/suggest.ts`, nothing fetched while typing).
+  - `/api/resolve?q=`: free text (address, city, neighbourhood, county, state, ZIP) → `{kind: address | place | ambiguous | not_found | unavailable, tree, coverage, notes, …}`; sample addresses carry `sample.address_id` and facts. 404 for not found, 503 when Census is down.
   - `/api/address/[id]?as_of=`: read-only JSON with `as_of`, retrieval dates and `not_legal_advice: true`.
   - Later `/api/mcp`, the same functions behind `mcp-handler`.
 - **As-of dates:** the engine runs at build time for a fixed list: 2025-12-31 and 2026-01-02 (T1), 2026-10-01 (default), and each effective date in the rules ±1 day. The picker snaps to this list.
