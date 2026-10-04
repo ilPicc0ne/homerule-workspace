@@ -89,8 +89,14 @@ type Compiled = { team_rule_id: string; jurisdiction: string; level: "state"|"ci
   key_value_conditions: {value: string; when: Node; tenant_note: string|null}[];  // alternative amounts, e.g. the
                                         // small-landlord deposit cap; coverage is unaffected
   interaction: {type: "none"|"yields_to_local"|"coexists"|"may_preempt_local", target_category?: string, quote?: string};
+  interactions: {type: string; target_category: string; quote: string}[];  // all of them; `interaction` is the first
   retrieved_at: string; parse_status: "ok"|"partial"|"failed";
-  checks: string[] };                   // names of failed extraction checks; empty when parse_status is ok
+  checks: string[];                     // names of failed extraction checks; empty when parse_status is ok
+  x_source: {unit: string; source_doc_id: string; citation: string;
+             effect: "protection_or_duty"|"bars_or_limits_local_rules";
+             cap_pct_low: number|null; cap_pct_high: number|null;   // rent caps: the evaluator compares them to
+                                                                    // decide whether a local cap supersedes the state's
+             status_evidence: object|null; origin: "starter"|"supplemental"|"ingested"; stub: boolean} };
 ```
 
 ## B · Address resolution
