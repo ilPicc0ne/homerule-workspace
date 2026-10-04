@@ -1,6 +1,6 @@
 # Teach video validation insert
 
-Use `make-check.mp4` at **00:51-00:54**, replacing the final three seconds of scene 6's diagram. The existing 107-word narration and six-second end card stay unchanged; the complete video remains 60 seconds.
+Use `make-check.mp4` at **00:51-00:54**, replacing the final three seconds of scene 6's diagram. The existing 112-word narration and six-second end card stay unchanged; the complete video remains 60 seconds.
 
 The asset is a **three-second static terminal excerpt rendered from an actual completed `make check` run**, not a screen recording of the whole command or a claim that the check takes three seconds. It is 1920x1080, H.264, 30 fps, without audio. Preserve the captions from the narration in the video compositor.
 

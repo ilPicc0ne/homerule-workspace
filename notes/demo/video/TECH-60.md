@@ -7,7 +7,7 @@ not add numbers that aren't here.
 
 ## Global direction
 
-- **Length:** 60 s hard limit, end card included. Narration is 107 words, about 50 s spoken with the years read
+- **Length:** 60 s hard limit, end card included. Narration is 112 words, about 52 s spoken with the years read
   out, which leaves room for pauses and a 6 s end card.
 - **Tone:** plain words, one idea per scene, one visual per idea. No jargon on screen beyond what the voice says.
 - **Look:** the website's own look: navy background, green accents, the site font, the drawn HomeRule logo. The
@@ -58,8 +58,8 @@ into the date.
 
 ### 4 · 0:21–0:33 · From a law to one building
 
-**Narration (23 words):** "The Census finds each address's legal city. Built 1927: covered. Built 1978, on a 1978 cutoff:
-unknown, and we say what settles it."
+**Narration (28 words):** "The Census tells us the legal city. LA's rent law covers buildings before October 1978. Built
+1927: covered. Built 1978: unknown, and we say what would settle it."
 
 **Visual:** switch to a Los Angeles example, with the LA rent ordinance's cutoff of Oct 1, 1978.
 1. A pin drops on `6238 De Longpre Ave`. The Census stamps **"Los Angeles"**, with a small note: "legal city, not
@@ -106,7 +106,7 @@ advice".
 
 ## Word count
 
-107 spoken words (scenes: 19 · 18 · 11 · 23 · 15 · 21).
+112 spoken words (scenes: 19 · 18 · 11 · 28 · 15 · 21).
 
 ## Facts used, and where they come from
 
