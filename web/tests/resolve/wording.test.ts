@@ -23,11 +23,11 @@ test("no special lead for a city, a ZIP, or a town not on the list", async () =>
   assert.equal(placeLead(await place("Brookline, MA")), null);
 });
 
-test("facts panel: use and subsidised show assumptions as assumed", async () => {
+test("facts panel: missing subsidy is unknown and use-class assumptions remain labelled", async () => {
   const r = await resolveQuery("4115 LINCOLN WY", { fetch: fixtureFetch(), samples: sampleIndex() });
   assert.equal(r.kind, "address");
   const rows = factRows(r.kind === "address" ? r.sample! : (null as never));
-  assert.deepEqual(rows.find(([k]) => k === "Subsidised"), ["Subsidised", "No", "assumed: no affordability code in the record"]);
+  assert.deepEqual(rows.find(([k]) => k === "Subsidised"), ["Subsidised", "Unknown", "not in the data"]);
   const base = r.kind === "address" ? r.sample! : (null as never);
   const assumedUse = factRows({ ...base, source: { ...base.source, use_class: "assumption" } });
   assert.equal(assumedUse.find(([k]) => k === "Use")?.[2], "assumed");

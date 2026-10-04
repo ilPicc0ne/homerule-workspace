@@ -58,9 +58,49 @@ class Adapter(unittest.TestCase):
         self.assertEqual((f["units"].lo, f["units"].hi), (21, 21))
         self.assertNotIn("owner_occupied", f)            # null in I3 -> missing -> unknown
         self.assertIn("year_built", f["built"].source)    # explanations cite the I3 source
-        self.assertEqual(f["subsidised"].assumption, "no_recorded_affordability_restriction")
+        self.assertNotIn("subsidised", f)
         dorchester = next(a for a in ADDR.values() if a["postal_city"] == "Dorchester")
         self.assertEqual(F.address_facts(dorchester)["address.city"].values, ["Boston, MA"])
+
+    def test_legacy_subsidy_assumption_is_unknown(self):
+        for source, names in [("assumption", []), ("use_code", ["no_recorded_affordability_restriction"])]:
+            with self.subTest(source=source, names=names):
+                rec = copy.deepcopy(ADDR["A0016"])
+                rec["facts"]["subsidised"] = False
+                rec["source"]["subsidised"] = source
+                rec["assumptions"] = names
+                self.assertNotIn("subsidised", F.address_facts(rec))
+
+    def test_explicit_subsidy_evidence_preserved(self):
+        for value in (True, False):
+            with self.subTest(value=value):
+                rec = copy.deepcopy(ADDR["A0016"])
+                rec["facts"]["subsidised"] = value
+                rec["source"]["subsidised"] = "use_code"
+                rec["source_detail"]["subsidised"] = "Explicit subsidy status in test source"
+                rec["assumptions"] = []
+                fact = F.address_facts(rec)["subsidised"]
+                self.assertEqual(fact.values, [value])
+                self.assertIsNone(fact.assumption)
+
+    def test_missing_subsidy_changes_coverage_only_when_relevant(self):
+        for aid, rid in [("A0023", "CA-RENT-1947.12"), ("A0036", "MA-BOSTON-EVICT-10-11.7")]:
+            with self.subTest(address=aid, rule=rid):
+                rec = copy.deepcopy(ADDR[aid])
+                result = E.evaluate(RULES, F.address_facts(rec), AS_OF)
+                self.assertEqual(result[rid]["result"], "unknown")
+                explained = B.evaluate_address(RULES, rec, AS_OF, BY_ID)
+                row = next(r for r in explained if r["team_rule_id"] == rid)
+                self.assertIn("subsidised", row["missing"])
+                self.assertIn("city housing department", row["explanation"])
+                rec["facts"]["subsidised"] = False
+                rec["source"]["subsidised"] = "use_code"
+                rec["assumptions"] = []
+                supported = E.evaluate(RULES, F.address_facts(rec), AS_OF)
+                self.assertEqual(supported[rid]["result"], "applies")
+                # The deposit rule is independent of this missing fact.
+                deposit = "CA-DEP-1950.5" if aid == "A0023" else "MA-DEP-186"
+                self.assertEqual(result[deposit]["result"], supported[deposit]["result"])
 
     def test_subsidised_housing_reads_as_apartment(self):
         rec = next(a for a in ADDR.values() if a["facts"]["use_class"] == "subsidised_housing")

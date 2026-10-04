@@ -15,7 +15,8 @@
     "test": "node --test \"tests/**/*.test.ts\"",
     "resolve": "npm run sync && node scripts/resolve-batch.ts && npm run sync",
     "alerts": "node --env-file-if-exists=.env.local scripts/alerts.ts",
-    "seed-subscriber": "node --env-file-if-exists=.env.local scripts/alerts.ts seed"
+    "seed-subscriber": "node --env-file-if-exists=.env.local scripts/alerts.ts seed",
+    "evidence:build": "npm run sync && ${PYTHON:-python3} scripts/building-evidence/build.py && node scripts/build-building-evidence.ts"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "2.1.3",

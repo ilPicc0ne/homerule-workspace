@@ -1,8 +1,9 @@
 # Live engine for typed addresses
 
-`engine.py` runs the existing stdlib-only Python evaluator. It does not change the
-engine, extraction, contracts or scored files. The 500 sample pages continue to
-use their precomputed results. The same facts and date produce the same rows.
+`engine.py` runs the existing stdlib-only Python evaluator. The combined branch includes the
+conditional-deposit compiler/evaluator from #138 and the subsidy correction from
+main. Sample and typed pages evaluate the requested date on demand. The same
+facts and date produce the same rows; saved results are a same-date fallback only.
 Typed addresses previously used a TypeScript stand-in without full precedence;
 their results can improve even though no building facts have been added.
 
@@ -72,9 +73,11 @@ is exposed to the client. `LIVE_ENGINE_DISABLED=1` forces the existing fallback.
   page remains usable with its existing provisional banner and results.
 - The live-date follow-up makes `/a/A0107?as_of=2027-07-02` and I5 use the live engine too. Typing that sample preserves its selected date on redirect.
 
-Silvan needs to repeat the live/fallback checks on a Vercel preview before merging
-or deploying. This Git author's Vercel project access remains blocked, and the
-local CLI credential is invalid; local standalone build is not hosted acceptance.
+Repeat the live/fallback checks on the integrated Vercel preview before merging
+or deploying. GitHub reports the earlier `34c85e7` preview as Ready, but
+unauthenticated requests redirect to Vercel login. Successful deployment and local
+tests do not establish hosted acceptance. Record the checked commit and both
+live/fallback results on #128.
 
 ## Boundaries
 
@@ -87,7 +90,7 @@ The local 500-request HTTP check is a warm sequential microbenchmark, not a
 Vercel cold-start latency measurement.
 
 
-## Exact-date follow-up (d/live-date-timeline)
+## Exact-date evaluation (#130 integrated into #128)
 
 The address API and both address page routes now use the live evaluator at the requested date.
 Sample pages send their original I3 record; typed pages still send unknown building facts.
@@ -99,3 +102,6 @@ Stop the Python process: the dataset date can still show a labelled saved sample
 but a different date must return 503 (API) or an unavailable page, never October's answers.
 Only the dataset date can use the existing typed provisional fallback.
 MCP still uses its saved date behavior. No model inference is involved in evaluation.
+
+The building-evidence investigation panel is available only at the dataset date;
+its saved hypothetical outcomes must not be presented as advice for another date.

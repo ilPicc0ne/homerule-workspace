@@ -105,3 +105,20 @@
 
 **Next:**
 - Alert engine PR (deep-work), Dimitar's PR decisions + #81, style clip → full film, postal address, final scored build after hour 16.
+
+## 2026-10-04T10:35Z — Demo video v3, verdicts everywhere, MCP contacts, frontend fixes
+
+**Decisions:**
+- Free Remotion composition instead of the template pipeline; ElevenLabs Matilda, Lyria music track a; logo + tagline as first frame, team photo + Ship & Pray sticker on the end card — *why:* the template looked like the expense demo; owner choice by ear.
+- 60 s per video (organizers' clarification; `docs/VIDEO.md`); Jersey City and the quote line cut for the problem hook, the verdict scene and the chatbot line — *why:* the good/bad story is the key beat.
+- Integration branches instead of stale stacked PRs (#113 for #71/#72/#77 on #110; #121 for #118 on #119), data always regenerated, never hand-merged — *why:* conflicts with main and 59k lines of generated data.
+- Failed measures shown as a tile chip (#96); "illegal" removed from the Jersey City line — *why:* brief asks to show failed; PRD Never list.
+- MCP per-topic contacts + no-ranking rule (#104), aliases (#120); prompts use addresses, not cities — *why:* city-level answers are where a searching chatbot already scores 20/20.
+
+**Surprises:**
+- Only 328 of 608 badge-less entries were "unchanged"; 280 had no diff at all (start dates never got windows) — fixed by Dimitar in #119.
+- "A 10% cap" wording for a 5% + CPI rule; fixed to "at most 10%".
+- The "missing ×" was an old tab, not a bug; Sarah's ElevenLabs voice ID from memory was wrong (404).
+
+**Next:**
+- Submission 15:00 with the three videos; Dimitar's OK for photo/name; MCP prompt run; Teach video; merge #90.
