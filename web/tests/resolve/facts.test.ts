@@ -99,16 +99,15 @@ test("owner type and owner-occupied are always null", () => {
   assert.equal(f.facts.owner_occupied, null);
 });
 
-// Aligned with the extraction's APT5 guard (use_class in [apartment, mixed_use] ∧ units ≥ 5 ∧ subsidised = false):
-// two named assumptions, carried per record in `assumptions`.
+// Subsidy needs explicit evidence; Boston use-code assumptions remain named.
 const BOSTON = "Boston Property Assessment FY2026";
 
-test("no affordability code in the record → subsidised false, tagged as an assumption", () => {
+test("no affordability code in the record → subsidy unknown, even for apartments", () => {
   const f = buildFacts(row({ state: "CA", use_code: "0500", use_description: "Five or more apartments", source_dataset: "LA County eGIS parcels" }));
-  assert.equal(f.facts.subsidised, false);
-  assert.equal(f.source.subsidised, "assumption");
-  assert.deepEqual(f.assumptions, ["no_recorded_affordability_restriction"]);
-  assert.equal(f.source_detail.subsidised, "no affordability code in the record (assumed)");
+  assert.equal(f.facts.subsidised, null);
+  assert.equal(f.source.subsidised, "none");
+  assert.deepEqual(f.assumptions, []);
+  assert.equal(f.source_detail.subsidised, null);
 });
 
 test("a row with no use code at all → subsidised stays null (nothing to read)", () => {
@@ -143,14 +142,14 @@ test("Boston land use A without a unit range → 7+, tagged boston_land_use_A_is
 test("Boston 'APT 7-30 UNITS' keeps 7–30 and needs no assumption about units", () => {
   const f = buildFacts(row({ state: "MA", use_code: "A/112", use_description: "APT 7-30 UNITS", source_dataset: BOSTON }));
   assert.deepEqual(f.facts.units, { min: 7, max: 30 });
-  assert.deepEqual(f.assumptions, ["no_recorded_affordability_restriction"]);
+  assert.deepEqual(f.assumptions, []);
 });
 
 test("Boston 'ELDERLY HOME' → use_class apartment, tagged as an assumption", () => {
   const f = buildFacts(row({ state: "MA", use_code: "A/118", use_description: "ELDERLY HOME", source_dataset: BOSTON }));
   assert.equal(f.facts.use_class, "apartment");
   assert.equal(f.source.use_class, "assumption");
-  assert.deepEqual(f.assumptions, ["boston_elderly_home_is_apartment", "boston_land_use_A_is_7_plus", "no_recorded_affordability_restriction"]);
+  assert.deepEqual(f.assumptions, ["boston_elderly_home_is_apartment", "boston_land_use_A_is_7_plus"]);
 });
 
 test("source_detail: short strings the engine's explanations can quote", () => {

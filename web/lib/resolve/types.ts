@@ -108,7 +108,7 @@ export type ResolvedAddress = {
   facts: Facts;
   source: { jurisdiction: "census" | "postal_city" | "neighbourhood" } & FactSources;
   source_detail: FactSourceDetail;
-  /** Named assumptions behind the facts, sorted and unique, e.g. ["no_recorded_affordability_restriction"]. */
+  /** Named assumptions behind the facts, sorted and unique, e.g. ["boston_land_use_A_is_7_plus"]. */
   assumptions: string[];
   confidence: { jurisdiction: number; built: number; units: number };
   review: string[];

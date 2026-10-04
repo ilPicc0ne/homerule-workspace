@@ -49,13 +49,15 @@ test("no end entry for a rule that does not apply here: LA's city rule replaces 
 
 test("Newark version swap (successor starts the day the old version ends) is not a protection ending", () => {
   // As of 1 March 2025, 8 October 2024 is within the last year: § 19:2-22(a) and § 19:2-14 old versions end that day,
-  // their successors start that day at this address. Listed as swaps, never as ends.
+  // their successors start that day at this address. § 19:2-2 is also possible with subsidy unknown.
+  // Listed as swaps, never as ends.
   const { ends, swaps } = endsAt("A0003", "2025-03-01", []);
   assert.deepEqual(ends, []);
   assert.deepEqual(
     swaps.map((s) => [s.from, s.to, s.date]).sort(),
     [
       ["NJ-NEWARK-EVICT-19:2-14-2", "NJ-NEWARK-EVICT-19:2-14", "2024-10-08"],
+      ["NJ-NEWARK-RENT-19:2-2", "NJ-NEWARK-RENT-19:2-3.1", "2024-10-08"],
       ["NJ-NEWARK-RENT-19:2-22", "NJ-NEWARK-RENT-19:2-3.1", "2024-10-08"],
     ],
   );
@@ -66,7 +68,7 @@ test("Newark version swap (successor starts the day the old version ends) is not
     entries: rec.entries.map((e) => ({ ...e, changes: e.changes.filter((c) => c.team_rule_id !== "NJ-NEWARK-RENT-19:2-3.1") })),
   };
   const r = ruleEnds({ asOf: "2025-03-01", results: [], rules: RULES, sources: changes.sources, rec: alone });
-  assert.deepEqual(r.ends.map((e) => [e.ruleId, e.when]), [["NJ-NEWARK-RENT-19:2-22", "past"]]);
+  assert.deepEqual(r.ends.map((e) => [e.ruleId, e.when]), [["NJ-NEWARK-RENT-19:2-2", "past"], ["NJ-NEWARK-RENT-19:2-22", "past"]]);
 });
 
 test("recently ended: from the diff's end change, within the last year only", () => {
@@ -77,9 +79,9 @@ test("recently ended: from the diff's end change, within the last year only", ()
 
 test("end badge: the verdict of that rule's end change only; no verdict in the data -> no badge", () => {
   const rec = changes.addresses.A0019;
-  // with #59 in the data: San Diego's cap end depends on facts we lack (grey), Hoff St's narrows protection (↓)
+  // Neither address establishes subsidy status: the cap ending has uncertain impact.
   assert.equal(endBadge(rec, "CA-RENT-1947.12", "2030-01-01")?.kind, "unclear");
-  assert.equal(endBadge(changes.addresses.A0050, "CA-RENT-1947.12", "2030-01-01")?.kind, "narrows");
+  assert.equal(endBadge(changes.addresses.A0050, "CA-RENT-1947.12", "2030-01-01")?.kind, "unclear");
   const withVerdict: AddressChanges = {
     ...rec,
     entries: rec.entries.map((e) =>

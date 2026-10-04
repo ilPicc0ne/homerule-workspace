@@ -77,7 +77,9 @@ def address_facts(rec):
         if uc == "subsidised_housing":
             uc, a = "apartment", a or SUBSIDISED_AS_APARTMENT
         f["use_class"] = Fact(values=[uc], source=detail.get("use_class") or "use code", assumption=a)
-    if facts.get("subsidised") is not None:
+    # Reject legacy absence-of-evidence defaults, including stale I3 snapshots.
+    # Evidence-backed true/false values remain usable; null or assumed stays unknown.
+    if facts.get("subsidised") is not None and not _assumption(rec, "subsidised"):
         f["subsidised"] = Fact(values=[facts["subsidised"]], source=detail.get("subsidised") or "use code",
                                assumption=_assumption(rec, "subsidised"))
     for k in ("owner_type", "owner_occupied"):       # always null in I3; kept for when a source exists
