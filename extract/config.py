@@ -1,4 +1,5 @@
 """Paths, model IDs and secrets. Nothing here makes a network call."""
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -9,6 +10,8 @@ ADDRESSES = STARTER / "data" / "sample_addresses.csv"
 STARTER_SCHEMA = STARTER / "schema" / "rule_record.schema.json"
 
 OUT = ROOT / "out"
+# one extraction sample per folder: EXTRACT_DIR=s1 -> out/extracted_s1 (git-ignored like out/extracted)
+EXTRACTED = OUT / ("extracted_" + os.environ["EXTRACT_DIR"] if os.environ.get("EXTRACT_DIR") else "extracted")
 INDEX = OUT / "index"
 BUILD = ROOT / "build"          # git-ignored: pinned document versions, model-call cache
 VERSIONS = BUILD / "versions"

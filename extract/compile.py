@@ -136,7 +136,7 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
     """Headline rules in the internal format the reference evaluator and the tests use."""
     rules, seen = [], {}
     oq = open_questions()
-    for f in sorted((extracted_dir or config.OUT / "extracted").glob("*.json")):
+    for f in sorted((extracted_dir or config.EXTRACTED).glob("*.json")):
         r = json.load(open(f))
         jur = r["jurisdiction"]
         state = jur.split(", ")[-1] if ", " in jur else jur

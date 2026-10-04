@@ -57,7 +57,7 @@ def build(rules, comps, findings, open_questions):
     for r, c in zip(rules, comps):
         unit = r["unit"]
         if unit not in units:
-            units[unit] = json.load(open(config.OUT / "extracted" / f"{unit}.json"))
+            units[unit] = json.load(open(config.EXTRACTED / f"{unit}.json"))
         rec = units[unit]
         n = int(r["id"].split(":")[1])
         o = rec["luna"]["obligations"][n]

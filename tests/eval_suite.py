@@ -287,7 +287,7 @@ SUPPLEMENTAL = [False]
 
 def run(supplemental=False):
     SUPPLEMENTAL[0] = supplemental
-    dirs = [config.OUT / "extracted"]
+    dirs = [config.EXTRACTED]
     all_rules = C.internal_rules(dirs[0])
     rules = [r for r in all_rules if r["origin"] == "starter" or (supplemental and r["origin"] == "supplemental")]
     rules = normalise_dates(rules)

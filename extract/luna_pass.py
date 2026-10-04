@@ -578,8 +578,8 @@ def extract(doc_id, bundle=None, repair_on=True):
               "luna": out, "checks_before_repair": first_problems, "jev_overrides": overrides, "pending_stub": stub,
               "parts": spans_parts, "document_problems": doc_problems,
               "spans": spans, "quote_failures": failed, "usage": usage}
-    (config.OUT / "extracted").mkdir(parents=True, exist_ok=True)
-    (config.OUT / "extracted" / f"{ref}.json").write_text(json.dumps(record, indent=1, ensure_ascii=False))
+    config.EXTRACTED.mkdir(parents=True, exist_ok=True)
+    (config.EXTRACTED / f"{ref}.json").write_text(json.dumps(record, indent=1, ensure_ascii=False))
     return record
 
 
@@ -609,7 +609,7 @@ def extract_many(doc_ids, workers=6, repair_on=True):
 
     with ThreadPoolExecutor(workers) as ex:
         results = [r for r in ex.map(one, units) if r]
-    (config.OUT / "extracted_failures.json").write_text(json.dumps(failures, indent=1))
+    (config.OUT / f"{config.EXTRACTED.name}_failures.json").write_text(json.dumps(failures, indent=1))
     return results
 
 
