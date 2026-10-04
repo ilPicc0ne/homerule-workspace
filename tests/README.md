@@ -13,3 +13,23 @@
 | Questions | 24 tuning (`fixtures/address_questions.yaml`) and 16 held-out (`fixtures/address_questions_holdout.yaml`) address questions, with conditional amounts |
 
 Fixtures are expected answers and are never shown to a prompt. Address results use the engine's inputs, so `make eval` checks what `make build` scores: rules from `out/rules.compiled.json` (`engine/rules.py`), facts from I3 (`engine/facts.py`), the evaluator in `engine/evaluate.py`. `--extracted` reads rules from `out/extracted/` instead; `--lab-facts` uses the old I3 stand-in, for comparison. Engine unit tests and guards: `make test` (`tests/test_engine.py`).
+
+## Who-to-ask contacts (issue #32)
+
+`python3 tests/check_contacts.py --offline` checks the contact schema and all 78
+jurisdiction/topic fallback routes. `python3 tests/check_contacts.py` additionally
+reads each distinct source URL once and checks its phone, verbatim quote (whitespace
+folded), and contact link. Relative links are resolved against the source URL.
+Robots policies, redirects, and request delays are respected; blocked pages or
+JavaScript-only content produce failures, not a false pass or deleted contacts.
+`python3 -m unittest tests.test_check_contacts` tests the checker without network access.
+
+Lookup is city+topic, city+`*`, state+topic, state+`*`. Follow jurisdiction parents
+through display-only counties to find the state. A fallback is a general referral,
+not a claim that the contact enforces every rule. Display `phone_display`, including
+extensions; `phone` is the E.164 base number. Unknown service fees must not be shown
+as free, and legal-aid eligibility does not guarantee representation.
+
+At the 2026-10-04 review, Newark's local entries were omitted pending the existing
+CivicPlus terms review; its six topics resolve to New Jersey contacts. Online
+verification limitations and conflicting official numbers are recorded in the PR.

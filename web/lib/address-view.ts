@@ -1,4 +1,4 @@
-import contactsFile from "@/data/contacts.json";
+import contactsFile from "@/contracts/contacts.json";
 import { formatDate } from "./format";
 import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, type TopicId } from "./plain";
 import type { Address, Finding, Result, Rule } from "./types";
@@ -64,7 +64,7 @@ export type Tile = {
   rules: RuleRow[];
 };
 
-export type TimelineEvent = { date: string; dateText: string; topic: TopicId; title: string; body?: string };
+export type TimelineEvent = { date: string; dateText: string; topic: TopicId; title: string; body?: string; ruleId: string };
 
 export type AddressView = {
   street: string;
@@ -350,6 +350,7 @@ export function buildAddressView(args: {
       dateText: formatDate(rule.effective_date),
       topic: topicOf(rule.category),
       title: PLAIN[rule.rule_id]?.line ?? rule.title,
+      ruleId: rule.rule_id,
     };
     if (rule.effective_date > asOf) future.push({ ...ev, title: `Takes effect: ${ev.title}` });
     else if (rule.effective_date >= yearAgo && r.result !== "superseded") past.push({ ...ev, body: `Took effect. ${whereName(rule, cityName)} · ${rule.citation}` });

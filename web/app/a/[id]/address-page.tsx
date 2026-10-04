@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useId, useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
 import AddressMap from "@/components/address-map";
 import AlertForm from "@/components/alerts/alert-form";
@@ -25,6 +25,8 @@ export type PageProps = {
   map: MapProps;
   index: { id: string; street: string; city: string; st: string }[];
   typed: boolean;
+  /** This address's change log and the rules in it; null when nothing changed between the compared dates. */
+  changeLog: { href: string; rules: string[] } | null;
 };
 
 const ST: Record<TileStatus, { w: string; g: string }> = {
@@ -424,7 +426,8 @@ function TileView({ t, open, onToggle, addressId }: { t: Tile; open: boolean; on
 const topicTitle = (id: string) => TOPICS.find((t) => t.id === id)?.title ?? "";
 const topicIcon = (id: string) => TOPICS.find((t) => t.id === id)?.icon ?? "i-info";
 
-function Ev({ e, cls }: { e: TimelineEvent; cls: string }) {
+function Ev({ e, cls, log }: { e: TimelineEvent; cls: string; log: PageProps["changeLog"] }) {
+  const linked = log?.rules.includes(e.ruleId);
   return (
     <li className={`ev ${cls}`}>
       <p className="ev-d">{e.dateText}</p>
@@ -434,11 +437,17 @@ function Ev({ e, cls }: { e: TimelineEvent; cls: string }) {
       </p>
       <p className="ev-t">{e.title}</p>
       {e.body && <p className="ev-b">{e.body}</p>}
+      {linked && (
+        <Link className="ev-lk" href={`${log!.href}#c-${encodeURIComponent(e.ruleId)}`}>
+          What changed, old → new
+          <Ic id="i-arrow" />
+        </Link>
+      )}
     </li>
   );
 }
 
-function Ahead({ id, v, onAlerts }: { id: string; v: AddressView; onAlerts: () => void }) {
+function Ahead({ id, v, onAlerts, log }: { id: string; v: AddressView; onAlerts: () => void; log: PageProps["changeLog"] }) {
   return (
     <>
       <h2 className="sec-h" id="h-ahead">
@@ -481,7 +490,7 @@ function Ahead({ id, v, onAlerts }: { id: string; v: AddressView; onAlerts: () =
       )}
       <ol className="tl">
         {v.future.length ? (
-          v.future.map((e) => <Ev key={e.date + e.title} e={e} cls="future" />)
+          v.future.map((e) => <Ev key={e.date + e.title} e={e} cls="future" log={log} />)
         ) : (
           <li className="ev nodate">
             <p className="ev-t">Nothing with a date yet</p>
@@ -494,9 +503,17 @@ function Ahead({ id, v, onAlerts }: { id: string; v: AddressView; onAlerts: () =
         </li>
         {v.past.length > 0 && <li className="tl-lab">Recently changed</li>}
         {v.past.map((e) => (
-          <Ev key={e.date + e.title} e={e} cls="past" />
+          <Ev key={e.date + e.title} e={e} cls="past" log={log} />
         ))}
       </ol>
+      {log && (
+        <p className="ahead-log">
+          <Link className="src" href={log.href}>
+            <Ic id="i-list" />
+            See the full change log
+          </Link>
+        </p>
+      )}
     </>
   );
 }
@@ -692,7 +709,7 @@ export default function AddressPageView(p: PageProps) {
           </section>
 
           <section className="ahead" aria-labelledby="h-ahead">
-            <Ahead id={p.id} v={v} onAlerts={openAlerts} />
+            <Ahead id={p.id} v={v} onAlerts={openAlerts} log={p.changeLog} />
           </section>
         </div>
       </main>
@@ -717,5 +734,61 @@ export default function AddressPageView(p: PageProps) {
         </div>
       </footer>
     </div>
+  );
+}
+
+// ---------------------------------------------------------------- shared bar
+
+/**
+  The v3 sticky bar for pages that aren't the address page itself (the change log): logo, address search,
+  "Get alerts" for that address, trust line. Same parts as the address page's bar, so it looks and works the same.
+*/
+export function StickyBar({
+  street,
+  current,
+  index,
+  asOfText,
+  addressId,
+}: {
+  street: string;
+  current: string;
+  index: PageProps["index"];
+  asOfText: string;
+  /** The address the alert form signs up for; defaults to the last path segment (/changes/<id>). */
+  addressId?: string;
+}) {
+  const [alerts, setAlerts] = useState(false);
+  const path = usePathname();
+  const id = addressId ?? decodeURIComponent(path?.split("/").filter(Boolean).pop() ?? "");
+  const logo = (
+    <Link className="logo" href="/">
+      <span className="logo-mark">
+        <Ic id="i-logo" />
+      </span>
+      HomeRule
+    </Link>
+  );
+  return (
+    <>
+      <Sprite />
+      <div className="brandrow wrap">
+        {logo}
+        <span className="brand-r">
+          <span className="nla">Not legal advice</span>
+          <SourcePill />
+        </span>
+      </div>
+      <header className="bar">
+        <div className="bar-in wrap">
+          {logo}
+          <SearchField current={current} index={index} />
+          <Alerts id={id} street={street} open={alerts} setOpen={setAlerts} />
+          <div className="bar-trust">
+            <SourcePill />
+            <span className="nla2">Not legal advice · Law as of {asOfText}</span>
+          </div>
+        </div>
+      </header>
+    </>
   );
 }
