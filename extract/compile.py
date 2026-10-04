@@ -132,27 +132,61 @@ def open_questions():
     return out
 
 
+def version_chains():
+    """Supplemental sources tagged as versions of one law (manifest version_chain/version_date): doc_id -> (chain, date)."""
+    p = config.ROOT / "data" / "supplemental-legal" / "manifest.json"
+    if not p.exists():
+        return {}
+    return {x["source_id"]: (x["version_chain"], x["version_date"], x.get("version_kind", "amendment"))
+            for x in json.load(open(p))["sources"] if x.get("version_chain") and x.get("version_date")}
+
+
+def replaced(rules, chains):
+    """A replacement or restatement ends every rule of an earlier version of the same law, whatever its citation."""
+    starts = {}
+    for r in rules:
+        c = chains.get(r["unit"])
+        if c and c[2] in ("replacement", "restatement"):
+            starts.setdefault((c[0], c[1]), (effective(r["events"], r["jurisdiction"])["from"], r))
+    for r in rules:
+        c = chains.get(r["unit"])
+        if not c or any(e["kind"] == "repealed" for e in r["events"]):
+            continue
+        later = sorted((d, v) for (ch, d), v in starts.items() if ch == c[0] and d > c[1])
+        if later:
+            date, by = later[0][1]
+            r["events"] = r["events"] + [{"kind": "repealed", "date": date, "precision": "day", "relative_rule": "none",
+                                          "n": None, "applies_to": "act", "superseded_by": by["id"],
+                                          "quote": f"chapter replaced by {by['unit']} ({chains[by['unit']][1]})"}]
+            r["superseded_by"] = by["id"]
+    return rules
+
+
 def internal_rules(extracted_dir=None, as_of=AS_OF):
-    """Headline rules in the internal format the reference evaluator and the tests use."""
-    rules, seen = [], {}
+    """Headline rules in the internal format the reference evaluator and the tests use.
+    Versions of one law (a version chain) are read newest first: when a rule repeats a citation of a newer version,
+    the older one is kept as a historical rule that ends where the newer version starts."""
+    rules, seen, older = [], {}, {}
     oq = open_questions()
-    for f in sorted((extracted_dir or config.OUT / "extracted").glob("*.json")):
+    chains = version_chains()
+    files = sorted((extracted_dir or config.OUT / "extracted").glob("*.json"))
+    slots = [i for i, f in enumerate(files) if f.stem in chains]
+    for i, f in zip(slots, sorted((files[i] for i in slots), key=lambda f: chains[f.stem][1], reverse=True)):
+        files[i] = f
+    for f in files:
         r = json.load(open(f))
         jur = r["jurisdiction"]
         state = jur.split(", ")[-1] if ", " in jur else jur
         lu = r["luna"]
-        for n, o in enumerate(lu["obligations"]):
-            if not o["is_headline"] or o["effect"] == "procedure_or_admin":
-                continue
-            key = (jur, o["category"], _core(o["citation"]), o["effect"])
-            if key in seen:      # same citation: one record, the other headline provisions kept as its details
-                span = r["spans"].get(f".obligations[{n}].requirement_quote")
-                seen[key]["details"].append({"provision": o["provision"], "requirement": o["requirement"],
-                                             "key_value": o["key_value"], "source_doc_id": span["doc_id"] if span else None,
-                                             "quote": source_span(span) if span else None})
-                continue
+
+        def record(n, o):
             span = r["spans"].get(f".obligations[{n}].requirement_quote")
             doc_status, status_evidence, events = lu["document_status"], None, lu["events"]
+            if r["doc_id"] in chains:      # a version of a law: it governs from its own adoption, not the history it recites
+                events = [{"kind": "enacted", "date": chains[r["doc_id"]][1], "precision": "day", "relative_rule": "none",
+                           "n": None, "applies_to": "act", "quote": "version date (manifest)"},
+                          {"kind": "effective", "date": None, "precision": None, "relative_rule": "no_date_in_text",
+                           "n": None, "applies_to": "act", "quote": ""}]
             questions = oq.get((jur, o["category"]), [])
             if doc_status == "pending" and ", " in jur and not o.get("stub"):     # a city ordinance read as a draft
                 said = [f"{q['note']} " + "; ".join(f"{c['value']} ({c['source']})" for c in q["claims"]) for q in questions]
@@ -173,7 +207,7 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                 events = events + [{"kind": "effective", "date": dated[-1], "precision": "day", "relative_rule": "none",
                                     "n": None, "applies_to": "act", "quote": "open question: published dates disagree",
                                     "open_question": True}]
-            rules.append({
+            return {
                 "id": f"{r['doc_id']}:{n}:{o['slug']}", "unit": r["doc_id"], "jurisdiction": jur, "state": state,
                 "category": o["category"], "citation": o["citation"], "effect": o["effect"], "title": o["title"],
                 "requirement": o["requirement"], "provision": o["provision"],
@@ -191,9 +225,47 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                 "checks": o.get("checks", []) + o.get("gate_flags", []), "gate_flags": o.get("gate_flags", []),
                 "gate_status": r.get("gate_status"), "stub": o.get("stub", False),
                 "enacting_level": o.get("enacting_level"),
-                "origin": {"S": "supplemental", "X": "ingested"}.get(r["doc_id"][0], "starter"), "details": []})
+                "origin": {"S": "supplemental", "X": "ingested"}.get(r["doc_id"][0], "starter"), "details": []}
+
+        main_of = {}
+        for n, o in enumerate(lu["obligations"]):
+            if not o["is_headline"] or o["effect"] == "procedure_or_admin":
+                continue
+            key = (jur, o["category"], _core(o["citation"]), o["effect"])
+            if key in seen:
+                prev, mine = seen[key], chains.get(r["doc_id"])
+                theirs = chains.get(prev["unit"])
+                if mine and theirs and mine[0] == theirs[0] and mine[1] < theirs[1]:
+                    # an older version of the same provision: in force until the next newer version starts
+                    newer = older.get(key, prev)
+                    until = effective(newer["events"], jur, newer["provision"])["from"] or chains[newer["unit"]][1]
+                    rec = record(n, o)
+                    rec["events"] = rec["events"] + [{"kind": "repealed", "date": until, "precision": "day",
+                                                      "relative_rule": "none", "n": None, "applies_to": "act",
+                                                      "quote": f"superseded by {newer['citation']} ({newer['unit']})",
+                                                      "superseded_by": newer["id"]}]
+                    rec["superseded_by"] = newer["id"]
+                    rules.append(rec)
+                    older[key] = rec
+                    continue
+                # same citation: one record, the other headline provisions kept as its details
+                span = r["spans"].get(f".obligations[{n}].requirement_quote")
+                prev["details"].append({"provision": o["provision"], "requirement": o["requirement"],
+                                        "key_value": o["key_value"], "source_doc_id": span["doc_id"] if span else None,
+                                        "quote": source_span(span) if span else None})
+                continue
+            rules.append(record(n, o))
             seen[key] = rules[-1]
-    return attribute(rules)
+            main_of.setdefault(o["category"], rules[-1])
+        for n, o in enumerate(lu["obligations"]):   # supporting protections (not the main rule) of the same topic
+            main = main_of.get(o["category"])
+            if o["is_headline"] or o["effect"] != "protection_or_duty" or not main:
+                continue
+            span = r["spans"].get(f".obligations[{n}].requirement_quote")
+            main["details"].append({"provision": o["provision"], "requirement": o["requirement"],
+                                    "key_value": o["key_value"], "source_doc_id": span["doc_id"] if span else None,
+                                    "quote": source_span(span) if span else None, "supporting": True})
+    return attribute(replaced(rules, chains))
 
 
 def attribute(rules):
@@ -278,8 +350,9 @@ def findings(rules):
     for qs in open_questions().values():            # the guide's open questions, with both sources
         out += qs
     inv = json.load(open(config.OUT / "inventory.json"))
+    with_rules = {r["jurisdiction"] for r in rules}         # text from a supplemental source counts too
     for name, info in inv.items():
-        if not info["has_text"]:
+        if not info["has_text"] and name not in with_rules:
             j = BY_SCHEMA.get(name, {})
             for cat in CAT_CODE:
                 out.append({"jurisdiction": j.get("id", name), "category": cat, "kind": "not_in_corpus",

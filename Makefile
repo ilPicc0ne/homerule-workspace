@@ -2,7 +2,7 @@
 AS_OF ?= 2026-10-01
 PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 
-.PHONY: all extract resolve resolve-live build test eval freeze ingest rehearse rerun web
+.PHONY: all extract resolve resolve-live build test eval freeze ingest rehearse demo-change rerun web
 
 all: extract resolve build eval          ## rebuild everything from the corpus
 
@@ -20,7 +20,7 @@ resolve:                                 ## B · sample addresses -> out/address
 resolve-live:                            ## B · same, calling Census for requests missing from the cache
 	cd web && npm run sync && node scripts/resolve-batch.ts --live && npm run sync
 
-build:                                   ## C+D · engine -> outputs/lookups.json, outputs/changes.json, out/lookups.full.json (Silvan)
+build:                                   ## C+D · engine -> outputs/lookups.json, outputs/changes.json, out/lookups.full.json, out/changes.full.json (Silvan)
 	$(PY) -m engine.build --as-of $(AS_OF)
 
 test:                                    ## engine unit tests, guards and the PRD journeys (python -m unittest)
@@ -42,6 +42,12 @@ rehearse:                                ## hour-16 dry run on the fictional tes
 	rm -f out/index/X001.json out/extracted/X001.json
 	$(PY) -m extract.compile
 	$(PY) -m tests.eval_suite --supplemental > /dev/null
+
+DEMO_JUR = $(if $(JUR),$(JUR),Cambridge$(COMMA) MA)
+COMMA := ,
+demo-change:                             ## demo only: ingest -> before/after -> diff -> out/changes.full.json -> web sync; default the fictional X001
+	$(PY) -m engine.demo_change $(or $(DOC),tests/fixtures/synthetic/X001.txt) --jurisdiction "$(DEMO_JUR)" --id $(or $(ID),X001) --as-of $(AS_OF)
+	cd web && npm run sync
 
 rerun:                                   ## live re-extraction of one doc, fresh model calls: make rerun DOC=D0xx
 	EXTRACT_RUN=live-$$(date +%s) $(PY) -m extract.luna_pass $(DOC)
