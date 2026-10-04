@@ -88,14 +88,14 @@ This is the project's feature list; each build updates its status in the same co
 | P0 | Coming-soon landing page on yourhomerule.com | S | WIP (`s/landing`, preview) |
 | P1 | Renter-protection score + compare picked addresses (no ranking, no rent levels, unknown counted apart) | S | planned |
 | P1 | Renter answers one missing building fact ("you told us", never in the scored files) | S | planned |
-| P1 | Map pin | S | built (SVG dot map, no base map; `s/demo-site`) |
+| P1 | Small map on the address page: MapLibre GL + OpenFreeMap Positron (no key), building pin, legal-city outline from Census TIGER/Line places (`web/data/city-outlines.geojson`, 77 KB, `web/scripts/build-city-outlines.sh`), caption "Inside <city> city limits" / "Outside any city: unincorporated <county>", OSM attribution, tap to enlarge | S | built (`s/map`; unincorporated case only in the component, no demo address page for East LA yet) |
 | P1 | Show the guide's four open legal questions as flags with both sources (e.g. Berkeley's two effective dates) | D | planned |
 | P1 | Spanish card summaries (brief stretch goal; quotes stay English) | S | planned |
 | P1 | "I rent / I own" wording toggle (sponsor's users) | S | planned |
 | P2 | Typed address outside the sample, e.g. Santa Ana (brief stretch goal "new jurisdiction live") | S | planned |
 | P1 | Extra data sources (see [ARCHITECTURE](ARCHITECTURE.md#data-sources-to-extend-coverage-p1-checked-04102026)) | D | planned |
 | P2 | MCP route | D | planned |
-| P2 | Compare view · city outline on the map | S | planned |
+| P2 | Compare view | S | planned |
 | P3 | ChatGPT custom GPT on the JSON endpoint | D | planned |
 | Idea | Own chatbot · addresses outside the 500 · neighbourhood comparison · repairs card | — | idea |
 

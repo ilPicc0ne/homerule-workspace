@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PinMap } from "@/components/dot-map";
+import AddressMap from "@/components/address-map";
 import LiveUnavailable from "@/components/live-unavailable";
 import { ancestry, getDataset, jurisdictionById } from "@/lib/data";
 import { builtYear, formatRetrieved, unitsText } from "@/lib/format";
-import { projectPanel } from "@/lib/geo";
+import { cityOutline, mapCaption } from "@/lib/outlines";
 import type { Address, Rule } from "@/lib/types";
 import Dashboard from "./dashboard";
 
@@ -113,9 +113,11 @@ export default async function AddressPage(props: PageProps<"/a/[id]">) {
   const lookups: Record<string, (typeof data.lookups)[string][string]> = {};
   for (const [date, byAddress] of Object.entries(data.lookups)) lookups[date] = byAddress[id] ?? [];
 
-  // The pin map frames the address's own city, not the whole metro panel.
-  const cityPanel = { id: address.jurisdictions.city, label: address.postal_city, state: address.jurisdictions.state, cities: [address.jurisdictions.city] };
-  const frame = projectPanel(cityPanel, data.addresses, 300, 12, 220);
+  // Real map: pin at the building, legal city limits from Census TIGER/Line. No city → unincorporated, no outline.
+  const city = address.jurisdictions.city ? jurisdictionById(address.jurisdictions.city) : undefined;
+  const cityName = city ? city.legal_name.replace(/ city$/, "") : null;
+  const caption = mapCaption(cityName, jurisdictionById(address.jurisdictions.county)?.legal_name, address.postal_city);
+  const outline = cityOutline(city?.id) as GeoJSON.Feature | null;
   const simulation = data.meta.simulation?.address_id === id ? data.meta.simulation?.rule : undefined;
 
   return (
@@ -128,7 +130,7 @@ export default async function AddressPage(props: PageProps<"/a/[id]">) {
       retrieved={data.meta.retrieved_at}
       simulation={simulation}
       rail={{
-        map: <PinMap frame={frame} pinId={address.address_id} label={address.street} />,
+        map: <AddressMap coords={address.coords} outline={outline} caption={caption} label={address.street} />,
         where: <Where a={address} />,
         facts: <Facts a={address} />,
       }}
