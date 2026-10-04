@@ -1343,15 +1343,20 @@ a:hover {
   border: 1px solid var(--line-strong);
 }
 
+/* Enlarged map: full viewport, page behind it does not scroll. */
 .addr-map-dialog {
-  width: min(960px, calc(100vw - 32px));
-  height: min(720px, calc(100dvh - 48px));
+  width: 100vw;
+  height: 100dvh;
   max-width: none;
   max-height: none;
-  margin: auto;
+  margin: 0;
   padding: 0;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
+  border: 0;
+  overflow: hidden;
+}
+
+html:has(.addr-map-dialog[open]),
+html:has(.addr-map-3d-dialog:modal) {
   overflow: hidden;
 }
 
@@ -1385,6 +1390,109 @@ a:hover {
 .addr-map-large {
   flex: 1;
   min-height: 0;
+}
+
+/* Enlarge / replay buttons on the map card (top left; the Map · 3D switch is top right). */
+.addr-map-tools {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 3;
+  display: flex;
+  gap: 4px;
+}
+
+.addr-map-tool {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.12);
+}
+
+.addr-map-tool .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.addr-map-tool:hover {
+  background: #fff;
+}
+
+.addr-map-tool:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 1px;
+}
+
+.addr-map-wrap .addr-map-hint {
+  left: 46px;
+  top: 12px;
+}
+
+/* 3D map: one <dialog>, inline on the card, modal (full viewport) when enlarged. */
+.addr-map-3d-dialog:not(:modal) {
+  position: static;
+  display: block;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  overflow: visible;
+}
+
+.addr-map-3d-dialog:not(:modal) .addr-map-dialog-head {
+  display: none;
+}
+
+.addr-map-3d-dialog:modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.addr-map-3d-dialog::backdrop {
+  background: rgba(23, 38, 42, 0.45);
+}
+
+.addr-map-3d-dialog:modal .addr-map-wrap {
+  flex: 1;
+  min-height: 0;
+}
+
+.addr-map-views .addr-map-3d-dialog:modal .addr-map.addr-map-3d {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+.addr-map-3d-dialog:modal .addr-map-tool-enlarge {
+  display: none;
+}
+
+.addr-map-gesture-hint {
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: var(--muted);
 }
 
 /* ---------- dot maps ---------- */

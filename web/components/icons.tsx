@@ -10,6 +10,20 @@ function Icon({ children }: { children: ReactNode }) {
 }
 
 export const icons = {
+  expand: (
+    <Icon>
+      <path d="M14 4h6v6" />
+      <path d="M10 20H4v-6" />
+      <path d="m20 4-6.5 6.5" />
+      <path d="M4 20l6.5-6.5" />
+    </Icon>
+  ),
+  replay: (
+    <Icon>
+      <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3" />
+      <path d="M19.5 4v4.5H15" />
+    </Icon>
+  ),
   home: (
     <Icon>
       <path d="M3.5 10.5 12 3.5l8.5 7" />

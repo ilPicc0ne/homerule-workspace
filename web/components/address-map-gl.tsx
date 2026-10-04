@@ -5,6 +5,7 @@ import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { APPROX_CAPTION, FOOTPRINT_ATTRIBUTION, highlightFor } from "@/lib/map-view";
 import type { Footprint } from "@/lib/footprint";
+import { icons } from "./icons";
 
 /* Real base map: MapLibre GL + OpenFreeMap vector tiles (Positron, no key). */
 
@@ -146,7 +147,13 @@ export default function AddressMapGL(props: MapProps) {
     <figure className="addr-map-figure">
       <div className="addr-map-wrap">
         <div ref={small} className="addr-map" role="img" aria-label={where} />
-        <button type="button" className="addr-map-hit" onClick={show} aria-label="Enlarge map" />
+        {/* The whole card is a tap target (mouse/touch); the icon button is the accessible one. */}
+        <button type="button" className="addr-map-hit" onClick={show} tabIndex={-1} aria-hidden="true" />
+        <div className="addr-map-tools">
+          <button type="button" className="addr-map-tool" onClick={show} aria-label="Enlarge map" title="Enlarge">
+            {icons.expand}
+          </button>
+        </div>
         <span className="addr-map-hint" aria-hidden="true">Tap to enlarge</span>
       </div>
       <figcaption className="map-caption">
