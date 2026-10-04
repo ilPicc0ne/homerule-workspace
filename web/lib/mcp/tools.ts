@@ -2,20 +2,60 @@
 // existing data and resolver: no new legal logic. web/app/api/mcp/route.ts wraps them for MCP;
 // node --test calls them directly (pure: relative imports, no server-only).
 import { addressPayload, AS_OF_RE, DISCLAIMER } from "../address-payload.ts";
+import { contactFor } from "../contacts.ts";
 import { CATEGORY_SHORT, QUESTION, STATUS_WORDS, ruleStatusOn } from "../law.ts";
 import { FACT_PLAIN } from "../plain.ts";
 import { byId, chain, displayName, JURISDICTIONS, type Jurisdiction } from "../resolve/jurisdictions.ts";
 import { resolveQuery, type ResolveDeps } from "../resolve/resolve.ts";
 import type { ResolveResult, TreeLevel } from "../resolve/types.ts";
-import type { Dataset, Rule } from "../types";
+import type { Category, Dataset, Rule } from "../types";
 
 export const SITE = "https://yourhomerule.com";
 export const MAX_QUERY = 200;
 
 export const HOW_TO_PRESENT =
-  "Quote the law and give its date; say this is not legal advice; never say compliant or illegal; if a fact is unknown, say which. Don't compare the user's own numbers (rent, deposit, fee) to a cap: quote the rule and let them read it.";
+  "Quote the law and give its date; never say compliant or illegal; if a fact is unknown, say which. Don't compare the user's own numbers (rent, deposit, fee) to a cap: quote the rule and let them read it. Don't rank places or say one is better protected; report each address's rules side by side. End every answer with: 'Not legal advice.' For anything that matters, tell the user to confirm with the contact HomeRule returns for that topic (in contacts): name it, with its number or link; if it is marked not yet checked, say so.";
 
 export const INSTRUCTIONS = `HomeRule supplies dated, quoted US renter-protection law for 3 states (CA, NJ, MA) and 10 cities. Start with find_place for any address or place, then get_rules with the address_id (sample addresses) or jurisdiction_id it returns. ${HOW_TO_PRESENT} Say "unknown" when HomeRule says unknown; never fill a gap from memory. Give the HomeRule link so the user can check the source.`;
+
+const NOT_CHECKED = "Number not yet checked by us, confirm before calling";
+
+/** Who to ask per topic in the answer: the same contact the address page tiles show (contracts/contacts.json). */
+function contactsFor(city: string | null, state: string, categories: Iterable<Category>) {
+  const wanted = new Set(categories);
+  const order = (Object.keys(CATEGORY_SHORT) as Category[]).filter((c) => wanted.has(c));
+  const contacts = [];
+  const missing: string[] = [];
+  for (const category of order) {
+    const c = contactFor(city, state, category);
+    if (!c) {
+      missing.push(CATEGORY_SHORT[category]);
+      continue;
+    }
+    contacts.push({
+      category,
+      topic: CATEGORY_SHORT[category],
+      name: c.name,
+      phone: c.phone,
+      url: c.url,
+      what_for: c.whatFor,
+      ...(c.eligibility ? { eligibility: c.eligibility } : {}),
+      checked: false as const,
+      ...(c.phone ? { check_note: NOT_CHECKED } : {}),
+      source_url: c.sourceUrl,
+    });
+  }
+  // One line per contact, topics grouped, so text-only clients still see who to ask.
+  const byName = new Map<string, { c: (typeof contacts)[number]; topics: string[] }>();
+  for (const c of contacts) {
+    const g = byName.get(c.name) ?? { c, topics: [] };
+    g.topics.push(c.topic.toLowerCase());
+    byName.set(c.name, g);
+  }
+  const parts = [...byName.values()].map(({ c, topics }) => `${topics.join(", ")}: ${c.name}, ${c.phone ? `${c.phone} (not yet checked by us), ` : ""}${c.url}`);
+  const line = `${parts.length ? `To confirm before acting, ask: ${parts.join("; ")}.` : ""}${missing.length ? ` HomeRule has no contact for: ${missing.join(", ").toLowerCase()}.` : ""}`.trim();
+  return { contacts, line };
+}
 
 export type ToolDeps = {
   data: Dataset;
@@ -163,10 +203,17 @@ export function getRules(deps: ToolDeps, args: { address_id?: string; jurisdicti
       const rule = rules.get(r.rule_id);
       return requested && rule ? { ...r, rule_status_on_requested_date: ruleStatusOn(rule, requested) ?? "not_on_the_books" } : r;
     });
+    const addr = body.address as { street: string; postal_city: string; jurisdictions: { state: string; city: string } };
+    const who = contactsFor(
+      addr.jurisdictions.city || null,
+      addr.jurisdictions.state,
+      results.flatMap((r) => (rules.get(r.rule_id) ? [rules.get(r.rule_id)!.category] : [])),
+    );
     const payload = {
       ...envelope(data, asOf),
       ...body,
       results,
+      contacts: who.contacts,
       ...(requested
         ? {
             as_of_note: `The engine computed address results for ${asOf} only; you asked for ${requested}. Results are as of ${asOf}; each result also carries the rule's status on ${requested} (rule_status_on_requested_date). Say which date you are answering for.`,
@@ -175,10 +222,9 @@ export function getRules(deps: ToolDeps, args: { address_id?: string; jurisdicti
       link: `${SITE}/a/${id}`,
       not_legal_advice: true,
     };
-    const addr = body.address as { street: string; postal_city: string };
     const count = (v: string) => results.filter((r) => r.result === v).length;
     const unknown = results.filter((r) => r.result === "unknown");
-    const summary = `${addr.street}, ${addr.postal_city}, as of ${asOf}: ${count("applies")} rules apply, ${unknown.length} unknown, ${count("superseded")} replaced by a stricter local rule, ${count("pending")} proposed (not law), ${count("not_yet_effective")} not yet in force.${unknown.length ? ` Unknown because HomeRule lacks: ${[...new Set(unknown.flatMap((r) => r.missing_facts ?? []))].join(", ") || "a fact named in the explanation"}.` : ""} Not legal advice.`;
+    const summary = `${addr.street}, ${addr.postal_city}, as of ${asOf}: ${count("applies")} rules apply, ${unknown.length} unknown, ${count("superseded")} replaced by a stricter local rule, ${count("pending")} proposed (not law), ${count("not_yet_effective")} not yet in force.${unknown.length ? ` Unknown because HomeRule lacks: ${[...new Set(unknown.flatMap((r) => r.missing_facts ?? []))].join(", ") || "a fact named in the explanation"}.` : ""}${who.line ? ` ${who.line}` : ""} Not legal advice.`;
     return { summary, payload, log: { ...log, address_id: id, as_of: asOf } };
   }
 
@@ -199,6 +245,7 @@ export function getRules(deps: ToolDeps, args: { address_id?: string; jurisdicti
   if (j.level === "county") notCovered.push(`${displayName(j)} has no county rules in HomeRule; city and state law apply inside a city, and county law for unincorporated areas isn't in HomeRule.`);
 
   const entries = rules.map((r) => ruleEntry(r, asOf));
+  const who = contactsFor(j.level === "city" ? j.id : null, stack[0].id, rules.map((r) => r.category));
   const payload = {
     ...envelope(data, asOf),
     jurisdiction: { id: j.id, name: displayName(j), level: j.level, stack: stack.map((x) => ({ id: x.id, name: displayName(x), level: x.level, has_rules: x.rules })) },
@@ -206,11 +253,12 @@ export function getRules(deps: ToolDeps, args: { address_id?: string; jurisdicti
     precedence_note: "This lists every rule at each level; it does not decide which one governs a specific building (a stricter local rule can replace a state rule). For a decided result per building, use an address.",
     ...(notCovered.length ? { not_covered: notCovered } : {}),
     rules: entries,
+    contacts: who.contacts,
     findings,
     link: `${SITE}/j/${j.id}`,
   };
   const inForce = entries.filter((e) => e.status_on_as_of === "in_force").length;
-  const summary = `${stack.map((x) => displayName(x)).join(" › ")}, as of ${asOf}: ${entries.length} rules on record (${inForce} in force on that date; others pending, not yet in force or not on the books). ${entries.filter((e) => e.unknown_for_this_place).length} depend on building facts HomeRule doesn't have for a jurisdiction. ${findings.length} findings (open questions, state bars, laws without text in the sources). Not legal advice.`;
+  const summary = `${stack.map((x) => displayName(x)).join(" › ")}, as of ${asOf}: ${entries.length} rules on record (${inForce} in force on that date; others pending, not yet in force or not on the books). ${entries.filter((e) => e.unknown_for_this_place).length} depend on building facts HomeRule doesn't have for a jurisdiction. ${findings.length} findings (open questions, state bars, laws without text in the sources).${who.line ? ` ${who.line}` : ""} Not legal advice.`;
   return { summary, payload, log: { ...log, jurisdiction_id: j.id, as_of: asOf } };
 }
 

@@ -1,8 +1,10 @@
-import contactsFile from "@/contracts/contacts.json";
+import { contactFor, type Contact } from "./contacts.ts";
 import { formatDate } from "./format";
 import { missingFacts } from "./missing";
 import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain";
 import type { Address, Finding, Result, Rule } from "./types";
+
+export { contactFor, type Contact };
 
 /*
   View model for the one-view address page (mockup v3). Pure: the server page feeds it the
@@ -26,17 +28,6 @@ export type RuleRow = {
   sourceUrl: string | null;
   sourceName: string | null;
   meta: string[];
-};
-
-export type Contact = {
-  name: string;
-  phone: string | null;
-  tel: string | null;
-  url: string;
-  whatFor: string;
-  free: boolean;
-  eligibility: string | null;
-  sourceUrl: string;
 };
 
 export type Helper =
@@ -80,37 +71,6 @@ export type AddressView = {
 };
 
 const STATE_NAME: Record<string, string> = { CA: "California", MA: "Massachusetts", NJ: "New Jersey" };
-
-type ContactEntry = { jurisdiction: string; category: string; contacts: Record<string, string | null>[] };
-const CONTACTS = (contactsFile as unknown as { entries: ContactEntry[] }).entries;
-
-/** Lookup order from contracts/contacts.json: city+topic, city+*, state+topic, state+*. */
-export function contactFor(city: string | null, state: string, category: string): Contact | null {
-  const keys: [string | null, string][] = [
-    [city, category],
-    [city, "*"],
-    [state, category],
-    [state, "*"],
-  ];
-  for (const [j, c] of keys) {
-    if (!j) continue;
-    const e = CONTACTS.find((x) => x.jurisdiction === j && x.category === c);
-    const k = e?.contacts[0];
-    if (k) {
-      return {
-        name: String(k.name),
-        phone: k.phone_display ?? null,
-        tel: k.phone ?? null,
-        url: String(k.url),
-        whatFor: String(k.what_for ?? ""),
-        free: /\bfree\b/i.test(String(k.what_for ?? "")),
-        eligibility: k.eligibility ?? null,
-        sourceUrl: String(k.source_url),
-      };
-    }
-  }
-  return null;
-}
 
 function hostName(url: string | null): string | null {
   if (!url) return null;
