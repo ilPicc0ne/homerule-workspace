@@ -12,8 +12,8 @@ echo "== Commits =="; git log --oneline | head -50
 echo "== Planning-only words (should be empty) =="
 git grep -n -i -E "wispr|official use only|villain|notes/meetings|funnel/notes" $(git rev-list --all) -- . 2>/dev/null | head -20 || true
 if [[ "${1:-}" == "--push" ]]; then
-  gh repo view ilPicc0ne/homerule >/dev/null 2>&1 || gh repo create ilPicc0ne/homerule --private
+  gh repo view ilPicc0ne/yourhomerule >/dev/null 2>&1 || gh repo create ilPicc0ne/yourhomerule --private
   git remote add origin https://github.com/ilPicc0ne/yourhomerule.git
   git push --quiet -u origin HEAD:main
-  echo "Pushed to ilPicc0ne/homerule (private). Flip to public by hand after the checks in PUBLISH.md."
+  echo "Pushed to ilPicc0ne/yourhomerule (private). Flip to public by hand after the checks in PUBLISH.md."
 fi
