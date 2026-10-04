@@ -52,6 +52,8 @@ export function layout(o: Layout): string {
  .pn{background:#22282e!important;color:#c7cdd4!important} .ln{border-color:#2c333a!important}
  .btn{background:#e7eaee!important;color:#15191d!important} .mk{background:#e7eaee!important;color:#15191d!important}
  a{color:#c9d3df!important}
+ .vb-up{background:#173D2A!important;color:#9BDDB7!important} .vb-dn{background:#45201F!important;color:#F6B5AE!important}
+ .vb-un{background:#2A3036!important;color:#C7CDD4!important}
 }
 </style></head>
 <body class="bg" style="margin:0;padding:0;background:${C.bg};color:${C.text};${FONT}">
