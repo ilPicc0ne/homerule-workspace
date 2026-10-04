@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HomeRule architecture</title>
+<!--
+  HomeRule tech video: step-through architecture diagram. Private lab material (lab/ is not published).
+  One file, no build step. Stage is a fixed 1920×1080 frame scaled to the window.
+
+  Keys:  → / Space / PageDown  next step      ← / PageUp  previous step
+         A  auto-play on/off (per-step durations below)   R  restart step   Home  first step
+         1–9  jump to a step   C  captions on/off   H  helper overlay
+  URL:   ?step=<n or id>   start there (0-based or the step id, e.g. ?step=extract)
+         &auto=1           auto-play from there through the end
+         &only=1           play that one step, then hold (for demo-video `clip` scenes)
+         &captions=0       hide the page's own captions (the demo-video pipeline draws its own)
+         &t=<sec|end>      freeze at that time in the step (stills, screenshots)
+  Seek:  window.HR.seek(step, t) renders a frozen frame; window.HR.steps lists ids and durations.
+
+  Text source of truth: lab/tech-video/SCRIPT.md. Captions and durations in STEPS below are copied from it;
+  change both together. Numbers on screen are from the repo on 04.10.2026 (see PLAN.md inventory).
+  Grey dashed tags = not built yet / placeholder ("after hour 16", "PR #82").
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700;800&family=Source+Serif+4:ital,wght@0,400;1,400&display=block" rel="stylesheet">
+<style>
+:root{
+  /* v3 tokens (web/app/a/[id]/v3.css) */
+  --page:#fff; --wash:#F4F6F9; --ink:#15222E; --ink-2:#3A4855; --muted:#5B6875; --faint:#AEB9C4;
+  --line:#DCE3EA; --line-soft:#E9EEF2;
+  --blue:#2B3B4E; --blue-ink:#1E2B3A; --blue-tint:#EEF1F4; --blue-line:#CBD2DA;
+  --green:#1C8150; --green-ink:#11643D; --green-tint:#E2F2E8; --green-line:#C9E5D3;
+  --amber:#B7793A; --amber-ink:#7A4A1C; --amber-tint:#F6EADB; --amber-line:#E6CFB3;
+  --slate:#868B8F; --slate-ink:#4D5256; --slate-tint:#ECEDEE; --slate-line:#DCDEE0;
+  --sh-2:0 1px 2px rgb(21 34 46/.04),0 18px 40px -20px rgb(21 34 46/.30);
+  --ui:"Atkinson Hyperlegible Next",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --law:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--wash);overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;background:var(--page);transform-origin:0 0;
+  font:400 20px/1.4 var(--ui);color:var(--ink);overflow:hidden;-webkit-font-smoothing:antialiased}
+.abs{position:absolute}
+/* ---------- visibility machinery ---------- */
+[data-show],[data-only]{opacity:0;transition:opacity .55s var(--ease),transform .55s var(--ease),border-color .35s,box-shadow .35s,background .35s}
+[data-show].on,[data-only].on{opacity:1}
+.rise{transform:translateY(14px)} .rise.on{transform:none}
+.dim{opacity:.26!important}
+/* ---------- header ---------- */
+.hdr{left:60px;right:60px;top:26px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:14px;font-weight:800;font-size:30px;letter-spacing:-.015em}
+.brand svg{width:44px;height:44px;display:block}
+.brand .sub{font-weight:400;color:var(--muted);letter-spacing:0}
+.hdr-r{display:flex;align-items:center;gap:22px;font-size:19px;color:var(--ink-2)}
+.hdr-r b{font-weight:800;color:var(--ink)}
+.proto{border:1.5px dashed var(--faint);border-radius:999px;padding:3px 12px;font-size:16px;font-weight:700;color:var(--slate-ink)}
+.stepno{font-family:var(--mono);font-size:17px;color:var(--muted)}
+.rule{left:60px;right:60px;top:96px;height:1px;background:var(--line)}
+/* ---------- lanes ---------- */
+.lane{font-size:16px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.lane span{font-weight:400;letter-spacing:.02em;text-transform:none;font-size:18px;color:var(--muted)}
+/* ---------- nodes ---------- */
+.node{background:#fff;border:2px solid var(--line);border-radius:20px;padding:16px 18px 14px;box-shadow:0 1px 2px rgb(21 34 46/.05)}
+.node.model{border-style:dashed;border-color:var(--blue-line);background:#FBFCFD}
+.node.hl{border-color:var(--blue);box-shadow:0 0 0 6px var(--blue-tint),var(--sh-2)}
+.node.model.hl{border-style:dashed}
+.kick{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.tag{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.12em;padding:2px 8px;border-radius:6px;background:var(--blue-tint);color:var(--blue-ink)}
+.tag.m{background:#fff;border:1.5px dashed var(--blue);color:var(--blue-ink)}
+.tag.d{background:var(--line-soft);color:var(--slate-ink)}
+.node h3{margin:0 0 6px;font-size:25px;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+.node p{margin:0;font-size:18px;line-height:1.35;color:var(--ink-2)}
+.node p+p{margin-top:5px}
+.file{display:inline-block;font:500 16px/1.2 var(--mono);color:var(--blue-ink);background:var(--blue-tint);border-radius:7px;padding:4px 8px;margin:6px 6px 0 0;white-space:nowrap}
+.svc{display:inline-block;font-size:15px;font-weight:700;color:var(--slate-ink);border:1.5px solid var(--line);border-radius:999px;padding:2px 10px;margin:6px 6px 0 0;white-space:nowrap}
+.sub2{display:flex;gap:10px;margin-top:8px}
+.sub2>div{flex:1;border:1.5px solid var(--line);border-radius:12px;padding:8px 10px;background:#fff}
+.sub2 b{display:block;font-size:20px}
+.sub2 small{display:block;font-size:15.5px;line-height:1.3;color:var(--ink-2)}
+.sub2 code{font:500 13.5px/1.2 var(--mono);color:var(--muted)}
+.tbd{display:inline-block;border:1.5px dashed var(--slate);color:var(--slate-ink);border-radius:7px;padding:1px 8px;font-size:15px;font-weight:700;font-style:normal;white-space:nowrap}
+.chip-date{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;border-radius:999px;padding:5px 14px;font-size:18px;font-weight:700;margin:8px 8px 0 0}
+.chip-date i{width:8px;height:8px;border-radius:50%;background:#fff;display:inline-block}
+.outs{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.out{border:1.5px solid var(--line);border-radius:12px;padding:7px 12px;font-size:18px;font-weight:700;display:flex;justify-content:space-between;align-items:center;background:#fff}
+.out code{font:500 15px var(--mono);color:var(--muted)}
+.out.on.lit{border-color:var(--blue);background:var(--blue-tint)}
+/* ---------- wires and rails ---------- */
+svg.wires{left:0;top:0;width:1920px;height:1080px;overflow:visible;pointer-events:none}
+.wire{fill:none;stroke:var(--blue-line);stroke-width:3;transition:opacity .55s,stroke .35s}
+.wire.hl{stroke:var(--blue);stroke-dasharray:10 9;animation:march .9s linear infinite}
+.rail{fill:none;stroke:var(--line);stroke-width:3;stroke-linecap:round}
+.rail.hl{stroke:var(--blue-line)}
+.tick{stroke:var(--line);stroke-width:3}
+@keyframes march{to{stroke-dashoffset:-19}}
+/* ---------- tokens (data in flight) ---------- */
+.tok{position:absolute;left:0;top:0;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;
+  font:600 17px/1 var(--mono);padding:9px 14px;border-radius:999px;background:var(--blue);color:#fff;
+  box-shadow:0 6px 18px -6px rgb(21 34 46/.45);z-index:20}
+.tok.addr{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+.tok.ok{background:#fff;color:var(--blue-ink);border:2px solid var(--blue)}
+.tok.new{background:#fff;color:var(--ink);border:2px dashed var(--ink)}
+/* ---------- middle band cards ---------- */
+.band{left:60px;width:1068px;top:384px;height:178px}
+.card{position:absolute;inset:0;border:2px solid var(--line);border-radius:20px;background:#fff;padding:16px 22px;box-shadow:var(--sh-2)}
+.card h4{margin:0 0 8px;font-size:15px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);display:flex;gap:12px;align-items:center}
+.card h4 code{font:500 15px var(--mono);letter-spacing:0;text-transform:none;color:var(--blue-ink)}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:3px 14px;font:500 17.5px/1.35 var(--mono)}
+.kv dt{color:var(--muted)} .kv dd{margin:0;color:var(--ink)}
+.quote{font:italic 400 23px/1.36 var(--law);color:var(--ink);border-left:4px solid var(--blue-line);padding-left:16px}
+.quote small{display:block;font:400 15px var(--ui);font-style:normal;color:var(--muted);margin-top:6px}
+.ok{color:var(--green-ink);font-weight:700}
+.q-row{display:grid;grid-template-columns:1fr auto auto;gap:4px 18px;align-items:baseline;font-size:19px;padding:5px 0;border-bottom:1px solid var(--line-soft)}
+.q-row:last-child{border-bottom:0}
+.q-row b{font:600 18px var(--mono);color:var(--blue-ink)}
+.q-row em{font:500 16px var(--mono);font-style:normal;color:var(--muted)}
+.res{display:grid;grid-template-columns:160px 1fr;gap:8px 16px;align-items:center;font-size:19px}
+.st{display:inline-flex;justify-content:center;font:700 15.5px var(--mono);border-radius:8px;padding:4px 8px;border:1.5px solid}
+.st.g{color:var(--green-ink);background:var(--green-tint);border-color:var(--green-line)}
+.st.a{color:var(--amber-ink);background:var(--amber-tint);border-color:var(--amber-line)}
+.st.s{color:var(--slate-ink);background:var(--slate-tint);border-color:var(--slate-line)}
+.res small{color:var(--muted);font-size:16.5px}
+.foot{position:absolute;left:22px;right:22px;bottom:12px;font-size:16px;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+.foot b{color:var(--ink);font-weight:700}
+.ttab{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:4px}
+.ttab div{border:1.5px solid var(--line);border-radius:12px;padding:8px 10px}
+.ttab b{font-size:28px;font-weight:800;letter-spacing:-.01em;margin-left:8px}
+.ttab small{display:block;font-size:14.5px;line-height:1.25;color:var(--ink-2);margin-top:4px}
+.ttab code{font:700 15px var(--mono);color:var(--blue-ink)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px 28px;font-size:18.5px}
+.grid2 div{display:flex;gap:10px;align-items:baseline}
+.grid2 code{font:500 15.5px var(--mono);color:var(--blue-ink);white-space:nowrap}
+.term{position:absolute;inset:0;border-radius:20px;background:#15222E;color:#E9EEF2;padding:16px 22px;font:500 18px/1.5 var(--mono);box-shadow:var(--sh-2)}
+.term .p{color:#9FB3C8} .term .g{color:#7FD3A5} .term .m{color:#AEB9C4}
+.term .tbd{border-color:#AEB9C4;color:#E9EEF2;font-family:var(--ui)}
+/* ---------- hero (step 0) and end card ---------- */
+.hero{left:0;right:0;top:170px;text-align:center}
+.hero h1{margin:0;font-size:80px;line-height:1.12;font-weight:800;letter-spacing:-.025em}
+.hero h1.b{color:var(--blue)}
+.tl{left:0;top:0;width:1920px;height:1080px}
+.tl-axis{left:330px;width:1260px;top:640px;height:3px;background:var(--line-strong,#D5DDDD)}
+.yr{top:650px;font:500 17px var(--mono);color:var(--muted);padding-left:8px;border-left:2px solid var(--line);line-height:26px}
+.mk{top:590px;width:3px;height:52px;background:var(--blue);transform:translateX(-50%)}
+.mk.cut{background:none;border-left:3px dashed var(--slate);width:0}
+.mk.asof{background:var(--blue);height:110px;top:586px;width:4px}
+.lbl{transform:translateX(-50%);text-align:center;font-size:18px;line-height:1.3;color:var(--ink-2);width:300px}
+.lbl b{display:block;color:var(--ink);font-size:19px}
+.lbl.law{font-family:var(--law);font-size:19px}
+.lbl.law b{font-family:var(--ui)}
+.lbl.cut{color:var(--slate-ink)}
+.lbl.asof b{color:var(--blue)}
+.betline{left:60px;width:1068px;top:384px;height:178px;display:flex;flex-direction:column;justify-content:center;padding:0 26px;border-radius:20px;background:var(--blue-tint)}
+.betline p{margin:0;font-size:33px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.betline p+p{margin-top:10px;color:var(--blue)}
+.zone{border:3px dashed var(--blue);border-radius:26px}
+.zone-l{font-size:16px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-ink);background:#fff;padding:0 10px}
+.endc{inset:0;background:var(--page);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:30}
+.endc svg{width:120px;height:120px}
+.endc h2{margin:26px 0 8px;font-size:84px;font-weight:800;letter-spacing:-.03em}
+.endc p{margin:0;font-size:34px;color:var(--ink-2)}
+.endc .small{margin-top:36px;font-size:22px;color:var(--muted)}
+/* ---------- captions, progress, helper ---------- */
+.caps{left:160px;right:160px;top:878px;height:150px;display:flex;align-items:center;justify-content:center;text-align:center;z-index:35}
+.caps div{font-size:37px;line-height:1.3;font-weight:700;color:var(--ink);background:rgb(255 255 255/.92);padding:6px 18px;border-radius:12px;max-width:1600px}
+.nocaps .caps{display:none}
+.prog{left:60px;right:60px;bottom:22px;height:6px;display:flex;gap:6px}
+.prog i{flex:var(--d);height:6px;border-radius:3px;background:var(--line-soft);overflow:hidden;position:relative}
+.prog i b{position:absolute;inset:0;width:0;background:var(--blue-line)}
+.prog i.done b{width:100%}
+.help{right:60px;top:110px;background:var(--ink);color:#fff;font:500 15px/1.5 var(--mono);padding:10px 14px;border-radius:10px;z-index:40;display:none;white-space:pre}
+.showhelp .help{display:block}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- ===== header (always) ===== -->
+  <div class="abs hdr">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#2B3B4E"/><path d="M6.5 12.8 16 6.4l9.5 6.4" fill="none" stroke="#FDFCFA" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6.4v17.6M11 25h10" fill="none" stroke="#FDFCFA" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 12.8v4.6M25.5 12.8v4.6" fill="none" stroke="#FDFCFA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.6 17.6h5.8a2.9 2.9 0 0 1-5.8 0Z" fill="#FDFCFA" stroke="#FDFCFA" stroke-width="1" stroke-linejoin="round"/><path d="M22.6 17.6h5.8a2.9 2.9 0 0 1-5.8 0Z" fill="#FDFCFA" stroke="#FDFCFA" stroke-width="1" stroke-linejoin="round"/></svg>
+      HomeRule <span class="sub">· how it works</span>
+    </div>
+    <div class="hdr-r">
+      <span class="proto">Prototype · Hack-Nation 7</span>
+      <span><b>Not legal advice</b> · as of Oct 1, 2026</span>
+      <span class="stepno" id="stepno">1 / 9</span>
+    </div>
+  </div>
+  <div class="abs rule"></div>
+
+  <!-- ===== step 0: hook ===== -->
+  <div class="abs hero" data-only="0">
+    <h1 class="rise" data-show="0@0.2">A model has a training cutoff.</h1>
+    <h1 class="b rise" data-show="0@2.0">A law has an effective date.</h1>
+  </div>
+  <div class="abs tl" data-only="0">
+    <div class="abs tl-axis" data-show="0@3.2"></div>
+    <div class="abs yr" style="left:330px" data-show="0@3.2">2025</div>
+    <div class="abs yr" style="left:582px" data-show="0@3.2">2026</div>
+    <div class="abs yr" style="left:834px" data-show="0@3.2">2027</div>
+    <div class="abs yr" style="left:1086px" data-show="0@3.2">2028</div>
+    <div class="abs yr" style="left:1338px" data-show="0@3.2">2029</div>
+    <div class="abs yr" style="left:1590px" data-show="0@3.2">2030</div>
+    <!-- illustrative: no model or date implied -->
+    <div class="abs mk cut" style="left:420px" data-show="0@1.0"></div>
+    <div class="abs lbl cut" style="left:380px;top:530px" data-show="0@1.0"><b>Training cutoff</b>fixed when the model was built</div>
+    <div class="abs mk" style="left:582px;height:100px" data-show="0@3.8"></div>
+    <div class="abs lbl law" style="left:540px;top:700px" data-show="0@3.8"><b>Jan 1, 2026</b>Cal. Bus. &amp; Prof. Code § 16729</div>
+    <div class="abs mk" style="left:623px" data-show="0@4.3"></div>
+    <div class="abs lbl law" style="left:690px;top:530px" data-show="0@4.3"><b>Mar 1, 2026</b>SF Rent Ord. § 37.3: 1.6%</div>
+    <div class="abs mk asof" style="left:771px" data-show="0@5.4"></div>
+    <div class="abs lbl asof" style="left:870px;top:700px" data-show="0@5.4"><b>as of Oct 1, 2026</b>any date can be asked</div>
+    <div class="abs mk" style="left:960px" data-show="0@4.8"></div>
+    <div class="abs lbl law" style="left:1010px;top:530px" data-show="0@4.8"><b>Jul 1, 2027</b>N.J. Stat. § 56:9-23(e) takes effect</div>
+    <div class="abs mk" style="left:1590px" data-show="0@5.9"></div>
+    <div class="abs lbl law" style="left:1540px;top:530px" data-show="0@5.9"><b>Jan 1, 2030</b>Cal. Civ. Code § 1947.12 repealed</div>
+  </div>
+
+  <!-- ===== diagram: wires and rails ===== -->
+  <svg class="abs wires" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2B3B4E"/></marker></defs>
+    <g data-show="1@0.3" class="dimmable" data-hl="2@0-13.8 7@0.5-6">
+      <path id="railA" class="rail" d="M152 356 H1034"/>
+      <line class="tick" x1="152" y1="332" x2="152" y2="356"/><line class="tick" x1="477" y1="332" x2="477" y2="356"/>
+      <line class="tick" x1="805" y1="332" x2="805" y2="356"/><line class="tick" x1="1034" y1="332" x2="1034" y2="356"/>
+    </g>
+    <g data-show="1@0.6" class="dimmable" data-hl="3@0-6.4">
+      <path id="railB" class="rail" d="M152 800 H919"/>
+      <line class="tick" x1="152" y1="776" x2="152" y2="800"/><line class="tick" x1="477" y1="776" x2="477" y2="800"/>
+      <line class="tick" x1="919" y1="776" x2="919" y2="800"/>
+    </g>
+    <path class="wire dimmable" data-show="1@0.9" data-hl="3@5.6-9 7@5.5-8" marker-end="url(#ah)" d="M1128 246 C1156 246 1150 400 1172 400"/>
+    <path class="wire dimmable" data-show="1@0.9" data-hl="3@5.6-9" marker-end="url(#ah)" d="M1128 696 C1156 696 1150 560 1172 560"/>
+    <path class="wire dimmable" data-show="1@1.2" data-hl="4@2.5-9 7@7.5-10" marker-end="url(#ah)" d="M1476 400 C1500 400 1496 300 1520 300"/>
+    <path class="wire dimmable" data-show="1@1.2" data-hl="5@0-6" marker-end="url(#ah)" d="M1476 560 C1500 560 1496 640 1520 640"/>
+    <path class="wire dimmable" data-show="1@1.2" data-hl="4@9-13 5@6-10" marker-end="url(#ah)" d="M1692 462 V496"/>
+  </svg>
+
+  <!-- ===== lane A: extraction ===== -->
+  <div class="abs lane dimmable" style="left:60px;top:124px" data-show="1@0.2">A · Extraction <span>— the model reads each law once</span></div>
+  <div class="abs node rise dimmable" style="left:60px;top:160px;width:185px;height:172px" data-show="1@0.2" data-hl="2@0-2 7@0-3">
+    <div class="kick"><span class="tag d">DATA</span></div>
+    <h3>Law corpus</h3>
+    <p>87 documents · 13 jurisdictions</p>
+    <p class="tbd" data-only="7@0.3" style="margin-top:6px">+ hour-16 file</p>
+  </div>
+  <div class="abs node model rise dimmable" style="left:285px;top:160px;width:385px;height:172px" data-show="1@0.35" data-hl="1@0.6-3.4 2@1.6-10.2 6@0-4.5 7@1.5-4">
+    <div class="kick"><span class="tag m">MODEL</span> via OpenRouter</div>
+    <div class="sub2">
+      <div><b>Jev</b><small>bounded choices + confidence</small><code>typesafe/jev-1.13</code></div>
+      <div><b>Luna</b><small>fields + verbatim quote</small><code>openai/gpt-6-luna</code></div>
+    </div>
+  </div>
+  <div class="abs node rise dimmable" style="left:710px;top:160px;width:190px;height:172px" data-show="1@0.5" data-hl="1@3.4-6.4 2@9.9-13.6 6@4.5-14.6 7@3.5-5">
+    <div class="kick"><span class="tag">CODE</span></div>
+    <h3>Checks + compile</h3>
+    <p>quotes verbatim · dates compiled</p>
+  </div>
+  <div class="abs node rise dimmable" style="left:940px;top:160px;width:188px;height:172px" data-show="1@0.65" data-hl="2@13.2 3@5.6-8 6@4.5-14.6 7@4.5-6.5">
+    <div class="kick"><span class="tag d">FILES</span></div>
+    <h3>Rule records</h3>
+    <span class="file">rules.json</span><span class="file">findings.json</span>
+  </div>
+
+  <!-- ===== lane B: addresses ===== -->
+  <div class="abs lane dimmable" style="left:60px;top:580px" data-show="1@0.5">B · Address resolution <span>— the legal city, not the mailing city</span></div>
+  <div class="abs node rise dimmable" style="left:60px;top:616px;width:185px;height:160px" data-show="1@0.5" data-hl="3@0-1.6">
+    <div class="kick"><span class="tag d">DATA</span></div>
+    <h3>Addresses</h3>
+    <p>500 sample addresses · any typed address</p>
+  </div>
+  <div class="abs node rise dimmable" style="left:285px;top:616px;width:385px;height:160px" data-show="1@0.65" data-hl="3@1.2-3.8 6@4.5-14.6">
+    <div class="kick"><span class="tag">CODE</span> + Census geocoder</div>
+    <h3>Legal city</h3>
+    <p>Census geographies call; responses cached in the repo</p>
+  </div>
+  <div class="abs node rise dimmable" style="left:710px;top:616px;width:418px;height:160px" data-show="1@0.8" data-hl="3@3.4-6.4 6@4.5-14.6">
+    <div class="kick"><span class="tag">CODE</span></div>
+    <h3>Building facts as ranges</h3>
+    <p>source + named assumption per fact; missing → unknown</p>
+    <span class="file">addresses.resolved.json</span>
+  </div>
+
+  <!-- ===== C engine ===== -->
+  <div class="abs node rise dimmable" style="left:1176px;top:300px;width:300px;height:360px" data-show="1@0.9" data-hl="1@3.4-6.4 3@5.8 4@0-5 6@4.5-14.6 7@5.5-8">
+    <div class="kick"><span class="tag">CODE</span> C · Engine</div>
+    <h3>Every rule × every address</h3>
+    <p>status by date · coverage: true / false / unknown · precedence and conflicts from the law's own text</p>
+    <div class="chip-date"><i></i>Oct 1, 2026</div><div class="chip-date" data-show="4@1.2"><i></i>Jul 2, 2027</div>
+    <div><span class="file">lookups.json</span></div>
+  </div>
+
+  <!-- ===== D change ===== -->
+  <div class="abs node rise dimmable" style="left:1524px;top:160px;width:336px;height:302px" data-show="1@1.1" data-hl="4@2.8 6@4.5-14.6 7@7.5-10">
+    <div class="kick"><span class="tag">CODE</span> D · Change</div>
+    <h3>Run twice, diff per address</h3>
+    <div class="outs">
+      <div class="out" data-show="4@5.2" data-lit="4@5.2-18.7">changes.json <code>T1–T6</code></div>
+      <div class="out" data-show="4@6.4" data-lit="4@6.4-18.7">change log <code>/changes/[id]</code></div>
+      <div class="out" data-show="4@7.4" data-lit="4@7.4-18.7">alert email <code>email.ts</code></div>
+    </div>
+  </div>
+
+  <!-- ===== Web ===== -->
+  <div class="abs node rise dimmable" style="left:1524px;top:500px;width:336px;height:276px" data-show="1@1.2" data-hl="4@9-12 5 6@4.5-14.6 7@9">
+    <div class="kick"><span class="tag">WEB</span> Vercel · Next.js</div>
+    <h3>yourhomerule.com</h3>
+    <p>address page · rule page · JSON API · alerts</p>
+    <span class="svc">Upstash Redis</span><span class="svc">Resend</span><span class="svc">MapLibre</span>
+  </div>
+
+  <!-- ===== step 1: the bet ===== -->
+  <div class="abs betline rise" data-only="1@0.8">
+    <p>The model reads each law once, into rule records.</p>
+    <p>Code decides coverage, for every address, on any date.</p>
+  </div>
+
+  <!-- ===== step 2: Jev answers, then the rule record builds up ===== -->
+  <div class="abs band" data-only="2@2.0-6.8">
+    <div class="card">
+      <h4>Jev · verification gate for this rule <code>out/audit.json</code></h4>
+      <div class="q-row" data-show="2@2.4"><span>Does the quote support the value?</span><b>supported</b><em>1.00</em></div>
+      <div class="q-row" data-show="2@3.4"><span>Which date does the rule start?</span><b>2026-03-01</b><em>1.00</em></div>
+      <div class="q-row" data-show="2@4.4"><span>What status does the text show? · Which government made it?</span><b>adopted · city</b><em>0.97 · 0.80</em></div>
+    </div>
+  </div>
+  <div class="abs band" data-only="2@6.6">
+    <div class="card" style="display:grid;grid-template-columns:520px 1fr;gap:22px">
+      <div>
+        <h4>Rule record <code>out/rules.json</code></h4>
+        <dl class="kv" style="margin:0">
+          <dt data-show="2@6.9">citation</dt><dd data-show="2@6.9">SF Rent Ordinance § 37.3</dd>
+          <dt data-show="2@7.4">key_value</dt><dd data-show="2@7.4">1.6%</dd>
+          <dt data-show="2@12.0">effective</dt><dd data-show="2@12.0">in force from 2026-03-01</dd>
+          <dt data-show="2@12.6">applies_if</dt><dd data-show="2@12.6">built ≤ 1979-06-13</dd>
+          <dt data-show="2@13.6">id</dt><dd data-show="2@13.6">CA-SAN-FRANCISCO-RENT-37.3</dd>
+        </dl>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center">
+        <div class="quote" data-show="2@7.9">“For rent-controlled units, the annual allowable increase amount effective March 1, 2026 through February 28, 2027 is 1.6%.”
+          <small><span class="ok" data-show="2@10.6">✓ found verbatim in source D080</span> · sf.gov · retrieved Oct 1, 2026</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== step 3: engine results ===== -->
+  <div class="abs band" data-only="3@1.6-6.4">
+    <div class="card">
+      <h4>Address record <code>out/addresses.resolved.json</code></h4>
+      <dl class="kv" style="grid-template-columns:190px 1fr">
+        <dt>3515 Fillmore St</dt><dd>legal city San Francisco · built 1926 → [1926-01-01, 1926-12-31] · 21 units</dd>
+        <dt data-show="3@3.0">471 Columbia Rd</dt><dd data-show="3@3.0">mailing city Dorchester → legal city <b>Boston</b> · 38 of 500 differ</dd>
+        <dt data-show="3@4.2">source</dt><dd data-show="3@4.2">per fact (e.g. DataSF parcel roll) · assumptions named</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="abs band" data-only="3@6.2">
+    <div class="card">
+      <h4>3515 Fillmore St · as of Oct 1, 2026 <code>outputs/lookups.json</code></h4>
+      <div class="res">
+        <span class="st g" data-show="3@7.0">applies</span><span data-show="3@7.0">SF Rent Ord. § 37.3 <small>— built 1926, before the June 13, 1979 cutoff</small></span>
+        <span class="st s" data-show="3@8.6">superseded</span><span data-show="3@8.6">Cal. Civ. Code § 1947.12 <small>— the stricter city rule governs here</small></span>
+        <span class="st a" data-show="3@10.4">unknown</span><span data-show="3@10.4">LAMC § 151.06 at 10635 Sherman Grove Ave <small>— built 1978, cutoff Oct 1, 1978: the year can't settle it</small></span>
+      </div>
+    </div>
+  </div>
+  <div class="abs" style="left:1176px;top:676px;width:300px;font-size:17px;color:var(--ink-2);line-height:1.35" data-only="3@14.0">
+    <b style="color:var(--ink)">Same input, same bytes.</b><br>make build twice → identical files
+  </div>
+
+  <!-- ===== step 4: change ===== -->
+  <div class="abs band" data-only="4@1.5-10.5">
+    <div class="card">
+      <h4>One diff, per address <code>out/changes.full.json</code></h4>
+      <div class="res" style="grid-template-columns:auto 1fr">
+        <span class="st s">before</span><span>327 Jackson St, Hoboken · N.J. Stat. § 56:9-23 <small>— as of Oct 1, 2026: not yet effective</small></span>
+        <span class="st g" data-show="4@3.4">after</span><span data-show="4@3.4">as of Jul 2, 2027: applies <small>— conflict with Hoboken's own ban stays flagged, not decided</small></span>
+      </div>
+      <div class="foot" data-show="4@8.4"><span>changes.json is computed by <b>extract/changes.py</b>; <b>tests/test_diff.py</b> checks it gives the same sets</span></div>
+    </div>
+  </div>
+  <div class="abs band" data-only="4@10.5">
+    <div class="card">
+      <h4>Change tests, affected addresses = expected sets <code>make eval</code></h4>
+      <div class="ttab">
+        <div data-show="4@11.0"><code>T1</code><b>250</b><small>CA rent-software ban takes effect</small></div>
+        <div data-show="4@11.4"><code>T2</code><b>90</b><small>Hoboken vs Jersey City bans</small></div>
+        <div data-show="4@11.8"><code>T3</code><b>140</b><small>NJ FAIR Act · + 90 conflict flags</small></div>
+        <div data-show="4@12.2"><code>T4</code><b>110</b><small>MA bills: pending, not law</small></div>
+        <div data-show="4@12.6"><code>T5</code><b>0</b><small>MA ballot question struck</small></div>
+        <div data-show="4@13.0"><code>T6</code> <span class="tbd">after hour 16</span><small>hour-16 ordinance</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== step 5: web (lighter detail) ===== -->
+  <div class="abs band" data-only="5@0.6">
+    <div class="card">
+      <h4>Website · same files, no database for the law <code>web/data/live/</code></h4>
+      <div class="grid2">
+        <div data-show="5@1.2"><code>/a/[id]</code> six questions: quote, date, source</div>
+        <div data-show="5@1.6"><code>Census</code> typed addresses outside the 500</div>
+        <div data-show="5@2.0"><code>/r/[id]</code> rule page with audit trail</div>
+        <div data-show="5@2.4"><code>MapLibre</code> OpenFreeMap tiles · city outline</div>
+        <div data-show="5@2.8"><code>/api/address/[id]</code> same answer as JSON</div>
+        <div data-show="5@3.2"><code>Google 3D</code> OSM building outline <span class="tbd">PR #82</span></div>
+        <div data-show="5@9.0"><code>alerts</code> double opt-in → Upstash Redis</div>
+        <div data-show="5@10.2"><code>Resend</code> confirmation + change email</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== step 6: responsible design (lighter detail) ===== -->
+  <div class="abs zone" style="left:271px;top:150px;width:413px;height:196px" data-only="6@0.4"></div>
+  <div class="abs zone-l" style="left:296px;top:334px" data-only="6@0.4">Model: reads and quotes</div>
+  <div class="abs band" data-only="6@1.0">
+    <div class="card">
+      <h4>Responsible design, built in</h4>
+      <div class="grid2" style="grid-template-columns:1fr 1fr">
+        <div data-show="6@1.2"><code>/r/[id]</code> model extracted │ code decided</div>
+        <div data-show="6@4.6"><code>audit/calls.jsonl</code> stage · model · hash · cost</div>
+        <div data-show="6@8.0"><code>conflict_flag</code> flagged, never decided</div>
+        <div data-show="6@10.4"><code>every view</code> as-of date · “Not legal advice”</div>
+      </div>
+      <div class="foot" data-show="6@5.6"><span style="font-family:var(--mono);font-size:14.5px">{"stage":"luna_extract","ref":"D080","model":"openai/gpt-6-luna","request_hash":"a2c6f827…","cost":0.00104}</span></div>
+    </div>
+  </div>
+
+  <!-- ===== step 7: scale + hour 16 (placeholders until the run) ===== -->
+  <div class="abs band" data-only="7@0.4">
+    <div class="term">
+      <div><span class="p">$</span> make ingest DOC=&lt;hour-16 file&gt; JUR="Cambridge, MA" ID=X002</div>
+      <div data-show="7@5.0"><span class="m">X002:</span> <span class="tbd">n rules · effective date</span> <span class="m">— same extraction, no code or prompt change</span></div>
+      <div data-show="7@8.0"><span class="g">T6</span> <span class="tbd">n affected addresses</span> <span class="m">· rehearsal on fictional X001: T6 45/45 in ~24 s</span></div>
+      <div data-show="7@10.0" class="m">new city = law texts + manifest rows + 1 entry in contracts/jurisdictions.json → make all</div>
+    </div>
+  </div>
+
+  <!-- ===== step 8: end card ===== -->
+  <div class="abs endc" data-only="8@0.1">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.5" fill="#2B3B4E"/><path d="M6.5 12.8 16 6.4l9.5 6.4" fill="none" stroke="#FDFCFA" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6.4v17.6M11 25h10" fill="none" stroke="#FDFCFA" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 12.8v4.6M25.5 12.8v4.6" fill="none" stroke="#FDFCFA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.6 17.6h5.8a2.9 2.9 0 0 1-5.8 0Z" fill="#FDFCFA" stroke="#FDFCFA" stroke-width="1" stroke-linejoin="round"/><path d="M22.6 17.6h5.8a2.9 2.9 0 0 1-5.8 0Z" fill="#FDFCFA" stroke="#FDFCFA" stroke-width="1" stroke-linejoin="round"/></svg>
+    <h2>HomeRule</h2>
+    <p>Housing law, quoted and dated, for your exact address.</p>
+    <p class="small">yourhomerule.com · Hack-Nation 7 · RealPage challenge · Not legal advice</p>
+  </div>
+
+  <!-- ===== captions, progress, helper ===== -->
+  <div class="abs caps"><div id="cap"></div></div>
+  <div class="abs prog" id="prog"></div>
+  <div class="abs help" id="help"></div>
+  <div id="tokens"></div>
+</div>
+
+<script>
+// Source of truth for words and timing: lab/tech-video/SCRIPT.md (copy changes here).
+const STEPS = [
+  {id:"hook",        dur:9.0,  nocap:true, cap:"A model has a training cutoff. A law has an effective date."},
+  {id:"bet",         dur:6.4,  cap:"So HomeRule reads the law once into rule records, and code decides coverage."},
+  {id:"extract",     dur:15.8, cap:"Jev, a decision model, answers bounded questions with a confidence: start date, status, level of government. Luna extracts the fields and a verbatim quote. Code checks every quote against the source and compiles a dated rule record."},
+  {id:"engine",      dur:16.6, cap:"The Census geocoder puts each address in its legal city, not its mailing city. The engine tests every rule against the building’s facts on an as-of date: applies, doesn’t, or unknown, naming the missing fact. Same input, same bytes."},
+  {id:"change",      dur:18.7, cap:"A change is a new date or a new document: the engine runs twice and diffs every address. The change log and the alert email read that diff, and a test holds changes.json to it. T1 to T5 match the expected sets."},
+  {id:"web",         dur:14.6, cap:"The website on Vercel reads the same files; there is no database for the law. Each address page answers six questions with quote, date and source. Alerts use double opt-in, Upstash Redis and Resend."},
+  {id:"responsible", dur:14.6, cap:"Each rule page shows what the model extracted and what code decided. Every model call is logged with its hash and cost. Conflicts are flagged, never decided, and every answer says: not legal advice."},
+  {id:"scale",       dur:13.0, cap:"A new city is its law texts and one list entry; there is no per-city code. A new ordinance goes in with one command: our rehearsal ran in 24 seconds."},
+  {id:"end",         dur:6.0,  cap:"Every number on screen is reproducible from the repo."},
+];
+
+// Data in flight. f = position on the rail (0 = first box, 1 = last), hold = seconds parked, move = seconds to get there.
+const TOKENS = [
+  {step:2, path:"railA", t0:0.3, kind:"", keys:[
+    {f:0,     label:"D080 · sf.gov rent notice", hold:0.9},
+    {f:0.368, move:0.8, label:"Jev · gate questions", hold:4.6},
+    {f:0.368, move:0,   label:"Luna · fields + quote", hold:3.3},
+    {f:0.740, move:0.8, label:"✓ quote verbatim", hold:2.1, kind:"ok"},
+    {f:1,     move:0.8, label:"CA-SAN-FRANCISCO-RENT-37.3", hold:99}]},
+  {step:3, path:"railB", t0:0.2, kind:"addr", keys:[
+    {f:0,     label:"3515 Fillmore St", hold:0.8},
+    {f:0.424, move:0.8, label:"Census → San Francisco", hold:1.4},
+    {f:1,     move:0.9, label:"built 1926 · 21 units", hold:99}]},
+  {step:3, path:"railB", t0:1.4, dy:40, kind:"addr", keys:[
+    {f:0,     label:"471 Columbia Rd, Dorchester", hold:0.8},
+    {f:0.424, move:0.8, label:"Census → Boston", hold:1.2},
+    {f:1,     move:0.9, label:"built 1930 · 7+ units", hold:99}]},
+  {step:7, path:"railA", t0:0.6, kind:"new", keys:[
+    {f:0,     label:"hour-16 ordinance", hold:1.0},
+    {f:0.368, move:0.8, label:"same Jev + Luna", hold:1.4},
+    {f:0.740, move:0.8, label:"same checks", hold:1.0},
+    {f:1,     move:0.8, label:"X002 rules", hold:99}]},
+];
+
+// ---------------- engine ----------------
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const stage = $("#stage");
+const P = new URLSearchParams(location.search);
+const idx = v => { if (v == null) return 0; const n = parseInt(v, 10); if (!isNaN(n)) return Math.max(0, Math.min(STEPS.length - 1, n)); const i = STEPS.findIndex(s => s.id === v); return i < 0 ? 0 : i; };
+let step = idx(P.get("step")), auto = P.get("auto") === "1", only = P.get("only") === "1";
+let frozen = null;                                  // fixed t (stills) or null
+if (P.has("t")) frozen = P.get("t") === "end" ? STEPS[step].dur : parseFloat(P.get("t")) || 0;
+if (P.get("captions") === "0") stage.classList.add("nocaps");
+let t0 = performance.now();
+
+function fit() {
+  const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+  stage.style.transform = `translate(${(innerWidth - 1920 * s) / 2}px,${(innerHeight - 1080 * s) / 2}px) scale(${s})`;
+}
+addEventListener("resize", fit); fit();
+
+// "S", "S@a", "S@a-b" lists
+function parse(spec) {
+  return (spec || "").trim().split(/\s+/).filter(Boolean).map(x => {
+    const [s, w] = x.split("@"); const [a, b] = (w || "0").split("-");
+    return {s: +s, a: +a, b: b === undefined ? Infinity : +b};
+  });
+}
+const els = $$("[data-show],[data-only],[data-hl],[data-lit]").map(el => ({
+  el, show: el.dataset.show && parse(el.dataset.show)[0], only: el.dataset.only && parse(el.dataset.only)[0],
+  hl: parse(el.dataset.hl), lit: parse(el.dataset.lit), dimmable: el.classList.contains("dimmable"),
+}));
+const inWin = (w, s, t) => w.s === s && t >= w.a && t < w.b;
+
+// tokens
+const tokLayer = $("#tokens");
+const paths = {railA: $("#railA"), railB: $("#railB")};
+const toks = TOKENS.map(k => { const d = document.createElement("div"); d.className = "tok"; d.style.opacity = 0; tokLayer.appendChild(d); return {...k, d}; });
+const ease = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+function tokState(k, t) {
+  let tt = t - k.t0; if (tt < 0) return null;
+  for (let i = 0; i < k.keys.length; i++) {
+    const key = k.keys[i];
+    if (i > 0 && key.move) {
+      if (tt < key.move) { const p = k.keys[i - 1]; return {f: p.f + (key.f - p.f) * ease(tt / key.move), label: p.label, kind: p.kind}; }
+      tt -= key.move;
+    }
+    if (tt < key.hold) return {f: key.f, label: key.label, kind: key.kind, fadeIn: i === 0 ? Math.min(1, tt / .35) : 1};
+    tt -= key.hold;
+  }
+  return null;
+}
+
+// captions: sentences timed by length over the step
+function capAt(s, t) {
+  const parts = STEPS[s].cap.split(/(?<=[.!?])\s+/), total = parts.reduce((n, p) => n + p.length, 0);
+  const span = Math.max(1, STEPS[s].dur - 0.7); let acc = 0.25;
+  for (const p of parts) { const d = span * p.length / total; if (t < acc + d) return p; acc += d; }
+  return parts[parts.length - 1];
+}
+
+// progress bar
+const prog = $("#prog");
+STEPS.forEach(s => { const i = document.createElement("i"); i.style.setProperty("--d", s.dur); i.appendChild(document.createElement("b")); prog.appendChild(i); });
+
+function render(s, t) {
+  t = Math.min(t, STEPS[s].dur - 0.001);             // hold the last frame inside every window
+  // visibility
+  let focus = false;
+  for (const o of els) {
+    let on = true;
+    if (o.only) on = inWin(o.only, s, t);
+    if (on && o.show) on = s > o.show.s || (s === o.show.s && t >= o.show.a);
+    o.on = on;
+    if (o.el.dataset.show || o.el.dataset.only) o.el.classList.toggle("on", on);
+    o.isHl = on && o.hl.some(w => inWin(w, s, t));
+    if (o.isHl) focus = true;
+    if (o.lit.length) o.el.classList.toggle("lit", on && o.lit.some(w => inWin(w, s, t)));
+  }
+  for (const o of els) {
+    o.el.classList.toggle("hl", o.isHl);
+    if (o.dimmable) o.el.classList.toggle("dim", focus && o.on && !o.isHl);
+  }
+  // tokens
+  for (const k of toks) {
+    const st = k.step === s ? tokState(k, t) : null;
+    if (!st) { k.d.style.opacity = 0; continue; }
+    const p = paths[k.path], L = p.getTotalLength(), pt = p.getPointAtLength(L * st.f);
+    k.d.textContent = st.label;
+    k.d.className = "tok " + (st.kind || k.kind || "");
+    k.d.style.left = pt.x + "px"; k.d.style.top = (pt.y + (k.dy || 0)) + "px";
+    k.d.style.opacity = st.fadeIn ?? 1;
+  }
+  // chrome
+  $("#cap").textContent = STEPS[s].nocap ? "" : capAt(s, t);
+  $("#cap").style.visibility = STEPS[s].nocap ? "hidden" : "";
+  $("#stepno").textContent = `${s + 1} / ${STEPS.length}`;
+  [...prog.children].forEach((el, i) => { el.classList.toggle("done", i < s); el.firstChild.style.width = i === s ? Math.min(100, 100 * t / STEPS[s].dur) + "%" : ""; });
+  $("#help").textContent = `${STEPS[s].id}  t=${t.toFixed(1)}/${STEPS[s].dur}s  ${auto ? "AUTO" : only ? "ONLY" : "manual"}\n→ next  ← back  A auto  R restart  C captions`;
+}
+
+function go(s) { step = Math.max(0, Math.min(STEPS.length - 1, s)); t0 = performance.now(); if (frozen !== null) frozen = 0; }
+function tick() {
+  let t = frozen !== null ? frozen : (performance.now() - t0) / 1000;
+  if (frozen === null && t >= STEPS[step].dur) {
+    if (auto && !only && step < STEPS.length - 1) { go(step + 1); t = 0; } else t = STEPS[step].dur;   // hold at the end
+  }
+  render(step, t);
+  requestAnimationFrame(tick);
+}
+
+addEventListener("keydown", e => {
+  if (["ArrowRight", " ", "PageDown"].includes(e.key)) { e.preventDefault(); go(step + 1); }
+  else if (["ArrowLeft", "PageUp"].includes(e.key)) go(step - 1);
+  else if (e.key === "Home") go(0);
+  else if (e.key === "r" || e.key === "R") go(step);
+  else if (e.key === "a" || e.key === "A") { auto = !auto; only = false; if (auto && (performance.now() - t0) / 1000 >= STEPS[step].dur) go(step + 1); }
+  else if (e.key === "c" || e.key === "C") stage.classList.toggle("nocaps");
+  else if (e.key === "h" || e.key === "H") stage.classList.toggle("showhelp");
+  else if (/^[1-9]$/.test(e.key)) go(+e.key - 1);
+});
+
+window.HR = {
+  steps: STEPS.map(s => ({id: s.id, dur: s.dur})),
+  seek(s, t) { step = idx(String(s)); frozen = t === "end" ? STEPS[step].dur : +t; render(step, frozen); },
+  play(s) { frozen = null; auto = true; only = false; go(s == null ? step : idx(String(s))); },
+};
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>
