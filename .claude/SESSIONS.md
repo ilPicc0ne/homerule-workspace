@@ -105,3 +105,21 @@
 
 **Next:**
 - Alert engine PR (deep-work), Dimitar's PR decisions + #81, style clip → full film, postal address, final scored build after hour 16.
+
+## 2026-10-04T10:30Z — Goals, verdicts, sunsets, 3D map, MCP live (address session, 03:15–12:30)
+
+**Decisions:**
+- MCP live with five task-shaped tools + v1 aliases; full website parity by shared builders — *why:* measured 7 → 1 call per question; cached tool lists broke old chats.
+- Google 3D map default on production behind a `Map · 3D` switch; OSM building only for sure matches, circle otherwise; camera at ground elevation — *why:* demo impact without lighting the wrong building.
+- Change verdicts ↑/↓ describe the rule; score postponed; rule end dates as change sources — *why:* responsible design; sunsets were missing.
+- Email redesign (#91) and verdict preview (#89) built as drafts; tech video handed to Dimitar (#93).
+- Neutral public repo `ilPicc0ne/demo-video-skill` (Gemini + ElevenLabs TTS) for a colleague, fresh history, privacy-scanned.
+
+**Surprises:**
+- Vercel blocked production deploys whose head commit is Dimitar's; zsh ate `^{tree}` and `$C:r`.
+- Map3D camera altitude is absolute: up to 654 m off on hills.
+- Claude treated an instruction field inside tool results as injection.
+- Auto mode blocked merges/production pushes until Silvan's explicit go; production pushes always need him.
+
+**Next:**
+- Hour-16 ingest, submission 15:00, data sync fix (banned "must" in A0008), open PR triage, geocoding after the hackathon.
