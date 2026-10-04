@@ -1,6 +1,6 @@
 # HomeRule architecture
 
-How HomeRule is built. What it must do, and why, is in [PRD.md](PRD.md); this file is the how. Status: Sun 04.10.2026, checked against `origin/main` (043672e) and the live site; describes what is built, with planned parts marked.
+How HomeRule is built. What it must do, and why, is in [PRD.md](PRD.md); this file is the how. Status: Sun 04.10.2026 ~08:15 CEST, checked against `origin/main` (66ad2d3), `origin/production` (f8c33fd) and the open PRs; describes what is on `main`. Parts only in an open PR are marked "(in PR #n)", planned parts "planned". Production is behind `main` by the 3D map (#82).
 
 > **Not legal advice.** HomeRule shows which published housing rules may apply to an address, with quotes and dates.
 
@@ -23,11 +23,11 @@ corpus (87 docs, manifest)          sample addresses (500, CSV)
                        │
           npm run sync: out/ + contracts/ → web/ (web/data/live/)
                        │
-          Web (Vercel, root web/): address page, change log, rule and
-          jurisdiction pages, JSON API, alerts (Upstash Redis + Resend)
+          Web (Vercel, root web/): address page (2D/3D map), change log,
+          rule and jurisdiction pages, JSON API, alerts (Upstash Redis + Resend)
 ```
 
-The engine is Python (`engine/`, `extract/`); the website and the address resolver are TypeScript (`web/`). No MCP server is built.
+The engine is Python (`engine/`, `extract/`); the website and the address resolver are TypeScript (`web/`). No MCP server is built yet; the plan is under [MCP route](#mcp-route-apimcp-planned-issue-23).
 
 Everything between the corpus and the outputs is one command: `make all`. Extraction results are cached, so a rebuild without new documents takes minutes.
 
@@ -41,7 +41,7 @@ Frozen before parallel work; changed only via PR with the other person tagged.
 | I2 | `out/rules.json` + `out/rules.compiled.json` | D → S | Schema-valid; `jurisdiction` = the list's `schema_name`; status mapped to the schema values (`enacted_not_effective` → `not_yet_effective`; repealed rules are left out of `rules.json`, since `failed` means a measure that never became law); effective date or null (two dates kept when sources disagree); verbatim quote |
 | I3 | `out/addresses.resolved.json` (type `ResolvedFile` in `web/lib/resolve/types.ts`) | S → engine, D eval | All 500; jurisdiction IDs + `stack`, tree, coords, facts as ranges, source + confidence per field, `review` flags |
 | I4 | Engine CLI `make build AS_OF=<date>` (`python -m engine.build --as-of <date>`) | S → eval, web | Deterministic (byte-identical reruns); reads only I2, I3, I8; writes `outputs/lookups.json` and `outputs/changes.json` in the guide's shapes plus `out/lookups.full.json` for the web (shape in C) |
-| I5 | `/api/address/<id>` (built, `web/app/api/address/[id]/route.ts`) | S → external readers | Same results as the page (from `web/data/live/`): `not_legal_advice: true`, `disclaimer`, `data_source`, `as_of`, `as_of_dates` (one today), `address` (jurisdictions, facts, coords), `results` [{`rule_id`, category, result, confidence, explanation, `what_next`, `rule`}]. Not the `lookups.json` shape |
+| I5 | `/api/address/<id>` (built, `web/app/api/address/[id]/route.ts`) | S → external readers | Same results as the page (from `web/data/live/`): `not_legal_advice: true`, `disclaimer`, `data_source`, `as_of`, `as_of_dates` (one today), `address` (jurisdictions, facts, coords), `results` [{`rule_id`, category, result, confidence, explanation, `what_next`, `rule`}]. Not the `lookups.json` shape. `rule.effective_until` (in PR #71) |
 | I6 | Per-address diff | S → changes, change log, email | One computation feeds all three |
 | I8 | `out/findings.json`: what is not a rule — `barred_by_law` (e.g. MA c.40P), `measure_failed` (e.g. IP 25-21), `not_in_corpus` (e.g. Hoboken ch. 158: manifest link, no text) per jurisdiction × category, with quote where one exists; `open_question` (the guide's known open questions, e.g. Berkeley's two published effective dates: our rule and its source next to each competing claim and its source) | D → S | Never emitted as rules; the page shows them ("No rent cap: barred by …") and they fill the 13 × 6 grid |
 | I7 | `contracts/facts.json`: building-fact names, types, operators, three-valued semantics, special nodes (`age_years`, `ref`, `unparsed`) | S → D | Coverage conditions use only these names; anything else becomes `unparsed` (unknown) or a tenant condition |
@@ -54,15 +54,17 @@ make resolve   data/sample_addresses.csv → out/addresses.resolved.json (offlin
 make build     out/* → outputs/lookups.json, outputs/changes.json                                     (Python, S)
                      + out/lookups.full.json, out/changes.full.json, out/build_summary.json
 npm run sync   contracts/*.json, out/addresses.resolved.json, out/changes.full.json → web/contracts/, web/data/
+               (jurisdictions.json, addresses.resolved.json, changes.full.json)
                out/{lookups.full,rules,rules.compiled,audit}.json → web/data/live/ (rules, findings, addresses,
                lookups, excerpts, meta)                                                               (web/scripts/sync-contracts.ts, build-live.ts)
 next build     web/ only; reads web/data/live/ and web/data/changes.full.json at build time
 ```
 
-- **`out/`** = everything the pipeline produces, including the web's richer files (`*.full.json`, `audit.json`). **`outputs/`** = the scored files only, committed from a build on `main`. Today `outputs/` holds `lookups.json` and `changes.json`; `rules.json` is still only in `out/`.
+- **`out/`** = everything the pipeline produces, including the web's richer files (`*.full.json`, `audit.json`). **`outputs/`** = the scored files only, committed from a build on `main`. All three are there; `outputs/rules.json` is a copy of `out/rules.json` (#74) until the final build after hour 16.
+- **`web/data/`** holds: `live/` (generated, below), `demo/` (old hand-made set), `jurisdictions.json`, `addresses.resolved.json`, `changes.full.json` (synced), `city-outlines.geojson` (Census Cartographic Boundary Files 2024, Places 1:500k, `web/scripts/build-city-outlines.sh`) and `building-footprints.json` (OSM via Overpass, `web/scripts/build-building-footprints.ts`, on main only). The last two are committed, built by hand, not by `npm run sync`.
 - **`web/data/live/`** is generated, never hand-edited; `web/tests/contracts-sync.test.ts` fails when a copy drifts. `excerpts.json` keeps only ~320 characters around each quote (the corpus licence is unclear, so no full source texts in `web/`). `web/data/demo/` is the older hand-prepared data set, served only when `NEXT_PUBLIC_DATA_SOURCE=demo`; the live site serves `live`.
 - `npm run sync` runs before `next dev` and `next build`. On Vercel only `web/` is uploaded, so the committed copies in `web/` are what ships: **a pipeline change reaches the site only after `npm run sync` and a commit of the synced files.**
-- `web/data/live/meta.json` carries one as-of date (2026-10-01). There is no multi-date build yet, so no date picker or slider.
+- `web/data/live/meta.json` carries one as-of date (2026-10-01). There is no multi-date build yet, so no date picker or slider. As-of change sources in `changes.full.json` on `main`: `asof:2025-12-31..2026-01-02` (T1) and `asof:2026-10-01..2027-07-02` (T3/J3). The `until` (sunset/repeal) sources `asof:2029-12-31..2030-01-02`, `asof:2024-10-07..2024-10-09` and `asof:2017-09-24..2017-09-26` come with PR #71, not merged.
 
 ## Shared vocabulary: the jurisdiction list
 
@@ -221,6 +223,13 @@ A change is either a new document (ingest) or a second date (as-of query).
   - the alert email (preview on the change log; sending via the alerts dispatch below).
 - Change tests T1–T5 come from `dev/change_tests.json`; T6 is the hour-16 ordinance, run through the same ingest.
 
+**In open PRs (not on `main`):**
+
+- **Protections ending (in PR #71, issue #69):** `make build` adds one as-of source per distinct `effective.until` date (one day before → one day after) through the same diff; each source carries `ending_rule_ids`, each change `effective_until`.
+- **Change verdict (in PR #72, needs #59):** `web/lib/changes/impact.ts` maps #59's per-change `renter_impact.verdict` (better / worse / unclear) to a badge in history, change log and email; it never recomputes it.
+- **"Ends: …" in history + email (in PR #77, stacked on #72 + #71):** `web/lib/changes/ends.ts`.
+- **Renter impact per rule and score (in PR #59, stacked on #53):** `extract/impact.py` writes `renter_impact` into `rules.compiled.json`; `engine/score.py` (`make score` → `out/scores.json`).
+
 **Built (#45, issue #11; restyled in #56):**
 
 - `engine/diff.py` is the one diff (I6). It compares two engine evaluations (the same rows as `lookups.json`) per address by `team_rule_id`: added, removed, or changed (result or conflict flag). Each change carries old → new result and explanation, both conflict flags, and the rule's title, citation, verbatim quote, effective date and official source.
@@ -250,7 +259,7 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 
 - **Hosting:** Vercel (Next.js 16), project `homerule`, Root Directory `web/`, domains `yourhomerule.com` and `www.yourhomerule.com`, phone-first.
 - **Previews:** every PR branch and `main` get a preview deployment. Pushing to `main` does **not** change the live site.
-- **Production only via the `production` branch** (Vercel production branch = `production`): going live means pushing (fast-forwarding) `production` to the commit wanted. Today `production` = 8e7c326 (#70), same as `main`.
+- **Production only via the `production` branch** (Vercel production branch = `production`): going live means pushing (fast-forwarding) `production` to the commit wanted. Today `production` = f8c33fd (#84); `main` (66ad2d3) is ahead by #82 (3D map, building outlines) and docs.
 - **Hour-16 update:** ingest → `make build` → `npm run sync` → commit → merge to `main` → push `production` → wait for Ready (~1 min) → `make alert SOURCE=…`. The change data is imported at build time, so only a deploy that contains the new source can show or send it. (Vercel Blob as a fallback store was considered, not built.)
 
 ### Data: files in git, no database for law
@@ -260,7 +269,7 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 ### Routes (all built unless marked)
 
 - `/`: landing page, search box (addresses, cities, neighbourhoods, counties, states via `lib/demo-search.ts`), eight example addresses.
-- `/a/[id]`: the address page (v3, one view), top to bottom: prototype banner, site header (data source, as-of date), sticky bar (search + "Get alerts"), next change, "Law from" State › County › City with the map and building facts, at a glance, six accordion tiles (contact, checklist, landlord email, "Show the law"), coming up, alerts + "See an example alert" overlay, how it works.
+- `/a/[id]`: the address page (v3, one view), top to bottom: prototype banner, site header (data source, as-of date), sticky bar (search + "Get alerts"), next change, "Law from" State › County › City with the map (MapLibre 2D; `Map · 3D` switch with Google 3D and the OSM building outline on main only, `web/components/address-map-3d.tsx`, `web/lib/map-view.ts`, `web/lib/footprint.ts`) and building facts, at a glance, six accordion tiles (contact, checklist, landlord email, "Show the law"), coming up, alerts + "See an example alert" overlay, how it works.
 - `/a/at?q=`: the same page for a typed address outside the 500, resolved via Census; building facts unknown.
 - `/changes/[id]`: change log old → new from `web/data/changes.full.json`, with the alert email preview (sandboxed iframe, "nothing is sent").
 - `/r/[id]`: rule page: quote in a source excerpt, official link, dates, conditions, audit trail (model extracted vs code decided), impact dot map + address list for one as-of date.
@@ -268,12 +277,14 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 - `/where?q=`: the jurisdiction tree for any US address or place (server-rendered GET form; client-side autocomplete over sample addresses and places).
 - `/api/resolve?q=`: free text → `{kind: address | place | ambiguous | not_found | unavailable, tree, coverage, notes, …}`; 404 not found, 503 when Census is down.
 - `/api/address/[id]`: I5.
-- Alerts: `POST /api/subscribe`, `/confirm` (page with a POST button) + `POST /api/confirm`, `/unsubscribe` (page) + `POST /api/unsubscribe` (RFC 8058 one-click), `/alerts/confirmed|unsubscribed|invalid`, `POST /api/alerts/dispatch`.
-- Not built: `/api/mcp`, an as-of picker.
+- Alerts: `POST /api/subscribe`, `/confirm` (page with a POST button) + `POST /api/confirm`, `/unsubscribe` (page) + `POST /api/unsubscribe` (RFC 8058 one-click), `/alerts/confirmed|unsubscribed|invalid` (one route, `web/app/alerts/[state]`), `POST /api/alerts/dispatch`, `GET /api/alerts/preview?address=<id>` (the simulated alert email as JSON, nothing sent).
+- Not built: `/api/mcp` (planned, below), an as-of picker, `/api/jurisdiction/[id]`.
 - **Contacts:** `contracts/contacts.json` (36 entries with source and retrieval date) synced to `web/contracts/contacts.json`; each tile picks the entry for its jurisdiction and topic.
 
 ### Email and alerts
 
+- **Email design:** a redesign of the alert and confirm emails (address hero, subject with what and when, dated change cards) is in draft PR #91 (stacked on #77).
+- **Alert engine (in PR #90, refs #83):** lifecycle events per subscribed address (discovered, takes effect, ends, correction), daily digest, per-rule approval gate, dry-run Vercel Cron; computed from the build-time data, no engine call. Not merged, no env var set.
 - **Resend** (EU region), domain `yourhomerule.com` verified (DKIM on `resend._domainkey`, SPF and bounce MX on `send.`, DMARC `p=none`); sender `HomeRule <alerts@yourhomerule.com>`. HTML + text part, `List-Unsubscribe` + `List-Unsubscribe-Post` headers, one shared layout (`web/lib/alerts/layout.ts`), prototype notice + postal address in every footer. The first test landed in Outlook spam (new domain, no reputation) [verified once]; warm-up not documented as done.
 - **Signup (double opt-in):** form → `POST /api/subscribe` (5 per IP per 10 min, same answer whether or not the address is already subscribed) → `alerts:pending:<token>` (48 h) → confirmation email → `/confirm` POST → `alerts:sub:<address_id>`. Scanners only prefetch GET, so nothing confirms on GET.
 - **Closed test:** while `POSTAL_ADDRESS` in `web/lib/alerts/disclaimer.ts` contains "PLACEHOLDER", confirmation mails go only to emails in `alerts:allowed` and real alerts only to subscribers flagged `allowed`.
@@ -305,10 +316,33 @@ Requirements: PRD [the address page](PRD.md#the-product-one-address-page), [prio
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` (+ `KV_REST_API_READ_ONLY_TOKEN`, `KV_URL`, `REDIS_URL` from the integration) | Vercel production, preview, development; `vercel env pull` → `.env.local` | `storeFromEnv()` |
 | `NEXT_PUBLIC_DATA_SOURCE` | optional | `live` (default) or `demo` |
 | `OPENROUTER_API_KEY` | `.env.local` only | Extraction and `make demo-change` (not needed on Vercel) |
-| `NEXT_PUBLIC_DEFAULT_MAP_VIEW` | Vercel preview `3d` (set 04.10.2026); production decided `3d`, not yet set (unset → `map`) | `web/lib/map-view.ts`: the first-time view on the address page (`map` or `3d`); a visitor's own switch choice and `?map=` win. With `3d`, every address page view is a Google map load (quota 500/day, then the MapLibre fallback) |
+| `NEXT_PUBLIC_DEFAULT_MAP_VIEW` | Vercel production + preview (listed by `vercel env ls` 04.10. ~08:15; decided `3d` for both; unset → `map`). Takes effect on production only once `production` contains #82 | `web/lib/map-view.ts`: the first-time view on the address page (`map` or `3d`); a visitor's own switch choice and `?map=` win. With `3d`, every address page view is a Google map load (quota 500/day, then the MapLibre fallback) |
 | `NEXT_PUBLIC_GOOGLE_MAPS_KEY` | Vercel production, preview, development; `vercel env pull` → `.env.local` | `web/components/address-map-3d.tsx` (3D map view, loaded only after the visitor picks 3D). Browser key `homerule-maps-browser`: Maps JavaScript API only; referrers `yourhomerule.com/*`, `*.yourhomerule.com/*`, `*.vercel.app/*`, `localhost:*/*`, `127.0.0.1:*/*` (explicit entries since 04.10.2026: `https://yourhomerule.com/*`, `https://www.yourhomerule.com/*`, `https://*.yourhomerule.com/*`, `https://*.vercel.app/*`, `http://localhost:3000/*`, `http://localhost:3064/*`, `http://localhost/*`, `http://127.0.0.1:3000/*`, `http://127.0.0.1:3064/*`; the earlier `localhost:*/*` wildcard was rejected); quota 500 map loads/day for 3D and 500 for 2D. Billed as Dynamic Maps (Essentials, US$7 per 1,000 loads after 10,000 free per month) [assumed: Google's usage page says 3D map loads count under Dynamic Maps; the price list has no separate 3D SKU] |
 
-There is no `DEMO_RECIPIENTS` variable. `scripts/alerts-env.sh` is meant to set `DEMO_TOKEN` and `ALERTS_SITE_URL` for preview too; on 04.10.2026 ~05:00 Vercel listed them for production only, so dispatch works only on production.
+There is no `DEMO_RECIPIENTS` variable. `DEMO_INBOX` lives only in `.env.local` (read by `web/scripts/alerts.ts`). `scripts/alerts-env.sh` is meant to set `DEMO_TOKEN` and `ALERTS_SITE_URL` for preview too; on 04.10.2026 ~08:15 Vercel still listed them for production only, so dispatch works only on production.
+
+### External services
+
+| Service | Used for | Where in code | Key |
+|---|---|---|---|
+| US Census Geocoder (geographies) | Address → coordinates, place, county subdivision; batch run cached in `engine/cache/census/`, live for typed addresses | `web/lib/resolve/census.ts` | none |
+| OpenRouter (LLM provider) | Extraction: Luna = `openai/gpt-6-luna` (structured extraction), Jev = `typesafe/jev-1.13` (bounded decisions) | `extract/llm.py`, `extract/config.py` | `OPENROUTER_API_KEY` (`.env.local` only) |
+| Vercel | Hosting (Next.js 16), previews per branch, production from branch `production` | `web/` | — |
+| Upstash Redis (Vercel Marketplace) | Subscriptions only | `web/lib/alerts/store.ts` | `KV_REST_API_URL`, `KV_REST_API_TOKEN` |
+| Resend | Confirmation and alert emails | `web/lib/alerts/mail.ts` | `RESEND_API_KEY` |
+| MapLibre GL + OpenFreeMap tiles | 2D map with city outline | `web/components/address-map-gl.tsx` | none |
+| Census Cartographic Boundary Files 2024 | City outlines (`web/data/city-outlines.geojson`), built once | `web/scripts/build-city-outlines.sh` | none |
+| Google Maps JavaScript API (`Map3DElement`) | 3D map view (on main only) | `web/components/address-map-3d.tsx` | `NEXT_PUBLIC_GOOGLE_MAPS_KEY` |
+| OpenStreetMap via Overpass API | Building footprints (`web/data/building-footprints.json`), built once, ODbL attribution on the map (on main only) | `web/scripts/build-building-footprints.ts` | none |
+
+### MCP route (/api/mcp, planned, issue #23)
+
+Not built (no code, `/api/mcp` is 404). The plan as it stands:
+
+- **Transport:** `mcp-handler` v2 on a Next.js route at `/api/mcp`, Streamable HTTP. No auth, read-only, no writes to Redis, no email.
+- **Tools, read-only, over the same code and data as the site:** resolve free text (address, city, neighbourhood, county, state) through `resolveQuery` (`web/lib/resolve/resolve.ts`, the function behind `/api/resolve`); the rules per jurisdiction and topic from the synced `rules.json` (`web/data/live/`); the per-address results as `/api/address/[id]` returns them.
+- **Every result** carries `as_of` and `not_legal_advice: true` (plus the disclaimer text), like I5. No verdicts ("compliant", "illegal"); unknown stays unknown.
+- Owner D (issue #23); ranked first in the PRD's What's next.
 
 ## Audit and evaluation
 
@@ -353,7 +387,8 @@ Only the Census geocoder is P0. Nothing below runs before the P0 items are green
 | HUD LIHTC + Multifamily Assisted | Subsidised flag; 9 sample matches | ArcGIS REST, no key | 1 h |
 | Boston parcels with income-restricted units | Subsidised flag + units, ~15 Boston rows | ArcGIS, no key | 1 h |
 | Cambridge `residentialexemption`, SF `homeowner_exemption_value` | Owner-occupied proxy (note only) | Socrata, no key | 1 h |
-| TIGER/Line 2025 places | Offline point-in-city check; city outline | Download (1–10 MB per state) | 1 h |
+| Census Cartographic Boundary Files 2024 places (from TIGER) | City outline (**used**, `web/data/city-outlines.geojson`); offline point-in-city check not built | Download | done |
+| OpenStreetMap building footprints (Overpass) | Building outline on the map (**used**, on main only); never a building fact | Overpass API, ODbL | done |
 | MassGIS L3 parcels | Boston year built + units | Download, CC-BY | 2–3 h |
 | SanGIS parcels | San Diego units, maybe year | Download after disclaimer | 2–3 h |
 | LegiScan | Bill status (MA S.2983/H.5222) | Free key | 1 h |
