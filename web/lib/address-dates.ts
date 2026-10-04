@@ -1,4 +1,6 @@
-import type { Address, Dataset } from "./types.ts";
+import { addressPageData } from "./address-page-data.ts";
+import type { TimelineEvent } from "./address-view.ts";
+import type { Address, Dataset, Result } from "./types.ts";
 
 export const MIN_DATE = "1900-01-01";
 export const MAX_DATE = "2100-12-31";
@@ -10,16 +12,12 @@ export function requestedDate(value: string | string[] | null | undefined, fallb
   if (value === undefined || value === null) return fallback;
   return typeof value === "string" && validAsOf(value) ? value : null;
 }
-export const dateDay = (date: string) => Date.parse(date) / 86400000;
-export const dayDate = (day: number) => new Date(day * 86400000).toISOString().slice(0, 10);
-export type DateControls = { selected: string; baseline: string; retrieved: string; events: string[] };
-export function addressDates(data: Dataset, address: Address, selected: string): DateControls {
-  const stack = new Set(Object.values(address.jurisdictions));
-  const events = new Set<string>();
-  for (const r of data.rules.filter(r => stack.has(r.jurisdiction_id))) {
-    for (const d of [r.effective_date, r.effective_until, ...(r.status_history ?? []).map(h => h.from)])
-      if (d && validAsOf(d)) events.add(d);
-  }
+export type DateControls = { selected: string; baseline: string; retrieved: string; timeline: TimelineEvent[] };
+/** Pin the navigation to the existing dataset timeline so dates never disappear after selection. */
+export function addressDates(data: Dataset, address: Address, selected: string,
+  options: { typed?: boolean; results?: Result[] } = {}): DateControls {
+  const results = options.results ?? data.lookups[data.meta.default_as_of]?.[address.address_id] ?? [];
+  const { view } = addressPageData(data, address, results, { typed: options.typed });
   return { selected, baseline: data.meta.default_as_of, retrieved: data.meta.retrieved_at,
-    events: [...events].sort() };
+    timeline: [...view.future, ...view.past] };
 }

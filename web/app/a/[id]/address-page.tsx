@@ -1,10 +1,9 @@
 "use client";
 
-import AddressDateControl from "@/components/address-date-control";
 import type { DateControls } from "@/lib/address-dates";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useId, useMemo, useRef, useState, useTransition, type KeyboardEvent, type ReactNode } from "react";
 import AddressMap from "@/components/address-map";
 import BrandMark from "@/components/brand-mark";
 import AlertForm from "@/components/alerts/alert-form";
@@ -14,6 +13,7 @@ import ExampleAlert from "@/components/alerts/example-alert";
 import type { MapProps } from "@/components/address-map-gl";
 import { glanceSummary, TILE_STATUS_WORDS, type AddressView, type Helper, type RuleRow, type Tile, type TileStatus, type TimelineEvent } from "@/lib/address-view";
 import { DATA_SOURCE } from "@/lib/config";
+import { formatDate } from "@/lib/format";
 import { GROUPS, TOPICS } from "@/lib/plain";
 import { Ic, Sprite } from "./sprite";
 import { VerdictBadge } from "./verdict-badge";
@@ -443,11 +443,21 @@ function TileView({ t, open, onToggle, addressId }: { t: Tile; open: boolean; on
 const topicTitle = (id: string) => TOPICS.find((t) => t.id === id)?.title ?? "";
 const topicIcon = (id: string) => TOPICS.find((t) => t.id === id)?.icon ?? "i-info";
 
-function Ev({ e, cls, log }: { e: TimelineEvent; cls: string; log: PageProps["changeLog"] }) {
+type DateNavigation = { selected: string; pending: boolean; go: (date: string) => void };
+function TimelineDate({ date, label, nav }: { date: string; label: string; nav: DateNavigation }) {
+  const selected = nav.selected === date;
+  return <button type="button" className={`timeline-date${selected ? " selected" : ""}`}
+    aria-label={`View rules as of ${formatDate(date)}`} aria-pressed={selected}
+    aria-disabled={nav.pending} onClick={() => { if (!nav.pending) nav.go(date); }}>
+    <span>{label}</span><span className="timeline-date-action">{selected ? "✓ Selected" : "View rules →"}</span>
+  </button>;
+}
+
+function Ev({ e, cls, log, nav }: { e: TimelineEvent; cls: string; log: PageProps["changeLog"]; nav?: DateNavigation }) {
   const linked = log?.rules.includes(e.ruleId);
   return (
-    <li className={`ev ${cls}`}>
-      <p className="ev-d">{e.dateText}</p>
+    <li className={`ev ${cls}${nav?.selected === e.date ? " is-selected" : ""}`}>
+      <p className="ev-d">{nav ? <TimelineDate date={e.date} label={e.dateText} nav={nav} /> : e.dateText}</p>
       <p className="ev-tp">
         <Ic id={topicIcon(e.topic)} />
         {topicTitle(e.topic)}
@@ -465,13 +475,32 @@ function Ev({ e, cls, log }: { e: TimelineEvent; cls: string; log: PageProps["ch
   );
 }
 
-function Ahead({ id, v, onAlerts, log }: { id: string; v: AddressView; onAlerts: () => void; log: PageProps["changeLog"] }) {
+function Ahead({ id, v, onAlerts, log, dates }: { id: string; v: AddressView; onAlerts: () => void; log: PageProps["changeLog"]; dates?: DateControls }) {
+  const router = useRouter();
+  const path = usePathname();
+  const params = useSearchParams();
+  const [pending, startTransition] = useTransition();
+  const [target, setTarget] = useState(v.asOf);
+  const nav: DateNavigation | undefined = dates ? { selected: v.asOf, pending, go: date => {
+    setTarget(date);
+    const query = new URLSearchParams(params.toString());
+    query.set("as_of", date);
+    startTransition(() => {
+      if (date === v.asOf) router.refresh();
+      else router.push(`${path}?${query}`, { scroll: false });
+    });
+  } } : undefined;
+  const future = dates ? dates.timeline.filter(e => e.date > dates.baseline) : v.future;
+  const past = dates ? dates.timeline.filter(e => e.date <= dates.baseline) : v.past;
   return (
     <>
       <h2 className="sec-h" id="h-ahead">
-        Coming up
+        {dates ? "Changes over time" : "Coming up"}
       </h2>
-      <p className="sec-sub">Dated changes for this address, and what changed in the last year.</p>
+      <p className="sec-sub">{dates ? "Select a date to see all six answers as they stood then." : "Dated changes for this address, and what changed in the last year."}</p>
+      {dates && <p className="timeline-status" role="status" aria-live="polite">{pending
+        ? `Loading ${formatDate(target)}… Answers still show ${v.asOfText}.`
+        : `Showing rules as of ${v.asOfText}.`}</p>}
       <p className="ahead-alert">
         <button type="button" className="linkbtn" onClick={onAlerts}>
           <Ic id="i-bell" />
@@ -508,24 +537,27 @@ function Ahead({ id, v, onAlerts, log }: { id: string; v: AddressView; onAlerts:
           </ul>
         </div>
       )}
-      <ol className="tl">
-        {v.future.length ? (
-          v.future.map((e) => <Ev key={e.date + e.title} e={e} cls="future" log={log} />)
+      <ol className={`tl${dates ? " interactive" : ""}`} aria-busy={pending}>
+        {dates && future.length > 0 && <li className="tl-lab">Scheduled changes</li>}
+        {future.length ? (
+          future.map((e) => <Ev key={e.date + e.title} e={e} cls="future" log={log} nav={nav} />)
         ) : (
           <li className="ev nodate">
             <p className="ev-t">Nothing with a date yet</p>
-            <p className="ev-b">No change is scheduled for this address as of {v.asOfText}.</p>
+            <p className="ev-b">No scheduled changes in the dataset for this address.</p>
           </li>
         )}
-        <li className="now">
-          <span className="today-pill">Selected date</span>
-          <span className="today-d">{v.asOfText}</span>
+        <li className={`now${dates && dates.baseline !== v.asOf ? " not-selected" : ""}`}>
+          {dates && nav ? <TimelineDate date={dates.baseline} label={`Dataset date · ${formatDate(dates.baseline)}`} nav={nav} /> : <>
+            <span className="today-pill">Selected date</span><span className="today-d">{v.asOfText}</span>
+          </>}
         </li>
-        {v.past.length > 0 && <li className="tl-lab">Recently changed</li>}
-        {v.past.map((e) => (
-          <Ev key={e.date + e.title} e={e} cls="past" log={log} />
+        {past.length > 0 && <li className="tl-lab">Earlier changes</li>}
+        {past.map((e) => (
+          <Ev key={e.date + e.title} e={e} cls="past" log={log} nav={nav} />
         ))}
       </ol>
+      {dates && <p className="timeline-limits">Dataset retrieved {formatDate(dates.retrieved)}. Future dates use scheduled changes and the same building facts. Later amendments may be missing.</p>}
       {log && (
         <p className="ahead-log">
           <Link className="src" href={log.href}>
@@ -603,7 +635,7 @@ export default function AddressPageView(p: PageProps) {
             </p>
           </div>
         )}
-        <div className={`wrap page${p.dateControls ? " has-date-control" : ""}`}>
+        <div className="wrap page">
           <section className="hero" aria-labelledby="h-addr">
             <h1 className="addr" id="h-addr">
               {v.street}
@@ -657,10 +689,6 @@ export default function AddressPageView(p: PageProps) {
             <WorksWith className="hero-ww" />
           </section>
 
-          {p.dateControls && <div className="date-control-row">
-            <AddressDateControl key={p.id} config={p.dateControls} />
-            {p.snapshotFallback && <p role="note">Live calculation is unavailable. Showing the saved answers for exactly {v.asOfText}.</p>}
-          </div>}
           <section className="glance" aria-labelledby="h-glance">
             <div className="glance-sum">
               <h2 className="glance-h" id="h-glance">
@@ -711,6 +739,7 @@ export default function AddressPageView(p: PageProps) {
             <h2 className="sec-h" id="h-today">
               In effect on {v.asOfText}
             </h2>
+            {p.snapshotFallback && <p role="note">Live calculation is unavailable. Showing the saved answers for exactly {v.asOfText}.</p>}
             <ul className="trust" aria-label="About these answers">
               <li>
                 <Ic id="i-quote" />
@@ -742,7 +771,7 @@ export default function AddressPageView(p: PageProps) {
           </section>
 
           <section className="ahead" aria-labelledby="h-ahead">
-            <Ahead id={p.id} v={v} onAlerts={openAlerts} log={p.changeLog} />
+            <Ahead id={p.id} v={v} onAlerts={openAlerts} log={p.changeLog} dates={p.dateControls} />
           </section>
         </div>
       </main>

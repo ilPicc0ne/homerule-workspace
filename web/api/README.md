@@ -91,7 +91,7 @@ Vercel cold-start latency measurement.
 
 The address API and both address page routes now use the live evaluator at the requested date.
 Sample pages send their original I3 record; typed pages still send unknown building facts.
-The default date is the dataset date. Select another using the slider, date form or change shortcuts.
+The default date is the dataset date. Select a known change by clicking its date in the existing timeline; the dataset-date marker takes you back. The UI has no free-date picker.
 Example: `/api/address/A0256?as_of=2027-07-02` returns `as_of: 2027-07-02`,
 `evaluation: live` and NJ-ALG-56:9-23 as `applies`.
 

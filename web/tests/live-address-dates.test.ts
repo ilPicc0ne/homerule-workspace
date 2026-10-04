@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { liveAddressPayload, evaluateSample } from "../lib/live-address.ts";
 import { addressPageData } from "../lib/address-page-data.ts";
-import { addressDates, validAsOf, requestedDate, dateDay, dayDate } from "../lib/address-dates.ts";
+import { addressDates, validAsOf, requestedDate } from "../lib/address-dates.ts";
 import { evaluateRecord } from "../lib/live-engine.ts";
 import type { Dataset } from "../lib/types.ts";
 const read = (name: string) => JSON.parse(readFileSync(new URL(`../data/live/${name}.json`, import.meta.url), "utf8"));
@@ -22,9 +22,9 @@ const engineFetch: typeof fetch = async (_url, init) => {
 };
 const options = { env, fetch: engineFetch };
 
-test("real calendar dates, leap days and UTC slider round trips", () => {
+test("real calendar dates and leap days", () => {
   for (const d of ["2027-07-02", "2028-02-29", "1900-01-01", "2100-12-31"]) {
-    assert.equal(validAsOf(d), true); assert.equal(dayDate(dateDay(d)), d);
+    assert.equal(validAsOf(d), true);
   }
   for (const d of ["2027-02-29", "2026-04-31", "2026-13-01", "2026-1-1", "", "0000-01-01", "2101-01-01"]) assert.equal(validAsOf(d), false);
   assert.equal(requestedDate(["2026-01-01"], "2026-10-01"), null);
@@ -53,7 +53,7 @@ test("past CA answers and page timeline follow requested date without changing s
   const {view} = addressPageData(data, address, evaluated!.results, {asOf:evaluated!.asOf});
   assert.equal(view.asOf, "2025-12-31");
   assert.ok(view.future.some(e => e.ruleId === "CA-ALG-16729"));
-  assert.ok(addressDates(data, address, view.asOf).events.includes("2026-01-01"));
+  assert.ok(addressDates(data, address, view.asOf).timeline.some(e => e.date === "2026-01-01"));
   assert.equal(JSON.stringify(data), original);
 });
 
@@ -79,4 +79,17 @@ test("sample request preserves original I3 facts, provenance and assumptions", a
 test("valid empty engine result is distinct from engine failure for arbitrary dates", async () => {
   const result = await evaluateRecord({}, data.rules, "2025-12-31", {env, fetch: async () => Response.json({...fixtures["2025-12-31"], results:[]})});
   assert.deepEqual(result?.results, []);
+});
+
+
+test("timeline navigation stays anchored to known changes after moving forward or backward", () => {
+  const address = data.addresses.find(a => a.address_id === "A0256")!;
+  const baseline = addressDates(data, address, "2026-10-01");
+  for (const selected of ["2027-07-01", "2026-05-01", "2030-01-01"]) {
+    const next = addressDates(data, address, selected);
+    assert.deepEqual(next.timeline, baseline.timeline);
+    assert.equal(next.baseline, "2026-10-01");
+  }
+  assert.ok(baseline.timeline.some(e => e.date === "2027-07-01"));
+  assert.ok(baseline.timeline.some(e => e.date === "2026-05-01"));
 });

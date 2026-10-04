@@ -44,11 +44,11 @@ export default async function TypedAddressPage(props: PageProps<"/a/at">) {
   const t = typedAddress(r, data.rules, q);
   if (!t) redirect(`/where?q=${encodeURIComponent(q)}`);
   const asOf = requestedDate(sp.as_of, data.meta.default_as_of);
-  const dateControls = addressDates(data, t.address, asOf ?? data.meta.default_as_of);
+  const dateControls = addressDates(data, t.address, asOf ?? data.meta.default_as_of, { typed: true, results: t.results });
   if (!asOf) return <AddressDateError config={dateControls} message="Choose a real date between 1900-01-01 and 2100-12-31." />;
   const live = await liveEngine(r, data.rules, asOf);
   if (!live && asOf !== data.meta.default_as_of)
-    return <AddressDateError config={dateControls} message={`We could not calculate ${asOf}. Try Show date again, or return to the dataset date.`} />;
+    return <AddressDateError config={dateControls} message={`We could not calculate ${asOf}. Try again, or return to the dataset date.`} />;
   const vp = viewProps(data, t.address, live?.results ?? t.results, { typed: true, legalNote: t.legalNote, asOf });
   flagGap(vp.view, t.gap);
   return (
