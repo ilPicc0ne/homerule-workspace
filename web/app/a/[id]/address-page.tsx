@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import BuildingEvidencePanel from "@/components/building-evidence";
+import type { EvidenceView } from "@/lib/building-evidence-types";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import AddressMap from "@/components/address-map";
@@ -23,6 +25,7 @@ import { VerdictBadge } from "./verdict-badge";
 
 export type PageProps = {
   id: string;
+  evidence?: EvidenceView;
   view: AddressView;
   hero: { crumb: string[]; cap: string; capSub?: string; facts: { icon: string; text: string; cls?: string }[]; factSrc: string; state: string };
   map: MapProps;
@@ -79,7 +82,7 @@ function SearchField({ current, index }: { current: string; index: PageProps["in
   };
   const submit = () => {
     if (active >= 0 && matches[active]) return go(matches[active]);
-    if (matches[0]) return go(matches[0]);
+    if (matches.length) { setOpen(true); return; } // Require an explicit full-address selection.
     if (text.trim() && text !== current) router.push(`/a/at?q=${encodeURIComponent(text.trim())}`);
   };
   const onKey = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -135,6 +138,7 @@ function SearchField({ current, index }: { current: string; index: PageProps["in
       </div>
       {show && (
         <ul className="sugg" id={`${id}-l`} role="listbox" aria-label="Addresses">
+          {matches.length > 0 && <li className="sugg-none" role="presentation">Choose the full address, including its street number.</li>}
           {matches.map((a, i) => (
             <li
               key={a.id}
@@ -647,6 +651,8 @@ export default function AddressPageView(p: PageProps) {
             </ul>
             <p className="fact-src">{hero.factSrc}</p>
           </section>
+
+          {p.evidence && <BuildingEvidencePanel key={p.id} evidence={p.evidence} />}
 
           <section className="glance" aria-labelledby="h-glance">
             <div className="glance-sum">

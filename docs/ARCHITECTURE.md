@@ -38,7 +38,7 @@ The engine is Python (`engine/`, `extract/`); the website and the address resolv
 | Extraction, compiled predicates, scored lookups, dated diffs, scores, verdict badges, positive / neutral / negative rating, start and end-date history | Merged | `extract/`, `engine/`, `web/lib/changes/`; #106, #109, #110, #113, #116, #119 |
 | Address and jurisdiction pages, source/audit views, JSON API, MCP, 2D/3D maps, subscription and explicit email dispatch | Merged; deployment configuration is a separate concern | `web/` |
 | Official-source monitor | Merged ([PR #75](https://github.com/ilPicc0ne/homerule-workspace/pull/75)): a Newark prototype run by hand; no scheduler, not deployed | `monitor/`; see source monitoring below |
-| Public building evidence and next-fact investigation planner | Implemented in draft [PR #68](https://github.com/ilPicc0ne/homerule-workspace/pull/68); not on main or connected to the UI | `d/extra-data`; see building evidence below |
+| Public building evidence and next-fact investigation planner | Acquisition pipeline in draft [PR #68](https://github.com/ilPicc0ne/homerule-workspace/pull/68); review-only address panel implemented on `d/building-evidence-ui` (pending review) | `d/extra-data` + `d/building-evidence-ui`; see building evidence below |
 | Lifecycle alert engine and daily digest | Open [PR #90](https://github.com/ilPicc0ne/homerule-workspace/pull/90); not the merged dispatch path | `s/alert-engine`: lifecycle triggers, approval gate, digest and dry-run cron |
 | MCP task-shaped tools and badge parity | Merged ([PR #115](https://github.com/ilPicc0ne/homerule-workspace/pull/115)) | `web/lib/mcp/tools.ts`: five task-shaped tools; see MCP below |
 | Separate per-card answer artifact and audit | Open [PR #55](https://github.com/ilPicc0ne/homerule-workspace/pull/55) | `out/cards.json` is not a main-branch input |
@@ -206,7 +206,7 @@ Input: `data/sample_addresses.csv`. Output: `out/addresses.resolved.json`. Code:
 
 **Website search** (`/api/resolve`, `/where`): place-only input ("Boston, MA", "Dorchester", "Hudson County", "California") resolves through the list and its aliases, never Census; a ZIP alone gives its state (CA/NJ/MA only) and asks for the street; a street address that is one of the 500 answers from the batch file with its building facts; any other street address goes to Census. Several matches in different places → `ambiguous` with candidates; Census matching another city than the one typed → a warning; Census down or slow → `unavailable` (one retry, 8 s timeout).
 
-**Typed-address boundary:** `web/lib/typed-address.ts` uses provisional TypeScript logic for non-sample addresses: all property facts are unknown and the Python engine's precedence step is not run. The six tiles and MCP share that provisional builder. This is not full engine parity for arbitrary addresses. The address-page autocomplete can still submit its first sample match for street-only input (`web/app/a/[id]/address-page.tsx`); it does not yet require an explicit building-number selection. Building-evidence integration must confirm the complete address and parcel/building identity before using a record.
+**Typed-address boundary:** `web/lib/typed-address.ts` uses provisional TypeScript logic for non-sample addresses: all property facts are unknown and the Python engine's precedence step is not run. The six tiles and MCP share that provisional builder. This is not full engine parity for arbitrary addresses. The address-page autocomplete now requires an explicit sample selection instead of silently submitting the first street-only match (`web/app/a/[id]/address-page.tsx`). The evidence panel additionally asks the renter to check the street number; this does not verify parcel/building identity, which remains a review limitation.
 
 Further rules:
 - **Unknown, not omitted:** missing year or units, or a build year equal to a certificate-of-occupancy cutoff year (SF 1979, LA 1978), gives `unknown`.
@@ -319,13 +319,13 @@ reviewed official route → bounded poll → pinned snapshot + SQLite queue
 
 ## Building evidence and investigation (draft PR #68)
 
-Implemented on `d/extra-data`, with [source snapshots and documentation](https://github.com/ilPicc0ne/homerule-workspace/blob/d/extra-data/data/building-evidence/README.md). This is separate from the merged `missing_deciding` heuristic and is not consumed by the current site.
+Implemented on `d/extra-data`, with [source snapshots and documentation](https://github.com/ilPicc0ne/homerule-workspace/blob/d/extra-data/data/building-evidence/README.md). This is separate from the merged `missing_deciding` heuristic. The review-only UI integration on `d/building-evidence-ui` consumes a selected-field snapshot regenerated against current rules; it is pending review, not deployed.
 
 `engine/enrich_nj.py` / `engine/enrich_public.py` acquire bounded official API queries or downloads, pin metadata and response hashes, and write `data/building-evidence/public-evidence.json`. Sources include NJ MOD-IV, LA parcels, MassGIS, SF assessor records, San Diego parcels/approvals and HUD assistance/LIHTC. The branch reports matched or candidate records for 444/500 addresses and typed leads for 374/500; these are acquisition counts on that branch's baseline, not resolved unknowns or measured score improvements on current main.
 
 `engine/fact_gaps.py` reads I2/I3 and partitions candidate fact values at extracted predicate thresholds. It re-evaluates one fact at a time, including local/state dependencies and conditional amounts, and ranks useful questions by uncertainty resolved. Outputs retain source rules/quotes, hypothetical branches, evidence leads, request wording, blockers, tenant notes and input hashes. It does not search joint combinations of missing facts. Optional score context must come from the same I2/I3 inputs; it preserves the supplied range rather than calculating score uplift.
 
-Commands on that branch: `make enrich-buildings` (offline replay), `make enrich-buildings-live SOURCE=<source>` (explicit refresh), `make fact-gaps AS_OF=<date>`. Integration requires the complete address, municipality and verified parcel/building identity. Ambiguous/range matches, project-level counts, assessor dates and tax-exemption proxies stay evidence for review. No original California occupancy certificate was acquired. Nothing is automatically promoted into I3 or the scored outputs; UI integration and fact-specific promotion rules remain pending.
+Commands on that branch: `make enrich-buildings` (offline replay), `make enrich-buildings-live SOURCE=<source>` (explicit refresh), `make fact-gaps AS_OF=<date>`. Integration requires the complete address, municipality and verified parcel/building identity. Ambiguous/range matches, project-level counts, assessor dates and tax-exemption proxies stay evidence for review. No original California occupancy certificate was acquired. Nothing is automatically promoted into I3 or the scored outputs. The address-panel implementation is described below; fact-specific promotion rules remain pending.
 
 ## Web and API
 
@@ -475,3 +475,13 @@ Source roles are distinct: law text feeds extraction; address/property evidence 
 | Broader bill tracking and additional jurisdictions | Future expansion | No deployed LegiScan/Open States integration established by this audit |
 
 Skipped: Alameda County (no public building data, so Berkeley stays unknown, stated as a known limit) · Open States (LegiScan is enough) · data.boston.gov (blocked from Switzerland).
+
+### Building evidence in the address page (pending review)
+
+`web/scripts/building-evidence/` pins the offline planner from #68, alongside its public-evidence and research-route inputs in `data/building-evidence/`. `cd web && PYTHON=../.venv/bin/python npm run evidence:build` runs web sync, regenerates hypotheses with the current Python engine, verifies the input hashes, then writes a selected-field projection to `web/data/building-evidence.json`. The planner needs the repository's Python dependencies; deployed web builds only read the committed projection. Acquisition scripts and the full #68 pipeline remain on that separate branch.
+
+The server binds the projection to the exact rules, addresses, lookups and default as-of date. Changed inputs withhold the panel's plans and records until regeneration. Only the requested address is passed to the client. Typed addresses, demo data, unmatched IDs and sample streets without a street number get no evidence panel. Street-only search no longer chooses the first sample silently; the renter selects a complete suggestion and confirms the displayed address before opening its records.
+
+The panel links next-fact questions to the relevant topic cards, explains the hypothetical branches, quotes their supporting rules, and offers copyable request wording and official lookup routes. Record leads retain match quality, differing current values, source links, source periods and retrieval dates. Parcel/project matches and tax-exemption proxies remain explicitly limited evidence. No record is promoted to I3, and no answer or renter rating is changed. This panel does not add evidence to the MCP/API payloads or accept renter answers yet.
+
+The refreshed snapshot at `050363b` contains plans for 500 sample addresses, with a useful next question at 148. Check `/a/A0107` for an occupancy-record request and `/a/A0366` for a construction-year discrepancy. Instructions and provenance: `web/scripts/building-evidence/README.md`.

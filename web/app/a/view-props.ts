@@ -1,4 +1,5 @@
 import "server-only";
+import { evidenceFor } from "@/lib/building-evidence";
 import { getDataset, jurisdictionById } from "@/lib/data";
 import { addressPageData, changeLogFor } from "@/lib/address-page-data.ts";
 import { buildingFootprint, cityOutline, groundElevation, mapCaption } from "@/lib/outlines";
@@ -27,6 +28,7 @@ export function viewProps(data: Dataset, address: Address, results: Result[], ex
 
   return {
     id: core.id,
+    evidence: evidenceFor(data, address, !!extra?.typed),
     view: core.view,
     hero: core.hero,
     map: {
