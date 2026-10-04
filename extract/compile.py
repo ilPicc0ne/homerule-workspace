@@ -44,7 +44,7 @@ def effective(events, jurisdiction, provision=None):
     for kind in ("operative", "effective"):
         cands = []
         for e in events:
-            if e["kind"] != kind:
+            if e["kind"] != kind or e.get("amendment_only"):
                 continue
             d = e.get("date")
             if d and re.fullmatch(r"\d{4}-\d{2}-\d{2}", d):
@@ -207,6 +207,9 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                 events = events + [{"kind": "effective", "date": dated[-1], "precision": "day", "relative_rule": "none",
                                     "n": None, "applies_to": "act", "quote": "open question: published dates disagree",
                                     "open_question": True}]
+            amended = amendment_only(events, span["doc_id"] if span else None, source_span(span) if span else None)
+            if amended:          # new wording of a rule that already existed: that date is not the rule's start
+                events = [{**e, "amendment_only": True} if e.get("date") in amended else e for e in events]
             return {
                 "id": f"{r['doc_id']}:{n}:{o['slug']}", "unit": r["doc_id"], "jurisdiction": jur, "state": state,
                 "category": o["category"], "citation": o["citation"], "effect": o["effect"], "title": o["title"],
@@ -266,6 +269,45 @@ def internal_rules(extracted_dir=None, as_of=AS_OF):
                                     "key_value": o["key_value"], "source_doc_id": span["doc_id"] if span else None,
                                     "quote": source_span(span) if span else None, "supporting": True})
     return attribute([local_exemption_to_interaction(r) for r in replaced(rules, chains)])
+
+
+def _old_version_block(text, date_words):
+    """Code publishers print both versions around an amendment: '[... effective until <date>. For text effective
+    <date>, see below.] <old text> [... as amended ... effective <date> ...] <new text>'. The old text, or None."""
+    m = re.search(rf"effective until {re.escape(date_words)}\.\s*For text effective {re.escape(date_words)}", text)
+    if not m:
+        return None
+    end = text.find(f"effective {date_words}", m.end() + 1)
+    return text[m.end():end if end > 0 else len(text)]
+
+
+def amendment_only(events, doc_id, quote):
+    """Dates that mark new wording of a provision whose rule already existed: the source prints an older version
+    ('effective until <date>') that already contains the rule's quote. Such a date is not the rule's start."""
+    if not doc_id or not quote:
+        return set()
+    path = config.INDEX / f"{doc_id}.json"
+    if not path.exists():
+        return set()
+    from .corpus import load_text
+    text = " ".join(load_text(json.load(open(path))).split())
+    q = " ".join(quote.split())[:200]
+    head = " ".join(q.split()[:5])
+    out = set()
+    for e in events:
+        d = e.get("date")
+        if e["kind"] in ("effective", "operative") and d and re.fullmatch(r"\d{4}-\d{2}-\d{2}", d):
+            day = dt.date.fromisoformat(d)
+            old = _old_version_block(text, f"{day.strftime('%B')} {day.day}, {day.year}")
+            at = old.find(head) if old and head else -1
+            if at < 0:
+                continue
+            seg = old[at:].split("[")[0].split()          # the older version's text of this provision
+            words = set(w.lower().strip(",.;:()") for w in q.split())
+            # the older version states the same provision (wording may differ slightly): the rule existed before
+            if len(seg) >= 8 and sum(w.lower().strip(",.;:()") in words for w in seg) / len(seg) >= 0.8:
+                out.add(d)
+    return out
 
 
 LOCAL_REFS = ("local_rent_control", "local_just_cause")

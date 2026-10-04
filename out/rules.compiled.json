@@ -3119,7 +3119,7 @@
   "category": "security_deposits",
   "status": "in_force",
   "effective": {
-   "from": "2025-08-01",
+   "from": null,
    "until": null,
    "precision": "day",
    "derived": null
@@ -3455,7 +3455,7 @@
   "category": "application_screening_fees",
   "status": "in_force",
   "effective": {
-   "from": "2025-08-01",
+   "from": null,
    "until": null,
    "precision": "day",
    "derived": null
