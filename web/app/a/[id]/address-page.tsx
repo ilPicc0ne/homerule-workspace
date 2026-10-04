@@ -478,6 +478,12 @@ function Ahead({ v, onAlerts }: { v: AddressView; onAlerts: () => void }) {
         Coming up
       </h2>
       <p className="sec-sub">Dated changes for this address, and what changed in the last year.</p>
+      <p className="ahead-alert">
+        <button type="button" className="linkbtn" onClick={onAlerts}>
+          <Ic id="i-bell" />
+          Get alerts when the law changes here
+        </button>
+      </p>
       {v.proposed.length > 0 && (
         <div className="prop">
           <h3 className="prop-h">
@@ -521,12 +527,6 @@ function Ahead({ v, onAlerts }: { v: AddressView; onAlerts: () => void }) {
           <Ev key={e.date + e.title} e={e} cls="past" />
         ))}
       </ol>
-      <p className="ahead-foot">
-        <button type="button" className="linkbtn" onClick={onAlerts}>
-          <Ic id="i-bell" />
-          Get alerts when the law changes here
-        </button>
-      </p>
     </>
   );
 }
