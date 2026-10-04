@@ -1,4 +1,6 @@
 import type { Badge } from "./changes/impact.ts";
+import { ruleEnds } from "./changes/ends.ts";
+import type { AddressChanges, Source } from "./changes/types.ts";
 import contactsFile from "@/contracts/contacts.json";
 import { formatDate } from "./format";
 import { CALL_ITEMS, FACT_PLAIN, PLAIN, TOPICS, isCarveOut, type TopicId } from "./plain";
@@ -67,7 +69,17 @@ export type Tile = {
 
 /** `badge`: the renter-impact badge of this rule's diff change at this address (lib/changes/impact.ts eventBadge), set by
  *  view-props only when PAGE_BADGES is on; never derived from the event itself. */
-export type TimelineEvent = { date: string; dateText: string; topic: TopicId; title: string; body?: string; ruleId: string; badge?: Badge | null };
+export type TimelineEvent = {
+  date: string;
+  dateText: string;
+  topic: TopicId;
+  title: string;
+  body?: string;
+  ruleId: string;
+  /** "end": the rule's own end date (sunset or repeal, lib/changes/ends.ts); its badge comes from endBadge. */
+  kind?: "start" | "end";
+  badge?: Badge | null;
+};
 
 export type AddressView = {
   street: string;
@@ -148,6 +160,8 @@ export function buildAddressView(args: {
   asOf: string;
   cityName: string;
   findings: Record<string, Finding[]>;
+  /** The diff's change sources (for `ending_rule_ids`) and this address's diff record (null for a typed address). */
+  changes?: { sources: Record<string, Source>; rec: AddressChanges | null };
 }): AddressView {
   const { address, results, rules, asOf, cityName } = args;
   const state = address.jurisdictions.state;
@@ -302,6 +316,7 @@ export function buildAddressView(args: {
         rule.retrieved_at ? `Checked ${formatDate(rule.retrieved_at)}` : "Not yet checked against a source",
         `Confidence: ${confWord(r.confidence)}`,
       ];
+      if (rule.effective_until && rule.effective_until > asOf && st !== "proposed") meta.splice(1, 0, `Ends ${formatDate(rule.effective_until)}`);
       return {
         rule_id: rule.rule_id,
         level: rule.level,
@@ -356,9 +371,34 @@ export function buildAddressView(args: {
       topic: topicOf(rule.category),
       title: PLAIN[rule.rule_id]?.line ?? rule.title,
       ruleId: rule.rule_id,
+      kind: "start",
     };
     if (rule.effective_date > asOf) future.push({ ...ev, title: `Takes effect: ${ev.title}` });
     else if (rule.effective_date >= yearAgo && r.result !== "superseded") past.push({ ...ev, body: `Took effect. ${whereName(rule, cityName)} · ${rule.citation}` });
+  }
+  // Rules ending at this address (sunset or repeal). A version swap (a successor starting that day) is not an end:
+  // the successor's start event says it replaces the earlier version instead.
+  if (args.changes) {
+    const { ends, swaps } = ruleEnds({ asOf, results, rules, sources: args.changes.sources, rec: args.changes.rec });
+    for (const e of ends) {
+      const rule = rules[e.ruleId];
+      if (!rule) continue;
+      const ev: TimelineEvent = {
+        date: e.date,
+        dateText: formatDate(e.date),
+        topic: topicOf(rule.category),
+        title: `Ends: ${PLAIN[rule.rule_id]?.line ?? rule.title}`,
+        ruleId: rule.rule_id,
+        kind: "end",
+      };
+      if (e.when === "future") future.push(ev);
+      else past.push({ ...ev, body: `Ended. ${whereName(rule, cityName)} · ${rule.citation}` });
+    }
+    for (const sw of swaps) {
+      const old = rules[sw.from];
+      const ev = [...future, ...past].find((x) => x.ruleId === sw.to && x.date === sw.date);
+      if (ev && old) ev.body = `${ev.body ? `${ev.body} · ` : ""}Replaces the earlier version (${old.citation})`;
+    }
   }
   future.sort((a, b) => a.date.localeCompare(b.date));
   past.sort((a, b) => b.date.localeCompare(a.date));

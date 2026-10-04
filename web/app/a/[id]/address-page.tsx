@@ -509,7 +509,6 @@ function Ahead({ id, v, onAlerts, log }: { id: string; v: AddressView; onAlerts:
           <Ev key={e.date + e.title} e={e} cls="past" log={log} />
         ))}
       </ol>
-      <p className="tl-note">Lists rules starting. Rules ending are not shown yet.</p>
       {log && (
         <p className="ahead-log">
           <Link className="src" href={log.href}>
