@@ -42,3 +42,6 @@ scores:    # aggregated score: what a renter can count on (unknown topics at the
 open_questions:   # what answering one building fact does to an unknown topic (Cal. Civ. Code §1946.2(e))
   - {address: A0001, date: "2026-10-01", topic: just_cause_eviction, fact: owner_occupied, answer: false, level: strong, score: 100, why: "32-unit 1927 LA apartment, not subsidised: with the owner not living there, no §1946.2(e) exemption can hold (shared kitchen/bath, owner-occupied duplex or single-family home, new construction, separately sold unit), so just cause applies"}
   - {address: A0001, date: "2026-10-01", topic: just_cause_eviction, fact: owner_occupied, answer: true, level: unknown, score: 75, why: "an owner living there can still exempt the unit only if the tenant shares a kitchen or bath with them, which the data can't say"}
+
+owner_scope:   # owner-occupancy exemptions cover small buildings (written from the ordinance text)
+  - {address: A0019, date: "2026-10-01", rule: CA-SAN-DIEGO-EVICT-98.0704, why: "16-unit San Diego apartment: §98.0703(i) owner-occupied single-family home and (j) owner-occupied duplex can't hold, so whether the owner lives there must not change the result"}

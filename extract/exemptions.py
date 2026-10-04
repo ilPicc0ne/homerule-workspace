@@ -21,6 +21,11 @@ COMPOUND = re.compile(r"provided that|(?:both|all|each) of the following", re.I)
 ITEM = re.compile(r"^\s*\(\d+\)")                  # a numbered list item, e.g. "(8)"; sub-items are "(A)", "(i)"
 OWNER = {"yes": "Yes: the exemption applies only when the owner lives in the building or on the property.",
          "no": "No: it can apply whether or not the owner lives there."}
+SCOPE = {"le2": "Only a single-family home or a building of two units in which the owner lives.",
+         "le4": "Only a building of up to four units in which the owner lives.",
+         "shared": "Only a unit where the tenant shares a kitchen or bathroom with the owner.",
+         "any": "Any building in which the owner lives, whatever its size."}
+SCOPE_UNITS = {"le2": 2, "le4": 4}
 MIN_CONF, VETO, OWNER_CONF = 0.8, 0.5, 0.9
 BASE = {k: None for k in ("fact", "op", "value", "values", "years", "ref", "quote")}
 
@@ -76,6 +81,45 @@ def _quote(n):
     return " ... ".join(c.get("quote") or "" for c in n["children"]) if n["kind"] == "all" else n.get("quote") or ""
 
 
+def _is_bare_owner(n):
+    return n["kind"] == "fact" and n.get("fact") == "owner_occupied" and n.get("op") == "eq" and n.get("value") is True
+
+
+def scope_owner(rules):
+    """An exemption that is only "the owner lives there" (no building type or size) is broader than such
+    exemptions are written: they cover an owner-occupied house or small building, or a unit sharing the owner's
+    kitchen. Jev answers which buildings it covers, with the whole document as context; code adds the unit
+    limit (or the shared-facility condition). Unsure (p < MIN_CONF) or "any": left as extracted."""
+    changes = []
+    for r in rules:
+        ex = r["exempt_if"]
+        if r["effect"] != "protection_or_duty" or ex["kind"] != "any":
+            continue
+        bare = [n for n in ex["children"] if _is_bare_owner(n)]
+        if not bare:
+            continue
+        text = _text(r["source_doc_id"])
+        span = locate(text, r.get("requirement_quote") or "")
+        q = {"scope": {"type": "choice", "criteria": SCOPE,
+                       "instructions": f"This law ({r['citation']}) exempts some owner-occupied housing. Which "
+                                       "housing does its owner-occupancy exemption cover?"}}
+        a = llm.jev(llm.fit(text, span[0] if span else None), q, stage="jev_owner_scope", ref=r["source_doc_id"])[0]["scope"]
+        p = a["probabilities"].get(a["choice"], a["confidence"])
+        if a["choice"] == "any" or p < MIN_CONF:
+            continue
+        if a["choice"] in SCOPE_UNITS:
+            extra = {**BASE, "kind": "fact", "children": [], "fact": "units", "op": "le", "value": SCOPE_UNITS[a["choice"]]}
+        else:
+            extra = {**BASE, "kind": "unparsed", "children": [], "quote": "the tenant shares a kitchen or bathroom with the owner"}
+        r["exempt_if"] = ex = json.loads(json.dumps(ex))
+        ex["children"] = [{**BASE, "kind": "all", "children": [c, extra]} if _is_bare_owner(c) else c
+                          for c in ex["children"]]
+        how = f"owner-occupancy exemption scoped: {a['choice']} (jev p={p:.2f})"
+        r["checks"] = r["checks"] + [f"exempt_if: 'owner_occupied': {how}"]
+        changes.append((r["citation"], "owner_occupied", [how]))
+    return changes
+
+
 def normalize(rules):
     """In place on internal rules (protections only). Returns what changed, for the audit and the log."""
     targets = {}
@@ -88,7 +132,7 @@ def normalize(rules):
                                              # triaged in extraction already)
         for n in nodes:
             targets.setdefault(r["source_doc_id"], []).append((r, n))
-    changes = []
+    changes = scope_owner(rules)
     for doc_id, items in targets.items():
         qs = {}
         for i, (r, n) in enumerate(items):

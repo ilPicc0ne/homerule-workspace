@@ -79,6 +79,22 @@ class Scores(unittest.TestCase):
                     self.assertTrue(x["low"] <= x["score"] <= x["high"], x)
 
 
+class OwnerScope(unittest.TestCase):
+    def test_owner_occupancy_does_not_decide_big_buildings(self):
+        import copy
+        rules = R.load()
+        addresses = F.load()
+        for f in FX["owner_scope"]:
+            with self.subTest(address=f["address"], rule=f["rule"]):
+                got = set()
+                for v in (True, False):
+                    a = copy.deepcopy(addresses[f["address"]])
+                    a["facts"]["owner_occupied"] = v
+                    rows = B.build_lookups(rules, {f["address"]: a}, f["date"])[f["address"]]
+                    got.add(next(r["result"] for r in rows if r["team_rule_id"] == f["rule"]))
+                self.assertEqual(len(got), 1, f["why"])
+
+
 class Whys(unittest.TestCase):
     """Every change between consecutive score dates: a why of at most WORDS words, no advice words, decided_by."""
     WORDS = 25
