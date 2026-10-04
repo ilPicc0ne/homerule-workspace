@@ -71,7 +71,7 @@ def topic_levels(rows, rules_by_id):
 def aggregate(topics):
     """score: the protection a renter can count on (unknown topics at their lowest, so score = low); high: with the
     unknown topics at their highest ("up to"). Never a mean over the known topics only: that put the score above
-    its own range when a topic like eviction depends on facts we never know (e.g. 12 months of tenancy)."""
+    its own range when a topic like eviction depends on facts the data doesn't have (e.g. whether the owner lives there)."""
     w = CFG["weights"]
     low = round(100 * sum(w[c] * LEVEL[t["at_least"]] for c, t in topics.items()))
     high = round(100 * sum(w[c] * LEVEL[t["at_most"]] for c, t in topics.items()))
