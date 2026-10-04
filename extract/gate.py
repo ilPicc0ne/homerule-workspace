@@ -5,6 +5,8 @@ G2 start date:    which date (among dates code found in the text, plus derived o
 G3 topic coverage: does the provision also regulate other topics, which then need their own rule?
 G4 status:        does the text show the law adopted, pending, failed, or only a draft?
 G5 enacting level: which government made the rule - the city, the state (statewide or only for this city), federal?
+G6 category:      does the main rule's provision regulate the topic it is filed under? A confident "no" demotes it
+                  from main rule (it stays in the record), e.g. an anti-discrimination clause filed as a rent cap.
                   A city page that restates state law must not become a city rule (compile acts on the answer).
 
 All questions are Jev choices with the document text around the quote as state. Results are written into
@@ -21,6 +23,7 @@ from .corpus import load_text
 from . import luna_pass as L
 
 CONF = 0.8
+G6_CONF = 0.9      # demoting a main rule needs p(no) >= 0.9
 G2_CONF = 0.6      # a date among the real dates in the text
 G3_TRIGGER = 0.4   # p(yes) that triggers a targeted extraction; Luna decides whether a rule exists
 WINDOW = 40000
@@ -123,6 +126,13 @@ def gate_unit(path):
                                          f'{r["jurisdiction"]}. Which government made this rule?'}
     if g5:
         calls.append((texts[0][:20000], g5, f"{r['doc_id']}:g5"))
+    # G6 once per unit: does each main rule's provision regulate the topic it is filed under?
+    g6 = {f"g6_{i}": {"type": "choice", "criteria": TOPIC_YES,
+                      "instructions": f'Consider only the provision "{" ".join((obs[i].get("requirement_quote") or obs[i]["requirement"]).split())[:300]}". '
+                                      f'Does it itself regulate this topic: {jev_pass.CATEGORIES[obs[i]["category"]]}'}
+          for i in heads}
+    if g6:
+        calls.append((texts[0][:20000], g6, f"{r['doc_id']}:g6"))
     # G4 once per unit, on the start and end of the main document (signatures, certifications)
     t0 = texts[0]
     g4_state = t0[:15000] + "\n...\n" + t0[-15000:] if len(t0) > 30000 else t0
@@ -165,6 +175,12 @@ def gate_unit(path):
             if a["choice"] in ("state_statewide", "federal") and ", " in r["jurisdiction"] or a["choice"] == "federal":
                 log["actions"].append({"rule": o["slug"], "action": "enacting_level", "level": a["choice"],
                                        "confidence": a["confidence"]})
+        a = answers.get(f"g6_{i}")
+        if a and a.get("probabilities", {}).get("no", 0) >= G6_CONF:
+            o["is_headline"] = False
+            o["gate_demoted"] = f"provision does not regulate {o['category']} (p={a['probabilities']['no']:.2f})"
+            log["actions"].append({"rule": o["slug"], "action": "demoted", "category": o["category"],
+                                   "p_no": a["probabilities"]["no"]})
         o["gate_flags"] = flags
     g4 = answers.get("g4")
     if g4 and g4["confidence"] >= CONF:
@@ -213,7 +229,7 @@ def extract_topic(r, texts, o, category):
 
 
 def run(units=None, workers=6):
-    paths = sorted((config.OUT / "extracted").glob("*.json"))
+    paths = sorted(config.EXTRACTED.glob("*.json"))
     if units:
         paths = [p for p in paths if p.stem in units]
     with ThreadPoolExecutor(workers) as ex:

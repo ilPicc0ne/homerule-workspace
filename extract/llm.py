@@ -78,6 +78,20 @@ def _luna(messages, schema, name, stage, ref, run, max_tokens, reasoning, model)
     return json.loads(choice["message"]["content"]), resp.get("usage", {})
 
 
+JEV_MAX = 130000     # characters of state Jev accepts (its limit is ~135k); every caller passes full context through fit()
+
+
+def fit(text, at=None):
+    """Full context for Jev: the whole text when it fits, else a JEV_MAX window centred on position `at` (the
+    provision asked about) or, without one, the start and end of the text."""
+    if len(text) <= JEV_MAX:
+        return text
+    if at is None:
+        return text[:JEV_MAX // 2] + "\n...\n" + text[-JEV_MAX // 2:]
+    a = max(0, min(at - JEV_MAX // 2, len(text) - JEV_MAX))
+    return text[a:a + JEV_MAX]
+
+
 def jev(state, questions, stage, ref, run=0):
     body = {"model": config.JEV, "state": state, "questions": questions}
     resp = _cached("jev", body, run, stage, ref, lambda: _post("/alpha/decisions", body))

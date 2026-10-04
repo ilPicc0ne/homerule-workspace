@@ -62,10 +62,11 @@ def diff_rows(before, after, rules_by_id):
 def diff_lookups(before_full, after_full, rules_by_id):
     """{address_id: rows} twice -> {address_id: changes} for addresses with at least one change."""
     out = {}
+    from engine import score             # better / worse for the renter, per change (layer 2)
     for aid in sorted(set(before_full) | set(after_full)):
         ch = diff_rows(before_full.get(aid, []), after_full.get(aid, []), rules_by_id)
         if ch:
-            out[aid] = ch
+            out[aid] = score.annotate_changes(ch, before_full.get(aid, []), after_full.get(aid, []), rules_by_id)
     return out
 
 
