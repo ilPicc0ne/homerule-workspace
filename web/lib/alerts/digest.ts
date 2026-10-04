@@ -22,6 +22,7 @@ export const DEMO_LABEL = "Demo: fictional ordinance";
 export type ItemText = { lead: string; topic: string; sentence: string; badge: string | null };
 
 const MAY = " It may apply here: a building fact we don't have decides.";
+const CONFLICT = " It may conflict with another rule on the same topic here; we don't decide that.";
 
 /** One event in words: a short lead ("In 30 days"), the topic, one plain sentence. */
 export function eventText(ev: LifeEvent, d: LifeData, today: string): ItemText {
@@ -33,7 +34,7 @@ export function eventText(ev: LifeEvent, d: LifeData, today: string): ItemText {
   const name = rule?.title ?? change?.title ?? ev.rule_id;
   const dated = ev.precision === "day" && ev.anchor !== "undated" ? formatDate(ev.anchor) : "";
   const withDate = dated && !plain.includes(dated) ? `From ${longDate(ev.anchor)}: ${plain}` : plain;
-  const may = ev.result === "unknown" ? MAY : "";
+  const may = (ev.result === "unknown" ? MAY : "") + (ev.conflict && ev.trigger !== "ended" && ev.trigger !== "ending_30d" ? CONFLICT : "");
   const badge = ev.verdict ? `${VERDICT_BADGE[ev.verdict].sign} ${VERDICT_BADGE[ev.verdict].text}` : null;
   switch (ev.trigger) {
     case "discovered": {

@@ -40,7 +40,7 @@ const RULES: LifeRule[] = [
 
 const LISTING: Record<string, ListedRow[]> = {
   [NJ]: [
-    { rule_id: "NJ-NEW", result: "not_yet_effective" },
+    { rule_id: "NJ-NEW", result: "not_yet_effective", conflict_with: ["NJ-HOBOKEN-LOCAL"] },
     { rule_id: "NJ-MONTH", result: "not_yet_effective" },
     { rule_id: "NJ-BILL", result: "pending" },
   ],
@@ -156,6 +156,7 @@ test("B takes effect: one alert 30 days before and one on the day, each sent onc
   assert.equal(first.subject, "Rule updates for 1 Test St");
   assert.match(first.text, /In 30 days · Software that sets rents — From July 1, 2027: Summary of NJ-NEW\./);
   assert.match(second.text, /Now in effect · Software that sets rents — Takes effect today, July 1, 2027: Summary of NJ-NEW\./);
+  assert.match(first.text, /It may conflict with another rule on the same topic here; we don't decide that\./);   // flagged, never decided
   assert.match(first.text, new RegExp(`${SITE}/a/${NJ}`));
   assert.match(first.html, /See what this means for 1 Test St/);
   assert.match(first.text, /Not legal advice · data as of October 1, 2026/);

@@ -38,7 +38,8 @@ export type LifeRule = {
   fictional?: boolean;
 };
 
-export type ListedRow = { rule_id: string; result: string };
+/** One listed rule at an address; `conflict_with`: rules it may conflict with (flagged, never decided). */
+export type ListedRow = { rule_id: string; result: string; conflict_with?: string[] };
 
 export type LifeData = {
   /** The as-of date of the listing (meta.default_as_of). */
@@ -65,8 +66,10 @@ export type LifeEvent = {
   precision: Precision | "disputed";
   /** The date in words, with its precision: "on July 1, 2027", "in July 2027", "on a date sources disagree on (…)". */
   when: string;
-  /** The result at the address (listing or diff), for the "may apply" wording. */
+  /** The result at the address once the event happens (diff, else listing), for the "may apply" wording. */
   result: string | null;
+  /** Flagged as possibly conflicting with another rule here (worded, never decided). */
+  conflict: boolean;
   /** Plus/minus for the renter, from the diff's renter_impact (#59); null = no badge. */
   verdict: Verdict | null;
   demo: boolean;
@@ -134,13 +137,23 @@ export function calendar(d: LifeData, addressId: string): LifeEvent[] {
   for (const row of rows) {
     const rule = d.rules.get(row.rule_id);
     if (!rule || rule.status === "pending" || NEVER.has(row.result)) continue;
-    const base = { rule_id: rule.rule_id, address_id: addressId, tz: tzOf(rule.jurisdiction_id), result: row.result, demo: !!rule.fictional };
+    const conflict = (row.conflict_with?.length ?? 0) > 0;
+    const base = { rule_id: rule.rule_id, address_id: addressId, tz: tzOf(rule.jurisdiction_id), result: row.result, conflict, demo: !!rule.fictional };
 
     // B · takes effect: the rule is listed here but not in effect yet.
     const start = startInfo(rule);
     if (start && row.result === "not_yet_effective") {
-      const v = verdictOf(changes.find(({ c }) => c.team_rule_id === rule.rule_id && c.change !== "removed" && c.effective_from === rule.effective_date)?.c);
-      const ev = { ...base, anchor: start.anchor, precision: start.precision, when: start.when, verdict: v, told: { kind: "start" as const, date: start.anchor } };
+      const c = changes.find(({ c }) => c.team_rule_id === rule.rule_id && c.change !== "removed" && c.effective_from === rule.effective_date)?.c;
+      const ev = {
+        ...base,
+        result: c?.after?.result ?? null,
+        conflict: conflict || !!c?.after?.conflict_flag,
+        anchor: start.anchor,
+        precision: start.precision,
+        when: start.when,
+        verdict: verdictOf(c),
+        told: { kind: "start" as const, date: start.anchor },
+      };
       add({ ...ev, trigger: "upcoming_30d", fire_date: addDays(start.anchor, -LEAD_DAYS) });
       if (start.precision === "day") add({ ...ev, trigger: "in_force", fire_date: start.anchor });
     }
@@ -179,6 +192,7 @@ export function calendar(d: LifeData, addressId: string): LifeEvent[] {
       precision: start?.precision ?? "day",
       when: start?.when ?? "on a date the text does not give",
       result: c.after.result,
+      conflict: c.after.conflict_flag,
       verdict: verdictOf(c),
       demo: !!e.demo_label || !!rule?.fictional,
       told: { kind: "start", date: start?.anchor ?? null },
@@ -232,6 +246,7 @@ export function corrections(d: LifeData, addressId: string, told: Record<string,
       precision: "day",
       when: now ? `on ${longDate(now)}` : "",
       result: null,
+      conflict: false,
       verdict: null,
       demo: !!rule?.fictional,
       told: { kind, date: now },
@@ -243,7 +258,7 @@ export function corrections(d: LifeData, addressId: string, told: Record<string,
 
 /** LifeData from the site's dataset (web/data/<source>: meta, rules, lookups) and the per-address diff. */
 export function lifeDataFrom(
-  ds: { meta: { default_as_of: string }; rules: unknown[]; lookups: Record<string, Record<string, { rule_id: string; result: string }[]>> },
+  ds: { meta: { default_as_of: string }; rules: unknown[]; lookups: Record<string, Record<string, ListedRow[]>> },
   changes: ChangesFile,
 ): LifeData {
   const asOf = ds.meta.default_as_of;
@@ -251,7 +266,7 @@ export function lifeDataFrom(
   return {
     as_of: asOf,
     rules: new Map((ds.rules as LifeRule[]).map((r) => [r.rule_id, r])),
-    listing: (id) => byDate[id]?.map((r) => ({ rule_id: r.rule_id, result: r.result })) ?? null,
+    listing: (id) => byDate[id]?.map((r) => ({ rule_id: r.rule_id, result: r.result, conflict_with: r.conflict_with })) ?? null,
     changes,
   };
 }
