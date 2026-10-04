@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { importLibrary, setOptions } from "@googlemaps/js-api-loader";
 import type { MapProps } from "./address-map-gl";
-import { APPROX_CAPTION, FOOTPRINT_ATTRIBUTION, MAP3D_TIMEOUT_MS, buildingCamera, cityCamera, highlightFor, outerRings } from "@/lib/map-view";
+import { APPROX_CAPTION, FOOTPRINT_ATTRIBUTION, MAP3D_TIMEOUT_MS, buildingCamera, cityCamera, highlightFor, outerRings, type Camera } from "@/lib/map-view";
+import { HINT_SEEN_KEY, INTERACTION_EVENTS, afterDialogClose, hintText, map3dSettings, replayLabel, replayPlan, showHint } from "@/lib/map-ui";
+import { icons } from "./icons";
 
 /* Google Maps JavaScript 3D view (Map3DElement). Loaded only after the visitor picks "3D":
    this module and the Google script are fetched on first switch, never on page load.
@@ -30,6 +32,33 @@ function hasWebGL(): boolean {
   }
 }
 
+function setCamera(map: google.maps.maps3d.Map3DElement, cam: Camera) {
+  map.center = cam.center;
+  map.range = cam.range;
+  map.tilt = cam.tilt;
+  map.heading = cam.heading;
+}
+
+/** Fly from wherever the camera is to `end`, then orbit it once. */
+function flyIn(map: google.maps.maps3d.Map3DElement, end: Camera, alive: () => boolean) {
+  map.addEventListener(
+    "gmp-animationend",
+    () => {
+      if (alive()) map.flyCameraAround({ camera: end, durationMillis: ORBIT_MS, repeatCount: 1 });
+    },
+    { once: true },
+  );
+  map.flyCameraTo({ endCamera: end, durationMillis: FLY_MS });
+}
+
+function readHintSeen(): string | null {
+  try {
+    return window.localStorage.getItem(HINT_SEEN_KEY);
+  } catch {
+    return null;
+  }
+}
+
 function timeout<T>(p: Promise<T>, ms: number): Promise<T> {
   return Promise.race([p, new Promise<T>((_, rej) => setTimeout(() => rej(new Error("timeout")), ms))]);
 }
@@ -38,10 +67,53 @@ export type Map3DProps = MapProps & { onFail: (reason: string) => void };
 
 export default function AddressMap3D({ coords: geocode, outline, footprint, elevation_m, caption, label, onFail }: Map3DProps) {
   const host = useRef<HTMLDivElement>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const enlargeBtn = useRef<HTMLButtonElement>(null);
+  const mapRef = useRef<google.maps.maps3d.Map3DElement | null>(null);
+  const replayRef = useRef<() => void>(() => {});
   const failRef = useRef(onFail);
+  const [ready, setReady] = useState(false);
+  const [big, setBig] = useState(false);
+  // Client-only component (dynamic, ssr: false), so window is there on the first render.
+  const [reduce] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const [hint, setHint] = useState(() =>
+    showHint(readHintSeen(), false) ? hintText(window.matchMedia("(pointer: coarse)").matches) : null,
+  );
   useEffect(() => {
     failRef.current = onFail;
   });
+
+  // The map's <dialog> is shown inline on the card; enlarging makes the same element modal.
+  // Layout effect, so the map's host has its size before the map effect below runs.
+  useLayoutEffect(() => {
+    const d = dialog.current;
+    if (d && !d.open) d.show();
+  }, []);
+
+  // First view: a one-line gesture hint under the card, gone after the first interaction.
+  useEffect(() => {
+    const el = host.current;
+    if (!el || !hint) return;
+    setHint(hintText(window.matchMedia("(pointer: coarse)").matches));
+    const seen = () => {
+      setHint(null);
+      try {
+        window.localStorage.setItem(HINT_SEEN_KEY, "1");
+      } catch {}
+      for (const t of INTERACTION_EVENTS) el.removeEventListener(t, seen, true);
+    };
+    for (const t of INTERACTION_EVENTS) el.addEventListener(t, seen, { capture: true, passive: true });
+    return () => {
+      for (const t of INTERACTION_EVENTS) el.removeEventListener(t, seen, true);
+    };
+  }, [hint]);
+
+  // Card: cooperative gestures; enlarged: greedy gestures and Google's controls.
+  useEffect(() => {
+    const m = mapRef.current;
+    if (!m || !ready) return;
+    Object.assign(m, map3dSettings(big ? "dialog" : "card"));
+  }, [big, ready]);
 
   useEffect(() => {
     const el = host.current;
@@ -97,9 +169,9 @@ export default function AddressMap3D({ coords: geocode, outline, footprint, elev
       map = new Map3DElement({
         ...first,
         mode: "SATELLITE",
-        defaultUIHidden: true,
-        gestureHandling: "COOPERATIVE",
+        ...map3dSettings("card"),
       });
+      mapRef.current = map;
       map.className = "addr-map-3d-el";
       map.addEventListener("gmp-error", () => fail("map error"));
 
@@ -151,16 +223,33 @@ export default function AddressMap3D({ coords: geocode, outline, footprint, elev
         clearTimeout(steadyTimer);
         el.removeAttribute("data-loading");
         el.setAttribute("data-ready", "true");
+        setReady(true);
         if (!end || reduce) return;
+        flyIn(map, end, () => !done);
+      };
+      // ↻: jump back to the city shot and fly in again (reduced motion: straight to the building).
+      replayRef.current = () => {
         const m = map;
-        m.addEventListener(
-          "gmp-animationend",
-          () => {
-            if (!done) m.flyCameraAround({ camera: end, durationMillis: ORBIT_MS, repeatCount: 1 });
-          },
-          { once: true },
-        );
-        m.flyCameraTo({ endCamera: end, durationMillis: FLY_MS });
+        const step = replayPlan(start, end, reduce);
+        if (!m || done || !step) return;
+        try {
+          m.stopCameraAnimation();
+        } catch {}
+        if (step.kind === "jump") return setCamera(m, step.camera);
+        setCamera(m, step.from);
+        const to = step.to;
+        let started = false;
+        const go = () => {
+          if (started || done) return;
+          started = true;
+          m.removeEventListener("gmp-steadychange", onSteady);
+          flyIn(m, to, () => !done);
+        };
+        const onSteady = (ev: Event) => {
+          if ((ev as Event & { isSteady?: boolean }).isSteady) go();
+        };
+        m.addEventListener("gmp-steadychange", onSteady);
+        setTimeout(go, 1500);
       };
       steadyTimer = setTimeout(fly, MAP3D_TIMEOUT_MS);
       map.addEventListener("gmp-steadychange", (ev) => {
@@ -177,14 +266,65 @@ export default function AddressMap3D({ coords: geocode, outline, footprint, elev
         map?.stopCameraAnimation();
       } catch {}
       map?.remove();
+      mapRef.current = null;
+      replayRef.current = () => {};
+      setReady(false);
     };
   }, [geocode, outline, footprint, elevation_m, label]);
 
-  const building = highlightFor(geocode, footprint)?.kind === "building";
+  const target = highlightFor(geocode, footprint);
+  const building = target?.kind === "building";
+  const replayName = replayLabel(reduce, !!target);
   const where = geocode ? `3D map: ${label}. ${caption}.` : `3D map of city limits. ${caption}.`;
+
+  const enlarge = () => {
+    const d = dialog.current;
+    if (!d) return;
+    d.close();
+    d.showModal();
+    setBig(true);
+  };
+  const onClose = () => {
+    const d = dialog.current;
+    if (!d || afterDialogClose(d.open) === "keep") return;
+    d.show();
+    setBig(false);
+    enlargeBtn.current?.focus();
+  };
+
   return (
     <figure className="addr-map-figure">
-      <div ref={host} className="addr-map addr-map-3d" role="img" aria-label={where} />
+      <dialog ref={dialog} className="addr-map-3d-dialog" onClose={onClose} aria-label={big ? `Larger 3D map: ${label}` : undefined}>
+        {/* Shown only while modal (CSS); first in the dialog, so it takes focus on enlarge. */}
+        <div className="addr-map-dialog-head">
+          <span>
+            {caption}
+            {building && <span className="map-osm-attr">{FOOTPRINT_ATTRIBUTION}</span>}
+          </span>
+          <button type="button" onClick={() => dialog.current?.close()} className="addr-map-close">
+            Close
+          </button>
+        </div>
+        <div className="addr-map-wrap">
+          <div ref={host} className="addr-map addr-map-3d" role="img" aria-label={where} />
+          <div className="addr-map-tools">
+            {/* Kept mounted while enlarged (hidden by CSS); focus returns to it on close. */}
+            <button ref={enlargeBtn} type="button" className="addr-map-tool addr-map-tool-enlarge" onClick={enlarge} aria-label="Enlarge 3D map" title="Enlarge">
+              {icons.expand}
+            </button>
+            {ready && (
+              <button type="button" className="addr-map-tool" onClick={() => replayRef.current()} aria-label={replayName} title={replayName}>
+                {icons.replay}
+              </button>
+            )}
+          </div>
+        </div>
+      </dialog>
+      {hint && !big && (
+        <p className="addr-map-gesture-hint" aria-hidden="true">
+          {hint}
+        </p>
+      )}
       <figcaption className="map-caption">
         <strong>{caption}</strong>
         {!geocode && <> · no pin: the geocoder found no location for this address</>}
