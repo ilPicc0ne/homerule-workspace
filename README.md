@@ -68,3 +68,7 @@ The RealPage starter pack is not included (its licence is set by the organizers)
 - Pending bills are shown as proposed, never as law.
 - When a fact is missing, the answer says unknown and names who can confirm it, instead of guessing.
 - No verdicts: no "legal", "illegal" or "compliant", and no comparison of a renter's own numbers against a cap.
+
+## License
+
+Copyright (c) 2026 Silvan Geser and Dimitar Dimitrov. All rights reserved. The code is public to read and evaluate, not to reuse: see [LICENSE](LICENSE).
