@@ -8,7 +8,7 @@ Do not add numbers that aren't here.
 
 ## Global direction
 
-- **Length:** 60 s hard limit. Narration is 139 words, ~57 s at ~146 words per minute. Keep pauses short.
+- **Length:** 60 s hard limit. Narration is 143 words, ~59 s at ~146 words per minute. Keep pauses short.
 - **Tone:** plain words, one idea per scene, one visual per idea. No jargon on screen beyond what the voice says.
 - **Look:** the website's own look: navy background, green accents, the site font, the drawn HomeRule logo. The
   law's own words always in a serif font; code and data in monospace.
@@ -28,8 +28,8 @@ Do not add numbers that aren't here.
 
 ### 1 · 0:00–0:08 · The problem, and the split
 
-**Narration (22 words):** "Whether a housing law applies depends on address, building and date. So a model reads each law
-once; code decides every answer."
+**Narration (20 words):** "A housing law's reach depends on address, building and date. A model reads each law once; code
+decides every answer."
 
 **Visual:**
 1. Three chips drop in one by one, joined by "×": `📍 address` × `🏢 building` × `📅 date`.
@@ -99,10 +99,10 @@ flagged, never decided."
 
 **Tag:** `Change tracking`
 
-### 6 · 0:45–0:52 · Why you can trust it
+### 6 · 0:45–0:51 · Why you can trust it
 
-**Narration (18 words):** "Every quote is checked against its source, every model call logged, and held-out questions score
-sixteen of sixteen."
+**Narration (16 words):** "Quotes are checked against their sources, every model call is logged, held-out questions: sixteen of
+sixteen."
 
 **Visual:** three quick cards, about 2 s each:
 - the FAIR Act quote highlighted inside its source page, with a ✓ and `54/54 quotes found word for word`;
@@ -111,22 +111,34 @@ sixteen of sixteen."
 
 **Tag:** `Citations · Responsible design`
 
-### 7 · 0:52–1:00 · One engine, any city, then end card
+### 7 · 0:51–1:00 · Why it scales: decide once, answer instantly
 
-**Narration (19 words):** "One engine serves the site, an API and AI assistants. A new city means new laws, not new code."
+**Narration (27 words):** "All the model work happens once, when a law is indexed. Answering is plain code: under a millisecond
+per address. So more places only need more data."
 
 **Visual:**
-1. The finished diagram. Its right end fans into three icons: **website** · **API** · **AI assistant (MCP)**.
-2. A new city card slides in: "+ law texts + one list entry". No code icon appears.
-3. A faint dotted lane under the addresses: "next: public parcel data for any address", labelled **next**.
+1. A horizontal split, two lanes:
+   - top lane, **"Index time · once per law"**: the Luna and Jev boxes run, with a counter "13 model calls for this
+     rule";
+   - bottom lane, **"Answer time · every request"**: only the engine gear, with three numbers in monospace:
+     `0 model calls` · `< 1 ms per address` · `all 500 addresses in 0.3 s`.
+2. The bottom lane fans out into three small icons: **website** · **API** · **AI assistant (MCP)**.
+3. On "more data", a US map: CA, NJ and MA lit, with the ten cities as bright dots. The rest is dim, and a label
+   points at it: "needs: law texts + building records". No code icon appears anywhere: adding places is data, not
+   code.
 4. **End card:** the HomeRule logo · "Housing law, quoted and dated, for your exact address." · `yourhomerule.com` ·
    "Not legal advice".
 
 **Tag:** `Scalability`
 
+**If the live engine API is deployed before the render** (in progress: typed addresses answered live by the same
+engine): swap sentence 2 for "Answers are computed live, in under a millisecond per address." (11 words, same
+length) and add a small `live` badge on the bottom lane. Until it is deployed, keep the default line: it is true of
+the engine today.
+
 ## Word count
 
-139 spoken words (scenes: 22 · 21 · 11 · 28 · 20 · 18 · 19).
+143 spoken words (scenes: 20 · 21 · 11 · 28 · 20 · 16 · 27).
 
 ## Facts used, and where they come from
 
@@ -139,6 +151,7 @@ sixteen of sixteen."
 | Hoboken 1031-1035 Clinton St: not yet effective → applies, conflict flagged | `out/changes.full.json` |
 | T1–T5 match; 26/27 named rules; 54/54 quotes; held-out 16/16 | `make check` |
 | Website, API, MCP | `web/app/a/[id]`, `web/app/api/address`, `web/app/api/mcp` |
+| 0 model calls at answer time; 0.6 ms per address on average (all 500 in 0.32 s), 0.8 ms for one address including the what-if reruns | `engine.build.build_lookups` / `evaluate_address`, timed on Dimitar's laptop, 04.10.2026 |
 
 ## Don'ts
 
