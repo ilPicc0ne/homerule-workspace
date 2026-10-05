@@ -1,1 +1,15 @@
-{"functions":{"api/engine.py":{"excludeFiles":"{node_modules/**,.next/**,.git/**,app/**,components/**,data/**,lib/**,public/**,scripts/**,tests/**}"}}}
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/engine.py": {
+      "excludeFiles": "{node_modules/**,.next/**,.git/**,app/**,components/**,data/**,lib/**,public/**,scripts/**,tests/**}"
+    }
+  },
+  "git": {
+    "deploymentEnabled": {
+      "**": false,
+      "preview": true,
+      "production": true
+    }
+  }
+}
