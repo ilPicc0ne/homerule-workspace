@@ -2,7 +2,7 @@
 
 Private, never published. Written Sun 04.10.2026, 05:00–07:00 CEST, against **production https://yourhomerule.com = `production` @ 8e7c326**. Every screen below was opened on production with a headless browser (read-only: no form submitted, no send triggered). Screenshots: `notes/demo/shots/` (1440×900, file names = beat ids). Where production does not show what the script needs, the beat says so in **Screen ≠ script**.
 
-Companion files: `GAPS.md` (what to fix this morning), `PRODUCT-REVIEW.md` (cold walk-through, tech and team video outlines), `video/` (the narrated demo film for the submission: beats 0–5 plus the alert preview and a proof card, 116 s, rendered 07:15 to `/Users/silvan/claude/code/tools/demo-video/out/homerule/demo.mp4`; re-render after the production update). The live run below adds beat 6 (hour 16), which the film leaves to the tech video.
+Companion files: `GAPS.md` (what to fix this morning), `PRODUCT-REVIEW.md` (cold walk-through, tech and team video outlines), `video/` (the narrated demo film for the submission: beats 0–5 plus the alert preview and a proof card, 116 s, rendered 07:15 to `/Users/silvan/claude/personal/code/tools/demo-video/out/homerule/demo.mp4`; re-render after the production update). The live run below adds beat 6 (hour 16), which the film leaves to the tech video.
 
 ## 0. What changed against the PRD demo table, and why
 

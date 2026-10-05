@@ -10,7 +10,7 @@
 
 Freeze passed (12:00), submission 15:00.
 
-1. **Submission (#13):** three videos, ≤ 60 s each (`docs/VIDEO.md`). Demo = `/Users/silvan/claude/code/tools/demo-video/out/homerule-demo60/demo_v3_matilda.mp4` (57.7 s, Matilda, music a), thumbnail `demo_v3_matilda_thumbnail.png`. Plus README, method note, `outputs/`.
+1. **Submission (#13):** three videos, ≤ 60 s each (`docs/VIDEO.md`). Demo = `/Users/silvan/claude/personal/code/tools/demo-video/out/homerule-demo60/demo_v3_matilda.mp4` (57.7 s, Matilda, music a), thumbnail `demo_v3_matilda_thumbnail.png`. Plus README, method note, `outputs/`.
 2. Dimitar's OK for his name and photo on the end card (Hack-Nation may publish it).
 3. Live demo: run the four MCP prompts once on production and check the wording (`notes/demo/MCP-DEMO.md`).
 4. Teach video (Dimitar, #93, extraction beat #95). Docs pass after his architecture script.

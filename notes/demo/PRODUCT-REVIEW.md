@@ -1,6 +1,6 @@
 # Product review script, tech video, team video
 
-Private, never published. For a reviewer or judge who walks HomeRule cold on https://yourhomerule.com, plus the outlines of the two other submission videos. No evaluator framework exists in `/Users/silvan/claude/code/tools/` (checked 04.10: only `demo-video` with its `VIDEO_CHECKLIST.md`), so the scoring sheet uses the brief's own judge criteria (brief p.6) and a plain task-success scale.
+Private, never published. For a reviewer or judge who walks HomeRule cold on https://yourhomerule.com, plus the outlines of the two other submission videos. No evaluator framework exists in `/Users/silvan/claude/personal/code/tools/` (checked 04.10: only `demo-video` with its `VIDEO_CHECKLIST.md`), so the scoring sheet uses the brief's own judge criteria (brief p.6) and a plain task-success scale.
 
 ## 1. How to run it (15 minutes per reviewer)
 

@@ -1,10 +1,10 @@
 # HomeRule demo video: storyboard
 
-The narrated demo film for the submission ("Demo video: show your tool in use"), built with the owner's pipeline `/Users/silvan/claude/code/tools/demo-video` (hackathon template). English throughout. ~116 s.
+The narrated demo film for the submission ("Demo video: show your tool in use"), built with the owner's pipeline `/Users/silvan/claude/personal/code/tools/demo-video` (hackathon template). English throughout. ~116 s.
 
-- **Runnable copy:** `/Users/silvan/claude/code/tools/demo-video/examples/homerule/script.json` (with `stills/` and `proof.html`). `notes/demo/video/script.json` is a mirror of it; the stills and the proof card stay in the tool folder, so the mirror's `still`/`clip` paths only resolve there.
-- **Outputs (never in this repo):** `/Users/silvan/claude/code/tools/demo-video/out/homerule/` (`animatic.mp4`, `demo.mp4`, stills, contact sheet). Final MP4 path: see "Render log" below.
-- **Re-render** after the production update (GAPS #1): `cd /Users/silvan/claude/code/tools/demo-video && ./make.sh examples/homerule/script.json` (audio is cached, so only capture, render and qa run; ~4 min, $0).
+- **Runnable copy:** `/Users/silvan/claude/personal/code/tools/demo-video/examples/homerule/script.json` (with `stills/` and `proof.html`). `notes/demo/video/script.json` is a mirror of it; the stills and the proof card stay in the tool folder, so the mirror's `still`/`clip` paths only resolve there.
+- **Outputs (never in this repo):** `/Users/silvan/claude/personal/code/tools/demo-video/out/homerule/` (`animatic.mp4`, `demo.mp4`, stills, contact sheet). Final MP4 path: see "Render log" below.
+- **Re-render** after the production update (GAPS #1): `cd /Users/silvan/claude/personal/code/tools/demo-video && ./make.sh examples/homerule/script.json` (audio is cached, so only capture, render and qa run; ~4 min, $0).
 
 ## Shots
 
@@ -47,7 +47,7 @@ Corner badge on every app scene: "Prototype · not legal advice".
 - Animatic 3: 116.2 s; every passage passed the transcript check (two takes retried for spoken style words).
 - Full render 1 (`./make.sh`, against production 8e7c326): 116.2 s, qa passed. Contact sheet showed two problems: the search scene opened on the address page (typing too fast to see), and "a building from 1986" played over the 1926 page because the scene went through `/a/A0016` first.
 - Full render 2 (final): search scene pauses on the suggestion; the other-building scene opens `/a/A0050` directly. qa: **116.3 s · 1920×1080 · -16.2 LUFS · peak -1.5 dBFS · A/V diff 0.021 s · OCR 116 frames, no forbidden names (none set)**; transcript check passed for all 11 passages (2 takes retried earlier for spoken style words). Cost of the whole loop: $0.03 (TTS), music from cache.
-- **Final MP4:** `/Users/silvan/claude/code/tools/demo-video/out/homerule/demo.mp4` · contact sheet `/Users/silvan/claude/code/tools/demo-video/out/homerule/stills/sheet.jpg`.
+- **Final MP4:** `/Users/silvan/claude/personal/code/tools/demo-video/out/homerule/demo.mp4` · contact sheet `/Users/silvan/claude/personal/code/tools/demo-video/out/homerule/stills/sheet.jpg`.
 
 Known in the final cut (by design or pending):
 - The LA scene still shows production's old box ("An exception in the law's text"); fixed on main (#78). Re-run `./make.sh examples/homerule/script.json` after the production update (~7 min, $0).

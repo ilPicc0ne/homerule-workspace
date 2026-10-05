@@ -1,6 +1,6 @@
 # HomeRule demo video: story script
 
-Private and not committed. Written Sun 04.10.2026, 08:05–08:45 CEST. This is the script only; the render format is being tested separately (`/Users/silvan/claude/code/tools/demo-video/examples/homerule-clip/`).
+Private and not committed. Written Sun 04.10.2026, 08:05–08:45 CEST. This is the script only; the render format is being tested separately (`/Users/silvan/claude/personal/code/tools/demo-video/examples/homerule-clip/`).
 
 **Verified against:**
 - **Production** https://yourhomerule.com, fetched read-only 08:05–08:25. RESUME says production is `f8c33fd`; the J2 fix and the NJ rule pages are live. Pages checked: `/`, `/a/A0016`, `/a/A0050`, `/a/A0107`, `/a/A0258`, `/a/A0012`, `/a/A0011`, `/changes/A0016`, `/changes/A0012`, `/r/CA-RENT-1947.12`, `/r/MA-ALG-2983`, `/r/NJ-ALG-56%3A9-23`, `/where?q=Austin, TX`, `/a/at?q=4801 E 3rd St…`, and the example-alert overlay on `/a/A0011`. No form was submitted and nothing was sent.
@@ -67,12 +67,12 @@ Order: problem hook → Lena (Fillmore, Hoff St) → product intro → Los Angel
 
 Brief alignment v3: the T3 conflict flag ("overlap flagged, not decided", Jersey City) is no longer in the Demo video; it moves to the Teach video and the live demo. "What's coming" is carried by the verdict scene (Newark FAIR Act, Jul 1, 2027). Unknown (D5), barred/pending/failed (D6, T4/T5), quotes and dates (product intro + rule pages), change tracking with renter impact (verdict scene) and not-legal-advice (badge, end card) stay.
 
-Render: `cd /Users/silvan/claude/code/tools/demo-video/experiments/homerule-demo60 && python3 render.py --variant v3 --voice audio/eleven_matilda --music <a|b|c> --out ../../out/homerule-demo60/demo_v3.mp4` — only after #117/#118 are live, the takes re-recorded (`node capture.mjs vup vdown vmail`) and Silvan has tested.
+Render: `cd /Users/silvan/claude/personal/code/tools/demo-video/experiments/homerule-demo60 && python3 render.py --variant v3 --voice audio/eleven_matilda --music <a|b|c> --out ../../out/homerule-demo60/demo_v3.mp4` — only after #117/#118 are live, the takes re-recorded (`node capture.mjs vup vdown vmail`) and Silvan has tested.
 
 #### Superseded: Final narration (render source) v2
 ### Final narration (render source)
 
-Rendered from `~/claude/code/tools/demo-video/experiments/homerule-demo60/` (`lines.json` = these lines, `render.py` = the timing). Times are from the Gemini placeholder cut (Achird); an ElevenLabs read shifts them, `render.py` re-plans from each take and refuses anything over 60 s. Spoken "Home Rule", captioned "HomeRule".
+Rendered from `~/claude/personal/code/tools/demo-video/experiments/homerule-demo60/` (`lines.json` = these lines, `render.py` = the timing). Times are from the Gemini placeholder cut (Achird); an ElevenLabs read shifts them, `render.py` re-plans from each take and refuses anything over 60 s. Spoken "Home Rule", captioned "HomeRule".
 
 **Variant F** (live today; D6 fallback until #96 is on production) · 127 words · 57.4 s · `out/homerule-demo60/demo.mp4`
 

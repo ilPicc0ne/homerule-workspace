@@ -274,7 +274,7 @@
       "still": "stills/09_proof.png",
       "narration": "Measured on the challenge data: all 500 addresses in their legal city, every supplied change test exact, and no wrong answer in our chatbot check.",
       "clip": {
-        "url": "file:///Users/silvan/claude/code/tools/demo-video/examples/homerule/proof.html"
+        "url": "file:///Users/silvan/claude/personal/code/tools/demo-video/examples/homerule/proof.html"
       }
     }
   ],

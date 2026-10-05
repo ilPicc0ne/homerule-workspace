@@ -35,6 +35,6 @@ At ~150 words per minute, 60 s holds ~140 spoken words including the end card. S
 
 ## How we make them
 
-- Tooling: `~/claude/code/tools/demo-video` (Remotion + Playwright). The template pipeline (`make.sh` + `script.json`) gave a generic look; HomeRule videos are built as free compositions in `experiments/homerule-*` with the site's own look (navy, green, site font, drawn logo).
+- Tooling: `~/claude/personal/code/tools/demo-video` (Remotion + Playwright). The template pipeline (`make.sh` + `script.json`) gave a generic look; HomeRule videos are built as free compositions in `experiments/homerule-*` with the site's own look (navy, green, site font, drawn logo).
 - Narrated throughout; on-screen text echoes the voice. Voice: ElevenLabs (key read only by a script Silvan runs) or Gemini TTS as a placeholder. Music: newly generated per video, calm or rhythmic, no stock.
 - Screen recordings of production (`yourhomerule.com`), not stills; wait for maps to load.

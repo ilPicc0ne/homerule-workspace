@@ -30,7 +30,7 @@ Whoever isn't speaking drives the laptop.
 
 - Tabs 1–5 in one window, hard-reloaded, zoom 110–125 %: `/`, `/a/A0050`, `/a/A0107#t-rent`, `/a/A0011`, `/connect`.
 - Claude Desktop: new chat, web search off, HomeRule on, lead prompt typed. One dry run beforehand; screenshot the answer.
-- Fallback video open in QuickTime: `/Users/silvan/claude/code/tools/demo-video/out/homerule-demo60/demo_v3_matilda.mp4`.
+- Fallback video open in QuickTime: `/Users/silvan/claude/personal/code/tools/demo-video/out/homerule-demo60/demo_v3_matilda.mp4`.
 - Ask the host: minutes, Q&A, own laptop/HDMI, does this round decide 10.10.?
 
 ## Fallbacks
