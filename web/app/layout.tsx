@@ -15,6 +15,7 @@ const description =
   "Your rights as a renter, for your exact address: which housing rules apply to your home, today and next, quoted and dated. Not legal advice.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://yourhomerule.com"),
   title: { default: "HomeRule", template: "HomeRule · %s" },
   description,
   applicationName: "HomeRule",
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
   },
-  twitter: { card: "summary", title: "HomeRule", description },
+  twitter: { card: "summary_large_image", title: "HomeRule", description },
 };
 
 export const viewport: Viewport = {
